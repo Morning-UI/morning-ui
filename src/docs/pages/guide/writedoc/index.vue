@@ -471,6 +471,8 @@
     |-|-|-|
     |formStatus|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值|输出表单组件的形态文档(仅状态)|
     |formStatusWithStyle|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值|输出表单组件的形态文档(包含状态及色彩)|
+    |formStatusWithSize|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值|输出表单组件的形态文档(包含状态及尺寸)|
+    |formStatusWithStyleAndSize|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值|输出表单组件的形态文档(包含状态、色彩、尺寸)|
     |formConfig|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY|表单组件基本配置演示文档|
     |formMethod|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY|表单组件基本方法演示文档|
     |formEvent|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY|表单组件基本事件演示文档|

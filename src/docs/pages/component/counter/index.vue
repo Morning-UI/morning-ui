@@ -29,7 +29,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:counter
     @defaultValue:5
     @wrapStyle:width:130px;

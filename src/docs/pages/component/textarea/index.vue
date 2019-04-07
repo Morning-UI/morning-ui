@@ -25,7 +25,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:textarea
     @defaultValue:'默认文本'
     :::

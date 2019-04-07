@@ -14,8 +14,6 @@ mor-cascader{
             position: relative;
             background: @colorFormBackground;
             border: 1px @colorFormBorder solid;
-            height: @formHeight;
-            line-height: @formHeight;
             color: @colorFormText !important;
             cursor: pointer;
 
@@ -23,7 +21,6 @@ mor-cascader{
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 display: inline-block;
-                width: calc(100% - 2em);
                 overflow: hidden;
                 padding: 0 1em;
 
@@ -41,8 +38,6 @@ mor-cascader{
                 position: absolute;
                 right: 0;
                 top: 0;
-                width: @fontSize*1.5;
-                font-size: @fontSize*1.875;
                 transform: rotateX(0deg);
                 transition: transform 0.2s;
                 text-indent: 1px;
@@ -55,6 +50,63 @@ mor-cascader{
             .cascader-input{
                 > .mo-icon{
                     transform: rotateX(180deg);
+                }
+            }
+        }
+    }
+
+    &.si-m{
+        .cascader-wrap{
+            .cascader-input{
+                height: @formHeight;
+                line-height: @formHeight;
+
+                > .note{
+                    width: calc(100% - 2em);
+                    font-size: @formInputFontSize;
+                }
+
+                > .mo-icon{
+                    width: @fontSize*1.5;
+                    font-size: @fontSize*1.875;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        .cascader-wrap{
+            .cascader-input{
+                height: @formHeightS;
+                line-height: @formHeightS;
+
+                > .note{
+                    width: calc(100% - 2em);
+                    font-size: @formInputFontSizeS;
+                }
+
+                > .mo-icon{
+                    width: @fontSize*1.5;
+                    font-size: @fontSize*1.875;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        .cascader-wrap{
+            .cascader-input{
+                height: @formHeightXs;
+                line-height: @formHeightXs;
+
+                > .note{
+                    width: calc(100% - 2em);
+                    font-size: @formInputFontSizeXs;
+                }
+
+                > .mo-icon{
+                    width: @fontSize*1.5;
+                    font-size: @fontSize*1.875;
                 }
             }
         }
@@ -81,6 +133,7 @@ mor-cascader{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }

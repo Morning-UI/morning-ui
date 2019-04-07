@@ -212,6 +212,10 @@
   margin-bottom: 0;
   border: none !important;
 }
+.markdown-body mor-radio.border,
+.markdown-body mor-checkbox.border {
+  border: none !important;
+}
 mor-dialog .body {
   font-size: inherit;
 }

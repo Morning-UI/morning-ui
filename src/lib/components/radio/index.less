@@ -25,6 +25,11 @@ mor-radio{
     display: inline-block;
     z-index: 9;
     -webkit-user-select: none;
+    box-sizing: border-box;
+
+    &[type='button']{
+        -webkit-appearance: none;
+    }
 
     .setup-form();
 
@@ -83,7 +88,6 @@ mor-radio{
 
                 .mo-icon{
                     opacity: 1;
-                    transform: scale(0.9);
                 }
             }
 
@@ -97,7 +101,7 @@ mor-radio{
         }
     }
 
-    &.border{
+    &.border:not(.type-button){
         > .il{
             label{
                 border: 1px @colorFormBorder solid;
@@ -114,6 +118,85 @@ mor-radio{
         > .il label{
             margin: 0 0 0.6em;
             width: 100%;
+        }
+    }
+
+    &.type-point{
+        .radio-point{
+            display: inline-block;
+            border-radius: 50%;
+            position: relative;
+            vertical-align: top;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        > .il label.checked{
+            .box{
+                background: @colorWhite !important;
+            }
+
+            .radio-point{
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    &.type-button{
+        > .il {
+            flex-wrap: nowrap;
+
+            label{
+                border: 1px solid @colorFormBorder;
+                border-right-width: 0;
+
+                span{
+                    color: darken(@colorFormText, 10%);
+                }
+
+                .box{
+                    display: none;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                }
+
+                &:first-child{
+                    border-radius: @borderRadius 0 0 @borderRadius;
+                }
+
+                &:last-child{
+                    border-radius: 0 @borderRadius @borderRadius 0;
+                    border-right-width: 1px;
+                }
+
+                &.checked{
+                    cursor: default;
+
+                    span{
+                        color: @colorWhite;
+                    }
+                }
+
+                &.disabled{
+                    background-color: darken(@colorFormBackgroundDisable, 10%);
+                    border-color: darken(@colorFormBackgroundDisable, 10%);
+                    cursor: not-allowed;
+
+                    & + label:not(.checked):not(:hover){
+                        border-left-color: darken(@colorFormBackgroundDisable, 10%);
+                    }
+
+                    &:hover{
+                        span{
+                            color: darken(@colorFormText, 10%);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -135,13 +218,35 @@ mor-radio{
                 font-size: @fontSize*0.75;
                 line-height: @fontSize*1.25 - 1px;
             }
+
+            .radio-point{
+                width: @fontSize*0.625;
+                height: @fontSize*0.625;
+                left: @fontSize*0.25;
+                top: @fontSize*0.25;
+            }
+
+            &.checked{
+                .mo-icon{
+                    transform: scale(0.9);
+                }
+            }
         }
 
-        &.border{
+        &.border:not(.type-button){
             > .il{
                 label{
                     padding: 0.4em 0.6em;
                     margin: 0 0.5em 0.5em 0;
+                }
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    padding: 0.5em 1em;
+                    margin: 0;
                 }
             }
         }
@@ -152,7 +257,7 @@ mor-radio{
             margin: 0 0.75em 0.2em 0;
 
             span{
-                font-size: @fontSize*0.875;
+                font-size: @fontSize*0.8125;
             }
 
             .box{
@@ -165,13 +270,35 @@ mor-radio{
                 font-size: @fontSize*0.75;
                 line-height: @fontSize - 1px;
             }
+
+            .radio-point{
+                width: @fontSize*0.5;
+                height: @fontSize*0.5;
+                left: @fontSize*0.1875;
+                top: @fontSize*0.1875;
+            }
+
+            &.checked{
+                .mo-icon{
+                    transform: scale(0.8);
+                }
+            }
         }
 
-        &.border{
+        &.border:not(.type-button){
             > .il{
                 label{
                     padding: 0.3em 0.4em;
                     margin: 0 0.4em 0.4em 0;
+                }
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    padding: 0.3em 0.8em;
+                    margin: 0;
                 }
             }
         }
@@ -195,13 +322,35 @@ mor-radio{
                 font-size: @fontSize*0.75;
                 line-height: @fontSize*0.875 - 1px;
             }
+
+            .radio-point{
+                width: @fontSize*0.375;
+                height: @fontSize*0.375;
+                left: @fontSize*0.1875;
+                top: @fontSize*0.1875;
+            }
+
+            &.checked{
+                .mo-icon{
+                    transform: scale(0.7);
+                }
+            }
         }
 
-        &.border{
+        &.border:not(.type-button){
             > .il{
                 label{
                     padding: 0.2em 0.3em;
                     margin: 0 0.3em 0.3em 0;
+                }
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    padding: 0.2em 0.6em;
+                    margin: 0;
                 }
             }
         }
@@ -215,6 +364,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorTheme;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorTheme;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorTheme;
+
+                        span{
+                            color: @colorTheme;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorTheme;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorTheme;
+                        border-color: @colorTheme;
+
+                        + label{
+                            border-left-color: @colorTheme;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -245,6 +427,39 @@ mor-radio{
             border-color: @colorLightTheme;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorLightTheme;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorLightTheme;
+
+                        span{
+                            color: @colorLightTheme;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorLightTheme;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorLightTheme;
+                        border-color: @colorLightTheme;
+
+                        + label{
+                            border-left-color: @colorLightTheme;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -271,6 +486,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorDarkTheme;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorDarkTheme;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorDarkTheme;
+
+                        span{
+                            color: @colorDarkTheme;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorDarkTheme;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorDarkTheme;
+                        border-color: @colorDarkTheme;
+
+                        + label{
+                            border-left-color: @colorDarkTheme;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -301,6 +549,39 @@ mor-radio{
             border-color: @colorSuccess;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorSuccess;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorSuccess;
+
+                        span{
+                            color: @colorSuccess;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorSuccess;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorSuccess;
+                        border-color: @colorSuccess;
+
+                        + label{
+                            border-left-color: @colorSuccess;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -327,6 +608,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorWarning;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorWarning;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorWarning;
+
+                        span{
+                            color: @colorWarning;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorWarning;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorWarning;
+                        border-color: @colorWarning;
+
+                        + label{
+                            border-left-color: @colorWarning;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -357,6 +671,39 @@ mor-radio{
             border-color: @colorDanger;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorDanger;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorDanger;
+
+                        span{
+                            color: @colorDanger;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorDanger;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorDanger;
+                        border-color: @colorDanger;
+
+                        + label{
+                            border-left-color: @colorDanger;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -383,6 +730,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorPrimary;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorPrimary;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorPrimary;
+
+                        span{
+                            color: @colorPrimary;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorPrimary;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorPrimary;
+                        border-color: @colorPrimary;
+
+                        + label{
+                            border-left-color: @colorPrimary;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -413,6 +793,39 @@ mor-radio{
             border-color: @colorMinor;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorMinor;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorMinor;
+
+                        span{
+                            color: @colorMinor;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorMinor;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorMinor;
+                        border-color: @colorMinor;
+
+                        + label{
+                            border-left-color: @colorMinor;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -439,6 +852,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorInfo;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorInfo;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorInfo;
+
+                        span{
+                            color: @colorInfo;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorInfo;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorInfo;
+                        border-color: @colorInfo;
+
+                        + label{
+                            border-left-color: @colorInfo;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -469,6 +915,39 @@ mor-radio{
             border-color: @colorBlack;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorBlack;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorBlack;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorBlack;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorBlack;
+                        border-color: @colorBlack;
+
+                        + label{
+                            border-left-color: @colorBlack;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -495,6 +974,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorLightBlack;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorLightBlack;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorLightBlack;
+
+                        span{
+                            color: @colorLightBlack;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorLightBlack;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorLightBlack;
+                        border-color: @colorLightBlack;
+
+                        + label{
+                            border-left-color: @colorLightBlack;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -525,6 +1037,39 @@ mor-radio{
             border-color: @colorExtraLightBlack;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorExtraLightBlack;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorExtraLightBlack;
+
+                        span{
+                            color: @colorExtraLightBlack;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorExtraLightBlack;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorExtraLightBlack;
+                        border-color: @colorExtraLightBlack;
+
+                        + label{
+                            border-left-color: @colorExtraLightBlack;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -551,6 +1096,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorBlue;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorBlue;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorBlue;
+
+                        span{
+                            color: @colorBlue;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorBlue;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorBlue;
+                        border-color: @colorBlue;
+
+                        + label{
+                            border-left-color: @colorBlue;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -581,6 +1159,39 @@ mor-radio{
             border-color: @colorLightBlue;
         }
 
+        &.type-point{
+            .radio-point{
+                background: @colorLightBlue;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorLightBlue;
+
+                        span{
+                            color: @colorLightBlue;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorLightBlue;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorLightBlue;
+                        border-color: @colorLightBlue;
+
+                        + label{
+                            border-left-color: @colorLightBlue;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -607,6 +1218,39 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorExtraLightBlue;
+        }
+
+        &.type-point{
+            .radio-point{
+                background: @colorExtraLightBlue;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    &:not(.checked):hover{
+                        border-color: @colorExtraLightBlue;
+
+                        span{
+                            color: @colorExtraLightBlue;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorExtraLightBlue;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorExtraLightBlue;
+                        border-color: @colorExtraLightBlue;
+
+                        + label{
+                            border-left-color: @colorExtraLightBlue;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -661,6 +1305,51 @@ mor-radio{
             border-color: @colorLightSilver;
         }
 
+        &.type-point{
+            .il label.checked .box{
+                background: @colorBlack !important;
+            }
+
+            .radio-point{
+                background: @colorSilver;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    span{
+                        color: lighten(@colorFormText, 10%);
+                    }
+
+                    &:not(.checked):hover{
+                        border-color: @colorSilver;
+
+                        span{
+                            color: @colorWhite;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorSilver;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorSilver;
+                        border-color: @colorSilver;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        + label{
+                            border-left-color: @colorSilver;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -711,6 +1400,51 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorLightSilver;
+        }
+
+        &.type-point{
+            .il label.checked .box{
+                background: @colorBlack !important;
+            }
+
+            .radio-point{
+                background: @colorLightSilver;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    span{
+                        color: lighten(@colorFormText, 10%);
+                    }
+
+                    &:not(.checked):hover{
+                        border-color: @colorLightSilver;
+
+                        span{
+                            color: @colorLightSilver;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorLightSilver;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorLightSilver;
+                        border-color: @colorLightSilver;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        + label{
+                            border-left-color: @colorLightSilver;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -765,6 +1499,51 @@ mor-radio{
             border-color: @colorExtraLightSilver;
         }
 
+        &.type-point{
+            .il label.checked .box{
+                background: @colorBlack !important;
+            }
+
+            .radio-point{
+                background: @colorExtraLightSilver;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    span{
+                        color: lighten(@colorFormText, 10%);
+                    }
+
+                    &:not(.checked):hover{
+                        border-color: @colorExtraLightSilver;
+
+                        span{
+                            color: @colorWhite;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorExtraLightSilver;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorExtraLightSilver;
+                        border-color: @colorExtraLightSilver;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        + label{
+                            border-left-color: @colorExtraLightSilver;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -815,6 +1594,51 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorGray;
+        }
+
+        &.type-point{
+            .il label.checked .box{
+                background: @colorBlack !important;
+            }
+
+            .radio-point{
+                background: @colorGray;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    span{
+                        color: lighten(@colorFormText, 10%);
+                    }
+
+                    &:not(.checked):hover{
+                        border-color: @colorGray;
+
+                        span{
+                            color: @colorWhite;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorGray;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorGray;
+                        border-color: @colorGray;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        + label{
+                            border-left-color: @colorGray;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,
@@ -869,6 +1693,51 @@ mor-radio{
             border-color: @colorLightGray;
         }
 
+        &.type-point{
+            .il label.checked .box{
+                background: @colorBlack !important;
+            }
+
+            .radio-point{
+                background: @colorLightGray;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    span{
+                        color: lighten(@colorFormText, 10%);
+                    }
+
+                    &:not(.checked):hover{
+                        border-color: @colorLightGray;
+
+                        span{
+                            color: @colorWhite;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorLightGray;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorLightGray;
+                        border-color: @colorLightGray;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        + label{
+                            border-left-color: @colorLightGray;
+                        }
+                    }
+                }
+            }
+        }
+
         &.st-disabled,
         &.st-readonly{
             > .il label.checked{
@@ -919,6 +1788,51 @@ mor-radio{
 
         &.border > .il label.checked{
             border-color: @colorWhite;
+        }
+
+        &.type-point{
+            .il label.checked .box{
+                background: @colorBlack !important;
+            }
+
+            .radio-point{
+                background: @colorWhite;
+            }
+        }
+
+        &.type-button{
+            > .il {
+                label{
+                    span{
+                        color: lighten(@colorFormText, 10%);
+                    }
+
+                    &:not(.checked):hover{
+                        border-color: @colorWhite;
+
+                        span{
+                            color: @colorWhite;
+                        }
+
+                        &:not(.checked) + label:not(.checked){
+                            border-left-color: @colorWhite;
+                        }
+                    }
+
+                    &.checked{
+                        background: @colorWhite;
+                        border-color: @colorWhite;
+
+                        span{
+                            color: @colorBlack;
+                        }
+
+                        + label{
+                            border-left-color: @colorWhite;
+                        }
+                    }
+                }
+            }
         }
 
         &.st-disabled,

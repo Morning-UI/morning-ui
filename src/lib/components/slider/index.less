@@ -15,7 +15,6 @@ mor-slider{
         width: 100%;
         box-sizing: border-box;
         user-select: none;
-        padding: 6px 20px;
         display: inline-block;
 
         &:hover,
@@ -44,15 +43,11 @@ mor-slider{
 
         li{
             display: inline-block;
-            width: 6px;
-            height: 6px;
-            font-size: @fontSize;
             border-radius: 10em;
             background: @colorWhite;
             vertical-align: top;
             position: absolute;
             margin: 0;
-            top: 1px;
             transform: translateX(-50%);
         }
     }
@@ -91,36 +86,27 @@ mor-slider{
 
     .track{
         width: 100%;
-        height: 8px;
         background: @colorLightSilver;
         border-radius: 10em;
         position: relative;
         cursor: pointer;
-        font-size: @fontSize;
     }
 
     .selected-line{
-        height: 8px;
         position: absolute;
         left: 0;
         top: 0;
         background: @colorLightTheme;
         border-radius: 10em;
         pointer-events: none;
-        font-size: @fontSize;
     }
 
     .main-slider{
-        width: 18px;
-        height: 18px;
         position: absolute;
-        top: -5px;
         left: 0;
         background: @colorWhite;
-        border-radius: 9px;
         border: 2px @colorLightTheme solid;
         cursor: pointer;
-        margin-left: -9px;
         box-sizing: border-box;
     }
 
@@ -133,8 +119,6 @@ mor-slider{
     .append{
         display: inline-block;
         width: 15%;
-        height: 20px;
-        font-size: @fontSize*0.875;
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -142,7 +126,6 @@ mor-slider{
 
         > i{
             position: relative;
-            top: -2px;
         }
     }
 
@@ -174,34 +157,229 @@ mor-slider{
         .counter{
             display: flex;
             min-width: 90px;
-            padding: 0 0 0 15px;
             width: 30%;
             box-sizing: border-box;
 
             mor-counter{
                 width: 100%;
+            }
+        }
+    }
 
-                .counter-wrap{
-                    > .sub-step,
-                    > .add-step,
-                    > input{
-                        height: @fontSize*1.6;
-                        line-height: @fontSize*1.6;
-                    }
+    &.si-m{
+        .wrap{
+            padding: 6px 20px;
+        }
 
-                    > .sub-step,
-                    > .add-step{
-                        padding: 0 0.3em;
+        .points{
+            li{
+                width: 6px;
+                height: 6px;
+                font-size: @formInputFontSize;
+                top: 1px;
+            }
+        }
 
-                        i{
-                            font-size: @fontSize*0.75;
+        .track,
+        .selected-line{
+            height: 8px;
+            font-size: @formInputFontSize + 2px;
+        }
+
+        .main-slider{
+            width: 18px;
+            height: 18px;
+            top: -5px;
+            border-radius: 9px;
+            margin-left: -9px;
+        }
+
+        .prepend,
+        .append{
+            height: 20px;
+            font-size: @formInputFontSize;
+
+            > i{
+                top: -2px;
+                font-size: @formInputFontSize + 2px;
+            }
+        }
+
+        &.has-counter{
+            .counter{
+                padding: 0 0 0 15px;
+
+                mor-counter{
+                    .counter-wrap{
+                        > .sub-step,
+                        > .add-step,
+                        > input{
+                            height: (@formInputFontSize + 2px) * 1.6;
+                            line-height: (@formInputFontSize + 2px) * 1.6;
+                        }
+
+                        > .sub-step,
+                        > .add-step{
+                            padding: 0 0.3em;
+
+                            i{
+                                font-size: @formInputFontSize;
+                            }
+                        }
+
+                        > input{
+                            padding: 0 0.5em;
+                            min-width: (@formInputFontSize + 2px) * 2;
+                            font-size: (@formInputFontSize + 2px) * 0.75;
                         }
                     }
+                }
+            }
+        }
+    }
 
-                    > input{
-                        padding: 0 0.5em;
-                        min-width: @fontSize*2;
-                        font-size: @fontSize*0.75;
+    &.si-s{
+        .wrap{
+            padding: 4px 20px;
+        }
+
+        .points{
+            li{
+                width: 4px;
+                height: 4px;
+                font-size: @formInputFontSizeS;
+                top: 1px;
+            }
+        }
+
+        .track,
+        .selected-line{
+            height: 6px;
+            font-size: @formInputFontSizeS + 2px;
+        }
+
+        .main-slider{
+            width: 14px;
+            height: 14px;
+            top: -4px;
+            border-radius: 7px;
+            margin-left: -7px;
+        }
+
+        .prepend,
+        .append{
+            height: 16px;
+            font-size: @formInputFontSizeS;
+            position: relative;
+            top: -3px;
+
+            > i{
+                top: -1px;
+                font-size: @formInputFontSizeS + 2px;
+            }
+        }
+
+        &.has-counter{
+            .counter{
+                padding: 0 0 0 12px;
+
+                mor-counter{
+                    .counter-wrap{
+                        > .sub-step,
+                        > .add-step,
+                        > input{
+                            height: (@formInputFontSizeS + 2px) * 1.4;
+                            line-height: (@formInputFontSizeS + 2px) * 1.4;
+                        }
+
+                        > .sub-step,
+                        > .add-step{
+                            padding: 0 0.3em;
+
+                            i{
+                                font-size: @formInputFontSizeS;
+                            }
+                        }
+
+                        > input{
+                            padding: 0 0.5em;
+                            min-width: (@formInputFontSizeS + 2px) * 2;
+                            font-size: (@formInputFontSizeS + 2px) * 0.75;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        .wrap{
+            padding: 3px 20px;
+        }
+
+        .points{
+            li{
+                width: 4px;
+                height: 4px;
+                font-size: @formInputFontSizeXs;
+                top: 0;
+            }
+        }
+
+        .track,
+        .selected-line{
+            height: 4px;
+            font-size: @formInputFontSizeXs + 2px;
+        }
+
+        .main-slider{
+            width: 12px;
+            height: 12px;
+            top: -4px;
+            border-radius: 6px;
+            margin-left: -6px;
+        }
+
+        .prepend,
+        .append{
+            height: 14px;
+            font-size: @formInputFontSizeXs;
+            top: -4px;
+            position: relative;
+
+            > i{
+                top: 0;
+                font-size: @formInputFontSizeXs;
+            }
+        }
+
+        &.has-counter{
+            .counter{
+                padding: 0 0 0 10px;
+
+                mor-counter{
+                    .counter-wrap{
+                        > .sub-step,
+                        > .add-step,
+                        > input{
+                            height: (@formInputFontSizeXs + 2px) * 1.3;
+                            line-height: (@formInputFontSizeXs + 2px) * 1.3;
+                        }
+
+                        > .sub-step,
+                        > .add-step{
+                            padding: 0 0.3em;
+
+                            i{
+                                font-size: @formInputFontSizeXs;
+                            }
+                        }
+
+                        > input{
+                            padding: 0 0.5em;
+                            min-width: (@formInputFontSizeXs + 2px) * 1.6;
+                            font-size: (@formInputFontSizeXs + 2px) * 0.75;
+                        }
                     }
                 }
             }
@@ -233,6 +411,7 @@ mor-slider{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }

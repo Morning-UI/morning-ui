@@ -501,6 +501,39 @@
     </div>
     :::
 
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    复选框选中的样式。
+    >conf-accept
+    `'check'` : 选中标记(对勾)
+    `'button'` : 按钮式
+    >conf-type
+    String
+    >conf-default
+    `'check'`
+    ---
+    #demo
+    >desc
+    按钮式的复选框。
+    >tpl
+    <div>
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            type="button"
+        ></ui-checkbox>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

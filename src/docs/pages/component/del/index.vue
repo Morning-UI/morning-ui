@@ -8,6 +8,8 @@
     
     <doc-component-status page="del"></doc-component-status>
 
+    <doc-component-not-recommended date="2019年4月6日" plan="使用<del>标签替代"></doc-component-not-recommended>
+
     [[[开始]]]
 
     将一段内容标记为废弃的，这是内联元素。

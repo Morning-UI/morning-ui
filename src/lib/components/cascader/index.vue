@@ -1,7 +1,7 @@
 <template>
     <mor-cascader
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreCLass]"
+        :class="[formClass, sizeClass, stateClass, moreCLass]"
 
         :form-name="formName"
         :form-key="formKey"

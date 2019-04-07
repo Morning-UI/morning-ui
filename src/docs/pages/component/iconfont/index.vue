@@ -306,6 +306,14 @@
             <i class="mo-icon-user-o"></i>
             <span>mo-icon-user-o</span>
         </div>
+        <div>
+            <i class="mo-icon-markdown-f"></i>
+            <span>mo-icon-markdown-f</span>
+        </div>
+        <div>
+            <i class="mo-icon-doc-f"></i>
+            <span>mo-icon-doc-f</span>
+        </div>
     </div>
     
     ## 图标托管

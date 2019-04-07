@@ -1,7 +1,7 @@
 <template>
     <mor-colorpicker
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"

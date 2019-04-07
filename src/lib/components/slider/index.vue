@@ -1,7 +1,7 @@
 <template>
     <mor-slider
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -71,7 +71,7 @@
                 :ref="'ui-slider-tip-'+this.uiid"
                 color="extra-light-blue"
                 trigger="method"
-                offset="3px 0"
+                offset="0, 0"
             >{{conf.tipFormatter(data.end)}}</morning-tip>
             <!-- <div class="sub-slider"></div> -->
         </div>
