@@ -35,6 +35,8 @@
     #demo
     >desc
     通过`border`样式类指定单选框组以带边框的样式显示。
+    <br>
+    注意：此样式无法和`type="button"`配置一起使用。
     >tpl
     <div style="width:320px;">
         <ui-radio
@@ -76,13 +78,6 @@
     :::
 
     [[[配置]]]
-
-    :::preset
-    @name:formStatusWithStyle
-    @uikey:radio
-    @defaultValue:'Tim'
-    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    :::
 
     :::vue
     @name:accept-html
@@ -231,6 +226,58 @@
                 Emir : 'Emir Ayouni'
             }"
             :hidden-options="['Tim', 'Victor']"
+        ></ui-radio>
+    </div>
+    :::
+
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    单选框选中的样式。
+    >conf-accept
+    `'check'` : 选中标记(对勾)
+    `'point'` : 小圆点
+    `'button'` : 按钮式
+    >conf-type
+    String
+    >conf-default
+    `'check'`
+    ---
+    #demo
+    >desc
+    小圆点类型的单选框。
+    >tpl
+    <div style="width:300px;">
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            type="point"
+        ></ui-radio>
+    </div>
+    ---
+    #demo
+    >desc
+    按钮式的单选框。
+    >tpl
+    <div>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            type="button"
         ></ui-radio>
     </div>
     :::

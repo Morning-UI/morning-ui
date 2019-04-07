@@ -1,7 +1,7 @@
 <template>
     <mor-rate
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"

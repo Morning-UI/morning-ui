@@ -1,7 +1,7 @@
 <template>
     <mor-transfer
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -28,6 +28,7 @@
                     :list="{all:'All'}"
                     :id="'mor-transfer-source-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
                     :ref="'mor-transfer-source-'+uiid"
                 ></morning-checkbox>
                 <p v-html="conf.sourceTitle"></p>
@@ -50,11 +51,13 @@
                     <morning-textinput
                         inside-name="请输入搜索内容"
                         :ref="'mor-transfer-source-search-'+uiid"
+                        :size="conf.size"
                         @value-change="_sourceOnSearch"
                     ></morning-textinput>
                 </div>
                 <morning-checkbox
                     :state="conf.state"
+                    :size="conf.size"
                     :list="sourceList"
                     :parent="'#mor-transfer-source-'+uiid+':all'"
                     :hiddenOptions="data.searchSourceMissKeys"
@@ -78,7 +81,7 @@
                         circle : !conf.sourceToTargetText
                     }"
                     color="silver"
-                    size="xs"
+                    :size="conf.size === 'xs' ? 'xxs' : 'xs'"
                     :state="conf.state"
                     @emit="_toTarget"
                 >
@@ -91,7 +94,7 @@
                     circle : !conf.targetToSourceText
                 }"
                 color="silver"
-                size="xs"
+                :size="conf.size === 'xs' ? 'xxs' : 'xs'"
                 :state="conf.state"
                 @emit="_toSource"
             >
@@ -106,6 +109,7 @@
                     :list="{all:'All'}"
                     :id="'mor-transfer-target-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
                     :ref="'mor-transfer-target-'+uiid"
                 ></morning-checkbox>
                 <p v-html="conf.targetTitle"></p>
@@ -128,11 +132,13 @@
                     <morning-textinput
                         inside-name="请输入搜索内容"
                         :ref="'mor-transfer-target-search-'+uiid"
+                        :size="conf.size"
                         @value-change="_targetOnSearch"
                     ></morning-textinput>
                 </div>
                 <morning-checkbox
                     :state="conf.state"
+                    :size="conf.size"
                     :list="targetList"
                     :parent="'#mor-transfer-target-'+uiid+':all'"
                     :hiddenOptions="data.searchTargetMissKeys"

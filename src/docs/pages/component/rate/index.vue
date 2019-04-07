@@ -47,7 +47,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:rate
     @defaultValue:3
     :::

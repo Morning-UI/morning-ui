@@ -104,10 +104,11 @@
         }
     }
     :::
+
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:transfer
     @defaultValue:{source:['item2','item3','item4','item5','item6','item7','item8','item9'],target:['item1']}
     @attrs: :list="{item1:'备选项-1',item2:'备选项-2',item3:'备选项-3',item4:'备选项-4',item5:'备选项-5',item6:'备选项-6',item7:'备选项-7',item8:'备选项-8',item9:'备选项-9'}"

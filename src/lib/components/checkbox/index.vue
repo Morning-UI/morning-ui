@@ -14,6 +14,7 @@
         :hidden-options="hiddenOptions"
         :max="max"
         :parent="parent"
+        :type="type"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -122,6 +123,11 @@ export default {
         parent : {
             type : String,
             default : ''
+        },
+        type : {
+            type : String,
+            default : 'check',
+            validator : (value => ['check', 'button'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -133,14 +139,16 @@ export default {
                 disabledOptions : this.disabledOptions,
                 hiddenOptions : this.hiddenOptions,
                 max : this.max,
-                parent : this.parent
+                parent : this.parent,
+                type : this.type
             };
 
         },
         moreClass : function () {
 
             return {
-                'is-max' : this.isMax
+                'is-max' : this.isMax,
+                'type-button' : (this.conf.type === 'button')
             };
 
         },

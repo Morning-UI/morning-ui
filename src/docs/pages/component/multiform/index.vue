@@ -60,7 +60,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:multiform
     @defaultValue:[{name:'Jim'}, {name:'Sam'}]
     @attrs: :item-filler="item => ({title: item.name})"

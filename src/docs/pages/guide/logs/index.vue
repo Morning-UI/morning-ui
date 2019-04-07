@@ -18,6 +18,49 @@
     
     ### 更新记录
 
+    ### 0.12.17 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月7日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.17" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.17/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.17/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-radio`支持type配置，可设置小圆点和按钮式样式
+    - `ui-checkbox`支持按钮式样式
+    - `ui-texteditor`支持`markdown`配置，可以开启MD编辑模式
+    - `ui-texteditor`支持`plain-clipboard`配置，可以粘贴纯文本（无样式）
+    - `ui-textarea`、`ui-switch`、`ui-rate`、`ui-counter`、`ui-cascader`、`ui-transfer`、`ui-multiform`、`ui-slider`、`ui-colorpicker`标准化了`m`尺寸，并支持`s`和`xs`尺寸
+
+    #### 改进
+
+    - 优化`ui-radio`和`ui-checkbox`不同尺寸的勾选样式
+    - 现在`ui-switch`的禁用样式统一了
+    - `ui-multiinput`支持`delete`快捷键
+    - 优化`ui-breadcrumbs`鼠标移入时的样式
+    - `ui-tab`禁用标签页现在鼠标移入时会有禁用效果
+
+    #### 废弃
+
+    - `ui-del`、`ui-u`、`ui-small`、`ui-em`、`ui-strong`已经不再推荐使用
+
+    #### 更多
+
+    - 文档新增`ui-texteditor`转换为Markdown的示例
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-del`、`ui-u`、`ui-small`、`ui-em`、`ui-strong`已经不再推荐使用，替代方案详见组件文档
+
+    ---
+
+
     ### 0.12.16 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

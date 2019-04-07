@@ -12,10 +12,7 @@ mor-counter{
     .sub-step,
     .add-step{
         display: inline-block;
-        font-size: @fontSize*0.875;
-        height: @formHeight*0.85;
         box-sizing: border-box;
-        line-height: @formHeight*0.85;
         vertical-align: top;
         padding: 0 0.7em;
         border: 1px @colorFormBorder solid;
@@ -36,10 +33,6 @@ mor-counter{
             background: @colorSilver;
             z-index: 3;
         }
-
-        .mo-icon{
-            font-size: @fontSize*0.875;
-        }
     }
 
     .sub-step{
@@ -52,13 +45,9 @@ mor-counter{
     }
 
     .step-controls{
-        height: @formHeight*0.85;
-        // line-height: @formHeight*0.85;
-
         .sub-step,
         .add-step{
             height: 50%;
-            line-height: @formHeight*0.85/2;
         }
 
         .sub-step{
@@ -79,30 +68,14 @@ mor-counter{
         display: inline-block;
         box-sizing: border-box;
         z-index: 2;
-        font-size: @fontSize*0.875;
-        padding: 0 1em;
         background: @colorFormBackground;
         border: 1px @colorFormBorder solid;
-        height: @formHeight*0.85;
-        line-height: @formHeight*0.85;
         color: @colorFormText !important;
         outline: none;
         -webkit-appearance: none;
         text-align: center;
         min-width: 40px;
         flex-grow: 1;
-
-        // &.align-left{
-        //     text-align: left;
-        // }
-
-        // &.align-center{
-        //     text-align: center;
-        // }
-
-        // &.align-right{
-        //     text-align: right;
-        // }
 
         &::placeholder{
             color: @colorFormText;
@@ -131,6 +104,93 @@ mor-counter{
             border-radius: @borderRadius 0 0 @borderRadius;
             // border-right: none;
             margin-left: 0;
+        }
+    }
+
+    &.si-m{
+        .sub-step,
+        .add-step{
+            font-size: @formInputFontSize;
+            height: @formHeight;
+            line-height: @formHeight;
+
+            .mo-icon{
+                font-size: @formInputFontSize;
+            }
+        }
+
+        .step-controls{
+            height: @formHeight;
+
+            .sub-step,
+            .add-step{
+                line-height: @formHeight/2;
+            }
+        }
+
+        input{
+            font-size: @formInputFontSize + 2px;
+            height: @formHeight;
+            line-height: @formHeight;
+            padding: 0 0.6em;
+        }
+    }
+
+    &.si-s{
+        .sub-step,
+        .add-step{
+            font-size: @formInputFontSizeS;
+            height: @formHeightS;
+            line-height: @formHeightS;
+
+            .mo-icon{
+                font-size: @formInputFontSizeS;
+            }
+        }
+
+        .step-controls{
+            height: @formHeightS;
+
+            .sub-step,
+            .add-step{
+                line-height: @formHeightS/2;
+            }
+        }
+
+        input{
+            font-size: @formInputFontSizeS + 2px;
+            height: @formHeightS;
+            line-height: @formHeightS;
+            padding: 0 0.6em;
+        }
+    }
+
+    &.si-xs{
+        .sub-step,
+        .add-step{
+            font-size: @formInputFontSizeXs;
+            height: @formHeightXs;
+            line-height: @formHeightXs;
+
+            .mo-icon{
+                font-size: @formInputFontSizeXs;
+            }
+        }
+
+        .step-controls{
+            height: @formHeightXs;
+
+            .sub-step,
+            .add-step{
+                line-height: @formHeightXs/2;
+            }
+        }
+
+        input{
+            font-size: @formInputFontSizeXs + 1px;
+            height: @formHeightXs;
+            line-height: @formHeightXs;
+            padding: 0 0.6em;
         }
     }
 
@@ -167,6 +227,7 @@ mor-counter{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }

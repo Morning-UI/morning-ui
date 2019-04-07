@@ -11,14 +11,21 @@
         :inside-name="insideName"
         :tools="tools"
         :uploader="uploader"
+        :markdown="markdown"
+        :plain-clipboard="plainClipboard"
     >
     
         <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
         <div class="editor-wrap">
-        
             <div class="toolbar">
-                <template v-for="(group, index) in conf.tools">
+                <div v-if="conf.markdown" class="editor-logo" title="Markdown编辑">
+                    <i class="mo-icon mo-icon-markdown-f"></i>
+                </div>
+                <div v-else class="editor-logo" title="富文本编辑">
+                    <i class="mo-icon mo-icon-doc-f"></i>
+                </div>
+                <template v-for="(group, index) in toolSet">
                     <div class="ql-formats" :key="index">
                         <template v-for="(tool, sindex) in group">
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'header'">
@@ -204,8 +211,10 @@
  
 <script>
 import Quill                        from 'quill/core';
+import Delta                        from 'quill-delta';
 import Toolbar                      from 'quill/modules/toolbar';
 import Syntax                       from 'quill/modules/syntax';
+import Clipboard                    from 'quill/modules/clipboard';
 import SnowTheme                    from 'quill/themes/snow';
 import Icons                        from 'quill/ui/icons';
 import {AlignStyle}                 from 'quill/formats/align';
@@ -304,6 +313,27 @@ class Image extends BlockEmbed {
 
 }
 
+// extend module : clipboard
+class PlainClipboard extends Clipboard {
+
+    convert (html = null) {
+    
+        if (typeof html === 'string') {
+            
+            this.container.innerHTML = html;
+        
+        }
+        
+        let text = this.container.innerText;
+        
+        this.container.innerHTML = '';
+        
+        return new Delta().insert(text);
+  
+    }
+
+}
+
 Image.blotName = 'image';
 Image.tagName = 'IMG';
 
@@ -335,6 +365,7 @@ Quill.register({
     'modules/toolbar' : Toolbar,
     'modules/syntax' : Syntax,
     'modules/imageResize' : ImageResize,
+    // 'modules/clipboard' : PlainClipboard,
 
     // 'themes/bubble': BubbleTheme,
     'themes/snow' : SnowTheme,
@@ -570,6 +601,7 @@ const inlineStyle = `
     }
     .mo-texteditor h1 {
       font-size: 2em;
+      border-bottom: none;
     }
     .mo-texteditor h2 {
       font-size: 1.5em;
@@ -695,6 +727,14 @@ export default {
         uploader : {
             type : Function,
             default : undefined
+        },
+        markdown : {
+            type : Boolean,
+            default : false
+        },
+        plainClipboard : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -703,7 +743,9 @@ export default {
             return {
                 insideName : this.insideName,
                 tools : this.tools,
-                uploader : this.uploader
+                uploader : this.uploader,
+                markdown : this.markdown,
+                plainClipboard : this.plainClipboard
             };
 
         },
@@ -712,6 +754,30 @@ export default {
             return {
                 'hide-name' : !!this.conf.hideName || !this.conf.formName
             };
+
+        },
+        toolSet : function () {
+
+            if (this.conf.markdown) {
+
+                return [
+                    ['undo', 'redo']
+                ];
+
+            }
+
+            return this.conf.tools;
+
+        },
+        isPlainClipboard : function () {
+
+            if (this.conf.markdown) {
+
+                return true;
+
+            }
+
+            return this.conf.plainClipboard;
 
         }
     },
@@ -771,11 +837,83 @@ export default {
             this.$refs[`ui-select-dialog-${this.uiid}`].toggle(false);
 
         },
+        _initQuill : function () {
+
+            this.data.quill = new Quill(this.$el.querySelector('.quill'), {
+                theme : 'snow',
+                placeholder : this.conf.insideName,
+                modules : {
+                    toolbar : {
+                        container : this.$el.querySelector('.toolbar'),
+                        handlers : {
+                            undo : () => {
+
+                                this.data.quill.history.undo();
+
+                            },
+                            redo : () => {
+
+                                this.data.quill.history.redo();
+
+                            },
+                            divider : () => {
+
+                                let range = this.data.quill.getSelection(true);
+
+                                this.data.quill.insertText(range.index, '\n', Quill.sources.USER);
+                                this.data.quill.insertEmbed(range.index + 1, 'divider', true, Quill.sources.USER);
+                                this.data.quill.setSelection(range.index + 2, Quill.sources.SILENT);
+
+                            },
+                            image : () => {
+
+                                this.$refs[`ui-select-dialog-${this.uiid}`].toggle(true);
+
+                                return false;
+
+                            }
+                        }
+                    },
+                    imageResize : {}
+                }
+            });
+
+            this.data.quill.on('text-change', () => {
+
+                this.data.dontSetHtml = true;
+                this._set(this.getHtml(), true);
+
+                this.Vue.nextTick(() => {
+
+                    this.data.dontSetHtml = false;
+        
+                });
+
+            });
+
+            this.data.quill.on('selection-change', () => {
+
+                this.$emit('selection-change');
+
+            });
+
+            this.setHtml(this.get());
+
+        },
         getHtml : function () {
 
-            let html = this.$el.querySelector('.ql-editor').innerHTML;
+            let html;
 
-            html = `<style class="mo-texteditor-style">${inlineStyle.replace(/(\n|[ ]{2})/g, '')}</style><div class="mo-texteditor">${html}</div>`;
+            if (!this.conf.markdown) {
+                
+                html = this.$el.querySelector('.ql-editor').innerHTML;
+                html = `<style class="mo-texteditor-style">${inlineStyle.replace(/(\n|[ ]{2})/g, '')}</style><div class="mo-texteditor">${html}</div>`;
+
+            } else {
+
+                html = this.$el.querySelector('.ql-editor').innerText;
+
+            }
 
             return html;
 
@@ -822,62 +960,26 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.data.quill = new Quill(this.$el.querySelector('.quill'), {
-            theme : 'snow',
-            placeholder : this.conf.insideName,
-            modules : {
-                toolbar : {
-                    container : this.$el.querySelector('.toolbar'),
-                    handlers : {
-                        undo : () => {
+        this.$watch('isPlainClipboard', () => {
 
-                            this.data.quill.history.undo();
+            if (this.isPlainClipboard) {
 
-                        },
-                        redo : () => {
+                Quill.register({
+                    'modules/clipboard' : PlainClipboard
+                });
 
-                            this.data.quill.history.redo();
+            } else {
 
-                        },
-                        divider : () => {
+                Quill.register({
+                    'modules/clipboard' : Clipboard
+                });
 
-                            let range = this.data.quill.getSelection(true);
-
-                            this.data.quill.insertText(range.index, '\n', Quill.sources.USER);
-                            this.data.quill.insertEmbed(range.index + 1, 'divider', true, Quill.sources.USER);
-                            this.data.quill.setSelection(range.index + 2, Quill.sources.SILENT);
-
-                        },
-                        image : () => {
-
-                            this.$refs[`ui-select-dialog-${this.uiid}`].toggle(true);
-
-                            return false;
-
-                        }
-                    }
-                },
-                imageResize : {}
             }
-        });
 
-        this.data.quill.on('text-change', () => {
+            this._initQuill();
 
-            this.data.dontSetHtml = true;
-            this._set(this.getHtml(), true);
-
-            this.Vue.nextTick(() => {
-
-                this.data.dontSetHtml = false;
-    
-            });
-
-        });
-
-        this.data.quill.on('selection-change', () => {
-
-            this.$emit('selection-change');
-
+        }, {
+            immediate : true
         });
 
         this.$watch('conf.state', () => {

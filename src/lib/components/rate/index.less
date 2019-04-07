@@ -11,8 +11,6 @@ mor-rate{
         justify-content: space-around;
 
         > .note{
-            padding: 0 0 0 0.5em;
-            font-size: @fontSize*0.875;
             align-items: center;
             display: flex;
             white-space: nowrap;
@@ -31,13 +29,11 @@ mor-rate{
         justify-content: space-around;
 
         > li{
-            padding: 0 0.4em;
             margin: 0;
 
             > i,
             > span{
                 vertical-align: top;
-                font-size: @fontSize * 1.4;
                 color: @colorSilver;
                 pointer-events: none;
             }
@@ -103,6 +99,66 @@ mor-rate{
         }
     }
 
+    &.si-m{
+        .rate-wrap{
+            > .note{
+                padding: 0 0 0 0.5em;
+                font-size: @formInputFontSize;
+            }
+        }
+
+        .rate-list{
+            > li{
+                padding: 0 0.4em;
+
+                > i,
+                > span{
+                    font-size: @formInputFontSize * 1.6;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        .rate-wrap{
+            > .note{
+                padding: 0 0 0 0.5em;
+                font-size: @formInputFontSizeS;
+            }
+        }
+
+        .rate-list{
+            > li{
+                padding: 0 0.3em;
+
+                > i,
+                > span{
+                    font-size: @formInputFontSizeS * 1.6;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        .rate-wrap{
+            > .note{
+                padding: 0 0 0 0.4em;
+                font-size: @formInputFontSizeXs;
+            }
+        }
+
+        .rate-list{
+            > li{
+                padding: 0 0.2em;
+
+                > i,
+                > span{
+                    font-size: @formInputFontSizeXs * 1.6;
+                }
+            }
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled,
@@ -132,6 +188,7 @@ mor-rate{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }
