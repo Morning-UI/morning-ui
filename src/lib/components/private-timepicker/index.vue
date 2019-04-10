@@ -231,6 +231,12 @@ export default {
         _noop : function () {},
         _toggleSelector : function () {
 
+            if (this.$refs[`ui-private-timepicker-popover-${this.uiid}`] === undefined) {
+
+                return;
+
+            }
+
             if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
                 this.$refs[`ui-private-timepicker-popover-${this.uiid}`].show();
@@ -420,6 +426,12 @@ export default {
 
         },
         _refreshInputValue : function () {
+
+            if (this.$refs[`ui-private-timepicker-input-${this.uiid}`] === undefined) {
+
+                return;
+
+            }
 
             let timeString;
 

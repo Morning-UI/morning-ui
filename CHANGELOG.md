@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.12.18
+
+`2019年4月10日`
+
+#### 修复
+
+- 修复`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`在特定情况下当组件销毁后会报错的问题
+
 ## 0.12.17
 
 `2019年4月7日`
