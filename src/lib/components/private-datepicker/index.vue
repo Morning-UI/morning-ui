@@ -316,6 +316,12 @@ export default {
         },
         _toggleSelector : function () {
 
+            if (this.$refs[`ui-private-datepicker-popover-${this.uiid}`] === undefined) {
+
+                return;
+
+            }
+
             if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
                 let $input = this.$refs[`ui-private-datepicker-input-${this.uiid}`].$el;
@@ -433,6 +439,12 @@ export default {
 
         },
         _refreshInputValue : function () {
+
+            if (this.$refs[`ui-private-datepicker-input-${this.uiid}`] === undefined) {
+
+                return;
+
+            }
 
             let dateString;
 
