@@ -38,7 +38,7 @@ let TipManager = {
                 popper : null,
                 options : {
                     placement : 'top',
-                    offset : '0 0',
+                    offset : '0, 0',
                     onCreate : data => {
 
                         this.Tip.data = data;

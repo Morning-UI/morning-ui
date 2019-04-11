@@ -1262,6 +1262,31 @@ export default {
 
             return result;
 
+        },
+        setCheckedRows : function (rows) {
+
+            let checkedRows = {};
+
+            for (let line of Object.keys(this.data.rowChecked)) {
+
+                checkedRows[line] = false;
+
+            }
+
+            if (rows instanceof Array) {
+
+                for (let line of rows) {
+
+                    checkedRows[line] = true;
+
+                }
+
+            }
+
+            this.data.rowChecked = checkedRows;
+
+            return this;
+
         }
     },
     mounted : function () {

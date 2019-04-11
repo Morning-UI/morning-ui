@@ -37695,6 +37695,7 @@ mor-alert {
   border-radius: 3px;
   font-size: 0;
   position: relative;
+  color: #303C4B;
 }
 mor-alert .alert-icon,
 mor-alert .alert-content {
@@ -37775,36 +37776,50 @@ mor-alert.can-close {
 mor-alert.type-normal {
   background: #EDF1F5;
   border-color: #E2E8EE;
+}
+mor-alert.type-normal .alert-icon {
   color: #303C4B;
 }
 mor-alert.type-success {
   background: #e2f4e6;
   border-color: #aadfb6;
+}
+mor-alert.type-success .alert-icon {
   color: #41af5b;
 }
 mor-alert.type-warning {
   background: #fceedb;
   border-color: #f6ce95;
+}
+mor-alert.type-warning .alert-icon {
   color: #eea236;
 }
 mor-alert.type-danger {
   background: #f8dedb;
   border-color: #eba59b;
+}
+mor-alert.type-danger .alert-icon {
   color: #c63a27;
 }
 mor-alert.type-primary {
   background: #c7e2f6;
   border-color: #85c0ec;
+}
+mor-alert.type-primary .alert-icon {
   color: #1c71b1;
 }
 mor-alert.type-minor {
   background: #e9e9e9;
   border-color: #cfcfcf;
+}
+mor-alert.type-minor .alert-icon {
   color: #5d5d5d;
 }
 mor-alert.type-info {
   background: #48cbda;
   border-color: #03A6B9;
+}
+mor-alert.type-info .alert-icon {
   color: #014c55;
 }
 @keyframes move-right-in {

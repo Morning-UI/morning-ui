@@ -69,6 +69,26 @@
     @borderRadius : 3px;
     ```
 
+    #### 栅格间隔
+
+    栅格的五种尺寸的默认间隔分别是：
+
+    - `xs` : `4px`
+    - `s` : `8px`
+    - `m` : `16px`
+    - `l` : `24px`
+    - `xl` : `36px`
+
+    可以通过以下的LESS变量进行修改：
+
+    ```less
+    @gridGutterWidthXs : 4px;
+    @gridGutterWidthS : 8px;
+    @gridGutterWidthM : 16px;
+    @gridGutterWidthL : 24px;
+    @gridGutterWidthXL : 36px;
+    ```
+
     </script>
     </doc-guide>
 </template>
