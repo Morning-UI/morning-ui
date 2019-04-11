@@ -1,4 +1,4 @@
-.generate-col(@prefix, @n, @spaceAround: false, @gutter: @gridGutterWidth, @i: 1) when (@i =< @n) {
+.generate-col(@prefix, @n, @spaceAround: false, @gutter, @i: 1) when (@i =< @n) {
     @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s)', (@gutter*@n)), %(~'(100% - %s)', (@gutter*(@n - 1))));
 
     .@{prefix}col-@{i} {
@@ -63,11 +63,11 @@
 
 /* stylelint-disable length-zero-no-unit,selector-class-pattern */
 .grid(@prefix: ~'') {
-    .gutterSize(@prefix, xs, 4px);
-    .gutterSize(@prefix, s, 8px);
-    .gutterSize(@prefix, m, 16px);
-    .gutterSize(@prefix, l, 24px);
-    .gutterSize(@prefix, xl, 36px);
+    .gutterSize(@prefix, xs, @gridGutterWidthXs);
+    .gutterSize(@prefix, s, @gridGutterWidthS);
+    .gutterSize(@prefix, m, @gridGutterWidthM);
+    .gutterSize(@prefix, l, @gridGutterWidthL);
+    .gutterSize(@prefix, xl, @gridGutterWidthXL);
     .gutterSize(@prefix, none, 0px);
 }
 /* stylelint-enable length-zero-no-unit,selector-class-pattern */
