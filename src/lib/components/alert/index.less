@@ -8,6 +8,7 @@ mor-alert{
     border-radius: @borderRadius;
     font-size: 0;
     position: relative;
+    color: @colorLightBlack;
 
     .alert-icon,
     .alert-content{
@@ -106,43 +107,64 @@ mor-alert{
     &.type-normal{
         background: @colorExtraLightSilver;
         border-color: @colorLightSilver;
-        color: @colorLightBlack;
+
+        .alert-icon{
+            color: @colorLightBlack;
+        }
     }
 
     &.type-success{
         background: lighten(@colorSuccess, 40%);
         border-color: lighten(@colorSuccess, 25%);
-        color: darken(@colorSuccess, 5%);
+
+        .alert-icon{
+            color: darken(@colorSuccess, 5%);
+        }
     }
 
     &.type-warning{
         background: lighten(@colorWarning, 30%);
         border-color: lighten(@colorWarning, 15%);
-        color: darken(@colorWarning, 5%);
+
+        .alert-icon{
+            color: darken(@colorWarning, 5%);
+        }
     }
 
     &.type-danger{
         background: lighten(@colorDanger, 40%);
         border-color: lighten(@colorDanger, 25%);
-        color: darken(@colorDanger, 5%);
+
+        .alert-icon{
+            color: darken(@colorDanger, 5%);
+        }
     }
 
     &.type-primary{
         background: lighten(@colorPrimary, 40%);
         border-color: lighten(@colorPrimary, 25%);
-        color: darken(@colorPrimary, 7%);
+
+        .alert-icon{
+            color: darken(@colorPrimary, 7%);
+        }
     }
 
     &.type-minor{
         background: lighten(@colorMinor, 25%);
         border-color: lighten(@colorMinor, 15%);
-        color: darken(@colorMinor, 30%);
+
+        .alert-icon{
+            color: darken(@colorMinor, 30%);
+        }
     }
 
     &.type-info{
         background: desaturate(lighten(@colorInfo, 20%), 30%);
         border-color: @colorInfo;
-        color: darken(@colorInfo, 20%);
+
+        .alert-icon{
+            color: darken(@colorInfo, 20%);
+        }
     }
 
     // default status
