@@ -28271,6 +28271,69 @@ exports.default = {
             }
 
             return result;
+        },
+        setCheckedRows: function setCheckedRows(rows) {
+
+            var checkedRows = {};
+
+            var _iteratorNormalCompletion23 = true;
+            var _didIteratorError23 = false;
+            var _iteratorError23 = undefined;
+
+            try {
+                for (var _iterator23 = Object.keys(this.data.rowChecked)[Symbol.iterator](), _step23; !(_iteratorNormalCompletion23 = (_step23 = _iterator23.next()).done); _iteratorNormalCompletion23 = true) {
+                    var line = _step23.value;
+
+
+                    checkedRows[line] = false;
+                }
+            } catch (err) {
+                _didIteratorError23 = true;
+                _iteratorError23 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion23 && _iterator23.return) {
+                        _iterator23.return();
+                    }
+                } finally {
+                    if (_didIteratorError23) {
+                        throw _iteratorError23;
+                    }
+                }
+            }
+
+            if (rows instanceof Array) {
+                var _iteratorNormalCompletion24 = true;
+                var _didIteratorError24 = false;
+                var _iteratorError24 = undefined;
+
+                try {
+
+                    for (var _iterator24 = rows[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
+                        var _line = _step24.value;
+
+
+                        checkedRows[_line] = true;
+                    }
+                } catch (err) {
+                    _didIteratorError24 = true;
+                    _iteratorError24 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion24 && _iterator24.return) {
+                            _iterator24.return();
+                        }
+                    } finally {
+                        if (_didIteratorError24) {
+                            throw _iteratorError24;
+                        }
+                    }
+                }
+            }
+
+            this.data.rowChecked = checkedRows;
+
+            return this;
         }
     },
     mounted: function mounted() {
@@ -28500,14 +28563,27 @@ exports.default = {
 
         this.$watch('data.rowChecked', function (newVal) {
 
+            var $line = void 0;
+
             for (var line in newVal) {
 
-                if (newVal[line]) {
+                if (_this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line]) {
 
-                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(['checked']);
-                } else {
+                    if (_this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line] instanceof Array) {
 
-                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(undefined);
+                        $line = _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line][0];
+                    } else {
+
+                        $line = _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line];
+                    }
+                }
+
+                if ($line && newVal[line]) {
+
+                    $line.set(['checked']);
+                } else if ($line) {
+
+                    $line.set(undefined);
                 }
             }
         }, {
@@ -28639,14 +28715,27 @@ exports.default = {
 
         this.$watch('data.rowChecked', function (newVal) {
 
+            var $line = void 0;
+
             for (var line in newVal) {
 
-                if (newVal[line]) {
+                if (_this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line]) {
 
-                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(['checked']);
-                } else {
+                    if (_this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line] instanceof Array) {
 
-                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(undefined);
+                        $line = _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line][0];
+                    } else {
+
+                        $line = _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line];
+                    }
+                }
+
+                if ($line && newVal[line]) {
+
+                    $line.set(['checked']);
+                } else if ($line) {
+
+                    $line.set(undefined);
                 }
             }
         }, {
@@ -69745,7 +69834,7 @@ var TipManager = {
                 popper: null,
                 options: {
                     placement: 'top',
-                    offset: '0 0',
+                    offset: '0, 0',
                     onCreate: function onCreate(data) {
 
                         _this.Tip.data = data;
@@ -73683,7 +73772,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.18',
+    version: '0.12.19',
     map: {}
 };
 
