@@ -1667,6 +1667,33 @@
     }
     :::
 
+    :::vue
+    @name:setCheckedRows(rows)
+    ---
+    #method
+    >method-desc
+    选中特定的行，需要开启`multi-select`配置。
+    >method-args
+    |rows|YES|需要选中行数(从`0`开始的数字)所组成的数组。|数组<br>`undefined`|`Array`<br>`Undefined`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo9" :list="list" multi-select></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo9').setCheckedRows([1, 4]);">选中第3、5行</ui-link><br>
+        <ui-link js="morning.findVM('demo9').setCheckedRows();">取消选中所有行</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
     [[[事件]]]
 
     :::vue

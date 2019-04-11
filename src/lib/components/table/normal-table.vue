@@ -108,15 +108,31 @@ export default {
 
         this.$watch('data.rowChecked', newVal => {
 
+            let $line;
+
             for (let line in newVal) {
 
-                if (newVal[line]) {
+                if (this.$refs[`mor-table-row-checked-${this.uiid}-${line}`]) {
 
-                    this.$refs[`mor-table-row-checked-${this.uiid}-${line}`].set(['checked']);
+                    if (this.$refs[`mor-table-row-checked-${this.uiid}-${line}`] instanceof Array) {
 
-                } else {
+                        $line = this.$refs[`mor-table-row-checked-${this.uiid}-${line}`][0];
 
-                    this.$refs[`mor-table-row-checked-${this.uiid}-${line}`].set(undefined);
+                    } else {
+
+                        $line = this.$refs[`mor-table-row-checked-${this.uiid}-${line}`];
+
+                    }
+
+                }
+
+                if ($line && newVal[line]) {
+
+                    $line.set(['checked']);
+
+                } else if ($line) {
+
+                    $line.set(undefined);
 
                 }
 
