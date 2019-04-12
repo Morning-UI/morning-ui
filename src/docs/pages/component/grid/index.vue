@@ -24,12 +24,14 @@
     - `gutter-none` : 生成不具有空隙的栅格
     - `space-around` : 生成两端包含空隙的栅格
 
+    __注意：当嵌套使用栅格时，需要保证`ui-col`的父级为`ui-row`、`ui-row`的父级为`ui-grid`。__
+
     :::vue
     @name:使用
     ---
     #demo
     >tpl
-    <ui-grid style="background-color: #EDF1F5">
+    <ui-grid class="gutter-none" style="background-color: #EDF1F5">
         <ui-row>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
@@ -284,27 +286,27 @@
             <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
             <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
         </ui-row>
-        <ui-row class="row justify-start">
+        <ui-row class="justify-start">
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
         </ui-row>
-        <ui-row class="row justify-end">
+        <ui-row class="justify-end">
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
         </ui-row>
-        <ui-row class="row justify-center">
+        <ui-row class="justify-center">
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
         </ui-row>
-        <ui-row class="row justify-space-between">
+        <ui-row class="justify-space-between">
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
         </ui-row>
-        <ui-row class="row justify-space-around">
+        <ui-row class="justify-space-around">
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
             <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
@@ -324,29 +326,29 @@
     - `.vertical-center` : 居中对齐
     >tpl
     <ui-grid style="background-color: #EDF1F5">
-        <ui-row class="row vertical-top" style="height:120px;background-color:#EDF1F5">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 80px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 120px;">c-4</ui-colv>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 40px;">c-4</ui-col>
+        <ui-row class="vertical-top" style="height:120px;background-color:#EDF1F5">
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 80px;">col</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 120px;">col</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 40px;">col</ui-col>
         </ui-row>
-        <ui-row class="row vertical-bottom" style="height:120px;background-color:#EDF1F5">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 80px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 120px;">c-4</ui-colv>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 40px;">c-4</ui-col>
+        <ui-row class="vertical-bottom" style="height:120px;background-color:#EDF1F5">
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 80px;">col</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 120px;">col</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 40px;">col</ui-col>
         </ui-row>
-        <ui-row class="row vertical-center" style="height:120px;background-color:#EDF1F5">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 80px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 120px;">c-4</ui-colv>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
-    height: 40px;">c-4</ui-col>
+        <ui-row class="vertical-center" style="height:120px;background-color:#EDF1F5">
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 80px;">col</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 120px;">col</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
+    height: 40px;">col</ui-col>
         </ui-row>
     </ui-grid>
     :::
