@@ -1,25 +1,25 @@
 .generate-col(@prefix, @n, @spaceAround: false, @gutter, @i: 1) when (@i =< @n) {
     @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s)', (@gutter*@n)), %(~'(100% - %s)', (@gutter*(@n - 1))));
 
-    .@{prefix}col-@{i} {
+    > .row > .@{prefix}col-@{i} {
         width: if((@i = @n), 100%, %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i - 1))));
     }
 
-    .@{prefix}offset-@{i} when (@i < @n) {
+    > .row > .@{prefix}offset-@{i} when (@i < @n) {
         /* stylelint-disable max-line-length */
         margin-left: if((@spaceAround = true), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i + 0.5))), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*@i)));
         /* stylelint-enable max-line-length */
     }
 
-    .@{prefix}push-@{i} when (@i < @n) {
+    > .row > .@{prefix}push-@{i} when (@i < @n) {
         left: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
     }
 
-    .@{prefix}pull-@{i} when (@i < @n) {
+    > .row > .@{prefix}pull-@{i} when (@i < @n) {
         right: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
     }
 
-    [class*='col-'] when ((@i = 1) and (@prefix = ~''))  {
+    > .row > [class*='col-'] when ((@i = 1) and (@prefix = ~''))  {
         & when (@spaceAround = false) {
             margin-right: @gutter;
         }
@@ -29,11 +29,11 @@
         }
     }
 
-    .row when ((@i = 1) and (@prefix = ~'')) {
+    > .row when ((@i = 1) and (@prefix = ~'')) {
         margin-bottom: @gutter;
     }
 
-    .col when ((@i = 1) and (@prefix = ~'')) {
+    > .row > .col when ((@i = 1) and (@prefix = ~'')) {
         margin-right: @gutter;
     }
 

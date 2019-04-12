@@ -18,6 +18,29 @@
     
     ### 更新记录
 
+    ### 0.12.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月12日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.20" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.20/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.20/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 修复嵌套使用`ui-row`时的样式问题
+    - 修复`ui-grid`文档中的一处错误
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 现在使用`ui-grid`时，`ui-row`的父元素必须是`ui-grid`，无法在`ui-col`或`ui-row`中直接嵌套`ui-row`
+
+    ---
+
     ### 0.12.19 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">
