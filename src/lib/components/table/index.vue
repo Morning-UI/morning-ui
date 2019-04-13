@@ -306,7 +306,9 @@ export default {
                 listDataJson : '[]',
                 sort : {},
                 sortCol : [],
-                rowChecked : {}
+                rowChecked : {},
+                rowCheckedChangeCount : 0,
+                rowCheckedChangeLock : false
             }
         };
 
@@ -1290,6 +1292,25 @@ export default {
         }
     },
     mounted : function () {
+
+        this.$watch('data.rowChecked', () => {
+
+            this.data.rowCheckedChangeLock = true;
+            this.data.rowCheckedChangeCount++;
+
+            this.Vue.nextTick(() => {
+
+                this.data.rowCheckedChangeLock = false;
+
+            });
+
+        });
+
+        this.$watch('data.rowCheckedChangeCount', () => {
+
+            this.$emit('checked-row-change');
+
+        });
 
         this.$watch('conf.list', () => {
 

@@ -1814,6 +1814,35 @@
     :::
 
     :::vue
+    @name:checked-row-change
+    ---
+    #event
+    >event-desc
+    当选中行发生改变时触发，仅在开启`multi-select`配置后有效。
+    <br>
+    可以通过`getCheckedRows()`方法来获取选中的行
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo8" :list="list" multi-select @checked-row-change="echo"></ui-table>
+        <br><br>
+        <p>选中行触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function () {
+                console.log('demo8.console1', `checked-row-change event!`);
+            }
+        }
+    }
+    :::
+
+    :::vue
     @layout:lifecycle-event
     ---
     table
