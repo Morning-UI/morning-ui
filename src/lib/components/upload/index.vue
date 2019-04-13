@@ -13,6 +13,7 @@
         :accept-type="acceptType"
         :multi="multi"
         :max="max"
+        :keep-over-limit-file="keepOverLimitFile"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
         :validate="validate"
@@ -149,6 +150,10 @@ export default {
             type : Number,
             default : Infinity
         },
+        keepOverLimitFile : {
+            type : Boolean,
+            default : true
+        },
         allowUrl : {
             type : Boolean,
             default : false
@@ -179,6 +184,7 @@ export default {
                 acceptType : this.acceptType,
                 multi : this.multi,
                 max : this.max,
+                keepOverLimitFile : this.keepOverLimitFile,
                 allowUrl : this.allowUrl,
                 allowDrag : this.allowDrag,
                 validate : this.validate,
@@ -480,6 +486,16 @@ export default {
 
             let files = evt.target.files || evt.dataTransfer.files;
             let len = files.length;
+
+            if (!this.conf.keepOverLimitFile && len > this.conf.max) {
+
+                /* eslint-disable no-alert */
+                alert(`最多只能上传${this.conf.max}个文件`);
+                /* eslint-enable no-alert */
+
+                return false;
+
+            }
 
             if (!this.conf.multi && len > 1) {
 

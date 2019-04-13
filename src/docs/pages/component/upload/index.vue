@@ -284,6 +284,14 @@
     <div style="width:300px;">
         <ui-upload form-name="文件" multi></ui-upload>
     </div>
+    ---
+    #demo
+    >desc
+    `multi`和`max`配置一起使用，如果一次选择的文件数超过`max`则会弹窗提示。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" multi :max="2"></ui-upload>
+    </div>
     :::
 
     :::vue
@@ -305,6 +313,36 @@
     >tpl
     <div style="width:300px;">
         <ui-upload form-name="文件" :max="2"></ui-upload>
+    </div>
+    :::
+
+    :::vue
+    @name:keep-over-limit-file
+    ---
+    #config
+    >conf-desc
+    当开启`multi`和`max`配置时，一次选择超过`max`限制的文件时的行为。
+    >conf-accept
+    `true`:保留多余文件并提示上传失败(删除其余文件后仍可继续上传)<br/>`false`:中断选择并提示
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    一次上传超过两个文件，会中断选择并提示。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" multi :max="2" :keep-over-limit-file="false"></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    一次上传超过两个文件，会保留多余文件并提示上传失败(删除其余文件后仍可继续上传)。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" multi :max="2" :keep-over-limit-file="true"></ui-upload>
     </div>
     :::
 
