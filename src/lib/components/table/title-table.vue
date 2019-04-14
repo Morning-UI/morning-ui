@@ -101,6 +101,12 @@ export default {
 
             }
 
+            if (!this.data.rowCheckedChangeLock) {
+
+                this.data.rowCheckedChangeCount++;
+
+            }
+
         }
     },
     mounted : function () {

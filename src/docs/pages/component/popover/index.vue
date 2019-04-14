@@ -444,8 +444,8 @@
     #demo
     >tpl
     <div>
-        <span id="demo18">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo18" ref="demo18">
+        <span id="demo18">显示弹出框</span>
+        <ui-popover trigger="method" target="#demo18" ref="demo18">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -467,8 +467,8 @@
     #demo
     >tpl
     <div>
-        <span id="demo19">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo19" ref="demo19">
+        <span id="demo19">显示弹出框</span>
+        <ui-popover trigger="method" target="#demo19" ref="demo19">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -479,25 +479,29 @@
     :::
     
     :::vue
-    @name:toggle()
+    @name:toggle([show])
     ---
     #method
     >method-desc
     切换弹出框显示状态。
+    >method-args
+    |show|YES|切换到显示或隐藏状态，不输入则切换到反向状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
     >method-return
     当前组件VM实例。
     ---
     #demo
     >tpl
     <div>
-        <span id="demo20">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo20" ref="demo20">
+        <span id="demo20">显示弹出框</span>
+        <ui-popover trigger="method" target="#demo20" ref="demo20">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
         </ui-popover>
-        
-        <ui-link js="morning.findVM('demo20').toggle();">切换弹出框</ui-link>
+
+        <ui-link js="morning.findVM('demo20').toggle();">切换到反向状态</ui-link>
+        <ui-link js="morning.findVM('demo20').toggle(true);">显示弹出框</ui-link>
+        <ui-link js="morning.findVM('demo20').toggle(false);">隐藏弹出框</ui-link>
     </div>
     :::
     

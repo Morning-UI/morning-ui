@@ -306,7 +306,9 @@ export default {
                 listDataJson : '[]',
                 sort : {},
                 sortCol : [],
-                rowChecked : {}
+                rowChecked : {},
+                rowCheckedChangeCount : 0,
+                rowCheckedChangeLock : false
             }
         };
 
@@ -1206,6 +1208,8 @@ export default {
 
             }
 
+            let lastRow = this.getHighlightRow();
+
             this.cleanHighlightRow();
 
             let $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
@@ -1220,6 +1224,12 @@ export default {
             if ($normalTr) {
 
                 $normalTr.classList.add('last-click');
+
+            }
+
+            if (Number(lastRow) !== Number(rowNum)) {
+                
+                this.$emit('highlight-row-change');
 
             }
 
@@ -1290,6 +1300,25 @@ export default {
         }
     },
     mounted : function () {
+
+        this.$watch('data.rowChecked', () => {
+
+            this.data.rowCheckedChangeLock = true;
+            this.data.rowCheckedChangeCount++;
+
+            this.Vue.nextTick(() => {
+
+                this.data.rowCheckedChangeLock = false;
+
+            });
+
+        });
+
+        this.$watch('data.rowCheckedChangeCount', () => {
+
+            this.$emit('checked-row-change');
+
+        });
 
         this.$watch('conf.list', () => {
 
