@@ -382,7 +382,7 @@
     #demo
     >tpl
     <div>
-        <span id="demo14">鼠标悬浮显示小提示</span>
+        <span id="demo14">显示小提示</span>
         <ui-tip target="#demo14" ref="demo14">提示内容</ui-tip>
         
         <ui-link js="morning.findVM('demo14').show();" onmouseout="morning.findVM('demo14').hide();">显示小提示</ui-link>
@@ -401,29 +401,33 @@
     #demo
     >tpl
     <div>
-        <span id="demo15">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo15" ref="demo15">提示内容</ui-tip>
+        <span id="demo15">显示小提示</span>
+        <ui-tip trigger="method" target="#demo15" ref="demo15">提示内容</ui-tip>
         
         <ui-link js="morning.findVM('demo15').hide();" onmouseenter="morning.findVM('demo15').show();">隐藏小提示</ui-link>
     </div>
     :::
     
     :::vue
-    @name:toggle()
+    @name:toggle([show])
     ---
     #method
     >method-desc
     切换小提示显示状态。
+    >method-args
+    |show|YES|切换到显示或隐藏状态，不输入则切换到反向状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
     >method-return
     当前组件VM实例。
     ---
     #demo
     >tpl
     <div>
-        <span id="demo16">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo16" ref="demo16">提示内容</ui-tip>
+        <span id="demo16">显示小提示</span>
+        <ui-tip trigger="method" target="#demo16" ref="demo16">提示内容</ui-tip>
         
-        <ui-link js="morning.findVM('demo16').toggle();">切换小提示</ui-link>
+        <ui-link js="morning.findVM('demo16').toggle();">切换到反向状态</ui-link>
+        <ui-link js="morning.findVM('demo16').toggle(true);">显示小提示</ui-link>
+        <ui-link js="morning.findVM('demo16').toggle(false);">隐藏小提示</ui-link>
     </div>
     :::
     
@@ -440,7 +444,7 @@
     >tpl
     <div>
         <span id="demo23" style="position: relative;">目标文字</span>
-        <ui-tip target="#demo23" ref="demo23">提示内容</ui-tip>
+        <ui-tip trigger="method" target="#demo23" ref="demo23">提示内容</ui-tip>
 
         <br><br>
         

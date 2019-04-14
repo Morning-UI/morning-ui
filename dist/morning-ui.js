@@ -27006,7 +27006,9 @@ exports.default = {
                 listDataJson: '[]',
                 sort: {},
                 sortCol: [],
-                rowChecked: {}
+                rowChecked: {},
+                rowCheckedChangeCount: 0,
+                rowCheckedChangeLock: false
             }
         };
     },
@@ -28339,6 +28341,22 @@ exports.default = {
     mounted: function mounted() {
         var _this2 = this;
 
+        this.$watch('data.rowChecked', function () {
+
+            _this2.data.rowCheckedChangeLock = true;
+            _this2.data.rowCheckedChangeCount++;
+
+            _this2.Vue.nextTick(function () {
+
+                _this2.data.rowCheckedChangeLock = false;
+            });
+        });
+
+        this.$watch('data.rowCheckedChangeCount', function () {
+
+            _this2.$emit('checked-row-change');
+        });
+
         this.$watch('conf.list', function () {
 
             _this2._importList(_this2.conf.list);
@@ -28556,6 +28574,11 @@ exports.default = {
 
                 this.data.rowChecked[line] = false;
             }
+
+            if (!this.data.rowCheckedChangeLock) {
+
+                this.data.rowCheckedChangeCount++;
+            }
         }
     },
     mounted: function mounted() {
@@ -28707,6 +28730,11 @@ exports.default = {
             } else {
 
                 this.data.rowChecked[line] = false;
+            }
+
+            if (!this.data.rowCheckedChangeLock) {
+
+                this.data.rowCheckedChangeCount++;
             }
         }
     },
@@ -32911,19 +32939,19 @@ exports.default = {
         },
         show: function show() {
 
-            this._tipShow();
+            this._tipShow(true);
 
             return this;
         },
         hide: function hide() {
 
-            this._tipHide();
+            this._tipHide(true);
 
             return this;
         },
         toggle: function toggle() {
 
-            this._tipToggle();
+            this._tipToggle(true);
 
             return this;
         },
@@ -33130,19 +33158,19 @@ exports.default = {
     methods: {
         show: function show() {
 
-            this._tipShow();
+            this._tipShow(true);
 
             return this;
         },
         hide: function hide() {
 
-            this._tipHide();
+            this._tipHide(true);
 
             return this;
         },
         toggle: function toggle() {
 
-            this._tipToggle();
+            this._tipToggle(true);
 
             return this;
         },
@@ -45161,6 +45189,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _axiosMin = __webpack_require__(562);
 
@@ -45198,6 +45227,10 @@ exports.default = {
             type: Number,
             default: Infinity
         },
+        keepOverLimitFile: {
+            type: Boolean,
+            default: true
+        },
         allowUrl: {
             type: Boolean,
             default: false
@@ -45228,6 +45261,7 @@ exports.default = {
                 acceptType: this.acceptType,
                 multi: this.multi,
                 max: this.max,
+                keepOverLimitFile: this.keepOverLimitFile,
                 allowUrl: this.allowUrl,
                 allowDrag: this.allowDrag,
                 validate: this.validate,
@@ -45523,6 +45557,15 @@ exports.default = {
 
             var files = evt.target.files || evt.dataTransfer.files;
             var len = files.length;
+
+            if (!this.conf.keepOverLimitFile && len > this.conf.max) {
+
+                /* eslint-disable no-alert */
+                alert('\u6700\u591A\u53EA\u80FD\u4E0A\u4F20' + this.conf.max + '\u4E2A\u6587\u4EF6');
+                /* eslint-enable no-alert */
+
+                return false;
+            }
 
             if (!this.conf.multi && len > 1) {
 
@@ -59537,6 +59580,7 @@ var render = function() {
         "accept-type": _vm.acceptType,
         multi: _vm.multi,
         max: _vm.max,
+        "keep-over-limit-file": _vm.keepOverLimitFile,
         "allow-url": _vm.allowUrl,
         "allow-drag": _vm.allowDrag,
         validate: _vm.validate,
@@ -70092,6 +70136,13 @@ var TipManager = {
             this.$emit('_tipManagerHide');
         },
         _tipShow: function _tipShow() {
+            var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            if (fromMethod) {
+
+                this.Tip.activeTrigger.method = true;
+            }
 
             this.$emit('_tipManagerWillShow');
 
@@ -70115,12 +70166,26 @@ var TipManager = {
             this._tipShowComplete();
         },
         _tipHide: function _tipHide() {
+            var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            if (fromMethod) {
+
+                this.Tip.activeTrigger.method = false;
+            }
 
             this.$el.classList.remove('tip-target-hover');
             this._tipPopperDestroy();
             this._tipHideComplete();
         },
         _tipToggle: function _tipToggle() {
+            var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            if (fromMethod) {
+
+                this.Tip.activeTrigger.method = !this.Tip.activeTrigger.method;
+            }
 
             if (this._tipIsWithActiveTrigger()) {
 
@@ -70133,12 +70198,12 @@ var TipManager = {
         _tipClickToggle: function _tipClickToggle() {
 
             this.Tip.activeTrigger.click = !this.Tip.activeTrigger.click;
-            this._tipToggle();
+            this._tipToggle(false);
         },
         _tipRclickToggle: function _tipRclickToggle() {
 
             this.Tip.activeTrigger.rclick = !this.Tip.activeTrigger.rclick;
-            this._tipToggle();
+            this._tipToggle(false);
         },
         _tipEnter: function _tipEnter(evt) {
             var _this5 = this;
@@ -70169,7 +70234,7 @@ var TipManager = {
 
                 if (_this5.Tip.hoverState === _this5.Tip.hoverStates.in) {
 
-                    _this5._tipShow();
+                    _this5._tipShow(false);
                 }
             });
         },
@@ -70198,7 +70263,7 @@ var TipManager = {
 
                 if (_this6.Tip.hoverState === _this6.Tip.hoverStates.out) {
 
-                    _this6._tipHide();
+                    _this6._tipHide(false);
                 }
             });
         }
@@ -70308,8 +70373,8 @@ var TipManager = {
 
                 if (_this7.Tip.popper) {
 
-                    _this7._tipHide();
-                    _this7._tipShow();
+                    _this7._tipHide(false);
+                    _this7._tipShow(false);
                 }
             });
         }

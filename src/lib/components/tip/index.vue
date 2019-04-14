@@ -157,21 +157,33 @@ export default {
         },
         show : function () {
 
-            this._tipShow();
+            this._tipShow(true);
 
             return this;
 
         },
         hide : function () {
 
-            this._tipHide();
+            this._tipHide(true);
 
             return this;
 
         },
-        toggle : function () {
+        toggle : function (show) {
 
-            this._tipToggle();
+            if (show === undefined) {
+
+                this._tipToggle(true);
+
+            } else if (show === true) {
+
+                this.show();
+
+            } else if (show === false) {
+
+                this.hide();
+
+            }
             
             return this;
 

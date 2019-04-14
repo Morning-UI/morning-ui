@@ -44,7 +44,7 @@
 
         :target="'#mor-colorpicker-wrap-'+uiid"
         placement="bottom"
-        trigger="method click"
+        trigger="click"
         :auto-reverse="true"
     >
 
