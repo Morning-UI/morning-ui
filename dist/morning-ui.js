@@ -28205,6 +28205,8 @@ exports.default = {
                 return this;
             }
 
+            var lastRow = this.getHighlightRow();
+
             this.cleanHighlightRow();
 
             var $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
@@ -28218,6 +28220,11 @@ exports.default = {
             if ($normalTr) {
 
                 $normalTr.classList.add('last-click');
+            }
+
+            if (Number(lastRow) !== Number(rowNum)) {
+
+                this.$emit('highlight-row-change');
             }
 
             return this;
@@ -46097,11 +46104,7 @@ exports.default = {
             }
 
             _this3.data.showFiles = files;
-
-            if (files[_this3.data.currentPreview] === undefined) {
-
-                _this3.data.currentPreview = files.length - 1;
-            }
+            _this3.data.currentPreview = files.length - 1;
         }, {
             immediate: true,
             deep: true
@@ -59961,30 +59964,34 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "morning-popover",
-                    {
-                      attrs: { target: "#mor-upload-input-remote-" + _vm.uiid }
-                    },
-                    [
-                      _c(
-                        "div",
-                        { staticClass: "url-upload-box" },
+                  _vm.conf.allowUrl
+                    ? _c(
+                        "morning-popover",
+                        {
+                          attrs: {
+                            target: "#mor-upload-input-remote-" + _vm.uiid
+                          }
+                        },
                         [
                           _c(
-                            "morning-btn",
-                            {
-                              ref: "mor-url-btn-" + _vm.uiid,
-                              attrs: { size: "xs", color: "silver" },
-                              on: { emit: _vm._uploadRemoteFile }
-                            },
-                            [_vm._v("通过URL上传")]
+                            "div",
+                            { staticClass: "url-upload-box" },
+                            [
+                              _c(
+                                "morning-btn",
+                                {
+                                  ref: "mor-url-btn-" + _vm.uiid,
+                                  attrs: { size: "xs", color: "silver" },
+                                  on: { emit: _vm._uploadRemoteFile }
+                                },
+                                [_vm._v("通过URL上传")]
+                              )
+                            ],
+                            1
                           )
-                        ],
-                        1
+                        ]
                       )
-                    ]
-                  )
+                    : _vm._e()
                 ],
                 2
               ),
@@ -60049,32 +60056,37 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c(
-                            "morning-popover",
-                            {
-                              attrs: {
-                                target: "#mor-upload-box-remote-" + _vm.uiid
-                              }
-                            },
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "url-upload-box" },
+                          _vm.conf.allowUrl
+                            ? _c(
+                                "morning-popover",
+                                {
+                                  attrs: {
+                                    target: "#mor-upload-box-remote-" + _vm.uiid
+                                  }
+                                },
                                 [
                                   _c(
-                                    "morning-btn",
-                                    {
-                                      ref: "mor-url-btn-" + _vm.uiid,
-                                      attrs: { size: "xs", color: "silver" },
-                                      on: { emit: _vm._uploadRemoteFile }
-                                    },
-                                    [_vm._v("通过URL上传")]
+                                    "div",
+                                    { staticClass: "url-upload-box" },
+                                    [
+                                      _c(
+                                        "morning-btn",
+                                        {
+                                          ref: "mor-url-btn-" + _vm.uiid,
+                                          attrs: {
+                                            size: "xs",
+                                            color: "silver"
+                                          },
+                                          on: { emit: _vm._uploadRemoteFile }
+                                        },
+                                        [_vm._v("通过URL上传")]
+                                      )
+                                    ],
+                                    1
                                   )
-                                ],
-                                1
+                                ]
                               )
-                            ]
-                          )
+                            : _vm._e()
                         ],
                         1
                       ),
@@ -60407,28 +60419,32 @@ var render = function() {
           ]
         : _vm.conf.type === "button"
         ? [
-            _c(
-              "morning-popover",
-              { attrs: { target: "#mor-upload-button-remote-" + _vm.uiid } },
-              [
-                _c(
-                  "div",
-                  { staticClass: "url-upload-box" },
+            _vm.conf.allowUrl
+              ? _c(
+                  "morning-popover",
+                  {
+                    attrs: { target: "#mor-upload-button-remote-" + _vm.uiid }
+                  },
                   [
                     _c(
-                      "morning-btn",
-                      {
-                        ref: "mor-url-btn-" + _vm.uiid,
-                        attrs: { size: "xs", color: "silver" },
-                        on: { emit: _vm._uploadRemoteFile }
-                      },
-                      [_vm._v("通过URL上传")]
+                      "div",
+                      { staticClass: "url-upload-box" },
+                      [
+                        _c(
+                          "morning-btn",
+                          {
+                            ref: "mor-url-btn-" + _vm.uiid,
+                            attrs: { size: "xs", color: "silver" },
+                            on: { emit: _vm._uploadRemoteFile }
+                          },
+                          [_vm._v("通过URL上传")]
+                        )
+                      ],
+                      1
                     )
-                  ],
-                  1
+                  ]
                 )
-              ]
-            ),
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "morning-btn",
@@ -74577,7 +74593,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.20',
+    version: '0.12.21',
     map: {}
 };
 

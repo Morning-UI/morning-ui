@@ -18,6 +18,31 @@
     
     ### 更新记录
 
+    ### 0.12.21 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月14日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.21" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.21/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.21/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-upload`组件新增区域和按钮两种风格
+    - `ui-upload`组件新增`keep-over-limit-file`配置，可以拒绝用户上传超过`max`限制的文件
+    - `ui-table`支持`checked-row-change`和`highlight-row-change`事件
+    - `ui-dialog`和`ui-drawer`组件新增`show()`和`hide()`方法
+
+    #### 改进
+
+    - 统一`ui-dialog`、`ui-popover`、`ui-tip`、`ui-drawer`的`show()`、`hide()`、`toggle()`三个方法
+
+    ---
+
     ### 0.12.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

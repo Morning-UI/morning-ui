@@ -1,6 +1,21 @@
 # CHANGELOG
 
-### 0.12.20
+## 0.12.21
+
+`2019年4月14日`
+
+#### 新特性
+
+- `ui-upload`组件新增区域和按钮两种风格
+- `ui-upload`组件新增`keep-over-limit-file`配置，可以拒绝用户上传超过`max`限制的文件
+- `ui-table`支持`checked-row-change`和`highlight-row-change`事件
+- `ui-dialog`和`ui-drawer`组件新增`show()`和`hide()`方法
+
+#### 改进
+
+- 统一`ui-dialog`、`ui-popover`、`ui-tip`、`ui-drawer`的`show()`、`hide()`、`toggle()`三个方法
+
+## 0.12.20
 
 `2019年4月12日`
 
