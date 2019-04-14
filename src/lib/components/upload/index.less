@@ -1,315 +1,26 @@
-@maxBorderRadius: 100px;
-
 mor-upload{
     position: relative;
     z-index: 1;
-    display: inline-block;
+    display: block;
     width: 100%;
     box-sizing: border-box;
     vertical-align: middle;
     -webkit-user-select: none;
+    background: @colorWhite;
 
     .setup-form();
 
-    > .fl{
-        border: 1px @colorFormBorder solid;
-        border-radius: @borderRadius;
-        padding: 3.2px 4.8px;
-        position: relative;
-        overflow: hidden;
-        min-height: @formHeight;
-        font-size: 0;
-        background: @colorFormBackground;
-        box-sizing: border-box;
+    &[type='button'] {
+        -webkit-appearance: none;
     }
 
-    .fl-name{
-        height: 100%;
-        position: absolute;
-        width: 20%;
-        background-color: @colorLightGray;
-        color: @colorBlue;
-        max-width: @fontSize*9.375;
-        margin: 0;
-        font-size: @fontSize*0.8125;
-        display: inline-block;
-        left: 0;
-        top: 0;
+    .fileinput{
+        display: none;
     }
 
-    .filewrap{
-        position: relative;
-        font-size: 0;
-        display: inline-block;
-        width: 80%;
-        left: 20%;
-        top: 0;
-
-        &.hidename{
-            width: 100%;
-            left: 0;
-        }
-    }
-
-    .status{
-        padding: 0.4em 0.7em;
-        line-height: 1.4em;
-        margin: 0;
-        vertical-align: top;
-        max-width: 100%;
-        text-decoration: none;
-        position: relative;
-        cursor: default;
-        font-size: @fontSize*0.75;
-        text-align: center;
-        color: @colorFormTextMisc !important;
-    }
-
-    .pass{
-        color: @colorSuccess !important;
-        display: block;
-    }
-
-    .unpass{
-        color: @colorDanger !important;
-        display: block;
-    }
-
-    .file{
-        color: @colorFormItemColor !important;
-        background-color: @colorFromItemBackground;
-        display: inline-block;
-        padding: 0.4em 0.7em;
-        border-radius: @maxBorderRadius;
-        margin: @fontSize*0.2 @fontSize*0.1;
-        vertical-align: top;
-        max-width: 100%;
-        line-height: 1.2em;
-        text-decoration: none;
-        position: relative;
-        cursor: default;
-        font-size: @fontSize*0.8125;
-        overflow: hidden;
-        box-sizing: border-box;
-
-        span{
-            max-width: 100%;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            display: inline-block;
-            padding-right: 1em;
-            vertical-align: middle;
-            position: relative;
-            z-index: 1;
-            box-sizing: border-box;
-        }
-
-        i.mo-icon,
-        .mo-loader{
-            font-size: @fontSize*0.75;
-            position: absolute;
-            right: 0.5em;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: default;
-            z-index: 2;
-        }
-
-        .mo-loader{
-            width: @fontSize*0.75;
-            right: 1.5em;
-
-            .mo-loader-path{
-                stroke: @colorFormItemColor;
-            }
-        }
-
-        i.mo-icon.reupload{
-            cursor: pointer;
-            display: none;
-
-            &:hover{
-                color: @colorSuccess !important;
-            }
-        }
-
-        i.mo-icon.remove{
-            cursor: pointer;
-            display: none;
-
-            &:hover{
-                color: @colorDanger !important;
-            }
-        }
-    }
-
-    .progress{
-        background: @colorSuccess;
-        opacity: 0.2;
-        width: 0%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
-        transition: width 0.3s;
-
-        &.wait{
-            width: 10% !important;
-        }
-
-        &.verification{
-            width: 20% !important;
-        }
-
-        &.uploading{
-            width: 30%;
-        }
-
-        &.uploaded{
-            width: 100% !important;
-        }
-    }
-
-    .add{
-        display: inline-block;
-        padding: 0.4em 1.6em;
-
-        .mo-icon.local{
-            left: 1em;
-            font-size: @fontSize;
-        }
-
-        &:hover{
-            cursor: pointer;
-            text-decoration: none;
-            color: @colorFormItemColorHover !important;
-            background: @colorFromItemBackgroundHover;
-
-            i.mo-icon{
-                cursor: pointer;
-                color: @colorFormItemColorHover !important;
-            }
-        }
-
-        span{
-            padding-right: 0;
-            padding-left: 1em;
-        }
-
-        i.mo-icon{
-            top: 51%;
-            left: 1.5em;
-            right: auto;
-        }
-
-        &:hover{
-            cursor: pointer;
-
-            i.mo-icon{
-                color: @colorFormItemColorHover !important;
-            }
-        }
-
-        &.local{
-            border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
-            margin-right: 0;
-        }
-
-        &.url{
-            margin-left: 1px;
-            border-radius: 0 @maxBorderRadius @maxBorderRadius 0;
-
-            span{
-                padding-right: 1em;
-                padding-left: 0;
-            }
-
-            i.mo-icon{
-                left: auto;
-                right: 1.5em;
-            }
-
-            .load{
-                display: none;
-            }
-        }
-
-        &.loading{
-            cursor: default;
-
-            .mo-icon{
-                display: none;
-            }
-
-            .load{
-                display: inherit;
-            }
-        }
-    }
-
-    .done{
-        cursor: pointer;
-
-        &:hover{
-            color: @colorFormTextHover !important;
-
-            .mo-icon{
-                color: @colorFormTextHover !important;
-            }
-        }
-
-        .progress{
-            width: 0%;
-            transition: width 0s;
-        }
-
-        i.mo-icon.uploading,
-        i.mo-icon.reupload{
-            display: none;
-        }
-
-        i.mo-icon.remove{
-            display: block;
-        }
-    }
-
-    .fail{
-        background: lighten(@colorDanger, 42%);
-
-        > span{
-            padding-right: 2.2em;
-        }
-
-        > .progress{
-            width: 0%;
-            transition: width 0s;
-        }
-
-        i.mo-icon.uploading{
-            display: none;
-        }
-
-        i.mo-icon.reupload{
-            display: block;
-            right: 1.7em;
-        }
-
-        > i.mo-icon.remove{
-            display: block;
-        }
-    }
-
-    .max{
-        font-size: @fontSize*0.75;
-        line-height: 1.4em;
-        color: @colorFormTextMisc !important;
-        width: 100%;
-        padding: 0.4em 0.7em;
-        text-align: center;
-        display: block;
-    }
+    // &.type-upload-box{
+    //     height: @fontSize*10;
+    // }
 
     .drag-note{
         position: absolute;
@@ -344,33 +55,503 @@ mor-upload{
         }
     }
 
-    &:hover > .fl{
+    .inside-name,
+    .ismax-note,
+    .upload-box-note{
+        font-size: @fontSize*0.75;
+        color: @colorExtraLightBlack;
+        line-height: 1.2em;
+    }
+
+    .upload-wrap{
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        padding: @fontSize*0.1875 @fontSize*0.3125;
+        position: relative;
+        overflow: hidden;
+        font-size: 0;
+        background: @colorFormBackground;
+        box-sizing: border-box;
+    }
+
+    .upload-box{
+        height: @fontSize*10;
+    }
+
+    .upload-input{
+        .filelist{
+            position: relative;
+            font-size: 0;
+            display: inline-block;
+            // width: 80%;
+            // left: 20%;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+    }
+
+    .upload-box + .filelist,
+    .upload-button + .filelist{
+        margin-top: @fontSize*0.5;
+        width: 100%;
+
+        .file-item{
+            color: @colorExtraLightBlack;
+            background: @colorWhite;
+            text-decoration: none;
+            padding: 0.3em 0.5em;
+            font-size: @fontSize*0.8125;
+            position: relative;
+            display: block;
+            cursor: default;
+            border-radius: @borderRadius;
+            margin: 1px 0;
+
+            .progress{
+                border-radius: @borderRadius 0 0 @borderRadius;
+            }
+
+            .upload-operate{
+                position: absolute;
+                top: 0;
+                right: @fontSize * 0.8125 * 0.5;
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+
+            i.mo-icon,
+            .mo-loader{
+                font-size: @fontSize*0.75;
+                cursor: default;
+                z-index: 2;
+                color: @colorFormItemColor;
+                display: none;
+
+                &:hover{
+                    cursor: pointer;
+                    color: @colorFormItemColorHover;
+                }
+            }
+
+            &.done{
+                i.mo-icon.uploading,
+                i.mo-icon.reupload{
+                    display: none;
+                }
+
+                &.current{
+                    background: @colorExtraLightSilver;
+
+                    i.remove,
+                    i.openfile{
+                        display: block;
+                    }
+                }
+
+                i.remove:hover,
+                i.openfile:hover{
+                    display: block;
+                }
+            }
+
+            &.fail{
+                i.mo-icon.uploading{
+                    display: none;
+                }
+
+                i.mo-icon.reupload,
+                i.mo-icon.remove{
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .upload-input,
+    .upload-box,
+    .filelist{
+        .file-item,
+        .upload-box-preview{
+            &.done:hover{
+                color: @colorBlack;
+                cursor: pointer;
+                background: @colorExtraLightSilver;
+            }
+
+            .progress{
+                background: @colorSuccess;
+                opacity: 0.2;
+                width: 0%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 100em 0 0 100em;
+                transition: width 0.3s;
+
+                &.wait{
+                    width: 10% !important;
+                }
+
+                &.verification{
+                    width: 20% !important;
+                }
+
+                &.uploading{
+                    width: 30%;
+                }
+
+                &.uploaded{
+                    width: 100% !important;
+                }
+            }
+
+            i.mo-icon,
+            .mo-loader{
+                display: none;
+            }
+
+            &,
+            .upload-operate,
+            .upload-failed-operate{
+                i.mo-icon{
+                    margin: 0 0.2em;
+                }
+
+                i.mo-icon.remove{
+                    &:hover{
+                        color: @colorDanger;
+                        cursor: pointer !important;
+                    }
+                }
+
+                i.mo-icon.reupload{
+                    &:hover{
+                        color: @colorSuccess;
+                        cursor: pointer !important;
+                    }
+                }
+            }
+
+            &.uploading{
+                i.mo-icon.uploading{
+                    display: block;
+
+                    &:hover{
+                        cursor: default;
+                        color: @colorFormItemColor;
+                    }
+                }
+            }
+
+            &.done{
+                cursor: pointer;
+
+                .progress{
+                    width: 0%;
+                    transition: width 0s;
+                }
+            }
+
+            &.fail{
+                background: lighten(@colorDanger, 42%);
+
+                > .progress{
+                    width: 0%;
+                    transition: width 0s;
+                }
+
+                &:hover{
+                    background: lighten(@colorDanger, 42%);
+                }
+            }
+        }
+    }
+
+    .upload-input{
+        min-height: @formHeight;
+
+        .upload-file,
+        .file-item{
+            color: @colorFormItemColor;
+            background-color: @colorFromItemBackground;
+            display: inline-block;
+            padding: 0.4em 0.7em;
+            border-radius: 100em;
+            margin: @fontSize*0.1875 @fontSize*0.125;
+            vertical-align: top;
+            max-width: 100%;
+            line-height: calc(42px - 6px - 6px - 2px - 0.8em);
+            height: calc(42px - 6px - 6px - 2px);
+            text-decoration: none;
+            position: relative;
+            cursor: default;
+            font-size: @fontSize*0.8125;
+            overflow: hidden;
+            box-sizing: border-box;
+
+            span{
+                max-width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: inline-block;
+                // padding-right: 0.2em;
+                vertical-align: middle;
+                position: relative;
+                z-index: 1;
+                box-sizing: border-box;
+            }
+
+            &:hover{
+                cursor: pointer;
+                text-decoration: none;
+                color: @colorFormItemColorHover;
+                background: @colorFromItemBackgroundHover;
+
+                i.mo-icon{
+                    cursor: pointer;
+                    color: @colorFormItemColorHover;
+                }
+            }
+        }
+
+        .upload-file{
+            .mo-icon{
+                vertical-align: middle;
+            }
+        }
+
+        .file-item{
+            padding-right: 2em;
+
+            &:hover{
+                cursor: default;
+                color: @colorFormItemColor;
+
+                .mo-icon{
+                    color: @colorFormItemColor;
+                }
+            }
+
+            i.mo-icon,
+            .mo-loader{
+                font-size: @fontSize*0.75;
+                position: absolute;
+                right: 0.7em;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: default;
+                z-index: 2;
+            }
+
+            &.done{
+                &:hover{
+                    color: @colorFormTextHover;
+
+                    .mo-icon{
+                        color: @colorFormTextHover;
+                    }
+                }
+
+                i.mo-icon.uploading,
+                i.mo-icon.reupload{
+                    display: none;
+                }
+
+                i.mo-icon.remove{
+                    display: block;
+                }
+            }
+
+            &.fail{
+                > span{
+                    padding-right: 1.2em;
+                }
+
+                i.mo-icon.uploading{
+                    display: none;
+                }
+
+                i.mo-icon.reupload{
+                    display: block;
+                    right: 2em;
+                }
+
+                > i.mo-icon.remove{
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .upload-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+
+        .upload-box-con{
+            flex-direction: row;
+            justify-content: center;
+            display: flex;
+            position: relative;
+
+            .upload-file{
+                display: inline-block;
+                color: @colorExtraLightBlue;
+
+                .mo-icon{
+                    font-size: @fontSize*2;
+                    display: block;
+                    line-height: 1.2em;
+                }
+
+                .mo-icon-upload{
+                    text-align: center;
+                }
+
+                > span{
+                    font-size: @fontSize*0.875;
+                    display: block;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    color: @colorLightBlue;
+                }
+            }
+        }
+
+        .upload-box-preview{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            .upload-box-preview-img{
+                max-width: 100%;
+                max-height: 100%;
+                margin: 0;
+                padding: 0;
+                border: none !important;
+            }
+
+            .upload-box-preview-file{
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+
+                span{
+                    font-size: @fontSize*0.75;
+                    color: @colorExtraLightBlue;
+                }
+
+                .mo-icon-file-o{
+                    display: block;
+                }
+
+                .upload-failed-operate{
+                    display: block;
+                    padding-top: @fontSize*0.5;
+
+                    i.mo-icon,
+                    .mo-loader{
+                        font-size: @fontSize;
+                        cursor: default;
+                        z-index: 2;
+                        display: none;
+                        margin: 0 0.3em;
+                    }
+                }
+            }
+
+            .mo-icon{
+                font-size: @fontSize*2;
+                color: @colorExtraLightBlue;
+            }
+
+            &.fail{
+                span,
+                .mo-icon{
+                    color: @colorDanger;
+                }
+
+                i.mo-icon.reupload,
+                i.mo-icon.remove{
+                    display: inline-block;
+                    color: @colorExtraLightBlue;
+                }
+            }
+        }
+
+        .upload-box-operate{
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            align-content: center;
+
+            .ismax-note{
+                width: 100%;
+                display: block;
+                color: @colorWhite;
+            }
+
+            > a{
+                text-decoration: none;
+                cursor: pointer;
+                color: @colorSilver;
+                display: inline-block;
+                margin: 0 0.5em;
+                font-size: @fontSize*1.75;
+
+                .mo-icon{
+                    font-size: @fontSize*1.75;
+                }
+
+                &:hover{
+                    color: @colorWhite;
+                }
+
+                &.del:hover{
+                    color: @colorDanger;
+                }
+            }
+        }
+
+        &:hover{
+            .upload-box-operate{
+                display: flex;
+            }
+        }
+    }
+
+    .upload-button{
+
+    }
+
+    &:hover > .upload-wrap{
         border-color: @colorFormBorderHover;
     }
 
-    &.focus > .fl{
+    &.focus > .upload-wrap{
         border-color: @colorFormBorderFocus;
-    }
-
-    .fileinput{
-        display: none;
-    }
-
-    &.allow-url{
-        > .fl > .filewrap .add{
-            padding: 0.4em 1em 0.4em 1.6em;
-
-            &.url{
-                padding: 0.4em 1.6em 0.4em 1em;
-            }
-        }
     }
 
     &.st-normal{}
 
     &.st-disabled,
     &.st-readonly{
-        > .fl{
+        .upload-wrap{
             border-color: @colorFormBorderDisable;
             -webkit-user-select: none;
             cursor: not-allowed !important;
@@ -381,9 +562,17 @@ mor-upload{
             }
         }
 
-        .filewrap > .file{
+        .upload-box-preview:hover{
+            border-color: @colorFormBorderDisable !important;
+            background-color: @colorFormBackgroundDisable !important;
+            color: @colorFormItemColorDisable !important;
+            cursor: not-allowed !important;
+        }
+
+        .file-item{
             cursor: pointer !important;
-            background-color: @colorFromItemBackgroundDisable;
+            background-color: @colorFromItemBackgroundDisable !important;
+            padding-right: 1em;
 
             .mo-icon{
                 display: none !important;
@@ -395,20 +584,13 @@ mor-upload{
 
             &:hover{
                 color: @colorFormItemColorDisable !important;
+                background-color: @colorFromItemBackgroundDisable !important;
             }
         }
 
-        .filewrap > .add:hover{
-            cursor: default;
-
-            i.mo-icon{
-                color: @colorFormItemColorDisable !important;
-            }
-        }
-
-        .fl-name{
-            background-color: darken(@colorLightGray, 10%);
-            color: @colorBlue;
+        .upload-file{
+            color: @colorFormItemColor !important;
+            cursor: not-allowed !important;
         }
     }
 

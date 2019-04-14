@@ -10,15 +10,16 @@
         :clearable="clearable"
         :inside-name="insideName"
         :item-name="itemName"
+        :type="type"
         :accept-type="acceptType"
         :multi="multi"
         :max="max"
-        :keep-over-limit-file="keepOverLimitFile"
-        :allow-url="allowUrl"
-        :allow-drag="allowDrag"
         :validate="validate"
         :uploader="uploader"
+        :keep-over-limit-file="keepOverLimitFile"
         :keep-origin-name="keepOriginName"
+        :allow-url="allowUrl"
+        :allow-drag="allowDrag"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -35,22 +36,147 @@
         :id="'ui-select-fileinput-' + uiid"
         :accept="conf.acceptType"
         :multiple="conf.multi"
+        
         @change="_getFiles"
     />
 
-    <div class="fl">
-        <p class="fl-name" v-if="!!conf.insideName"><morning-center class="fill">{{conf.insideName}}</morning-center></p>
+    <template v-if="conf.type === 'input'">
+        <div class="upload-wrap upload-input">
+            <div class="inside-name" v-if="!!conf.insideName">
+                <morning-center class="fill">{{conf.insideName}}</morning-center>
+            </div>
+            <div class="filelist">
+                <template v-for="(item, index) in data.showFiles">
+                    <a
+                        class="file-item"
+                        target="_blank;"
+                        href="javascript:;"
+                        :index="index"
+                        :key="index"
+                        :class="item.classList"
 
-        <div class="filewrap" :class="{hidename:!conf.insideName}">
-            
+                        @click="_openFile(item.path)"
+                    >
+                        <i
+                            class="progress"
+                            :class="item.classList"
+                            :style="{
+                                width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
+                            }"
+                        ></i>
+
+                        <span>
+                            {{item.name}}
+                        </span>
+
+                        <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
+                        <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
+                        <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                    </a>
+                </template>
+
+                <label
+                    class="upload-file"
+                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
+                    @click="_emitFilePicker"
+                    :id="'mor-upload-input-remote-'+uiid"
+                >
+                    <i class="mo-icon mo-icon-upload"></i>
+                    <span>上传{{conf.itemName}}</span>
+                </label>
+
+                <morning-popover :target="'#mor-upload-input-remote-'+uiid">
+                    <div class="url-upload-box">
+                        <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                    </div>
+                </morning-popover>
+            </div>
+            <div class="ismax-note" v-if="ismax">
+                <morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center>
+            </div>
+
+            <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
+        </div>
+    </template>
+
+    <template v-else-if="conf.type === 'box'">
+        <div class="upload-wrap upload-box">
+            <template v-if="data.showFiles.length === 0">
+                <div class="upload-box-con">
+                    <label
+                        class="upload-file"
+                        @click="_emitFilePicker"
+                        :id="'mor-upload-box-remote-'+uiid"
+                    >
+                        <i class="mo-icon mo-icon-upload"></i>
+                        <span>上传{{conf.itemName}}</span>
+                    </label>
+
+                    <morning-popover :target="'#mor-upload-box-remote-'+uiid">
+                        <div class="url-upload-box">
+                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                        </div>
+                    </morning-popover>
+                </div>
+                <div class="upload-box-note">
+                    <morning-center class="fill">{{conf.insideName}}</morning-center>
+                </div>
+            </template>
+
+            <template v-else>
+                <div
+                    v-if="data.showFiles[data.currentPreview]"
+                    class="upload-box-preview"
+                    :class="data.showFiles[data.currentPreview].classList"
+                >
+                    <i
+                        class="progress"
+                        :class="data.showFiles[data.currentPreview].classList"
+                        :style="{
+                            width : (data.showFiles[data.currentPreview].classList.uploading) ? ((30 + (+data.showFiles[data.currentPreview].progress) * 60) + '%') : 'auto'
+                        }"
+                    ></i>
+
+                    <img v-if="data.showFiles[data.currentPreview].file && /^image/.test(data.showFiles[data.currentPreview].file.type) && data.showFiles[data.currentPreview].status === 'done'" :src="data.showFiles[data.currentPreview].path" class="upload-box-preview-img" />
+                    <div v-else class="upload-box-preview-file">
+                        <i class="mo-icon mo-icon-file-o"></i>
+                        <span>{{data.showFiles[data.currentPreview].name}}</span>
+
+                        <div class="upload-failed-operate">
+                            <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(data.currentPreview)"></i>
+                            <i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(data.currentPreview)"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="upload-box-operate" v-if="conf.state !== 'readonly' && conf.state !== 'disabled' && data.showFiles[data.currentPreview].status === 'done'">
+                    <a href="javascript:;" title="打开文件" @click="_openFile(data.showFiles[data.currentPreview].path)">
+                        <i class="mo-icon mo-icon-fullscreen"></i>
+                    </a>
+                    <a href="javascript:;" title="上传文件" @click="_emitFilePicker" v-if="!ismax">
+                        <i class="mo-icon mo-icon-upload"></i>
+                    </a>
+                    <a href="javascript:;" title="删除文件" class="del" @click="_removeFile(data.currentPreview)">
+                        <i class="mo-icon mo-icon-del"></i>
+                    </a>
+                    <div class="ismax-note" v-if="ismax"><morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center></div>
+                </div>
+            </template>
+
+            <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
+        </div>
+        <div class="filelist" v-if="data.showFiles.length > 0">
             <template v-for="(item, index) in data.showFiles">
                 <a
-                    class="file"
+                    class="file-item"
                     target="_blank;"
-                    :href="item.path || 'javascript:;'"
+                    href="javascript:;"
                     :index="index"
                     :key="index"
-                    :class="item.classList"
+                    :class="[{
+                        current : index === data.currentPreview
+                    }, item.classList]"
+
+                    @click="(conf.state === 'readonly' || conf.state === 'disabled') ? _openFile(item.path) : _switchPreview(index)"
                 >
                     <i
                         class="progress"
@@ -59,61 +185,77 @@
                             width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
                         }"
                     ></i>
+
                     <span>
                         {{item.name}}
                     </span>
-                    <i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(index)"></i>
-                    <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
-                    <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(index)"></i>
+
+                    <div class="upload-operate">
+                        <i class="mo-icon mo-icon-fullscreen openfile" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
+                        <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                        <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
+                        <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
+                    </div>
                 </a>
             </template>
-
-            <br/>
-
-            <template v-if="conf.allowUrl">
-                <label
-                    class="add file local"
-                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
-                    :for="'ui-select-fileinput-' + uiid"
-                >
-                    <span>本地上传{{conf.itemName}}</span>
-                    <i class="mo-icon mo-icon-upload local"></i>
-                </label>
-                
-                <label
-                    class="add file url"
-                    :class="{loading: data.fetchRemoteFile}"
-                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
-                    @click="_uploadRemoteFile()"
-                >
-                    <span>URL上传{{conf.itemName}}</span>
-                    <i class="mo-icon mo-icon-link"></i>
-                    <div class="mo-loader load">
-                        <svg class="mo-loader-circular" viewBox="25 25 50 50">
-                            <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
-                        </svg>
-                    </div>
-                </label>
-            </template>
-
-            <template v-else>
-                <label
-                    class="add file"
-                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
-                    :for="'ui-select-fileinput-' + uiid"
-                >
-                    <span>上传{{conf.itemName}}</span>
-                    <i class="mo-icon mo-icon-upload local"></i>
-                </label>
-            </template>
-
-            <p class="status" v-if="data.failNote">{{data.failNote}}</p>
-            
-            <span class="max" v-if="ismax">最多只能上传{{conf.max}}个文件</span>
         </div>
+    </template>
 
-        <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
-    </div>
+    <template v-else-if="conf.type === 'button'">
+        <morning-popover :target="'#mor-upload-button-remote-'+uiid">
+            <div class="url-upload-box">
+                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+            </div>
+        </morning-popover>
+        <morning-btn
+            color="light-gray"
+            class="upload-file upload-button"
+            :state="ismax ? 'disabled' : conf.state"
+            :id="'mor-upload-button-remote-'+uiid"
+            @emit="_emitFilePicker"
+        >
+            <i class="mo-icon mo-icon-upload"></i>
+            <span v-if="data.dragover">松开鼠标上传</span>
+            <span v-else>上传{{conf.itemName}}</span>
+        </morning-btn>
+        <div class="filelist" v-if="data.showFiles.length > 0 || !!conf.insideName">
+            <div class="inside-name" v-if="!!conf.insideName">{{conf.insideName}}</div>
+            <div class="inside-name max" v-if="ismax">最多只能上传{{conf.max}}个文件</div>
+            <template v-for="(item, index) in data.showFiles">
+                <a
+                    class="file-item"
+                    target="_blank;"
+                    href="javascript:;"
+                    :index="index"
+                    :key="index"
+                    :class="[{
+                        current : index === data.currentPreview
+                    }, item.classList]"
+
+                    @click="_openFile(item.path)"
+                >
+                    <i
+                        class="progress"
+                        :class="item.classList"
+                        :style="{
+                            width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
+                        }"
+                    ></i>
+
+                    <span>
+                        {{item.name}}
+                    </span>
+
+                    <div class="upload-operate">
+                        <i class="mo-icon mo-icon-fullscreen openfile" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
+                        <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                        <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
+                        <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
+                    </div>
+                </a>
+            </template>
+        </div>
+    </template>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -138,6 +280,11 @@ export default {
             type : String,
             default : ''
         },
+        type : {
+            type : String,
+            default : 'input',
+            validator : (value => ['input', 'box', 'button'].indexOf(value) !== -1)
+        },
         acceptType : {
             type : String,
             default : ''
@@ -150,18 +297,6 @@ export default {
             type : Number,
             default : Infinity
         },
-        keepOverLimitFile : {
-            type : Boolean,
-            default : true
-        },
-        allowUrl : {
-            type : Boolean,
-            default : false
-        },
-        allowDrag : {
-            type : Boolean,
-            default : false
-        },
         validate : {
             type : Function,
             default : noopFn
@@ -170,7 +305,19 @@ export default {
             type : Function,
             default : undefined
         },
+        keepOverLimitFile : {
+            type : Boolean,
+            default : true
+        },
         keepOriginName : {
+            type : Boolean,
+            default : false
+        },
+        allowUrl : {
+            type : Boolean,
+            default : false
+        },
+        allowDrag : {
             type : Boolean,
             default : false
         }
@@ -181,23 +328,26 @@ export default {
             return {
                 insideName : this.insideName,
                 itemName : this.itemName,
+                type : this.type,
                 acceptType : this.acceptType,
                 multi : this.multi,
                 max : this.max,
-                keepOverLimitFile : this.keepOverLimitFile,
-                allowUrl : this.allowUrl,
-                allowDrag : this.allowDrag,
                 validate : this.validate,
                 uploader : this.uploader,
-                keepOriginName : this.keepOriginName
+                keepOverLimitFile : this.keepOverLimitFile,
+                keepOriginName : this.keepOriginName,
+                allowUrl : this.allowUrl,
+                allowDrag : this.allowDrag
             };
 
         },
         moreClass : function () {
 
-            return {
-                'allow-url' : this.conf.allowUrl
-            };
+            let classes = {};
+
+            classes['type-upload-box'] = (this.conf.type === 'box');
+
+            return classes;
 
         },
         ismax : function () {
@@ -222,9 +372,11 @@ export default {
                 files : [],
                 uploadQueue : [],
                 uploading : false,
+                failNote : '',
+                showFiles : [],
+                currentPreview : -1,
                 fetchRemoteFile : false,
-                dragover : false,
-                showFiles : []
+                dragover : false
             }
         };
 
@@ -256,179 +408,62 @@ export default {
             return value;
 
         },
-        _dragover : function () {
+        _emitFilePicker : function () {
 
-            if (!this.conf.allowDrag) {
-
-                return;
-
-            }
-
-            this.data.dragover = true;
-
-        },
-        _dragleave : function () {
-
-            if (!this.conf.allowDrag) {
+            if (this.conf.state === 'readonly' ||
+                this.conf.state === 'disabled' ||
+                this.ismax ||
+                this.data.fetchRemoteFile) {
 
                 return;
 
             }
 
-            this.data.dragover = false;
-
+            document.querySelector(`#ui-select-fileinput-${this.uiid}`).click();
+        
         },
-        _drop : function (evt) {
+        _getFiles : function (evt) {
 
-            if (!this.conf.allowDrag) {
+            let files = evt.target.files || evt.dataTransfer.files;
+            let len = files.length;
 
-                return;
+            if (!this.conf.keepOverLimitFile && len > this.conf.max) {
 
-            }
-
-            this.data.dragover = false;
-
-            let url = evt.dataTransfer.getData('URL');
-
-            if (url) {
-
-                if (this.conf.allowUrl) {
-
-                    this._fetchRemoteFile(url);
-
-                }
-
-            } else {
-
-                this._getFiles(evt);
-
-            }
-
-        },
-        _uploadRemoteFile : function () {
-
-            if (!this.conf.allowUrl) {
-
-                return;
-
-            }
-
-            /* eslint-disable no-alert */
-            let url = window.prompt('请输入文件链接：');
-            /* eslint-enable no-alert */
-
-            this._fetchRemoteFile(url);
-
-        },
-        _fetchRemoteFile : function (url) {
-
-            if (url.search(/^(http|https):\/\//g) !== 0) {
-            
                 /* eslint-disable no-alert */
-                window.alert('链接有误');
+                alert(`最多只能上传${this.conf.max}个文件`);
                 /* eslint-enable no-alert */
-            
-                return;
+
+                return false;
 
             }
 
-            this.data.fetchRemoteFile = true;
+            if (!this.conf.multi && len > 1) {
 
-            let filename = url.split('?')[0].split('//')[1].split('/').pop();
-
-            if (/#/.test(filename)) {
-
-                filename = filename.split('#')[0];
+                len = 1;
 
             }
 
-            url = new URL(url);
-            url.searchParams.set('_mor_fetch_img_t', Date.now());
+            for (let i = 0; i < len; i++) {
 
-            axios({
-                url : url.href,
-                method : 'get',
-                responseType : 'blob'
-            })
-                .then(resp => {
+                this._addFile(files.item(i));
 
-                    let file = new File(
-                        [resp.data],
-                        filename,
-                        {
-                            type : resp.data.type
-                        }
-                    );
+            }
 
-                    this.data.fetchRemoteFile = false;
-                    this._addFile(file);
-
-                })
-                .catch(err => {
-                    
-                    this.data.fetchRemoteFile = false;
-
-                    /* eslint-disable no-alert */
-                    window.alert(`网络文件获取失败\n(${err.message})`);
-                    /* eslint-enable no-alert */
-
-                });
+            this.data.inputKey++;
 
         },
-        _getName : function (filepath) {
+        _addFile : function (file) {
 
-            return filepath.split('/').pop();
+            let {index} = this._createNewFileObj({
+                file,
+                uploadnow : true
+            });
 
-        },
-        _fetchValueFromFiles : function () {
+            if (!/^(http|https|\/\/)/.test(file.path)) {
 
-            let value = [];
-
-            for (let file of this.data.files) {
-
-                if (file.path) {
-
-                    value.push({
-                        name : file.name || this._getName(file.path),
-                        path : file.path
-                    });
-
-                }
+                this._upload(index);
 
             }
-
-            return value;
-
-        },
-        _syncFilesFromValue : function () {
-
-            let files = [];
-            let values = this.get();
-
-            this.data.files = [];
-
-            if (typeof values !== 'object' ||
-                !(values instanceof Array)) {
-
-                return;
-
-            }
-
-            for (let value of values) {
-
-                if (value.path) {
-
-                    this._createNewFileObj({
-                        path : value.path,
-                        name : value.name,
-                        status : 'done'
-                    });
-
-                }
-
-            }
-
-            return files;
 
         },
         _createNewFileObj : function (options) {
@@ -482,55 +517,29 @@ export default {
             };
 
         },
-        _getFiles : function (evt) {
+        _getName : function (filepath) {
 
-            let files = evt.target.files || evt.dataTransfer.files;
-            let len = files.length;
-
-            if (!this.conf.keepOverLimitFile && len > this.conf.max) {
-
-                /* eslint-disable no-alert */
-                alert(`最多只能上传${this.conf.max}个文件`);
-                /* eslint-enable no-alert */
-
-                return false;
-
-            }
-
-            if (!this.conf.multi && len > 1) {
-
-                len = 1;
-
-            }
-
-            for (let i = 0; i < len; i++) {
-
-                this._addFile(files.item(i));
-
-            }
-
-            this.data.inputKey++;
+            return filepath.split('/').pop();
 
         },
-        _addFile : function (file) {
+        _setStatus : function (index, status) {
 
-            let {index} = this._createNewFileObj({
-                file,
-                uploadnow : true
-            });
+            // status include: wait/uploading/done/fail/uploaded
+            this.data.files[index].status = status;
 
-            if (!/^(http|https|\/\/)/.test(file.path)) {
+            for (let key in this.data.files[index].classList) {
 
-                this._upload(index);
+                if (key !== status) {
+
+                    this.data.files[index].classList[key] = false;
+
+                } else {
+
+                    this.data.files[index].classList[key] = true;
+
+                }
 
             }
-
-        },
-        _removeFile : function (index) {
-
-            this.data.files.splice(index, 1);
-            this.data.failNote = '';
-            this._set(this._fetchValueFromFiles(), true, true);
 
         },
         _upload : function (index) {
@@ -539,36 +548,17 @@ export default {
             this._execUploadQueue();
 
         },
-        _getImageWh : function (file) {
+        _execUploadQueue : function () {
 
-            return new Promise(resolve => {
+            if (this.data.uploading) {
 
-                let reader = new FileReader();
+                return;
 
-                reader.onload = result => {
-                    
-                    let image = new Image();
+            }
 
-                    if (result) {
-                        
-                        image.onload = () => {
-
-                            resolve({
-                                width : image.width,
-                                height : image.height
-                            });
-
-                        };
-                        
-                        image.src = result.target.result;
-
-                    }
-
-                };
-
-                reader.readAsDataURL(file);
-
-            });
+            this.data.failNote = '';
+            this.data.uploading = true;
+            this._execUploadOnce();
 
         },
         _execUploadOnce : function () {
@@ -718,37 +708,87 @@ export default {
                 });
 
         },
-        _execUploadQueue : function () {
+        _getImageWh : function (file) {
 
-            if (this.data.uploading) {
+            return new Promise(resolve => {
+
+                let reader = new FileReader();
+
+                reader.onload = result => {
+                    
+                    let image = new Image();
+
+                    if (result) {
+                        
+                        image.onload = () => {
+
+                            resolve({
+                                width : image.width,
+                                height : image.height
+                            });
+
+                        };
+                        
+                        image.src = result.target.result;
+
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+        },
+        _fetchValueFromFiles : function () {
+
+            let value = [];
+
+            for (let file of this.data.files) {
+
+                if (file.path) {
+
+                    value.push({
+                        name : file.name || this._getName(file.path),
+                        path : file.path
+                    });
+
+                }
+
+            }
+
+            return value;
+
+        },
+        _syncFilesFromValue : function () {
+
+            let files = [];
+            let values = this.get();
+
+            this.data.files = [];
+
+            if (typeof values !== 'object' ||
+                !(values instanceof Array)) {
 
                 return;
 
             }
 
-            this.data.failNote = '';
-            this.data.uploading = true;
-            this._execUploadOnce();
+            for (let value of values) {
 
-        },
-        _setStatus : function (index, status) {
+                if (value.path) {
 
-            // status include: wait/uploading/done/fail/uploaded
-            this.data.files[index].status = status;
-
-            for (let key in this.data.files[index].classList) {
-
-                if (key !== status) {
-
-                    this.data.files[index].classList[key] = false;
-
-                } else {
-
-                    this.data.files[index].classList[key] = true;
+                    this._createNewFileObj({
+                        path : value.path,
+                        name : value.name,
+                        status : 'done'
+                    });
 
                 }
 
             }
+
+            return files;
 
         },
         _set : function (value, ignoreDisable = false, origin = false) {
@@ -798,6 +838,154 @@ export default {
             return this;
 
         },
+        _removeFile : function (index) {
+
+            this.data.files.splice(index, 1);
+            this.data.failNote = '';
+            this._set(this._fetchValueFromFiles(), true, true);
+
+        },
+        _openFile : function (filepath) {
+
+            if (!filepath) {
+
+                return;
+
+            }
+
+            window.open(filepath);
+
+        },
+        _switchPreview : function (index) {
+
+            this.data.currentPreview = index;
+
+        },
+        _uploadRemoteFile : function () {
+
+            if (!this.conf.allowUrl) {
+
+                return;
+
+            }
+
+            /* eslint-disable no-alert */
+            let url = window.prompt('请输入文件链接：');
+            /* eslint-enable no-alert */
+
+            this._fetchRemoteFile(url);
+
+        },
+        _fetchRemoteFile : function (url) {
+
+            if (typeof url !== 'string') {
+
+                return;
+
+            }
+
+            if (url.search(/^(http|https):\/\//g) !== 0) {
+            
+                /* eslint-disable no-alert */
+                window.alert('链接有误');
+                /* eslint-enable no-alert */
+            
+                return;
+
+            }
+
+            this.data.fetchRemoteFile = true;
+
+            let filename = url.split('?')[0].split('//')[1].split('/').pop();
+
+            if (/#/.test(filename)) {
+
+                filename = filename.split('#')[0];
+
+            }
+
+            url = new URL(url);
+            url.searchParams.set('_mor_fetch_img_t', Date.now());
+
+            axios({
+                url : url.href,
+                method : 'get',
+                responseType : 'blob'
+            })
+                .then(resp => {
+
+                    let file = new File(
+                        [resp.data],
+                        filename,
+                        {
+                            type : resp.data.type
+                        }
+                    );
+
+                    this.data.fetchRemoteFile = false;
+                    this._addFile(file);
+
+                })
+                .catch(err => {
+                    
+                    this.data.fetchRemoteFile = false;
+
+                    /* eslint-disable no-alert */
+                    window.alert(`网络文件获取失败\n(${err.message})`);
+                    /* eslint-enable no-alert */
+
+                });
+
+        },
+        _dragover : function () {
+
+            if (!this.conf.allowDrag) {
+
+                return;
+
+            }
+
+            this.data.dragover = true;
+
+        },
+        _dragleave : function () {
+
+            if (!this.conf.allowDrag) {
+
+                return;
+
+            }
+
+            this.data.dragover = false;
+
+        },
+        _drop : function (evt) {
+
+            if (!this.conf.allowDrag) {
+
+                return;
+
+            }
+
+            this.data.dragover = false;
+
+            let url = evt.dataTransfer.getData('URL');
+
+            if (url) {
+
+                if (this.conf.allowUrl) {
+
+                    this._fetchRemoteFile(url);
+
+                }
+
+            } else {
+
+                this._getFiles(evt);
+
+            }
+
+        },
         uploadUrl : function (url) {
             
             if (!this.conf.allowUrl) {
@@ -817,10 +1005,23 @@ export default {
 
         }
     },
-    created : function () {},
     mounted : function () {
 
         this.set(this.data.value);
+
+        this.$watch('data.fetchRemoteFile', val => {
+
+            if (val) {
+
+                this.$refs[`mor-url-btn-${this.uiid}`].lock();
+
+            } else {
+
+                this.$refs[`mor-url-btn-${this.uiid}`].unlock();
+
+            }
+
+        });
 
         this.$watch('data.files', () => {
 
@@ -837,6 +1038,12 @@ export default {
             }
 
             this.data.showFiles = files;
+
+            if (files[this.data.currentPreview] === undefined) {
+                
+                this.data.currentPreview = files.length - 1;
+
+            }
 
         }, {
             immediate : true,

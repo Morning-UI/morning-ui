@@ -21,7 +21,35 @@
         <ui-upload form-name="文件"></ui-upload>
     </div>
     :::
-    
+
+    :::vue
+    @name:多种风格的上传组件
+    ---
+    #demo
+    >desc
+    输入框风格的上传组件。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="input"></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    区域风格的上传组件，适合图片上传。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="box"></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    按钮风格的上传组件。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="button"></ui-upload>
+    </div>
+    :::
+
     #### 文件上传适配器
 
     文件上传适配器用来接收组件上传的文件，并传输到服务端，然后将服务端结果处理后返回给组件：
@@ -77,7 +105,6 @@
         }
     });
     ```
-
     文件上传时会调用`uploader`并将需要上传的文件对象作为参数传入，文件对象`file`，包含下面几个属性：
 
     - `name` : 上传文件的原始名称
@@ -191,7 +218,39 @@
     :::preset
     @name:formStatus
     @uikey:upload
-    @defaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    @defaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png',file:{type:'image/png'}}]
+    :::
+
+    :::vue
+    @name:其他风格的禁用状态
+    ---
+    #demo
+    >desc
+    区域风格的上传组件，适合图片上传。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="box" state="disabled" v-model="value"></ui-upload>
+    </div>
+    >script
+    {
+        data : {
+            value : [{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png',file:{type:'image/png'}}]
+        }
+    }
+    ---
+    #demo
+    >desc
+    按钮风格的上传组件。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="button" state="disabled" v-model="value"></ui-upload>
+    </div>
+    >script
+    {
+        data : {
+            value : [{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png',file:{type:'image/png'}}]
+        }
+    }
     :::
 
     [[[配置]]]
@@ -218,7 +277,17 @@
     #demo
     >tpl
     <div style="width:300px;">
-        <ui-upload inside-name="文件"></ui-upload>
+        <ui-upload inside-name="补充说明..."></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    区域和按钮风格上传组件的`inside-name`。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload inside-name="补充说明..." type="box"></ui-upload>
+        <br><br>
+        <ui-upload inside-name="补充说明..." type="button"></ui-upload>
     </div>
     :::
 
@@ -241,6 +310,44 @@
     >tpl
     <div style="width:300px;">
         <ui-upload form-name="文件" item-name="文件"></ui-upload>
+    </div>
+    :::
+
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    上传组件的风格。
+    >conf-accept
+    `'input'` : 输入框<br>`'box'` : 区域<br>`'button'` : 按钮
+    >conf-type
+    String
+    >conf-default
+    `'input'`
+    ---
+    #demo
+    >desc
+    输入框风格的上传组件。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="input"></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    区域风格的上传组件，适合图片上传。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="box"></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    按钮风格的上传组件。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="button"></ui-upload>
     </div>
     :::
 
@@ -287,7 +394,7 @@
     ---
     #demo
     >desc
-    `multi`和`max`配置一起使用，如果一次选择的文件数超过`max`则会弹窗提示。
+    `multi`和`max`配置一起使用，超出数量的文件将会上传失败。
     >tpl
     <div style="width:300px;">
         <ui-upload form-name="文件" multi :max="2"></ui-upload>
@@ -347,6 +454,28 @@
     :::
 
     :::vue
+    @name:keep-origin-name
+    ---
+    #config
+    >conf-desc
+    文件上传后显示的文件名会变为文件URL中的名字。开启此选项后组件将会保留文件原始的名字。<br>若无法获取文件原始的名字则仍然会从文件URL中获取名字。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    显示的文件名将会是文件原始的名字。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :keep-origin-name="true"></ui-upload>
+    </div>
+    :::
+
+    :::vue
     @name:allow-url
     ---
     #config
@@ -360,8 +489,6 @@
     `false`
     ---
     #demo
-    >desc
-    设置最多上传两个文件。
     >tpl
     <div style="width:300px;">
         <ui-upload form-name="文件" :allow-url="true"></ui-upload>
@@ -495,28 +622,6 @@
     }
     :::
 
-    :::vue
-    @name:keep-origin-name
-    ---
-    #config
-    >conf-desc
-    文件上传后显示的文件名会变为文件URL中的名字。开启此选项后组件将会保留文件原始的名字。<br>若无法获取文件原始的名字则仍然会从文件URL中获取名字。
-    >conf-accept
-    `true`<br>`false`
-    >conf-type
-    Boolean
-    >conf-default
-    `false`
-    ---
-    #demo
-    >desc
-    显示的文件名将会是文件原始的名字。
-    >tpl
-    <div style="width:300px;">
-        <ui-upload form-name="文件" :keep-origin-name="true"></ui-upload>
-    </div>
-    :::
-
     [[[方法]]]
 
     :::preset
@@ -544,7 +649,7 @@
             <ui-upload ref="demo1" form-name="网络文件" :allow-url="true"></ui-upload>
         </div>
         <br>
-        <ui-link js="morning.findVM('demo1').uploadUrl('https://cn.vuejs.org/images/logo.png');">上传Vue的logo</ui-link>
+        <ui-link js="morning.findVM('demo1').uploadUrl('http://morning-ui-image.test.upcdn.net/logo.png');">上传Morning的logo</ui-link>
     </div>
     :::
     

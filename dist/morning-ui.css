@@ -45487,11 +45487,12 @@ mor-datetimepicker > .form-name {
 mor-upload {
   position: relative;
   z-index: 1;
-  display: inline-block;
+  display: block;
   width: 100%;
   box-sizing: border-box;
   vertical-align: middle;
   -webkit-user-select: none;
+  background: #FFFFFF;
 }
 mor-upload.has-cleanbtn {
   padding-bottom: 20px;
@@ -45509,255 +45510,11 @@ mor-upload > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
-mor-upload > .fl {
-  border: 1px #E6E6E6 solid;
-  border-radius: 3px;
-  padding: 3.2px 4.8px;
-  position: relative;
-  overflow: hidden;
-  min-height: 42px;
-  font-size: 0;
-  background: #FFFFFF;
-  box-sizing: border-box;
+mor-upload[type='button'] {
+  -webkit-appearance: none;
 }
-mor-upload .fl-name {
-  height: 100%;
-  position: absolute;
-  width: 20%;
-  background-color: #F0F0F0;
-  color: #7C8BA0;
-  max-width: 150px;
-  margin: 0;
-  font-size: 13px;
-  display: inline-block;
-  left: 0;
-  top: 0;
-}
-mor-upload .filewrap {
-  position: relative;
-  font-size: 0;
-  display: inline-block;
-  width: 80%;
-  left: 20%;
-  top: 0;
-}
-mor-upload .filewrap.hidename {
-  width: 100%;
-  left: 0;
-}
-mor-upload .status {
-  padding: 0.4em 0.7em;
-  line-height: 1.4em;
-  margin: 0;
-  vertical-align: top;
-  max-width: 100%;
-  text-decoration: none;
-  position: relative;
-  cursor: default;
-  font-size: 12px;
-  text-align: center;
-  color: #c0c0c0 !important;
-}
-mor-upload .pass {
-  color: #4DBD67 !important;
-  display: block;
-}
-mor-upload .unpass {
-  color: #D64431 !important;
-  display: block;
-}
-mor-upload .file {
-  color: #9a9a9a !important;
-  background-color: #f0f0f0;
-  display: inline-block;
-  padding: 0.4em 0.7em;
-  border-radius: 100px;
-  margin: 3.2px 1.6px;
-  vertical-align: top;
-  max-width: 100%;
-  line-height: 1.2em;
-  text-decoration: none;
-  position: relative;
-  cursor: default;
-  font-size: 13px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-mor-upload .file span {
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: inline-block;
-  padding-right: 1em;
-  vertical-align: middle;
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
-}
-mor-upload .file i.mo-icon,
-mor-upload .file .mo-loader {
-  font-size: 12px;
-  position: absolute;
-  right: 0.5em;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: default;
-  z-index: 2;
-}
-mor-upload .file .mo-loader {
-  width: 12px;
-  right: 1.5em;
-}
-mor-upload .file .mo-loader .mo-loader-path {
-  stroke: #9a9a9a;
-}
-mor-upload .file i.mo-icon.reupload {
-  cursor: pointer;
+mor-upload .fileinput {
   display: none;
-}
-mor-upload .file i.mo-icon.reupload:hover {
-  color: #4DBD67 !important;
-}
-mor-upload .file i.mo-icon.remove {
-  cursor: pointer;
-  display: none;
-}
-mor-upload .file i.mo-icon.remove:hover {
-  color: #D64431 !important;
-}
-mor-upload .progress {
-  background: #4DBD67;
-  opacity: 0.2;
-  width: 0%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 100px 0 0 100px;
-  transition: width 0.3s;
-}
-mor-upload .progress.wait {
-  width: 10% !important;
-}
-mor-upload .progress.verification {
-  width: 20% !important;
-}
-mor-upload .progress.uploading {
-  width: 30%;
-}
-mor-upload .progress.uploaded {
-  width: 100% !important;
-}
-mor-upload .add {
-  display: inline-block;
-  padding: 0.4em 1.6em;
-}
-mor-upload .add .mo-icon.local {
-  left: 1em;
-  font-size: 16px;
-}
-mor-upload .add:hover {
-  cursor: pointer;
-  text-decoration: none;
-  color: #808080 !important;
-  background: #e8e8e8;
-}
-mor-upload .add:hover i.mo-icon {
-  cursor: pointer;
-  color: #808080 !important;
-}
-mor-upload .add span {
-  padding-right: 0;
-  padding-left: 1em;
-}
-mor-upload .add i.mo-icon {
-  top: 51%;
-  left: 1.5em;
-  right: auto;
-}
-mor-upload .add:hover {
-  cursor: pointer;
-}
-mor-upload .add:hover i.mo-icon {
-  color: #808080 !important;
-}
-mor-upload .add.local {
-  border-radius: 100px 0 0 100px;
-  margin-right: 0;
-}
-mor-upload .add.url {
-  margin-left: 1px;
-  border-radius: 0 100px 100px 0;
-}
-mor-upload .add.url span {
-  padding-right: 1em;
-  padding-left: 0;
-}
-mor-upload .add.url i.mo-icon {
-  left: auto;
-  right: 1.5em;
-}
-mor-upload .add.url .load {
-  display: none;
-}
-mor-upload .add.loading {
-  cursor: default;
-}
-mor-upload .add.loading .mo-icon {
-  display: none;
-}
-mor-upload .add.loading .load {
-  display: inherit;
-}
-mor-upload .done {
-  cursor: pointer;
-}
-mor-upload .done:hover {
-  color: #9a9a9a !important;
-}
-mor-upload .done:hover .mo-icon {
-  color: #9a9a9a !important;
-}
-mor-upload .done .progress {
-  width: 0%;
-  transition: width 0s;
-}
-mor-upload .done i.mo-icon.uploading,
-mor-upload .done i.mo-icon.reupload {
-  display: none;
-}
-mor-upload .done i.mo-icon.remove {
-  display: block;
-}
-mor-upload .fail {
-  background: #fae6e4;
-}
-mor-upload .fail > span {
-  padding-right: 2.2em;
-}
-mor-upload .fail > .progress {
-  width: 0%;
-  transition: width 0s;
-}
-mor-upload .fail i.mo-icon.uploading {
-  display: none;
-}
-mor-upload .fail i.mo-icon.reupload {
-  display: block;
-  right: 1.7em;
-}
-mor-upload .fail > i.mo-icon.remove {
-  display: block;
-}
-mor-upload .max {
-  font-size: 12px;
-  line-height: 1.4em;
-  color: #c0c0c0 !important;
-  width: 100%;
-  padding: 0.4em 0.7em;
-  text-align: center;
-  display: block;
 }
 mor-upload .drag-note {
   position: absolute;
@@ -45788,61 +45545,569 @@ mor-upload .drag-note p .mo-icon {
   font-size: 16px;
   vertical-align: -1px;
 }
-mor-upload:hover > .fl {
-  border-color: #d7d7d7;
+mor-upload .inside-name,
+mor-upload .ismax-note,
+mor-upload .upload-box-note {
+  font-size: 12px;
+  color: #45505C;
+  line-height: 1.2em;
 }
-mor-upload.focus > .fl {
-  border-color: #8E9CAF;
+mor-upload .upload-wrap {
+  border: 1px #E6E6E6 solid;
+  border-radius: 3px;
+  padding: 3px 5px;
+  position: relative;
+  overflow: hidden;
+  font-size: 0;
+  background: #FFFFFF;
+  box-sizing: border-box;
 }
-mor-upload .fileinput {
+mor-upload .upload-box {
+  height: 160px;
+}
+mor-upload .upload-input .filelist {
+  position: relative;
+  font-size: 0;
+  display: inline-block;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+mor-upload .upload-box + .filelist,
+mor-upload .upload-button + .filelist {
+  margin-top: 8px;
+  width: 100%;
+}
+mor-upload .upload-box + .filelist .file-item,
+mor-upload .upload-button + .filelist .file-item {
+  color: #45505C;
+  background: #FFFFFF;
+  text-decoration: none;
+  padding: 0.3em 0.5em;
+  font-size: 13px;
+  position: relative;
+  display: block;
+  cursor: default;
+  border-radius: 3px;
+  margin: 1px 0;
+}
+mor-upload .upload-box + .filelist .file-item .progress,
+mor-upload .upload-button + .filelist .file-item .progress {
+  border-radius: 3px 0 0 3px;
+}
+mor-upload .upload-box + .filelist .file-item .upload-operate,
+mor-upload .upload-button + .filelist .file-item .upload-operate {
+  position: absolute;
+  top: 0;
+  right: 6.5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+mor-upload .upload-box + .filelist .file-item i.mo-icon,
+mor-upload .upload-button + .filelist .file-item i.mo-icon,
+mor-upload .upload-box + .filelist .file-item .mo-loader,
+mor-upload .upload-button + .filelist .file-item .mo-loader {
+  font-size: 12px;
+  cursor: default;
+  z-index: 2;
+  color: #9a9a9a;
   display: none;
 }
-mor-upload.allow-url > .fl > .filewrap .add {
-  padding: 0.4em 1em 0.4em 1.6em;
+mor-upload .upload-box + .filelist .file-item i.mo-icon:hover,
+mor-upload .upload-button + .filelist .file-item i.mo-icon:hover,
+mor-upload .upload-box + .filelist .file-item .mo-loader:hover,
+mor-upload .upload-button + .filelist .file-item .mo-loader:hover {
+  cursor: pointer;
+  color: #808080;
 }
-mor-upload.allow-url > .fl > .filewrap .add.url {
-  padding: 0.4em 1.6em 0.4em 1em;
+mor-upload .upload-box + .filelist .file-item.done i.mo-icon.uploading,
+mor-upload .upload-button + .filelist .file-item.done i.mo-icon.uploading,
+mor-upload .upload-box + .filelist .file-item.done i.mo-icon.reupload,
+mor-upload .upload-button + .filelist .file-item.done i.mo-icon.reupload {
+  display: none;
 }
-mor-upload.st-disabled > .fl,
-mor-upload.st-readonly > .fl {
+mor-upload .upload-box + .filelist .file-item.done.current,
+mor-upload .upload-button + .filelist .file-item.done.current {
+  background: #EDF1F5;
+}
+mor-upload .upload-box + .filelist .file-item.done.current i.remove,
+mor-upload .upload-button + .filelist .file-item.done.current i.remove,
+mor-upload .upload-box + .filelist .file-item.done.current i.openfile,
+mor-upload .upload-button + .filelist .file-item.done.current i.openfile {
+  display: block;
+}
+mor-upload .upload-box + .filelist .file-item.done i.remove:hover,
+mor-upload .upload-button + .filelist .file-item.done i.remove:hover,
+mor-upload .upload-box + .filelist .file-item.done i.openfile:hover,
+mor-upload .upload-button + .filelist .file-item.done i.openfile:hover {
+  display: block;
+}
+mor-upload .upload-box + .filelist .file-item.fail i.mo-icon.uploading,
+mor-upload .upload-button + .filelist .file-item.fail i.mo-icon.uploading {
+  display: none;
+}
+mor-upload .upload-box + .filelist .file-item.fail i.mo-icon.reupload,
+mor-upload .upload-button + .filelist .file-item.fail i.mo-icon.reupload,
+mor-upload .upload-box + .filelist .file-item.fail i.mo-icon.remove,
+mor-upload .upload-button + .filelist .file-item.fail i.mo-icon.remove {
+  display: block;
+}
+mor-upload .upload-input .file-item.done:hover,
+mor-upload .upload-box .file-item.done:hover,
+mor-upload .filelist .file-item.done:hover,
+mor-upload .upload-input .upload-box-preview.done:hover,
+mor-upload .upload-box .upload-box-preview.done:hover,
+mor-upload .filelist .upload-box-preview.done:hover {
+  color: #17212D;
+  cursor: pointer;
+  background: #EDF1F5;
+}
+mor-upload .upload-input .file-item .progress,
+mor-upload .upload-box .file-item .progress,
+mor-upload .filelist .file-item .progress,
+mor-upload .upload-input .upload-box-preview .progress,
+mor-upload .upload-box .upload-box-preview .progress,
+mor-upload .filelist .upload-box-preview .progress {
+  background: #4DBD67;
+  opacity: 0.2;
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100em 0 0 100em;
+  transition: width 0.3s;
+}
+mor-upload .upload-input .file-item .progress.wait,
+mor-upload .upload-box .file-item .progress.wait,
+mor-upload .filelist .file-item .progress.wait,
+mor-upload .upload-input .upload-box-preview .progress.wait,
+mor-upload .upload-box .upload-box-preview .progress.wait,
+mor-upload .filelist .upload-box-preview .progress.wait {
+  width: 10% !important;
+}
+mor-upload .upload-input .file-item .progress.verification,
+mor-upload .upload-box .file-item .progress.verification,
+mor-upload .filelist .file-item .progress.verification,
+mor-upload .upload-input .upload-box-preview .progress.verification,
+mor-upload .upload-box .upload-box-preview .progress.verification,
+mor-upload .filelist .upload-box-preview .progress.verification {
+  width: 20% !important;
+}
+mor-upload .upload-input .file-item .progress.uploading,
+mor-upload .upload-box .file-item .progress.uploading,
+mor-upload .filelist .file-item .progress.uploading,
+mor-upload .upload-input .upload-box-preview .progress.uploading,
+mor-upload .upload-box .upload-box-preview .progress.uploading,
+mor-upload .filelist .upload-box-preview .progress.uploading {
+  width: 30%;
+}
+mor-upload .upload-input .file-item .progress.uploaded,
+mor-upload .upload-box .file-item .progress.uploaded,
+mor-upload .filelist .file-item .progress.uploaded,
+mor-upload .upload-input .upload-box-preview .progress.uploaded,
+mor-upload .upload-box .upload-box-preview .progress.uploaded,
+mor-upload .filelist .upload-box-preview .progress.uploaded {
+  width: 100% !important;
+}
+mor-upload .upload-input .file-item i.mo-icon,
+mor-upload .upload-box .file-item i.mo-icon,
+mor-upload .filelist .file-item i.mo-icon,
+mor-upload .upload-input .upload-box-preview i.mo-icon,
+mor-upload .upload-box .upload-box-preview i.mo-icon,
+mor-upload .filelist .upload-box-preview i.mo-icon,
+mor-upload .upload-input .file-item .mo-loader,
+mor-upload .upload-box .file-item .mo-loader,
+mor-upload .filelist .file-item .mo-loader,
+mor-upload .upload-input .upload-box-preview .mo-loader,
+mor-upload .upload-box .upload-box-preview .mo-loader,
+mor-upload .filelist .upload-box-preview .mo-loader {
+  display: none;
+}
+mor-upload .upload-input .file-item i.mo-icon,
+mor-upload .upload-box .file-item i.mo-icon,
+mor-upload .filelist .file-item i.mo-icon,
+mor-upload .upload-input .upload-box-preview i.mo-icon,
+mor-upload .upload-box .upload-box-preview i.mo-icon,
+mor-upload .filelist .upload-box-preview i.mo-icon,
+mor-upload .upload-input .file-item .upload-operate i.mo-icon,
+mor-upload .upload-box .file-item .upload-operate i.mo-icon,
+mor-upload .filelist .file-item .upload-operate i.mo-icon,
+mor-upload .upload-input .upload-box-preview .upload-operate i.mo-icon,
+mor-upload .upload-box .upload-box-preview .upload-operate i.mo-icon,
+mor-upload .filelist .upload-box-preview .upload-operate i.mo-icon,
+mor-upload .upload-input .file-item .upload-failed-operate i.mo-icon,
+mor-upload .upload-box .file-item .upload-failed-operate i.mo-icon,
+mor-upload .filelist .file-item .upload-failed-operate i.mo-icon,
+mor-upload .upload-input .upload-box-preview .upload-failed-operate i.mo-icon,
+mor-upload .upload-box .upload-box-preview .upload-failed-operate i.mo-icon,
+mor-upload .filelist .upload-box-preview .upload-failed-operate i.mo-icon {
+  margin: 0 0.2em;
+}
+mor-upload .upload-input .file-item i.mo-icon.remove:hover,
+mor-upload .upload-box .file-item i.mo-icon.remove:hover,
+mor-upload .filelist .file-item i.mo-icon.remove:hover,
+mor-upload .upload-input .upload-box-preview i.mo-icon.remove:hover,
+mor-upload .upload-box .upload-box-preview i.mo-icon.remove:hover,
+mor-upload .filelist .upload-box-preview i.mo-icon.remove:hover,
+mor-upload .upload-input .file-item .upload-operate i.mo-icon.remove:hover,
+mor-upload .upload-box .file-item .upload-operate i.mo-icon.remove:hover,
+mor-upload .filelist .file-item .upload-operate i.mo-icon.remove:hover,
+mor-upload .upload-input .upload-box-preview .upload-operate i.mo-icon.remove:hover,
+mor-upload .upload-box .upload-box-preview .upload-operate i.mo-icon.remove:hover,
+mor-upload .filelist .upload-box-preview .upload-operate i.mo-icon.remove:hover,
+mor-upload .upload-input .file-item .upload-failed-operate i.mo-icon.remove:hover,
+mor-upload .upload-box .file-item .upload-failed-operate i.mo-icon.remove:hover,
+mor-upload .filelist .file-item .upload-failed-operate i.mo-icon.remove:hover,
+mor-upload .upload-input .upload-box-preview .upload-failed-operate i.mo-icon.remove:hover,
+mor-upload .upload-box .upload-box-preview .upload-failed-operate i.mo-icon.remove:hover,
+mor-upload .filelist .upload-box-preview .upload-failed-operate i.mo-icon.remove:hover {
+  color: #D64431;
+  cursor: pointer !important;
+}
+mor-upload .upload-input .file-item i.mo-icon.reupload:hover,
+mor-upload .upload-box .file-item i.mo-icon.reupload:hover,
+mor-upload .filelist .file-item i.mo-icon.reupload:hover,
+mor-upload .upload-input .upload-box-preview i.mo-icon.reupload:hover,
+mor-upload .upload-box .upload-box-preview i.mo-icon.reupload:hover,
+mor-upload .filelist .upload-box-preview i.mo-icon.reupload:hover,
+mor-upload .upload-input .file-item .upload-operate i.mo-icon.reupload:hover,
+mor-upload .upload-box .file-item .upload-operate i.mo-icon.reupload:hover,
+mor-upload .filelist .file-item .upload-operate i.mo-icon.reupload:hover,
+mor-upload .upload-input .upload-box-preview .upload-operate i.mo-icon.reupload:hover,
+mor-upload .upload-box .upload-box-preview .upload-operate i.mo-icon.reupload:hover,
+mor-upload .filelist .upload-box-preview .upload-operate i.mo-icon.reupload:hover,
+mor-upload .upload-input .file-item .upload-failed-operate i.mo-icon.reupload:hover,
+mor-upload .upload-box .file-item .upload-failed-operate i.mo-icon.reupload:hover,
+mor-upload .filelist .file-item .upload-failed-operate i.mo-icon.reupload:hover,
+mor-upload .upload-input .upload-box-preview .upload-failed-operate i.mo-icon.reupload:hover,
+mor-upload .upload-box .upload-box-preview .upload-failed-operate i.mo-icon.reupload:hover,
+mor-upload .filelist .upload-box-preview .upload-failed-operate i.mo-icon.reupload:hover {
+  color: #4DBD67;
+  cursor: pointer !important;
+}
+mor-upload .upload-input .file-item.uploading i.mo-icon.uploading,
+mor-upload .upload-box .file-item.uploading i.mo-icon.uploading,
+mor-upload .filelist .file-item.uploading i.mo-icon.uploading,
+mor-upload .upload-input .upload-box-preview.uploading i.mo-icon.uploading,
+mor-upload .upload-box .upload-box-preview.uploading i.mo-icon.uploading,
+mor-upload .filelist .upload-box-preview.uploading i.mo-icon.uploading {
+  display: block;
+}
+mor-upload .upload-input .file-item.uploading i.mo-icon.uploading:hover,
+mor-upload .upload-box .file-item.uploading i.mo-icon.uploading:hover,
+mor-upload .filelist .file-item.uploading i.mo-icon.uploading:hover,
+mor-upload .upload-input .upload-box-preview.uploading i.mo-icon.uploading:hover,
+mor-upload .upload-box .upload-box-preview.uploading i.mo-icon.uploading:hover,
+mor-upload .filelist .upload-box-preview.uploading i.mo-icon.uploading:hover {
+  cursor: default;
+  color: #9a9a9a;
+}
+mor-upload .upload-input .file-item.done,
+mor-upload .upload-box .file-item.done,
+mor-upload .filelist .file-item.done,
+mor-upload .upload-input .upload-box-preview.done,
+mor-upload .upload-box .upload-box-preview.done,
+mor-upload .filelist .upload-box-preview.done {
+  cursor: pointer;
+}
+mor-upload .upload-input .file-item.done .progress,
+mor-upload .upload-box .file-item.done .progress,
+mor-upload .filelist .file-item.done .progress,
+mor-upload .upload-input .upload-box-preview.done .progress,
+mor-upload .upload-box .upload-box-preview.done .progress,
+mor-upload .filelist .upload-box-preview.done .progress {
+  width: 0%;
+  transition: width 0s;
+}
+mor-upload .upload-input .file-item.fail,
+mor-upload .upload-box .file-item.fail,
+mor-upload .filelist .file-item.fail,
+mor-upload .upload-input .upload-box-preview.fail,
+mor-upload .upload-box .upload-box-preview.fail,
+mor-upload .filelist .upload-box-preview.fail {
+  background: #fae6e4;
+}
+mor-upload .upload-input .file-item.fail > .progress,
+mor-upload .upload-box .file-item.fail > .progress,
+mor-upload .filelist .file-item.fail > .progress,
+mor-upload .upload-input .upload-box-preview.fail > .progress,
+mor-upload .upload-box .upload-box-preview.fail > .progress,
+mor-upload .filelist .upload-box-preview.fail > .progress {
+  width: 0%;
+  transition: width 0s;
+}
+mor-upload .upload-input .file-item.fail:hover,
+mor-upload .upload-box .file-item.fail:hover,
+mor-upload .filelist .file-item.fail:hover,
+mor-upload .upload-input .upload-box-preview.fail:hover,
+mor-upload .upload-box .upload-box-preview.fail:hover,
+mor-upload .filelist .upload-box-preview.fail:hover {
+  background: #fae6e4;
+}
+mor-upload .upload-input {
+  min-height: 42px;
+}
+mor-upload .upload-input .upload-file,
+mor-upload .upload-input .file-item {
+  color: #9a9a9a;
+  background-color: #f0f0f0;
+  display: inline-block;
+  padding: 0.4em 0.7em;
+  border-radius: 100em;
+  margin: 3px 2px;
+  vertical-align: top;
+  max-width: 100%;
+  line-height: calc(42px - 6px - 6px - 2px - 0.8em);
+  height: calc(42px - 6px - 6px - 2px);
+  text-decoration: none;
+  position: relative;
+  cursor: default;
+  font-size: 13px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+mor-upload .upload-input .upload-file span,
+mor-upload .upload-input .file-item span {
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+mor-upload .upload-input .upload-file:hover,
+mor-upload .upload-input .file-item:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: #808080;
+  background: #e8e8e8;
+}
+mor-upload .upload-input .upload-file:hover i.mo-icon,
+mor-upload .upload-input .file-item:hover i.mo-icon {
+  cursor: pointer;
+  color: #808080;
+}
+mor-upload .upload-input .upload-file .mo-icon {
+  vertical-align: middle;
+}
+mor-upload .upload-input .file-item {
+  padding-right: 2em;
+}
+mor-upload .upload-input .file-item:hover {
+  cursor: default;
+  color: #9a9a9a;
+}
+mor-upload .upload-input .file-item:hover .mo-icon {
+  color: #9a9a9a;
+}
+mor-upload .upload-input .file-item i.mo-icon,
+mor-upload .upload-input .file-item .mo-loader {
+  font-size: 12px;
+  position: absolute;
+  right: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: default;
+  z-index: 2;
+}
+mor-upload .upload-input .file-item.done:hover {
+  color: #9a9a9a;
+}
+mor-upload .upload-input .file-item.done:hover .mo-icon {
+  color: #9a9a9a;
+}
+mor-upload .upload-input .file-item.done i.mo-icon.uploading,
+mor-upload .upload-input .file-item.done i.mo-icon.reupload {
+  display: none;
+}
+mor-upload .upload-input .file-item.done i.mo-icon.remove {
+  display: block;
+}
+mor-upload .upload-input .file-item.fail > span {
+  padding-right: 1.2em;
+}
+mor-upload .upload-input .file-item.fail i.mo-icon.uploading {
+  display: none;
+}
+mor-upload .upload-input .file-item.fail i.mo-icon.reupload {
+  display: block;
+  right: 2em;
+}
+mor-upload .upload-input .file-item.fail > i.mo-icon.remove {
+  display: block;
+}
+mor-upload .upload-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+}
+mor-upload .upload-box .upload-box-con {
+  flex-direction: row;
+  justify-content: center;
+  display: flex;
+  position: relative;
+}
+mor-upload .upload-box .upload-box-con .upload-file {
+  display: inline-block;
+  color: #A8B3C2;
+}
+mor-upload .upload-box .upload-box-con .upload-file .mo-icon {
+  font-size: 32px;
+  display: block;
+  line-height: 1.2em;
+}
+mor-upload .upload-box .upload-box-con .upload-file .mo-icon-upload {
+  text-align: center;
+}
+mor-upload .upload-box .upload-box-con .upload-file > span {
+  font-size: 14px;
+  display: block;
+}
+mor-upload .upload-box .upload-box-con .upload-file:hover {
+  cursor: pointer;
+  color: #8E9CAF;
+}
+mor-upload .upload-box .upload-box-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+mor-upload .upload-box .upload-box-preview .upload-box-preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none !important;
+}
+mor-upload .upload-box .upload-box-preview .upload-box-preview-file {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+mor-upload .upload-box .upload-box-preview .upload-box-preview-file span {
+  font-size: 12px;
+  color: #A8B3C2;
+}
+mor-upload .upload-box .upload-box-preview .upload-box-preview-file .mo-icon-file-o {
+  display: block;
+}
+mor-upload .upload-box .upload-box-preview .upload-box-preview-file .upload-failed-operate {
+  display: block;
+  padding-top: 8px;
+}
+mor-upload .upload-box .upload-box-preview .upload-box-preview-file .upload-failed-operate i.mo-icon,
+mor-upload .upload-box .upload-box-preview .upload-box-preview-file .upload-failed-operate .mo-loader {
+  font-size: 16px;
+  cursor: default;
+  z-index: 2;
+  display: none;
+  margin: 0 0.3em;
+}
+mor-upload .upload-box .upload-box-preview .mo-icon {
+  font-size: 32px;
+  color: #A8B3C2;
+}
+mor-upload .upload-box .upload-box-preview.fail span,
+mor-upload .upload-box .upload-box-preview.fail .mo-icon {
+  color: #D64431;
+}
+mor-upload .upload-box .upload-box-preview.fail i.mo-icon.reupload,
+mor-upload .upload-box .upload-box-preview.fail i.mo-icon.remove {
+  display: inline-block;
+  color: #A8B3C2;
+}
+mor-upload .upload-box .upload-box-operate {
+  display: none;
+  background: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+mor-upload .upload-box .upload-box-operate .ismax-note {
+  width: 100%;
+  display: block;
+  color: #FFFFFF;
+}
+mor-upload .upload-box .upload-box-operate > a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #D6DDE5;
+  display: inline-block;
+  margin: 0 0.5em;
+  font-size: 28px;
+}
+mor-upload .upload-box .upload-box-operate > a .mo-icon {
+  font-size: 28px;
+}
+mor-upload .upload-box .upload-box-operate > a:hover {
+  color: #FFFFFF;
+}
+mor-upload .upload-box .upload-box-operate > a.del:hover {
+  color: #D64431;
+}
+mor-upload .upload-box:hover .upload-box-operate {
+  display: flex;
+}
+mor-upload:hover > .upload-wrap {
+  border-color: #d7d7d7;
+}
+mor-upload.focus > .upload-wrap {
+  border-color: #8E9CAF;
+}
+mor-upload.st-disabled .upload-wrap,
+mor-upload.st-readonly .upload-wrap {
   border-color: #a6a6a6;
   -webkit-user-select: none;
   cursor: not-allowed !important;
   background-color: #ebebeb;
 }
-mor-upload.st-disabled > .fl:hover,
-mor-upload.st-readonly > .fl:hover {
+mor-upload.st-disabled .upload-wrap:hover,
+mor-upload.st-readonly .upload-wrap:hover {
   border-color: #a6a6a6;
 }
-mor-upload.st-disabled .filewrap > .file,
-mor-upload.st-readonly .filewrap > .file {
-  cursor: pointer !important;
-  background-color: #d7d7d7;
+mor-upload.st-disabled .upload-box-preview:hover,
+mor-upload.st-readonly .upload-box-preview:hover {
+  border-color: #a6a6a6 !important;
+  background-color: #ebebeb !important;
+  color: #9a9a9a !important;
+  cursor: not-allowed !important;
 }
-mor-upload.st-disabled .filewrap > .file .mo-icon,
-mor-upload.st-readonly .filewrap > .file .mo-icon {
+mor-upload.st-disabled .file-item,
+mor-upload.st-readonly .file-item {
+  cursor: pointer !important;
+  background-color: #d7d7d7 !important;
+  padding-right: 1em;
+}
+mor-upload.st-disabled .file-item .mo-icon,
+mor-upload.st-readonly .file-item .mo-icon {
   display: none !important;
 }
-mor-upload.st-disabled .filewrap > .file span,
-mor-upload.st-readonly .filewrap > .file span {
+mor-upload.st-disabled .file-item span,
+mor-upload.st-readonly .file-item span {
   padding-right: 0;
 }
-mor-upload.st-disabled .filewrap > .file:hover,
-mor-upload.st-readonly .filewrap > .file:hover {
+mor-upload.st-disabled .file-item:hover,
+mor-upload.st-readonly .file-item:hover {
   color: #9a9a9a !important;
+  background-color: #d7d7d7 !important;
 }
-mor-upload.st-disabled .filewrap > .add:hover,
-mor-upload.st-readonly .filewrap > .add:hover {
-  cursor: default;
-}
-mor-upload.st-disabled .filewrap > .add:hover i.mo-icon,
-mor-upload.st-readonly .filewrap > .add:hover i.mo-icon {
+mor-upload.st-disabled .upload-file,
+mor-upload.st-readonly .upload-file {
   color: #9a9a9a !important;
-}
-mor-upload.st-disabled .fl-name,
-mor-upload.st-readonly .fl-name {
-  background-color: #d7d7d7;
-  color: #7C8BA0;
+  cursor: not-allowed !important;
 }
 mor-colorpicker {
   display: inline-block;

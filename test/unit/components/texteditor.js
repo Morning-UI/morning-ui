@@ -4,7 +4,7 @@ import Vue                          from 'vue/dist/vue.common.js';
 import texteditor                   from '../../../src/lib/components/texteditor/index.vue';
 import commonTest                   from '../../common/unit';
 
-const uiid = 29;
+const uiid = 31;
 const testOptions = {
     test,
     Vue,
