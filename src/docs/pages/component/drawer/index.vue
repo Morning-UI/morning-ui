@@ -572,6 +572,48 @@
     [[[方法]]]
 
     :::vue
+    @name:show()
+    ---
+    #method
+    >method-desc
+    显示抽屉。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-drawer ref="demo34">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo34').hide();">隐藏抽屉</ui-link> &nbsp;
+            </ui-center>
+        </ui-drawer>
+        <ui-link js="window.morning.findVM('demo34').show();">显示抽屉</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:hide()
+    ---
+    #method
+    >method-desc
+    隐藏抽屉。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-drawer ref="demo35">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo35').hide();">隐藏抽屉</ui-link> &nbsp;
+            </ui-center>
+        </ui-drawer>
+        <ui-link js="window.morning.findVM('demo35').show();">显示抽屉</ui-link>
+    </div>
+    :::
+
+    :::vue
     @name:toggle([show])
     ---
     #method

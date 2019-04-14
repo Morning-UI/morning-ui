@@ -41,28 +41,32 @@
 
             $.ajax({
               type : 'POST',
-              url : '/api/uploadfile',
+              url : 'http://localhost:8089/api/uploadfile',
               data : formData,
               processData : false,
               contentType : false,
               dataType : 'json',
               success : resp => {
+
+                setTimeout(() => {
     
-                if (resp.status) {
+                  if (resp.status) {
 
-                  resolve({
-                      status : true,
-                      path : resp.path
-                  });
+                    resolve({
+                        status : true,
+                        path : resp.path
+                    });
 
-                } else {
+                  } else {
 
-                  resolve({
-                      status : false,
-                      message : resp.message
-                  });
+                    resolve({
+                        status : false,
+                        message : resp.message
+                    });
 
-                }
+                  }
+
+                }, 1000);
 
               },
               error : resp => {

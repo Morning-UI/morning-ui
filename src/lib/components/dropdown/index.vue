@@ -18,7 +18,7 @@
     
         :target="'#mor-dropdown-'+uiid+' [emitbtn]'"
         placement="bottom"
-        :trigger="conf.trigger + ' method'"
+        :trigger="conf.trigger"
         :trigger-in-delay="conf.triggerInDelay"
         :auto-reverse="conf.autoReverse"
     >

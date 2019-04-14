@@ -345,6 +345,7 @@
     - `no-hover-effect` : 无Hover的效果
     - `loading` : 加载状态
     - `loading-note` : 加载提示文案
+    - `keep-over-limit-file` : 保留超过限制的文件
 
     </script>
     </doc-guide>

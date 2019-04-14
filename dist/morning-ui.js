@@ -27006,7 +27006,9 @@ exports.default = {
                 listDataJson: '[]',
                 sort: {},
                 sortCol: [],
-                rowChecked: {}
+                rowChecked: {},
+                rowCheckedChangeCount: 0,
+                rowCheckedChangeLock: false
             }
         };
     },
@@ -28339,6 +28341,22 @@ exports.default = {
     mounted: function mounted() {
         var _this2 = this;
 
+        this.$watch('data.rowChecked', function () {
+
+            _this2.data.rowCheckedChangeLock = true;
+            _this2.data.rowCheckedChangeCount++;
+
+            _this2.Vue.nextTick(function () {
+
+                _this2.data.rowCheckedChangeLock = false;
+            });
+        });
+
+        this.$watch('data.rowCheckedChangeCount', function () {
+
+            _this2.$emit('checked-row-change');
+        });
+
         this.$watch('conf.list', function () {
 
             _this2._importList(_this2.conf.list);
@@ -28556,6 +28574,11 @@ exports.default = {
 
                 this.data.rowChecked[line] = false;
             }
+
+            if (!this.data.rowCheckedChangeLock) {
+
+                this.data.rowCheckedChangeCount++;
+            }
         }
     },
     mounted: function mounted() {
@@ -28707,6 +28730,11 @@ exports.default = {
             } else {
 
                 this.data.rowChecked[line] = false;
+            }
+
+            if (!this.data.rowCheckedChangeLock) {
+
+                this.data.rowCheckedChangeCount++;
             }
         }
     },
@@ -29809,6 +29837,14 @@ exports.default = {
                 this.data.hasFooter = false;
             }
         },
+        show: function show() {
+
+            return this.toggle(true);
+        },
+        hide: function hide() {
+
+            return this.toggle(false);
+        },
         toggle: function toggle(show) {
             var _this = this;
 
@@ -30121,6 +30157,14 @@ exports.default = {
 
                 this.$parent._moveDrawer(move);
             }
+        },
+        show: function show() {
+
+            return this.toggle(true);
+        },
+        hide: function hide() {
+
+            return this.toggle(false);
         },
         toggle: function toggle(show) {
             var _this = this;
@@ -32911,19 +32955,28 @@ exports.default = {
         },
         show: function show() {
 
-            this._tipShow();
+            this._tipShow(true);
 
             return this;
         },
         hide: function hide() {
 
-            this._tipHide();
+            this._tipHide(true);
 
             return this;
         },
-        toggle: function toggle() {
+        toggle: function toggle(show) {
 
-            this._tipToggle();
+            if (show === undefined) {
+
+                this._tipToggle(true);
+            } else if (show === true) {
+
+                this.show();
+            } else if (show === false) {
+
+                this.hide();
+            }
 
             return this;
         },
@@ -33130,19 +33183,28 @@ exports.default = {
     methods: {
         show: function show() {
 
-            this._tipShow();
+            this._tipShow(true);
 
             return this;
         },
         hide: function hide() {
 
-            this._tipHide();
+            this._tipHide(true);
 
             return this;
         },
-        toggle: function toggle() {
+        toggle: function toggle(show) {
 
-            this._tipToggle();
+            if (show === undefined) {
+
+                this._tipToggle(true);
+            } else if (show === true) {
+
+                this.show();
+            } else if (show === false) {
+
+                this.hide();
+            }
 
             return this;
         },
@@ -45161,6 +45223,149 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _axiosMin = __webpack_require__(562);
 
@@ -45186,6 +45391,13 @@ exports.default = {
             type: String,
             default: ''
         },
+        type: {
+            type: String,
+            default: 'input',
+            validator: function validator(value) {
+                return ['input', 'box', 'button'].indexOf(value) !== -1;
+            }
+        },
         acceptType: {
             type: String,
             default: ''
@@ -45198,14 +45410,6 @@ exports.default = {
             type: Number,
             default: Infinity
         },
-        allowUrl: {
-            type: Boolean,
-            default: false
-        },
-        allowDrag: {
-            type: Boolean,
-            default: false
-        },
         validate: {
             type: Function,
             default: noopFn
@@ -45214,7 +45418,19 @@ exports.default = {
             type: Function,
             default: undefined
         },
+        keepOverLimitFile: {
+            type: Boolean,
+            default: true
+        },
         keepOriginName: {
+            type: Boolean,
+            default: false
+        },
+        allowUrl: {
+            type: Boolean,
+            default: false
+        },
+        allowDrag: {
             type: Boolean,
             default: false
         }
@@ -45225,21 +45441,25 @@ exports.default = {
             return {
                 insideName: this.insideName,
                 itemName: this.itemName,
+                type: this.type,
                 acceptType: this.acceptType,
                 multi: this.multi,
                 max: this.max,
-                allowUrl: this.allowUrl,
-                allowDrag: this.allowDrag,
                 validate: this.validate,
                 uploader: this.uploader,
-                keepOriginName: this.keepOriginName
+                keepOverLimitFile: this.keepOverLimitFile,
+                keepOriginName: this.keepOriginName,
+                allowUrl: this.allowUrl,
+                allowDrag: this.allowDrag
             };
         },
         moreClass: function moreClass() {
 
-            return {
-                'allow-url': this.conf.allowUrl
-            };
+            var classes = {};
+
+            classes['type-upload-box'] = this.conf.type === 'box';
+
+            return classes;
         },
         ismax: function ismax() {
 
@@ -45259,9 +45479,11 @@ exports.default = {
                 files: [],
                 uploadQueue: [],
                 uploading: false,
+                failNote: '',
+                showFiles: [],
+                currentPreview: -1,
                 fetchRemoteFile: false,
-                dragover: false,
-                showFiles: []
+                dragover: false
             }
         };
     },
@@ -45286,107 +45508,279 @@ exports.default = {
 
             return value;
         },
-        _dragover: function _dragover() {
+        _emitFilePicker: function _emitFilePicker() {
 
-            if (!this.conf.allowDrag) {
+            if (this.conf.state === 'readonly' || this.conf.state === 'disabled' || this.ismax || this.data.fetchRemoteFile) {
 
                 return;
             }
 
-            this.data.dragover = true;
+            document.querySelector('#ui-select-fileinput-' + this.uiid).click();
         },
-        _dragleave: function _dragleave() {
+        _getFiles: function _getFiles(evt) {
 
-            if (!this.conf.allowDrag) {
+            var files = evt.target.files || evt.dataTransfer.files;
+            var len = files.length;
 
-                return;
+            if (!this.conf.keepOverLimitFile && len > this.conf.max) {
+
+                /* eslint-disable no-alert */
+                alert('\u6700\u591A\u53EA\u80FD\u4E0A\u4F20' + this.conf.max + '\u4E2A\u6587\u4EF6');
+                /* eslint-enable no-alert */
+
+                return false;
             }
 
-            this.data.dragover = false;
+            if (!this.conf.multi && len > 1) {
+
+                len = 1;
+            }
+
+            for (var i = 0; i < len; i++) {
+
+                this._addFile(files.item(i));
+            }
+
+            this.data.inputKey++;
         },
-        _drop: function _drop(evt) {
+        _addFile: function _addFile(file) {
+            var _createNewFileObj = this._createNewFileObj({
+                file: file,
+                uploadnow: true
+            }),
+                index = _createNewFileObj.index;
 
-            if (!this.conf.allowDrag) {
+            if (!/^(http|https|\/\/)/.test(file.path)) {
 
-                return;
+                this._upload(index);
             }
+        },
+        _createNewFileObj: function _createNewFileObj(options) {
 
-            this.data.dragover = false;
-
-            var url = evt.dataTransfer.getData('URL');
-
-            if (url) {
-
-                if (this.conf.allowUrl) {
-
-                    this._fetchRemoteFile(url);
+            var fileObj = (0, _extend2.default)(true, {
+                file: undefined,
+                name: undefined,
+                status: 'wait',
+                uploadnow: false,
+                size: 0,
+                data: undefined,
+                path: undefined,
+                progress: 0,
+                classList: {
+                    fail: false,
+                    uploading: false,
+                    uploaded: false,
+                    done: false,
+                    wait: true,
+                    verification: false,
+                    failNote: ''
                 }
-            } else {
+            }, options);
 
-                this._getFiles(evt);
-            }
-        },
-        _uploadRemoteFile: function _uploadRemoteFile() {
+            var index = this.data.files.push(fileObj) - 1;
 
-            if (!this.conf.allowUrl) {
+            if (fileObj.file) {
 
-                return;
-            }
+                fileObj.size = fileObj.file.size;
+                fileObj.name = fileObj.file.name;
+            } else if (fileObj.path) {
 
-            /* eslint-disable no-alert */
-            var url = window.prompt('请输入文件链接：');
-            /* eslint-enable no-alert */
+                if (this.conf.keepOriginName) {
 
-            this._fetchRemoteFile(url);
-        },
-        _fetchRemoteFile: function _fetchRemoteFile(url) {
-            var _this = this;
+                    fileObj.name = options.name || this._getName(fileObj.path);
+                } else {
 
-            if (url.search(/^(http|https):\/\//g) !== 0) {
-
-                /* eslint-disable no-alert */
-                window.alert('链接有误');
-                /* eslint-enable no-alert */
-
-                return;
+                    fileObj.name = this._getName(fileObj.path);
+                }
             }
 
-            this.data.fetchRemoteFile = true;
+            this._setStatus(index, fileObj.status);
 
-            var filename = url.split('?')[0].split('//')[1].split('/').pop();
-
-            if (/#/.test(filename)) {
-
-                filename = filename.split('#')[0];
-            }
-
-            url = new URL(url);
-            url.searchParams.set('_mor_fetch_img_t', Date.now());
-
-            (0, _axiosMin2.default)({
-                url: url.href,
-                method: 'get',
-                responseType: 'blob'
-            }).then(function (resp) {
-
-                var file = new File([resp.data], filename, {
-                    type: resp.data.type
-                });
-
-                _this.data.fetchRemoteFile = false;
-                _this._addFile(file);
-            }).catch(function (err) {
-
-                _this.data.fetchRemoteFile = false;
-
-                /* eslint-disable no-alert */
-                window.alert('\u7F51\u7EDC\u6587\u4EF6\u83B7\u53D6\u5931\u8D25\n(' + err.message + ')');
-                /* eslint-enable no-alert */
-            });
+            return {
+                index: index,
+                fileObj: fileObj
+            };
         },
         _getName: function _getName(filepath) {
 
             return filepath.split('/').pop();
+        },
+        _setStatus: function _setStatus(index, status) {
+
+            // status include: wait/uploading/done/fail/uploaded
+            this.data.files[index].status = status;
+
+            for (var key in this.data.files[index].classList) {
+
+                if (key !== status) {
+
+                    this.data.files[index].classList[key] = false;
+                } else {
+
+                    this.data.files[index].classList[key] = true;
+                }
+            }
+        },
+        _upload: function _upload(index) {
+
+            this.data.uploadQueue.push(index);
+            this._execUploadQueue();
+        },
+        _execUploadQueue: function _execUploadQueue() {
+
+            if (this.data.uploading) {
+
+                return;
+            }
+
+            this.data.failNote = '';
+            this.data.uploading = true;
+            this._execUploadOnce();
+        },
+        _execUploadOnce: function _execUploadOnce() {
+            var _this = this;
+
+            if (this.data.uploadQueue.length === 0) {
+
+                this.data.uploading = false;
+
+                return;
+            }
+
+            var index = this.data.uploadQueue.shift(),
+                uploadObj = {
+                onUploadProgress: function onUploadProgress(xhr) {
+
+                    if (xhr && xhr.upload && typeof xhr.upload.addEventListener === 'function') {
+
+                        xhr.upload.addEventListener('progress', function (evt) {
+
+                            _this.data.files[index].progress = +(evt.loaded / evt.total) || 0;
+                        }, false);
+                    }
+                },
+                file: null,
+                name: null
+            };
+
+            Promise.resolve().then(function () {
+
+                _this._setStatus(index, 'verification');
+
+                // do not use this.ismax
+                if (_this.conf.max && _this.data.value.length >= _this.conf.max) {
+
+                    return Promise.reject('upload file num is max.');
+                }
+
+                uploadObj.file = _this.data.files[index].file;
+                uploadObj.name = _this.data.files[index].name;
+
+                if (typeof _this.conf.validate === 'function') {
+
+                    if (/^image/.test(uploadObj.file.type)) {
+
+                        return _this._getImageWh(uploadObj.file).then(function (image) {
+                            return _this.conf.validate(uploadObj.file, {
+                                width: image.width,
+                                height: image.height,
+                                size: uploadObj.file.size
+                            });
+                        });
+                    }
+
+                    return _this.conf.validate(uploadObj.file, {
+                        size: uploadObj.file.size
+                    });
+                }
+
+                return true;
+            }).then(function (result) {
+
+                if (typeof result === 'string') {
+
+                    _this.data.failNote = result;
+
+                    return Promise.reject('file not pass validate.');
+                }
+
+                _this._setStatus(index, 'uploading');
+
+                if ((!_this.conf.uploader || typeof _this.conf.uploader !== 'function') && (_this.morning._options.uploader === null || typeof _this.morning._options.uploader !== 'function')) {
+
+                    return Promise.reject('file uploader must be a function.');
+                }
+            }).then(function () {
+
+                if (typeof _this.conf.uploader === 'function') {
+
+                    return _this.conf.uploader(uploadObj);
+                }
+
+                return _this.morning._options.uploader(uploadObj);
+            }).then(function (result) {
+
+                if (_this.data.uploading === false) {
+
+                    return;
+                }
+
+                if (result.status) {
+
+                    if (!_this.conf.keepOriginName) {
+
+                        _this.data.files[index].name = _this._getName(result.path);
+                    }
+
+                    _this.data.files[index].path = result.path;
+                    _this.data.files[index].data = result.data;
+                    _this._set(_this._fetchValueFromFiles(), true, true);
+                    _this._setStatus(index, 'uploaded');
+                    _this._setStatus(index, 'done');
+                    _this._execUploadOnce();
+                } else {
+
+                    _this.data.failNote = result.message || '上传失败';
+                    _this._setStatus(index, 'fail');
+                    _this._execUploadOnce();
+                }
+            }).catch(function () {
+
+                if (_this.data.uploading === false) {
+
+                    return;
+                }
+
+                _this._setStatus(index, 'fail');
+                _this._execUploadOnce();
+            });
+        },
+        _getImageWh: function _getImageWh(file) {
+
+            return new Promise(function (resolve) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (result) {
+
+                    var image = new Image();
+
+                    if (result) {
+
+                        image.onload = function () {
+
+                            resolve({
+                                width: image.width,
+                                height: image.height
+                            });
+                        };
+
+                        image.src = result.target.result;
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            });
         },
         _fetchValueFromFiles: function _fetchValueFromFiles() {
 
@@ -45473,264 +45867,6 @@ exports.default = {
 
             return files;
         },
-        _createNewFileObj: function _createNewFileObj(options) {
-
-            var fileObj = (0, _extend2.default)(true, {
-                file: undefined,
-                name: undefined,
-                status: 'wait',
-                uploadnow: false,
-                size: 0,
-                data: undefined,
-                path: undefined,
-                progress: 0,
-                classList: {
-                    fail: false,
-                    uploading: false,
-                    uploaded: false,
-                    done: false,
-                    wait: true,
-                    verification: false,
-                    failNote: ''
-                }
-            }, options);
-
-            var index = this.data.files.push(fileObj) - 1;
-
-            if (fileObj.file) {
-
-                fileObj.size = fileObj.file.size;
-                fileObj.name = fileObj.file.name;
-            } else if (fileObj.path) {
-
-                if (this.conf.keepOriginName) {
-
-                    fileObj.name = options.name || this._getName(fileObj.path);
-                } else {
-
-                    fileObj.name = this._getName(fileObj.path);
-                }
-            }
-
-            this._setStatus(index, fileObj.status);
-
-            return {
-                index: index,
-                fileObj: fileObj
-            };
-        },
-        _getFiles: function _getFiles(evt) {
-
-            var files = evt.target.files || evt.dataTransfer.files;
-            var len = files.length;
-
-            if (!this.conf.multi && len > 1) {
-
-                len = 1;
-            }
-
-            for (var i = 0; i < len; i++) {
-
-                this._addFile(files.item(i));
-            }
-
-            this.data.inputKey++;
-        },
-        _addFile: function _addFile(file) {
-            var _createNewFileObj2 = this._createNewFileObj({
-                file: file,
-                uploadnow: true
-            }),
-                index = _createNewFileObj2.index;
-
-            if (!/^(http|https|\/\/)/.test(file.path)) {
-
-                this._upload(index);
-            }
-        },
-        _removeFile: function _removeFile(index) {
-
-            this.data.files.splice(index, 1);
-            this.data.failNote = '';
-            this._set(this._fetchValueFromFiles(), true, true);
-        },
-        _upload: function _upload(index) {
-
-            this.data.uploadQueue.push(index);
-            this._execUploadQueue();
-        },
-        _getImageWh: function _getImageWh(file) {
-
-            return new Promise(function (resolve) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (result) {
-
-                    var image = new Image();
-
-                    if (result) {
-
-                        image.onload = function () {
-
-                            resolve({
-                                width: image.width,
-                                height: image.height
-                            });
-                        };
-
-                        image.src = result.target.result;
-                    }
-                };
-
-                reader.readAsDataURL(file);
-            });
-        },
-        _execUploadOnce: function _execUploadOnce() {
-            var _this2 = this;
-
-            if (this.data.uploadQueue.length === 0) {
-
-                this.data.uploading = false;
-
-                return;
-            }
-
-            var index = this.data.uploadQueue.shift(),
-                uploadObj = {
-                onUploadProgress: function onUploadProgress(xhr) {
-
-                    if (xhr && xhr.upload && typeof xhr.upload.addEventListener === 'function') {
-
-                        xhr.upload.addEventListener('progress', function (evt) {
-
-                            _this2.data.files[index].progress = +(evt.loaded / evt.total) || 0;
-                        }, false);
-                    }
-                },
-                file: null,
-                name: null
-            };
-
-            Promise.resolve().then(function () {
-
-                _this2._setStatus(index, 'verification');
-
-                // do not use this.ismax
-                if (_this2.conf.max && _this2.data.value.length >= _this2.conf.max) {
-
-                    return Promise.reject('upload file num is max.');
-                }
-
-                uploadObj.file = _this2.data.files[index].file;
-                uploadObj.name = _this2.data.files[index].name;
-
-                if (typeof _this2.conf.validate === 'function') {
-
-                    if (/^image/.test(uploadObj.file.type)) {
-
-                        return _this2._getImageWh(uploadObj.file).then(function (image) {
-                            return _this2.conf.validate(uploadObj.file, {
-                                width: image.width,
-                                height: image.height,
-                                size: uploadObj.file.size
-                            });
-                        });
-                    }
-
-                    return _this2.conf.validate(uploadObj.file, {
-                        size: uploadObj.file.size
-                    });
-                }
-
-                return true;
-            }).then(function (result) {
-
-                if (typeof result === 'string') {
-
-                    _this2.data.failNote = result;
-
-                    return Promise.reject('file not pass validate.');
-                }
-
-                _this2._setStatus(index, 'uploading');
-
-                if ((!_this2.conf.uploader || typeof _this2.conf.uploader !== 'function') && (_this2.morning._options.uploader === null || typeof _this2.morning._options.uploader !== 'function')) {
-
-                    return Promise.reject('file uploader must be a function.');
-                }
-            }).then(function () {
-
-                if (typeof _this2.conf.uploader === 'function') {
-
-                    return _this2.conf.uploader(uploadObj);
-                }
-
-                return _this2.morning._options.uploader(uploadObj);
-            }).then(function (result) {
-
-                if (_this2.data.uploading === false) {
-
-                    return;
-                }
-
-                if (result.status) {
-
-                    if (!_this2.conf.keepOriginName) {
-
-                        _this2.data.files[index].name = _this2._getName(result.path);
-                    }
-
-                    _this2.data.files[index].path = result.path;
-                    _this2.data.files[index].data = result.data;
-                    _this2._set(_this2._fetchValueFromFiles(), true, true);
-                    _this2._setStatus(index, 'uploaded');
-                    _this2._setStatus(index, 'done');
-                    _this2._execUploadOnce();
-                } else {
-
-                    _this2.data.failNote = result.message || '上传失败';
-                    _this2._setStatus(index, 'fail');
-                    _this2._execUploadOnce();
-                }
-            }).catch(function () {
-
-                if (_this2.data.uploading === false) {
-
-                    return;
-                }
-
-                _this2._setStatus(index, 'fail');
-                _this2._execUploadOnce();
-            });
-        },
-        _execUploadQueue: function _execUploadQueue() {
-
-            if (this.data.uploading) {
-
-                return;
-            }
-
-            this.data.failNote = '';
-            this.data.uploading = true;
-            this._execUploadOnce();
-        },
-        _setStatus: function _setStatus(index, status) {
-
-            // status include: wait/uploading/done/fail/uploaded
-            this.data.files[index].status = status;
-
-            for (var key in this.data.files[index].classList) {
-
-                if (key !== status) {
-
-                    this.data.files[index].classList[key] = false;
-                } else {
-
-                    this.data.files[index].classList[key] = true;
-                }
-            }
-        },
         _set: function _set(value) {
             var ignoreDisable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
             var origin = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -45773,6 +45909,128 @@ exports.default = {
 
             return this;
         },
+        _removeFile: function _removeFile(index) {
+
+            this.data.files.splice(index, 1);
+            this.data.failNote = '';
+            this._set(this._fetchValueFromFiles(), true, true);
+        },
+        _openFile: function _openFile(filepath) {
+
+            if (!filepath) {
+
+                return;
+            }
+
+            window.open(filepath);
+        },
+        _switchPreview: function _switchPreview(index) {
+
+            this.data.currentPreview = index;
+        },
+        _uploadRemoteFile: function _uploadRemoteFile() {
+
+            if (!this.conf.allowUrl) {
+
+                return;
+            }
+
+            /* eslint-disable no-alert */
+            var url = window.prompt('请输入文件链接：');
+            /* eslint-enable no-alert */
+
+            this._fetchRemoteFile(url);
+        },
+        _fetchRemoteFile: function _fetchRemoteFile(url) {
+            var _this2 = this;
+
+            if (typeof url !== 'string') {
+
+                return;
+            }
+
+            if (url.search(/^(http|https):\/\//g) !== 0) {
+
+                /* eslint-disable no-alert */
+                window.alert('链接有误');
+                /* eslint-enable no-alert */
+
+                return;
+            }
+
+            this.data.fetchRemoteFile = true;
+
+            var filename = url.split('?')[0].split('//')[1].split('/').pop();
+
+            if (/#/.test(filename)) {
+
+                filename = filename.split('#')[0];
+            }
+
+            url = new URL(url);
+            url.searchParams.set('_mor_fetch_img_t', Date.now());
+
+            (0, _axiosMin2.default)({
+                url: url.href,
+                method: 'get',
+                responseType: 'blob'
+            }).then(function (resp) {
+
+                var file = new File([resp.data], filename, {
+                    type: resp.data.type
+                });
+
+                _this2.data.fetchRemoteFile = false;
+                _this2._addFile(file);
+            }).catch(function (err) {
+
+                _this2.data.fetchRemoteFile = false;
+
+                /* eslint-disable no-alert */
+                window.alert('\u7F51\u7EDC\u6587\u4EF6\u83B7\u53D6\u5931\u8D25\n(' + err.message + ')');
+                /* eslint-enable no-alert */
+            });
+        },
+        _dragover: function _dragover() {
+
+            if (!this.conf.allowDrag) {
+
+                return;
+            }
+
+            this.data.dragover = true;
+        },
+        _dragleave: function _dragleave() {
+
+            if (!this.conf.allowDrag) {
+
+                return;
+            }
+
+            this.data.dragover = false;
+        },
+        _drop: function _drop(evt) {
+
+            if (!this.conf.allowDrag) {
+
+                return;
+            }
+
+            this.data.dragover = false;
+
+            var url = evt.dataTransfer.getData('URL');
+
+            if (url) {
+
+                if (this.conf.allowUrl) {
+
+                    this._fetchRemoteFile(url);
+                }
+            } else {
+
+                this._getFiles(evt);
+            }
+        },
         uploadUrl: function uploadUrl(url) {
 
             if (!this.conf.allowUrl) {
@@ -45789,11 +46047,21 @@ exports.default = {
             return !!this.data.uploading;
         }
     },
-    created: function created() {},
     mounted: function mounted() {
         var _this3 = this;
 
         this.set(this.data.value);
+
+        this.$watch('data.fetchRemoteFile', function (val) {
+
+            if (val) {
+
+                _this3.$refs['mor-url-btn-' + _this3.uiid].lock();
+            } else {
+
+                _this3.$refs['mor-url-btn-' + _this3.uiid].unlock();
+            }
+        });
 
         this.$watch('data.files', function () {
 
@@ -45829,6 +46097,11 @@ exports.default = {
             }
 
             _this3.data.showFiles = files;
+
+            if (files[_this3.data.currentPreview] === undefined) {
+
+                _this3.data.currentPreview = files.length - 1;
+            }
         }, {
             immediate: true,
             deep: true
@@ -55829,7 +56102,7 @@ var render = function() {
           attrs: {
             target: "#mor-dropdown-" + _vm.uiid + " [emitbtn]",
             placement: "bottom",
-            trigger: _vm.conf.trigger + " method",
+            trigger: _vm.conf.trigger,
             "trigger-in-delay": _vm.conf.triggerInDelay,
             "auto-reverse": _vm.conf.autoReverse
           }
@@ -58850,7 +59123,7 @@ var render = function() {
           attrs: {
             target: "#mor-colorpicker-wrap-" + _vm.uiid,
             placement: "bottom",
-            trigger: "method click",
+            trigger: "click",
             "auto-reverse": true
           }
         },
@@ -59534,14 +59807,16 @@ var render = function() {
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
         "item-name": _vm.itemName,
+        type: _vm.type,
         "accept-type": _vm.acceptType,
         multi: _vm.multi,
         max: _vm.max,
-        "allow-url": _vm.allowUrl,
-        "allow-drag": _vm.allowDrag,
         validate: _vm.validate,
         uploader: _vm.uploader,
-        "keep-origin-name": _vm.keepOriginName
+        "keep-over-limit-file": _vm.keepOverLimitFile,
+        "keep-origin-name": _vm.keepOriginName,
+        "allow-url": _vm.allowUrl,
+        "allow-drag": _vm.allowDrag
       },
       on: {
         dragover: function($event) {
@@ -59576,114 +59851,95 @@ var render = function() {
         on: { change: _vm._getFiles }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "fl" }, [
-        !!_vm.conf.insideName
-          ? _c(
-              "p",
-              { staticClass: "fl-name" },
-              [
-                _c("morning-center", { staticClass: "fill" }, [
-                  _vm._v(_vm._s(_vm.conf.insideName))
-                ])
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "filewrap",
-            class: { hidename: !_vm.conf.insideName }
-          },
-          [
-            _vm._l(_vm.data.showFiles, function(item, index) {
-              return [
-                _c(
-                  "a",
-                  {
-                    key: index,
-                    staticClass: "file",
-                    class: item.classList,
-                    attrs: {
-                      target: "_blank;",
-                      href: item.path || "javascript:;",
-                      index: index
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "progress",
-                      class: item.classList,
-                      style: {
-                        width: item.classList.uploading
-                          ? 30 + +item.progress * 60 + "%"
-                          : "auto"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(item.name) +
-                          "\n                "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "mo-icon mo-icon-close remove",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm._removeFile(index)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "mo-icon mo-icon-arrow-up uploading",
-                      attrs: { title: "上传中" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "mo-icon mo-icon-refresh reupload",
-                      attrs: { title: "重新上传" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm._upload(index)
-                        }
-                      }
-                    })
-                  ]
-                )
-              ]
-            }),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _vm.conf.allowUrl
-              ? [
-                  _vm.conf.state !== "disabled" &&
-                  _vm.conf.state !== "readonly" &&
-                  !_vm.ismax
-                    ? _c(
-                        "label",
+      _vm.conf.type === "input"
+        ? [
+            _c("div", { staticClass: "upload-wrap upload-input" }, [
+              !!_vm.conf.insideName
+                ? _c(
+                    "div",
+                    { staticClass: "inside-name" },
+                    [
+                      _c("morning-center", { staticClass: "fill" }, [
+                        _vm._v(_vm._s(_vm.conf.insideName))
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "filelist" },
+                [
+                  _vm._l(_vm.data.showFiles, function(item, index) {
+                    return [
+                      _c(
+                        "a",
                         {
-                          staticClass: "add file local",
-                          attrs: { for: "ui-select-fileinput-" + _vm.uiid }
+                          key: index,
+                          staticClass: "file-item",
+                          class: item.classList,
+                          attrs: {
+                            target: "_blank;",
+                            href: "javascript:;",
+                            index: index
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm._openFile(item.path)
+                            }
+                          }
                         },
                         [
+                          _c("i", {
+                            staticClass: "progress",
+                            class: item.classList,
+                            style: {
+                              width: item.classList.uploading
+                                ? 30 + +item.progress * 60 + "%"
+                                : "auto"
+                            }
+                          }),
+                          _vm._v(" "),
                           _c("span", [
-                            _vm._v("本地上传" + _vm._s(_vm.conf.itemName))
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(item.name) +
+                                "\n                    "
+                            )
                           ]),
                           _vm._v(" "),
                           _c("i", {
-                            staticClass: "mo-icon mo-icon-upload local"
+                            staticClass: "mo-icon mo-icon-close remove",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                $event.stopPropagation()
+                                return _vm._removeFile(index)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "mo-icon mo-icon-arrow-up uploading",
+                            attrs: { title: "上传中" }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "mo-icon mo-icon-refresh reupload",
+                            attrs: { title: "重新上传" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                $event.stopPropagation()
+                                return _vm._upload(index)
+                              }
+                            }
                           })
                         ]
                       )
-                    : _vm._e(),
+                    ]
+                  }),
                   _vm._v(" "),
                   _vm.conf.state !== "disabled" &&
                   _vm.conf.state !== "readonly" &&
@@ -59691,96 +59947,624 @@ var render = function() {
                     ? _c(
                         "label",
                         {
-                          staticClass: "add file url",
-                          class: { loading: _vm.data.fetchRemoteFile },
-                          on: {
-                            click: function($event) {
-                              return _vm._uploadRemoteFile()
-                            }
-                          }
+                          staticClass: "upload-file",
+                          attrs: { id: "mor-upload-input-remote-" + _vm.uiid },
+                          on: { click: _vm._emitFilePicker }
                         },
                         [
+                          _c("i", { staticClass: "mo-icon mo-icon-upload" }),
+                          _vm._v(" "),
                           _c("span", [
-                            _vm._v("URL上传" + _vm._s(_vm.conf.itemName))
-                          ]),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "mo-icon mo-icon-link" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mo-loader load" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "mo-loader-circular",
-                                attrs: { viewBox: "25 25 50 50" }
-                              },
-                              [
-                                _c("circle", {
-                                  staticClass: "mo-loader-path",
-                                  attrs: {
-                                    cx: "50",
-                                    cy: "50",
-                                    r: "20",
-                                    fill: "none",
-                                    "stroke-width": "4",
-                                    "stroke-miterlimit": "10"
-                                  }
-                                })
-                              ]
-                            )
+                            _vm._v("上传" + _vm._s(_vm.conf.itemName))
                           ])
                         ]
                       )
-                    : _vm._e()
-                ]
-              : [
-                  _vm.conf.state !== "disabled" &&
-                  _vm.conf.state !== "readonly" &&
-                  !_vm.ismax
-                    ? _c(
-                        "label",
-                        {
-                          staticClass: "add file",
-                          attrs: { for: "ui-select-fileinput-" + _vm.uiid }
-                        },
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "morning-popover",
+                    {
+                      attrs: { target: "#mor-upload-input-remote-" + _vm.uiid }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "url-upload-box" },
                         [
-                          _c("span", [
-                            _vm._v("上传" + _vm._s(_vm.conf.itemName))
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "mo-icon mo-icon-upload local"
-                          })
-                        ]
+                          _c(
+                            "morning-btn",
+                            {
+                              ref: "mor-url-btn-" + _vm.uiid,
+                              attrs: { size: "xs", color: "silver" },
+                              on: { emit: _vm._uploadRemoteFile }
+                            },
+                            [_vm._v("通过URL上传")]
+                          )
+                        ],
+                        1
                       )
-                    : _vm._e()
+                    ]
+                  )
                 ],
-            _vm._v(" "),
-            _vm.data.failNote
-              ? _c("p", { staticClass: "status" }, [
-                  _vm._v(_vm._s(_vm.data.failNote))
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.ismax
-              ? _c("span", { staticClass: "max" }, [
-                  _vm._v("最多只能上传" + _vm._s(_vm.conf.max) + "个文件")
-                ])
-              : _vm._e()
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "drag-note", class: { show: _vm.data.dragover } },
-          [
-            _c("p", [
-              _c("i", { staticClass: "mo-icon mo-icon-upload" }),
-              _vm._v(" 松开鼠标上传")
+                2
+              ),
+              _vm._v(" "),
+              _vm.ismax
+                ? _c(
+                    "div",
+                    { staticClass: "ismax-note" },
+                    [
+                      _c("morning-center", { staticClass: "fill" }, [
+                        _vm._v("最多只能上传" + _vm._s(_vm.conf.max) + "个文件")
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "drag-note",
+                  class: { show: _vm.data.dragover }
+                },
+                [
+                  _c("p", [
+                    _c("i", { staticClass: "mo-icon mo-icon-upload" }),
+                    _vm._v(" 松开鼠标上传")
+                  ])
+                ]
+              )
             ])
           ]
-        )
-      ]),
+        : _vm.conf.type === "box"
+        ? [
+            _c(
+              "div",
+              { staticClass: "upload-wrap upload-box" },
+              [
+                _vm.data.showFiles.length === 0
+                  ? [
+                      _c(
+                        "div",
+                        { staticClass: "upload-box-con" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "upload-file",
+                              attrs: {
+                                id: "mor-upload-box-remote-" + _vm.uiid
+                              },
+                              on: { click: _vm._emitFilePicker }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "mo-icon mo-icon-upload"
+                              }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v("上传" + _vm._s(_vm.conf.itemName))
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "morning-popover",
+                            {
+                              attrs: {
+                                target: "#mor-upload-box-remote-" + _vm.uiid
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "url-upload-box" },
+                                [
+                                  _c(
+                                    "morning-btn",
+                                    {
+                                      ref: "mor-url-btn-" + _vm.uiid,
+                                      attrs: { size: "xs", color: "silver" },
+                                      on: { emit: _vm._uploadRemoteFile }
+                                    },
+                                    [_vm._v("通过URL上传")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "upload-box-note" },
+                        [
+                          _c("morning-center", { staticClass: "fill" }, [
+                            _vm._v(_vm._s(_vm.conf.insideName))
+                          ])
+                        ],
+                        1
+                      )
+                    ]
+                  : [
+                      _vm.data.showFiles[_vm.data.currentPreview]
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "upload-box-preview",
+                              class:
+                                _vm.data.showFiles[_vm.data.currentPreview]
+                                  .classList
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "progress",
+                                class:
+                                  _vm.data.showFiles[_vm.data.currentPreview]
+                                    .classList,
+                                style: {
+                                  width: _vm.data.showFiles[
+                                    _vm.data.currentPreview
+                                  ].classList.uploading
+                                    ? 30 +
+                                      +_vm.data.showFiles[
+                                        _vm.data.currentPreview
+                                      ].progress *
+                                        60 +
+                                      "%"
+                                    : "auto"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.data.showFiles[_vm.data.currentPreview]
+                                .file &&
+                              /^image/.test(
+                                _vm.data.showFiles[_vm.data.currentPreview].file
+                                  .type
+                              ) &&
+                              _vm.data.showFiles[_vm.data.currentPreview]
+                                .status === "done"
+                                ? _c("img", {
+                                    staticClass: "upload-box-preview-img",
+                                    attrs: {
+                                      src:
+                                        _vm.data.showFiles[
+                                          _vm.data.currentPreview
+                                        ].path
+                                    }
+                                  })
+                                : _c(
+                                    "div",
+                                    { staticClass: "upload-box-preview-file" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mo-icon mo-icon-file-o"
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.data.showFiles[
+                                              _vm.data.currentPreview
+                                            ].name
+                                          )
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "upload-failed-operate"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "mo-icon mo-icon-refresh reupload",
+                                            attrs: { title: "重新上传" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm._upload(
+                                                  _vm.data.currentPreview
+                                                )
+                                              }
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("i", {
+                                            staticClass:
+                                              "mo-icon mo-icon-close remove",
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm._removeFile(
+                                                  _vm.data.currentPreview
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.conf.state !== "readonly" &&
+                      _vm.conf.state !== "disabled" &&
+                      _vm.data.showFiles[_vm.data.currentPreview].status ===
+                        "done"
+                        ? _c("div", { staticClass: "upload-box-operate" }, [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "javascript:;",
+                                  title: "打开文件"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm._openFile(
+                                      _vm.data.showFiles[
+                                        _vm.data.currentPreview
+                                      ].path
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "mo-icon mo-icon-fullscreen"
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            !_vm.ismax
+                              ? _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "javascript:;",
+                                      title: "上传文件"
+                                    },
+                                    on: { click: _vm._emitFilePicker }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "mo-icon mo-icon-upload"
+                                    })
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "del",
+                                attrs: {
+                                  href: "javascript:;",
+                                  title: "删除文件"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm._removeFile(
+                                      _vm.data.currentPreview
+                                    )
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "mo-icon mo-icon-del" })]
+                            ),
+                            _vm._v(" "),
+                            _vm.ismax
+                              ? _c(
+                                  "div",
+                                  { staticClass: "ismax-note" },
+                                  [
+                                    _c(
+                                      "morning-center",
+                                      { staticClass: "fill" },
+                                      [
+                                        _vm._v(
+                                          "最多只能上传" +
+                                            _vm._s(_vm.conf.max) +
+                                            "个文件"
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ])
+                        : _vm._e()
+                    ],
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "drag-note",
+                    class: { show: _vm.data.dragover }
+                  },
+                  [
+                    _c("p", [
+                      _c("i", { staticClass: "mo-icon mo-icon-upload" }),
+                      _vm._v(" 松开鼠标上传")
+                    ])
+                  ]
+                )
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.data.showFiles.length > 0
+              ? _c(
+                  "div",
+                  { staticClass: "filelist" },
+                  [
+                    _vm._l(_vm.data.showFiles, function(item, index) {
+                      return [
+                        _c(
+                          "a",
+                          {
+                            key: index,
+                            staticClass: "file-item",
+                            class: [
+                              {
+                                current: index === _vm.data.currentPreview
+                              },
+                              item.classList
+                            ],
+                            attrs: {
+                              target: "_blank;",
+                              href: "javascript:;",
+                              index: index
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.conf.state === "readonly" ||
+                                _vm.conf.state === "disabled"
+                                  ? _vm._openFile(item.path)
+                                  : _vm._switchPreview(index)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "progress",
+                              class: item.classList,
+                              style: {
+                                width: item.classList.uploading
+                                  ? 30 + +item.progress * 60 + "%"
+                                  : "auto"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(item.name) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "upload-operate" }, [
+                              _c("i", {
+                                staticClass:
+                                  "mo-icon mo-icon-fullscreen openfile",
+                                attrs: { title: "打开文件" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    $event.stopPropagation()
+                                    return _vm._openFile(item.path)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "mo-icon mo-icon-refresh reupload",
+                                attrs: { title: "重新上传" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    $event.stopPropagation()
+                                    return _vm._upload(index)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "mo-icon mo-icon-close remove",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    $event.stopPropagation()
+                                    return _vm._removeFile(index)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass:
+                                  "mo-icon mo-icon-arrow-up uploading",
+                                attrs: { title: "上传中" }
+                              })
+                            ])
+                          ]
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              : _vm._e()
+          ]
+        : _vm.conf.type === "button"
+        ? [
+            _c(
+              "morning-popover",
+              { attrs: { target: "#mor-upload-button-remote-" + _vm.uiid } },
+              [
+                _c(
+                  "div",
+                  { staticClass: "url-upload-box" },
+                  [
+                    _c(
+                      "morning-btn",
+                      {
+                        ref: "mor-url-btn-" + _vm.uiid,
+                        attrs: { size: "xs", color: "silver" },
+                        on: { emit: _vm._uploadRemoteFile }
+                      },
+                      [_vm._v("通过URL上传")]
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "morning-btn",
+              {
+                staticClass: "upload-file upload-button",
+                attrs: {
+                  color: "light-gray",
+                  state: _vm.ismax ? "disabled" : _vm.conf.state,
+                  id: "mor-upload-button-remote-" + _vm.uiid
+                },
+                on: { emit: _vm._emitFilePicker }
+              },
+              [
+                _c("i", { staticClass: "mo-icon mo-icon-upload" }),
+                _vm._v(" "),
+                _vm.data.dragover
+                  ? _c("span", [_vm._v("松开鼠标上传")])
+                  : _c("span", [_vm._v("上传" + _vm._s(_vm.conf.itemName))])
+              ]
+            ),
+            _vm._v(" "),
+            _vm.data.showFiles.length > 0 || !!_vm.conf.insideName
+              ? _c(
+                  "div",
+                  { staticClass: "filelist" },
+                  [
+                    !!_vm.conf.insideName
+                      ? _c("div", { staticClass: "inside-name" }, [
+                          _vm._v(_vm._s(_vm.conf.insideName))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.ismax
+                      ? _c("div", { staticClass: "inside-name max" }, [
+                          _vm._v(
+                            "最多只能上传" + _vm._s(_vm.conf.max) + "个文件"
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm._l(_vm.data.showFiles, function(item, index) {
+                      return [
+                        _c(
+                          "a",
+                          {
+                            key: index,
+                            staticClass: "file-item",
+                            class: [
+                              {
+                                current: index === _vm.data.currentPreview
+                              },
+                              item.classList
+                            ],
+                            attrs: {
+                              target: "_blank;",
+                              href: "javascript:;",
+                              index: index
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm._openFile(item.path)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "progress",
+                              class: item.classList,
+                              style: {
+                                width: item.classList.uploading
+                                  ? 30 + +item.progress * 60 + "%"
+                                  : "auto"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(item.name) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "upload-operate" }, [
+                              _c("i", {
+                                staticClass:
+                                  "mo-icon mo-icon-fullscreen openfile",
+                                attrs: { title: "打开文件" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    $event.stopPropagation()
+                                    return _vm._openFile(item.path)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "mo-icon mo-icon-refresh reupload",
+                                attrs: { title: "重新上传" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    $event.stopPropagation()
+                                    return _vm._upload(index)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "mo-icon mo-icon-close remove",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    $event.stopPropagation()
+                                    return _vm._removeFile(index)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass:
+                                  "mo-icon mo-icon-arrow-up uploading",
+                                attrs: { title: "上传中" }
+                              })
+                            ])
+                          ]
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              : _vm._e()
+          ]
+        : _vm._e(),
       _vm._v(" "),
       _vm.conf.clearable
         ? _c(
@@ -59794,7 +60578,7 @@ var render = function() {
           )
         : _vm._e()
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -70092,6 +70876,13 @@ var TipManager = {
             this.$emit('_tipManagerHide');
         },
         _tipShow: function _tipShow() {
+            var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            if (fromMethod) {
+
+                this.Tip.activeTrigger.method = true;
+            }
 
             this.$emit('_tipManagerWillShow');
 
@@ -70115,12 +70906,26 @@ var TipManager = {
             this._tipShowComplete();
         },
         _tipHide: function _tipHide() {
+            var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            if (fromMethod) {
+
+                this.Tip.activeTrigger.method = false;
+            }
 
             this.$el.classList.remove('tip-target-hover');
             this._tipPopperDestroy();
             this._tipHideComplete();
         },
         _tipToggle: function _tipToggle() {
+            var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            if (fromMethod) {
+
+                this.Tip.activeTrigger.method = !this.Tip.activeTrigger.method;
+            }
 
             if (this._tipIsWithActiveTrigger()) {
 
@@ -70133,12 +70938,12 @@ var TipManager = {
         _tipClickToggle: function _tipClickToggle() {
 
             this.Tip.activeTrigger.click = !this.Tip.activeTrigger.click;
-            this._tipToggle();
+            this._tipToggle(false);
         },
         _tipRclickToggle: function _tipRclickToggle() {
 
             this.Tip.activeTrigger.rclick = !this.Tip.activeTrigger.rclick;
-            this._tipToggle();
+            this._tipToggle(false);
         },
         _tipEnter: function _tipEnter(evt) {
             var _this5 = this;
@@ -70169,7 +70974,7 @@ var TipManager = {
 
                 if (_this5.Tip.hoverState === _this5.Tip.hoverStates.in) {
 
-                    _this5._tipShow();
+                    _this5._tipShow(false);
                 }
             });
         },
@@ -70198,7 +71003,7 @@ var TipManager = {
 
                 if (_this6.Tip.hoverState === _this6.Tip.hoverStates.out) {
 
-                    _this6._tipHide();
+                    _this6._tipHide(false);
                 }
             });
         }
@@ -70308,8 +71113,8 @@ var TipManager = {
 
                 if (_this7.Tip.popper) {
 
-                    _this7._tipHide();
-                    _this7._tipShow();
+                    _this7._tipHide(false);
+                    _this7._tipShow(false);
                 }
             });
         }

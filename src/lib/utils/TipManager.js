@@ -319,7 +319,13 @@ let TipManager = {
             this.$emit('_tipManagerHide');
 
         },
-        _tipShow : function () {
+        _tipShow : function (fromMethod = true) {
+
+            if (fromMethod) {
+                
+                this.Tip.activeTrigger.method = true;
+
+            }
 
             this.$emit('_tipManagerWillShow');
 
@@ -343,14 +349,26 @@ let TipManager = {
             this._tipShowComplete();
 
         },
-        _tipHide : function () {
+        _tipHide : function (fromMethod = true) {
+
+            if (fromMethod) {
+                
+                this.Tip.activeTrigger.method = false;
+
+            }
 
             this.$el.classList.remove('tip-target-hover');
             this._tipPopperDestroy();
             this._tipHideComplete();
 
         },
-        _tipToggle : function () {
+        _tipToggle : function (fromMethod = true) {
+
+            if (fromMethod) {
+            
+                this.Tip.activeTrigger.method = !this.Tip.activeTrigger.method;
+
+            }
 
             if (this._tipIsWithActiveTrigger()) {
 
@@ -366,13 +384,13 @@ let TipManager = {
         _tipClickToggle : function () {
 
             this.Tip.activeTrigger.click = !this.Tip.activeTrigger.click;
-            this._tipToggle();
+            this._tipToggle(false);
 
         },
         _tipRclickToggle : function () {
 
             this.Tip.activeTrigger.rclick = !this.Tip.activeTrigger.rclick;
-            this._tipToggle();
+            this._tipToggle(false);
 
         },
         _tipEnter : function (evt) {
@@ -408,7 +426,7 @@ let TipManager = {
 
                 if (this.Tip.hoverState === this.Tip.hoverStates.in) {
 
-                    this._tipShow();
+                    this._tipShow(false);
 
                 }
 
@@ -443,7 +461,7 @@ let TipManager = {
 
                 if (this.Tip.hoverState === this.Tip.hoverStates.out) {
                     
-                    this._tipHide();
+                    this._tipHide(false);
 
                 }
 
@@ -567,8 +585,8 @@ let TipManager = {
 
                 if (this.Tip.popper) {
                     
-                    this._tipHide();
-                    this._tipShow();
+                    this._tipHide(false);
+                    this._tipShow(false);
 
                 }
 

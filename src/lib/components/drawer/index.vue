@@ -226,6 +226,16 @@ export default {
             }
 
         },
+        show : function () {
+
+            return this.toggle(true);
+
+        },
+        hide : function () {
+
+            return this.toggle(false);
+
+        },
         toggle : function (show) {
 
             let isShown = this._isShown();

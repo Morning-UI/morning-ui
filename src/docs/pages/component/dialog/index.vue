@@ -403,6 +403,48 @@
     [[[方法]]]
 
     :::vue
+    @name:show()
+    ---
+    #method
+    >method-desc
+    显示模拟盒。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dialog ref="demo26">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo26').hide();">隐藏模拟盒</ui-link>
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo26').show();">显示模拟盒</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:hide()
+    ---
+    #method
+    >method-desc
+    隐藏模拟盒。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dialog ref="demo27">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo27').hide();">隐藏模拟盒</ui-link>
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo27').show();">显示模拟盒</ui-link>
+    </div>
+    :::
+
+    :::vue
     @name:toggle([show])
     ---
     #method

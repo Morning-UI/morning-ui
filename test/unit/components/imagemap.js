@@ -4,7 +4,7 @@ import Vue                          from 'vue/dist/vue.common.js';
 import imagemap                     from '../../../src/lib/components/imagemap/index.vue';
 import commonTest                   from '../../common/unit';
 
-const uiid = 28;
+const uiid = 30;
 /* eslint-disable no-magic-numbers */
 const testOptions = {
     test,
