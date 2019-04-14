@@ -85,7 +85,7 @@
                     <span>上传{{conf.itemName}}</span>
                 </label>
 
-                <morning-popover :target="'#mor-upload-input-remote-'+uiid">
+                <morning-popover :target="'#mor-upload-input-remote-'+uiid" v-if="conf.allowUrl">
                     <div class="url-upload-box">
                         <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                     </div>
@@ -112,7 +112,7 @@
                         <span>上传{{conf.itemName}}</span>
                     </label>
 
-                    <morning-popover :target="'#mor-upload-box-remote-'+uiid">
+                    <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
                         <div class="url-upload-box">
                             <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                         </div>
@@ -202,7 +202,7 @@
     </template>
 
     <template v-else-if="conf.type === 'button'">
-        <morning-popover :target="'#mor-upload-button-remote-'+uiid">
+        <morning-popover :target="'#mor-upload-button-remote-'+uiid" v-if="conf.allowUrl">
             <div class="url-upload-box">
                 <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
             </div>
@@ -1038,12 +1038,7 @@ export default {
             }
 
             this.data.showFiles = files;
-
-            if (files[this.data.currentPreview] === undefined) {
-                
-                this.data.currentPreview = files.length - 1;
-
-            }
+            this.data.currentPreview = files.length - 1;
 
         }, {
             immediate : true,

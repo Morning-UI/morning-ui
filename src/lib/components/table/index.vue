@@ -1208,6 +1208,8 @@ export default {
 
             }
 
+            let lastRow = this.getHighlightRow();
+
             this.cleanHighlightRow();
 
             let $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
@@ -1222,6 +1224,12 @@ export default {
             if ($normalTr) {
 
                 $normalTr.classList.add('last-click');
+
+            }
+
+            if (Number(lastRow) !== Number(rowNum)) {
+                
+                this.$emit('highlight-row-change');
 
             }
 

@@ -1814,6 +1814,35 @@
     :::
 
     :::vue
+    @name:highlight-row-change
+    ---
+    #event
+    >event-desc
+    当高亮行改变时触发，仅在开启`highlight-row`配置后有效。
+    <br>
+    可以通过`getHighlightRow()`方法来获取高亮的行
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo9" :list="list" highlight-row @highlight-row-change="echo"></ui-table>
+        <br><br>
+        <p>点击行触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function () {
+                console.log('demo9.console1', `highlight-row-change event!`);
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:checked-row-change
     ---
     #event
