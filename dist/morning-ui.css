@@ -38181,6 +38181,15 @@ mor-backtop.fixed {
   right: 40px;
   z-index: 1;
 }
+mor-formitem {
+  margin-bottom: 12px;
+  display: flex;
+}
+mor-formitem .form-item-name {
+  font-size: 16px;
+  color: #17212D;
+  padding: 0.5em 0;
+}
 mor-textinput {
   position: relative;
   z-index: 1;
@@ -38204,6 +38213,11 @@ mor-textinput > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-textinput > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-textinput input {
   box-sizing: border-box;
@@ -38413,6 +38427,11 @@ mor-textarea > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-textarea > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-textarea textarea {
   box-sizing: border-box;
   z-index: 2;
@@ -38512,6 +38531,11 @@ mor-texteditor > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-texteditor > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-texteditor.has-cleanbtn {
   padding-bottom: 26px;
@@ -38997,6 +39021,11 @@ mor-switch > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-switch > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-switch.mor-switch.has-cleanbtn {
   padding-bottom: 26px;
@@ -39837,6 +39866,11 @@ mor-rate > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-rate > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-rate .rate-wrap {
   display: flex;
   flex-wrap: nowrap;
@@ -39990,6 +40024,11 @@ mor-counter > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-counter > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-counter .counter-wrap {
   display: flex;
@@ -40219,6 +40258,11 @@ mor-select > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-select > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-select .select-area {
   position: relative;
@@ -40929,6 +40973,11 @@ mor-checkbox > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-checkbox > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-checkbox > .il {
   display: flex;
@@ -42232,6 +42281,11 @@ mor-radio > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-radio > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-radio > .il {
   display: flex;
@@ -43597,6 +43651,11 @@ mor-transfer > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-transfer > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-transfer.si-m .transfer-source-list,
 mor-transfer.si-m .transfer-target-list {
   font-size: 16px;
@@ -43897,6 +43956,11 @@ mor-cascader > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-cascader > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-cascader .cascader-wrap .cascader-input {
   box-sizing: border-box;
   padding: 0;
@@ -44067,6 +44131,11 @@ mor-multiinput > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-multiinput > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-multiinput > .itemlist {
   border: 1px #E6E6E6 solid;
@@ -44312,6 +44381,11 @@ mor-multiform > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-multiform > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-multiform > .itemlist {
   border: 1px #E6E6E6 solid;
@@ -44669,6 +44743,11 @@ mor-slider > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-slider > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-slider > .form-name {
   padding: 0 10px;
@@ -45052,6 +45131,11 @@ mor-timepicker > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-timepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-timepicker .wrap {
   display: flex;
 }
@@ -45186,6 +45270,11 @@ mor-datepicker > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-datepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-datepicker .wrap {
   display: flex;
@@ -45470,6 +45559,11 @@ mor-datetimepicker > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-datetimepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 .mor-private-datepicker-popover .timepicker {
   width: 100%;
   height: 40px;
@@ -45509,6 +45603,11 @@ mor-upload > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-upload > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 mor-upload[type='button'] {
   -webkit-appearance: none;
@@ -46132,6 +46231,11 @@ mor-colorpicker > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-colorpicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-colorpicker .alpha-bg-1,
 mor-colorpicker .alpha-bg-2,
 mor-colorpicker .alpha-bg-3,
@@ -46600,6 +46704,11 @@ mor-imagemap > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
+mor-imagemap > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
 mor-imagemap .imagemap-operate {
   display: block;
   color: #8E9CAF;
@@ -46890,6 +46999,57 @@ mor-imagemap.st-readonly .imagemap-operate:hover {
 .mor-imagemap-map.imagemap-disabled .zonearea .zone .bottomright {
   cursor: default !important;
 }
+mor-form {
+  display: block;
+}
+mor-form.label-pos-head-left mor-formitem,
+mor-form.label-pos-head-right mor-formitem,
+mor-form.label-pos-head-center mor-formitem {
+  flex-direction: column;
+}
+mor-form.label-pos-head-left mor-formitem .form-item-name,
+mor-form.label-pos-head-right mor-formitem .form-item-name,
+mor-form.label-pos-head-center mor-formitem .form-item-name,
+mor-form.label-pos-head-left mor-formitem .form-item-con,
+mor-form.label-pos-head-right mor-formitem .form-item-con,
+mor-form.label-pos-head-center mor-formitem .form-item-con {
+  width: 100%;
+}
+mor-form.label-pos-head-left mor-formitem .form-item-name {
+  text-align: left;
+}
+mor-form.label-pos-head-center mor-formitem .form-item-name {
+  text-align: center;
+}
+mor-form.label-pos-head-right mor-formitem .form-item-name {
+  text-align: right;
+}
+mor-form.label-pos-left-align mor-formitem .form-item-name,
+mor-form.label-pos-center-align mor-formitem .form-item-name,
+mor-form.label-pos-right-align mor-formitem .form-item-name {
+  padding-right: 1em;
+  flex-grow: 1;
+}
+mor-form.label-pos-left-align mor-formitem .form-item-con,
+mor-form.label-pos-center-align mor-formitem .form-item-con,
+mor-form.label-pos-right-align mor-formitem .form-item-con {
+  flex-grow: 1;
+}
+mor-form.label-pos-left-align mor-formitem .form-item-name {
+  text-align: left;
+}
+mor-form.label-pos-center-align mor-formitem .form-item-name {
+  text-align: center;
+}
+mor-form.label-pos-right-align mor-formitem .form-item-name {
+  text-align: right;
+}
+mor-form.label-pos-center mor-formitem {
+  align-items: center;
+}
+mor-form.label-pos-center mor-formitem .form-item-name {
+  text-align: center;
+}
 mor-private-timepicker {
   display: block;
   width: 100%;
@@ -46910,6 +47070,11 @@ mor-private-timepicker > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-private-timepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 .mor-private-timepicker-popover {
   width: 160px;
@@ -47043,6 +47208,11 @@ mor-private-datepicker > .form-name {
   margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-private-datepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
 }
 .mor-private-datepicker-popover {
   min-width: calc(280px + 2px);

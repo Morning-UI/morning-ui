@@ -1,0 +1,92 @@
+mor-form{
+    display: block;
+
+    &.label-pos-head-left,
+    &.label-pos-head-right,
+    &.label-pos-head-center{
+        mor-formitem{
+            flex-direction: column;
+
+            .form-item-name,
+            .form-item-con{
+                width: 100%;
+            }
+        }
+    }
+
+    &.label-pos-head-left{
+        mor-formitem{
+            .form-item-name{
+                text-align: left;
+            }
+        }
+    }
+
+    &.label-pos-head-center{
+        mor-formitem{
+            .form-item-name{
+                text-align: center;
+            }
+        }
+    }
+
+    &.label-pos-head-right{
+        mor-formitem{
+            .form-item-name{
+                text-align: right;
+            }
+        }
+    }
+
+    &.label-pos-left-align,
+    &.label-pos-center-align,
+    &.label-pos-right-align{
+        mor-formitem{
+            .form-item-name{
+                padding-right: 1em;
+                flex-grow: 1;
+            }
+
+            .form-item-con{
+                flex-grow: 1;
+            }
+        }
+    }
+
+    &.label-pos-left-align{
+        mor-formitem{
+            .form-item-name{
+                text-align: left;
+            }
+        }
+    }
+
+    &.label-pos-center-align{
+        mor-formitem{
+            .form-item-name{
+                text-align: center;
+            }
+        }
+    }
+
+    &.label-pos-right-align{
+        mor-formitem{
+            .form-item-name{
+                text-align: right;
+            }
+        }
+    }
+
+    &.label-pos-center{
+        mor-formitem{
+            align-items: center;
+
+            .form-item-name{
+                text-align: center;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

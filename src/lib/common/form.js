@@ -28,6 +28,10 @@ export default UI => UI.extend({
         clearable : {
             type : Boolean,
             default : false
+        },
+        _errorMessage : {
+            type : String,
+            default : undefined
         }
     },
     computed : {
@@ -38,7 +42,8 @@ export default UI => UI.extend({
                 formKey : this.formKey,
                 group : this.group,
                 hideName : this.hideName,
-                clearable : this.clearable
+                clearable : this.clearable,
+                _errorMessage : this._errorMessage
             };
 
         },

@@ -68,6 +68,7 @@ import video                        from './video/index.vue';
 import backtop                      from './backtop/index.vue';
 import row                          from './row/index.vue';
 import col                          from './col/index.vue';
+import formitem                     from './formitem/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
@@ -89,6 +90,7 @@ import datetimepicker               from './datetimepicker/index.vue';
 import upload                       from './upload/index.vue';
 import colorpicker                  from './colorpicker/index.vue';
 import imagemap                     from './imagemap/index.vue';
+import form                         from './form/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
@@ -169,6 +171,7 @@ export default {
     backtop,
     row,
     col,
+    formitem,
     textinput,
     textarea,
     texteditor,
@@ -188,5 +191,6 @@ export default {
     datetimepicker,
     upload,
     colorpicker,
-    imagemap
+    imagemap,
+    form
 };
