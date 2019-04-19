@@ -31,7 +31,7 @@
     ---
     #demo
     >tpl
-    <ui-grid class="gutter-none" style="background-color: #EDF1F5">
+    <ui-grid style="background-color: #EDF1F5">
         <ui-row>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>

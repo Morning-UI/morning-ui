@@ -146,6 +146,49 @@
     </div>
     :::
 
+    :::vue
+    @name:only-hidden
+    ---
+    #config
+    >conf-desc
+    加载组件默认采用了`slot`这意味着未加载完成时里面的内容不会被渲染。<br>
+    在某些场景下可能仅仅需要隐藏，可以使用此配置。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    当反复加载时组件的uiid不会增加。
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo9" :done-time="500" :only-hidden="true">
+                <ui-lead ref="demo9lead">当反复加载时组件的uiid不会增加</ui-lead>
+            </ui-load>
+        </div>
+        <ui-btn @emit="$refs.demo9.reload()">再次加载</ui-btn>
+        <ui-btn @emit="alert($refs.demo9lead.uiid)">获取uiid</ui-btn>
+    </div>
+    ---
+    #demo
+    >desc
+    当反复加载时组件的uiid会改变。
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo10" :done-time="500" :only-hidden="false">
+                <ui-lead ref="demo10lead">当反复加载时标件的uiid会改变</ui-lead>
+            </ui-load>
+        </div>
+        <ui-btn @emit="$refs.demo10.reload()">再次加载</ui-btn>
+        <ui-btn @emit="alert($refs.demo10lead.uiid)">获取uiid</ui-btn>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::vue

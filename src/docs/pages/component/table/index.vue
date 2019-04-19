@@ -1372,11 +1372,73 @@
     :::
 
     :::vue
+    @name:custom-sort
+    ---
+    #config
+    >conf-desc
+    自定义排序规则。使用`custom-sort`可以通过监听`col-sort`事件获取排序列的KEY和排序规则，然后通过自定义逻辑来修改`list`实现排序。
+    <br>
+    一般和服务端排序一起使用。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" :col-set="colset" show-col-name custom-sort @col-sort="customSort"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        },
+        methods : {
+            customSort : function (key, type) {
+
+                if (type === 'desc') {
+
+                    this.list = sortby(this.list, (val) => {
+
+                        return val[key];
+
+                    });
+
+                } else if (type === 'asc') {
+
+                    this.list = sortby(this.list, (val) => {
+
+                        return -val[key];
+
+                    });
+
+                } else {
+
+                    // 原始顺序
+                    this.list = window.demodata.list;
+
+                }
+
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:multi-sort
     ---
     #config
     >conf-desc
     支持多列排序，默认只支持单列排序。多列排序时会根据所选排序列的顺序进行多次排序。使用此配置前需要先通过`col-set`的指定排序列。
+    <br>
+    注意若使用了`custom-sort`，则此配置无效。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -1872,6 +1934,66 @@
     :::
 
     :::vue
+    @name:col-sort
+    ---
+    #event
+    >event-desc
+    当列发生排序时触发。
+    >event-args
+    |key|当前排序列的KEY|`String`|
+    |type|排序方式，包含：`asc`:升序，`desc`:降序，`no`:无排序|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table :list="list" :col-set="colset" show-col-name custom-sort @col-sort="customSort"></ui-table>
+        <p>点击排序触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        },
+        methods : {
+            customSort : function (key, type) {
+
+                console.log('demo10.console1', `col-sort event!`, key, type);
+
+                if (type === 'desc') {
+
+                    this.list = sortby(this.list, (val) => {
+
+                        return val[key];
+
+                    });
+
+                } else if (type === 'asc') {
+
+                    this.list = sortby(this.list, (val) => {
+
+                        return -val[key];
+
+                    });
+
+                } else {
+
+                    // 原始顺序
+                    this.list = window.demodata.list;
+
+                }
+
+            }
+        }
+    }
+    :::
+
+    :::vue
     @layout:lifecycle-event
     ---
     table
@@ -1888,6 +2010,9 @@
  
 <script>
 import DocComponent                 from 'Docs/common/DocComponent.vue';
+import sortby                       from 'lodash.sortby';
+
+window.sortby = sortby;
 
 export default {
     data : function () {

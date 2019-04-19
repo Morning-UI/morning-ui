@@ -135,6 +135,17 @@ mor-upload{
                 }
             }
 
+            .preview-file{
+                display: none;
+            }
+
+            &:hover{
+                i.mo-icon,
+                .mo-loader{
+                    display: block;
+                }
+            }
+
             &.done{
                 i.mo-icon.uploading,
                 i.mo-icon.reupload{
@@ -166,6 +177,66 @@ mor-upload{
                     display: block;
                 }
             }
+
+            &.thumbnail{
+                background: @colorWhite;
+                padding: 0;
+                margin: @fontSize*0.25;
+                height: 100px;
+                width: 100px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border: none !important;
+                    padding: 0;
+                    margin-bottom: 0;
+                }
+
+                .upload-operate{
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                    display: none;
+                    background: rgba(0, 0, 0, 0.7);
+                    justify-content: center;
+
+                    > .mo-icon{
+                        font-size: @fontSize*1.25;
+                        color: @colorSilver;
+                    }
+                }
+
+                &:hover .upload-operate{
+                    display: flex;
+                }
+
+                .preview-file{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    > .mo-icon-file-o{
+                        font-size: @fontSize*2;
+                        display: block;
+                        color: @colorFormItemColor !important;
+                    }
+                }
+
+                &.fail{
+                    .preview-file{
+                        background: lighten(@colorDanger, 42%);
+                    }
+                }
+            }
+        }
+
+        &.thumbnail-list{
+            display: flex;
+            flex-flow: row wrap;
         }
     }
 

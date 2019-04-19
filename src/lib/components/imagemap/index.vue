@@ -4,10 +4,12 @@
         :class="[formClass, stateClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
@@ -21,35 +23,38 @@
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <morning-upload
-        :inside-name="conf.insideName"
-        :max="conf.max"
-        :multi="conf.multi"
-        :allow-url="conf.allowUrl"
-        :allow-drag="conf.allowDrag"
-        :validate="conf.validate"
-        :uploader="conf.uploader"
-        :state="conf.state"
-        accept-type="image/*"
-        :ref="'ui-imagemap-upload-'+uiid"
+    <div class="form-body">
+        <morning-upload
+            :inside-name="conf.insideName"
+            :max="conf.max"
+            :multi="conf.multi"
+            :allow-url="conf.allowUrl"
+            :allow-drag="conf.allowDrag"
+            :validate="conf.validate"
+            :uploader="conf.uploader"
+            :state="conf.state"
+            accept-type="image/*"
+            :ref="'ui-imagemap-upload-'+uiid"
 
-        @value-change="_uploadValueChange"
-    ></morning-upload>
-    
-    <div class="imagemap-operate" :class="{loading : data.imagesLoading}" v-show="data.imagesLoading || data.images.length > 0" >
+            @value-change="_uploadValueChange"
+        ></morning-upload>
+        
+        <div class="imagemap-operate" :class="{loading : data.imagesLoading}" v-show="data.imagesLoading || data.images.length > 0" >
 
-        <span v-show="data.imagesLoading">获取图片中...</span>
+            <span v-show="data.imagesLoading">获取图片中...</span>
 
-        <span class="modify-map" v-show="!data.imagesLoading && data.images.length > 0" @click="_openMap">
-            <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
-                <i class="mo-icon mo-icon-imagemap"></i> 查看热区
-            </template>
-            <template v-else>
-                <i class="mo-icon mo-icon-imagemap"></i> 绘制热区
-            </template>
-        </span>
+            <span class="modify-map" v-show="!data.imagesLoading && data.images.length > 0" @click="_openMap">
+                <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
+                    <i class="mo-icon mo-icon-imagemap"></i> 查看热区
+                </template>
+                <template v-else>
+                    <i class="mo-icon mo-icon-imagemap"></i> 绘制热区
+                </template>
+            </span>
 
+        </div>
     </div>
 
     <morning-dialog
@@ -246,6 +251,7 @@
         
     </morning-dialog>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-imagemap>

@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moveClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :item-name="itemName"
         :item-filler="itemFiller"
@@ -22,8 +24,9 @@
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="itemlist">
+    <div class="itemlist form-body">
         <p class="name" v-if="!!conf.insideName">
             <morning-center class="fill">{{conf.insideName}}</morning-center>
         </p>
@@ -126,6 +129,7 @@
         </div>
     </morning-dialog>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-multiform>

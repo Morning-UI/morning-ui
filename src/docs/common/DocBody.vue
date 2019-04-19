@@ -44,6 +44,7 @@ import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 import DocComponentNotRecommended   from 'Docs/common/DocComponentNotRecommended.vue';
+import DocComponentExperimental     from 'Docs/common/DocComponentExperimental.vue';
 
 const randomRangeMin = 1e4;
 const randomRangeMax = 9e4;
@@ -714,6 +715,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[\'zj\', \'wz\']'
             }
+        ],
+        form : [
+            {
+                valueType : 'String',
+                valueContent : `'tim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{name:\'Jim\',introduction:\'这里是简介\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'Jim\', \'这里是简介\']'
+            }
         ]
     }
 };
@@ -959,6 +990,26 @@ String
 >tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} form-name="{%formName%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
+@name:form-note
+---
+#config
+>conf-desc
+表单的备注（用于显示）。
+>conf-accept
+任意字符串
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-note="{%formNote%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
@@ -2440,6 +2491,7 @@ let extPreset = (content, paramStr) => {
     let template = presets[vars.name];
 
     vars.formName = '表单名';
+    vars.formNote = '表单备注';
     vars.formKey = 'formKey';
     vars.formGroupOne = 'groupName'; 
     vars.formGroupMore = `['group1', 'group2', 'group3']`;
@@ -2635,6 +2687,7 @@ markdown.use(mdExtendPlugin);
 
 window.Vue.component('doc-component-status', DocComponentStatus);
 window.Vue.component('doc-component-not-recommended', DocComponentNotRecommended);
+window.Vue.component('doc-component-experimental', DocComponentExperimental);
 
 window.Vue.directive('docmd', {
     bind : el => {

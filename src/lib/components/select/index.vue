@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :list="list"
         :dynamic-list="dynamicList"
@@ -32,8 +34,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName && !conf.separateEmit">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="select-wrap" v-if="!conf.separateEmit">
+    <div class="select-wrap form-body" v-if="!conf.separateEmit">
         <template v-if="conf.prepend">
             <div class="input-group-addon" v-html="conf.prepend"></div>
         </template>
@@ -98,6 +101,7 @@
         </div>
     </morning-popover>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-select>
@@ -205,7 +209,7 @@ export default {
         },
         hideSelected : {
             type : Boolean,
-            default : true
+            default : false
         },
         inlineImgSize : {
             type : String,
@@ -1316,6 +1320,7 @@ export default {
             }
 
             show = !!show;
+            this._setListHeight();
            
             let $target;
 

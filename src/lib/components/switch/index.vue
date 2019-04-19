@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, colorClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :open-note="openNote"
         :close-note="closeNote"
         :open-mark="openMark"
@@ -15,8 +17,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
     
-    <div class="wrap">
+    <div class="wrap form-body">
         <div class="close-note" v-if="conf.closeNote" v-html="conf.closeNote"></div>
         <div class="track" @click="conf.state !== 'readonly' && toggle()">
             <div class="open-mark" v-if="conf.openMark" v-html="conf.openMark"></div>
@@ -26,6 +29,7 @@
         <div class="open-note" v-if="conf.openNote" v-html="conf.openNote"></div>
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-switch>
