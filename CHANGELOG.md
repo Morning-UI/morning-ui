@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.12.23
+
+#### 修复
+
+- 修复`ui-table`开启`multi-select`配置后可能导致`col-set`配置失效的问题
+- 修复`ui-form`在某些情况下`label-width`无效的情况
+
 ## 0.12.22
 
 #### 新特性
@@ -22,7 +29,6 @@
 __升级注意事项__
 
 - `ui-select`组件的`hide-selected`配置默认由`true`变为`false`
-
 
 ## 0.12.21
 

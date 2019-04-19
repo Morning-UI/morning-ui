@@ -105,6 +105,15 @@ export default {
 
         }
     },
+    updated : function () {
+
+        if (this.data.itemParentForm) {
+
+            this.data.itemParentForm._syncLabelWidth();
+
+        }
+
+    },
     mounted : function () {
 
         this._linkItemToForm(this);
