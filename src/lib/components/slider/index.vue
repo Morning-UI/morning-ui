@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :max="max"
         :min="min"
         :step="step"
@@ -22,78 +24,82 @@
 
     <!-- <div class="left-point"></div> -->
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="prepend" v-if="hasPrepend" v-html="conf.prepend"></div>
-    
-    <div class="wrap" :class="{'droping' : data.droping}">
-        <div
-            class="track"
-
-            @click="_trackClick($event)"
-        >
-            <ul class="points">
-                <li
-                    v-for="(i, index) in data.pointNum"
-                    :key="index"
-                    :style="{left : `${i * data.pointWidth}px`}"
-                ></li>
-            </ul>
-            <ul class="marks">
-                <li
-                    v-for="(mark, index) in marks"
-                    :key="index"
-                    :style="{
-                        left : `${(mark[0] - conf.min) / range * data.$track.clientWidth}px`,
-                        width : `${(mark[1] - mark[0]) / range * data.$track.clientWidth}px`
-                    }"
-                ></li>
-            </ul>
-            <div
-                class="selected-line"
-                :style="{
-                    'left' : `${startEndReal.start}px`,
-                    'width' : `${startEndReal.end - startEndReal.start}px`
-                }"
-            >
-
-            </div>
-            <div
-                class="main-slider"
-                :id="'ui-slider-tip-'+this.uiid"
-                :style="{
-                    'left' : `${startEndReal.end}px`
-                }"
-
-                @mousedown="_sliderMousedown(true, $event)"
-            ></div>
-            <morning-tip
-                :target="'#ui-slider-tip-'+this.uiid"
-                :ref="'ui-slider-tip-'+this.uiid"
-                color="extra-light-blue"
-                trigger="method"
-                offset="0, 0"
-            >{{conf.tipFormatter(data.end)}}</morning-tip>
-            <!-- <div class="sub-slider"></div> -->
-        </div>
-
-        <div class="counter" v-if="conf.showCounter">
-            <morning-counter
-                :step="conf.step"
-                :max="conf.max"
-                :min="conf.min"
-                v-model="data.value"
-            ></morning-counter>
-        </div>
-
-   <!--  <div class="text-bar">
+    <div class="form-body">
+        <div class="prepend" v-if="hasPrepend" v-html="conf.prepend"></div>
         
-    </div> -->
+        <div class="wrap" :class="{'droping' : data.droping}">
+            <div
+                class="track"
 
-    <!-- <div class="right-point"></div> -->
+                @click="_trackClick($event)"
+            >
+                <ul class="points">
+                    <li
+                        v-for="(i, index) in data.pointNum"
+                        :key="index"
+                        :style="{left : `${i * data.pointWidth}px`}"
+                    ></li>
+                </ul>
+                <ul class="marks">
+                    <li
+                        v-for="(mark, index) in marks"
+                        :key="index"
+                        :style="{
+                            left : `${(mark[0] - conf.min) / range * data.$track.clientWidth}px`,
+                            width : `${(mark[1] - mark[0]) / range * data.$track.clientWidth}px`
+                        }"
+                    ></li>
+                </ul>
+                <div
+                    class="selected-line"
+                    :style="{
+                        'left' : `${startEndReal.start}px`,
+                        'width' : `${startEndReal.end - startEndReal.start}px`
+                    }"
+                >
+
+                </div>
+                <div
+                    class="main-slider"
+                    :id="'ui-slider-tip-'+this.uiid"
+                    :style="{
+                        'left' : `${startEndReal.end}px`
+                    }"
+
+                    @mousedown="_sliderMousedown(true, $event)"
+                ></div>
+                <morning-tip
+                    :target="'#ui-slider-tip-'+this.uiid"
+                    :ref="'ui-slider-tip-'+this.uiid"
+                    color="extra-light-blue"
+                    trigger="method"
+                    offset="0, 0"
+                >{{conf.tipFormatter(data.end)}}</morning-tip>
+                <!-- <div class="sub-slider"></div> -->
+            </div>
+
+            <div class="counter" v-if="conf.showCounter">
+                <morning-counter
+                    :step="conf.step"
+                    :max="conf.max"
+                    :min="conf.min"
+                    v-model="data.value"
+                ></morning-counter>
+            </div>
+
+       <!--  <div class="text-bar">
+            
+        </div> -->
+
+        <!-- <div class="right-point"></div> -->
+        </div>
+
+        <div class="append" v-if="hasAppend" v-html="conf.append"></div>
     </div>
 
-    <div class="append" v-if="hasAppend" v-html="conf.append"></div>
-
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-slider>

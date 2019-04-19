@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :date="date"
         :format="format"
@@ -26,8 +28,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="wrap">
+    <div class="wrap form-body">
         <morning-datepicker
             :ref="'ui-datetimepicker-date-'+uiid"
             :state="conf.state"
@@ -85,6 +88,7 @@
         </morning-datepicker>
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-datetimepicker>

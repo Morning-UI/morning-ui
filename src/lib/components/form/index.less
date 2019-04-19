@@ -1,0 +1,120 @@
+mor-form{
+    display: block;
+    position: relative;
+
+    > .error-message{
+        display: none;
+    }
+
+    .setup-form();
+
+    > .form-name{
+        text-align: center;
+        font-size: @fontSize*1.25;
+
+        + .form-body{
+            margin-top: @fontSize*1.25;
+        }
+    }
+
+    > .form-note{
+        text-align: center;
+        font-size: @fontSize*0.875;
+
+        + .form-body{
+            margin-top: @fontSize*1.25;
+        }
+    }
+
+    &.label-pos-head-left,
+    &.label-pos-head-right,
+    &.label-pos-head-center{
+        mor-formitem{
+            flex-direction: column;
+
+            .form-item-name,
+            .form-item-con{
+                width: 100% !important;
+            }
+        }
+    }
+
+    &.label-pos-head-left{
+        mor-formitem{
+            .form-item-name{
+                text-align: left;
+            }
+        }
+    }
+
+    &.label-pos-head-center{
+        mor-formitem{
+            .form-item-name{
+                text-align: center;
+            }
+        }
+    }
+
+    &.label-pos-head-right{
+        mor-formitem{
+            .form-item-name{
+                text-align: right;
+            }
+        }
+    }
+
+    &.label-pos-left-align,
+    &.label-pos-center-align,
+    &.label-pos-right-align,
+    &.label-pos-center{
+        mor-formitem{
+            .form-item-name{
+                padding-right: 1em;
+                width: 20%;
+                flex-shrink: 0;
+            }
+
+            .form-item-con{
+                flex-grow: 1;
+                width: 100%;
+            }
+        }
+    }
+
+    &.label-pos-left-align{
+        mor-formitem{
+            .form-item-name{
+                text-align: left;
+            }
+        }
+    }
+
+    &.label-pos-center-align{
+        mor-formitem{
+            .form-item-name{
+                text-align: center;
+            }
+        }
+    }
+
+    &.label-pos-right-align{
+        mor-formitem{
+            .form-item-name{
+                text-align: right;
+            }
+        }
+    }
+
+    &.label-pos-center{
+        mor-formitem{
+            align-items: center;
+
+            .form-item-name{
+                text-align: center;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

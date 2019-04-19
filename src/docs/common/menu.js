@@ -78,6 +78,7 @@ export default {
         下拉选择 : '/component/select.html',
         复选框组 : '/component/checkbox.html',
         单选框组 : '/component/radio.html',
+        表单 : '/component/form.html',
         穿梭框 : '/component/transfer.html',
         级联选择 : '/component/cascader.html',
         多项输入 : '/component/multiinput.html',

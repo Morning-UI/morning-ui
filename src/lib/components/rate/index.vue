@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :max="max"
         :allow-half="allowHalf"
         :show-note="showNote"
@@ -16,8 +18,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="rate-wrap">
+    <div class="rate-wrap form-body">
         <ul
             class="rate-list"
             :class="{
@@ -48,6 +51,7 @@
         </div>
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-rate>

@@ -4,10 +4,12 @@
         :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :tools="tools"
         :uploader="uploader"
@@ -16,8 +18,9 @@
     >
     
         <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+        <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-        <div class="editor-wrap">
+        <div class="editor-wrap form-body">
             <div class="toolbar">
                 <div v-if="conf.markdown" class="editor-logo" title="Markdown编辑">
                     <i class="mo-icon mo-icon-markdown-f"></i>
@@ -204,6 +207,7 @@
             </div>
         </morning-dialog>
 
+        <div class="error-message">{{conf._errorMessage}}</div>
         <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-texteditor>

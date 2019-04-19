@@ -38181,6 +38181,39 @@ mor-backtop.fixed {
   right: 40px;
   z-index: 1;
 }
+mor-formitem {
+  margin-bottom: 28px;
+  display: flex;
+}
+mor-formitem .form-item-name {
+  font-size: 16px;
+  color: #17212D;
+  padding: 0;
+  min-height: 42px;
+}
+mor-formitem .form-item-name .required {
+  color: #D64431;
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: top;
+}
+mor-formitem .form-item-note {
+  font-size: 12px;
+  color: #7C8BA0;
+  padding: 0;
+  display: block;
+}
+mor-formitem .form-name {
+  font-size: 14px !important;
+  color: #45505C !important;
+}
+mor-formdivider {
+  width: 100%;
+  height: 1px;
+  background: #E2E8EE;
+  display: block;
+  margin: 24px 0;
+}
 mor-textinput {
   position: relative;
   z-index: 1;
@@ -38201,9 +38234,26 @@ mor-textinput .cleanbtn {
 mor-textinput > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-textinput > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-textinput > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-textinput > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-textinput > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-textinput > .error-message:empty {
+  display: none;
 }
 mor-textinput input {
   box-sizing: border-box;
@@ -38409,9 +38459,26 @@ mor-textarea .cleanbtn {
 mor-textarea > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-textarea > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-textarea > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-textarea > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-textarea > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-textarea > .error-message:empty {
+  display: none;
 }
 mor-textarea textarea {
   box-sizing: border-box;
@@ -38509,9 +38576,26 @@ mor-texteditor .cleanbtn {
 mor-texteditor > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-texteditor > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-texteditor > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-texteditor > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-texteditor > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-texteditor > .error-message:empty {
+  display: none;
 }
 mor-texteditor.has-cleanbtn {
   padding-bottom: 26px;
@@ -38994,9 +39078,26 @@ mor-switch .cleanbtn {
 mor-switch > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-switch > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-switch > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-switch > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-switch > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-switch > .error-message:empty {
+  display: none;
 }
 mor-switch.mor-switch.has-cleanbtn {
   padding-bottom: 26px;
@@ -39833,9 +39934,26 @@ mor-rate .cleanbtn {
 mor-rate > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-rate > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-rate > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-rate > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-rate > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-rate > .error-message:empty {
+  display: none;
 }
 mor-rate .rate-wrap {
   display: flex;
@@ -39987,9 +40105,26 @@ mor-counter .cleanbtn {
 mor-counter > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-counter > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-counter > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-counter > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-counter > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-counter > .error-message:empty {
+  display: none;
 }
 mor-counter .counter-wrap {
   display: flex;
@@ -40216,9 +40351,26 @@ mor-select .cleanbtn {
 mor-select > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-select > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-select > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-select > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-select > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-select > .error-message:empty {
+  display: none;
 }
 mor-select .select-area {
   position: relative;
@@ -40926,9 +41078,26 @@ mor-checkbox .cleanbtn {
 mor-checkbox > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-checkbox > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-checkbox > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-checkbox > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-checkbox > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-checkbox > .error-message:empty {
+  display: none;
 }
 mor-checkbox > .il {
   display: flex;
@@ -42229,9 +42398,26 @@ mor-radio .cleanbtn {
 mor-radio > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-radio > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-radio > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-radio > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-radio > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-radio > .error-message:empty {
+  display: none;
 }
 mor-radio > .il {
   display: flex;
@@ -43449,6 +43635,39 @@ mor-transfer {
   box-sizing: border-box;
   height: 100%;
 }
+mor-transfer.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-transfer .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-transfer > .form-name {
+  color: #303C4B;
+  font-size: 16px;
+  -webkit-user-select: text;
+  text-align: left;
+}
+mor-transfer > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-transfer > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-transfer > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-transfer > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-transfer > .error-message:empty {
+  display: none;
+}
 mor-transfer .transfer-wrap {
   display: flex;
   align-items: stretch;
@@ -43580,22 +43799,6 @@ mor-transfer .transfer-controls {
 }
 mor-transfer .transfer-controls > mor-btn > span {
   vertical-align: middle;
-}
-mor-transfer.has-cleanbtn {
-  padding-bottom: 20px;
-}
-mor-transfer .cleanbtn {
-  position: absolute;
-  right: 0;
-  font-size: 12px;
-  margin-top: 1px;
-}
-mor-transfer > .form-name {
-  color: #303C4B;
-  font-size: 16px;
-  margin-bottom: 0.5em;
-  -webkit-user-select: text;
-  text-align: left;
 }
 mor-transfer.si-m .transfer-source-list,
 mor-transfer.si-m .transfer-target-list {
@@ -43893,9 +44096,26 @@ mor-cascader .cleanbtn {
 mor-cascader > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-cascader > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-cascader > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-cascader > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-cascader > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-cascader > .error-message:empty {
+  display: none;
 }
 mor-cascader .cascader-wrap .cascader-input {
   box-sizing: border-box;
@@ -44064,9 +44284,26 @@ mor-multiinput .cleanbtn {
 mor-multiinput > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-multiinput > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-multiinput > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-multiinput > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-multiinput > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-multiinput > .error-message:empty {
+  display: none;
 }
 mor-multiinput > .itemlist {
   border: 1px #E6E6E6 solid;
@@ -44309,9 +44546,26 @@ mor-multiform .cleanbtn {
 mor-multiform > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-multiform > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-multiform > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-multiform > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-multiform > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-multiform > .error-message:empty {
+  display: none;
 }
 mor-multiform > .itemlist {
   border: 1px #E6E6E6 solid;
@@ -44666,9 +44920,26 @@ mor-slider .cleanbtn {
 mor-slider > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-slider > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-slider > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-slider > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-slider > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-slider > .error-message:empty {
+  display: none;
 }
 mor-slider > .form-name {
   padding: 0 10px;
@@ -45048,9 +45319,26 @@ mor-timepicker .cleanbtn {
 mor-timepicker > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-timepicker > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-timepicker > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-timepicker > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-timepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-timepicker > .error-message:empty {
+  display: none;
 }
 mor-timepicker .wrap {
   display: flex;
@@ -45183,9 +45471,26 @@ mor-datepicker .cleanbtn {
 mor-datepicker > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-datepicker > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-datepicker > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-datepicker > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-datepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-datepicker > .error-message:empty {
+  display: none;
 }
 mor-datepicker .wrap {
   display: flex;
@@ -45466,9 +45771,26 @@ mor-datetimepicker .cleanbtn {
 mor-datetimepicker > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-datetimepicker > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-datetimepicker > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-datetimepicker > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-datetimepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-datetimepicker > .error-message:empty {
+  display: none;
 }
 .mor-private-datepicker-popover .timepicker {
   width: 100%;
@@ -45506,9 +45828,26 @@ mor-upload .cleanbtn {
 mor-upload > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-upload > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-upload > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-upload > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-upload > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-upload > .error-message:empty {
+  display: none;
 }
 mor-upload[type='button'] {
   -webkit-appearance: none;
@@ -45621,6 +45960,16 @@ mor-upload .upload-button + .filelist .file-item .mo-loader:hover {
   cursor: pointer;
   color: #808080;
 }
+mor-upload .upload-box + .filelist .file-item .preview-file,
+mor-upload .upload-button + .filelist .file-item .preview-file {
+  display: none;
+}
+mor-upload .upload-box + .filelist .file-item:hover i.mo-icon,
+mor-upload .upload-button + .filelist .file-item:hover i.mo-icon,
+mor-upload .upload-box + .filelist .file-item:hover .mo-loader,
+mor-upload .upload-button + .filelist .file-item:hover .mo-loader {
+  display: block;
+}
 mor-upload .upload-box + .filelist .file-item.done i.mo-icon.uploading,
 mor-upload .upload-button + .filelist .file-item.done i.mo-icon.uploading,
 mor-upload .upload-box + .filelist .file-item.done i.mo-icon.reupload,
@@ -45652,6 +46001,64 @@ mor-upload .upload-button + .filelist .file-item.fail i.mo-icon.reupload,
 mor-upload .upload-box + .filelist .file-item.fail i.mo-icon.remove,
 mor-upload .upload-button + .filelist .file-item.fail i.mo-icon.remove {
   display: block;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail,
+mor-upload .upload-button + .filelist .file-item.thumbnail {
+  background: #FFFFFF;
+  padding: 0;
+  margin: 4px;
+  height: 100px;
+  width: 100px;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail img,
+mor-upload .upload-button + .filelist .file-item.thumbnail img {
+  width: 100%;
+  height: 100%;
+  border: none !important;
+  padding: 0;
+  margin-bottom: 0;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail .upload-operate,
+mor-upload .upload-button + .filelist .file-item.thumbnail .upload-operate {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail .upload-operate > .mo-icon,
+mor-upload .upload-button + .filelist .file-item.thumbnail .upload-operate > .mo-icon {
+  font-size: 20px;
+  color: #D6DDE5;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail:hover .upload-operate,
+mor-upload .upload-button + .filelist .file-item.thumbnail:hover .upload-operate {
+  display: flex;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail .preview-file,
+mor-upload .upload-button + .filelist .file-item.thumbnail .preview-file {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail .preview-file > .mo-icon-file-o,
+mor-upload .upload-button + .filelist .file-item.thumbnail .preview-file > .mo-icon-file-o {
+  font-size: 32px;
+  display: block;
+  color: #9a9a9a !important;
+}
+mor-upload .upload-box + .filelist .file-item.thumbnail.fail .preview-file,
+mor-upload .upload-button + .filelist .file-item.thumbnail.fail .preview-file {
+  background: #fae6e4;
+}
+mor-upload .upload-box + .filelist.thumbnail-list,
+mor-upload .upload-button + .filelist.thumbnail-list {
+  display: flex;
+  flex-flow: row wrap;
 }
 mor-upload .upload-input .file-item.done:hover,
 mor-upload .upload-box .file-item.done:hover,
@@ -46128,9 +46535,26 @@ mor-colorpicker .cleanbtn {
 mor-colorpicker > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-colorpicker > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-colorpicker > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-colorpicker > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-colorpicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-colorpicker > .error-message:empty {
+  display: none;
 }
 mor-colorpicker .alpha-bg-1,
 mor-colorpicker .alpha-bg-2,
@@ -46596,9 +47020,26 @@ mor-imagemap .cleanbtn {
 mor-imagemap > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-imagemap > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-imagemap > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-imagemap > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-imagemap > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-imagemap > .error-message:empty {
+  display: none;
 }
 mor-imagemap .imagemap-operate {
   display: block;
@@ -46890,6 +47331,112 @@ mor-imagemap.st-readonly .imagemap-operate:hover {
 .mor-imagemap-map.imagemap-disabled .zonearea .zone .bottomright {
   cursor: default !important;
 }
+mor-form {
+  display: block;
+  position: relative;
+}
+mor-form > .error-message {
+  display: none;
+}
+mor-form.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-form .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-form > .form-name {
+  color: #303C4B;
+  font-size: 16px;
+  -webkit-user-select: text;
+  text-align: left;
+}
+mor-form > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-form > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-form > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-form > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-form > .error-message:empty {
+  display: none;
+}
+mor-form > .form-name {
+  text-align: center;
+  font-size: 20px;
+}
+mor-form > .form-name + .form-body {
+  margin-top: 20px;
+}
+mor-form > .form-note {
+  text-align: center;
+  font-size: 14px;
+}
+mor-form > .form-note + .form-body {
+  margin-top: 20px;
+}
+mor-form.label-pos-head-left mor-formitem,
+mor-form.label-pos-head-right mor-formitem,
+mor-form.label-pos-head-center mor-formitem {
+  flex-direction: column;
+}
+mor-form.label-pos-head-left mor-formitem .form-item-name,
+mor-form.label-pos-head-right mor-formitem .form-item-name,
+mor-form.label-pos-head-center mor-formitem .form-item-name,
+mor-form.label-pos-head-left mor-formitem .form-item-con,
+mor-form.label-pos-head-right mor-formitem .form-item-con,
+mor-form.label-pos-head-center mor-formitem .form-item-con {
+  width: 100% !important;
+}
+mor-form.label-pos-head-left mor-formitem .form-item-name {
+  text-align: left;
+}
+mor-form.label-pos-head-center mor-formitem .form-item-name {
+  text-align: center;
+}
+mor-form.label-pos-head-right mor-formitem .form-item-name {
+  text-align: right;
+}
+mor-form.label-pos-left-align mor-formitem .form-item-name,
+mor-form.label-pos-center-align mor-formitem .form-item-name,
+mor-form.label-pos-right-align mor-formitem .form-item-name,
+mor-form.label-pos-center mor-formitem .form-item-name {
+  padding-right: 1em;
+  width: 20%;
+  flex-shrink: 0;
+}
+mor-form.label-pos-left-align mor-formitem .form-item-con,
+mor-form.label-pos-center-align mor-formitem .form-item-con,
+mor-form.label-pos-right-align mor-formitem .form-item-con,
+mor-form.label-pos-center mor-formitem .form-item-con {
+  flex-grow: 1;
+  width: 100%;
+}
+mor-form.label-pos-left-align mor-formitem .form-item-name {
+  text-align: left;
+}
+mor-form.label-pos-center-align mor-formitem .form-item-name {
+  text-align: center;
+}
+mor-form.label-pos-right-align mor-formitem .form-item-name {
+  text-align: right;
+}
+mor-form.label-pos-center mor-formitem {
+  align-items: center;
+}
+mor-form.label-pos-center mor-formitem .form-item-name {
+  text-align: center;
+}
 mor-private-timepicker {
   display: block;
   width: 100%;
@@ -46907,9 +47454,26 @@ mor-private-timepicker .cleanbtn {
 mor-private-timepicker > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-private-timepicker > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-private-timepicker > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-private-timepicker > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-private-timepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-private-timepicker > .error-message:empty {
+  display: none;
 }
 .mor-private-timepicker-popover {
   width: 160px;
@@ -47040,9 +47604,26 @@ mor-private-datepicker .cleanbtn {
 mor-private-datepicker > .form-name {
   color: #303C4B;
   font-size: 16px;
-  margin-bottom: 0.5em;
   -webkit-user-select: text;
   text-align: left;
+}
+mor-private-datepicker > .form-name + .form-body {
+  margin-top: 8px;
+}
+mor-private-datepicker > .form-note {
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-private-datepicker > .form-note + .form-body {
+  margin-top: 8px;
+}
+mor-private-datepicker > .error-message {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #D64431;
+}
+mor-private-datepicker > .error-message:empty {
+  display: none;
 }
 .mor-private-datepicker-popover {
   min-width: calc(280px + 2px);

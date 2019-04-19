@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :value-type="valueType"
         :allow-alpha="allowAlpha"
         :palettes="palettes"
@@ -15,8 +17,9 @@
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
     
-    <div class="preview-wrap" :id="'mor-colorpicker-wrap-'+uiid">
+    <div class="preview-wrap form-body" :id="'mor-colorpicker-wrap-'+uiid">
         <div
             class="preview"
         >
@@ -255,6 +258,7 @@
 
     </morning-popover>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-colorpicker>

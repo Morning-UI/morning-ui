@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreClass, moveClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :can-move="canMove"
         :max="max"
@@ -18,8 +20,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="itemlist">
+    <div class="itemlist form-body">
 
         <div
             class="multiinput-item"
@@ -99,6 +102,7 @@
         
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-multiinput>

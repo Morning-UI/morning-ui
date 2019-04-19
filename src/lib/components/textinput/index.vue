@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :hide-value="hideValue"
         :prepend="prepend"
@@ -19,8 +21,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="textinput-wrap">
+    <div class="textinput-wrap form-body">
 
         <div class="input-group-addon" v-html="conf.prepend" v-show="!!conf.prepend"></div>
 
@@ -63,6 +66,7 @@
         
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-textinput>

@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :list="list"
         :source-title="sourceTitle"
         :target-title="targetTitle"
@@ -19,8 +21,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="transfer-wrap">
+    <div class="transfer-wrap form-body">
 
         <div class="transfer-source-list">
             <div class="transfer-title">
@@ -157,6 +160,7 @@
 
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-transfer>

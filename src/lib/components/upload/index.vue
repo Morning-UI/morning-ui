@@ -4,10 +4,12 @@
         :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :item-name="itemName"
         :type="type"
@@ -20,6 +22,8 @@
         :keep-origin-name="keepOriginName"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
+        :listType="conf.listType"
+        :showList="conf.showList"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -27,6 +31,7 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
     <input
         type="file"
@@ -40,12 +45,137 @@
         @change="_getFiles"
     />
 
-    <template v-if="conf.type === 'input'">
-        <div class="upload-wrap upload-input">
-            <div class="inside-name" v-if="!!conf.insideName">
-                <morning-center class="fill">{{conf.insideName}}</morning-center>
+    <div class="form-body">
+        <template v-if="conf.type === 'input'">
+            <div class="upload-wrap upload-input">
+                <div class="inside-name" v-if="!!conf.insideName">
+                    <morning-center class="fill">{{conf.insideName}}</morning-center>
+                </div>
+                <div class="filelist">
+                    <template v-for="(item, index) in data.showFiles">
+                        <a
+                            class="file-item"
+                            target="_blank;"
+                            href="javascript:;"
+                            :index="index"
+                            :key="index"
+                            :class="item.classList"
+
+                            @click="_openFile(item.path)"
+                        >
+                            <i
+                                class="progress"
+                                :class="item.classList"
+                                :style="{
+                                    width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
+                                }"
+                            ></i>
+
+                            <span>
+                                {{item.name}}
+                            </span>
+
+                            <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
+                            <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
+                            <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                        </a>
+                    </template>
+
+                    <label
+                        class="upload-file"
+                        v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
+                        @click="_emitFilePicker"
+                        :id="'mor-upload-input-remote-'+uiid"
+                    >
+                        <i class="mo-icon mo-icon-upload"></i>
+                        <span>上传{{conf.itemName}}</span>
+                    </label>
+
+                    <morning-popover :target="'#mor-upload-input-remote-'+uiid" v-if="conf.allowUrl">
+                        <div class="url-upload-box">
+                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                        </div>
+                    </morning-popover>
+                </div>
+                <div class="ismax-note" v-if="ismax">
+                    <morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center>
+                </div>
+
+                <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
             </div>
-            <div class="filelist">
+        </template>
+
+        <template v-else-if="conf.type === 'box'">
+            <div class="upload-wrap upload-box">
+                <template v-if="data.showFiles.length === 0">
+                    <div class="upload-box-con">
+                        <label
+                            class="upload-file"
+                            @click="_emitFilePicker"
+                            :id="'mor-upload-box-remote-'+uiid"
+                        >
+                            <i class="mo-icon mo-icon-upload"></i>
+                            <span>上传{{conf.itemName}}</span>
+                        </label>
+
+                        <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
+                            <div class="url-upload-box">
+                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                            </div>
+                        </morning-popover>
+                    </div>
+                    <div class="upload-box-note">
+                        <morning-center class="fill">{{conf.insideName}}</morning-center>
+                    </div>
+                </template>
+
+                <template v-else>
+                    <div
+                        v-if="data.showFiles[data.currentPreview]"
+                        class="upload-box-preview"
+                        :class="data.showFiles[data.currentPreview].classList"
+                    >
+                        <i
+                            class="progress"
+                            :class="data.showFiles[data.currentPreview].classList"
+                            :style="{
+                                width : (data.showFiles[data.currentPreview].classList.uploading) ? ((30 + (+data.showFiles[data.currentPreview].progress) * 60) + '%') : 'auto'
+                            }"
+                        ></i>
+
+                        <img
+                            v-if="
+                                data.showFiles[data.currentPreview].status === 'done' &&
+                                _isImage(data.showFiles[data.currentPreview])
+                            "
+                            :src="data.showFiles[data.currentPreview].path" class="upload-box-preview-img" />
+                        <div v-else class="upload-box-preview-file">
+                            <i class="mo-icon mo-icon-file-o"></i>
+                            <span>{{data.showFiles[data.currentPreview].name}}</span>
+
+                            <div class="upload-failed-operate">
+                                <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(data.currentPreview)"></i>
+                                <i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(data.currentPreview)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-box-operate" v-if="conf.state !== 'readonly' && conf.state !== 'disabled' && data.showFiles[data.currentPreview].status === 'done'">
+                        <a href="javascript:;" title="打开文件" @click="_openFile(data.showFiles[data.currentPreview].path)">
+                            <i class="mo-icon mo-icon-fullscreen"></i>
+                        </a>
+                        <a href="javascript:;" title="上传文件" @click="_emitFilePicker" v-if="!ismax">
+                            <i class="mo-icon mo-icon-upload"></i>
+                        </a>
+                        <a href="javascript:;" title="删除文件" class="del" @click="_removeFile(data.currentPreview)">
+                            <i class="mo-icon mo-icon-del"></i>
+                        </a>
+                        <div class="ismax-note" v-if="ismax"><morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center></div>
+                    </div>
+                </template>
+
+                <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
+            </div>
+            <div class="filelist" v-if="conf.showList && data.showFiles.length > 0" :class="{'thumbnail-list' : conf.listType === 'thumbnail'}">
                 <template v-for="(item, index) in data.showFiles">
                     <a
                         class="file-item"
@@ -53,7 +183,72 @@
                         href="javascript:;"
                         :index="index"
                         :key="index"
-                        :class="item.classList"
+                        :class="[{
+                            current : index === data.currentPreview,
+                            thumbnail : conf.listType === 'thumbnail'
+                        }, item.classList]"
+
+                        @click="(conf.state === 'readonly' || conf.state === 'disabled') ? _openFile(item.path) : _switchPreview(index)"
+                    >
+                        <i
+                            class="progress"
+                            :class="item.classList"
+                            :style="{
+                                width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
+                            }"
+                        ></i>
+
+                        <span v-if="conf.listType === 'file'">
+                            {{item.name}}
+                        </span>
+
+                        <img :src="item.path" v-if="conf.listType === 'thumbnail' && item.status === 'done' && _isImage(item)" />
+                        <div class="preview-file" v-else>
+                            <i class="mo-icon mo-icon-file-o"></i>
+                        </div>
+
+                        <div class="upload-operate">
+                            <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
+                            <i class="mo-icon mo-icon-refresh reupload" v-if="item.status === 'fail'" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                            <i class="mo-icon mo-icon-close remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
+                            <i class="mo-icon mo-icon-arrow-up uploading" v-if="item.status === 'uploading'" title="上传中"></i>
+                        </div>
+                    </a>
+                </template>
+            </div>
+        </template>
+
+        <template v-else-if="conf.type === 'button'">
+            <morning-popover :target="'#mor-upload-button-remote-'+uiid" v-if="conf.allowUrl">
+                <div class="url-upload-box">
+                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                </div>
+            </morning-popover>
+            <morning-btn
+                color="light-gray"
+                class="upload-file upload-button"
+                :state="ismax ? 'disabled' : conf.state"
+                :id="'mor-upload-button-remote-'+uiid"
+                @emit="_emitFilePicker"
+            >
+                <i class="mo-icon mo-icon-upload"></i>
+                <span v-if="data.dragover">松开鼠标上传</span>
+                <span v-else>上传{{conf.itemName}}</span>
+            </morning-btn>
+            <div class="filelist" v-if="conf.showList && (data.showFiles.length > 0 || !!conf.insideName)" :class="{'thumbnail-list' : conf.listType === 'thumbnail'}">
+                <div class="inside-name" v-if="!!conf.insideName">{{conf.insideName}}</div>
+                <div class="inside-name max" v-if="ismax">最多只能上传{{conf.max}}个文件</div>
+                <template v-for="(item, index) in data.showFiles">
+                    <a
+                        class="file-item"
+                        target="_blank;"
+                        href="javascript:;"
+                        :index="index"
+                        :key="index"
+                        :class="[{
+                            current : index === data.currentPreview,
+                            thumbnail : conf.listType === 'thumbnail'
+                        }, item.classList]"
 
                         @click="_openFile(item.path)"
                     >
@@ -65,198 +260,28 @@
                             }"
                         ></i>
 
-                        <span>
+                        <span v-if="conf.listType === 'file'">
                             {{item.name}}
                         </span>
 
-                        <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
-                        <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
-                        <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                        <img :src="item.path" v-if="conf.listType === 'thumbnail' && item.status === 'done' && _isImage(item)" />
+                        <div class="preview-file" v-else>
+                            <i class="mo-icon mo-icon-file-o"></i>
+                        </div>
+
+                        <div class="upload-operate">
+                            <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
+                            <i class="mo-icon mo-icon-refresh reupload" v-if="item.status === 'fail'" title="重新上传" @click.prevent.stop="_upload(index)"></i>
+                            <i class="mo-icon mo-icon-close remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
+                            <i class="mo-icon mo-icon-arrow-up uploading" v-if="item.status === 'uploading'" title="上传中"></i>
+                        </div>
                     </a>
                 </template>
-
-                <label
-                    class="upload-file"
-                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
-                    @click="_emitFilePicker"
-                    :id="'mor-upload-input-remote-'+uiid"
-                >
-                    <i class="mo-icon mo-icon-upload"></i>
-                    <span>上传{{conf.itemName}}</span>
-                </label>
-
-                <morning-popover :target="'#mor-upload-input-remote-'+uiid" v-if="conf.allowUrl">
-                    <div class="url-upload-box">
-                        <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
-                    </div>
-                </morning-popover>
             </div>
-            <div class="ismax-note" v-if="ismax">
-                <morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center>
-            </div>
+        </template>
+    </div>
 
-            <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
-        </div>
-    </template>
-
-    <template v-else-if="conf.type === 'box'">
-        <div class="upload-wrap upload-box">
-            <template v-if="data.showFiles.length === 0">
-                <div class="upload-box-con">
-                    <label
-                        class="upload-file"
-                        @click="_emitFilePicker"
-                        :id="'mor-upload-box-remote-'+uiid"
-                    >
-                        <i class="mo-icon mo-icon-upload"></i>
-                        <span>上传{{conf.itemName}}</span>
-                    </label>
-
-                    <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
-                        <div class="url-upload-box">
-                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
-                        </div>
-                    </morning-popover>
-                </div>
-                <div class="upload-box-note">
-                    <morning-center class="fill">{{conf.insideName}}</morning-center>
-                </div>
-            </template>
-
-            <template v-else>
-                <div
-                    v-if="data.showFiles[data.currentPreview]"
-                    class="upload-box-preview"
-                    :class="data.showFiles[data.currentPreview].classList"
-                >
-                    <i
-                        class="progress"
-                        :class="data.showFiles[data.currentPreview].classList"
-                        :style="{
-                            width : (data.showFiles[data.currentPreview].classList.uploading) ? ((30 + (+data.showFiles[data.currentPreview].progress) * 60) + '%') : 'auto'
-                        }"
-                    ></i>
-
-                    <img v-if="data.showFiles[data.currentPreview].file && /^image/.test(data.showFiles[data.currentPreview].file.type) && data.showFiles[data.currentPreview].status === 'done'" :src="data.showFiles[data.currentPreview].path" class="upload-box-preview-img" />
-                    <div v-else class="upload-box-preview-file">
-                        <i class="mo-icon mo-icon-file-o"></i>
-                        <span>{{data.showFiles[data.currentPreview].name}}</span>
-
-                        <div class="upload-failed-operate">
-                            <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(data.currentPreview)"></i>
-                            <i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(data.currentPreview)"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="upload-box-operate" v-if="conf.state !== 'readonly' && conf.state !== 'disabled' && data.showFiles[data.currentPreview].status === 'done'">
-                    <a href="javascript:;" title="打开文件" @click="_openFile(data.showFiles[data.currentPreview].path)">
-                        <i class="mo-icon mo-icon-fullscreen"></i>
-                    </a>
-                    <a href="javascript:;" title="上传文件" @click="_emitFilePicker" v-if="!ismax">
-                        <i class="mo-icon mo-icon-upload"></i>
-                    </a>
-                    <a href="javascript:;" title="删除文件" class="del" @click="_removeFile(data.currentPreview)">
-                        <i class="mo-icon mo-icon-del"></i>
-                    </a>
-                    <div class="ismax-note" v-if="ismax"><morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center></div>
-                </div>
-            </template>
-
-            <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
-        </div>
-        <div class="filelist" v-if="data.showFiles.length > 0">
-            <template v-for="(item, index) in data.showFiles">
-                <a
-                    class="file-item"
-                    target="_blank;"
-                    href="javascript:;"
-                    :index="index"
-                    :key="index"
-                    :class="[{
-                        current : index === data.currentPreview
-                    }, item.classList]"
-
-                    @click="(conf.state === 'readonly' || conf.state === 'disabled') ? _openFile(item.path) : _switchPreview(index)"
-                >
-                    <i
-                        class="progress"
-                        :class="item.classList"
-                        :style="{
-                            width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
-                        }"
-                    ></i>
-
-                    <span>
-                        {{item.name}}
-                    </span>
-
-                    <div class="upload-operate">
-                        <i class="mo-icon mo-icon-fullscreen openfile" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
-                        <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
-                        <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
-                        <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
-                    </div>
-                </a>
-            </template>
-        </div>
-    </template>
-
-    <template v-else-if="conf.type === 'button'">
-        <morning-popover :target="'#mor-upload-button-remote-'+uiid" v-if="conf.allowUrl">
-            <div class="url-upload-box">
-                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
-            </div>
-        </morning-popover>
-        <morning-btn
-            color="light-gray"
-            class="upload-file upload-button"
-            :state="ismax ? 'disabled' : conf.state"
-            :id="'mor-upload-button-remote-'+uiid"
-            @emit="_emitFilePicker"
-        >
-            <i class="mo-icon mo-icon-upload"></i>
-            <span v-if="data.dragover">松开鼠标上传</span>
-            <span v-else>上传{{conf.itemName}}</span>
-        </morning-btn>
-        <div class="filelist" v-if="data.showFiles.length > 0 || !!conf.insideName">
-            <div class="inside-name" v-if="!!conf.insideName">{{conf.insideName}}</div>
-            <div class="inside-name max" v-if="ismax">最多只能上传{{conf.max}}个文件</div>
-            <template v-for="(item, index) in data.showFiles">
-                <a
-                    class="file-item"
-                    target="_blank;"
-                    href="javascript:;"
-                    :index="index"
-                    :key="index"
-                    :class="[{
-                        current : index === data.currentPreview
-                    }, item.classList]"
-
-                    @click="_openFile(item.path)"
-                >
-                    <i
-                        class="progress"
-                        :class="item.classList"
-                        :style="{
-                            width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
-                        }"
-                    ></i>
-
-                    <span>
-                        {{item.name}}
-                    </span>
-
-                    <div class="upload-operate">
-                        <i class="mo-icon mo-icon-fullscreen openfile" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
-                        <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent.stop="_upload(index)"></i>
-                        <i class="mo-icon mo-icon-close remove" @click.prevent.stop="_removeFile(index)"></i>
-                        <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
-                    </div>
-                </a>
-            </template>
-        </div>
-    </template>
-
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-upload>
@@ -320,6 +345,15 @@ export default {
         allowDrag : {
             type : Boolean,
             default : false
+        },
+        listType : {
+            type : String,
+            default : 'file',
+            validator : (value => ['filename', 'thumbnail'].indexOf(value) !== -1)
+        },
+        showList : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -337,7 +371,9 @@ export default {
                 keepOverLimitFile : this.keepOverLimitFile,
                 keepOriginName : this.keepOriginName,
                 allowUrl : this.allowUrl,
-                allowDrag : this.allowDrag
+                allowDrag : this.allowDrag,
+                listType : this.listType,
+                showList : this.showList
             };
 
         },
@@ -394,6 +430,21 @@ export default {
             value = this._maxFilter(value);
 
             return value;
+
+        },
+        _isImage : function (file) {
+
+            if ((
+                file.file && /^image/.test(file.file.type)
+            ) || (
+                file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path)
+            )) {
+
+                return true;
+
+            }
+
+            return false;
 
         },
         _maxFilter : function (value) {

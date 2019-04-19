@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :format="format"
         :align="align"
@@ -26,8 +28,9 @@
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="wrap">
+    <div class="wrap form-body">
         <div class="input-group-addon" v-if="conf.isRange">
             <i class='mo-icon mo-icon-time-co'></i>
         </div>
@@ -139,6 +142,7 @@
         </template>
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-timepicker>
