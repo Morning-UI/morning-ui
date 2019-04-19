@@ -18,6 +18,25 @@
     
     ### 更新记录
 
+    ### 0.12.23 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月19日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.23" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.23/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.23/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 修复
+    
+    - 修复`ui-table`开启`multi-select`配置后可能导致`col-set`配置失效的问题
+    - 修复`ui-form`在某些情况下`label-width`无效的情况
+
+    ---
+
     ### 0.12.22 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
