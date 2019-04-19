@@ -27915,6 +27915,11 @@ exports.default = {
                         _colIndex = this.data.titleKeys.indexOf(set.col);
                     }
 
+                    if (this.conf.multiSelect) {
+
+                        _colIndex++;
+                    }
+
                     var $rows = this.$el.querySelector('.' + colType + '-table');
 
                     if ($rows) {
@@ -28226,6 +28231,11 @@ exports.default = {
 
                         colType = 'title';
                         _colIndex2 = this.data.titleKeys.indexOf(set.col);
+                    }
+
+                    if (this.conf.multiSelect) {
+
+                        _colIndex2++;
                     }
 
                     if (_colIndex2 !== -1) {
@@ -29108,6 +29118,7 @@ exports.default = {
 
             _this2.$watch('data.listDataJson', function () {
 
+                _this2._refreshTable();
                 _this2.$emit('list-change');
             });
         });
@@ -35656,6 +35667,13 @@ exports.default = {
 
                 this.data.itemParentForm = null;
             }
+        }
+    },
+    updated: function updated() {
+
+        if (this.data.itemParentForm) {
+
+            this.data.itemParentForm._syncLabelWidth();
         }
     },
     mounted: function mounted() {
@@ -49483,6 +49501,34 @@ exports.default = {
 
             this._unlinkChildFormKey(formVm.conf.formKey);
         },
+        _syncLabelWidth: function _syncLabelWidth() {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+
+                for (var _iterator = Object.values(this.data.items)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var itemVm = _step.value;
+
+
+                    itemVm._labelWidth = this.conf.labelWidth;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        },
         _syncValue: function _syncValue() {
             var first = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
@@ -49558,13 +49604,13 @@ exports.default = {
                         return resolve(true);
                     }
 
-                    var _iteratorNormalCompletion = true;
-                    var _didIteratorError = false;
-                    var _iteratorError = undefined;
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
 
                     try {
-                        for (var _iterator = errors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                            var formErr = _step.value;
+                        for (var _iterator2 = errors[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var formErr = _step2.value;
 
 
                             if (formKey && formKey === formErr.field && _this2.data.forms[formErr.field]) {
@@ -49578,16 +49624,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError = true;
-                        _iteratorError = err;
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                                _iterator.return();
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
                             }
                         } finally {
-                            if (_didIteratorError) {
-                                throw _iteratorError;
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
                             }
                         }
                     }
@@ -49608,32 +49654,8 @@ exports.default = {
         var _this3 = this;
 
         this.$watch('conf.labelWidth', function () {
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
 
-            try {
-
-                for (var _iterator2 = Object.values(_this3.data.items)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var itemVm = _step2.value;
-
-
-                    itemVm._labelWidth = _this3.conf.labelWidth;
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
-            }
+            _this3._syncLabelWidth();
         }, {
             immediate: true
         });

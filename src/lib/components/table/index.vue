@@ -495,6 +495,12 @@ export default {
                     colIndex = this.data.titleKeys.indexOf(set.col);
 
                 }
+
+                if (this.conf.multiSelect) {
+
+                    colIndex++;
+
+                }
                
                 let $rows = this.$el.querySelector(`.${colType}-table`);
 
@@ -662,6 +668,12 @@ export default {
 
                     colType = 'title';
                     colIndex = this.data.titleKeys.indexOf(set.col);
+
+                }
+
+                if (this.conf.multiSelect) {
+
+                    colIndex++;
 
                 }
 
@@ -1427,6 +1439,7 @@ export default {
 
             this.$watch('data.listDataJson', () => {
 
+                this._refreshTable();
                 this.$emit('list-change');
 
             });
