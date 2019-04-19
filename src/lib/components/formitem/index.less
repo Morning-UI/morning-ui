@@ -1,11 +1,31 @@
 mor-formitem{
-    margin-bottom: @fontSize*0.75;
+    margin-bottom: @fontSize*1.75;
     display: flex;
 
     .form-item-name{
         font-size: @fontSize;
         color: @colorBlack;
-        padding: 0.5em 0;
+        padding: 0;
+        min-height: @formHeight;
+
+        .required{
+            color: @colorDanger;
+            font-size: @fontSize*0.8125;
+            font-weight: 700;
+            vertical-align: top;
+        }
+    }
+
+    .form-item-note{
+        font-size: @fontSize*0.75;
+        color: @colorBlue;
+        padding: 0;
+        display: block;
+    }
+
+    .form-name{
+        font-size: @fontSize*0.875 !important;
+        color: @colorExtraLightBlack !important;
     }
 
     // default status

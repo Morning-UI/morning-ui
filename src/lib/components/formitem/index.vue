@@ -4,9 +4,18 @@
         :class="[]"
 
         :label="label"
+        :note="note"
+        :required="required"
+        :_label-width="_labelWidth"
     >
-        <div class="form-item-name">
-            {{conf.label}}
+        <div
+            class="form-item-name"
+            :style="{
+                width : conf._labelWidth
+            }"
+        >
+            <span>{{conf.label}} <span class="required" v-if="conf.required">*</span></span>
+            <span class="form-item-note" v-html="conf.note"></span>
         </div>
 
         <div class="form-item-con">
@@ -23,13 +32,28 @@ export default {
         label : {
             type : String,
             default : ''
+        },
+        note : {
+            type : String,
+            default : ''
+        },
+        required : {
+            type : Boolean,
+            default : false
+        },
+        _labelWidth : {
+            type : String,
+            default : '20%'
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                label : this.label
+                label : this.label,
+                note : this.note,
+                required : this.required,
+                _labelWidth : this._labelWidth
             };
 
         }
@@ -38,41 +62,57 @@ export default {
 
         return {
             data : {
-                parentForm : null,
+                itemParentForm : null
             }
         };
 
     },
     methods : {
-        _linkForm : function (vm) {
+        _linkItemToForm : function (vm) {
 
-            if (vm.$parent.uiname === 'form') {
+            if (vm.$parent && vm.$parent.uiname === 'form') {
 
-                this.data.parentForm = vm.$parent;
-                vm.$parent._linkFormitem(this);
+                this.data.itemParentForm = vm.$parent;
+                vm.$parent._linkChildFormItem(this);
 
             } else if (vm.$parent) {
 
-                this._linkForm(vm.$parent);
+                this._linkItemToForm(vm.$parent);
 
             } else {
 
-                this.data.parentForm = null;
+                this.data.itemParentForm = null;
+
+            }
+
+        },
+        _unlinkItemToForm : function (vm) {
+
+            if (vm.$parent && vm.$parent.uiname === 'form') {
+
+                this.data.itemParentForm = null;
+                vm.$parent._unlinkChildFormItem(this);
+
+            } else if (vm.$parent) {
+
+                this._unlinkItemToForm(vm.$parent);
+
+            } else {
+
+                this.data.itemParentForm = null;
 
             }
 
         }
     },
-    updated : function () {
-
-        this._linkForm(this);
-
-    },
     mounted : function () {
 
-        this._linkForm(this);
+        this._linkItemToForm(this);
 
-        this.$watch('data.parentForm')
+    },
+    beforeDestroy : function () {
+
+        this._unlinkItemToForm(this);
 
     }
 };

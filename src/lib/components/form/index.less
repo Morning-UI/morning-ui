@@ -1,5 +1,30 @@
 mor-form{
     display: block;
+    position: relative;
+
+    > .error-message{
+        display: none;
+    }
+
+    .setup-form();
+
+    > .form-name{
+        text-align: center;
+        font-size: @fontSize*1.25;
+
+        + .form-body{
+            margin-top: @fontSize*1.25;
+        }
+    }
+
+    > .form-note{
+        text-align: center;
+        font-size: @fontSize*0.875;
+
+        + .form-body{
+            margin-top: @fontSize*1.25;
+        }
+    }
 
     &.label-pos-head-left,
     &.label-pos-head-right,
@@ -9,7 +34,7 @@ mor-form{
 
             .form-item-name,
             .form-item-con{
-                width: 100%;
+                width: 100% !important;
             }
         }
     }
@@ -40,15 +65,18 @@ mor-form{
 
     &.label-pos-left-align,
     &.label-pos-center-align,
-    &.label-pos-right-align{
+    &.label-pos-right-align,
+    &.label-pos-center{
         mor-formitem{
             .form-item-name{
                 padding-right: 1em;
-                flex-grow: 1;
+                width: 20%;
+                flex-shrink: 0;
             }
 
             .form-item-con{
                 flex-grow: 1;
+                width: 100%;
             }
         }
     }

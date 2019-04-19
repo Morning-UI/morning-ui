@@ -622,6 +622,58 @@
     }
     :::
 
+    :::vue
+    @name:list-type
+    ---
+    #config
+    >conf-desc
+    上传后文件列表的显示类型，仅在`type`为`box`和`button`时有效。
+    >conf-accept
+    `'filename'` : 显示文件名<br>`'thumbnail'` : 显示缩略图
+    >conf-type
+    String
+    >conf-default
+    `'filename'`
+    ---
+    #demo
+    >desc
+    上传后显示文件缩略图列表。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="box" list-type="thumbnail"></ui-upload>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`type="button"`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="button" list-type="thumbnail"></ui-upload>
+    </div>
+    :::
+
+    :::vue
+    @name:show-list
+    ---
+    #config
+    >conf-desc
+    是否显示上传文件列表。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    显示上传文件列表。
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" type="box" :show-list="false"></ui-upload>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

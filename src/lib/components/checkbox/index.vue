@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, colorClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :accept-html="acceptHtml"
         :list="list"
         :disabled-options="disabledOptions"
@@ -18,8 +20,9 @@
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="il">
+    <div class="il form-body">
         <template v-for="(name, key) in conf.list">
 
             <template v-if="data.value.indexOf(key) !== -1">
@@ -87,6 +90,7 @@
         </template>
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-checkbox>

@@ -190,15 +190,31 @@
     > .form-name{
         color: @colorFormTextNote;
         font-size: @fontSize;
-        margin-bottom: 0.5em;
         -webkit-user-select: text;
         text-align: left;
+
+        + .form-body{
+            margin-top: @fontSize*0.5;
+        }
+    }
+
+    > .form-note{
+        font-size: @fontSize*0.75;
+        color: @colorLightBlue;
+
+        + .form-body{
+            margin-top: @fontSize*0.5;
+        }
     }
 
     > .error-message{
         font-size: @fontSize*0.75;
         margin-top: @fontSize*0.25;
         color: @colorDanger;
+
+        &:empty{
+            display: none;
+        }
     }
 }
 

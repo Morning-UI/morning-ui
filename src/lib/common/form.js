@@ -10,6 +10,10 @@ export default UI => UI.extend({
             type : String,
             default : undefined
         },
+        formNote : {
+            type : String,
+            default : undefined
+        },
         formKey : {
             type : String,
             default : undefined
@@ -39,6 +43,7 @@ export default UI => UI.extend({
 
             return {
                 formName : this.formName,
+                formNote : this.formNote,
                 formKey : this.formKey,
                 group : this.group,
                 hideName : this.hideName,
@@ -73,7 +78,8 @@ export default UI => UI.extend({
             isForm : true,
             data : {
                 value : undefined
-            }
+            },
+            parentForm : null
         };
 
     },
@@ -264,6 +270,42 @@ export default UI => UI.extend({
             return value;
 
         },
+        _linkForm : function (vm) {
+
+            if (vm.$parent && vm.$parent.uiname === 'form') {
+
+                this.data.parentForm = vm.$parent;
+                vm.$parent._linkChildForm(this);
+
+            } else if (vm.$parent) {
+
+                this._linkForm(vm.$parent);
+
+            } else {
+
+                this.data.parentForm = null;
+
+            }
+
+        },
+        _unlinkForm : function (vm) {
+
+            if (vm.$parent && vm.$parent.uiname === 'form') {
+
+                this.data.parentForm = vm.$parent;
+                vm.$parent._unlinkChildForm(this);
+
+            } else if (vm.$parent) {
+
+                this._unlinkForm(vm.$parent);
+
+            } else {
+
+                this.data.parentForm = null;
+
+            }
+
+        },
         set : function (value) {
 
             return this._set(value);
@@ -447,10 +489,21 @@ export default UI => UI.extend({
         });
 
     },
+    updated : function () {
+
+        this._linkForm(this);
+
+    },
+    mounted : function () {
+
+        this._linkForm(this);
+
+    },
     beforeDestroy : function () {
 
         this._syncGroup(true);
         this._syncGroupVm([], this.conf.group);
+        this._unlinkForm(this);
 
     }
 });

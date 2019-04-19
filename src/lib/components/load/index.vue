@@ -5,19 +5,40 @@
 
         :done-time="doneTime"
         :note="note"
+        :only-hidden="onlyHidden"
     >
 
-    <template v-if="data.loaded">
-        <template v-if="data.fail">
-            <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
+    <template v-if="!conf.onlyHidden">
+        <template v-if="data.loaded">
+            <template v-if="data.fail">
+                <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
+            </template>
+            <template v-else>
+                <slot></slot>
+            </template>
         </template>
         <template v-else>
-            <slot></slot>
+            <morning-center class="fill">
+                <div class="loading">
+                    <div class="mo-loader">
+                        <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                            <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+                        </svg>
+                    </div>
+                    <p>
+                        {{conf.note}}
+                    </p>
+                </div>
+            </morning-center>
         </template>
     </template>
-    <template v-else>
 
-        <morning-center class="fill">
+    <template v-else>
+        <div v-show="data.loaded && !data.fail">
+            <slot></slot>
+        </div>
+        <morning-center class="fill loadfail" v-show="data.loaded && data.fail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
+        <morning-center class="fill" v-show="!data.loaded">
             <div class="loading">
                 <div class="mo-loader">
                     <svg class="mo-loader-circular" viewBox="25 25 50 50">
@@ -48,6 +69,10 @@ export default {
         note : {
             type : String,
             default : ''
+        },
+        onlyHidden : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -55,7 +80,8 @@ export default {
 
             return {
                 doneTime : this.doneTime,
-                note : this.note
+                note : this.note,
+                onlyHidden : this.onlyHidden
             };
 
         }

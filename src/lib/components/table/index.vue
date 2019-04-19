@@ -19,6 +19,7 @@
         :cell-set="cellSet"
         :export-csv="exportCsv"
         :csv-name="csvName"
+        :custom-sort="customSort"
         :multi-sort="multiSort"
         :highlight-row="highlightRow"
         :multi-select="multiSelect"
@@ -211,6 +212,10 @@ export default {
             type : String,
             default : undefined
         },
+        customSort : {
+            type : Boolean,
+            default : false
+        },
         multiSort : {
             type : Boolean,
             default : false
@@ -256,6 +261,7 @@ export default {
                 cellSet : this.cellSet,
                 exportCsv : this.exportCsv,
                 csvName : this.csvName,
+                customSort : this.customSort,
                 multiSort : this.multiSort,
                 highlightRow : this.highlightRow,
                 multiSelect : this.multiSelect,
@@ -381,7 +387,13 @@ export default {
 
             this.data.sort[col].type = type;
 
-            this._sort();
+            if (this.conf.customSort) {
+                
+                this._sort();
+
+            }
+    
+            this.$emit('col-sort', col, this.data.sort[col].type);
 
         },
         _sort : function () {

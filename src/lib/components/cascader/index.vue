@@ -4,10 +4,12 @@
         :class="[formClass, sizeClass, stateClass, moreCLass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :list="list"
         :submenu-trigger="submenuTrigger"
@@ -16,8 +18,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="cascader-wrap">
+    <div class="cascader-wrap form-body">
         <div class="cascader-input" :id="'mor-cascader-input-'+uiid">
             <span
                 class="note"
@@ -89,6 +92,7 @@
         </morning-popover>
     </div>
 
+    <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-cascader>
@@ -346,6 +350,15 @@ export default {
         }
 
         this._computedMenuList();
+
+        this.$watch('conf.list', () => {
+
+            this._computedMenuList();
+
+        }, {
+            immediate : true
+        });
+
         this._refreshValueName();
 
         this.$watch('data.menuSelected', () => {

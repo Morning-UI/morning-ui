@@ -4,6 +4,7 @@
         :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
+        :form-note="formNote"
         :form-key="formKey"
         :group="group"
         :hide-name="hideName"
@@ -20,8 +21,9 @@
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+    <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="textinput-wrap">
+    <div class="textinput-wrap form-body">
 
         <div class="input-group-addon" v-html="conf.prepend" v-show="!!conf.prepend"></div>
 
