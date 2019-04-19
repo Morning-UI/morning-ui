@@ -166,6 +166,15 @@ export default {
             this._unlinkChildFormKey(formVm.conf.formKey);
 
         },
+        _syncLabelWidth : function () {
+
+            for (let itemVm of Object.values(this.data.items)) {
+
+                itemVm._labelWidth = this.conf.labelWidth;
+
+            }
+
+        },
         _syncValue : function (first = false) {
 
             let value = this.get() || {};
@@ -288,11 +297,7 @@ export default {
 
         this.$watch('conf.labelWidth', () => {
 
-            for (let itemVm of Object.values(this.data.items)) {
-
-                itemVm._labelWidth = this.conf.labelWidth;
-
-            }
+            this._syncLabelWidth();
 
         }, {
             immediate : true
