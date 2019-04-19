@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.12.22
+
+#### 新特性
+
+- 新增`ui-form`组件
+- 所有表单组件新增`form-note`配置
+- `ui-load`新增 `only-hidden`配置
+- `ui-upload`新增`list-type`配置
+- `ui-table`新增`custom-sort`配置及`col-sort`事件
+
+#### 改进
+
+- 现在`ui-select`的`hide-selected`配置默认改为`false`
+
+#### 修复
+
+- 修复`ui-cascader`组件当`list`配置动态改变时出现显示错误的问题
+- 修复`ui-select`组件在特殊情况下可能会无法显示的问题
+
+__升级注意事项__
+
+- `ui-select`组件的`hide-selected`配置默认由`true`变为`false`
+
+
 ## 0.12.21
 
 `2019年4月14日`
