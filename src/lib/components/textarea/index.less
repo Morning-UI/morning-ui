@@ -47,6 +47,32 @@ mor-textarea{
         .setup-scrollbar();
     }
 
+    &.can-resize-both,
+    &.can-resize-horizontal,
+    &.can-resize-vertical{
+        textarea{
+            transition: none;
+        }
+    }
+
+    &.can-resize-both{
+        textarea{
+            resize: both;
+        }
+    }
+
+    &.can-resize-horizontal{
+        textarea{
+            resize: horizontal;
+        }
+    }
+
+    &.can-resize-vertical{
+        textarea{
+            resize: vertical;
+        }
+    }
+
     &.has-maxlength{
         padding-bottom: @fontSize*1.25;
     }

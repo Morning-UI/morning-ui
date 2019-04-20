@@ -150,6 +150,36 @@
     </div>
     :::
 
+    :::vue
+    @name:resize
+    ---
+    #config
+    >conf-desc
+    段落输入框是否可以通过拖拽调整大小。
+    >conf-accept
+    `'none'` : 无法调整<br>`'both'` : 可调整<br>`'vertical'` : 仅调整高度<br>`'horizontal'` : 仅调整宽度
+    >conf-type
+    String
+    >conf-default
+    `'none'`
+    ---
+    #demo
+    >desc
+    段落输入框可调整大小。
+    >tpl
+    <div style="width:300px;">
+        <ui-textarea :maxlength="50" resize="both"></ui-textarea>
+    </div>
+    ---
+    #demo
+    >desc
+    段落输入框可调整高度。
+    >tpl
+    <div style="width:300px;">
+        <ui-textarea :maxlength="50" resize="vertical"></ui-textarea>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

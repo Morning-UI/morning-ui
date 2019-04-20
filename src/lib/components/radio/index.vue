@@ -102,7 +102,7 @@ export default {
         },
         type : {
             type : String,
-            default : 'check',
+            default : 'point',
             validator : (value => ['check', 'point', 'button'].indexOf(value) !== -1)
         }
     },
