@@ -38522,6 +38522,20 @@ mor-textarea textarea::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+mor-textarea.can-resize-both textarea,
+mor-textarea.can-resize-horizontal textarea,
+mor-textarea.can-resize-vertical textarea {
+  transition: none;
+}
+mor-textarea.can-resize-both textarea {
+  resize: both;
+}
+mor-textarea.can-resize-horizontal textarea {
+  resize: horizontal;
+}
+mor-textarea.can-resize-vertical textarea {
+  resize: vertical;
+}
 mor-textarea.has-maxlength {
   padding-bottom: 20px;
 }
@@ -46004,16 +46018,21 @@ mor-upload .upload-button + .filelist .file-item.fail i.mo-icon.remove {
 }
 mor-upload .upload-box + .filelist .file-item.thumbnail,
 mor-upload .upload-button + .filelist .file-item.thumbnail {
-  background: #FFFFFF;
+  background: #FFFFFF !important;
   padding: 0;
   margin: 4px;
   height: 100px;
   width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px #E2E8EE solid;
+  overflow: hidden;
 }
 mor-upload .upload-box + .filelist .file-item.thumbnail img,
 mor-upload .upload-button + .filelist .file-item.thumbnail img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   border: none !important;
   padding: 0;
   margin-bottom: 0;

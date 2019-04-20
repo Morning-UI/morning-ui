@@ -36059,6 +36059,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 exports.default = {
     origin: 'Form',
@@ -36083,6 +36084,13 @@ exports.default = {
         maxlength: {
             type: Number,
             default: Infinity
+        },
+        resize: {
+            type: String,
+            default: 'none',
+            validator: function validator(value) {
+                return ['none', 'both', 'vertical', 'horizontal'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -36093,15 +36101,25 @@ exports.default = {
                 rows: this.rows,
                 autoSize: this.autoSize,
                 maxRows: this.maxRows,
-                maxlength: this.maxlength
+                maxlength: this.maxlength,
+                resize: this.resize
             };
         },
         moreClass: function moreClass() {
 
-            return {
+            var classes = {};
+
+            classes = {
                 'has-maxlength': this.conf.maxlength !== Infinity,
                 'is-maxlength': this.conf.maxlength === (this.data.value || '').length
             };
+
+            if (this.conf.resize !== 'none') {
+
+                classes['can-resize-' + this.conf.resize] = true;
+            }
+
+            return classes;
         },
         placeholder: function placeholder() {
 
@@ -40284,7 +40302,7 @@ exports.default = {
         },
         type: {
             type: String,
-            default: 'check',
+            default: 'point',
             validator: function validator(value) {
                 return ['check', 'point', 'button'].indexOf(value) !== -1;
             }
@@ -61177,7 +61195,8 @@ var render = function() {
         rows: _vm.rows,
         "auto-size": _vm.autoSize,
         "max-rows": _vm.maxRows,
-        maxlength: _vm.maxlength
+        maxlength: _vm.maxlength,
+        resize: _vm.resize
       }
     },
     [
@@ -77226,7 +77245,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.23',
+    version: '0.12.24',
     map: {}
 };
 
