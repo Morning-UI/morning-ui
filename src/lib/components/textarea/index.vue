@@ -15,6 +15,7 @@
         :auto-size="autoSize"
         :max-rows="maxRows"
         :maxlength="maxlength"
+        :resize="resize"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -76,6 +77,11 @@ export default {
         maxlength : {
             type : Number,
             default : Infinity
+        },
+        resize : {
+            type : String,
+            default : 'none',
+            validator : (value => ['none', 'both', 'vertical', 'horizontal'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -86,16 +92,27 @@ export default {
                 rows : this.rows,
                 autoSize : this.autoSize,
                 maxRows : this.maxRows,
-                maxlength : this.maxlength
+                maxlength : this.maxlength,
+                resize : this.resize
             };
 
         },
         moreClass : function () {
 
-            return {
+            let classes = {};
+
+            classes = {
                 'has-maxlength' : this.conf.maxlength !== Infinity,
                 'is-maxlength' : this.conf.maxlength === (this.data.value || '').length
             };
+
+            if (this.conf.resize !== 'none') {
+
+                classes[`can-resize-${this.conf.resize}`] = true;
+
+            }
+
+            return classes;
 
         },
         placeholder : function () {

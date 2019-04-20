@@ -18,6 +18,37 @@
     
     ### 更新记录
 
+    ### 0.12.24 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月20日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.24" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.24/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.24/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-textarea`新增`resize`配置，可以通过拖拽调整输入框大小
+    
+    #### 改进
+    
+    - `ui-radio`的选中样式默认从`check`调整为`point`
+    
+    #### 修复
+    
+    - 修复`ui-upload`在绑定`v-model`后无法批量上传文件的问题
+    - 修复`ui-upload`的`list-type`配置为`thumbnail`，图片文件缩略图无法等比缩放的问题
+    
+    <ui-label color="primary">升级注意事项</ui-label>
+    
+    - `ui-radio`的`type`配置的默认值由`check`改为`point`
+    
+    ---
+
     ### 0.12.23 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">

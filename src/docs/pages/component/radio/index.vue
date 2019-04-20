@@ -243,11 +243,11 @@
     >conf-type
     String
     >conf-default
-    `'check'`
+    `'point'`
     ---
     #demo
     >desc
-    小圆点类型的单选框。
+    选中标记类型的单选框。
     >tpl
     <div style="width:300px;">
         <ui-radio
@@ -259,7 +259,7 @@
                 Shaun : 'Shaun Moynihan',
                 Emir : 'Emir Ayouni'
             }"
-            type="point"
+            type="check"
         ></ui-radio>
     </div>
     ---
