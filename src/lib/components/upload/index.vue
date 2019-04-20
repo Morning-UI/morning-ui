@@ -844,6 +844,12 @@ export default {
         },
         _set : function (value, ignoreDisable = false, origin = false) {
 
+            if (this.isUploading() && !origin) {
+
+                return this;
+
+            }
+
             if (this.conf.state === 'disabled' && !ignoreDisable) {
 
                 this._syncFilesFromValue();
