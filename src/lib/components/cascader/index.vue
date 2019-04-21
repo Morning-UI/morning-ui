@@ -63,7 +63,7 @@
         >
     
             <ul>
-                <li v-for="item in data.searchResult" v-html="item.name" @click="_pickSearchResult(item.value)"></li>
+                <li v-for="(item, index) in data.searchResult" :key="index" v-html="item.name" @click="_pickSearchResult(item.value)"></li>
                 <li v-if="data.searchResult.length === 0" class="nomatch">
                     <morning-empty note="无匹配项目"></morning-empty>
                 </li>
@@ -242,7 +242,7 @@ export default {
 
                     if (list[key].children) {
 
-                        genMap(list[key].children, curItem)
+                        genMap(list[key].children, curItem);
 
                     } else {
 
@@ -274,8 +274,7 @@ export default {
                 valueName : '',
                 searchResult : [],
                 textinputEmpty : true,
-                textinputFocus : false,
-                inSearch : false
+                textinputFocus : false
             }
         };
 
@@ -525,7 +524,6 @@ export default {
             }
 
             this.$refs[`mor-cascader-popover-${this.uiid}`].toggle(false);
-            this.data.inSearch = true;
 
             let results = [];
             let keyword = this.$refs[`mor-cascader-ti-${this.uiid}`].get();
@@ -572,7 +570,9 @@ export default {
 
                 }
 
-                while (res = regexp.exec(item.name)) {
+                res = regexp.exec(item.name);
+
+                while (res) {
 
                     result.match = true;
                     result.pos.push({
@@ -581,6 +581,7 @@ export default {
                     });
                     result.name = item.name;
                     result.value = item.value;
+                    res = regexp.exec(item.name);
 
                 }
 
