@@ -447,6 +447,14 @@ export default {
         this.$watch('conf.disabledOptions', () => {
 
             this._refreshDisabledOptions();
+    
+            if (this.data.$parentVm) {
+    
+                this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey, this.uiid);
+
+            }
+        
+            this._syncLinkedChild();
 
         }, {
             deep : true,

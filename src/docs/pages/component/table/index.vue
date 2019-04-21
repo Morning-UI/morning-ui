@@ -1244,9 +1244,7 @@
                 {col : 'job', name : 'Job'}
             ],
             rowset : [
-                {row : 0},
-                {row : 1, disableSelection: true},
-                {row : 2}
+                {row : 1, disableSelection: true}
             ]
         }
     }

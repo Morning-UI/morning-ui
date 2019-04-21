@@ -10,7 +10,7 @@
                         :list="{checked:''}"
                         :id="'mor-table-row-checked-'+uiid+'-all'"
                         :ref="'mor-table-row-checked-'+uiid+'-all'"
-                        :disabledOptions="(conf.rowSet[0] && conf.rowSet[0].disableSelection) ? ['checked'] : undefined"
+                        :disabledOptions="(rowSetMap[0] && rowSetMap[0].disableSelection) ? ['checked'] : undefined"
                     ></morning-checkbox>
                 </th>
                 <template v-for="key of data.titleKeys">
@@ -57,7 +57,7 @@
                         :ref="'mor-table-row-checked-'+uiid+'-'+line"
                         @value-change="_syncRowChecked(line)"
                         :parent="'#mor-table-row-checked-'+uiid+'-all:checked'"
-                        :disabledOptions="(conf.rowSet[line] && conf.rowSet[line].disableSelection) ? ['checked'] : undefined"
+                        :disabledOptions="(rowSetMap[line + 1] && rowSetMap[line + 1].disableSelection) ? ['checked'] : undefined"
                     ></morning-checkbox>
                 </td>
                 <template v-for="(col, index) of row">
@@ -94,6 +94,7 @@ export default {
         'conf',
         'data',
         'colSetMap',
+        'rowSetMap',
         'sortCol',
         'uiid'
     ],
