@@ -17,12 +17,35 @@ mor-cascader{
             color: @colorFormText !important;
             cursor: pointer;
 
+            mor-textinput{
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+
+                &.empty-content{
+                    .textinput-wrap{
+                        input{
+                            background: transparent;
+                        }
+                    }
+                }
+
+                .textinput-wrap{
+                    input{
+                        border: none;
+                    }
+                }
+            }
+
             > .note{
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 display: inline-block;
                 overflow: hidden;
                 padding: 0 1em;
+                position: relative;
+                z-index: 1;
 
                 &.has-selected{
                     color: @colorFormTextFocus;
@@ -41,6 +64,7 @@ mor-cascader{
                 transform: rotateX(0deg);
                 transition: transform 0.2s;
                 text-indent: 1px;
+                z-index: 2;
             }
         }
     }
@@ -61,6 +85,15 @@ mor-cascader{
                 height: @formHeight;
                 line-height: @formHeight;
 
+                .textinput-wrap{
+                    height: @formHeight - 2px;
+                    line-height: @formHeight - 2px;
+
+                    input{
+                        height: @formHeight - 2px;
+                    }
+                }
+
                 > .note{
                     width: calc(100% - 2em);
                     font-size: @formInputFontSize;
@@ -80,6 +113,15 @@ mor-cascader{
                 height: @formHeightS;
                 line-height: @formHeightS;
 
+                .textinput-wrap{
+                    height: @formHeightS - 2px;
+                    line-height: @formHeightS - 2px;
+
+                    input{
+                        height: @formHeightS - 2px;
+                    }
+                }
+
                 > .note{
                     width: calc(100% - 2em);
                     font-size: @formInputFontSizeS;
@@ -98,6 +140,15 @@ mor-cascader{
             .cascader-input{
                 height: @formHeightXs;
                 line-height: @formHeightXs;
+
+                .textinput-wrap{
+                    height: @formHeightXs - 2px;
+                    line-height: @formHeightXs - 2px;
+
+                    input{
+                        height: @formHeightXs - 2px;
+                    }
+                }
 
                 > .note{
                     width: calc(100% - 2em);
@@ -186,6 +237,37 @@ mor-cascader{
                         cursor: not-allowed;
                     }
                 }
+            }
+        }
+    }
+}
+
+.mor-cascader-search-result{
+    .popover-con .popover-body{
+        padding: @fontSize*0.5 0;
+        overflow-y: auto;
+        max-height: 30px*6;
+
+        .setup-scrollbar();
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li{
+            padding: 0.5em 1em;
+            font-size: @fontSize*0.875;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        li:not(.nomatch){
+            &:hover{
+                cursor: pointer;
+                background: @colorExtraLightSilver;
             }
         }
     }
