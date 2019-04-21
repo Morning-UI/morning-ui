@@ -8,10 +8,16 @@ mor-calendar{
             padding: 0.5em 0;
             position: relative;
 
-            .prev,
-            .next{
+            .prev-box,
+            .next-box{
                 position: absolute;
                 top: 0.5em;
+            }
+
+            .prev,
+            .next,
+            .prev-year,
+            .next-year{
                 font-size: @fontSize*0.875;
                 color: @colorExtraLightBlue;
 
@@ -21,11 +27,11 @@ mor-calendar{
                 }
             }
 
-            .prev{
+            .prev-box{
                 left: 0.5em;
             }
 
-            .next{
+            .next-box{
                 right: 0.5em;
             }
 

@@ -4087,7 +4087,12 @@ var GlobalEvent = {
                     document.removeEventListener(evtName, evtNamespace.handler);
                 }
 
-                delete morning._globalEventListener[evtName];
+                delete morning._globalEventListener[evtName][this.$options.name + '.' + methodName];
+
+                if (Object.keys(morning._globalEventListener[evtName]).length === 0) {
+
+                    delete morning._globalEventListener[evtName];
+                }
             }
         }
     }
@@ -27429,6 +27434,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(12);
 
@@ -27632,6 +27641,38 @@ exports.default = {
 
             return setmap;
         },
+        rowSetMap: function rowSetMap() {
+
+            var setmap = {};
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.conf.rowSet[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var row = _step2.value;
+
+
+                    setmap[row.row] = row;
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            return setmap;
+        },
         moreClass: function moreClass() {
 
             var classes = {};
@@ -27769,28 +27810,28 @@ exports.default = {
                         newMainRows.reverse();
                     }
 
-                    var _iteratorNormalCompletion3 = true;
-                    var _didIteratorError3 = false;
-                    var _iteratorError3 = undefined;
+                    var _iteratorNormalCompletion4 = true;
+                    var _didIteratorError4 = false;
+                    var _iteratorError4 = undefined;
 
                     try {
-                        for (var _iterator3 = newMainRows[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                            var row = _step3.value;
+                        for (var _iterator4 = newMainRows[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                            var row = _step4.value;
 
 
                             newSubRows.push(row._sub);
                         }
                     } catch (err) {
-                        _didIteratorError3 = true;
-                        _iteratorError3 = err;
+                        _didIteratorError4 = true;
+                        _iteratorError4 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                _iterator3.return();
+                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                _iterator4.return();
                             }
                         } finally {
-                            if (_didIteratorError3) {
-                                throw _iteratorError3;
+                            if (_didIteratorError4) {
+                                throw _iteratorError4;
                             }
                         }
                     }
@@ -27805,28 +27846,28 @@ exports.default = {
                 }
             };
 
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
 
             try {
 
-                for (var _iterator2 = this.data.sortCol[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var col = _step2.value;
+                for (var _iterator3 = this.data.sortCol[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var col = _step3.value;
 
                     _loop(col);
                 }
             } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
                     }
                 } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
                     }
                 }
             }
@@ -27835,13 +27876,13 @@ exports.default = {
 
             var $cells = this.$el.querySelectorAll('td:not(.no-data), th');
 
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
 
             try {
-                for (var _iterator4 = $cells[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var $cell = _step4.value;
+                for (var _iterator5 = $cells[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var $cell = _step5.value;
 
 
                     if ($cell) {
@@ -27850,13 +27891,13 @@ exports.default = {
                         $cell.style.minWidth = '';
                         $cell.style.maxWidth = '';
 
-                        var _iteratorNormalCompletion5 = true;
-                        var _didIteratorError5 = false;
-                        var _iteratorError5 = undefined;
+                        var _iteratorNormalCompletion6 = true;
+                        var _didIteratorError6 = false;
+                        var _iteratorError6 = undefined;
 
                         try {
-                            for (var _iterator5 = $cell.classList.values()[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                                var className = _step5.value;
+                            for (var _iterator6 = $cell.classList.values()[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                                var className = _step6.value;
 
 
                                 if (/^(cell-align-|cco-|cell-disabled)/.test(className)) {
@@ -27865,45 +27906,45 @@ exports.default = {
                                 }
                             }
                         } catch (err) {
-                            _didIteratorError5 = true;
-                            _iteratorError5 = err;
+                            _didIteratorError6 = true;
+                            _iteratorError6 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                    _iterator5.return();
+                                if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                                    _iterator6.return();
                                 }
                             } finally {
-                                if (_didIteratorError5) {
-                                    throw _iteratorError5;
+                                if (_didIteratorError6) {
+                                    throw _iteratorError6;
                                 }
                             }
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                        _iterator4.return();
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
                     }
                 } finally {
-                    if (_didIteratorError4) {
-                        throw _iteratorError4;
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
                     }
                 }
             }
         },
         _setCol: function _setCol() {
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
 
-                for (var _iterator6 = this.conf.colSet[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var set = _step6.value;
+                for (var _iterator7 = this.conf.colSet[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var set = _step7.value;
 
 
                     var colType = 'normal';
@@ -27926,13 +27967,13 @@ exports.default = {
 
                         $rows = $rows.querySelectorAll('tbody tr, thead tr');
 
-                        var _iteratorNormalCompletion7 = true;
-                        var _didIteratorError7 = false;
-                        var _iteratorError7 = undefined;
+                        var _iteratorNormalCompletion8 = true;
+                        var _didIteratorError8 = false;
+                        var _iteratorError8 = undefined;
 
                         try {
-                            for (var _iterator7 = $rows[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                                var $row = _step7.value;
+                            for (var _iterator8 = $rows[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                                var $row = _step8.value;
 
 
                                 var $cell = $row.querySelectorAll('td, th')[_colIndex];
@@ -27968,32 +28009,32 @@ exports.default = {
                                 }
                             }
                         } catch (err) {
-                            _didIteratorError7 = true;
-                            _iteratorError7 = err;
+                            _didIteratorError8 = true;
+                            _iteratorError8 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                                    _iterator7.return();
+                                if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                                    _iterator8.return();
                                 }
                             } finally {
-                                if (_didIteratorError7) {
-                                    throw _iteratorError7;
+                                if (_didIteratorError8) {
+                                    throw _iteratorError8;
                                 }
                             }
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                        _iterator6.return();
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
                     }
                 } finally {
-                    if (_didIteratorError6) {
-                        throw _iteratorError6;
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
                     }
                 }
             }
@@ -28002,13 +28043,13 @@ exports.default = {
 
             var result = [];
 
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            var _iteratorNormalCompletion9 = true;
+            var _didIteratorError9 = false;
+            var _iteratorError9 = undefined;
 
             try {
-                for (var _iterator8 = colset[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var item = _step8.value;
+                for (var _iterator9 = colset[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                    var item = _step9.value;
 
 
                     result.push((0, _extend2.default)({
@@ -28028,16 +28069,16 @@ exports.default = {
                     }, item));
                 }
             } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
+                _didIteratorError9 = true;
+                _iteratorError9 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
+                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                        _iterator9.return();
                     }
                 } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
+                    if (_didIteratorError9) {
+                        throw _iteratorError9;
                     }
                 }
             }
@@ -28045,14 +28086,14 @@ exports.default = {
             return result;
         },
         _setRow: function _setRow() {
-            var _iteratorNormalCompletion9 = true;
-            var _didIteratorError9 = false;
-            var _iteratorError9 = undefined;
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
 
             try {
 
-                for (var _iterator9 = this.conf.rowSet[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                    var set = _step9.value;
+                for (var _iterator10 = this.conf.rowSet[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                    var set = _step10.value;
 
 
                     var rowIndex = +set.row;
@@ -28068,42 +28109,16 @@ exports.default = {
                         var $normalCell = $normalRow.querySelectorAll('th, td');
                         var $cells = [];
 
-                        var _iteratorNormalCompletion10 = true;
-                        var _didIteratorError10 = false;
-                        var _iteratorError10 = undefined;
-
-                        try {
-                            for (var _iterator10 = $titleCell[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                                var $cell = _step10.value;
-
-
-                                $cells.push($cell);
-                            }
-                        } catch (err) {
-                            _didIteratorError10 = true;
-                            _iteratorError10 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                                    _iterator10.return();
-                                }
-                            } finally {
-                                if (_didIteratorError10) {
-                                    throw _iteratorError10;
-                                }
-                            }
-                        }
-
                         var _iteratorNormalCompletion11 = true;
                         var _didIteratorError11 = false;
                         var _iteratorError11 = undefined;
 
                         try {
-                            for (var _iterator11 = $normalCell[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                                var _$cell = _step11.value;
+                            for (var _iterator11 = $titleCell[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                                var $cell = _step11.value;
 
 
-                                $cells.push(_$cell);
+                                $cells.push($cell);
                             }
                         } catch (err) {
                             _didIteratorError11 = true;
@@ -28125,8 +28140,34 @@ exports.default = {
                         var _iteratorError12 = undefined;
 
                         try {
-                            for (var _iterator12 = $cells[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                                var _$cell2 = _step12.value;
+                            for (var _iterator12 = $normalCell[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                                var _$cell = _step12.value;
+
+
+                                $cells.push(_$cell);
+                            }
+                        } catch (err) {
+                            _didIteratorError12 = true;
+                            _iteratorError12 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion12 && _iterator12.return) {
+                                    _iterator12.return();
+                                }
+                            } finally {
+                                if (_didIteratorError12) {
+                                    throw _iteratorError12;
+                                }
+                            }
+                        }
+
+                        var _iteratorNormalCompletion13 = true;
+                        var _didIteratorError13 = false;
+                        var _iteratorError13 = undefined;
+
+                        try {
+                            for (var _iterator13 = $cells[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                                var _$cell2 = _step13.value;
 
 
                                 if (set.style) {
@@ -28145,32 +28186,32 @@ exports.default = {
                                 }
                             }
                         } catch (err) {
-                            _didIteratorError12 = true;
-                            _iteratorError12 = err;
+                            _didIteratorError13 = true;
+                            _iteratorError13 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                                    _iterator12.return();
+                                if (!_iteratorNormalCompletion13 && _iterator13.return) {
+                                    _iterator13.return();
                                 }
                             } finally {
-                                if (_didIteratorError12) {
-                                    throw _iteratorError12;
+                                if (_didIteratorError13) {
+                                    throw _iteratorError13;
                                 }
                             }
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError9 = true;
-                _iteratorError9 = err;
+                _didIteratorError10 = true;
+                _iteratorError10 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                        _iterator9.return();
+                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                        _iterator10.return();
                     }
                 } finally {
-                    if (_didIteratorError9) {
-                        throw _iteratorError9;
+                    if (_didIteratorError10) {
+                        throw _iteratorError10;
                     }
                 }
             }
@@ -28179,13 +28220,13 @@ exports.default = {
 
             var result = [];
 
-            var _iteratorNormalCompletion13 = true;
-            var _didIteratorError13 = false;
-            var _iteratorError13 = undefined;
+            var _iteratorNormalCompletion14 = true;
+            var _didIteratorError14 = false;
+            var _iteratorError14 = undefined;
 
             try {
-                for (var _iterator13 = colset[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                    var item = _step13.value;
+                for (var _iterator14 = colset[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                    var item = _step14.value;
 
 
                     result.push((0, _extend2.default)({
@@ -28196,16 +28237,16 @@ exports.default = {
                     }, item));
                 }
             } catch (err) {
-                _didIteratorError13 = true;
-                _iteratorError13 = err;
+                _didIteratorError14 = true;
+                _iteratorError14 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                        _iterator13.return();
+                    if (!_iteratorNormalCompletion14 && _iterator14.return) {
+                        _iterator14.return();
                     }
                 } finally {
-                    if (_didIteratorError13) {
-                        throw _iteratorError13;
+                    if (_didIteratorError14) {
+                        throw _iteratorError14;
                     }
                 }
             }
@@ -28213,14 +28254,14 @@ exports.default = {
             return result;
         },
         _setCell: function _setCell() {
-            var _iteratorNormalCompletion14 = true;
-            var _didIteratorError14 = false;
-            var _iteratorError14 = undefined;
+            var _iteratorNormalCompletion15 = true;
+            var _didIteratorError15 = false;
+            var _iteratorError15 = undefined;
 
             try {
 
-                for (var _iterator14 = this.conf.cellSet[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                    var set = _step14.value;
+                for (var _iterator15 = this.conf.cellSet[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                    var set = _step15.value;
 
 
                     var colType = 'normal';
@@ -28273,16 +28314,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError14 = true;
-                _iteratorError14 = err;
+                _didIteratorError15 = true;
+                _iteratorError15 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion14 && _iterator14.return) {
-                        _iterator14.return();
+                    if (!_iteratorNormalCompletion15 && _iterator15.return) {
+                        _iterator15.return();
                     }
                 } finally {
-                    if (_didIteratorError14) {
-                        throw _iteratorError14;
+                    if (_didIteratorError15) {
+                        throw _iteratorError15;
                     }
                 }
             }
@@ -28291,13 +28332,13 @@ exports.default = {
 
             var result = [];
 
-            var _iteratorNormalCompletion15 = true;
-            var _didIteratorError15 = false;
-            var _iteratorError15 = undefined;
+            var _iteratorNormalCompletion16 = true;
+            var _didIteratorError16 = false;
+            var _iteratorError16 = undefined;
 
             try {
-                for (var _iterator15 = colset[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-                    var item = _step15.value;
+                for (var _iterator16 = colset[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                    var item = _step16.value;
 
 
                     result.push((0, _extend2.default)({
@@ -28309,16 +28350,16 @@ exports.default = {
                     }, item));
                 }
             } catch (err) {
-                _didIteratorError15 = true;
-                _iteratorError15 = err;
+                _didIteratorError16 = true;
+                _iteratorError16 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion15 && _iterator15.return) {
-                        _iterator15.return();
+                    if (!_iteratorNormalCompletion16 && _iterator16.return) {
+                        _iterator16.return();
                     }
                 } finally {
-                    if (_didIteratorError15) {
-                        throw _iteratorError15;
+                    if (_didIteratorError16) {
+                        throw _iteratorError16;
                     }
                 }
             }
@@ -28482,14 +28523,14 @@ exports.default = {
             }
 
             if (this.conf.showColName) {
-                var _iteratorNormalCompletion16 = true;
-                var _didIteratorError16 = false;
-                var _iteratorError16 = undefined;
+                var _iteratorNormalCompletion17 = true;
+                var _didIteratorError17 = false;
+                var _iteratorError17 = undefined;
 
                 try {
 
-                    for (var _iterator16 = this.data[type + 'Keys'][Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
-                        var key = _step16.value;
+                    for (var _iterator17 = this.data[type + 'Keys'][Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+                        var key = _step17.value;
 
 
                         var set = this.colSetMap[key];
@@ -28506,16 +28547,16 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError16 = true;
-                    _iteratorError16 = err;
+                    _didIteratorError17 = true;
+                    _iteratorError17 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion16 && _iterator16.return) {
-                            _iterator16.return();
+                        if (!_iteratorNormalCompletion17 && _iterator17.return) {
+                            _iterator17.return();
                         }
                     } finally {
-                        if (_didIteratorError16) {
-                            throw _iteratorError16;
+                        if (_didIteratorError17) {
+                            throw _iteratorError17;
                         }
                     }
                 }
@@ -28639,22 +28680,22 @@ exports.default = {
                     }
                 }
             } else {
-                var _iteratorNormalCompletion17 = true;
-                var _didIteratorError17 = false;
-                var _iteratorError17 = undefined;
+                var _iteratorNormalCompletion18 = true;
+                var _didIteratorError18 = false;
+                var _iteratorError18 = undefined;
 
                 try {
 
-                    for (var _iterator17 = list[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
-                        var item = _step17.value;
-                        var _iteratorNormalCompletion18 = true;
-                        var _didIteratorError18 = false;
-                        var _iteratorError18 = undefined;
+                    for (var _iterator18 = list[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
+                        var item = _step18.value;
+                        var _iteratorNormalCompletion19 = true;
+                        var _didIteratorError19 = false;
+                        var _iteratorError19 = undefined;
 
                         try {
 
-                            for (var _iterator18 = Object.keys(item)[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
-                                var _key2 = _step18.value;
+                            for (var _iterator19 = Object.keys(item)[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
+                                var _key2 = _step19.value;
 
 
                                 var _set2 = this.colSetMap[_key2];
@@ -28680,31 +28721,31 @@ exports.default = {
                                 }
                             }
                         } catch (err) {
-                            _didIteratorError18 = true;
-                            _iteratorError18 = err;
+                            _didIteratorError19 = true;
+                            _iteratorError19 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion18 && _iterator18.return) {
-                                    _iterator18.return();
+                                if (!_iteratorNormalCompletion19 && _iterator19.return) {
+                                    _iterator19.return();
                                 }
                             } finally {
-                                if (_didIteratorError18) {
-                                    throw _iteratorError18;
+                                if (_didIteratorError19) {
+                                    throw _iteratorError19;
                                 }
                             }
                         }
                     }
                 } catch (err) {
-                    _didIteratorError17 = true;
-                    _iteratorError17 = err;
+                    _didIteratorError18 = true;
+                    _iteratorError18 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion17 && _iterator17.return) {
-                            _iterator17.return();
+                        if (!_iteratorNormalCompletion18 && _iterator18.return) {
+                            _iterator18.return();
                         }
                     } finally {
-                        if (_didIteratorError17) {
-                            throw _iteratorError17;
+                        if (_didIteratorError18) {
+                            throw _iteratorError18;
                         }
                     }
                 }
@@ -28721,25 +28762,25 @@ exports.default = {
             titleKeys = (0, _arrayUniq2.default)(titleKeys);
             normalKeys = (0, _arrayUniq2.default)(normalKeys);
 
-            var _iteratorNormalCompletion19 = true;
-            var _didIteratorError19 = false;
-            var _iteratorError19 = undefined;
+            var _iteratorNormalCompletion20 = true;
+            var _didIteratorError20 = false;
+            var _iteratorError20 = undefined;
 
             try {
-                for (var _iterator19 = list[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
-                    var _item = _step19.value;
+                for (var _iterator20 = list[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
+                    var _item = _step20.value;
 
 
                     var titleCol = [];
                     var normalCol = [];
 
-                    var _iteratorNormalCompletion20 = true;
-                    var _didIteratorError20 = false;
-                    var _iteratorError20 = undefined;
+                    var _iteratorNormalCompletion21 = true;
+                    var _didIteratorError21 = false;
+                    var _iteratorError21 = undefined;
 
                     try {
-                        for (var _iterator20 = titleKeys[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
-                            var _key3 = _step20.value;
+                        for (var _iterator21 = titleKeys[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
+                            var _key3 = _step21.value;
 
 
                             if (_item[_key3] === undefined) {
@@ -28748,38 +28789,6 @@ exports.default = {
                             } else {
 
                                 titleCol.push(_item[_key3]);
-                            }
-                        }
-                    } catch (err) {
-                        _didIteratorError20 = true;
-                        _iteratorError20 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion20 && _iterator20.return) {
-                                _iterator20.return();
-                            }
-                        } finally {
-                            if (_didIteratorError20) {
-                                throw _iteratorError20;
-                            }
-                        }
-                    }
-
-                    var _iteratorNormalCompletion21 = true;
-                    var _didIteratorError21 = false;
-                    var _iteratorError21 = undefined;
-
-                    try {
-                        for (var _iterator21 = normalKeys[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
-                            var _key4 = _step21.value;
-
-
-                            if (_item[_key4] === undefined) {
-
-                                normalCol.push(this.conf.emptyCellValue);
-                            } else {
-
-                                normalCol.push(_item[_key4]);
                             }
                         }
                     } catch (err) {
@@ -28797,20 +28806,52 @@ exports.default = {
                         }
                     }
 
+                    var _iteratorNormalCompletion22 = true;
+                    var _didIteratorError22 = false;
+                    var _iteratorError22 = undefined;
+
+                    try {
+                        for (var _iterator22 = normalKeys[Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
+                            var _key4 = _step22.value;
+
+
+                            if (_item[_key4] === undefined) {
+
+                                normalCol.push(this.conf.emptyCellValue);
+                            } else {
+
+                                normalCol.push(_item[_key4]);
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError22 = true;
+                        _iteratorError22 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion22 && _iterator22.return) {
+                                _iterator22.return();
+                            }
+                        } finally {
+                            if (_didIteratorError22) {
+                                throw _iteratorError22;
+                            }
+                        }
+                    }
+
                     titleRows.push(titleCol);
                     normalRows.push(normalCol);
                 }
             } catch (err) {
-                _didIteratorError19 = true;
-                _iteratorError19 = err;
+                _didIteratorError20 = true;
+                _iteratorError20 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion19 && _iterator19.return) {
-                        _iterator19.return();
+                    if (!_iteratorNormalCompletion20 && _iterator20.return) {
+                        _iterator20.return();
                     }
                 } finally {
-                    if (_didIteratorError19) {
-                        throw _iteratorError19;
+                    if (_didIteratorError20) {
+                        throw _iteratorError20;
                     }
                 }
             }
@@ -28918,41 +28959,6 @@ exports.default = {
 
             var result = [];
 
-            var _iteratorNormalCompletion22 = true;
-            var _didIteratorError22 = false;
-            var _iteratorError22 = undefined;
-
-            try {
-                for (var _iterator22 = Object.keys(this.data.rowChecked)[Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
-                    var line = _step22.value;
-
-
-                    if (this.data.rowChecked[line]) {
-
-                        result.push(+line);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError22 = true;
-                _iteratorError22 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion22 && _iterator22.return) {
-                        _iterator22.return();
-                    }
-                } finally {
-                    if (_didIteratorError22) {
-                        throw _iteratorError22;
-                    }
-                }
-            }
-
-            return result;
-        },
-        setCheckedRows: function setCheckedRows(rows) {
-
-            var checkedRows = {};
-
             var _iteratorNormalCompletion23 = true;
             var _didIteratorError23 = false;
             var _iteratorError23 = undefined;
@@ -28962,7 +28968,10 @@ exports.default = {
                     var line = _step23.value;
 
 
-                    checkedRows[line] = false;
+                    if (this.data.rowChecked[line]) {
+
+                        result.push(+line);
+                    }
                 }
             } catch (err) {
                 _didIteratorError23 = true;
@@ -28979,30 +28988,62 @@ exports.default = {
                 }
             }
 
+            return result;
+        },
+        setCheckedRows: function setCheckedRows(rows) {
+
+            var checkedRows = {};
+
+            var _iteratorNormalCompletion24 = true;
+            var _didIteratorError24 = false;
+            var _iteratorError24 = undefined;
+
+            try {
+                for (var _iterator24 = Object.keys(this.data.rowChecked)[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
+                    var line = _step24.value;
+
+
+                    checkedRows[line] = false;
+                }
+            } catch (err) {
+                _didIteratorError24 = true;
+                _iteratorError24 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion24 && _iterator24.return) {
+                        _iterator24.return();
+                    }
+                } finally {
+                    if (_didIteratorError24) {
+                        throw _iteratorError24;
+                    }
+                }
+            }
+
             if (rows instanceof Array) {
-                var _iteratorNormalCompletion24 = true;
-                var _didIteratorError24 = false;
-                var _iteratorError24 = undefined;
+                var _iteratorNormalCompletion25 = true;
+                var _didIteratorError25 = false;
+                var _iteratorError25 = undefined;
 
                 try {
 
-                    for (var _iterator24 = rows[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
-                        var _line = _step24.value;
+                    for (var _iterator25 = rows[Symbol.iterator](), _step25; !(_iteratorNormalCompletion25 = (_step25 = _iterator25.next()).done); _iteratorNormalCompletion25 = true) {
+                        var _line = _step25.value;
 
 
                         checkedRows[_line] = true;
                     }
                 } catch (err) {
-                    _didIteratorError24 = true;
-                    _iteratorError24 = err;
+                    _didIteratorError25 = true;
+                    _iteratorError25 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion24 && _iterator24.return) {
-                            _iterator24.return();
+                        if (!_iteratorNormalCompletion25 && _iterator25.return) {
+                            _iterator25.return();
                         }
                     } finally {
-                        if (_didIteratorError24) {
-                            throw _iteratorError24;
+                        if (_didIteratorError25) {
+                            throw _iteratorError25;
                         }
                     }
                 }
@@ -29235,9 +29276,20 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
-    props: ['conf', 'data', 'colSetMap', 'sortCol', 'uiid'],
+    props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
     methods: {
         _syncRowChecked: function _syncRowChecked(line) {
 
@@ -29392,9 +29444,20 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
-    props: ['conf', 'data', 'colSetMap', 'sortCol', 'uiid'],
+    props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
     methods: {
         _syncRowChecked: function _syncRowChecked(line) {
 
@@ -31526,6 +31589,12 @@ var yearRange = 12; //
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -31977,6 +32046,14 @@ exports.default = {
             var nowHl = this._isNow(item);
 
             return Object.assign(bgMarkHl, pointHl, selectHl, nowHl);
+        },
+        _prevYear: function _prevYear() {
+
+            this.sub(1, 'year');
+        },
+        _nextYear: function _nextYear() {
+
+            this.add(1, 'year');
         },
         _prev: function _prev() {
 
@@ -39851,19 +39928,28 @@ exports.default = {
         checkedStatus: function checkedStatus() {
 
             var value = this.get();
+            var lastCheckNum = Object.keys(this.conf.list).length - this.conf.disabledOptions.length - value.length;
+            var status = 0;
 
-            if (value && (value.length === Object.keys(this.conf.list).length - this.conf.disabledOptions.length || value.length === this.conf.max)) {
+            if (value && value.length > 0 && (lastCheckNum <= 0 || value.length === this.conf.max)) {
 
                 // all checked
-                return 1;
+                status = 1;
             } else if (value && value.length > 0) {
 
                 // something checked
-                return 0;
+                status = 0;
+            } else if (lastCheckNum <= 0) {
+
+                // nothing can check
+                status = -2;
+            } else {
+
+                // no checked
+                status = -1;
             }
 
-            // no checked
-            return -1;
+            return status;
         }
     },
     data: function data() {
@@ -39979,12 +40065,13 @@ exports.default = {
                 }
 
                 childStatus = (0, _arrayUniq2.default)(childStatus);
+                childStatus = childStatus.sort();
 
-                if (childStatus.length === 1 && childStatus[0] === -1) {
+                if (childStatus.length === 1 && childStatus[0] === -1 || childStatus.length === 1 && childStatus[0] === -2 || childStatus.length === 2 && childStatus[0] === -1 && childStatus[1] === -2) {
 
                     // all uncheck
                     this.toggle(key, false);
-                } else if (childStatus.length === 1 && childStatus[0] === 1) {
+                } else if (childStatus.length === 1 && childStatus[0] === 1 || childStatus.length === 2 && childStatus[0] === -2 && childStatus[1] === 1) {
 
                     // all checked
                     this.toggle(key, true);
@@ -40138,6 +40225,13 @@ exports.default = {
         this.$watch('conf.disabledOptions', function () {
 
             _this._refreshDisabledOptions();
+
+            if (_this.data.$parentVm) {
+
+                _this.data.$parentVm._syncLinkedCheckedStatus(_this.data.parentKey, _this.uiid);
+            }
+
+            _this._syncLinkedChild();
         }, {
             deep: true,
             immediate: true
@@ -40930,11 +41024,155 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
+var _GlobalEvent = __webpack_require__(9);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
     name: 'cascader',
+    mixins: [_GlobalEvent2.default],
     props: {
         insideName: {
             type: String,
@@ -40960,6 +41198,10 @@ exports.default = {
         changeOnSelect: {
             type: Boolean,
             default: false
+        },
+        canSearch: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -40970,23 +41212,72 @@ exports.default = {
                 list: this.list,
                 submenuTrigger: this.submenuTrigger,
                 showLastName: this.showLastName,
-                changeOnSelect: this.changeOnSelect
+                changeOnSelect: this.changeOnSelect,
+                canSearch: this.canSearch
             };
         },
         moreCLass: function moreCLass() {
 
             return {
-                'popover-show': this.data.popoverShow
+                'popover-show': this.data.popoverShow || this.data.searchPopoverShow
             };
         },
         popoverTrigger: function popoverTrigger() {
 
-            if (this.conf.state === 'readonly' || this.conf.state === 'disabled') {
+            return 'method';
+        },
+        searchMap: function searchMap() {
 
-                return 'method';
-            }
+            var searchMap = [];
+            var genMap = function genMap(list, item) {
 
-            return 'click';
+                for (var key in list) {
+
+                    var curItem = void 0;
+
+                    if (item === undefined) {
+
+                        curItem = {
+                            value: [key],
+                            name: []
+                        };
+
+                        if (typeof list[key] === 'string') {
+
+                            curItem.name.push(list[key]);
+                        } else {
+
+                            curItem.name.push(list[key].name);
+                        }
+                    } else {
+
+                        curItem = (0, _extend2.default)(true, {}, item);
+
+                        curItem.value.push(key);
+
+                        if (typeof list[key] === 'string') {
+
+                            curItem.name.push(list[key]);
+                        } else {
+
+                            curItem.name.push(list[key].name);
+                        }
+                    }
+
+                    if (list[key].children) {
+
+                        genMap(list[key].children, curItem);
+                    } else {
+
+                        curItem.name = curItem.name.join(' / ');
+                        searchMap.push(curItem);
+                    }
+                }
+            };
+
+            genMap(this.conf.list);
+
+            return searchMap;
         }
     },
     data: function data() {
@@ -40997,8 +41288,12 @@ exports.default = {
                 menuList: [],
                 menuSelected: [],
                 popoverShow: false,
+                searchPopoverShow: false,
                 hoverMenuKeys: [],
-                valueName: ''
+                valueName: '',
+                searchResult: [],
+                textinputEmpty: true,
+                textinputFocus: false
             }
         };
     },
@@ -41143,6 +41438,25 @@ exports.default = {
                 _this.$refs['mor-cascader-popover-' + _this.uiid].position();
             });
         },
+        _searchPopoverShow: function _searchPopoverShow() {
+
+            this.data.searchPopoverShow = true;
+        },
+        _searchPopoverHide: function _searchPopoverHide() {
+
+            this.data.searchPopoverShow = false;
+        },
+        _showPopover: function _showPopover() {
+
+            if (this.data.searchPopoverShow) {
+
+                return;
+            }
+
+            this.$refs['mor-cascader-popover-' + this.uiid].toggle(true);
+            this._globalEventRemove('click', '_checkArea');
+            this._globalEventAdd('click', '_checkArea');
+        },
         _popoverShow: function _popoverShow() {
 
             this.data.popoverShow = true;
@@ -41163,12 +41477,179 @@ exports.default = {
                 this.data.hoverMenuKeys = list;
                 this._computedMenuList();
             }
+        },
+        _textinputFocus: function _textinputFocus() {
+
+            this.data.textinputFocus = true;
+        },
+        _textinputBlur: function _textinputBlur() {
+
+            this.data.textinputFocus = false;
+        },
+        _refreshSearchPopoverWidth: function _refreshSearchPopoverWidth() {
+
+            if (this.$refs['mor-cascader-search-result-' + this.uiid]) {
+
+                var $body = this.$refs['mor-cascader-search-result-' + this.uiid].$el.querySelector('.popover-body');
+
+                if ($body) {
+
+                    $body.style.width = this.$el.clientWidth + 'px';
+                }
+            }
+        },
+        _checkArea: function _checkArea(evt) {
+
+            if ((this.data.popoverShow || this.data.searchPopoverShow) && evt.path.indexOf(this.$el) === -1 && evt.path.indexOf(this.$refs['mor-cascader-popover-' + this.uiid].$el) === -1 && evt.path.indexOf(this.$refs['mor-cascader-search-result-' + this.uiid].$el) === -1) {
+
+                this.$refs['mor-cascader-popover-' + this.uiid].toggle(false);
+
+                if (this.$refs['mor-cascader-ti-' + this.uiid]) {
+
+                    this.$refs['mor-cascader-ti-' + this.uiid].set(undefined);
+                }
+            }
+        },
+        _search: function _search() {
+
+            if (!this.conf.canSearch) {
+
+                return;
+            }
+
+            this.$refs['mor-cascader-popover-' + this.uiid].toggle(false);
+
+            var results = [];
+            var keyword = this.$refs['mor-cascader-ti-' + this.uiid].get();
+
+            if (keyword) {
+
+                this.data.textinputEmpty = false;
+            } else {
+
+                this.data.textinputEmpty = true;
+                this.$refs['mor-cascader-search-result-' + this.uiid].toggle(false);
+
+                if (this.data.textinputFocus) {
+
+                    this.$refs['mor-cascader-popover-' + this.uiid].toggle(true);
+                }
+
+                return results;
+            }
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.searchMap[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var item = _step2.value;
+
+
+                    var regexp = null;
+                    var result = {
+                        match: false,
+                        pos: [],
+                        name: null,
+                        value: null
+                    };
+                    var res = void 0;
+
+                    try {
+
+                        regexp = new RegExp(keyword, 'g');
+                    } catch (e) {}
+
+                    if (!regexp) {
+
+                        return;
+                    }
+
+                    res = regexp.exec(item.name);
+
+                    while (res) {
+
+                        result.match = true;
+                        result.pos.push({
+                            index: res.index,
+                            len: res[0].length
+                        });
+                        result.name = item.name;
+                        result.value = item.value;
+                        res = regexp.exec(item.name);
+                    }
+
+                    if (result.match) {
+
+                        var offset = 0;
+
+                        var _iteratorNormalCompletion3 = true;
+                        var _didIteratorError3 = false;
+                        var _iteratorError3 = undefined;
+
+                        try {
+                            for (var _iterator3 = result.pos[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                var pos = _step3.value;
+
+
+                                result.name = result.name.slice(0, pos.index + offset) + '<b>' + keyword + '</b>' + result.name.slice(pos.index + offset + pos.len);
+                                offset += pos.len + 6;
+                            }
+                        } catch (err) {
+                            _didIteratorError3 = true;
+                            _iteratorError3 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
+                                }
+                            } finally {
+                                if (_didIteratorError3) {
+                                    throw _iteratorError3;
+                                }
+                            }
+                        }
+
+                        results.push(result);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            this.data.searchResult = results;
+            this.$refs['mor-cascader-search-result-' + this.uiid].toggle(true);
+
+            return results;
+        },
+        _pickSearchResult: function _pickSearchResult(value) {
+
+            this.set(value);
+            this.$refs['mor-cascader-search-result-' + this.uiid].toggle(false);
+            this.$refs['mor-cascader-ti-' + this.uiid].set(undefined);
+            this.data.searchResult = [];
         }
     },
-    created: function created() {},
+    updated: function updated() {
+
+        this._refreshSearchPopoverWidth();
+    },
     mounted: function mounted() {
         var _this2 = this;
 
+        this._refreshSearchPopoverWidth();
         this.data.menuSelected = this.get();
 
         if (this.conf.submenuTrigger === 'hover') {
@@ -41197,108 +41678,12 @@ exports.default = {
             _this2.data.menuSelected = _this2.get();
             _this2.Vue.nextTick(_this2._refreshValueName);
         });
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+    },
+    beforeDestroy: function beforeDestroy() {
 
+        this._globalEventRemove('click', '_checkArea');
+    }
+};
 module.exports = exports['default'];
 
 /***/ }),
@@ -58006,6 +58391,7 @@ var render = function() {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
+                        "row-set-map": _vm.rowSetMap,
                         "sort-col": _vm._sortCol,
                         uiid: _vm.uiid
                       },
@@ -58031,6 +58417,7 @@ var render = function() {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
+                        "row-set-map": _vm.rowSetMap,
                         "sort-col": _vm._sortCol,
                         uiid: _vm.uiid
                       },
@@ -58057,6 +58444,7 @@ var render = function() {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
+                        "row-set-map": _vm.rowSetMap,
                         "sort-col": _vm._sortCol,
                         uiid: _vm.uiid
                       },
@@ -58081,6 +58469,7 @@ var render = function() {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
+                        "row-set-map": _vm.rowSetMap,
                         "sort-col": _vm._sortCol,
                         uiid: _vm.uiid
                       },
@@ -58945,22 +59334,41 @@ var render = function() {
     [
       _c("header", [
         _c("div", { staticClass: "topbar" }, [
-          _c("i", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.data.monthPick,
-                expression: "!data.monthPick"
+          _c("div", { staticClass: "prev-box" }, [
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.data.monthPick && !_vm.data.yearPick,
+                  expression: "!data.monthPick && !data.yearPick"
+                }
+              ],
+              staticClass: "mo-icon mo-icon-left-thin-twin prev-year",
+              on: {
+                click: function($event) {
+                  return _vm._prevYear()
+                }
               }
-            ],
-            staticClass: "mo-icon mo-icon-left prev",
-            on: {
-              click: function($event) {
-                return _vm._prev()
+            }),
+            _vm._v(" "),
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.data.monthPick,
+                  expression: "!data.monthPick"
+                }
+              ],
+              staticClass: "mo-icon mo-icon-left-thin prev",
+              on: {
+                click: function($event) {
+                  return _vm._prev()
+                }
               }
-            }
-          }),
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "yearmonth" }, [
             _c(
@@ -58990,22 +59398,41 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("i", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.data.monthPick,
-                expression: "!data.monthPick"
+          _c("div", { staticClass: "next-box" }, [
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.data.monthPick,
+                  expression: "!data.monthPick"
+                }
+              ],
+              staticClass: "mo-icon mo-icon-right-thin next",
+              on: {
+                click: function($event) {
+                  return _vm._next()
+                }
               }
-            ],
-            staticClass: "mo-icon mo-icon-right next",
-            on: {
-              click: function($event) {
-                return _vm._next()
+            }),
+            _vm._v(" "),
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.data.monthPick && !_vm.data.yearPick,
+                  expression: "!data.monthPick && !data.yearPick"
+                }
+              ],
+              staticClass: "mo-icon mo-icon-right-thin-twin next-year",
+              on: {
+                click: function($event) {
+                  return _vm._nextYear()
+                }
               }
-            }
-          })
+            })
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "titlebar" }, [
@@ -63473,7 +63900,8 @@ var render = function() {
         list: _vm.list,
         "submenu-trigger": _vm.submenuTrigger,
         "show-last-name": _vm.showLastName,
-        "change-on-select": _vm.changeOnSelect
+        "change-on-select": _vm.changeOnSelect,
+        "can-search": _vm.canSearch
       }
     },
     [
@@ -63497,9 +63925,38 @@ var render = function() {
             "div",
             {
               staticClass: "cascader-input",
-              attrs: { id: "mor-cascader-input-" + _vm.uiid }
+              attrs: { id: "mor-cascader-input-" + _vm.uiid },
+              on: {
+                click: function($event) {
+                  return _vm._showPopover()
+                }
+              }
             },
             [
+              _vm.conf.canSearch
+                ? _c("morning-textinput", {
+                    ref: "mor-cascader-ti-" + _vm.uiid,
+                    class: {
+                      "empty-content": this.data.textinputEmpty
+                    },
+                    attrs: {
+                      id: "mor-cascader-ti-" + _vm.uiid,
+                      size: _vm.conf.size
+                    },
+                    on: {
+                      "value-change": function($event) {
+                        return _vm._search()
+                      },
+                      focus: function($event) {
+                        return _vm._textinputFocus()
+                      },
+                      blur: function($event) {
+                        return _vm._textinputBlur()
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
               _vm.data.value.length === 0
                 ? _c("span", { staticClass: "note" }, [
                     _vm._v(_vm._s(_vm.conf.insideName))
@@ -63509,6 +63966,53 @@ var render = function() {
                   ]),
               _vm._v(" "),
               _c("i", { staticClass: "mo-icon mo-icon-dropdown" })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "morning-popover",
+            {
+              ref: "mor-cascader-search-result-" + _vm.uiid,
+              staticClass: "mor-cascader-search-result",
+              attrs: {
+                target: "#mor-cascader-input-" + _vm.uiid,
+                trigger: "method",
+                placement: "bottom",
+                align: "start",
+                "auto-reverse": true
+              },
+              on: { show: _vm._searchPopoverShow, hide: _vm._searchPopoverHide }
+            },
+            [
+              _c(
+                "ul",
+                [
+                  _vm._l(_vm.data.searchResult, function(item, index) {
+                    return _c("li", {
+                      key: index,
+                      domProps: { innerHTML: _vm._s(item.name) },
+                      on: {
+                        click: function($event) {
+                          return _vm._pickSearchResult(item.value)
+                        }
+                      }
+                    })
+                  }),
+                  _vm._v(" "),
+                  _vm.data.searchResult.length === 0
+                    ? _c(
+                        "li",
+                        { staticClass: "nomatch" },
+                        [
+                          _c("morning-empty", { attrs: { note: "无匹配项目" } })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                2
+              )
             ]
           ),
           _vm._v(" "),
@@ -69410,7 +69914,12 @@ var render = function() {
                         ref: "mor-table-row-checked-" + _vm.uiid + "-all",
                         attrs: {
                           list: { checked: "" },
-                          id: "mor-table-row-checked-" + _vm.uiid + "-all"
+                          id: "mor-table-row-checked-" + _vm.uiid + "-all",
+                          disabledOptions:
+                            _vm.rowSetMap[0] &&
+                            _vm.rowSetMap[0].disableSelection
+                              ? ["checked"]
+                              : undefined
                         }
                       })
                     ],
@@ -69586,7 +70095,12 @@ var render = function() {
                       attrs: {
                         list: { checked: "" },
                         parent:
-                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked"
+                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked",
+                        disabledOptions:
+                          _vm.rowSetMap[line + 1] &&
+                          _vm.rowSetMap[line + 1].disableSelection
+                            ? ["checked"]
+                            : undefined
                       },
                       on: {
                         "value-change": function($event) {
@@ -69706,7 +70220,12 @@ var render = function() {
                         ref: "mor-table-row-checked-" + _vm.uiid + "-all",
                         attrs: {
                           list: { checked: "" },
-                          id: "mor-table-row-checked-" + _vm.uiid + "-all"
+                          id: "mor-table-row-checked-" + _vm.uiid + "-all",
+                          disabledOptions:
+                            _vm.rowSetMap[0] &&
+                            _vm.rowSetMap[0].disableSelection
+                              ? ["checked"]
+                              : undefined
                         }
                       })
                     ],
@@ -69882,7 +70401,12 @@ var render = function() {
                       attrs: {
                         list: { checked: "" },
                         parent:
-                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked"
+                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked",
+                        disabledOptions:
+                          _vm.rowSetMap[line + 1] &&
+                          _vm.rowSetMap[line + 1].disableSelection
+                            ? ["checked"]
+                            : undefined
                       },
                       on: {
                         "value-change": function($event) {
@@ -77245,7 +77769,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.24',
+    version: '0.12.25',
     map: {}
 };
 

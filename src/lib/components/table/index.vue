@@ -52,6 +52,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
@@ -67,6 +68,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
@@ -85,6 +87,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
@@ -100,6 +103,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
@@ -278,6 +282,19 @@ export default {
             for (let col of this.conf.colSet) {
 
                 setmap[col.col] = col;
+
+            }
+
+            return setmap;
+
+        },
+        rowSetMap : function () {
+
+            let setmap = {};
+
+            for (let row of this.conf.rowSet) {
+
+                setmap[row.row] = row;
 
             }
 

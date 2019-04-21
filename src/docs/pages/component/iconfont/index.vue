@@ -115,6 +115,22 @@
             <span>mo-icon-right</span>
         </div>
         <div>
+            <i class="mo-icon-left-thin"></i>
+            <span>mo-icon-left-thin</span>
+        </div>
+        <div>
+            <i class="mo-icon-right-thin"></i>
+            <span>mo-icon-right-thin</span>
+        </div>
+        <div>
+            <i class="mo-icon-left-thin-twin"></i>
+            <span>mo-icon-left-thin-twin</span>
+        </div>
+        <div>
+            <i class="mo-icon-right-thin-twin"></i>
+            <span>mo-icon-right-thin-twin</span>
+        </div>
+        <div>
             <i class="mo-icon-dropdown"></i>
             <span>mo-icon-dropdown</span>
         </div>
