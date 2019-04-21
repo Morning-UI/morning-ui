@@ -93,7 +93,13 @@ let GlobalEvent = {
 
                 }
 
-                delete morning._globalEventListener[evtName];
+                delete morning._globalEventListener[evtName][`${this.$options.name}.${methodName}`];
+
+                if (Object.keys(morning._globalEventListener[evtName]).length === 0) {
+
+                    delete morning._globalEventListener[evtName];
+
+                }
             
             }
 

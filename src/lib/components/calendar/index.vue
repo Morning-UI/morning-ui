@@ -14,12 +14,18 @@
 
     <header>
         <div class="topbar">
-            <i class="mo-icon mo-icon-left prev" v-show="!data.monthPick" @click="_prev()"></i>
+            <div class="prev-box">
+                <i class="mo-icon mo-icon-left-thin-twin prev-year" v-show="!data.monthPick && !data.yearPick" @click="_prevYear()"></i>
+                <i class="mo-icon mo-icon-left-thin prev" v-show="!data.monthPick" @click="_prev()"></i>
+            </div>
             <div class="yearmonth">
                 <span class="year" @click="toggleYearPick()">{{current.year}}年</span>
                 <span class="month" @click="toggleMonthPick()">{{current.month + 1}}月</span>
             </div>
-            <i class="mo-icon mo-icon-right next" v-show="!data.monthPick" @click="_next()"></i>
+            <div class="next-box">
+                <i class="mo-icon mo-icon-right-thin next" v-show="!data.monthPick" @click="_next()"></i>
+                <i class="mo-icon mo-icon-right-thin-twin next-year" v-show="!data.monthPick && !data.yearPick" @click="_nextYear()"></i>
+            </div>
         </div>
         <div class="titlebar">
             <ul class="weekday" v-show="!data.monthPick && !data.yearPick">
@@ -519,6 +525,16 @@ export default {
             let nowHl = this._isNow(item);
 
             return Object.assign(bgMarkHl, pointHl, selectHl, nowHl);
+
+        },
+        _prevYear : function () {
+
+            this.sub(1, 'year');
+
+        },
+        _nextYear : function () {
+
+            this.add(1, 'year');
 
         },
         _prev : function () {

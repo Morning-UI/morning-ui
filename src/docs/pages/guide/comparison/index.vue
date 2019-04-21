@@ -304,7 +304,7 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
-                        <p>70个</p>
+                        <p>74个</p>
                     </td>
                 </tr>
                 <tr>
@@ -1540,7 +1540,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">警告/告示</td>
+                    <td class="item">警告/警告提示</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
