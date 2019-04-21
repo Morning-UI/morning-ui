@@ -63,7 +63,7 @@ export default {
         '小提示<i class="tag update l3"></i>' : '/component/tip.html',
         弹出框 : '/component/popover.html',
         消息 : '/component/message.html',
-        告示 : '/component/alert.html',
+        警告提示 : '/component/alert.html',
         轮播 : '/component/carousel.html',
         音频 : '/component/audio.html',
         视频 : '/component/video.html',

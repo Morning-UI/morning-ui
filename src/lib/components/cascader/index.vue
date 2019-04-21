@@ -15,6 +15,7 @@
         :submenu-trigger="submenuTrigger"
         :show-last-name="showLastName"
         :change-on-select="changeOnSelect"
+        :can-search="canSearch"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -125,6 +126,10 @@ export default {
         changeOnSelect : {
             type : Boolean,
             default : false
+        },
+        canSearch : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -135,7 +140,8 @@ export default {
                 list : this.list,
                 submenuTrigger : this.submenuTrigger,
                 showLastName : this.showLastName,
-                changeOnSelect : this.changeOnSelect
+                changeOnSelect : this.changeOnSelect,
+                canSearch : this.canSearch
             };
 
         },

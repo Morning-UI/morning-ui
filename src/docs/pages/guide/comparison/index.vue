@@ -1540,7 +1540,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">警告/告示</td>
+                    <td class="item">警告/警告提示</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>

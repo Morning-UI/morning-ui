@@ -4,15 +4,15 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 告示 `<ui-alert>`
+    # 警告提示 `<ui-alert>`
     
     <doc-component-status page="alert"></doc-component-status>
     
     [[[开始]]]
 
-    定义一个告示，告示是一次性的信息展示组件，当告示被关闭后组件会被销毁。
+    定义一个警告提示，警告提示是一次性的信息展示组件，当警告提示被关闭后组件会被销毁。
 
-    告示的内容支持HTML。
+    警告提示的内容支持HTML。
 
     :::vue
     @name:使用
@@ -23,11 +23,11 @@
     :::
 
     :::vue
-    @name:不同类型的告示
+    @name:不同类型的警告提示
     ---
     #demo
     >desc
-    通过`type`配置可以设置不通的告示类型。
+    通过`type`配置可以设置不通的警告提示类型。
     >tpl
     <div>
         <ui-alert type="normal">展示的内容</ui-alert><br>
@@ -45,7 +45,7 @@
     ---
     #demo
     >desc
-    每个类型的告示内置了默认图标，通过`show-icon`配置开启。
+    每个类型的警告提示内置了默认图标，通过`show-icon`配置开启。
     >tpl
     <div>
         <ui-alert show-icon type="normal">展示的内容</ui-alert><br>
@@ -59,7 +59,7 @@
     ---
     #demo
     >desc
-    告示的内容支持HTML，你也可以设置自定义的图标。
+    警告提示的内容支持HTML，你也可以设置自定义的图标。
     >tpl
     <ui-alert><i class="mo-icon mo-icon-list"></i> 展示的内容</ui-alert><br>
     :::
@@ -91,7 +91,7 @@
     ---
     #config
     >conf-desc
-    告示的类型。
+    警告提示的类型。
     >conf-accept
     `'normal'` : 正常<br>`'success'` : 完成(成功)<br>`'warning'` : 警告<br>`'danger'` : 危险(失败)<br>`'primary'` : 重要<br>`'minor'` : 次要(疑问)<br>`'info'` : 信息
     >conf-type
@@ -117,7 +117,7 @@
     ---
     #config
     >conf-desc
-    显示告示的默认图标，不同的`type`图标也不一样。
+    显示警告提示的默认图标，不同的`type`图标也不一样。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -127,7 +127,7 @@
     ---
     #demo
     >desc
-    每个类型的告示内置了默认图标，通过`show-icon`配置开启。
+    每个类型的警告提示内置了默认图标，通过`show-icon`配置开启。
     >tpl
     <div>
         <ui-alert show-icon type="normal">展示的内容</ui-alert><br>
@@ -145,7 +145,7 @@
     ---
     #config
     >conf-desc
-    告示可以被主动关闭(显示关闭链接)。
+    警告提示可以被主动关闭(显示关闭链接)。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -193,7 +193,7 @@
     ---
     #config
     >conf-desc
-    告示内容的对齐方式。
+    警告提示内容的对齐方式。
     >conf-accept
     `'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐
     >conf-type
@@ -231,7 +231,7 @@
     ---
     #config
     >conf-desc
-    告示的标题(仅支持文本)，若为空字符串则不显示。
+    警告提示的标题(仅支持文本)，若为空字符串则不显示。
     >conf-accept
     标题字符串
     >conf-type
@@ -257,7 +257,7 @@
     ---
     #method
     >method-desc
-    关闭告示。
+    关闭警告提示。
     >method-return
     当前组件VM实例。
     ---
@@ -277,7 +277,7 @@
     ---
     #event
     >event-desc
-    当告示被关闭时触发。
+    当警告提示被关闭时触发。
     ---
     #demo
     >tpl
@@ -298,7 +298,7 @@
     @layout:lifecycle-event
     ---
     alert
-    告示
+    警告提示
     :::
 
     [[[源码]]]
