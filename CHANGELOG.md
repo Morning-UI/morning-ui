@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.12.25
+    
+#### 新特性
+
+- `ui-cascader`新增`can-search`配置，可以开启搜索功能
+- `ui-table`的`row-set`配置新增`readonlySelection`属性，可以在表格多选下禁用某一行
+- `ui-calendar`、`ui-datepicker`、`ui-datetimepicker`现在支持按年翻页
+
+#### 改进
+
+- `告示`组件现更名为`警告提示`
+
+#### 修复
+
+- 修复全局事件管理的一个可能导致绑定事件被误解绑的问题
+
+#### 更多
+
+- 新增图标( `mo-icon-left-thin` / `mo-icon-right-thin` / `mo-icon-left-thin-twin` / `mo-icon-right-thin-twin` )
+
+__升级注意事项__
+
+- `告示`组件现更名为`警告提示`
+
 ## 0.12.24
 
 `2019年4月20日`

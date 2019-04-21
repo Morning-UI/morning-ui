@@ -18,6 +18,42 @@
     
     ### 更新记录
 
+    ### 0.12.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.25" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.25/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.25/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-cascader`新增`can-search`配置，可以开启搜索功能
+    - `ui-table`的`row-set`配置新增`readonlySelection`属性，可以在表格多选下禁用某一行
+    - `ui-calendar`、`ui-datepicker`、`ui-datetimepicker`现在支持按年翻页
+    
+    #### 改进
+    
+    - `告示`组件现更名为`警告提示`
+    
+    #### 修复
+    
+    - 修复全局事件管理的一个可能导致绑定事件被误解绑的问题
+    
+    #### 更多
+    
+    - 新增图标( `mo-icon-left-thin` / `mo-icon-right-thin` / `mo-icon-left-thin-twin` / `mo-icon-right-thin-twin` )
+    
+    <ui-label color="primary">升级注意事项</ui-label>
+    
+    - `告示`组件现更名为`警告提示`
+    
+    ---
+
     ### 0.12.24 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">

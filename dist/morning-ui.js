@@ -4087,7 +4087,12 @@ var GlobalEvent = {
                     document.removeEventListener(evtName, evtNamespace.handler);
                 }
 
-                delete morning._globalEventListener[evtName];
+                delete morning._globalEventListener[evtName][this.$options.name + '.' + methodName];
+
+                if (Object.keys(morning._globalEventListener[evtName]).length === 0) {
+
+                    delete morning._globalEventListener[evtName];
+                }
             }
         }
     }
@@ -41019,11 +41024,155 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
+var _GlobalEvent = __webpack_require__(9);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
     name: 'cascader',
+    mixins: [_GlobalEvent2.default],
     props: {
         insideName: {
             type: String,
@@ -41049,6 +41198,10 @@ exports.default = {
         changeOnSelect: {
             type: Boolean,
             default: false
+        },
+        canSearch: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -41059,23 +41212,72 @@ exports.default = {
                 list: this.list,
                 submenuTrigger: this.submenuTrigger,
                 showLastName: this.showLastName,
-                changeOnSelect: this.changeOnSelect
+                changeOnSelect: this.changeOnSelect,
+                canSearch: this.canSearch
             };
         },
         moreCLass: function moreCLass() {
 
             return {
-                'popover-show': this.data.popoverShow
+                'popover-show': this.data.popoverShow || this.data.searchPopoverShow
             };
         },
         popoverTrigger: function popoverTrigger() {
 
-            if (this.conf.state === 'readonly' || this.conf.state === 'disabled') {
+            return 'method';
+        },
+        searchMap: function searchMap() {
 
-                return 'method';
-            }
+            var searchMap = [];
+            var genMap = function genMap(list, item) {
 
-            return 'click';
+                for (var key in list) {
+
+                    var curItem = void 0;
+
+                    if (item === undefined) {
+
+                        curItem = {
+                            value: [key],
+                            name: []
+                        };
+
+                        if (typeof list[key] === 'string') {
+
+                            curItem.name.push(list[key]);
+                        } else {
+
+                            curItem.name.push(list[key].name);
+                        }
+                    } else {
+
+                        curItem = (0, _extend2.default)(true, {}, item);
+
+                        curItem.value.push(key);
+
+                        if (typeof list[key] === 'string') {
+
+                            curItem.name.push(list[key]);
+                        } else {
+
+                            curItem.name.push(list[key].name);
+                        }
+                    }
+
+                    if (list[key].children) {
+
+                        genMap(list[key].children, curItem);
+                    } else {
+
+                        curItem.name = curItem.name.join(' / ');
+                        searchMap.push(curItem);
+                    }
+                }
+            };
+
+            genMap(this.conf.list);
+
+            return searchMap;
         }
     },
     data: function data() {
@@ -41086,8 +41288,12 @@ exports.default = {
                 menuList: [],
                 menuSelected: [],
                 popoverShow: false,
+                searchPopoverShow: false,
                 hoverMenuKeys: [],
-                valueName: ''
+                valueName: '',
+                searchResult: [],
+                textinputEmpty: true,
+                textinputFocus: false
             }
         };
     },
@@ -41232,6 +41438,25 @@ exports.default = {
                 _this.$refs['mor-cascader-popover-' + _this.uiid].position();
             });
         },
+        _searchPopoverShow: function _searchPopoverShow() {
+
+            this.data.searchPopoverShow = true;
+        },
+        _searchPopoverHide: function _searchPopoverHide() {
+
+            this.data.searchPopoverShow = false;
+        },
+        _showPopover: function _showPopover() {
+
+            if (this.data.searchPopoverShow) {
+
+                return;
+            }
+
+            this.$refs['mor-cascader-popover-' + this.uiid].toggle(true);
+            this._globalEventRemove('click', '_checkArea');
+            this._globalEventAdd('click', '_checkArea');
+        },
         _popoverShow: function _popoverShow() {
 
             this.data.popoverShow = true;
@@ -41252,12 +41477,179 @@ exports.default = {
                 this.data.hoverMenuKeys = list;
                 this._computedMenuList();
             }
+        },
+        _textinputFocus: function _textinputFocus() {
+
+            this.data.textinputFocus = true;
+        },
+        _textinputBlur: function _textinputBlur() {
+
+            this.data.textinputFocus = false;
+        },
+        _refreshSearchPopoverWidth: function _refreshSearchPopoverWidth() {
+
+            if (this.$refs['mor-cascader-search-result-' + this.uiid]) {
+
+                var $body = this.$refs['mor-cascader-search-result-' + this.uiid].$el.querySelector('.popover-body');
+
+                if ($body) {
+
+                    $body.style.width = this.$el.clientWidth + 'px';
+                }
+            }
+        },
+        _checkArea: function _checkArea(evt) {
+
+            if ((this.data.popoverShow || this.data.searchPopoverShow) && evt.path.indexOf(this.$el) === -1 && evt.path.indexOf(this.$refs['mor-cascader-popover-' + this.uiid].$el) === -1 && evt.path.indexOf(this.$refs['mor-cascader-search-result-' + this.uiid].$el) === -1) {
+
+                this.$refs['mor-cascader-popover-' + this.uiid].toggle(false);
+
+                if (this.$refs['mor-cascader-ti-' + this.uiid]) {
+
+                    this.$refs['mor-cascader-ti-' + this.uiid].set(undefined);
+                }
+            }
+        },
+        _search: function _search() {
+
+            if (!this.conf.canSearch) {
+
+                return;
+            }
+
+            this.$refs['mor-cascader-popover-' + this.uiid].toggle(false);
+
+            var results = [];
+            var keyword = this.$refs['mor-cascader-ti-' + this.uiid].get();
+
+            if (keyword) {
+
+                this.data.textinputEmpty = false;
+            } else {
+
+                this.data.textinputEmpty = true;
+                this.$refs['mor-cascader-search-result-' + this.uiid].toggle(false);
+
+                if (this.data.textinputFocus) {
+
+                    this.$refs['mor-cascader-popover-' + this.uiid].toggle(true);
+                }
+
+                return results;
+            }
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.searchMap[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var item = _step2.value;
+
+
+                    var regexp = null;
+                    var result = {
+                        match: false,
+                        pos: [],
+                        name: null,
+                        value: null
+                    };
+                    var res = void 0;
+
+                    try {
+
+                        regexp = new RegExp(keyword, 'g');
+                    } catch (e) {}
+
+                    if (!regexp) {
+
+                        return;
+                    }
+
+                    res = regexp.exec(item.name);
+
+                    while (res) {
+
+                        result.match = true;
+                        result.pos.push({
+                            index: res.index,
+                            len: res[0].length
+                        });
+                        result.name = item.name;
+                        result.value = item.value;
+                        res = regexp.exec(item.name);
+                    }
+
+                    if (result.match) {
+
+                        var offset = 0;
+
+                        var _iteratorNormalCompletion3 = true;
+                        var _didIteratorError3 = false;
+                        var _iteratorError3 = undefined;
+
+                        try {
+                            for (var _iterator3 = result.pos[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                var pos = _step3.value;
+
+
+                                result.name = result.name.slice(0, pos.index + offset) + '<b>' + keyword + '</b>' + result.name.slice(pos.index + offset + pos.len);
+                                offset += pos.len + 6;
+                            }
+                        } catch (err) {
+                            _didIteratorError3 = true;
+                            _iteratorError3 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
+                                }
+                            } finally {
+                                if (_didIteratorError3) {
+                                    throw _iteratorError3;
+                                }
+                            }
+                        }
+
+                        results.push(result);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            this.data.searchResult = results;
+            this.$refs['mor-cascader-search-result-' + this.uiid].toggle(true);
+
+            return results;
+        },
+        _pickSearchResult: function _pickSearchResult(value) {
+
+            this.set(value);
+            this.$refs['mor-cascader-search-result-' + this.uiid].toggle(false);
+            this.$refs['mor-cascader-ti-' + this.uiid].set(undefined);
+            this.data.searchResult = [];
         }
     },
-    created: function created() {},
+    updated: function updated() {
+
+        this._refreshSearchPopoverWidth();
+    },
     mounted: function mounted() {
         var _this2 = this;
 
+        this._refreshSearchPopoverWidth();
         this.data.menuSelected = this.get();
 
         if (this.conf.submenuTrigger === 'hover') {
@@ -41286,108 +41678,12 @@ exports.default = {
             _this2.data.menuSelected = _this2.get();
             _this2.Vue.nextTick(_this2._refreshValueName);
         });
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+    },
+    beforeDestroy: function beforeDestroy() {
 
+        this._globalEventRemove('click', '_checkArea');
+    }
+};
 module.exports = exports['default'];
 
 /***/ }),
@@ -63604,7 +63900,8 @@ var render = function() {
         list: _vm.list,
         "submenu-trigger": _vm.submenuTrigger,
         "show-last-name": _vm.showLastName,
-        "change-on-select": _vm.changeOnSelect
+        "change-on-select": _vm.changeOnSelect,
+        "can-search": _vm.canSearch
       }
     },
     [
@@ -63628,9 +63925,38 @@ var render = function() {
             "div",
             {
               staticClass: "cascader-input",
-              attrs: { id: "mor-cascader-input-" + _vm.uiid }
+              attrs: { id: "mor-cascader-input-" + _vm.uiid },
+              on: {
+                click: function($event) {
+                  return _vm._showPopover()
+                }
+              }
             },
             [
+              _vm.conf.canSearch
+                ? _c("morning-textinput", {
+                    ref: "mor-cascader-ti-" + _vm.uiid,
+                    class: {
+                      "empty-content": this.data.textinputEmpty
+                    },
+                    attrs: {
+                      id: "mor-cascader-ti-" + _vm.uiid,
+                      size: _vm.conf.size
+                    },
+                    on: {
+                      "value-change": function($event) {
+                        return _vm._search()
+                      },
+                      focus: function($event) {
+                        return _vm._textinputFocus()
+                      },
+                      blur: function($event) {
+                        return _vm._textinputBlur()
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
               _vm.data.value.length === 0
                 ? _c("span", { staticClass: "note" }, [
                     _vm._v(_vm._s(_vm.conf.insideName))
@@ -63640,6 +63966,53 @@ var render = function() {
                   ]),
               _vm._v(" "),
               _c("i", { staticClass: "mo-icon mo-icon-dropdown" })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "morning-popover",
+            {
+              ref: "mor-cascader-search-result-" + _vm.uiid,
+              staticClass: "mor-cascader-search-result",
+              attrs: {
+                target: "#mor-cascader-input-" + _vm.uiid,
+                trigger: "method",
+                placement: "bottom",
+                align: "start",
+                "auto-reverse": true
+              },
+              on: { show: _vm._searchPopoverShow, hide: _vm._searchPopoverHide }
+            },
+            [
+              _c(
+                "ul",
+                [
+                  _vm._l(_vm.data.searchResult, function(item, index) {
+                    return _c("li", {
+                      key: index,
+                      domProps: { innerHTML: _vm._s(item.name) },
+                      on: {
+                        click: function($event) {
+                          return _vm._pickSearchResult(item.value)
+                        }
+                      }
+                    })
+                  }),
+                  _vm._v(" "),
+                  _vm.data.searchResult.length === 0
+                    ? _c(
+                        "li",
+                        { staticClass: "nomatch" },
+                        [
+                          _c("morning-empty", { attrs: { note: "无匹配项目" } })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                2
+              )
             ]
           ),
           _vm._v(" "),
@@ -77396,7 +77769,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.24',
+    version: '0.12.25',
     map: {}
 };
 

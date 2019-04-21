@@ -44164,12 +44164,26 @@ mor-cascader .cascader-wrap .cascader-input {
   color: #b3b3b3 !important;
   cursor: pointer;
 }
+mor-cascader .cascader-wrap .cascader-input mor-textinput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+mor-cascader .cascader-wrap .cascader-input mor-textinput.empty-content .textinput-wrap input {
+  background: transparent;
+}
+mor-cascader .cascader-wrap .cascader-input mor-textinput .textinput-wrap input {
+  border: none;
+}
 mor-cascader .cascader-wrap .cascader-input > .note {
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
   overflow: hidden;
   padding: 0 1em;
+  position: relative;
+  z-index: 1;
 }
 mor-cascader .cascader-wrap .cascader-input > .note.has-selected {
   color: #17212D;
@@ -44185,6 +44199,7 @@ mor-cascader .cascader-wrap .cascader-input > .mo-icon {
   transform: rotateX(0deg);
   transition: transform 0.2s;
   text-indent: 1px;
+  z-index: 2;
 }
 mor-cascader.popover-show .cascader-wrap .cascader-input > .mo-icon {
   transform: rotateX(180deg);
@@ -44192,6 +44207,13 @@ mor-cascader.popover-show .cascader-wrap .cascader-input > .mo-icon {
 mor-cascader.si-m .cascader-wrap .cascader-input {
   height: 42px;
   line-height: 42px;
+}
+mor-cascader.si-m .cascader-wrap .cascader-input .textinput-wrap {
+  height: 40px;
+  line-height: 40px;
+}
+mor-cascader.si-m .cascader-wrap .cascader-input .textinput-wrap input {
+  height: 40px;
 }
 mor-cascader.si-m .cascader-wrap .cascader-input > .note {
   width: calc(100% - 2em);
@@ -44205,6 +44227,13 @@ mor-cascader.si-s .cascader-wrap .cascader-input {
   height: 32px;
   line-height: 32px;
 }
+mor-cascader.si-s .cascader-wrap .cascader-input .textinput-wrap {
+  height: 30px;
+  line-height: 30px;
+}
+mor-cascader.si-s .cascader-wrap .cascader-input .textinput-wrap input {
+  height: 30px;
+}
 mor-cascader.si-s .cascader-wrap .cascader-input > .note {
   width: calc(100% - 2em);
   font-size: 13px;
@@ -44216,6 +44245,13 @@ mor-cascader.si-s .cascader-wrap .cascader-input > .mo-icon {
 mor-cascader.si-xs .cascader-wrap .cascader-input {
   height: 28px;
   line-height: 28px;
+}
+mor-cascader.si-xs .cascader-wrap .cascader-input .textinput-wrap {
+  height: 26px;
+  line-height: 26px;
+}
+mor-cascader.si-xs .cascader-wrap .cascader-input .textinput-wrap input {
+  height: 26px;
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input > .note {
   width: calc(100% - 2em);
@@ -44240,6 +44276,13 @@ mor-cascader.st-readonly .cascader-wrap .cascader-input > .note {
 mor-cascader .cascader-wrap .cascader-input {
   height: 42px;
   line-height: 42px;
+}
+mor-cascader .cascader-wrap .cascader-input .textinput-wrap {
+  height: 40px;
+  line-height: 40px;
+}
+mor-cascader .cascader-wrap .cascader-input .textinput-wrap input {
+  height: 40px;
 }
 mor-cascader .cascader-wrap .cascader-input > .note {
   width: calc(100% - 2em);
@@ -44299,6 +44342,38 @@ mor-cascader .cascader-wrap .cascader-input > .mo-icon {
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.disabled {
   background: #ebebeb;
   cursor: not-allowed;
+}
+.mor-cascader-search-result .popover-con .popover-body {
+  padding: 8px 0;
+  overflow-y: auto;
+  max-height: 180px;
+}
+.mor-cascader-search-result .popover-con .popover-body::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.mor-cascader-search-result .popover-con .popover-body::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.mor-cascader-search-result ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.mor-cascader-search-result ul li {
+  padding: 0.5em 1em;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.mor-cascader-search-result ul li:not(.nomatch):hover {
+  cursor: pointer;
+  background: #EDF1F5;
 }
 mor-multiinput {
   position: relative;
