@@ -170,24 +170,38 @@ export default {
         checkedStatus : function () {
 
             let value = this.get();
+            let lastCheckNum = Object.keys(this.conf.list).length - this.conf.disabledOptions.length - value.length;
+            let status = 0;
 
-            if (value && (
-                value.length === (Object.keys(this.conf.list).length - this.conf.disabledOptions.length) ||
-                value.length === this.conf.max
-            )) {
+            if (value &&
+                value.length > 0 &&
+                (
+                    lastCheckNum <= 0 ||
+                    value.length === this.conf.max
+                )
+            ) {
 
                 // all checked
-                return 1;
+                status = 1;
 
             } else if (value && value.length > 0) {
 
                 // something checked
-                return 0;
+                status = 0;
+
+            } else if (lastCheckNum <= 0) {
+
+                // nothing can check
+                status = -2;
+
+            } else {
+
+                // no checked
+                status = -1;
 
             }
 
-            // no checked
-            return -1;
+            return status;
 
         }
     },
@@ -274,13 +288,29 @@ export default {
                 }
 
                 childStatus = arrayUniq(childStatus);
+                childStatus = childStatus.sort();
 
-                if (childStatus.length === 1 && childStatus[0] === -1) {
+                if (
+                    (childStatus.length === 1 && childStatus[0] === -1) ||
+                    (childStatus.length === 1 && childStatus[0] === -2) ||
+                    (
+                        childStatus.length === 2 &&
+                        childStatus[0] === -1 &&
+                        childStatus[1] === -2
+                    )
+                ) {
 
                     // all uncheck
                     this.toggle(key, false);
 
-                } else if (childStatus.length === 1 && childStatus[0] === 1) {
+                } else if (
+                    (childStatus.length === 1 && childStatus[0] === 1) ||
+                    (
+                        childStatus.length === 2 &&
+                        childStatus[0] === -2 &&
+                        childStatus[1] === 1
+                    )
+                ) {
 
                     // all checked
                     this.toggle(key, true);

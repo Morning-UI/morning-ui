@@ -6,7 +6,12 @@
                         v-if="conf.multiSelect && data.titleKeys.length === 0"
                         class="table-checked"
                     >
-                        <morning-checkbox :list="{checked:''}" :id="'mor-table-row-checked-'+uiid+'-all'" :ref="'mor-table-row-checked-'+uiid+'-all'"></morning-checkbox>
+                        <morning-checkbox
+                            :list="{checked:''}"
+                            :id="'mor-table-row-checked-'+uiid+'-all'"
+                            :ref="'mor-table-row-checked-'+uiid+'-all'"
+                            :disabledOptions="(conf.rowSet[0] && conf.rowSet[0].disableSelection) ? ['checked'] : undefined"
+                        ></morning-checkbox>
                     </th>
                     <template v-for="key of data.normalKeys">
                         <th
@@ -47,7 +52,13 @@
                         v-if="conf.multiSelect && data.titleKeys.length === 0"
                         class="table-checked"
                     >
-                        <morning-checkbox :list="{checked:''}" :ref="'mor-table-row-checked-'+uiid+'-'+line" @value-change="_syncRowChecked(line)" :parent="'#mor-table-row-checked-'+uiid+'-all:checked'"></morning-checkbox>
+                        <morning-checkbox
+                            :list="{checked:''}"
+                            :ref="'mor-table-row-checked-'+uiid+'-'+line"
+                            @value-change="_syncRowChecked(line)"
+                            :parent="'#mor-table-row-checked-'+uiid+'-all:checked'"
+                            :disabledOptions="(conf.rowSet[line] && conf.rowSet[line].disableSelection) ? ['checked'] : undefined"
+                        ></morning-checkbox>
                     </td>
                     <template v-for="(col, index) of row">
                         <td

@@ -29235,6 +29235,17 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'sortCol', 'uiid'],
@@ -29313,6 +29324,17 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39851,19 +39873,28 @@ exports.default = {
         checkedStatus: function checkedStatus() {
 
             var value = this.get();
+            var lastCheckNum = Object.keys(this.conf.list).length - this.conf.disabledOptions.length - value.length;
+            var status = 0;
 
-            if (value && (value.length === Object.keys(this.conf.list).length - this.conf.disabledOptions.length || value.length === this.conf.max)) {
+            if (value && value.length > 0 && (lastCheckNum <= 0 || value.length === this.conf.max)) {
 
                 // all checked
-                return 1;
+                status = 1;
             } else if (value && value.length > 0) {
 
                 // something checked
-                return 0;
+                status = 0;
+            } else if (lastCheckNum <= 0) {
+
+                // nothing can check
+                status = -2;
+            } else {
+
+                // no checked
+                status = -1;
             }
 
-            // no checked
-            return -1;
+            return status;
         }
     },
     data: function data() {
@@ -39979,12 +40010,13 @@ exports.default = {
                 }
 
                 childStatus = (0, _arrayUniq2.default)(childStatus);
+                childStatus = childStatus.sort();
 
-                if (childStatus.length === 1 && childStatus[0] === -1) {
+                if (childStatus.length === 1 && childStatus[0] === -1 || childStatus.length === 1 && childStatus[0] === -2 || childStatus.length === 2 && childStatus[0] === -1 && childStatus[1] === -2) {
 
                     // all uncheck
                     this.toggle(key, false);
-                } else if (childStatus.length === 1 && childStatus[0] === 1) {
+                } else if (childStatus.length === 1 && childStatus[0] === 1 || childStatus.length === 2 && childStatus[0] === -2 && childStatus[1] === 1) {
 
                     // all checked
                     this.toggle(key, true);
@@ -69410,7 +69442,12 @@ var render = function() {
                         ref: "mor-table-row-checked-" + _vm.uiid + "-all",
                         attrs: {
                           list: { checked: "" },
-                          id: "mor-table-row-checked-" + _vm.uiid + "-all"
+                          id: "mor-table-row-checked-" + _vm.uiid + "-all",
+                          disabledOptions:
+                            _vm.conf.rowSet[0] &&
+                            _vm.conf.rowSet[0].disableSelection
+                              ? ["checked"]
+                              : undefined
                         }
                       })
                     ],
@@ -69586,7 +69623,12 @@ var render = function() {
                       attrs: {
                         list: { checked: "" },
                         parent:
-                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked"
+                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked",
+                        disabledOptions:
+                          _vm.conf.rowSet[line] &&
+                          _vm.conf.rowSet[line].disableSelection
+                            ? ["checked"]
+                            : undefined
                       },
                       on: {
                         "value-change": function($event) {
@@ -69706,7 +69748,12 @@ var render = function() {
                         ref: "mor-table-row-checked-" + _vm.uiid + "-all",
                         attrs: {
                           list: { checked: "" },
-                          id: "mor-table-row-checked-" + _vm.uiid + "-all"
+                          id: "mor-table-row-checked-" + _vm.uiid + "-all",
+                          disabledOptions:
+                            _vm.conf.rowSet[0] &&
+                            _vm.conf.rowSet[0].disableSelection
+                              ? ["checked"]
+                              : undefined
                         }
                       })
                     ],
@@ -69882,7 +69929,12 @@ var render = function() {
                       attrs: {
                         list: { checked: "" },
                         parent:
-                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked"
+                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked",
+                        disabledOptions:
+                          _vm.conf.rowSet[line] &&
+                          _vm.conf.rowSet[line].disableSelection
+                            ? ["checked"]
+                            : undefined
                       },
                       on: {
                         "value-change": function($event) {

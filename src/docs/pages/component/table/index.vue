@@ -1146,10 +1146,11 @@
     <br><br>
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |row|需要设置的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
+    |row|需要设置的行数(从0开始，在有标题行时，0表示标题行)|行数|Number|`undefined`|
     |style|设置行的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
     |disabled|是否展示行的禁用样式|`true`<br>`false`|Boolean|`false`|
     |align|行的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+    |disableSelection|此行在多选模式下处于禁用状态，用户无法改变选中状态，但`setCheckedRows()`方法可以改变选中状态（必须配合`multi-select`才生效）|`true`<br>`false`|Boolean|`false`|
     <br>
     注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
     >conf-accept
@@ -1224,6 +1225,31 @@
             ]
         }
     }
+    ---
+    #demo
+    >title
+    disableSelection
+    >desc
+    使用`disableSelection`来禁用某一行的选中。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true" multi-select></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            rowset : [
+                {row : 0},
+                {row : 1, disableSelection: true},
+                {row : 2}
+            ]
+        }
+    }
     :::
 
     :::vue
@@ -1239,7 +1265,7 @@
     <br><br>
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |row|需要设置单元格的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
+    |row|需要设置单元格的行数(从0开始，在有标题行时，0表示标题行)|行数|Number|`undefined`|
     |col|需要设置单元格所在列的KEY|列的KEY(`list`配置中设置)|String|`undefined`|
     |style|设置单元格的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
     |disabled|是否展示单元格的禁用样式|`true`<br>`false`|Boolean|`false`|
