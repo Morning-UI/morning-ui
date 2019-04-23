@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.12.27
+
+`2019年4月23日`
+    
+#### 新特性
+
+- `ui-upload`新增`hidden-max-alert`配置
+
+#### 修复
+
+- 修复`ui-select`组件在`multi-select`配置开启和关闭状态时`inside-name`颜色不一致的问题
+- 修复`ui-cascader`组件在多选的情况下仍然搜索的问题
+
 ## 0.12.26
 
 `2019年4月23日`
