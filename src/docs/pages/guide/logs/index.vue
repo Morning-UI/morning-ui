@@ -18,6 +18,29 @@
     
     ### 更新记录
 
+    ### 0.12.27 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.27" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.27/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.27/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-upload`新增`hidden-max-alert`配置
+    
+    #### 修复
+    
+    - 修复`ui-select`组件在`multi-select`配置开启和关闭状态时`inside-name`颜色不一致的问题
+    - 修复`ui-cascader`组件在多选的情况下仍然搜索的问题
+    
+    ---
+
     ### 0.12.26 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">

@@ -41539,6 +41539,11 @@ exports.default = {
         },
         _search: function _search() {
 
+            if (this.conf.state === 'readonly' || this.conf.state === 'disabled') {
+
+                return;
+            }
+
             if (!this.conf.canSearch) {
 
                 return;
@@ -46928,6 +46933,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _axiosMin = __webpack_require__(632);
 
@@ -47006,6 +47012,10 @@ exports.default = {
         showList: {
             type: Boolean,
             default: true
+        },
+        hiddenMaxAlert: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -47025,7 +47035,8 @@ exports.default = {
                 allowUrl: this.allowUrl,
                 allowDrag: this.allowDrag,
                 listType: this.listType,
-                showList: this.showList
+                showList: this.showList,
+                hiddenMaxAlert: this.hiddenMaxAlert
             };
         },
         moreClass: function moreClass() {
@@ -62005,8 +62016,9 @@ var render = function() {
         "keep-origin-name": _vm.keepOriginName,
         "allow-url": _vm.allowUrl,
         "allow-drag": _vm.allowDrag,
-        listType: _vm.conf.listType,
-        showList: _vm.conf.showList
+        listType: _vm.listType,
+        showList: _vm.showList,
+        "hidden-max-alert": _vm.hiddenMaxAlert
       },
       on: {
         dragover: function($event) {
@@ -62198,7 +62210,7 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm.ismax
+                  _vm.ismax && !_vm.conf.hiddenMaxAlert
                     ? _c(
                         "div",
                         { staticClass: "ismax-note" },
@@ -62488,7 +62500,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm.ismax
+                                _vm.ismax && !_vm.conf.hiddenMaxAlert
                                   ? _c(
                                       "div",
                                       { staticClass: "ismax-note" },
@@ -62729,7 +62741,7 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.ismax
+                        _vm.ismax && !_vm.conf.hiddenMaxAlert
                           ? _c("div", { staticClass: "inside-name max" }, [
                               _vm._v(
                                 "最多只能上传" + _vm._s(_vm.conf.max) + "个文件"
@@ -65158,7 +65170,8 @@ var render = function() {
               }
             },
             [
-              _vm.conf.canSearch
+              _vm.conf.canSearch &&
+              (_vm.conf.state !== "readonly" && _vm.conf.state !== "disabled")
                 ? _c("morning-textinput", {
                     ref: "mor-cascader-ti-" + _vm.uiid,
                     class: {
@@ -78051,7 +78064,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.26',
+    version: '0.12.27',
     map: {}
 };
 
