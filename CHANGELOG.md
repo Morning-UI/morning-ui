@@ -1,6 +1,33 @@
 # CHANGELOG
 
+## 0.12.26
+
+`2019年4月23日`
+    
+#### 新特性
+
+- `ui-textinput`和`ui-select`现在在有值的情况下会出现表单内清空按钮
+
+#### 改进
+
+- 优化`ui-upload`在`type` 配置为`box`时可点击上传区域
+- 优化所有表单组件当拥有数值时的文本颜色
+- 优化`ui-select`选中项的样式
+- `ui-select`的`hide-selected`配置默认值由`true`改为`false`
+- `ui-form`中的必选表单项标记位置调整到了名字前面
+
+#### 修复
+
+- 修复`ui-cascader`级联组件的禁用状态仍然可以修改数值的问题
+- 修复`ui-datetimepicker`组件当点击时间选择时，日期选择弹框会消失的问题
+
+__升级注意事项__
+
+- `ui-select`的`hide-selected`配置默认值由`true`改为`false`
+
 ## 0.12.25
+
+`2019年4月21日`
     
 #### 新特性
 

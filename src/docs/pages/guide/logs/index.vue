@@ -18,6 +18,41 @@
     
     ### 更新记录
 
+    ### 0.12.26 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.26" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.26/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.26/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-textinput`和`ui-select`现在在有值的情况下会出现表单内清空按钮
+    
+    #### 改进
+    
+    - 优化`ui-upload`在`type` 配置为`box`时可点击上传区域
+    - 优化所有表单组件当拥有数值时的文本颜色
+    - 优化`ui-select`选中项的样式
+    - `ui-select`的`hide-selected`配置默认值由`true`改为`false`
+    - `ui-form`中的必选表单项标记位置调整到了名字前面
+    
+    #### 修复
+    
+    - 修复`ui-cascader`级联组件的禁用状态仍然可以修改数值的问题
+    - 修复`ui-datetimepicker`组件当点击时间选择时，日期选择弹框会消失的问题
+    
+    <ui-label color="primary">升级注意事项</ui-label>
+    
+    - `ui-select`的`hide-selected`配置默认值由`true`改为`false`
+    
+    ---
+
     ### 0.12.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">
