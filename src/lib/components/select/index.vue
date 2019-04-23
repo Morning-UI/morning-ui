@@ -9,6 +9,7 @@
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :list="list"
@@ -60,6 +61,7 @@
             :_listClick="_listClick"
             :_itemHover="_itemHover"
             :showItemList="showItemList"
+            :set="set"
         ></select-area>
     </div>
 
@@ -97,6 +99,7 @@
                 :_listClick="_listClick"
                 :_itemHover="_itemHover"
                 :showItemList="showItemList"
+                :set="set"
             ></select-area>
         </div>
     </morning-popover>

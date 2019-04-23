@@ -9,6 +9,7 @@
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :hide-value="hideValue"
@@ -63,6 +64,8 @@
         </template>
 
         <div class="input-group-addon" v-html="conf.append" v-show="!!conf.append"></div>
+
+        <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
         
     </div>
 
@@ -152,12 +155,24 @@ export default {
         },
         moreClass : function () {
 
-            return {
+            let classes = {
                 'input-group' : !!(this.conf.prepend || this.conf.append),
-                'inline-append' : (this.conf.appendType === 'inline'),
-                'inline-prepend' : (this.conf.prependType === 'inline'),
                 'input-focus' : this.data.inputFocus
             };
+
+            if (this.conf.prepend) {
+                
+                classes[`input-group-prepend-${this.conf.prependType}`] = true;
+
+            }
+
+            if (this.conf.append) {
+                
+                classes[`input-group-append-${this.conf.appendType}`] = true;
+
+            }
+
+            return classes;
 
         },
         inputClass : function () {
