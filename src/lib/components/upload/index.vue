@@ -22,8 +22,9 @@
         :keep-origin-name="keepOriginName"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
-        :listType="conf.listType"
-        :showList="conf.showList"
+        :listType="listType"
+        :showList="showList"
+        :hidden-max-alert="hiddenMaxAlert"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -97,7 +98,7 @@
                         </div>
                     </morning-popover>
                 </div>
-                <div class="ismax-note" v-if="ismax">
+                <div class="ismax-note" v-if="ismax && !conf.hiddenMaxAlert">
                     <morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center>
                 </div>
 
@@ -169,7 +170,7 @@
                         <a href="javascript:;" title="删除文件" class="del" @click="_removeFile(data.currentPreview)">
                             <i class="mo-icon mo-icon-del"></i>
                         </a>
-                        <div class="ismax-note" v-if="ismax"><morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center></div>
+                        <div class="ismax-note" v-if="ismax && !conf.hiddenMaxAlert"><morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center></div>
                     </div>
                 </template>
 
@@ -237,7 +238,7 @@
             </morning-btn>
             <div class="filelist" v-if="conf.showList && (data.showFiles.length > 0 || !!conf.insideName)" :class="{'thumbnail-list' : conf.listType === 'thumbnail'}">
                 <div class="inside-name" v-if="!!conf.insideName">{{conf.insideName}}</div>
-                <div class="inside-name max" v-if="ismax">最多只能上传{{conf.max}}个文件</div>
+                <div class="inside-name max" v-if="ismax && !conf.hiddenMaxAlert">最多只能上传{{conf.max}}个文件</div>
                 <template v-for="(item, index) in data.showFiles">
                     <a
                         class="file-item"
@@ -354,6 +355,10 @@ export default {
         showList : {
             type : Boolean,
             default : true
+        },
+        hiddenMaxAlert : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -373,7 +378,8 @@ export default {
                 allowUrl : this.allowUrl,
                 allowDrag : this.allowDrag,
                 listType : this.listType,
-                showList : this.showList
+                showList : this.showList,
+                hiddenMaxAlert : this.hiddenMaxAlert
             };
 
         },

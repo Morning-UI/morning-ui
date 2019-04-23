@@ -1983,6 +1983,9 @@ textarea {
 .mor-media-volume .slider .note {
   display: none;
 }
+input::-webkit-input-placeholder {
+  opacity: 1;
+}
 /* stylelint-disable at-rule-empty-line-before */
 mor-h {
   display: block;

@@ -24,7 +24,7 @@
     <div class="cascader-wrap form-body">
         <div class="cascader-input" :id="'mor-cascader-input-'+uiid" @click="_showPopover()">
             <morning-textinput
-                v-if="conf.canSearch"
+                v-if="conf.canSearch && (conf.state !== 'readonly' && conf.state !== 'disabled')"
                 :id="'mor-cascader-ti-' + uiid"
                 :ref="'mor-cascader-ti-'+uiid"
                 :class="{
@@ -524,6 +524,13 @@ export default {
 
         },
         _search : function () {
+
+            if (this.conf.state === 'readonly' ||
+                this.conf.state === 'disabled') {
+
+                return;
+
+            }
 
             if (!this.conf.canSearch) {
 

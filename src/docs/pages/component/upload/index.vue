@@ -674,6 +674,26 @@
     </div>
     :::
 
+    :::vue
+    @name:hidden-max-alert
+    ---
+    #config
+    >conf-desc
+    当上传文件达到`max`限制时隐藏提示。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :max="2" :hidden-max-alert="true"></ui-upload>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

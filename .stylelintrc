@@ -53,7 +53,9 @@
         "selector-no-qualifying-type" : [true, {
             ignore : ["attribute", "class"]
         }],
-        "selector-no-vendor-prefix" : true,
+        "selector-no-vendor-prefix" : [true, {
+            ignoreSelectors : ["::-webkit-input-placeholder"]
+        }],
         "media-feature-name-no-vendor-prefix" : true,
         "at-rule-no-vendor-prefix" : true,
         "comment-word-blacklist" : ["/^TODO/", "/^todo/"],
