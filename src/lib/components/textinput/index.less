@@ -20,7 +20,6 @@ mor-textinput{
         color: @colorFormText !important;
         outline: none;
         -webkit-appearance: none;
-        padding: 0 1em;
 
         &.align-left{
             text-align: left;
@@ -35,12 +34,16 @@ mor-textinput{
         }
 
         &::placeholder{
-            color: @colorFormText;
+            color: @colorFormPlaceholder;
         }
 
         &:hover{
             border-color: @colorFormBorderHover;
-            color: @colorFormTextHover !important;
+            color: @colorFormText !important;
+
+            &::placeholder{
+                color: @colorFormPlaceholderHover !important;
+            }
         }
 
         &:focus{
@@ -49,7 +52,34 @@ mor-textinput{
         }
     }
 
+    .form-body{
+        position: relative;
+
+        .cleanicon{
+            position: absolute;
+            display: none;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: @fontSize*0.875;
+            color: @colorFormPlaceholder;
+
+            &:hover{
+                color: @colorFormPlaceholderHover;
+                cursor: pointer;
+            }
+        }
+
+        &:hover .cleanicon{
+            display: block;
+        }
+    }
+
     &.input-group {
+        .cleanicon{
+            right: 2.5em;
+            z-index: 2;
+        }
+
         .textinput-wrap{
             display: flex;
             vertical-align: middle;
@@ -99,7 +129,7 @@ mor-textinput{
             border-bottom-left-radius: 0;
         }
 
-        &.inline-prepend{
+        &.input-group-prepend-inline{
             .input-group-addon:first-child{
                 background: @colorWhite;
                 padding-right: 0;
@@ -116,7 +146,7 @@ mor-textinput{
             }
         }
 
-        &.inline-append{
+        &.input-group-append-inline{
             .input-group-addon:nth-child(3){
                 background: @colorWhite;
                 padding-left: 0;
@@ -143,10 +173,18 @@ mor-textinput{
             font-size: @formInputFontSizeXs;
             height: @formHeightXs;
             line-height: @formHeightXs;
-            padding: 0 0.625em;
+            padding: 0 1.625em 0 0.625em;
+        }
+
+        .cleanicon{
+            right: 0.3em;
         }
 
         &.input-group {
+            .cleanicon{
+                right: 1.8em;
+            }
+
             .input-group-addon {
                 padding: @fontSize*0.3125 @fontSize*0.625;
                 font-size: @formInputFontSizeXs;
@@ -157,6 +195,12 @@ mor-textinput{
                 > i{
                     font-size: @formInputFontSizeXs;
                 }
+            }
+        }
+
+        &.input-group-append-block{
+            .cleanicon{
+                right: 2.6em;
             }
         }
     }
@@ -170,10 +214,18 @@ mor-textinput{
             font-size: @formInputFontSizeS;
             height: @formHeightS;
             line-height: @formHeightS;
-            padding: 0 0.75em;
+            padding: 0 1.75em 0 0.75em;
+        }
+
+        .cleanicon{
+            right: 0.5em;
         }
 
         &.input-group {
+            .cleanicon{
+                right: 2.1em;
+            }
+
             .input-group-addon {
                 padding: @fontSize*0.375 @fontSize*0.75;
                 font-size: @formInputFontSizeS;
@@ -184,6 +236,12 @@ mor-textinput{
                 > i{
                     font-size: @formInputFontSizeS;
                 }
+            }
+        }
+
+        &.input-group-append-block{
+            .cleanicon{
+                right: 3em;
             }
         }
     }
@@ -197,9 +255,18 @@ mor-textinput{
             font-size: @formInputFontSize;
             height: @formHeight;
             line-height: @formHeight;
+            padding: 0 2em 0 1em;
+        }
+
+        .cleanicon{
+            right: 0.6em;
         }
 
         &.input-group {
+            .cleanicon{
+                right: 2.1em;
+            }
+
             .input-group-addon {
                 padding: @fontSize*0.375 @fontSize*0.75;
                 font-size: @formInputFontSize;
@@ -210,6 +277,12 @@ mor-textinput{
                 > i{
                     font-size: @formInputFontSize;
                 }
+            }
+        }
+
+        &.input-group-append-block{
+            .cleanicon{
+                right: 3.3em;
             }
         }
     }
@@ -226,8 +299,8 @@ mor-textinput{
             color: @colorFormTextDisable !important;
         }
 
-        &.inline-prepend .input-group-addon:first-child,
-        &.inline-append .input-group-addon:nth-child(3){
+        &.input-group-prepend-inline .input-group-addon:first-child,
+        &.input-group-append-inline .input-group-addon:nth-child(3){
             border-color: @colorFormBorderDisable;
             background-color: @colorFormBackgroundDisable;
             -webkit-user-select: none;

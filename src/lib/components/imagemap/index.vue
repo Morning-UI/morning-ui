@@ -156,7 +156,7 @@
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" v-model="data.modifyZoneBasic.w"></morning-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" :inside-clearable="false" v-model="data.modifyZoneBasic.w"></morning-textinput>
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" v-model="data.modifyZoneBasic.h"></morning-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" :inside-clearable="false" v-model="data.modifyZoneBasic.h"></morning-textinput>
                             </div>
                         </div>
                     </div>
@@ -178,7 +178,7 @@
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" v-model="data.modifyZoneBasic.x"></morning-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" :inside-clearable="false" v-model="data.modifyZoneBasic.x"></morning-textinput>
                             </div>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" v-model="data.modifyZoneBasic.y"></morning-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" :inside-clearable="false" v-model="data.modifyZoneBasic.y"></morning-textinput>
                             </div>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
                         <div class="content">
                             <p>仅支持数字，0表示采用默认层级</p>
                             <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" v-model="data.modifyZoneBasic.i"></morning-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" :inside-clearable="false" v-model="data.modifyZoneBasic.i"></morning-textinput>
                             </div>
                         </div>
                     </div>
@@ -237,7 +237,7 @@
                 <div class="content">
                     <p>编辑区域缩放百分比，此设置仅修改编辑区域视觉尺寸，不影响热区真实尺寸</p>
                     <div class="form">
-                        <morning-textinput v-model="data.setScale"></morning-textinput>
+                        <morning-textinput v-model="data.setScale" :inside-clearable="false"></morning-textinput>
                     </div>
                 </div>
             </div>

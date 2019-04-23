@@ -33,6 +33,10 @@ export default UI => UI.extend({
             type : Boolean,
             default : false
         },
+        insideClearable : {
+            type : Boolean,
+            default : true
+        },
         _errorMessage : {
             type : String,
             default : undefined
@@ -48,6 +52,7 @@ export default UI => UI.extend({
                 group : this.group,
                 hideName : this.hideName,
                 clearable : this.clearable,
+                insideClearable : this.insideClearable,
                 _errorMessage : this._errorMessage
             };
 

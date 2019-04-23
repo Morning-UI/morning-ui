@@ -1388,7 +1388,7 @@
     >conf-type
     Boolean
     >conf-default
-    `true`
+    `false`
     ---
     #demo
     >desc

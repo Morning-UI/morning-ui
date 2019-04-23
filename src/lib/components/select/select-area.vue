@@ -64,6 +64,7 @@
                         :id="'ui-select-ti-' + uiid"
                         :align="conf.align"
                         :size="conf.size"
+                        :inside-clearable="false"
                         @value-change="_searchKeyChange()"
                         @focus="_textinputFocus()"
                         @blur="_textinputBlur()"
@@ -91,6 +92,7 @@
                 </div>
             </template>
 
+            <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable && data.value !== undefined && data.value.length > 0" @click.stop="set(undefined)"></i>
             <i class="mo-icon mo-icon-dropdown drop"></i>
 
         </div>
@@ -162,7 +164,8 @@ export default {
         '_textinputBlur',
         '_listClick',
         '_itemHover',
-        'showItemList'
+        'showItemList',
+        'set'
     ]
 };
 </script>

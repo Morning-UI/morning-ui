@@ -23,6 +23,7 @@
         :align="conf.align"
         :state="conf.state"
         :size="conf.size"
+        :inside-clearable="false"
         
         prepend="<i class='mo-icon mo-icon-time-co'></i>"
 

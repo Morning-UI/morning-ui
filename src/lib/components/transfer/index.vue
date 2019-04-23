@@ -55,6 +55,7 @@
                         inside-name="请输入搜索内容"
                         :ref="'mor-transfer-source-search-'+uiid"
                         :size="conf.size"
+                        :inside-clearable="false"
                         @value-change="_sourceOnSearch"
                     ></morning-textinput>
                 </div>
@@ -136,6 +137,7 @@
                         inside-name="请输入搜索内容"
                         :ref="'mor-transfer-target-search-'+uiid"
                         :size="conf.size"
+                        :inside-clearable="false"
                         @value-change="_targetOnSearch"
                     ></morning-textinput>
                 </div>

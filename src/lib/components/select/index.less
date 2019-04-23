@@ -157,7 +157,7 @@
 
         > mor-multiinput{
             margin: 0;
-            width: calc(100% - 2em);
+            width: calc(100% - 3.5em);
             background-color: #FFF;
             vertical-align: top;
             left: 0.35em;
@@ -172,9 +172,9 @@
         }
 
         > .selected{
-            color: @colorFormText;
-            width: calc(100% - 2em);
-            padding: 0 1em;
+            color: @colorFormPlaceholder;
+            width: calc(100% - 3.5em);
+            padding: if(@is-separate, 0 2em 0 1em, 0 1em);
             position: relative;
             pointer-events: none;
             z-index: 1;
@@ -202,13 +202,33 @@
             transform: rotateX(0deg);
             transition: transform 0.2s;
             z-index: 2;
-            color: @colorFormText;
+            color: @colorFormPlaceholder;
+
+            &.cleanicon{
+                display: none;
+                right: if(@is-separate, 0, 1.5em);
+                font-size: @fontSize*0.875;
+                top: 0;
+                color: @colorFormPlaceholder;
+
+                &:hover{
+                    color: @colorFormPlaceholderHover;
+                    cursor: pointer;
+                }
+            }
 
             &.drop{
                 top: 0;
                 right: 0;
                 font-size: 30px;
                 text-indent: 1px;
+            }
+        }
+
+        &:hover,
+        &.hover{
+            > .mo-icon.cleanicon{
+                display: block;
             }
         }
 
@@ -431,7 +451,7 @@ mor-select{
         border-top: 1px lighten(@colorFormBorder, 5%) solid;
         cursor: pointer;
         font-size: 14px;
-        color: darken(@colorFormText, 15%);
+        color: darken(@colorFormPlaceholder, 15%);
         position: relative;
         word-break: break-all;
 
@@ -465,7 +485,12 @@ mor-select{
 
         &.selected{
             background: @colorFormBackgroundHover;
-            border-left: 3px @colorTheme solid;
+            // border-left: 3px @colorTheme solid;
+            color: @colorTheme;
+
+            &.hover{
+                color: @colorTheme;
+            }
         }
 
         &.hide{
@@ -473,7 +498,7 @@ mor-select{
         }
 
         &.hover{
-            color: darken(@colorFormTextHover, 15%);
+            color: darken(@colorFormPlaceholderHover, 15%);
             background: @colorFormBackgroundHover;
         }
 

@@ -33,6 +33,7 @@
         :state="conf.state"
         :size="conf.size"
         prepend="<i class='mo-icon mo-icon-date'></i>"
+        :inside-clearable="false"
 
         @focus="_inputFocus"
         @blur="_inputBlur"
@@ -261,6 +262,8 @@ export default {
                 keepInputFocus : false,
                 blurIgnoreElement1 : undefined,
                 blurIgnoreElement2 : undefined,
+                blurIgnoreElement3 : undefined,
+                blurIgnoreElement4 : undefined,
                 $dateWrap : null
             }
         };
@@ -397,13 +400,48 @@ export default {
         },
         _blur : function (evt) {
 
+            // let $timepickerPopover = [];
+            // let popoverChildren = this.$refs[`ui-private-datepicker-popover-${this.uiid}`].$children;
+
+            // for (let vm of popoverChildren) {
+
+            //     if (vm.isUI && vm.uiname === 'timepicker') {
+
+            //         for (let svm of vm.$children) {
+
+            //             if (svm.isUI && svm.uiname === 'private-timepicker') {
+
+            //                 for (let tvm of svm.$children) {
+
+            //                     if (tvm.isUI && tvm.uiname === 'popover') {
+
+            //                         $timepickerPopover.push(tvm.$el);
+
+            //                     }
+
+            //                 }
+
+            //             }
+
+            //         }
+
+            //     }
+
+            // }
+
+            // console.log($timepickerPopover, evt.path);
+
             if (evt &&
                 evt.path &&
                 (
                     evt.path.indexOf(this.$el) !== -1 ||
                     evt.path.indexOf(this.data.$dateWrap) !== -1 ||
                     evt.path.indexOf(this.data.blurIgnoreElement1) !== -1 ||
-                    evt.path.indexOf(this.data.blurIgnoreElement2) !== -1
+                    evt.path.indexOf(this.data.blurIgnoreElement2) !== -1 ||
+                    evt.path.indexOf(this.data.blurIgnoreElement3) !== -1 ||
+                    evt.path.indexOf(this.data.blurIgnoreElement4) !== -1
+                    // ($timepickerPopover && evt.path.indexOf($timepickerPopover[0])) !== -1 ||
+                    // ($timepickerPopover && evt.path.indexOf($timepickerPopover[1])) !== -1
                 )) {
 
                 return;

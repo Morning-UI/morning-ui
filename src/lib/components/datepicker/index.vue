@@ -676,7 +676,64 @@ export default {
                 let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
                 let $input0DateSelect = input0.data.$dateWrap;
                 let $input1DateSelect = input1.data.$dateWrap;
+                let timepicker0;
+                let timepicker1;
                 let value = this.get();
+
+                if (this.$parent &&
+                    this.$parent.isUI &&
+                    this.$parent.uiname === 'datetimepicker') {
+
+                    timepicker0 = this.$parent.$refs[`ui-datetimepicker-time-${this.$parent.uiid}`];
+                    timepicker1 = this.$parent.$refs[`ui-datetimepicker-time2-${this.$parent.uiid}`];
+
+                    if (timepicker0) {
+                        
+                        let privateTimepicker;
+
+                        for (let vm of timepicker0.$children) {
+
+                            if (vm.isUI && vm.uiname === 'private-timepicker') {
+
+                                privateTimepicker = vm;
+
+                            }
+
+                        }
+
+                        if (privateTimepicker) {
+
+                            input0.data.blurIgnoreElement3 = privateTimepicker.$refs[`ui-private-timepicker-popover-${privateTimepicker.uiid}`].$el;
+                            input1.data.blurIgnoreElement3 = privateTimepicker.$refs[`ui-private-timepicker-popover-${privateTimepicker.uiid}`].$el;
+
+                        }
+
+                    }
+
+                    if (timepicker1) {
+                        
+                        let privateTimepicker;
+
+                        for (let vm of timepicker1.$children) {
+
+                            if (vm.isUI && vm.uiname === 'private-timepicker') {
+
+                                privateTimepicker = vm;
+
+                            }
+
+                        }
+
+                        if (privateTimepicker) {
+
+                            input0.data.blurIgnoreElement4 = privateTimepicker.$refs[`ui-private-timepicker-popover-${privateTimepicker.uiid}`].$el;
+                            input1.data.blurIgnoreElement4 = privateTimepicker.$refs[`ui-private-timepicker-popover-${privateTimepicker.uiid}`].$el;
+
+                        }
+
+                    }
+
+                }
 
                 input0.data.keepInputFocus = true;
                 input1.data.keepInputFocus = true;
@@ -836,6 +893,41 @@ export default {
                 }
 
                 this.$nextTick(() => this._highlightDateFromValue());
+
+            } else {
+
+                let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+                let timepicker0;
+
+                if (this.$parent &&
+                    this.$parent.isUI &&
+                    this.$parent.uiname === 'datetimepicker') {
+
+                    timepicker0 = this.$parent.$refs[`ui-datetimepicker-time-${this.$parent.uiid}`];
+
+                    if (timepicker0) {
+                        
+                        let privateTimepicker;
+
+                        for (let vm of timepicker0.$children) {
+
+                            if (vm.isUI && vm.uiname === 'private-timepicker') {
+
+                                privateTimepicker = vm;
+
+                            }
+
+                        }
+
+                        if (privateTimepicker) {
+
+                            input0.data.blurIgnoreElement3 = privateTimepicker.$refs[`ui-private-timepicker-popover-${privateTimepicker.uiid}`].$el;
+
+                        }
+
+                    }
+
+                }
 
             }
 

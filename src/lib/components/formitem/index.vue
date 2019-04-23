@@ -14,7 +14,7 @@
                 width : conf._labelWidth
             }"
         >
-            <span>{{conf.label}} <span class="required" v-if="conf.required">*</span></span>
+            <span><span class="required" v-if="conf.required">*</span> {{conf.label}}</span>
             <span class="form-item-note" v-html="conf.note"></span>
         </div>
 

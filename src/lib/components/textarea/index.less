@@ -31,12 +31,16 @@ mor-textarea{
         }
 
         &::placeholder{
-            color: @colorFormText;
+            color: @colorFormPlaceholder;
         }
 
         &:hover{
             border-color: @colorFormBorderHover;
             color: @colorFormTextHover !important;
+
+            &::placeholder{
+                color: @colorFormPlaceholderHover !important;
+            }
         }
 
         &:focus{

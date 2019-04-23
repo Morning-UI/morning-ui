@@ -63,6 +63,11 @@ mor-upload{
         line-height: 1.2em;
     }
 
+    .upload-box-note{
+        margin-top: @fontSize*0.25;
+        color: @colorLightBlue;
+    }
+
     .upload-wrap{
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
@@ -425,10 +430,10 @@ mor-upload{
 
             &.done{
                 &:hover{
-                    color: @colorFormTextHover;
+                    color: @colorFormPlaceholderHover;
 
                     .mo-icon{
-                        color: @colorFormTextHover;
+                        color: @colorFormPlaceholderHover;
                     }
                 }
 
@@ -474,10 +479,15 @@ mor-upload{
             justify-content: center;
             display: flex;
             position: relative;
+            height: 100%;
 
             .upload-file{
-                display: inline-block;
                 color: @colorExtraLightBlue;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
 
                 .mo-icon{
                     font-size: @fontSize*2;
