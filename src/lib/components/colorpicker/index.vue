@@ -132,10 +132,10 @@
             <div class="values" v-show="!onlyUsePalettes">
                 <div class="input">
                     <div class="rgba" v-if="data.showValueType === 'rgba' && typeof data.colorValue === 'object'">
-                        <morning-textinput v-model="data.colorValue.r" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeR();_hslHSync(false)"></morning-textinput>
-                        <morning-textinput v-model="data.colorValue.g" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeG();_hslHSync(false)"></morning-textinput>
-                        <morning-textinput v-model="data.colorValue.b" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeB();_hslHSync(false)"></morning-textinput>
-                        <morning-textinput v-model="data.colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @blur="_alphaChangePer"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.r" :inside-clearable="false" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeR();_hslHSync(false)"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.g" :inside-clearable="false" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeG();_hslHSync(false)"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.b" :inside-clearable="false" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeB();_hslHSync(false)"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.a" :inside-clearable="false" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @blur="_alphaChangePer"></morning-textinput>
                         <div class="name">R</div>
                         <div class="name">G</div>
                         <div class="name">B</div>
@@ -145,6 +145,7 @@
                         <morning-textinput
                             v-model="data.colorValue"
                             :state="inputIsReadonly ? 'readonly' : 'normal'"
+                            :inside-clearable="false"
                             @value-change="_hexChange"
                             @focus="_hslHSync(true)"
                             @blur="_hslHSync(false)"
@@ -152,10 +153,10 @@
                         <div class="name">HEX</div>
                     </div>
                     <div class="hsla" v-if="data.showValueType === 'hsla' && typeof data.colorValue === 'object'">
-                        <morning-textinput v-model="data.colorValue.h" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_hslChangeH();_hslHSync(false)"></morning-textinput>
-                        <morning-textinput v-model="data.colorValue.s" :state="inputIsReadonly ? 'readonly' : 'normal'" @blur="_hslChangeS"></morning-textinput>
-                        <morning-textinput v-model="data.colorValue.l" :state="inputIsReadonly ? 'readonly' : 'normal'" @blur="_hslChangeL"></morning-textinput>
-                        <morning-textinput v-model="data.colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @blur="_alphaChangePer"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.h" :inside-clearable="false" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_hslChangeH();_hslHSync(false)"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.s" :inside-clearable="false" :state="inputIsReadonly ? 'readonly' : 'normal'" @blur="_hslChangeS"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.l" :inside-clearable="false" :state="inputIsReadonly ? 'readonly' : 'normal'" @blur="_hslChangeL"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.a" :inside-clearable="false" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @blur="_alphaChangePer"></morning-textinput>
                         <div class="name">H</div>
                         <div class="name">S</div>
                         <div class="name">L</div>

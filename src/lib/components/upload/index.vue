@@ -116,6 +116,9 @@
                         >
                             <i class="mo-icon mo-icon-upload"></i>
                             <span>上传{{conf.itemName}}</span>
+                            <div class="upload-box-note">
+                                <morning-center class="fill">{{conf.insideName}}</morning-center>
+                            </div>
                         </label>
 
                         <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
@@ -123,9 +126,6 @@
                                 <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                             </div>
                         </morning-popover>
-                    </div>
-                    <div class="upload-box-note">
-                        <morning-center class="fill">{{conf.insideName}}</morning-center>
                     </div>
                 </template>
 

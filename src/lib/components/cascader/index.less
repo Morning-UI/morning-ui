@@ -14,7 +14,7 @@ mor-cascader{
             position: relative;
             background: @colorFormBackground;
             border: 1px @colorFormBorder solid;
-            color: @colorFormText !important;
+            color: @colorFormPlaceholder !important;
             cursor: pointer;
 
             mor-textinput{
@@ -34,6 +34,11 @@ mor-cascader{
                 .textinput-wrap{
                     input{
                         border: none;
+                        padding: 0 3.5em 0 1em;
+                    }
+
+                    .cleanicon{
+                        right: 2em;
                     }
                 }
             }
@@ -48,13 +53,13 @@ mor-cascader{
                 z-index: 1;
 
                 &.has-selected{
-                    color: @colorFormTextFocus;
+                    color: @colorFormText;
                 }
             }
 
             &:hover{
                 border-color: @colorFormBorderHover;
-                color: @colorFormTextHover !important;
+                color: @colorFormPlaceholderHover !important;
             }
 
             > .mo-icon{

@@ -78,13 +78,17 @@ mor-counter{
         flex-grow: 1;
 
         &::placeholder{
-            color: @colorFormText;
+            color: @colorFormPlaceholder;
         }
 
         &:hover{
             border-color: @colorFormBorderHover;
             color: @colorFormTextHover !important;
             z-index: 3;
+
+            &::placeholder{
+                color: @colorFormPlaceholderHover !important;
+            }
         }
 
         &:focus{

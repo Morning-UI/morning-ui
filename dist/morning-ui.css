@@ -38285,10 +38285,9 @@ mor-textinput input {
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
-  color: #b3b3b3 !important;
+  color: #17212D !important;
   outline: none;
   -webkit-appearance: none;
-  padding: 0 1em;
 }
 mor-textinput input.align-left {
   text-align: left;
@@ -38304,11 +38303,36 @@ mor-textinput input::placeholder {
 }
 mor-textinput input:hover {
   border-color: #d7d7d7;
+  color: #17212D !important;
+}
+mor-textinput input:hover::placeholder {
   color: #9a9a9a !important;
 }
 mor-textinput input:focus {
   border-color: #8E9CAF;
   color: #17212D !important;
+}
+mor-textinput .form-body {
+  position: relative;
+}
+mor-textinput .form-body .cleanicon {
+  position: absolute;
+  display: none;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #b3b3b3;
+}
+mor-textinput .form-body .cleanicon:hover {
+  color: #9a9a9a;
+  cursor: pointer;
+}
+mor-textinput .form-body:hover .cleanicon {
+  display: block;
+}
+mor-textinput.input-group .cleanicon {
+  right: 2.5em;
+  z-index: 2;
 }
 mor-textinput.input-group .textinput-wrap {
   display: flex;
@@ -38351,24 +38375,24 @@ mor-textinput.input-group .input-group-addon + input.has-prepend {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-mor-textinput.input-group.inline-prepend .input-group-addon:first-child {
+mor-textinput.input-group.input-group-prepend-inline .input-group-addon:first-child {
   background: #FFFFFF;
   padding-right: 0;
 }
-mor-textinput.input-group.inline-prepend .input-group-addon + input {
+mor-textinput.input-group.input-group-prepend-inline .input-group-addon + input {
   border-left: 0;
 }
-mor-textinput.input-group.inline-prepend.input-focus .input-group-addon:first-child {
+mor-textinput.input-group.input-group-prepend-inline.input-focus .input-group-addon:first-child {
   border-color: #8E9CAF;
 }
-mor-textinput.input-group.inline-append .input-group-addon:nth-child(3) {
+mor-textinput.input-group.input-group-append-inline .input-group-addon:nth-child(3) {
   background: #FFFFFF;
   padding-left: 0;
 }
-mor-textinput.input-group.inline-append input.has-append {
+mor-textinput.input-group.input-group-append-inline input.has-append {
   border-right: 0;
 }
-mor-textinput.input-group.inline-append.input-focus .input-group-addon:nth-child(3) {
+mor-textinput.input-group.input-group-append-inline.input-focus .input-group-addon:nth-child(3) {
   border-color: #8E9CAF;
 }
 mor-textinput.si-xs > .form-name {
@@ -38378,7 +38402,13 @@ mor-textinput.si-xs input {
   font-size: 12px;
   height: 28px;
   line-height: 28px;
-  padding: 0 0.625em;
+  padding: 0 1.625em 0 0.625em;
+}
+mor-textinput.si-xs .cleanicon {
+  right: 0.3em;
+}
+mor-textinput.si-xs.input-group .cleanicon {
+  right: 1.8em;
 }
 mor-textinput.si-xs.input-group .input-group-addon {
   padding: 5px 10px;
@@ -38390,6 +38420,9 @@ mor-textinput.si-xs.input-group .input-group-addon > .iconfont,
 mor-textinput.si-xs.input-group .input-group-addon > i {
   font-size: 12px;
 }
+mor-textinput.si-xs.input-group-append-block .cleanicon {
+  right: 2.6em;
+}
 mor-textinput.si-s > .form-name {
   font-size: 14px;
 }
@@ -38397,7 +38430,13 @@ mor-textinput.si-s input {
   font-size: 13px;
   height: 32px;
   line-height: 32px;
-  padding: 0 0.75em;
+  padding: 0 1.75em 0 0.75em;
+}
+mor-textinput.si-s .cleanicon {
+  right: 0.5em;
+}
+mor-textinput.si-s.input-group .cleanicon {
+  right: 2.1em;
 }
 mor-textinput.si-s.input-group .input-group-addon {
   padding: 6px 12px;
@@ -38409,6 +38448,9 @@ mor-textinput.si-s.input-group .input-group-addon > .iconfont,
 mor-textinput.si-s.input-group .input-group-addon > i {
   font-size: 13px;
 }
+mor-textinput.si-s.input-group-append-block .cleanicon {
+  right: 3em;
+}
 mor-textinput.si-m > .form-name {
   font-size: 16px;
 }
@@ -38416,6 +38458,13 @@ mor-textinput.si-m input {
   font-size: 14px;
   height: 42px;
   line-height: 42px;
+  padding: 0 2em 0 1em;
+}
+mor-textinput.si-m .cleanicon {
+  right: 0.6em;
+}
+mor-textinput.si-m.input-group .cleanicon {
+  right: 2.1em;
 }
 mor-textinput.si-m.input-group .input-group-addon {
   padding: 6px 12px;
@@ -38427,6 +38476,9 @@ mor-textinput.si-m.input-group .input-group-addon > .iconfont,
 mor-textinput.si-m.input-group .input-group-addon > i {
   font-size: 14px;
 }
+mor-textinput.si-m.input-group-append-block .cleanicon {
+  right: 3.3em;
+}
 mor-textinput.st-disabled input[disabled],
 mor-textinput.st-readonly input[disabled] {
   border-color: #a6a6a6;
@@ -38435,10 +38487,10 @@ mor-textinput.st-readonly input[disabled] {
   cursor: not-allowed !important;
   color: #8d8d8d !important;
 }
-mor-textinput.st-disabled.inline-prepend .input-group-addon:first-child,
-mor-textinput.st-readonly.inline-prepend .input-group-addon:first-child,
-mor-textinput.st-disabled.inline-append .input-group-addon:nth-child(3),
-mor-textinput.st-readonly.inline-append .input-group-addon:nth-child(3) {
+mor-textinput.st-disabled.input-group-prepend-inline .input-group-addon:first-child,
+mor-textinput.st-readonly.input-group-prepend-inline .input-group-addon:first-child,
+mor-textinput.st-disabled.input-group-append-inline .input-group-addon:nth-child(3),
+mor-textinput.st-readonly.input-group-append-inline .input-group-addon:nth-child(3) {
   border-color: #a6a6a6;
   background-color: #ebebeb;
   -webkit-user-select: none;
@@ -38451,6 +38503,13 @@ mor-textinput input {
   font-size: 14px;
   height: 42px;
   line-height: 42px;
+  padding: 0 2em 0 1em;
+}
+mor-textinput .cleanicon {
+  right: 0.6em;
+}
+mor-textinput.input-group .cleanicon {
+  right: 2.1em;
 }
 mor-textinput.input-group .input-group-addon {
   padding: 6px 12px;
@@ -38461,6 +38520,9 @@ mor-textinput.input-group .input-group-addon > .mo-icon,
 mor-textinput.input-group .input-group-addon > .iconfont,
 mor-textinput.input-group .input-group-addon > i {
   font-size: 14px;
+}
+mor-textinput.input-group-append-block .cleanicon {
+  right: 3.3em;
 }
 mor-textarea {
   position: relative;
@@ -38511,7 +38573,7 @@ mor-textarea textarea {
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
   line-height: 1.4em;
-  color: #b3b3b3 !important;
+  color: #17212D !important;
   outline: none;
   -webkit-appearance: none;
   resize: none;
@@ -38528,6 +38590,9 @@ mor-textarea textarea::placeholder {
 }
 mor-textarea textarea:hover {
   border-color: #d7d7d7;
+  color: #17212D !important;
+}
+mor-textarea textarea:hover::placeholder {
   color: #9a9a9a !important;
 }
 mor-textarea textarea:focus {
@@ -40219,7 +40284,7 @@ mor-counter input {
   z-index: 2;
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
-  color: #b3b3b3 !important;
+  color: #17212D !important;
   outline: none;
   -webkit-appearance: none;
   text-align: center;
@@ -40231,8 +40296,11 @@ mor-counter input::placeholder {
 }
 mor-counter input:hover {
   border-color: #d7d7d7;
-  color: #9a9a9a !important;
+  color: #17212D !important;
   z-index: 3;
+}
+mor-counter input:hover::placeholder {
+  color: #9a9a9a !important;
 }
 mor-counter input:focus {
   border-color: #8E9CAF;
@@ -40526,7 +40594,7 @@ mor-select .wrap > mor-textinput input {
 }
 mor-select .wrap > mor-multiinput {
   margin: 0;
-  width: calc(100% - 2em);
+  width: calc(100% - 3.5em);
   background-color: #FFF;
   vertical-align: top;
   left: 0.35em;
@@ -40539,7 +40607,7 @@ mor-select .wrap > mor-multiinput .itemlist > input {
 }
 mor-select .wrap > .selected {
   color: #b3b3b3;
-  width: calc(100% - 2em);
+  width: calc(100% - 3.5em);
   padding: 0 1em;
   position: relative;
   pointer-events: none;
@@ -40567,11 +40635,26 @@ mor-select .wrap > .mo-icon {
   z-index: 2;
   color: #b3b3b3;
 }
+mor-select .wrap > .mo-icon.cleanicon {
+  display: none;
+  right: 1.5em;
+  font-size: 14px;
+  top: 0;
+  color: #b3b3b3;
+}
+mor-select .wrap > .mo-icon.cleanicon:hover {
+  color: #9a9a9a;
+  cursor: pointer;
+}
 mor-select .wrap > .mo-icon.drop {
   top: 0;
   right: 0;
   font-size: 30px;
   text-indent: 1px;
+}
+mor-select .wrap:hover > .mo-icon.cleanicon,
+mor-select .wrap.hover > .mo-icon.cleanicon {
+  display: block;
 }
 mor-select .wrap.hover {
   border-color: #d7d7d7;
@@ -40774,7 +40857,10 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap li.selected {
   background: #f5f5f5;
-  border-left: 3px #F33D5D solid;
+  color: #F33D5D;
+}
+.mor-select-wrap li.selected.hover {
+  color: #F33D5D;
 }
 .mor-select-wrap li.hide {
   display: none;
@@ -40829,7 +40915,7 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap .wrap > mor-multiinput {
   margin: 0;
-  width: calc(100% - 2em);
+  width: calc(100% - 3.5em);
   background-color: #FFF;
   vertical-align: top;
   left: 0.35em;
@@ -40842,8 +40928,8 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap .wrap > .selected {
   color: #b3b3b3;
-  width: calc(100% - 2em);
-  padding: 0 1em;
+  width: calc(100% - 3.5em);
+  padding: 0 2em 0 1em;
   position: relative;
   pointer-events: none;
   z-index: 1;
@@ -40870,11 +40956,26 @@ mor-select.input-group .select-area {
   z-index: 2;
   color: #b3b3b3;
 }
+.mor-select-wrap .wrap > .mo-icon.cleanicon {
+  display: none;
+  right: 0;
+  font-size: 14px;
+  top: 0;
+  color: #b3b3b3;
+}
+.mor-select-wrap .wrap > .mo-icon.cleanicon:hover {
+  color: #9a9a9a;
+  cursor: pointer;
+}
 .mor-select-wrap .wrap > .mo-icon.drop {
   top: 0;
   right: 0;
   font-size: 30px;
   text-indent: 1px;
+}
+.mor-select-wrap .wrap:hover > .mo-icon.cleanicon,
+.mor-select-wrap .wrap.hover > .mo-icon.cleanicon {
+  display: block;
 }
 .mor-select-wrap .wrap.hover {
   border-color: #d7d7d7;
@@ -41204,7 +41305,7 @@ mor-checkbox > .il label.disabled > .box {
   border-color: #d2d2d2;
 }
 mor-checkbox > .il label.disabled:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-checkbox > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
@@ -41214,7 +41315,7 @@ mor-checkbox > .il label.disabled > .box {
   border-color: #d2d2d2;
 }
 mor-checkbox > .il label.disabled:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-checkbox > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
@@ -41232,7 +41333,7 @@ mor-checkbox.is-max > .il label:not(.checked) > .box {
   border-color: #d2d2d2;
 }
 mor-checkbox.is-max > .il label:not(.checked):hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-checkbox.is-max > .il label:not(.checked).checked .mo-icon {
   opacity: 0.6;
@@ -41242,7 +41343,7 @@ mor-checkbox.is-max > .il label:not(.checked) > .box {
   border-color: #d2d2d2;
 }
 mor-checkbox.is-max > .il label:not(.checked):hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-checkbox.is-max > .il label:not(.checked).checked .mo-icon {
   opacity: 0.6;
@@ -42325,7 +42426,7 @@ mor-checkbox.st-readonly > .il > label > .box {
 }
 mor-checkbox.st-disabled > .il > label:hover span,
 mor-checkbox.st-readonly > .il > label:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-checkbox.st-disabled > .il > label.checked .mo-icon,
 mor-checkbox.st-readonly > .il > label.checked .mo-icon {
@@ -42338,7 +42439,7 @@ mor-checkbox.st-readonly > .il > label > .box {
 }
 mor-checkbox.st-disabled > .il > label:hover span,
 mor-checkbox.st-readonly > .il > label:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-checkbox.st-disabled > .il > label.checked .mo-icon,
 mor-checkbox.st-readonly > .il > label.checked .mo-icon {
@@ -42513,7 +42614,7 @@ mor-radio > .il label.disabled > .box {
   border-color: #d2d2d2;
 }
 mor-radio > .il label.disabled:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-radio > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
@@ -42523,7 +42624,7 @@ mor-radio > .il label.disabled > .box {
   border-color: #d2d2d2;
 }
 mor-radio > .il label.disabled:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-radio > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
@@ -43580,7 +43681,7 @@ mor-radio.st-readonly > .il > label > .box {
 }
 mor-radio.st-disabled > .il > label:hover span,
 mor-radio.st-readonly > .il > label:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-radio.st-disabled > .il > label.checked .mo-icon,
 mor-radio.st-readonly > .il > label.checked .mo-icon {
@@ -43593,7 +43694,7 @@ mor-radio.st-readonly > .il > label > .box {
 }
 mor-radio.st-disabled > .il > label:hover span,
 mor-radio.st-readonly > .il > label:hover span {
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 mor-radio.st-disabled > .il > label.checked .mo-icon,
 mor-radio.st-readonly > .il > label.checked .mo-icon {
@@ -44175,6 +44276,10 @@ mor-cascader .cascader-wrap .cascader-input mor-textinput.empty-content .textinp
 }
 mor-cascader .cascader-wrap .cascader-input mor-textinput .textinput-wrap input {
   border: none;
+  padding: 0 3.5em 0 1em;
+}
+mor-cascader .cascader-wrap .cascader-input mor-textinput .textinput-wrap .cleanicon {
+  right: 2em;
 }
 mor-cascader .cascader-wrap .cascader-input > .note {
   white-space: nowrap;
@@ -44478,7 +44583,7 @@ mor-multiinput > .itemlist > .multiinput-item.move-drag-item:hover {
 mor-multiinput > .itemlist > input {
   border: none;
   outline: none;
-  color: #b3b3b3 !important;
+  color: #17212D !important;
   width: 0;
   max-width: 100%;
   min-width: 2em;
@@ -44487,6 +44592,9 @@ mor-multiinput > .itemlist > input {
 }
 mor-multiinput > .itemlist > input::placeholder {
   color: #b3b3b3;
+}
+mor-multiinput > .itemlist > input:hover::placeholder {
+  color: #9a9a9a;
 }
 mor-multiinput > .itemlist > input:focus {
   color: #17212D !important;
@@ -46003,6 +46111,10 @@ mor-upload .upload-box-note {
   color: #45505C;
   line-height: 1.2em;
 }
+mor-upload .upload-box-note {
+  margin-top: 4px;
+  color: #8E9CAF;
+}
 mor-upload .upload-wrap {
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
@@ -46476,10 +46588,15 @@ mor-upload .upload-box .upload-box-con {
   justify-content: center;
   display: flex;
   position: relative;
+  height: 100%;
 }
 mor-upload .upload-box .upload-box-con .upload-file {
-  display: inline-block;
   color: #A8B3C2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 mor-upload .upload-box .upload-box-con .upload-file .mo-icon {
   font-size: 32px;

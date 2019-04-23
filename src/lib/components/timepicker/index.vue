@@ -42,6 +42,7 @@
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
                     :size="conf.size"
+                    :inside-clearable="false"
 
                     :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
@@ -58,6 +59,7 @@
                     :ref="'ui-timepicker-select-1-'+uiid"
                     :state="conf.state"
                     :size="conf.size"
+                    :inside-clearable="false"
 
                     :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
@@ -73,6 +75,7 @@
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
                     :size="conf.size"
+                    :inside-clearable="false"
 
                     :inside-name="conf.insideName"
                     :init-value="data.value"

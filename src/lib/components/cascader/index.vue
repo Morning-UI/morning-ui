@@ -31,6 +31,7 @@
                     'empty-content' : this.data.textinputEmpty
                 }"
                 :size="conf.size"
+                :inside-clearable="false"
                 @value-change="_search()"
                 @focus="_textinputFocus()"
                 @blur="_textinputBlur()"
@@ -430,6 +431,13 @@ export default {
 
         },
         _showPopover : function () {
+
+            if (this.conf.state === 'readonly' ||
+                this.conf.state === 'disabled') {
+
+                return;
+
+            }
 
             if (this.data.searchPopoverShow) {
 

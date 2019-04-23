@@ -86,7 +86,13 @@ mor-multiinput{
             box-sizing: border-box;
 
             &::placeholder{
-                color: @colorFormText;
+                color: @colorFormPlaceholder;
+            }
+
+            &:hover{
+                &::placeholder{
+                    color: @colorFormPlaceholderHover;
+                }
             }
 
             &:focus{

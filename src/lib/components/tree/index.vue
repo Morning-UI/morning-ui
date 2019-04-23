@@ -18,6 +18,7 @@
         <morning-textinput
             v-if="conf.canSearch"
             inside-name="搜索"
+            :inside-clearable="false"
             v-model="data.searchKey"
         ></morning-textinput>
 
