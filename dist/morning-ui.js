@@ -29456,6 +29456,26 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
@@ -70732,21 +70752,38 @@ var render = function() {
                   },
                   [
                     _c(
-                      "keep-alive",
-                      [
-                        _c(
-                          {
-                            template: "<div>" + col + "</div>",
-                            data: function() {
-                              return {
-                                context: this.$parent.$parent.$vnode.context
+                      {
+                        template: "<div>" + col + "</div>",
+                        data: function() {
+                          return Object.assign(
+                            {},
+                            { context: this.$parent.$parent.$vnode.context },
+                            this.$parent.$parent.$vnode.context
+                          )
+                        },
+                        mounted: function() {
+                          var this$1 = this
+
+                          this.$watch(
+                            "$parent.$parent.$vnode.context._data",
+                            function() {
+                              for (var key in this$1.$parent.$parent.$vnode
+                                .context._data) {
+                                this$1[key] =
+                                  this$1.$parent.$parent.$vnode.context._data[
+                                    key
+                                  ]
                               }
+
+                              this$1.$forceUpdate()
+                            },
+                            {
+                              deep: true
                             }
-                          },
-                          { tag: "component" }
-                        )
-                      ],
-                      1
+                          )
+                        }
+                      },
+                      { tag: "component" }
                     )
                   ],
                   1
@@ -78064,7 +78101,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.27',
+    version: '0.12.28',
     map: {}
 };
 
