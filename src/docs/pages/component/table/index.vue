@@ -264,9 +264,9 @@
     ---
     #demo
     >desc
-    但需要注意的是由于在`list`配置中通过字符串模板的形式使用，所以在模板中的组件无法直接使用上下文的`props`、`data`、`methods`等属性或方法。
+    但需要注意的是由于在`list`配置中通过字符串模板的形式使用，所以在模板中的组件可以直接使用上下文的`props`、`data`、`methods`等属性或方法。
     <br><br>
-    为此表格组件通过`context`来帮你精确定位上下文。
+    注意：在`0.12.28`之前的Morning UI版本中，需要通过`context`来帮你精确定位上下文，比如`context.[data]`。
     >tpl
     <div>
         <ui-table ref="demoPropsData" :list="list"></ui-table>
@@ -277,24 +277,24 @@
         data : {
             btntext : '发送',
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">{*context.btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">{*context.btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">{*context.btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">{*btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">{*btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">{*btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         }
     }
     ---
     #demo
     >desc
-    `methods`也同样可以通过`context`访问上下文。
+    `methods`也同样可以访问。
     >tpl
     <ui-table :list="list"></ui-table>
     >script
     {
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs" @emit="context.send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs" @emit="context.send(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs" @emit="send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs" @emit="send(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
                 {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         },
