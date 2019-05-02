@@ -1,0 +1,47 @@
+.colorFlex {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px 0;
+}
+.colorFlex .item {
+  color: #FFF;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+.colorFlex .item.colorDark {
+  color: #000;
+}
+.colorFlex .item p {
+  margin: 2px 0;
+  font-size: 13px;
+}
+.colorFlex .item p.color {
+  text-transform: uppercase;
+}
+.colorFlex .item .line {
+  width: 268px;
+  height: 1px;
+  display: block;
+  background: #ff2a4f;
+  position: absolute;
+  left: -11px;
+  top: 50%;
+  transform: rotate(-22.8deg);
+  z-index: 0;
+}
+.colorFlex .group {
+  padding: 0;
+}
+.colorFlex .group.colorDark .item {
+  color: #000;
+}
+.colorFlex .w3 {
+  width: 31%;
+}
+.colorFlex .w4 {
+  width: 23%;
+}
+.colorFlex .w4 .item {
+  height: 105px;
+}

@@ -11,6 +11,7 @@
                 </li>
                 <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
+                <li><a :class="{current:isDesign}" href="/design/color.html">DESIGN</a></li>
                 <li><a :class="{current:isComponent}" href="/component/index.html">COMPONENT</a></li>
                 <li><a target="_blank" href="https://github.com/Morning-UI/morning-ui">
                     <img v-if="isIndex" src="https://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png" class="githublogo" alt="GitHub">
@@ -36,6 +37,11 @@ export default {
         isGuide : function () {
 
             return this.category === 'guide';
+
+        },
+        isDesign : function () {
+
+            return this.category === 'design';
 
         },
         isComponent : function () {
@@ -71,7 +77,7 @@ body > div > header {
     z-index: 99;
 
     .nav {
-        width: 1000px;
+        width: 1150px;
         margin: 0 auto;
         position: relative;
     }

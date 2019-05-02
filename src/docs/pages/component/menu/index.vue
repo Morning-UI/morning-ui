@@ -889,7 +889,7 @@
     |色彩|`white` `gray` `light-gray` `black` `light-black` `extra-light-black`|`white`|
     |状态|不支持|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @name:尺寸

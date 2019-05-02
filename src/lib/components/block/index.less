@@ -53,55 +53,14 @@ mor-block{
         color: @colorWhite;
     }
 
-    &.co-lbk{
-        background-color: @colorLightBlack;
-        color: @colorWhite;
-    }
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
 
-    &.co-elbk{
-        background-color: @colorExtraLightBlack;
-        color: @colorWhite;
-    }
-
-    &.co-bu{
-        background-color: @colorBlue;
-        color: @colorWhite;
-    }
-
-    &.co-lbu{
-        background-color: @colorLightBlue;
-        color: @colorWhite;
-    }
-
-    &.co-elbu{
-        background-color: @colorExtraLightBlue;
-        color: @colorWhite;
-    }
-
-    &.co-si{
-        background-color: @colorSilver;
-        color: @colorLightBlack;
-    }
-
-    &.co-lsi{
-        background-color: @colorLightSilver;
-        color: @colorLightBlack;
-    }
-
-    &.co-elsi{
-        background-color: @colorExtraLightSilver;
-        color: @colorLightBlack;
-    }
-
-    &.co-g{
-        background-color: @colorGray;
-        color: @colorLightBlack;
-    }
-
-    &.co-lg{
-        background-color: @colorLightGray;
-        color: @colorLightBlack;
-    }
+        &.co-n@{value}{
+            background-color: @@colorName;
+            color: if((@value <= 5), @colorBlack, @colorWhite);
+        }
+    });
 
     &.co-wh{
         background-color: @colorWhite;

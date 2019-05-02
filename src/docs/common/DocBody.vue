@@ -153,60 +153,60 @@ let data = {
             colorName : '信息/额外'
         }
     ],
-    black : [
+    'neutral-dark' : [
         {
             colorKey : 'black',
-            colorName : '黑色'
+            colorName : '纯黑'
         },
         {
-            colorKey : 'light-black',
-            colorName : '浅黑色'
+            colorKey : 'neutral-11',
+            colorName : '中性色(neutral-11)'
         },
         {
-            colorKey : 'extra-light-black',
-            colorName : '超浅黑色'
+            colorKey : 'neutral-10',
+            colorName : '中性色(neutral-10)'
+        },
+        {
+            colorKey : 'neutral-9',
+            colorName : '中性色(neutral-9)'
+        },
+        {
+            colorKey : 'neutral-8',
+            colorName : '中性色(neutral-8)'
+        },
+        {
+            colorKey : 'neutral-7',
+            colorName : '中性色(neutral-7)'
+        },
+        {
+            colorKey : 'neutral-6',
+            colorName : '中性色(neutral-6)'
         }
     ],
-    blue : [
+    'neutral-light' : [
         {
-            colorKey : 'blue',
-            colorName : '青色'
+            colorKey : 'neutral-5',
+            colorName : '中性色(neutral-5)'
         },
         {
-            colorKey : 'light-blue',
-            colorName : '浅青色'
+            colorKey : 'neutral-4',
+            colorName : '中性色(neutral-4)'
         },
         {
-            colorKey : 'extra-light-blue',
-            colorName : '超浅青色'
-        }
-    ],
-    silver : [
-        {
-            colorKey : 'silver',
-            colorName : '银色'
+            colorKey : 'neutral-3',
+            colorName : '中性色(neutral-3)'
         },
         {
-            colorKey : 'light-silver',
-            colorName : '浅银色'
+            colorKey : 'neutral-2',
+            colorName : '中性色(neutral-2)'
         },
         {
-            colorKey : 'extra-light-silver',
-            colorName : '超浅银色'
-        }
-    ],
-    gray : [
-        {
-            colorKey : 'gray',
-            colorName : '灰色'
-        },
-        {
-            colorKey : 'light-gray',
-            colorName : '浅灰色'
+            colorKey : 'neutral-1',
+            colorName : '中性色(neutral-1)'
         },
         {
             colorKey : 'white',
-            colorName : '白色'
+            colorName : '纯白'
         }
     ],
     state : [
@@ -855,10 +855,7 @@ color-repeat
 >rules
 color:theme
 color:feature
-color:black
-color:blue
-color:silver
-color:gray
+color:neutral
 >tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} color="{$colorKey}" v-model="value" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
@@ -934,10 +931,8 @@ color-repeat
 >rules
 color:theme
 color:feature
-color:black
-color:blue
-color:silver
-color:gray
+color:neutral-dark
+color:neutral-light
 >tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} color="{$colorKey}" v-model="value" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
@@ -1487,10 +1482,8 @@ let extVueLayout = {
                 '>rules',
                 'color:theme',
                 'color:feature',
-                'color:black',
-                'color:blue',
-                'color:silver',
-                'color:gray',
+                'color:neutral-dark',
+                'color:neutral-light',
                 '>tpl'
             ].concat(paramStr).join('\n')
         ];
@@ -1559,10 +1552,8 @@ let extVueRenderer = {
             parts.rules = [
                 'color:theme',
                 'color:feature',
-                'color:black',
-                'color:blue',
-                'color:silver',
-                'color:gray'
+                'color:neutral-dark',
+                'color:neutral-light'
             ];
 
         }
@@ -1583,17 +1574,17 @@ let extVueRenderer = {
                     '>tpl',
                 ];
 
-                if (color === 'silver') {
+                if (color === 'neutral-light') {
 
-                    colorPreset.push(`<div class="demo-con-silver" style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+                    colorPreset.push(`<div class="demo-con-light" style="background: #333333;border-color: #2f2f2f;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
-                } else if (color === 'gray') {
+                // } else if (color === 'gray') {
 
-                    colorPreset.push(`<div class="demo-con-gray" style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+                //     colorPreset.push(`<div class="demo-con-gray" style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
                 } else {
 
-                    colorPreset.push(`<div>{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+                    colorPreset.push(`<div style="color:#FFFFFF;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
                 }
 
@@ -1720,10 +1711,8 @@ let extVueRenderer = {
         parts.rules = [
             'color:theme',
             'color:feature',
-            'color:black',
-            'color:blue',
-            'color:silver',
-            'color:gray'
+            'color:neutral-dark',
+            'color:neutral-light'
         ];
 
         for (let rule of parts.rules) {
@@ -1746,17 +1735,17 @@ let extVueRenderer = {
                     '>tpl'
                 ];
 
-                if (color === 'silver') {
+                if (color === 'neutral-light') {
 
-                    colorPreset.push(`<div style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+                    colorPreset.push(`<div style="background: #333333;border-color: #2f2f2f;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
 
-                } else if (color === 'gray') {
+                // } else if (color === 'gray') {
 
-                    colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+                //     colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
 
                 } else {
 
-                    colorPreset.push(`<div>{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+                    colorPreset.push(`<div style="color:#FFFFFF;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
 
                 }
                 
@@ -3153,8 +3142,7 @@ a{ }
             font-size: 14px;
             z-index: 2;
 
-            .demo-con-silver,
-            .demo-con-gray{
+            .demo-con-light{
                 .form-name{
                     color: #fff;
                 }

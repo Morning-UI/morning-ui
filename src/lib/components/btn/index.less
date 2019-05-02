@@ -582,426 +582,62 @@ mor-btn{
         }
     }
 
-    &.co-lbk{
-        background-color: @colorLightBlack;
-        color: @colorWhite;
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
 
-        &.plain{
-            background-color: lighten(@colorLightBlack, 50%);
-            border-color: @colorLightBlack;
-            color: @colorLightBlack;
+        &.co-n@{value}{
+            background-color: @@colorName;
+            color: if((@value > 5), @colorWhite, @colorBlack);
 
-            .mo-loader{
+            .mo-loader when (@value <= 5){
                 .mo-loader-path{
-                    stroke: @colorLightBlack;
+                    stroke: @colorNeutral10;
                 }
             }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: lighten(@colorLightBlack, 5%);
 
             &.plain{
-                color: @colorWhite;
-            }
-        }
+                background-color: transparent;
+                border-color: @@colorName;
+                color: @@colorName;
 
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: lighten(@colorLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorLightBlack;
-            color: lighten(@colorLightBlack, 40%);
-        }
-    }
-
-    &.co-elbk{
-        background-color: @colorExtraLightBlack;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorExtraLightBlack, 45%);
-            border-color: @colorExtraLightBlack;
-            color: @colorExtraLightBlack;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorExtraLightBlack;
+                .mo-loader{
+                    .mo-loader-path{
+                        stroke: @@colorName;
+                    }
                 }
             }
-        }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: lighten(@colorExtraLightBlack, 5%);
+            &:not(.st-disabled):hover,
+            &.st-hover{
+                background-color: lighten(@@colorName, 5%);
 
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            border: none;
-            background-color: lighten(@colorExtraLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorExtraLightBlack;
-            color: lighten(@colorExtraLightBlack, 40%);
-        }
-    }
-
-    &.co-bu{
-        background-color: @colorBlue;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorBlue, 35%);
-            border-color: darken(@colorBlue, 5%);
-            color: @colorBlue;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorBlue;
+                &.plain{
+                    color: if((@value > 5), @colorWhite, @colorBlack);
                 }
             }
-        }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorBlue, 5%);
+            &:not(.st-disabled):active,
+            &.st-active{
+                background-color: lighten(@@colorName, 10%);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+            }
 
-            &.plain{
-                color: @colorWhite;
+            &.st-disabled,
+            &.st-disabled.plain{
+                border: none;
+                background-color: @@colorName;
+                color: if((@value > 5), lighten(@@colorName, 40%), darken(@@colorName, 30%));
             }
         }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorBlue, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorBlue;
-            color: lighten(@colorBlue, 30%);
-        }
-    }
-
-    &.co-lbu{
-        background-color: @colorLightBlue;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorLightBlue, 32%);
-            border-color: darken(@colorLightBlue, 5%);
-            color: @colorLightBlue;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorLightBlue;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightBlue, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightBlue, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorLightBlue;
-            color: lighten(@colorLightBlue, 30%);
-        }
-    }
-
-    &.co-elbu{
-        background-color: @colorExtraLightBlue;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorExtraLightBlue, 28%);
-            border-color: darken(@colorExtraLightBlue, 5%);
-            color: @colorExtraLightBlue;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorExtraLightBlue;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorExtraLightBlue, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorExtraLightBlue, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorExtraLightBlue;
-            color: lighten(@colorExtraLightBlue, 20%);
-        }
-    }
-
-    &.co-si{
-        background-color: @colorSilver;
-        color: @colorExtraLightBlack;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlack;
-            }
-        }
-
-        &.plain{
-            background-color: transparent;
-            border-color: darken(@colorSilver, 3%);
-            color: @colorSilver;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorSilver;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorSilver, 3%);
-
-            &.plain{
-                color: @colorExtraLightBlack;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorSilver, 6%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorSilver;
-            color: darken(@colorSilver, 30%);
-        }
-    }
-
-    &.co-lsi{
-        background-color: @colorLightSilver;
-        color: @colorExtraLightBlack;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlack;
-            }
-        }
-
-        &.plain{
-            background-color: transparent;
-            border-color: darken(@colorLightSilver, 3%);
-            color: @colorLightSilver;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorLightSilver;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightSilver, 3%);
-
-            &.plain{
-                color: @colorExtraLightBlack;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightSilver, 6%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorLightSilver;
-            color: darken(@colorLightSilver, 30%);
-        }
-    }
-
-    &.co-elsi{
-        background-color: @colorExtraLightSilver;
-        color: @colorExtraLightBlack;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlack;
-            }
-        }
-
-        &.plain{
-            background-color: transparent;
-            border-color: darken(@colorExtraLightSilver, 3%);
-            color: @colorExtraLightSilver;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorExtraLightSilver;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorExtraLightSilver, 3%);
-
-            &.plain{
-                color: @colorExtraLightBlack;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorExtraLightSilver, 6%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorExtraLightSilver;
-            color: darken(@colorExtraLightSilver, 30%);
-        }
-    }
-
-    &.co-g{
-        background-color: @colorGray;
-        color: @colorExtraLightBlack;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlack;
-            }
-        }
-
-        &.plain{
-            background-color: transparent;
-            border-color: darken(@colorGray, 3%);
-            color: @colorGray;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorGray;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorGray, 3%);
-
-            &.plain{
-                color: @colorExtraLightBlack;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorGray, 6%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorGray;
-            color: darken(@colorGray, 30%);
-        }
-    }
-
-    &.co-lg{
-        background-color: @colorLightGray;
-        color: @colorExtraLightBlack;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlack;
-            }
-        }
-
-        &.plain{
-            background-color: transparent;
-            border-color: darken(@colorLightGray, 3%);
-            color: @colorLightGray;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorLightGray;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightGray, 3%);
-
-            &.plain{
-                color: @colorExtraLightBlack;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightGray, 6%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorLightGray;
-            color: darken(@colorLightGray, 30%);
-        }
-    }
+    });
 
     &.co-wh{
         background-color: @colorWhite;
-        color: @colorExtraLightBlack;
+        color: @colorNeutral10;
 
         .mo-loader{
             .mo-loader-path{
-                stroke: @colorExtraLightBlack;
+                stroke: @colorNeutral10;
             }
         }
 
@@ -1022,7 +658,7 @@ mor-btn{
             background-color: darken(@colorWhite, 3%);
 
             &.plain{
-                color: @colorExtraLightBlack;
+                color: @colorNeutral10;
             }
         }
 

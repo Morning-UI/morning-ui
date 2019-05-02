@@ -32,7 +32,7 @@
         >
             <span :title="value">{{value}}</span>
             <i
-                class="mo-icon mo-icon-error-cf"
+                class="mo-icon mo-icon-close"
                 v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
                 @click="_deleteItem(index)"
             ></i>

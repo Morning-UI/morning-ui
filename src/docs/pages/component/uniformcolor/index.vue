@@ -8,7 +8,7 @@
 
     在某些场景下组件之外的元素需要和Morning UI保持一致的配色，为此Morning UI提供了CSS类供组件外的元素添加形态中的颜色。
 
-    配色支持[形态/颜色](/guide/status.html#颜色)中的所有色彩。
+    配色支持[设计/色彩](/design/color.html)中的所有色彩。
 
     ## 文字配色
 
@@ -39,7 +39,7 @@
     所有的配色都可以一起使用：
 
     :::democode/html
-    <div style="width:200px;height:50px;border-width:3px;border-style: dashed;" class="mo-co-bg-silver mo-co-border-light-black mo-co-font-black">这里是非组件元素</div>
+    <div style="width:200px;height:50px;border-width:3px;border-style: dashed;" class="mo-co-bg-neutral-1 mo-co-border-light-black mo-co-font-black">这里是非组件元素</div>
     :::
 
     </script>

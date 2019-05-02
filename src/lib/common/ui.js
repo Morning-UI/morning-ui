@@ -26,6 +26,22 @@ export default Elements => Elements.extend({
                 'primary',
                 'minor',
                 'info',
+
+                'neutral-1',
+                'neutral-2',
+                'neutral-3',
+                'neutral-4',
+                'neutral-5',
+                'neutral-6',
+                'neutral-7',
+                'neutral-8',
+                'neutral-9',
+                'neutral-10',
+                'neutral-11',
+                'black',
+                'white',
+
+                // TODO 需要删除
                 'black',
                 'light-black',
                 'extra-light-black',

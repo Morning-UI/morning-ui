@@ -64998,7 +64998,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
                   ? _c("i", {
-                      staticClass: "mo-icon mo-icon-error-cf",
+                      staticClass: "mo-icon mo-icon-close",
                       on: {
                         click: function($event) {
                           return _vm._deleteItem(index)

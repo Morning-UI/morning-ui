@@ -22,9 +22,9 @@ mor-card{
 
     & > .card-footer{
         border-radius: 0 0 @borderRadius @borderRadius;
-        background: @colorExtraLightSilver;
+        background: @colorNeutral1;
         color: @colorBlack;
-        border-top: 1px solid @colorLightSilver;
+        border-top: 1px solid @colorNeutral2;
     }
 
     & > .card-body{
@@ -107,81 +107,30 @@ mor-card{
         }
     }
 
-    &.co-lbk{
-        & > .card-header {
-            background-color: @colorLightBlack;
-            color: @colorWhite;
-        }
-    }
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
 
-    &.co-elbk{
-        & > .card-header {
-            background-color: @colorExtraLightBlack;
-            color: @colorWhite;
-        }
-    }
+        &.co-n@{value}{
+            & > .card-header {
+                background-color: @@colorName;
+                color: if((@value > 5), @colorWhite, @colorBlack);
+            }
 
-    &.co-bu{
-        & > .card-header {
-            background-color: @colorBlue;
-            color: @colorWhite;
-        }
-    }
+            & > .card-header when (@value = 2) {
+                border-bottom: 1px @colorNeutral3 solid;
+            }
 
-    &.co-lbu{
-        & > .card-header {
-            background-color: @colorLightBlue;
-            color: @colorWhite;
+            & > .card-header when (@value = 1) {
+                border-bottom: 1px @colorNeutral2 solid;
+            }
         }
-    }
-
-    &.co-elbu{
-        & > .card-header {
-            background-color: @colorExtraLightBlue;
-            color: @colorWhite;
-        }
-    }
-
-    &.co-si{
-        & > .card-header {
-            background-color: @colorSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-lsi{
-        & > .card-header {
-            background-color: @colorLightSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-elsi{
-        & > .card-header {
-            background-color: @colorExtraLightSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-g{
-        & > .card-header {
-            background-color: @colorGray;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-lg{
-        & > .card-header {
-            background-color: @colorLightGray;
-            color: @colorLightBlack;
-        }
-    }
+    });
 
     &.co-wh{
         & > .card-header {
             background-color: @colorWhite;
-            color: @colorLightBlack;
-            border-bottom: 1px @colorGray solid;
+            color: @colorBlack;
+            border-bottom: 1px @colorNeutral2 solid;
         }
     }
 
