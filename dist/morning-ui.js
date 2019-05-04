@@ -41975,13 +41975,16 @@ exports.default = {
 
                 var $input = this.$el.querySelector('input');
 
-                this.add($input.value);
-                this._blurInput();
+                if ($input.value) {
 
-                setTimeout(function () {
+                    this.add($input.value);
+                    this._blurInput();
 
-                    _this._focusInput();
-                });
+                    setTimeout(function () {
+
+                        _this._focusInput();
+                    });
+                }
             }
         },
         _resetInputWidth: function _resetInputWidth() {
@@ -60481,7 +60484,7 @@ var render = function() {
               _vm.conf.state === "disabled" || _vm.conf.state === "readonly"
           },
           attrs: {
-            color: "gray",
+            color: "neutral-2",
             width: "60%",
             height: "90%",
             "auto-close": false
@@ -60846,7 +60849,7 @@ var render = function() {
         {
           ref: "ui-imagemap-zonedialog-" + _vm.uiid,
           staticClass: "mor-imagemap-dialog-zone",
-          attrs: { color: "gray", width: "600px", height: "90%" }
+          attrs: { color: "neutral-2", width: "600px", height: "90%" }
         },
         [
           _c("div", { attrs: { slot: "header" }, slot: "header" }, [
@@ -61134,7 +61137,7 @@ var render = function() {
         {
           ref: "ui-imagemap-scaledialog-" + _vm.uiid,
           staticClass: "mor-imagemap-dialog-scale",
-          attrs: { color: "gray", width: "500px", height: "300px" }
+          attrs: { color: "neutral-2", width: "500px", height: "300px" }
         },
         [
           _c("div", { attrs: { slot: "header" }, slot: "header" }, [
@@ -61429,7 +61432,7 @@ var render = function() {
                       ref: "mor-colorpicker-copytip-" + _vm.uiid,
                       attrs: {
                         target: "#mor-colorpicker-copy-" + _vm.uiid,
-                        color: "light-blue",
+                        color: "neutral-10",
                         offset: "3px 0"
                       }
                     },
@@ -61815,7 +61818,7 @@ var render = function() {
                                     _vm.uiid +
                                     "-" +
                                     index,
-                                  color: "light-blue",
+                                  color: "neutral-10",
                                   offset: "3px 0"
                                 }
                               },
@@ -61875,7 +61878,7 @@ var render = function() {
                                       _vm.uiid +
                                       "-" +
                                       index,
-                                    color: "light-blue",
+                                    color: "neutral-10",
                                     offset: "3px 0"
                                   }
                                 },
@@ -62215,7 +62218,7 @@ var render = function() {
                                     "morning-btn",
                                     {
                                       ref: "mor-url-btn-" + _vm.uiid,
-                                      attrs: { size: "xs", color: "silver" },
+                                      attrs: { size: "xs", color: "neutral-4" },
                                       on: { emit: _vm._uploadRemoteFile }
                                     },
                                     [_vm._v("通过URL上传")]
@@ -62325,7 +62328,7 @@ var render = function() {
                                               ref: "mor-url-btn-" + _vm.uiid,
                                               attrs: {
                                                 size: "xs",
-                                                color: "silver"
+                                                color: "neutral-4"
                                               },
                                               on: {
                                                 emit: _vm._uploadRemoteFile
@@ -62712,7 +62715,7 @@ var render = function() {
                               "morning-btn",
                               {
                                 ref: "mor-url-btn-" + _vm.uiid,
-                                attrs: { size: "xs", color: "silver" },
+                                attrs: { size: "xs", color: "neutral-4" },
                                 on: { emit: _vm._uploadRemoteFile }
                               },
                               [_vm._v("通过URL上传")]
@@ -62729,7 +62732,7 @@ var render = function() {
                   {
                     staticClass: "upload-file upload-button",
                     attrs: {
-                      color: "light-gray",
+                      color: "neutral-2",
                       state: _vm.ismax ? "disabled" : _vm.conf.state,
                       id: "mor-upload-button-remote-" + _vm.uiid
                     },
@@ -64508,7 +64511,7 @@ var render = function() {
                     ref: "ui-slider-tip-" + this.uiid,
                     attrs: {
                       target: "#ui-slider-tip-" + this.uiid,
-                      color: "extra-light-blue",
+                      color: "neutral-10",
                       trigger: "method",
                       offset: "0, 0"
                     }
@@ -64775,7 +64778,7 @@ var render = function() {
           attrs: {
             width: "500px",
             height: "75%",
-            color: "gray",
+            color: "neutral-2",
             showType: _vm.conf.showType
           },
           on: { show: _vm._showForm, hide: _vm._hideForm }
@@ -64824,7 +64827,7 @@ var render = function() {
               attrs: {
                 width: "500px",
                 height: "240px",
-                color: "gray",
+                color: "neutral-2",
                 showType: _vm.conf.showType
               }
             },
@@ -65608,7 +65611,7 @@ var render = function() {
                     circle: !_vm.conf.sourceToTargetText
                   },
                   attrs: {
-                    color: "silver",
+                    color: "neutral-4",
                     size: _vm.conf.size === "xs" ? "xxs" : "xs",
                     state: _vm.conf.state
                   },
@@ -65629,7 +65632,7 @@ var render = function() {
                   circle: !_vm.conf.targetToSourceText
                 },
                 attrs: {
-                  color: "silver",
+                  color: "neutral-4",
                   size: _vm.conf.size === "xs" ? "xxs" : "xs",
                   state: _vm.conf.state
                 },
@@ -66910,7 +66913,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-header-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("设置标题")]
@@ -66951,7 +66954,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-size-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("字体大小")]
@@ -66973,7 +66976,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-undo-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("撤销")]
@@ -66995,7 +66998,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-redo-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("重做")]
@@ -67017,7 +67020,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-bold-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("加粗")]
@@ -67039,7 +67042,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-italic-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("斜体")]
@@ -67064,7 +67067,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-underline-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("下划线")]
@@ -67086,7 +67089,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-strike-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("删除线")]
@@ -67108,7 +67111,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-divider-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("横划线")]
@@ -67145,7 +67148,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-color-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("文本颜色")]
@@ -67188,7 +67191,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-background-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("背景颜色")]
@@ -67225,7 +67228,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-align-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("文本对齐")]
@@ -67253,7 +67256,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-list-ordered-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("有序列表")]
@@ -67281,7 +67284,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-list-bullet-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("无序列表")]
@@ -67309,7 +67312,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-indent--1-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("减少缩进")]
@@ -67336,7 +67339,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-indent-1-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("增加缩进")]
@@ -67364,7 +67367,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-script-sub-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("下标")]
@@ -67392,7 +67395,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-script-super-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("上标")]
@@ -67417,7 +67420,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-blockquote-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("引用")]
@@ -67442,7 +67445,7 @@ var render = function() {
                                   attrs: {
                                     target:
                                       "#mor-te-tool-code-block-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("代码")]
@@ -67464,7 +67467,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-clean-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("清除样式")]
@@ -67486,7 +67489,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-link-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("链接")]
@@ -67508,7 +67511,7 @@ var render = function() {
                                   key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-image-" + _vm.uiid,
-                                    color: "extra-light-black"
+                                    color: "neutral-10"
                                   }
                                 },
                                 [_vm._v("图片")]
@@ -67535,7 +67538,7 @@ var render = function() {
           ref: "ui-select-dialog-" + _vm.uiid,
           staticClass: "mo-texteditor-dialog",
           attrs: {
-            color: "light-silver",
+            color: "neutral-2",
             width: "300px",
             height: "160px",
             "show-type": "center"
@@ -68169,7 +68172,7 @@ var render = function() {
                     {
                       attrs: {
                         target: "#mor-media-play-" + _vm.uiid,
-                        color: "extra-light-black"
+                        color: "neutral-10"
                       }
                     },
                     [_vm._v("\n                无视频\n            ")]
@@ -68404,7 +68407,7 @@ var render = function() {
                     {
                       attrs: {
                         target: "#mor-media-play-" + _vm.uiid,
-                        color: "extra-light-black"
+                        color: "neutral-10"
                       }
                     },
                     [_vm._v("\n            无音频\n        ")]
@@ -69122,7 +69125,11 @@ var render = function() {
                           [
                             _vm.conf.currentType === "progress" &&
                             index === _vm.conf.doneStep + 1
-                              ? [_c("morning-load", { attrs: { time: false } })]
+                              ? [
+                                  _c("morning-load", {
+                                    attrs: { "done-time": false }
+                                  })
+                                ]
                               : _vm.conf.showIcon && index <= _vm.conf.doneStep
                               ? [
                                   _vm.conf.failed.indexOf(index) !== -1
@@ -69192,7 +69199,11 @@ var render = function() {
                           [
                             _vm.conf.currentType === "progress" &&
                             index === _vm.conf.doneStep + 1
-                              ? [_c("morning-load", { attrs: { time: false } })]
+                              ? [
+                                  _c("morning-load", {
+                                    attrs: { "done-time": false }
+                                  })
+                                ]
                               : _vm.conf.showIcon && index <= _vm.conf.doneStep
                               ? [
                                   _vm.conf.failed.indexOf(index) !== -1
@@ -71122,7 +71133,7 @@ var render = function() {
                         attrs: {
                           target: "#ui-select-tip-" + _vm.uiid + "-" + index,
                           placement: _vm.conf.itemTipDirect,
-                          color: "blue"
+                          color: "neutral-10"
                         }
                       },
                       [_vm._v(_vm._s(_vm.data.itemTipMap[index]))]
@@ -78087,7 +78098,22 @@ var morning = {
         primary: 'p',
         minor: 'm',
         info: 'i',
+
+        'neutral-1': 'n1',
+        'neutral-2': 'n2',
+        'neutral-3': 'n3',
+        'neutral-4': 'n4',
+        'neutral-5': 'n5',
+        'neutral-6': 'n6',
+        'neutral-7': 'n7',
+        'neutral-8': 'n8',
+        'neutral-9': 'n9',
+        'neutral-10': 'n10',
+        'neutral-11': 'n11',
         black: 'bk',
+        white: 'wh',
+
+        // TODO 删除
         'light-black': 'lbk',
         'extra-light-black': 'elbk',
         blue: 'bu',
@@ -78097,8 +78123,7 @@ var morning = {
         'light-silver': 'lsi',
         'extra-light-silver': 'elsi',
         gray: 'g',
-        'light-gray': 'lg',
-        white: 'wh'
+        'light-gray': 'lg'
     },
     isMorning: true,
     version: '0.12.28',
@@ -78537,7 +78562,10 @@ exports.default = function (Elements) {
                 type: String,
                 default: undefined,
                 validator: function validator(value) {
-                    return ['theme', 'light-theme', 'dark-theme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'black', 'light-black', 'extra-light-black', 'blue', 'light-blue', 'extra-light-blue', 'silver', 'light-silver', 'extra-light-silver', 'gray', 'light-gray', 'white'].indexOf(value) !== -1;
+                    return ['theme', 'light-theme', 'dark-theme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'neutral-1', 'neutral-2', 'neutral-3', 'neutral-4', 'neutral-5', 'neutral-6', 'neutral-7', 'neutral-8', 'neutral-9', 'neutral-10', 'neutral-11', 'black', 'white',
+
+                    // TODO 需要删除
+                    'black', 'light-black', 'extra-light-black', 'blue', 'light-blue', 'extra-light-blue', 'silver', 'light-silver', 'extra-light-silver', 'gray', 'light-gray', 'white'].indexOf(value) !== -1;
                 }
             },
             state: {

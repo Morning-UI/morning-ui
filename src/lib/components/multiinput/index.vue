@@ -222,14 +222,18 @@ export default {
 
                 let $input = this.$el.querySelector('input');
 
-                this.add($input.value);
-                this._blurInput();
+                if ($input.value) {
 
-                setTimeout(() => {
+                    this.add($input.value);
+                    this._blurInput();
 
-                    this._focusInput();
+                    setTimeout(() => {
 
-                });
+                        this._focusInput();
+
+                    });
+
+                }
 
             }
 

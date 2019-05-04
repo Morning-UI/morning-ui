@@ -200,7 +200,7 @@ mor-cascader{
         display: flex;
 
         .cascader-menu{
-            border-left: 1px solid @colorExtraLightSilver;
+            border-left: 1px solid lighten(@colorFormBorder, 3%);
 
             &:first-child{
                 border-left: none;
@@ -225,7 +225,7 @@ mor-cascader{
                     cursor: pointer;
 
                     &:hover{
-                        background: @colorExtraLightSilver;
+                        background: @colorFromItemBackgroundHover;
                     }
 
                     &.current{
@@ -234,11 +234,11 @@ mor-cascader{
                     }
 
                     &.last-current{
-                        background: @colorExtraLightSilver;
+                        background: @colorFromItemBackgroundHover;
                     }
 
                     &.disabled{
-                        background: @colorFormBackgroundDisable;
+                        background: @colorFromItemBackgroundDisable;
                         cursor: not-allowed;
                     }
                 }
@@ -272,7 +272,7 @@ mor-cascader{
         li:not(.nomatch){
             &:hover{
                 cursor: pointer;
-                background: @colorExtraLightSilver;
+                background: @colorFromItemBackgroundHover;
             }
         }
     }

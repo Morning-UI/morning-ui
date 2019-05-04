@@ -25,8 +25,8 @@ mor-multiform{
             width: 20%;
             max-width: @fontSize*9.375;
             margin: 0;
-            background-color: @colorLightGray;
-            color: @colorBlue;
+            background-color: @colorFormAddonBg;
+            color: @colorFormAddonFont;
             display: inline-block;
             left: 0;
             top: 0;
@@ -134,7 +134,7 @@ mor-multiform{
                         left: 0;
                         padding: 1px;
                         box-sizing: border-box;
-                        background: darken(@colorGray, 2%);
+                        background: darken(@colorComponentItemBg, 2%);
                     }
                 }
             }
@@ -346,8 +346,8 @@ mor-multiform{
             border-color: @colorFormBorderDisable;
 
             > .name{
-                background-color: darken(@colorLightGray, 10%);
-                color: darken(@colorBlue, 10%);
+                background-color: darken(@colorFormAddonBg, 10%);
+                color: darken(@colorFormAddonFont, 10%);
             }
 
             > .itemwrap > .multiform-item{

@@ -47,7 +47,7 @@
                         :target="'#ui-select-tip-'+uiid+'-'+index"
                         :placement="conf.itemTipDirect"
                         class="tips"
-                        color="blue"
+                        color="neutral-10"
                     >{{data.itemTipMap[index]}}</morning-tip>
                 </template>
             </template>

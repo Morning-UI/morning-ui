@@ -75,17 +75,14 @@ mor-tip{
     .tip-style(@colorInfo, @colorWhite, i);
 
     .tip-style(@colorBlack, @colorWhite, bk);
-    .tip-style(@colorLightBlack, @colorWhite, lbk);
-    .tip-style(@colorExtraLightBlack, @colorWhite, elbk);
-    .tip-style(@colorBlue, @colorWhite, bu);
-    .tip-style(@colorLightBlue, @colorWhite, lbu);
-    .tip-style(@colorExtraLightBlue, @colorWhite, elbu);
-    .tip-style(@colorSilver, @colorLightBlack, si);
-    .tip-style(@colorLightSilver, @colorLightBlack, lsi);
-    .tip-style(@colorExtraLightSilver, @colorLightBlack, elsi);
-    .tip-style(@colorGray, @colorLightBlack, g);
-    .tip-style(@colorLightGray, @colorLightBlack, lg);
-    .tip-style(@colorWhite, @colorLightBlack, wh);
+    
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
+
+        .tip-style(@@colorName, if((@value > 5), @colorWhite, @colorBlack), ~"n@{value}");
+    });
+
+    .tip-style(@colorWhite, @colorBlack, wh);
 
     // default status
     &{

@@ -209,6 +209,18 @@ let data = {
             colorName : '纯白'
         }
     ],
+    'neutral-white' : [
+        {
+            colorKey : 'white',
+            colorName : '纯白'
+        }
+    ],
+    'neutral-black' : [
+        {
+            colorKey : 'black',
+            colorName : '纯黑'
+        }
+    ],
     state : [
         {
             stateKey : 'normal',
@@ -759,7 +771,7 @@ let presets = {
 |色彩|不支持|-|
 |状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
-<a href="/guide/status.html">查看形态文档</a>
+<a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
 :::vue
 @name:状态
@@ -791,7 +803,7 @@ normal,disabled,readonly
 |色彩|不支持|-|
 |状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
-<a href="/guide/status.html">查看形态文档</a>
+<a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
 :::vue
 @name:尺寸
@@ -841,10 +853,10 @@ normal,disabled,readonly
 |类型|支持|默认|
 |-|-|-|
 |尺寸|不支持|-|
-|色彩|全部|\`theme\`|
+|色彩|全部(除\`transparent\`)|\`theme\`|
 |状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
-<a href="/guide/status.html">查看形态文档</a>
+<a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
 :::vue
 @name:色彩
@@ -896,10 +908,10 @@ normal,disabled,readonly
 |类型|支持|默认|
 |-|-|-|
 |尺寸|\`xs\` / \`s\` / \`m\`|\`m\`|
-|色彩|全部|\`theme\`|
+|色彩|全部(除\`transparent\`)|\`theme\`|
 |状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
-<a href="/guide/status.html">查看形态文档</a>
+<a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
 :::vue
 @name:尺寸

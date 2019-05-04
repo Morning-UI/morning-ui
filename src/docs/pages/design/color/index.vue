@@ -79,7 +79,7 @@
     灰色是中性化的颜色，可传递“沉稳、专业、系统”的感情色彩。适用于文字、背景、边框颜色，运用不同的中性色，来表现层次结构。
 
     <div class="colorFlex">
-        <div class="item w4 group">
+        <div class="item w11 group">
             <div class="item" style="background:#333333">
                 <p class="key">neutral-11</p>
                 <!-- <p class="name">黑色</p> -->
@@ -95,8 +95,6 @@
                 <!-- <p class="name">超浅黑色</p> -->
                 <p class="color">#666666</p>
             </div>
-        </div>
-        <div class="item w4 group">
             <div class="item" style="background:#7F7F7F">
                 <p class="key">neutral-8</p>
                 <!-- <p class="name">青色</p> -->
@@ -112,31 +110,27 @@
                 <!-- <p class="name">超浅青色</p> -->
                 <p class="color">#B2B2B2</p>
             </div>
-        </div>
-        <div class="item w4 group colorDark">
-            <div class="item" style="background:#CCCCCC">
+            <div class="item" style="background:#CCCCCC;color:#000">
                 <p class="key">neutral-5</p>
                 <!-- <p class="name">银色</p> -->
                 <p class="color">#CCCCCC</p>
             </div>
-            <div class="item" style="background:#D9D9D9">
+            <div class="item" style="background:#D9D9D9;color:#000">
                 <p class="key">neutral-4</p>
                 <!-- <p class="name">浅银色</p> -->
             <p class="color">#D9D9D9</p>
             </div>
-            <div class="item" style="background:#E0E0E0">
+            <div class="item" style="background:#E0E0E0;color:#000">
                 <p class="key">neutral-3</p>
                 <!-- <p class="name">超浅银色</p> -->
                 <p class="color">#E0E0E0</p>
             </div>
-        </div>
-        <div class="item w4 group colorDark">
-            <div class="item" style="background:#E5E5E5">
+            <div class="item" style="background:#E5E5E5;color:#000">
                 <p class="key">neutral-2</p>
                 <!-- <p class="name">灰色</p> -->
                 <p class="color">#E5E5E5</p>
             </div>
-            <div class="item" style="background:#F0F0F0">
+            <div class="item" style="background:#F0F0F0;color:#000">
                 <p class="key">neutral-1</p>
                 <!-- <p class="name">浅灰色</p> -->
                 <p class="color">#F0F0F0</p>
@@ -164,8 +158,18 @@
     </div>
 
     <br>
+    
+    #### 使用
 
-    你也可以在组件外使用这些颜色，查看：[配色](/component/uniformcolor.html)。
+    在组件中使用：
+
+    - 请查看[形态/色彩](/guide/status.html#色彩)
+
+    在组件之外使用：
+
+    - 通过CSS类，请查看：[配色](/component/uniformcolor.html)
+    - 使用色值，请查看：[设计/色彩](/design/color.html)
+
     </script>
     </doc-design>
 
@@ -191,7 +195,7 @@ export default {
 <style lang="less">
 .colorFlex{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin: 5px 0;
 
     .item{
@@ -245,6 +249,22 @@ export default {
 
         .item{
             height: 105px;
+        }
+    }
+
+    .w11{
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        display: flex;
+
+        .item{
+            height: 95px;
+            padding: 20px 5px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
     }
 }

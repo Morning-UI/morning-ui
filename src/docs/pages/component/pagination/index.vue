@@ -145,7 +145,7 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|全部|`m`|
-    |色彩|全部|`theme`|
+    |色彩|全部(除`transparent`)|`theme`|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>

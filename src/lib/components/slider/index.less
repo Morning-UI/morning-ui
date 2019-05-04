@@ -20,7 +20,7 @@ mor-slider{
         &:hover,
         &.droping{
             .track{
-                background: darken(@colorLightSilver, 3%);
+                background: darken(@colorFromItemBackgroundHover, 4%);
             }
 
             .selected-line{
@@ -70,7 +70,7 @@ mor-slider{
             height: 100%;
             font-size: @fontSize;
             border-radius: 10em;
-            background: darken(@colorSilver, 5%);
+            background: darken(@colorFromItemBackgroundCurrent, 9%);
             position: absolute;
             margin: 0;
         }
@@ -79,14 +79,14 @@ mor-slider{
     &.hide-part-points{
         .points{
             li{
-                background: lighten(@colorExtraLightSilver, 2%);
+                background: lighten(@colorFromItemBackground, 2%);
             }
         }
     }
 
     .track{
         width: 100%;
-        background: @colorLightSilver;
+        background: darken(@colorFromItemBackground, 4%);
         border-radius: 10em;
         position: relative;
         cursor: pointer;
@@ -395,16 +395,16 @@ mor-slider{
 
             .track{
                 cursor: not-allowed;
-                background: darken(@colorSilver, 4%);
+                background: darken(@colorFromItemBackgroundDisable, 4%);
             }
 
             .selected-line{
-                background: darken(@colorSilver, 28%);
+                background: darken(@colorFromItemBackgroundDisable, 28%);
             }
 
             .main-slider{
                 cursor: not-allowed;
-                border-color: darken(@colorSilver, 28%);
+                border-color: darken(@colorFromItemBackgroundDisable, 28%);
             }
         }
     }

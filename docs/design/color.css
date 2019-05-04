@@ -1,6 +1,6 @@
 .colorFlex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 5px 0;
 }
 .colorFlex .item {
@@ -44,4 +44,18 @@
 }
 .colorFlex .w4 .item {
   height: 105px;
+}
+.colorFlex .w11 {
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  display: flex;
+}
+.colorFlex .w11 .item {
+  height: 95px;
+  padding: 20px 5px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

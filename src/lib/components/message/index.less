@@ -1,3 +1,13 @@
+.message-style(@background; @color; @style) {
+    .msg-co-@{style}{
+        background-color: @background;
+
+        .bo-ti{
+            color: @color;
+        }
+    }
+}
+
 mor-message{
     display: block;
     position: fixed;
@@ -190,169 +200,26 @@ mor-message{
         text-overflow: ellipsis;
     }
 
-    .msg-co-t{
-        background-color: @colorTheme;
+    .message-style(@colorTheme, @colorWhite, t);
+    .message-style(@colorLightTheme, @colorWhite, lt);
+    .message-style(@colorDarkTheme, @colorWhite, dt);
 
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
+    .message-style(@colorSuccess, @colorWhite, s);
+    .message-style(@colorWarning, @colorWhite, w);
+    .message-style(@colorDanger, @colorWhite, d);
+    .message-style(@colorPrimary, @colorWhite, p);
+    .message-style(@colorMinor, @colorWhite, m);
+    .message-style(@colorInfo, @colorWhite, i);
 
-    .msg-co-lt{
-        background-color: @colorLightTheme;
+    .message-style(@colorBlack, @colorWhite, bk);
 
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
 
-    .msg-co-dt{
-        background-color: @colorDarkTheme;
+        .message-style(@@colorName, if((@value > 5), @colorWhite, @colorBlack), ~"n@{value}");
+    });
 
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-s{
-        background-color: @colorSuccess;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-w{
-        background-color: @colorWarning;
-    }
-
-    .msg-co-d{
-        background-color: @colorDanger;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-p{
-        background-color: @colorPrimary;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-m{
-        background-color: @colorMinor;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-i{
-        background-color: @colorInfo;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-bk{
-        background-color: @colorBlack;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-lbk{
-        background-color: @colorLightBlack;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-elbk{
-        background-color: @colorExtraLightBlack;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-bu{
-        background-color: @colorBlue;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-lbu{
-        background-color: @colorLightBlue;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-elbu{
-        background-color: @colorExtraLightBlue;
-
-        .bo-ti{
-            color: @colorWhite;
-        }
-    }
-
-    .msg-co-si{
-        background-color: @colorSilver;
-
-        .bo-ti{
-            color: @colorBlack;
-        }
-    }
-
-    .msg-co-lsi{
-        background-color: @colorLightSilver;
-
-        .bo-ti{
-            color: @colorBlack;
-        }
-    }
-
-    .msg-co-elsi{
-        background-color: @colorExtraLightSilver;
-
-        .bo-ti{
-            color: @colorBlack;
-        }
-    }
-
-    .msg-co-g{
-        background-color: @colorGray;
-
-        .bo-ti{
-            color: @colorBlack;
-        }
-    }
-
-    .msg-co-lg{
-        background-color: @colorLightGray;
-
-        .bo-ti{
-            color: @colorBlack;
-        }
-    }
-
-    .msg-co-wh{
-        background-color: @colorWhite;
-
-        .bo-ti{
-            color: @colorBlack;
-        }
-    }
+    .message-style(@colorWhite, @colorBlack, wh);
 
     // default status
     &{}

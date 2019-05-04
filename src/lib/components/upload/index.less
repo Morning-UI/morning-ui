@@ -59,13 +59,13 @@ mor-upload{
     .ismax-note,
     .upload-box-note{
         font-size: @fontSize*0.75;
-        color: @colorExtraLightBlack;
+        color: @colorFormTextNote;
         line-height: 1.2em;
     }
 
     .upload-box-note{
         margin-top: @fontSize*0.25;
-        color: @colorLightBlue;
+        color: @colorFormTextNote;
     }
 
     .upload-wrap{
@@ -102,7 +102,7 @@ mor-upload{
         width: 100%;
 
         .file-item{
-            color: @colorExtraLightBlack;
+            color: @colorFormItemColor;
             background: @colorWhite;
             text-decoration: none;
             padding: 0.3em 0.5em;
@@ -158,7 +158,7 @@ mor-upload{
                 }
 
                 &.current{
-                    background: @colorExtraLightSilver;
+                    background: @colorFromItemBackgroundCurrent;
 
                     i.remove,
                     i.openfile{
@@ -192,7 +192,7 @@ mor-upload{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 1px @colorLightSilver solid;
+                border: 1px @colorImageBorder solid;
                 overflow: hidden;
 
                 img {
@@ -214,7 +214,7 @@ mor-upload{
 
                     > .mo-icon{
                         font-size: @fontSize*1.25;
-                        color: @colorSilver;
+                        color: @colorFormItemColor;
                     }
                 }
 
@@ -258,7 +258,7 @@ mor-upload{
             &.done:hover{
                 color: @colorBlack;
                 cursor: pointer;
-                background: @colorExtraLightSilver;
+                background: @colorFromItemBackgroundHover;
             }
 
             .progress{
@@ -482,7 +482,7 @@ mor-upload{
             height: 100%;
 
             .upload-file{
-                color: @colorExtraLightBlue;
+                color: @colorFormItemColor;
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -506,7 +506,7 @@ mor-upload{
 
                 &:hover{
                     cursor: pointer;
-                    color: @colorLightBlue;
+                    color: @colorFormItemColorHover;
                 }
             }
         }
@@ -532,7 +532,7 @@ mor-upload{
 
                 span{
                     font-size: @fontSize*0.75;
-                    color: @colorExtraLightBlue;
+                    color: @colorFormItemColor;
                 }
 
                 .mo-icon-file-o{
@@ -556,7 +556,7 @@ mor-upload{
 
             .mo-icon{
                 font-size: @fontSize*2;
-                color: @colorExtraLightBlue;
+                color: @colorFormItemColor;
             }
 
             &.fail{
@@ -568,7 +568,7 @@ mor-upload{
                 i.mo-icon.reupload,
                 i.mo-icon.remove{
                     display: inline-block;
-                    color: @colorExtraLightBlue;
+                    color: @colorFormItemColor;
                 }
             }
         }
@@ -595,7 +595,7 @@ mor-upload{
             > a{
                 text-decoration: none;
                 cursor: pointer;
-                color: @colorSilver;
+                color: @colorComponentItemFont;
                 display: inline-block;
                 margin: 0 0.5em;
                 font-size: @fontSize*1.75;

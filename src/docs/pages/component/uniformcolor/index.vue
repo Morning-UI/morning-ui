@@ -10,6 +10,8 @@
 
     配色支持[设计/色彩](/design/color.html)中的所有色彩。
 
+    组件中使用色彩请查看[形态/色彩](/guide/status.html#色彩)。
+
     ## 文字配色
 
     如果你需要对元素内的文字，通过`mo-co-font-*`这样的CSS类来进行配色，比如：`mo-co-font-theme`：

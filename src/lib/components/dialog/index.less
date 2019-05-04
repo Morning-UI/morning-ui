@@ -76,14 +76,14 @@ mor-dialog{
             line-height: @footerHeight;
             height: @footerHeight;
             width: 100%;
-            background: @colorExtraLightSilver;
-            color: @colorBlue;
+            background: @colorComponentItemBg;
+            color: @colorComponentItemFont;
             padding: 0 1.5em;
             box-sizing: border-box;
             position: absolute;
             bottom: 0;
             text-align: left;
-            border-top: 1px @colorLightSilver solid;
+            border-top: 1px @colorComponentItemBorder solid;
 
             > div{
                 position: relative;
@@ -240,92 +240,22 @@ mor-dialog{
         }
     }
 
-    &.co-lbk {
-        > .content > header{
-            background-color: @colorLightBlack;
-            color: @colorWhite;
-        }
-    }
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
+        
 
-    &.co-elbk {
-        > .content > header{
-            background-color: @colorExtraLightBlack;
-            color: @colorWhite;
+        &.co-n@{value}{
+            > .content > header{
+                background-color: @@colorName;
+                color: if((@value > 5), @colorWhite, @colorBlack);
+            }
         }
-    }
-
-    &.co-bu {
-        > .content > header{
-            background-color: @colorBlue;
-            color: @colorWhite;
-        }
-    }
-
-    &.co-lbu {
-        > .content > header{
-            background-color: @colorLightBlue;
-            color: @colorWhite;
-        }
-    }
-
-    &.co-elbu{
-        > .content > header{
-            background-color: @colorExtraLightBlue;
-            color: @colorWhite;
-        }
-    }
-
-    &.co-si {
-        > .content > header{
-            background-color: @colorSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-lsi {
-        > .content > header{
-            background-color: @colorLightSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-elsi {
-        > .content > header{
-            background-color: @colorExtraLightSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-g {
-        > .content > header{
-            background-color: @colorGray;
-            color: @colorLightBlack;
-        }
-
-        > .content > footer{
-            background-color: @colorLightGray;
-        }
-    }
-
-    &.co-lg {
-        > .content > header{
-            background-color: @colorLightGray;
-            color: @colorLightBlack;
-        }
-
-        > .content > footer{
-            background-color: @colorLightGray;
-        }
-    }
+    });
 
     &.co-wh {
         > .content > header{
             background-color: @colorWhite;
-            color: @colorLightBlack;
-        }
-
-        > .content > footer{
-            background-color: @colorLightGray;
+            color: @colorBlack;
         }
     }
 

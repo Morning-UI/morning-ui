@@ -1,5 +1,7 @@
-@menuBorderColor: @colorLightSilver;
-@menuBgColor: lighten(@colorExtraLightSilver, 2%);
+@menuBorderColor: @colorComponentItemBorder;
+@menuBgColor: @colorComponentItemBg;
+@menuBgColoDisabled: @colorComponentItemBgDisabled;
+@menuFontDisabled: @colorComponentItemFontDisabled;
 
 mor-collapse{
     display: block;
@@ -26,6 +28,7 @@ mor-collapse{
             border-top-width: 0;
             cursor: pointer;
             position: relative;
+            color: @colorNeutral11;
 
             > i{
                 margin-right: 0.2em;
@@ -36,7 +39,7 @@ mor-collapse{
                 position: absolute;
                 right: 0.5em;
                 font-size: @fontSize*0.875;
-                color: @colorExtraLightBlue;
+                color: @colorNeutral7;
                 transition: transform 0.16s;
             }
 
@@ -60,8 +63,8 @@ mor-collapse{
             }
 
             &.disabled{
-                background: darken(@menuBgColor, 5%);
-                color: @colorLightBlue;
+                background: @menuBgColoDisabled;
+                color: @menuFontDisabled;
                 cursor: not-allowed;
 
                 .mo-collapse-icon{

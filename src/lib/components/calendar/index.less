@@ -19,11 +19,11 @@ mor-calendar{
             .prev-year,
             .next-year{
                 font-size: @fontSize*0.875;
-                color: @colorExtraLightBlue;
+                color: @colorComponentItemFont;
 
                 &:hover{
                     cursor: pointer;
-                    color: @colorExtraLightBlack;
+                    color: @colorComponentItemFontHover;
                 }
             }
 
@@ -40,12 +40,12 @@ mor-calendar{
 
                 .year,
                 .month{
-                    color: @colorExtraLightBlue;
+                    color: @colorComponentItemFont;
                     display: inline-block;
 
                     &:hover{
                         cursor: pointer;
-                        color: @colorExtraLightBlack;
+                        color: @colorComponentItemFontHover;
                     }
                 }
 
@@ -58,8 +58,8 @@ mor-calendar{
         .titlebar{
             .weekday,
             .title{
-                border-top: 1px @colorLightSilver solid;
-                border-bottom: 1px @colorLightSilver solid;
+                border-top: 1px @colorComponentItemBorder solid;
+                border-bottom: 1px @colorComponentItemBorder solid;
                 padding: @fontSize*0.25 0;
             }
 
@@ -73,14 +73,14 @@ mor-calendar{
                     display: inline-block;
                     font-size: @fontSize*0.8125;
                     margin: 0;
-                    color: @colorBlue;
+                    color: darken(@colorComponentItemFont, 8%);
                 }
             }
 
             .title{
                 text-align: center;
                 font-size: @fontSize*0.8125;
-                color: @colorExtraLightBlue;
+                color: @colorComponentItemFont;
             }
         }
     }
@@ -120,8 +120,8 @@ mor-calendar{
         color: @colorBlack;
 
         &.no-curt-m{
-            color: @colorLightBlue;
-            background-color: lighten(@colorLightGray, 2%);
+            color: @colorComponentItemFont;
+            background-color: @colorComponentItemBg;
         }
 
         &.now{
@@ -151,7 +151,7 @@ mor-calendar{
 
             &.bg-mark-disabled{
                 .select-layer{
-                    background-color: @colorExtraLightBlue;
+                    background-color: @colorComponentItemBg;
                 }
             }
         }
@@ -193,11 +193,11 @@ mor-calendar{
         &.start.bg-mark-disabled,
         &.end.bg-mark-disabled{
             .inner-layer{
-                background-color: @colorExtraLightBlack;
+                background-color: @colorNeutral9;
             }
 
             .select-layer{
-                background-color: @colorExtraLightBlue;
+                background-color: @colorNeutral6;
             }
         }
 
@@ -286,118 +286,43 @@ mor-calendar{
                 color: fade(@colorWhite, 50%);
             }
         }
+        
+        each(range(11), {
+            @colorName : "colorNeutral@{value}";
+            
+            &.bg-mark-n@{value}{
+                background: @@colorName;
+                color: if((@value > 5), @colorWhite, @colorBlack);
 
-        &.bg-mark-lbk{
-            background: @colorLightBlack;
-            color: @colorWhite;
-
-            &.no-curt-m{
-                background: lighten(@colorLightBlack, 8%);
-                color: fade(@colorWhite, 50%);
+                &.no-curt-m{
+                    background: lighten(@@colorName, 8%);
+                    color: if((@value > 5), fade(@colorWhite, 50%), fade(@colorBlack, 50%));
+                }
             }
-        }
 
-        &.bg-mark-elbk{
-            background: @colorExtraLightBlack;
-            color: @colorWhite;
+        });
 
-            &.no-curt-m{
-                background: lighten(@colorExtraLightBlack, 8%);
-                color: fade(@colorWhite, 50%);
-            }
-        }
-
-        &.bg-mark-bu{
-            background: @colorBlue;
-            color: @colorWhite;
-
-            &.no-curt-m{
-                background: darken(@colorBlue, 8%);
-                color: fade(@colorWhite, 50%);
-            }
-        }
-
-        &.bg-mark-lbu{
-            background: @colorLightBlue;
-            color: @colorWhite;
-
-            &.no-curt-m{
-                background: darken(@colorLightBlue, 8%);
-                color: fade(@colorWhite, 50%);
-            }
-        }
-
-        &.bg-mark-elbu{
-            background: @colorExtraLightBlue;
-            color: @colorWhite;
-
-            &.no-curt-m{
-                background: darken(@colorExtraLightBlue, 8%);
-                color: fade(@colorWhite, 50%);
-            }
-        }
-
-        &.bg-mark-si{
-            background: @colorSilver;
+        &.bg-mark-wh{
+            background: @colorWhite;
             color: @colorBlack;
 
             &.no-curt-m{
-                background: darken(@colorSilver, 8%);
-                color: fade(@colorBlack, 50%);
-            }
-        }
-
-        &.bg-mark-lsi{
-            background: @colorLightSilver;
-            color: @colorBlack;
-
-            &.no-curt-m{
-                background: darken(@colorLightSilver, 8%);
-                color: fade(@colorBlack, 50%);
-            }
-        }
-
-        &.bg-mark-elsi{
-            background: @colorExtraLightSilver;
-            color: @colorBlack;
-
-            &.no-curt-m{
-                background: darken(@colorExtraLightSilver, 8%);
-                color: fade(@colorBlack, 50%);
-            }
-        }
-
-        &.bg-mark-g{
-            background: @colorGray;
-            color: @colorBlack;
-
-            &.no-curt-m{
-                background: darken(@colorGray, 8%);
-                color: fade(@colorBlack, 50%);
-            }
-        }
-
-        &.bg-mark-lg{
-            background: @colorLightGray;
-            color: @colorBlack;
-
-            &.no-curt-m{
-                background: darken(@colorLightGray, 8%);
+                background: lighten(@colorWhite, 8%);
                 color: fade(@colorBlack, 50%);
             }
         }
 
         &.bg-mark-disabled {
-            background: @colorSilver;
+            background: @colorNeutral3;
             cursor: default;
             color: fade(@colorBlack, 50%);
 
             &.no-curt-m{
-                background: darken(@colorSilver, 8%);
-                color: fade(@colorLightBlue, 40%);
+                background: darken(@colorNeutral3, 8%);
+                color: fade(@colorNeutral8, 40%);
 
                 &:hover{
-                    color: fade(@colorLightBlue, 40%) !important;
+                    color: fade(@colorNeutral8, 40%) !important;
                 }
             }
 
@@ -435,44 +360,16 @@ mor-calendar{
         background: @colorBlack;
     }
 
-    .p-mark-lbk::after{
-        background: @colorLightBlack;
-    }
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
 
-    .p-mark-elbk::after{
-        background: @colorExtraLightBlack;
-    }
+        .p-mark-n@{value}::after{
+            background: @@colorName;
+        }
+    });
 
-    .p-mark-bu::after{
-        background: @colorBlue;
-    }
-
-    .p-mark-lbu::after{
-        background: @colorLightBlue;
-    }
-
-    .p-mark-elbu::after{
-        background: @colorExtraLightBlue;
-    }
-
-    .p-mark-si::after{
-        background: @colorSilver;
-    }
-
-    .p-mark-lsi::after{
-        background: @colorLightSilver;
-    }
-
-    .p-mark-elsi::after{
-        background: @colorExtraLightSilver;
-    }
-
-    .p-mark-g::after{
-        background: @colorGray;
-    }
-
-    .p-mark-lg::after{
-        background: @colorLightGray;
+    .p-mark-wh::after{
+        background: @colorWhite;
     }
 
     .pick-month,
@@ -488,11 +385,11 @@ mor-calendar{
         height: @fontSize*3.75;
         line-height: @fontSize*3.75;
         text-align: center;
-        color: @colorBlue;
+        color: @colorComponentItemFontHover;
 
         &:hover{
             color: @colorBlack;
-            background-color: @colorExtraLightSilver;
+            background-color: @colorComponentItemBgHover;
             cursor: pointer;
         }
     }
@@ -503,11 +400,11 @@ mor-calendar{
         height: @fontSize*3;
         line-height: @fontSize*3;
         text-align: center;
-        color: @colorBlue;
+        color: @colorComponentItemFontHover;
 
         &:hover{
             color: @colorBlack;
-            background-color: @colorExtraLightSilver;
+            background-color: @colorComponentItemBgHover;
             cursor: pointer;
         }
     }

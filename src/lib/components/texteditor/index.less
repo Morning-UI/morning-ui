@@ -35,8 +35,8 @@ mor-texteditor{
             display: inline-block;
             vertical-align: middle;
             padding: 0 @fontSize*0.5;
-            background: @colorLightSilver;
-            color: @colorLightBlack;
+            background: darken(@colorComponentItemBg, 10%);
+            color: @colorBlack;
             border-radius: @borderRadius;
         }
     }
@@ -469,10 +469,10 @@ mor-texteditor{
 .mo-texteditor-dialog{
     header{
         .mo-icon{
-            color: @colorLightBlue;
+            color: @colorNeutral6;
 
             &:hover{
-                color: @colorBlue;
+                color: @colorNeutral8;
             }
         }
     }

@@ -1078,37 +1078,37 @@ mor-table{
         }
     }
 
-    &.co-lbk{
-        border-color: @colorLightBlack !important;
+    &.co-n1{
+        border-color: @colorNeutral1 !important;
 
         header{
-            background-color: @colorLightBlack;
-            color: @colorWhite;
+            background-color: @colorNeutral1;
+            color: @colorBlack;
         }
 
         .co-style{
-            border-color: @colorLightBlack !important;
+            border-color: @colorNeutral1 !important;
 
             th,
             td{
-                color: @colorWhite;
+                color: @colorBlack;
             }
 
             th,
             td,
             tr,
             &{
-                border-color: @colorLightBlack !important;
+                border-color: @colorNeutral1 !important;
             }
 
             tr{
-                background-color: darken(@colorLightBlack, 5%);
+                background-color: lighten(@colorNeutral1, 3%);
             }
         }
 
         &.ts-zp .co-style{
             tr:nth-child(2n) td{
-                background-color: darken(@colorLightBlack, 10%);
+                background-color: lighten(@colorNeutral1, 8%);
             }
         }
 
@@ -1118,12 +1118,12 @@ mor-table{
             tr.hover,
             tr.last-click{
                 td{
-                    background-color: lighten(@colorLightBlack, 5%);
-                    border-color: lighten(@colorLightBlack, 5%) !important;
+                    background-color: darken(@colorNeutral1, 5%);
+                    border-color: darken(@colorNeutral1, 5%) !important;
                 }
 
                 + tr > td{
-                    border-top-color: lighten(@colorLightBlack, 5%) !important;
+                    border-top-color: darken(@colorNeutral1, 5%) !important;
                 }
             }
         }
@@ -1132,585 +1132,85 @@ mor-table{
             .empty-image i,
             .empty-image i.iconfont,
             .empty-image i.mo-icon{
-                color: @colorWhite;
+                color: @colorBlack;
                 opacity: 0.6;
             }
 
             .empty-note{
-                color: @colorWhite;
-                opacity: 0.6;
-            }
-        }
-    }
-
-    &.co-elbk{
-        border-color: @colorExtraLightBlack !important;
-
-        header{
-            background-color: @colorExtraLightBlack;
-            color: @colorWhite;
-        }
-
-        .co-style{
-            border-color: @colorExtraLightBlack !important;
-
-            th,
-            td{
-                color: @colorWhite;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: @colorExtraLightBlack !important;
-            }
-
-            tr{
-                background-color: darken(@colorExtraLightBlack, 5%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: darken(@colorExtraLightBlack, 10%);
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: lighten(@colorExtraLightBlack, 3%);
-                    border-color: lighten(@colorExtraLightBlack, 3%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: lighten(@colorExtraLightBlack, 3%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: @colorWhite;
-                opacity: 0.6;
-            }
-
-            .empty-note{
-                color: @colorWhite;
+                color: @colorBlack;
                 opacity: 0.6;
             }
         }
     }
 
-    &.co-bu{
-        border-color: darken(@colorBlue, 25%) !important;
+    each(range(11), {
+        @colorName : "colorNeutral@{value}";
 
-        header{
-            background-color: darken(@colorBlue, 25%);
-            color: @colorWhite;
-        }
+        &.co-n@{value} when (@value > 1) {
+            border-color: @@colorName !important;
 
-        .co-style{
-            border-color: darken(@colorBlue, 25%) !important;
-
-            th,
-            td{
-                color: @colorWhite;
+            header{
+                background-color: @@colorName;
+                color: if((@value > 5), @colorWhite, @colorBlack);
             }
 
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorBlue, 25%) !important;
-            }
+            .co-style{
+                border-color: @@colorName !important;
 
-            tr{
-                background-color: darken(@colorBlue, 10%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: darken(@colorBlue, 15%);
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+                th,
                 td{
-                    background-color: darken(@colorBlue, 25%);
-                    border-color: darken(@colorBlue, 25%) !important;
+                    color: if((@value > 5), @colorWhite, @colorBlack);
                 }
 
-                + tr > td{
-                    border-top-color: darken(@colorBlue, 25%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: lighten(@colorBlue, 10%);
-            }
-
-            .empty-note{
-                color: lighten(@colorBlue, 25%);
-            }
-        }
-    }
-
-    &.co-lbu{
-        border-color: darken(@colorLightBlue, 25%) !important;
-
-        header{
-            background-color: darken(@colorLightBlue, 25%);
-            color: @colorWhite;
-        }
-
-        .co-style{
-            border-color: darken(@colorLightBlue, 25%) !important;
-
-            th,
-            td{
-                color: @colorWhite;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorLightBlue, 25%) !important;
-            }
-
-            tr{
-                background-color: darken(@colorLightBlue, 10%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: darken(@colorLightBlue, 15%);
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: darken(@colorLightBlue, 25%);
-                    border-color: darken(@colorLightBlue, 25%) !important;
+                th,
+                td,
+                tr,
+                &{
+                    border-color: @@colorName !important;
                 }
 
-                + tr > td{
-                    border-top-color: darken(@colorLightBlue, 25%) !important;
+                tr{
+                    background-color: if((@value > 5), darken(@@colorName, 3%), lighten(@@colorName, 3%));
+                }
+            }
+
+            &.ts-zp .co-style{
+                tr:nth-child(2n) td{
+                    background-color: if((@value > 5), darken(@@colorName, 5%), lighten(@@colorName, 8%));
+                }
+            }
+
+            &.ts-zp:not(.no-hover-effect) .table,
+            &:not(.no-hover-effect) .table{
+                tr:hover,
+                tr.hover,
+                tr.last-click{
+                    td{
+                        background-color: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 5%));
+                        border-color: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 5%)) !important;
+                    }
+
+                    + tr > td{
+                        border-top-color: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 5%)) !important;
+                    }
+                }
+            }
+
+            mor-empty{
+                .empty-image i,
+                .empty-image i.iconfont,
+                .empty-image i.mo-icon{
+                    color: if((@value > 5), @colorWhite, @colorBlack);
+                    opacity: 0.6;
+                }
+
+                .empty-note{
+                    color: if((@value > 5), @colorWhite, @colorBlack);
+                    opacity: 0.6;
                 }
             }
         }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: lighten(@colorLightBlue, 10%);
-            }
-
-            .empty-note{
-                color: lighten(@colorLightBlue, 25%);
-            }
-        }
-    }
-
-    &.co-elbu{
-        border-color: darken(@colorExtraLightBlue, 25%) !important;
-
-        header{
-            background-color: darken(@colorExtraLightBlue, 25%);
-            color: @colorWhite;
-        }
-
-        .co-style{
-            border-color: darken(@colorExtraLightBlue, 25%) !important;
-
-            th,
-            td{
-                color: @colorWhite;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorExtraLightBlue, 25%) !important;
-            }
-
-            tr{
-                background-color: darken(@colorExtraLightBlue, 10%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: darken(@colorExtraLightBlue, 15%);
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: darken(@colorExtraLightBlue, 25%);
-                    border-color: darken(@colorExtraLightBlue, 25%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: darken(@colorExtraLightBlue, 25%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: lighten(@colorExtraLightBlue, 10%);
-            }
-
-            .empty-note{
-                color: lighten(@colorExtraLightBlue, 25%);
-            }
-        }
-    }
-
-    &.co-si{
-        border-color: darken(@colorSilver, 10%) !important;
-
-        header{
-            background-color: darken(@colorSilver, 10%);
-            color: @colorBlack;
-        }
-
-        .co-style{
-            border-color: darken(@colorSilver, 10%) !important;
-
-            th,
-            td{
-                color: @colorBlack;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorSilver, 10%) !important;
-            }
-
-            tr{
-                background-color: darken(@colorSilver, 5%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: @colorSilver;
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: darken(@colorSilver, 10%);
-                    border-color: darken(@colorSilver, 10%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: darken(@colorSilver, 10%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: darken(@colorSilver, 10%);
-            }
-
-            .empty-note{
-                color: darken(@colorSilver, 25%);
-            }
-        }
-    }
-
-    &.co-lsi{
-        border-color: darken(@colorLightSilver, 10%) !important;
-
-        header{
-            background-color: @colorLightSilver;
-            color: @colorBlack;
-        }
-
-        .co-style{
-            border-color: darken(@colorLightSilver, 10%) !important;
-
-            th,
-            td{
-                color: @colorBlack;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorLightSilver, 10%) !important;
-            }
-
-            tr{
-                background-color: darken(@colorLightSilver, 5%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: @colorLightSilver;
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: darken(@colorLightSilver, 10%);
-                    border-color: darken(@colorLightSilver, 10%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: darken(@colorLightSilver, 10%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: darken(@colorLightSilver, 10%);
-            }
-
-            .empty-note{
-                color: darken(@colorLightSilver, 25%);
-            }
-        }
-    }
-
-    &.co-elsi{
-        border-color: darken(@colorExtraLightSilver, 10%) !important;
-
-        header{
-            background-color: darken(@colorExtraLightSilver, 10%);
-            color: @colorBlack;
-        }
-
-        .co-style{
-            border-color: darken(@colorExtraLightSilver, 10%) !important;
-
-            th,
-            td{
-                color: @colorBlack;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorExtraLightSilver, 10%) !important;
-            }
-
-            tr{
-                background-color: darken(@colorExtraLightSilver, 5%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: @colorExtraLightSilver;
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: darken(@colorExtraLightSilver, 10%);
-                    border-color: darken(@colorExtraLightSilver, 10%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: darken(@colorExtraLightSilver, 10%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: darken(@colorExtraLightSilver, 10%);
-            }
-
-            .empty-note{
-                color: darken(@colorExtraLightSilver, 25%);
-            }
-        }
-    }
-
-    &.co-g{
-        border-color: darken(@colorGray, 5%) !important;
-
-        header{
-            background-color: darken(@colorGray, 2%);
-            color: @colorBlack;
-        }
-
-        .co-style{
-            border-color: darken(@colorGray, 5%) !important;
-
-            th,
-            td{
-                color: @colorBlack;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorGray, 5%) !important;
-            }
-
-            tr{
-                background-color: lighten(@colorGray, 6%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: @colorGray;
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: lighten(@colorTheme, 35%);
-                    border-color: lighten(@colorTheme, 35%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: lighten(@colorTheme, 35%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: darken(@colorGray, 10%);
-            }
-
-            .empty-note{
-                color: darken(@colorGray, 25%);
-            }
-        }
-    }
-
-    &.co-lg{
-        border-color: darken(@colorLightGray, 5%) !important;
-
-        header{
-            background-color: darken(@colorLightGray, 2%);
-            color: @colorBlack;
-        }
-
-        .co-style{
-            border-color: darken(@colorLightGray, 5%) !important;
-
-            th,
-            td{
-                color: @colorBlack;
-            }
-
-            th,
-            td,
-            tr,
-            &{
-                border-color: darken(@colorLightGray, 5%) !important;
-            }
-
-            tr{
-                background-color: lighten(@colorLightGray, 4%);
-            }
-        }
-
-        &.ts-zp .co-style{
-            tr:nth-child(2n) td{
-                background-color: @colorLightGray;
-            }
-        }
-
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
-                td{
-                    background-color: lighten(@colorTheme, 35%);
-                    border-color: lighten(@colorTheme, 35%) !important;
-                }
-
-                + tr > td{
-                    border-top-color: lighten(@colorTheme, 35%) !important;
-                }
-            }
-        }
-
-        mor-empty{
-            .empty-image i,
-            .empty-image i.iconfont,
-            .empty-image i.mo-icon{
-                color: darken(@colorLightGray, 10%);
-            }
-
-            .empty-note{
-                color: darken(@colorLightGray, 25%);
-            }
-        }
-    }
+    });
 
     &.co-wh{
         border-color: darken(@colorWhite, 5%) !important;
@@ -1752,12 +1252,12 @@ mor-table{
             tr.hover,
             tr.last-click {
                 td{
-                    background-color: lighten(@colorTheme, 35%);
-                    border-color: lighten(@colorTheme, 35%) !important;
+                    background-color: @colorNeutral1;
+                    border-color: @colorNeutral1 !important;
                 }
 
                 + tr > td{
-                    border-top-color: lighten(@colorTheme, 35%) !important;
+                    border-top-color: @colorNeutral1 !important;
                 }
             }
         }
@@ -1816,55 +1316,14 @@ mor-table{
                 color: @colorWhite !important;
             }
 
-            &.cco-lbk{
-                background: darken(@colorLightBlack, 5%) !important;
-                color: @colorWhite !important;
-            }
+            each(range(11), {
+                @colorName : "colorNeutral@{value}";
 
-            &.cco-elbk{
-                background: darken(@colorExtraLightBlack, 5%) !important;
-                color: @colorWhite !important;
-            }
-
-            &.cco-bu{
-                background: darken(@colorBlue, 5%) !important;
-                color: @colorWhite !important;
-            }
-
-            &.cco-bu{
-                background: darken(@colorLightBlue, 5%) !important;
-                color: @colorWhite !important;
-            }
-
-            &.cco-elbu{
-                background: darken(@colorExtraLightBlue, 5%) !important;
-                color: @colorWhite !important;
-            }
-
-            &.cco-si{
-                background: darken(@colorSilver, 5%) !important;
-                color: @colorBlack !important;
-            }
-
-            &.cco-lsi{
-                background: darken(@colorLightSilver, 5%) !important;
-                color: @colorBlack !important;
-            }
-
-            &.cco-elsi{
-                background: darken(@colorExtraLightSilver, 5%) !important;
-                color: @colorBlack !important;
-            }
-
-            &.cco-g{
-                background: darken(@colorGray, 5%) !important;
-                color: @colorBlack !important;
-            }
-
-            &.cco-lg{
-                background: darken(@colorLightGray, 5%) !important;
-                color: @colorBlack !important;
-            }
+                &.cco-n@{value}{
+                    background: darken(@@colorName, 5%) !important;
+                    color: if((@value > 5), @colorWhite, @colorBlack) !important;
+                }
+            });
 
             &.cco-wh{
                 background: @colorWhite !important;
@@ -1875,7 +1334,7 @@ mor-table{
         th,
         td{
             &.cell-disabled{
-                background: darken(@colorGray, 15%) !important;
+                background: darken(@colorComponentItemBgDisabled, 15%) !important;
                 color: @colorBlack !important;
                 cursor: not-allowed;
             }
@@ -1926,45 +1385,13 @@ mor-table{
                     background: lighten(@colorBlack, 5%) !important;
                 }
 
-                &.cco-lbk{
-                    background: lighten(@colorLightBlack, 5%) !important;
-                }
+                each(range(11), {
+                    @colorName : "colorNeutral@{value}";
 
-                &.cco-elbk{
-                    background: lighten(@colorExtraLightBlack, 5%) !important;
-                }
-
-                &.cco-bu{
-                    background: darken(@colorBlue, 15%) !important;
-                }
-
-                &.cco-lbu{
-                    background: darken(@colorLightBlue, 15%) !important;
-                }
-
-                &.cco-elbu{
-                    background: darken(@colorExtraLightBlue, 15%) !important;
-                }
-
-                &.cco-si{
-                    background: darken(@colorSilver, 13%) !important;
-                }
-
-                &.cco-lsi{
-                    background: darken(@colorLightSilver, 13%) !important;
-                }
-
-                &.cco-elsi{
-                    background: darken(@colorExtraLightSilver, 13%) !important;
-                }
-
-                &.cco-g{
-                    background: darken(@colorGray, 15%) !important;
-                }
-
-                &.cco-lg{
-                    background: darken(@colorLightGray, 15%) !important;
-                }
+                    &.cco-n@{value}{
+                        background: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 8%)) !important;
+                    }
+                });
 
                 &.cco-wh{
                     background: darken(@colorWhite, 8%) !important;
@@ -1975,7 +1402,7 @@ mor-table{
 
     // default status
     &{
-        .co-lg;
+        .co-n1;
         .si-m;
     }
 }
