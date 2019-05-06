@@ -18,6 +18,28 @@
     
     ### 更新记录
 
+    ### 0.12.30 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年5月6日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.30" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.30/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.30/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 回滚`0.12.28`中对于`ui-table`的`list`配置不再需要使用`context`对象进行访问的更新，回滚后在`list`配置中访问`props`、`data`、`methods`等属性或方法需要使用`context`对象
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 在`ui-table`的`list`配置中访问`props`、`data`、`methods`等属性或方法需要使用`context`对象
+    
+    ---
+
     ### 0.12.29 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
