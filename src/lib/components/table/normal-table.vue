@@ -70,34 +70,13 @@
                             @mouseleave="$emit('cell-leave', line, data.normalKeys[index])"
                         >
                             <keep-alive>
-                             <!-- 不使用后list数据有变化就会引起component变化，存在性能风险。但使用了keep-alive会存在组件事件重复触发的问题 -->
                             <component
                                 :is="{
                                     template : ('<div>' + col + '</div>'),
                                     data : function () {
-
                                         return {
-                                            context : this.$parent.$parent.$vnode.context,
-                                            ...this.$parent.$parent.$vnode.context
+                                            context : this.$parent.$parent.$vnode.context
                                         };
-
-                                    },
-                                    mounted : function () {
-
-                                        this.$watch('$parent.$parent.$vnode.context._data', () => {
-
-                                            for (let key in this.$parent.$parent.$vnode.context._data) {
-
-                                                this[key] = this.$parent.$parent.$vnode.context._data[key];
-
-                                            }
-
-                                            this.$forceUpdate();
-
-                                        }, {
-                                            deep : true
-                                        });
-
                                     }
                                 }"
                             ></component>
