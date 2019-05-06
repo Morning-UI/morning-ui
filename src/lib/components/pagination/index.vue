@@ -24,12 +24,24 @@
             <template v-for="index in data.total">
                 
                 <!-- eslint-disable vue/require-v-for-key -->
-                <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
+                <template v-if="index === 1 && data.hideEnd > 1">
                     <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
+                </template>
+
+                <template v-if="index === 1 && data.hideEnd >= 1">
+                    <a
+                        href="javascript:;"
+                        @click="to(1)"
+                    >
+                        1
+                    </a>
+                </template>
+
+                <template v-if="data.hideEnd === index && data.hideEnd !== 1">
                     <a href="javascript:;" class="ignore">...</a>
                 </template>
                 
-                <template v-if="index >= data.hideEnd && index <= data.hideStart">
+                <template v-if="index >= (data.hideEnd + 1) && index <= (data.hideStart - 1)">
                     <a
                         v-if="data.currentPage === index"
                         href="javascript:;"
@@ -47,8 +59,20 @@
                     </a>
                 </template>
 
-                <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
+                <template v-if="data.hideStart === index && data.hideStart !== data.total">
                     <a href="javascript:;" class="ignore">...</a>
+                </template>
+
+                <template v-if="data.total === index && data.hideStart <= data.total">
+                    <a
+                        href="javascript:;"
+                        @click="to(data.total)"
+                    >
+                        {{data.total}}
+                    </a>
+                </template>
+
+                <template v-if="data.total === index && data.hideStart < data.total">
                     <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
                 </template>
                 <!-- eslint-enable vue/require-v-for-key -->

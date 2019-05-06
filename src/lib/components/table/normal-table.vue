@@ -69,7 +69,8 @@
                             @mouseenter="$emit('cell-enter', line, data.normalKeys[index])"
                             @mouseleave="$emit('cell-leave', line, data.normalKeys[index])"
                         >
-                            <!-- <keep-alive> 不使用后list数据有变化就会引起component变化，存在性能风险。但使用了keep-alive会存在组件事件重复触发的问题 -->
+                            <keep-alive>
+                             <!-- 不使用后list数据有变化就会引起component变化，存在性能风险。但使用了keep-alive会存在组件事件重复触发的问题 -->
                             <component
                                 :is="{
                                     template : ('<div>' + col + '</div>'),
@@ -100,7 +101,7 @@
                                     }
                                 }"
                             ></component>
-                            <!-- </keep-alive> -->
+                            </keep-alive>
                         </td>
                     </template>
                 </tr>
