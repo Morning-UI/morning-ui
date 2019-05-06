@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.12.30
+
+`2019年5月6日`
+
+#### 修复
+
+- 回滚`0.12.28`中对于`ui-table`的`list`配置不再需要使用`context`对象进行访问的更新，回滚后在`list`配置中访问`props`、`data`、`methods`等属性或方法需要使用`context`对象
+
+__升级注意事项__
+
+- 在`ui-table`的`list`配置中访问`props`、`data`、`methods`等属性或方法需要使用`context`对象
+    
 ## 0.12.29
 
 `2019年5月6日`
