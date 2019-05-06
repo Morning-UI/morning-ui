@@ -29476,6 +29476,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
@@ -30107,6 +30108,30 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59364,7 +59389,7 @@ var render = function() {
             ? [
                 _vm._l(_vm.data.total, function(index) {
                   return [
-                    _vm.data.hideEnd - 1 === index && _vm.data.hideEnd !== 1
+                    index === 1 && _vm.data.hideEnd > 1
                       ? [
                           _c(
                             "a",
@@ -59378,8 +59403,33 @@ var render = function() {
                               }
                             },
                             [_c("i", { staticClass: "mo-icon mo-icon-left" })]
-                          ),
-                          _vm._v(" "),
+                          )
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    index === 1 && _vm.data.hideEnd >= 1
+                      ? [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "javascript:;" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.to(1)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    1\n                "
+                              )
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.data.hideEnd === index && _vm.data.hideEnd !== 1
+                      ? [
                           _c(
                             "a",
                             {
@@ -59391,7 +59441,8 @@ var render = function() {
                         ]
                       : _vm._e(),
                     _vm._v(" "),
-                    index >= _vm.data.hideEnd && index <= _vm.data.hideStart
+                    index >= _vm.data.hideEnd + 1 &&
+                    index <= _vm.data.hideStart - 1
                       ? [
                           _vm.data.currentPage === index
                             ? _c(
@@ -59429,7 +59480,7 @@ var render = function() {
                         ]
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.data.hideStart + 1 === index &&
+                    _vm.data.hideStart === index &&
                     _vm.data.hideStart !== _vm.data.total
                       ? [
                           _c(
@@ -59439,8 +59490,37 @@ var render = function() {
                               attrs: { href: "javascript:;" }
                             },
                             [_vm._v("...")]
-                          ),
-                          _vm._v(" "),
+                          )
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.data.total === index &&
+                    _vm.data.hideStart <= _vm.data.total
+                      ? [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "javascript:;" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.to(_vm.data.total)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(_vm.data.total) +
+                                  "\n                "
+                              )
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.data.total === index &&
+                    _vm.data.hideStart < _vm.data.total
+                      ? [
                           _c(
                             "a",
                             {
@@ -70752,38 +70832,46 @@ var render = function() {
                   },
                   [
                     _c(
-                      {
-                        template: "<div>" + col + "</div>",
-                        data: function() {
-                          return Object.assign(
-                            {},
-                            { context: this.$parent.$parent.$vnode.context },
-                            this.$parent.$parent.$vnode.context
-                          )
-                        },
-                        mounted: function() {
-                          var this$1 = this
-
-                          this.$watch(
-                            "$parent.$parent.$vnode.context._data",
-                            function() {
-                              for (var key in this$1.$parent.$parent.$vnode
-                                .context._data) {
-                                this$1[key] =
-                                  this$1.$parent.$parent.$vnode.context._data[
-                                    key
-                                  ]
-                              }
-
-                              this$1.$forceUpdate()
+                      "keep-alive",
+                      [
+                        _c(
+                          {
+                            template: "<div>" + col + "</div>",
+                            data: function() {
+                              return Object.assign(
+                                {},
+                                {
+                                  context: this.$parent.$parent.$vnode.context
+                                },
+                                this.$parent.$parent.$vnode.context
+                              )
                             },
-                            {
-                              deep: true
+                            mounted: function() {
+                              var this$1 = this
+
+                              this.$watch(
+                                "$parent.$parent.$vnode.context._data",
+                                function() {
+                                  for (var key in this$1.$parent.$parent.$vnode
+                                    .context._data) {
+                                    this$1[key] =
+                                      this$1.$parent.$parent.$vnode.context._data[
+                                        key
+                                      ]
+                                  }
+
+                                  this$1.$forceUpdate()
+                                },
+                                {
+                                  deep: true
+                                }
+                              )
                             }
-                          )
-                        }
-                      },
-                      { tag: "component" }
+                          },
+                          { tag: "component" }
+                        )
+                      ],
+                      1
                     )
                   ],
                   1
