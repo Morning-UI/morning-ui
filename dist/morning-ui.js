@@ -29454,8 +29454,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
@@ -70811,21 +70809,15 @@ var render = function() {
                   },
                   [
                     _c(
-                      "keep-alive",
-                      [
-                        _c(
-                          {
-                            template: "<div>" + col + "</div>",
-                            data: function() {
-                              return {
-                                context: this.$parent.$parent.$vnode.context
-                              }
-                            }
-                          },
-                          { tag: "component" }
-                        )
-                      ],
-                      1
+                      {
+                        template: "<div>" + col + "</div>",
+                        data: function() {
+                          return {
+                            context: this.$parent.$parent.$vnode.context
+                          }
+                        }
+                      },
+                      { tag: "component" }
                     )
                   ],
                   1
@@ -78143,7 +78135,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.30',
+    version: '0.12.31',
     map: {}
 };
 

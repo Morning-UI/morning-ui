@@ -69,7 +69,6 @@
                             @mouseenter="$emit('cell-enter', line, data.normalKeys[index])"
                             @mouseleave="$emit('cell-leave', line, data.normalKeys[index])"
                         >
-                            <keep-alive>
                             <component
                                 :is="{
                                     template : ('<div>' + col + '</div>'),
@@ -80,7 +79,6 @@
                                     }
                                 }"
                             ></component>
-                            </keep-alive>
                         </td>
                     </template>
                 </tr>
