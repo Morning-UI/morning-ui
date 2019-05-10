@@ -29454,8 +29454,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
@@ -70811,21 +70809,15 @@ var render = function() {
                   },
                   [
                     _c(
-                      "keep-alive",
-                      [
-                        _c(
-                          {
-                            template: "<div>" + col + "</div>",
-                            data: function() {
-                              return {
-                                context: this.$parent.$parent.$vnode.context
-                              }
-                            }
-                          },
-                          { tag: "component" }
-                        )
-                      ],
-                      1
+                      {
+                        template: "<div>" + col + "</div>",
+                        data: function() {
+                          return {
+                            context: this.$parent.$parent.$vnode.context
+                          }
+                        }
+                      },
+                      { tag: "component" }
                     )
                   ],
                   1
@@ -78757,7 +78749,9 @@ exports.default = function (UI) {
                 data: {
                     value: undefined
                 },
-                parentForm: null
+                parentForm: null,
+                watchers: [],
+                valueWatching: false
             };
         },
         methods: {
@@ -79023,6 +79017,82 @@ exports.default = function (UI) {
                     this.data.parentForm = null;
                 }
             },
+            _onValueWatch: function _onValueWatch() {
+                var _this = this;
+
+                if (this.valueWatching) {
+
+                    return;
+                }
+
+                this.watchers.push(this.$watch('modelValue', function (newValue) {
+
+                    _this._set(newValue);
+                }));
+
+                this.watchers.push(this.$watch('data.value', function (newValue) {
+
+                    console.log(_this.uiid, _this.uiname, 'data.value EMIT value-change');
+                    _this._syncGroup();
+                    _this.$emit('value-change', newValue);
+                }, {
+                    deep: true
+                }));
+
+                this.watchers.push(this.$watch('conf.formKey', function (newVal, oldVal) {
+
+                    _this._syncGroup(false, oldVal);
+                }));
+
+                this.watchers.push(this.$watch('conf.group', function (newVal, oldVal) {
+
+                    _this._syncGroup(false, false, oldVal);
+                    _this._syncGroupVm(newVal, oldVal);
+                }, {
+                    immediate: true,
+                    deep: true
+                }));
+
+                this.valueWatching = true;
+            },
+            _offValueWatch: function _offValueWatch() {
+
+                if (!this.valueWatching) {
+
+                    return;
+                }
+
+                console.log(this.uiid, this.uiname, '_offValueWatch');
+
+                var _iteratorNormalCompletion5 = true;
+                var _didIteratorError5 = false;
+                var _iteratorError5 = undefined;
+
+                try {
+                    for (var _iterator5 = this.watchers[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                        var unwatch = _step5.value;
+
+
+                        unwatch();
+                    }
+                } catch (err) {
+                    _didIteratorError5 = true;
+                    _iteratorError5 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                            _iterator5.return();
+                        }
+                    } finally {
+                        if (_didIteratorError5) {
+                            throw _iteratorError5;
+                        }
+                    }
+                }
+
+                this.watchers = [];
+                this.valueWatching = false;
+            },
             set: function set(value) {
 
                 return this._set(value);
@@ -79102,28 +79172,28 @@ exports.default = function (UI) {
 
                     groups.push(group);
 
-                    var _iteratorNormalCompletion5 = true;
-                    var _didIteratorError5 = false;
-                    var _iteratorError5 = undefined;
+                    var _iteratorNormalCompletion6 = true;
+                    var _didIteratorError6 = false;
+                    var _iteratorError6 = undefined;
 
                     try {
-                        for (var _iterator5 = groups[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                            var key = _step5.value;
+                        for (var _iterator6 = groups[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                            var key = _step6.value;
 
 
                             uniqGroups[key] = 0;
                         }
                     } catch (err) {
-                        _didIteratorError5 = true;
-                        _iteratorError5 = err;
+                        _didIteratorError6 = true;
+                        _iteratorError6 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                _iterator5.return();
+                            if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                                _iterator6.return();
                             }
                         } finally {
-                            if (_didIteratorError5) {
-                                throw _iteratorError5;
+                            if (_didIteratorError6) {
+                                throw _iteratorError6;
                             }
                         }
                     }
@@ -79155,8 +79225,9 @@ exports.default = function (UI) {
             }
         },
         created: function created() {
-            var _this = this;
+            var _this2 = this;
 
+            console.log('created', this.uiid, this.uiname);
             this.$watch('_formConf', function (val) {
 
                 if (typeof val.group === 'string') {
@@ -79164,7 +79235,7 @@ exports.default = function (UI) {
                     val.group = [val.group];
                 }
 
-                _this.conf = Object.assign({}, _this.conf, val);
+                _this2.conf = Object.assign({}, _this2.conf, val);
             }, {
                 immediate: true,
                 deep: true
@@ -79176,32 +79247,7 @@ exports.default = function (UI) {
             this._syncGroup();
             this.data.value = this._valueHandler(this.data.value);
 
-            this.$watch('modelValue', function (newValue) {
-
-                _this._set(newValue);
-            });
-
-            this.$watch('data.value', function (newValue) {
-
-                _this._syncGroup();
-                _this.$emit('value-change', newValue);
-            }, {
-                deep: true
-            });
-
-            this.$watch('conf.formKey', function (newVal, oldVal) {
-
-                _this._syncGroup(false, oldVal);
-            });
-
-            this.$watch('conf.group', function (newVal, oldVal) {
-
-                _this._syncGroup(false, false, oldVal);
-                _this._syncGroupVm(newVal, oldVal);
-            }, {
-                immediate: true,
-                deep: true
-            });
+            this._onValueWatch();
         },
         updated: function updated() {
 
@@ -79210,6 +79256,16 @@ exports.default = function (UI) {
         mounted: function mounted() {
 
             this._linkForm(this);
+        },
+        activated: function activated() {
+
+            console.log('activated', this.uiid, this.uiname);
+            this._onValueWatch();
+        },
+        deactivated: function deactivated() {
+
+            console.log('deactivated', this.uiid, this.uiname);
+            this._offValueWatch();
         },
         beforeDestroy: function beforeDestroy() {
 
