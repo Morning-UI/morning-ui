@@ -30288,7 +30288,9 @@ exports.default = {
                 currentItems: [],
                 hideEnd: 0,
                 hideStart: Infinity,
-                total: 0
+                total: 0,
+                offset: 0,
+                len: 2
             }
         };
     },
@@ -30335,10 +30337,34 @@ exports.default = {
         _setMaxshow: function _setMaxshow() {
 
             var end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
-                start = this.data.currentPage + Math.floor(this.conf.maxShow / 2);
+                start = this.data.currentPage + Math.floor(this.conf.maxShow / 2),
+                len = this.conf.maxShow,
+                offset = this.data.currentPage - Math.ceil((len - 1) / 2);
 
             this.data.hideEnd = end - (start > this.data.total ? start - this.data.total - 1 : 0);
             this.data.hideStart = start + (end < 1 ? -end + 1 : 0);
+
+            if (this.data.hideEnd > 0) {
+
+                len -= 1;
+            }
+
+            if (this.data.hideStart < this.data.total) {
+
+                len -= 1;
+            }
+
+            this.data.len = len;
+
+            if (offset < 0) {
+
+                offset = 0;
+            } else if (offset + this.data.len > this.data.total) {
+
+                offset = this.data.total - this.data.len;
+            }
+
+            this.data.offset = offset;
         },
         getPage: function getPage() {
 
@@ -59364,64 +59390,60 @@ var render = function() {
         [
           _vm.conf.type === "normal"
             ? [
-                _vm._l(_vm.data.total, function(index) {
+                _vm.data.hideEnd > 0
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "prev",
+                          attrs: { href: "javascript:;" },
+                          on: {
+                            click: function($event) {
+                              return _vm.to(_vm.data.currentPage - 1)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "mo-icon mo-icon-left" })]
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.data.hideEnd >= 1
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:;" },
+                          on: {
+                            click: function($event) {
+                              return _vm.to(1)
+                            }
+                          }
+                        },
+                        [_vm._v("\n                1\n            ")]
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.data.hideEnd > 0
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "ignore",
+                          attrs: { href: "javascript:;" }
+                        },
+                        [_vm._v("...")]
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.data.len, function(index) {
                   return [
-                    index === 1 && _vm.data.hideEnd > 1
+                    index + _vm.data.offset >= _vm.data.hideEnd &&
+                    index + _vm.data.offset <= _vm.data.hideStart
                       ? [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "prev",
-                              attrs: { href: "javascript:;" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.to(_vm.data.currentPage - 1)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "mo-icon mo-icon-left" })]
-                          )
-                        ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    index === 1 && _vm.data.hideEnd >= 1
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "javascript:;" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.to(1)
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    1\n                "
-                              )
-                            ]
-                          )
-                        ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.data.hideEnd === index && _vm.data.hideEnd !== 1
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "ignore",
-                              attrs: { href: "javascript:;" }
-                            },
-                            [_vm._v("...")]
-                          )
-                        ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    index >= _vm.data.hideEnd + 1 &&
-                    index <= _vm.data.hideStart - 1
-                      ? [
-                          _vm.data.currentPage === index
+                          _vm.data.currentPage === index + _vm.data.offset
                             ? _c(
                                 "a",
                                 {
@@ -59431,7 +59453,7 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                    " +
-                                      _vm._s(index) +
+                                      _vm._s(index + _vm.data.offset) +
                                       "\n                "
                                   )
                                 ]
@@ -59442,79 +59464,76 @@ var render = function() {
                                   attrs: { href: "javascript:;" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.to(index)
+                                      return _vm.to(index + _vm.data.offset)
                                     }
                                   }
                                 },
                                 [
                                   _vm._v(
                                     "\n                    " +
-                                      _vm._s(index) +
+                                      _vm._s(index + _vm.data.offset) +
                                       "\n                "
                                   )
                                 ]
                               )
                         ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.data.hideStart === index &&
-                    _vm.data.hideStart !== _vm.data.total
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "ignore",
-                              attrs: { href: "javascript:;" }
-                            },
-                            [_vm._v("...")]
-                          )
-                        ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.data.total === index &&
-                    _vm.data.hideStart <= _vm.data.total
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "javascript:;" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.to(_vm.data.total)
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(_vm.data.total) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.data.total === index &&
-                    _vm.data.hideStart < _vm.data.total
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "next",
-                              attrs: { href: "javascript:;" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.to(_vm.data.currentPage + 1)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "mo-icon mo-icon-right" })]
-                          )
-                        ]
                       : _vm._e()
                   ]
-                })
+                }),
+                _vm._v(" "),
+                _vm.data.hideStart < _vm.data.total
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "ignore",
+                          attrs: { href: "javascript:;" }
+                        },
+                        [_vm._v("...")]
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.data.hideStart < _vm.data.total
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:;" },
+                          on: {
+                            click: function($event) {
+                              return _vm.to(_vm.data.total)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm.data.total) +
+                              "\n            "
+                          )
+                        ]
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.data.hideStart < _vm.data.total
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "next",
+                          attrs: { href: "javascript:;" },
+                          on: {
+                            click: function($event) {
+                              return _vm.to(_vm.data.currentPage + 1)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "mo-icon mo-icon-right" })]
+                      )
+                    ]
+                  : _vm._e()
               ]
             : _vm.conf.type === "simple"
             ? [
@@ -78135,7 +78154,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.31',
+    version: '0.12.32',
     map: {}
 };
 
