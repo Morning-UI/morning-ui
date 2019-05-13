@@ -30346,12 +30346,12 @@ exports.default = {
 
             if (this.data.hideEnd > 0) {
 
-                len = len - 1;
+                len -= 1;
             }
 
             if (this.data.hideStart < this.data.total) {
 
-                len = len - 1;
+                len -= 1;
             }
 
             this.data.len = len;
@@ -78154,7 +78154,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.31',
+    version: '0.12.32',
     map: {}
 };
 
