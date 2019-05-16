@@ -41,7 +41,7 @@
             <template v-for="index in data.len">
                 
                 <!-- eslint-disable vue/require-v-for-key -->
-                <template v-if="(index + data.offset) >= (data.hideEnd) && (index + data.offset) <= (data.hideStart)">
+                <template v-if="(index + data.offset) > (data.hideEnd) && (index + data.offset) < (data.hideStart)">
                     <a
                         v-if="data.currentPage === (index + data.offset)"
                         href="javascript:;"
@@ -66,7 +66,7 @@
                 <a href="javascript:;" class="ignore">...</a>
             </template>
 
-            <template v-if="data.hideStart < data.total">
+            <template v-if="data.hideStart <= data.total">
                 <a
                     href="javascript:;"
                     @click="to(data.total)"
@@ -262,7 +262,7 @@ export default {
 
             let end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2),
-                len = this.conf.maxShow,
+                len = this.data.total,
                 offset = this.data.currentPage - Math.ceil((len - 1) / 2);
 
             this.data.hideEnd = end - (start > this.data.total ? (start - this.data.total) - 1 : 0);
@@ -277,6 +277,12 @@ export default {
             if (this.data.hideStart < this.data.total) {
 
                 len -= 1;
+
+            }
+
+            if (this.conf.maxShow >= this.data.total && len > this.conf.maxShow) {
+
+                len = this.conf.maxShow;
 
             }
 
@@ -405,14 +411,6 @@ export default {
 
         });
 
-        this.$watch('data.currentPage', () => {
-            
-            this._refreshCurrentItems();
-            this._setMaxshow();
-            this.$emit('emit');
-
-        });
-
         this.$watch('data.total', () => {
             
             if (this.data.total < 1) {
@@ -442,6 +440,14 @@ export default {
     
         }, {
             immediate : true
+        });
+
+        this.$watch('data.currentPage', () => {
+            
+            this._refreshCurrentItems();
+            this._setMaxshow();
+            this.$emit('emit');
+
         });
 
     }

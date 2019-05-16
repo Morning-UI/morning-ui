@@ -1704,6 +1704,39 @@ export default {
 
             return [input0.data.inputValue, input1.data.inputValue];
 
+        },
+        togglePicker : function (show) {
+            
+            let input0;
+            let input1;
+                
+            input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+
+            if (input0) {
+                
+                input0._toggleSelector(show);
+
+            }
+
+            if (input1 && !show) {
+                
+                input1._toggleSelector(show);
+
+            }
+
+            if (show) {
+    
+                this._focus();
+
+            } else {
+
+                this._blur();
+
+            }
+
+            return this;
+
         }
     },
     created : function () {},
