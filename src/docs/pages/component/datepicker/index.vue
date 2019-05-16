@@ -847,6 +847,38 @@
     </div>
     :::
 
+    :::vue
+    @name:togglePicker(show)
+    ---
+    #method
+    >method-desc
+    切换日期选择弹出框显示状态。
+    >method-args
+    |show|NO|切换到显示或隐藏状态。`true`<br>`false`|`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker ref="demo10" form-name="日期"></ui-datepicker>
+        <br><br> 
+        <ui-link js="morning.findVM('demo10').togglePicker(true);">显示弹出框</ui-link>
+        <ui-link js="morning.findVM('demo10').togglePicker(false);">隐藏弹出框</ui-link>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`is-range`配置一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker ref="demo11" form-name="日期" is-range></ui-datepicker>
+        <br><br> 
+        <ui-link js="morning.findVM('demo11').togglePicker(true);">显示弹出框</ui-link>
+        <ui-link js="morning.findVM('demo11').togglePicker(false);">隐藏弹出框</ui-link>
+    </div>
+    :::
+
     [[[事件]]]
 
     :::preset

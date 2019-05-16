@@ -230,7 +230,7 @@ export default {
 
         },
         _noop : function () {},
-        _toggleSelector : function () {
+        _toggleSelector : function (show) {
 
             if (this.$refs[`ui-private-timepicker-popover-${this.uiid}`] === undefined) {
 
@@ -238,7 +238,15 @@ export default {
 
             }
 
-            if (this.data.inputFocus && (this.data.state !== 'disabled')) {
+            if (show === true && (this.data.state !== 'disabled')) {
+
+                this.$refs[`ui-private-timepicker-popover-${this.uiid}`].show();
+
+            } else if (show === false && (this.data.state !== 'disabled')) {
+
+                this.$refs[`ui-private-timepicker-popover-${this.uiid}`].hide();
+
+            } else if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
                 this.$refs[`ui-private-timepicker-popover-${this.uiid}`].show();
 

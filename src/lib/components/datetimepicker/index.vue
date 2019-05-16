@@ -1012,6 +1012,13 @@ export default {
 
             return this._getDate(this.get());
 
+        },
+        togglePicker : function (show) {
+            
+            let picker = this.$refs[`ui-datetimepicker-date-${this.uiid}`];
+
+            return picker.togglePicker(show);
+
         }
     },
     created : function () {},

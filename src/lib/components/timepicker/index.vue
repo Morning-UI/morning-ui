@@ -610,6 +610,50 @@ export default {
 
             return value;
 
+        },
+        togglePicker : function (show) {
+            
+            let input0;
+            let input1;
+
+            if (!this.conf.isList) {
+
+                input0 = this.$refs[`ui-timepicker-input-0-${this.uiid}`];
+                input1 = this.$refs[`ui-timepicker-input-1-${this.uiid}`];
+
+                if (input0) {
+                    
+                    input0._toggleSelector(show);
+
+                }
+
+                if (input1 && !show) {
+                    
+                    input1._toggleSelector(show);
+
+                }
+
+            } else {
+                
+                input0 = this.$refs[`ui-timepicker-select-0-${this.uiid}`];
+                input1 = this.$refs[`ui-timepicker-select-1-${this.uiid}`];
+
+                if (input0) {
+                    
+                    input0.toggle(show);
+
+                }
+
+                if (input1 && !show) {
+                    
+                    input1.toggle(show);
+
+                }
+
+            }
+
+            return this;
+
         }
     },
     created : function () {},
