@@ -701,6 +701,49 @@
     </div>
     :::
 
+    :::vue
+    @name:togglePicker(show)
+    ---
+    #method
+    >method-desc
+    切换时间选择弹出框显示状态。
+    >method-args
+    |show|NO|切换到显示或隐藏状态。`true`<br>`false`|`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker ref="demo5" form-name="时间"></ui-timepicker>
+        <br><br> 
+        <ui-link js="morning.findVM('demo5').togglePicker(true);">显示弹出框</ui-link>
+        <ui-link js="morning.findVM('demo5').togglePicker(false);">隐藏弹出框</ui-link>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`is-list`配置一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker ref="demo6" form-name="时间" is-list :list="['09:00:00', '10:00:00', '11:00:00']"></ui-timepicker>
+        <br><br> 
+        <ui-link js="morning.findVM('demo6').togglePicker(true);">显示弹出框</ui-link>
+        <ui-link js="morning.findVM('demo6').togglePicker(false);">隐藏弹出框</ui-link>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`is-range`配置一起使用(当打开弹窗时只会显示第一个，关闭时可以关闭两个)。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker ref="demo7" form-name="时间" is-range></ui-timepicker>
+        <br><br> 
+        <ui-link js="morning.findVM('demo7').togglePicker(true);">显示弹出框</ui-link>
+        <ui-link js="morning.findVM('demo7').togglePicker(false);">隐藏弹出框</ui-link>
+    </div>
+    :::
+
     [[[事件]]]
 
     :::preset

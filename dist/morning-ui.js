@@ -30338,7 +30338,7 @@ exports.default = {
 
             var end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2),
-                len = this.conf.maxShow,
+                len = this.data.total,
                 offset = this.data.currentPage - Math.ceil((len - 1) / 2);
 
             this.data.hideEnd = end - (start > this.data.total ? start - this.data.total - 1 : 0);
@@ -30352,6 +30352,11 @@ exports.default = {
             if (this.data.hideStart < this.data.total) {
 
                 len -= 1;
+            }
+
+            if (this.conf.maxShow >= this.data.total && len > this.conf.maxShow) {
+
+                len = this.conf.maxShow;
             }
 
             this.data.len = len;
@@ -30465,13 +30470,6 @@ exports.default = {
             _this._setMaxshow();
         });
 
-        this.$watch('data.currentPage', function () {
-
-            _this._refreshCurrentItems();
-            _this._setMaxshow();
-            _this.$emit('emit');
-        });
-
         this.$watch('data.total', function () {
 
             if (_this.data.total < 1) {
@@ -30497,6 +30495,13 @@ exports.default = {
             _this.to(_this.conf.page);
         }, {
             immediate: true
+        });
+
+        this.$watch('data.currentPage', function () {
+
+            _this._refreshCurrentItems();
+            _this._setMaxshow();
+            _this.$emit('emit');
         });
     }
 };
@@ -44099,6 +44104,43 @@ exports.default = {
             }
 
             return value;
+        },
+        togglePicker: function togglePicker(show) {
+
+            var input0 = void 0;
+            var input1 = void 0;
+
+            if (!this.conf.isList) {
+
+                input0 = this.$refs['ui-timepicker-input-0-' + this.uiid];
+                input1 = this.$refs['ui-timepicker-input-1-' + this.uiid];
+
+                if (input0) {
+
+                    input0._toggleSelector(show);
+                }
+
+                if (input1 && !show) {
+
+                    input1._toggleSelector(show);
+                }
+            } else {
+
+                input0 = this.$refs['ui-timepicker-select-0-' + this.uiid];
+                input1 = this.$refs['ui-timepicker-select-1-' + this.uiid];
+
+                if (input0) {
+
+                    input0.toggle(show);
+                }
+
+                if (input1 && !show) {
+
+                    input1.toggle(show);
+                }
+            }
+
+            return this;
         }
     },
     created: function created() {},
@@ -45698,6 +45740,34 @@ exports.default = {
             }
 
             return [input0.data.inputValue, input1.data.inputValue];
+        },
+        togglePicker: function togglePicker(show) {
+
+            var input0 = void 0;
+            var input1 = void 0;
+
+            input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
+            input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
+
+            if (input0) {
+
+                input0._toggleSelector(show);
+            }
+
+            if (input1 && !show) {
+
+                input1._toggleSelector(show);
+            }
+
+            if (show) {
+
+                this._focus();
+            } else {
+
+                this._blur();
+            }
+
+            return this;
         }
     },
     created: function created() {},
@@ -46654,6 +46724,12 @@ exports.default = {
         getDate: function getDate() {
 
             return this._getDate(this.get());
+        },
+        togglePicker: function togglePicker(show) {
+
+            var picker = this.$refs['ui-datetimepicker-date-' + this.uiid];
+
+            return picker.togglePicker(show);
         }
     },
     created: function created() {},
@@ -50572,14 +50648,20 @@ exports.default = {
             return (0, _dateFns.format)(date, this.conf.format);
         },
         _noop: function _noop() {},
-        _toggleSelector: function _toggleSelector() {
+        _toggleSelector: function _toggleSelector(show) {
 
             if (this.$refs['ui-private-timepicker-popover-' + this.uiid] === undefined) {
 
                 return;
             }
 
-            if (this.data.inputFocus && this.data.state !== 'disabled') {
+            if (show === true && this.data.state !== 'disabled') {
+
+                this.$refs['ui-private-timepicker-popover-' + this.uiid].show();
+            } else if (show === false && this.data.state !== 'disabled') {
+
+                this.$refs['ui-private-timepicker-popover-' + this.uiid].hide();
+            } else if (this.data.inputFocus && this.data.state !== 'disabled') {
 
                 this.$refs['ui-private-timepicker-popover-' + this.uiid].show();
             } else {
@@ -51391,7 +51473,7 @@ exports.default = {
 
             return this._dateGetRelativeDate(relativeObj);
         },
-        _toggleSelector: function _toggleSelector() {
+        _toggleSelector: function _toggleSelector(show) {
             var _this = this;
 
             if (this.$refs['ui-private-datepicker-popover-' + this.uiid] === undefined) {
@@ -51399,7 +51481,13 @@ exports.default = {
                 return;
             }
 
-            if (this.data.inputFocus && this.data.state !== 'disabled') {
+            if (show === true && this.data.state !== 'disabled') {
+
+                this.$refs['ui-private-datepicker-popover-' + this.uiid].show();
+            } else if (show === false && this.data.state !== 'disabled') {
+
+                this.$refs['ui-private-datepicker-popover-' + this.uiid].hide();
+            } else if (this.data.inputFocus && this.data.state !== 'disabled') {
 
                 var $input = this.$refs['ui-private-datepicker-input-' + this.uiid].$el;
 
@@ -59440,8 +59528,8 @@ var render = function() {
                 _vm._v(" "),
                 _vm._l(_vm.data.len, function(index) {
                   return [
-                    index + _vm.data.offset >= _vm.data.hideEnd &&
-                    index + _vm.data.offset <= _vm.data.hideStart
+                    index + _vm.data.offset > _vm.data.hideEnd &&
+                    index + _vm.data.offset < _vm.data.hideStart
                       ? [
                           _vm.data.currentPage === index + _vm.data.offset
                             ? _c(
@@ -59494,7 +59582,7 @@ var render = function() {
                     ]
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.data.hideStart < _vm.data.total
+                _vm.data.hideStart <= _vm.data.total
                   ? [
                       _c(
                         "a",
@@ -78154,7 +78242,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.32',
+    version: '0.12.33',
     map: {}
 };
 

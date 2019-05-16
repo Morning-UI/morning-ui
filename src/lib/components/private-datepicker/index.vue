@@ -317,7 +317,7 @@ export default {
             return this._dateGetRelativeDate(relativeObj);
 
         },
-        _toggleSelector : function () {
+        _toggleSelector : function (show) {
 
             if (this.$refs[`ui-private-datepicker-popover-${this.uiid}`] === undefined) {
 
@@ -325,7 +325,15 @@ export default {
 
             }
 
-            if (this.data.inputFocus && (this.data.state !== 'disabled')) {
+            if (show === true && (this.data.state !== 'disabled')) {
+
+                this.$refs[`ui-private-datepicker-popover-${this.uiid}`].show();
+
+            } else if (show === false && (this.data.state !== 'disabled')) {
+
+                this.$refs[`ui-private-datepicker-popover-${this.uiid}`].hide();
+
+            } else if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
                 let $input = this.$refs[`ui-private-datepicker-input-${this.uiid}`].$el;
 

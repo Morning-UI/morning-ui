@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.12.33 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年5月16日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.33" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.33/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.33/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件新增`togglePicker()`方法，可以用来打开/关闭选择器
+
+    #### 改进
+
+    - `ui-pagination`第一次被设置页码时不会触发`emit`事件
+
+    #### 修复
+
+    - 修复了`ui-pagination`当`total`配置过少时页码显示不正确的问题
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 现在`ui-pagination`第一次被设置页码时不会触发`emit`事件，如果第一次数据渲染依赖分页组件的`emit`事件场景，需要进行修改
+
     ### 0.12.32 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">

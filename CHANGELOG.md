@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.12.33
+
+#### 新特性
+
+- `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件新增`togglePicker()`方法，可以用来打开/关闭选择器
+
+#### 改进
+
+- `ui-pagination`第一次被设置页码时不会触发`emit`事件
+
+#### 修复
+
+- 修复了`ui-pagination`当`total`配置过少时页码显示不正确的问题
+
+__升级注意事项__
+
+- 现在`ui-pagination`第一次被设置页码时不会触发`emit`事件，如果第一次数据渲染依赖分页组件的`emit`事件场景，需要进行修改
+
 ## 0.12.32
 
 `2019年5月13日`
