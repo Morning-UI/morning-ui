@@ -47,19 +47,7 @@ let morning = {
         'neutral-10' : 'n10',
         'neutral-11' : 'n11',
         black : 'bk',
-        white : 'wh',
-
-        // TODO 删除
-        'light-black' : 'lbk',
-        'extra-light-black' : 'elbk',
-        blue : 'bu',
-        'light-blue' : 'lbu',
-        'extra-light-blue' : 'elbu',
-        silver : 'si',
-        'light-silver' : 'lsi',
-        'extra-light-silver' : 'elsi',
-        gray : 'g',
-        'light-gray' : 'lg',
+        white : 'wh'
     },
     isMorning : true,
     version : '0.12.33',

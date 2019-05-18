@@ -27,7 +27,7 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|不支持|-|
-    |色彩|全部(除`transparent`)|`light-blue`|
+    |色彩|全部(除`transparent`)|`neutral-6`|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>

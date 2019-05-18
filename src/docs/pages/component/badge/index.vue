@@ -216,7 +216,7 @@
     <div>
         <ui-badge type="counter" :count="count"></ui-badge>
         <ui-badge color="primary" class="circle" type="counter" :count="count"></ui-badge>
-        <ui-badge color="blue" class="plain" type="counter" :count="count"></ui-badge>
+        <ui-badge color="neutral-8" class="plain" type="counter" :count="count"></ui-badge>
         <br>
         <ui-link js="this.count++">计数+1</ui-link>
     </div>

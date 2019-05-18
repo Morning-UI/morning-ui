@@ -40,8 +40,8 @@
         <br>
 
         <span id="demo33">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo33" color="silver">
-            <ui-h size="xxs" color="light-black">标题</ui-h>
+        <ui-tip target="#demo33" color="neutral-4">
+            <ui-h size="xxs" color="neutral-10">标题</ui-h>
             <p>很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
         </ui-tip>
     </div>

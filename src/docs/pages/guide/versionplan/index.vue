@@ -15,8 +15,8 @@
     |标记|名称|说明|更新<br>频率|生产环境|
     |-|-|-|-|-|
     |<ui-badge class="circle ver-stable" size="s" color="theme">Stable</ui-badge>|稳定版本|此版本中的各个功能都经过一段时间的测试及使用，非常稳定|month|推荐使用|
-    |<ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|
-    |<ui-badge class="circle ver-canary" size="s">Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor color="extra-light-blue">为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|
+    |<ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|
+    |<ui-badge class="circle ver-canary" size="s">Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor color="neutral-6">为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|
 
     版本发布情况请查看：[更新日志](/guide/logs.html)。
 
@@ -39,13 +39,13 @@
     - `0.10.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>Morning UI的首个版本
     - `0.11.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>同步HMP的所有组件，已于2018年春季发布
     - `0.12.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>同步Element UI组件，已于2019年初发布
-    - `0.13.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步iView组件，更好的支持Admin系统，计划2019年春季发布
-    - `0.14.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步AntD组件，计划2019年夏季发布
-    - `0.15.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>组件性能提升，计划2019年冬季发布
-    - `0.16.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步Semantic UI组件，计划2020年初发布
-    - `0.17.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有组件的测试覆盖，计划2020年中发布
-    - `0.18.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>符合WCAG2标准，更好的浏览器兼容性，计划2020年夏季发布
-    - `1.0.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>第一个正式版本，计划2021年发布
+    - `0.13.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>同步iView组件，更好的支持Admin系统，计划2019年春季发布
+    - `0.14.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>同步AntD组件，计划2019年夏季发布
+    - `0.15.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>组件性能提升，计划2019年冬季发布
+    - `0.16.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>同步Semantic UI组件，计划2020年初发布
+    - `0.17.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>完成所有组件的测试覆盖，计划2020年中发布
+    - `0.18.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>符合WCAG2标准，更好的浏览器兼容性，计划2020年夏季发布
+    - `1.0.0` : <ui-badge size="xxs" color="neutral-3">PLAN</ui-badge>第一个正式版本，计划2021年发布
 
     </script>
     </doc-guide>
@@ -71,5 +71,6 @@ export default {
 <style lang="less">
 .ver-canary{
     background: #f5ab27 !important;
+    border-color: #f5ab27 !important;
 }
 </style>

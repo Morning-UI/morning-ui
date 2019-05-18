@@ -190,7 +190,7 @@
     |秒|ss|00, 01, ... 59|
     ||s|0, 1, ... 59|
     <br><br>
-    <ui-quote color="light-blue">注意：使用12小时制时，需要加上午/下午占位符，否则可能出现无法正确解析时间的情况</ui-quote>
+    <ui-quote color="neutral-7">注意：使用12小时制时，需要加上午/下午占位符，否则可能出现无法正确解析时间的情况</ui-quote>
     >conf-accept
     时间格式化字符串(支持时间占位符见下方的演示)
     >conf-type

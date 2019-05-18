@@ -26,7 +26,6 @@ export default Elements => Elements.extend({
                 'primary',
                 'minor',
                 'info',
-
                 'neutral-1',
                 'neutral-2',
                 'neutral-3',
@@ -40,20 +39,6 @@ export default Elements => Elements.extend({
                 'neutral-11',
                 'black',
                 'white',
-
-                // TODO 需要删除
-                'black',
-                'light-black',
-                'extra-light-black',
-                'blue',
-                'light-blue',
-                'extra-light-blue',
-                'silver',
-                'light-silver',
-                'extra-light-silver',
-                'gray',
-                'light-gray',
-                'white'
             ].indexOf(value) !== -1)
         },
         state : {

@@ -1590,10 +1590,6 @@ let extVueRenderer = {
 
                     colorPreset.push(`<div class="demo-con-light" style="background: #333333;border-color: #2f2f2f;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
-                // } else if (color === 'gray') {
-
-                //     colorPreset.push(`<div class="demo-con-gray" style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
-
                 } else {
 
                     colorPreset.push(`<div style="color:#FFFFFF;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
@@ -1750,10 +1746,6 @@ let extVueRenderer = {
                 if (color === 'neutral-light') {
 
                     colorPreset.push(`<div style="background: #333333;border-color: #2f2f2f;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
-
-                // } else if (color === 'gray') {
-
-                //     colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
 
                 } else {
 
@@ -2349,12 +2341,12 @@ let extVueCompiler = {
                             <a href="javascript:;" class="live live-on-codepen" demo-id="${_ctx.demoid}" id="live-on-codepen-demo-${_ctx.demoid}">
                                 <i class="iconfont">&#xe692;</i>
                             </a>
-                            <ui-tip color="extra-light-black" target="#live-on-jsfiddle-demo-${_ctx.demoid}">在 JSFiddle 中查看</ui-tip>
-                            <ui-tip color="extra-light-black" target="#live-on-codepen-demo-${_ctx.demoid}">在 CodePen 中查看</ui-tip>
+                            <ui-tip color="neutral-9" target="#live-on-jsfiddle-demo-${_ctx.demoid}">在 JSFiddle 中查看</ui-tip>
+                            <ui-tip color="neutral-9" target="#live-on-codepen-demo-${_ctx.demoid}">在 CodePen 中查看</ui-tip>
                             <a href="javascript:;" class="copy" demo-id="${_ctx.demoid}" id="copy-demo-${_ctx.demoid}">
                                 <i class="iconfont">&#xe632;</i>
                             </a>
-                            <ui-tip id="copy-tip-${_ctx.demoid}" color="extra-light-black" target="#copy-demo-${_ctx.demoid}">复制代码</ui-tip>
+                            <ui-tip id="copy-tip-${_ctx.demoid}" color="neutral-9" target="#copy-demo-${_ctx.demoid}">复制代码</ui-tip>
                         </div>
                     </div>
                     <div class="note">${_data.title}${_data.desc}</div>

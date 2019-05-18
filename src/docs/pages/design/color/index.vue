@@ -82,57 +82,46 @@
         <div class="item w11 group">
             <div class="item" style="background:#333333">
                 <p class="key">neutral-11</p>
-                <!-- <p class="name">黑色</p> -->
                 <p class="color">#333333</p>
             </div>
             <div class="item" style="background:#4C4C4C">
                 <p class="key">neutral-10</p>
-                <!-- <p class="name">浅黑色</p> -->
                 <p class="color">#4C4C4C</p>
             </div>
             <div class="item" style="background:#666666">
                 <p class="key">neutral-9</p>
-                <!-- <p class="name">超浅黑色</p> -->
                 <p class="color">#666666</p>
             </div>
             <div class="item" style="background:#7F7F7F">
                 <p class="key">neutral-8</p>
-                <!-- <p class="name">青色</p> -->
                 <p class="color">#7F7F7F</p>
             </div>
             <div class="item" style="background:#999999">
                 <p class="key">neutral-7</p>
-                <!-- <p class="name">浅青色</p> -->
                 <p class="color">#999999</p>
             </div>
             <div class="item" style="background:#B2B2B2">
                 <p class="key">neutral-6</p>
-                <!-- <p class="name">超浅青色</p> -->
                 <p class="color">#B2B2B2</p>
             </div>
             <div class="item" style="background:#CCCCCC;color:#000">
                 <p class="key">neutral-5</p>
-                <!-- <p class="name">银色</p> -->
                 <p class="color">#CCCCCC</p>
             </div>
             <div class="item" style="background:#D9D9D9;color:#000">
                 <p class="key">neutral-4</p>
-                <!-- <p class="name">浅银色</p> -->
             <p class="color">#D9D9D9</p>
             </div>
             <div class="item" style="background:#E0E0E0;color:#000">
                 <p class="key">neutral-3</p>
-                <!-- <p class="name">超浅银色</p> -->
                 <p class="color">#E0E0E0</p>
             </div>
             <div class="item" style="background:#E5E5E5;color:#000">
                 <p class="key">neutral-2</p>
-                <!-- <p class="name">灰色</p> -->
                 <p class="color">#E5E5E5</p>
             </div>
             <div class="item" style="background:#F0F0F0;color:#000">
                 <p class="key">neutral-1</p>
-                <!-- <p class="name">浅灰色</p> -->
                 <p class="color">#F0F0F0</p>
             </div>
         </div>
