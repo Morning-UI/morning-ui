@@ -21,38 +21,62 @@
 
     <div class="list">
         <template v-if="conf.type === 'normal'">
-            <template v-for="index in data.total">
+            <template v-if="data.hideEnd > 0">
+                <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
+            </template>
+
+            <template v-if="data.hideEnd >= 1">
+                <a
+                    href="javascript:;"
+                    @click="to(1)"
+                >
+                    1
+                </a>
+            </template>
+
+            <template v-if="data.hideEnd > 0">
+                <a href="javascript:;" class="ignore">...</a>
+            </template>
+
+            <template v-for="index in data.len">
                 
                 <!-- eslint-disable vue/require-v-for-key -->
-                <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
-                    <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
-                    <a href="javascript:;" class="ignore">...</a>
-                </template>
-                
-                <template v-if="index >= data.hideEnd && index <= data.hideStart">
+                <template v-if="(index + data.offset) > (data.hideEnd) && (index + data.offset) < (data.hideStart)">
                     <a
-                        v-if="data.currentPage === index"
+                        v-if="data.currentPage === (index + data.offset)"
                         href="javascript:;"
                         class="current"
                     >
-                        {{index}}
+                        {{index + data.offset}}
                     </a>
                     
                     <a
                         v-else
                         href="javascript:;"
-                        @click="to(index)"
+                        @click="to(index + data.offset)"
                     >
-                        {{index}}
+                        {{index + data.offset}}
                     </a>
-                </template>
-
-                <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
-                    <a href="javascript:;" class="ignore">...</a>
-                    <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
                 </template>
                 <!-- eslint-enable vue/require-v-for-key -->
 
+            </template>
+
+            <template v-if="data.hideStart < data.total">
+                <a href="javascript:;" class="ignore">...</a>
+            </template>
+
+            <template v-if="data.hideStart <= data.total">
+                <a
+                    href="javascript:;"
+                    @click="to(data.total)"
+                >
+                    {{data.total}}
+                </a>
+            </template>
+
+            <template v-if="data.hideStart < data.total">
+                <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
             </template>
         </template>
 
@@ -177,7 +201,9 @@ export default {
                 currentItems : [],
                 hideEnd : 0,
                 hideStart : Infinity,
-                total : 0
+                total : 0,
+                offset : 0,
+                len : 2
             }
         };
 
@@ -204,7 +230,7 @@ export default {
                 total = this.conf.total;
 
             }
-            
+
             this.data.total = total;
 
         },
@@ -235,10 +261,44 @@ export default {
         _setMaxshow : function () {
 
             let end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
-                start = this.data.currentPage + Math.floor(this.conf.maxShow / 2);
+                start = this.data.currentPage + Math.floor(this.conf.maxShow / 2),
+                len = this.data.total,
+                offset = this.data.currentPage - Math.ceil((len - 1) / 2);
 
             this.data.hideEnd = end - (start > this.data.total ? (start - this.data.total) - 1 : 0);
             this.data.hideStart = start + (end < 1 ? - end + 1 : 0);
+
+            if (this.data.hideEnd > 0) {
+
+                len -= 1;
+
+            }
+
+            if (this.data.hideStart < this.data.total) {
+
+                len -= 1;
+
+            }
+
+            if (this.conf.maxShow >= this.data.total && len > this.conf.maxShow) {
+
+                len = this.conf.maxShow;
+
+            }
+
+            this.data.len = len;
+
+            if (offset < 0) {
+
+                offset = 0;
+
+            } else if (offset + this.data.len > this.data.total) {
+
+                offset = this.data.total - this.data.len;
+
+            }
+
+            this.data.offset = offset;
 
         },
         getPage : function () {
@@ -351,14 +411,6 @@ export default {
 
         });
 
-        this.$watch('data.currentPage', () => {
-            
-            this._refreshCurrentItems();
-            this._setMaxshow();
-            this.$emit('emit');
-
-        });
-
         this.$watch('data.total', () => {
             
             if (this.data.total < 1) {
@@ -388,6 +440,14 @@ export default {
     
         }, {
             immediate : true
+        });
+
+        this.$watch('data.currentPage', () => {
+            
+            this._refreshCurrentItems();
+            this._setMaxshow();
+            this.$emit('emit');
+
         });
 
     }

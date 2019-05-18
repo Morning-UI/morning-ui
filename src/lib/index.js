@@ -62,7 +62,7 @@ let morning = {
         'light-gray' : 'lg',
     },
     isMorning : true,
-    version : '0.12.28',
+    version : '0.12.33',
     map : {}
 };
 

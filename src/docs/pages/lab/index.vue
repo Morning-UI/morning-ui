@@ -11,12 +11,7 @@
 
 
                     <!-- AREA START -->
-
-
-<ui-table :list="list" export-csv></ui-table>
-
-
-
+                    <ui-table :list="list" export-csv></ui-table>
                     <!-- AREA END -->
                      
 
@@ -33,16 +28,29 @@ import DocFooter                    from 'Docs/common/DocFooter.vue';
 
 export default {
     data : function () {
-    
+
         return {
             list : [
-            {name : '<div>Tim, Boelaars</div><div>123123</div>', age : 20, gender : 'male', job : 'driver'},
-            {name : 'Andrew" Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-            {name : 'Gustavo, "Zambelli', age : 23, gender : 'male', job : 'teacher'},
-            {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-            {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-            {name : 'Emir Ayouni', age : 21, gender : 'male', job : 'gardener'}
-        ]        };
+                {name : '<div>Tim, Boelaars</div><div>123123</div>', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew" Colin Beck', age : 41, gender : 'female', job : 'engineer'},
+                {name : 'Gustavo, "Zambelli', age : 23, gender : 'male', job : 'teacher'},
+                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
+                {name : 'Emir Ayouni', age : 21, gender : 'male', job : `
+                    <div id="asd">123123123</div>
+                    <ui-popover target="#asd">
+                        <ui-radio :list="context.radioList" v-model="context.flags[1]" color="success" size="xs" @value-change="context.echo"></ui-radio>
+                    </ui-popover>
+                `}
+            ],
+            radioList : {
+                "1" : "1",
+                "2" : "2"
+            },
+            flags : {
+                0 : '0',
+                1 : '1'
+            }
+        };
 
     },
     components : {
@@ -51,7 +59,10 @@ export default {
     },
     methods : {
         echo : function (text) {
-            console.log('value-change!');
+            console.log('5555!');
+        },
+        echo2 : function (text) {
+            console.log('5599!');
         }
     },
     mounted : function () {
