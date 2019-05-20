@@ -64867,7 +64867,7 @@ var render = function() {
                   _vm._v(" "),
                   _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
                     ? _c("i", {
-                        staticClass: "mo-icon mo-icon-error-cf",
+                        staticClass: "mo-icon mo-icon-close",
                         on: {
                           click: function($event) {
                             $event.stopPropagation()
@@ -68781,7 +68781,7 @@ var render = function() {
                         "morning-btn",
                         {
                           staticClass: "circle left-btn",
-                          attrs: { color: "extra-light-silver" },
+                          attrs: { color: "neutral-3" },
                           on: { emit: _vm.prev }
                         },
                         [_c("i", { staticClass: "mo-icon mo-icon-left" })]
@@ -68791,7 +68791,7 @@ var render = function() {
                         "morning-btn",
                         {
                           staticClass: "circle right-btn",
-                          attrs: { color: "extra-light-silver" },
+                          attrs: { color: "neutral-3" },
                           on: { emit: _vm.next }
                         },
                         [_c("i", { staticClass: "mo-icon mo-icon-right" })]
@@ -68802,7 +68802,7 @@ var render = function() {
                         "morning-btn",
                         {
                           staticClass: "circle up-btn",
-                          attrs: { color: "extra-light-silver" },
+                          attrs: { color: "neutral-3" },
                           on: { emit: _vm.prev }
                         },
                         [_c("i", { staticClass: "mo-icon mo-icon-up" })]
@@ -68812,7 +68812,7 @@ var render = function() {
                         "morning-btn",
                         {
                           staticClass: "circle down-btn",
-                          attrs: { color: "extra-light-silver" },
+                          attrs: { color: "neutral-3" },
                           on: { emit: _vm.next }
                         },
                         [_c("i", { staticClass: "mo-icon mo-icon-down" })]
@@ -78252,22 +78252,10 @@ var morning = {
         'neutral-10': 'n10',
         'neutral-11': 'n11',
         black: 'bk',
-        white: 'wh',
-
-        // TODO 删除
-        'light-black': 'lbk',
-        'extra-light-black': 'elbk',
-        blue: 'bu',
-        'light-blue': 'lbu',
-        'extra-light-blue': 'elbu',
-        silver: 'si',
-        'light-silver': 'lsi',
-        'extra-light-silver': 'elsi',
-        gray: 'g',
-        'light-gray': 'lg'
+        white: 'wh'
     },
     isMorning: true,
-    version: '0.12.33',
+    version: '0.12.34',
     map: {}
 };
 
@@ -78703,10 +78691,7 @@ exports.default = function (Elements) {
                 type: String,
                 default: undefined,
                 validator: function validator(value) {
-                    return ['theme', 'light-theme', 'dark-theme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'neutral-1', 'neutral-2', 'neutral-3', 'neutral-4', 'neutral-5', 'neutral-6', 'neutral-7', 'neutral-8', 'neutral-9', 'neutral-10', 'neutral-11', 'black', 'white',
-
-                    // TODO 需要删除
-                    'black', 'light-black', 'extra-light-black', 'blue', 'light-blue', 'extra-light-blue', 'silver', 'light-silver', 'extra-light-silver', 'gray', 'light-gray', 'white'].indexOf(value) !== -1;
+                    return ['theme', 'light-theme', 'dark-theme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'neutral-1', 'neutral-2', 'neutral-3', 'neutral-4', 'neutral-5', 'neutral-6', 'neutral-7', 'neutral-8', 'neutral-9', 'neutral-10', 'neutral-11', 'black', 'white'].indexOf(value) !== -1;
                 }
             },
             state: {

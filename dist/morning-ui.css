@@ -40168,7 +40168,9 @@ mor-rate .rate-list > li.current > span {
 }
 mor-rate .rate-list > li.half-current > i,
 mor-rate .rate-list > li.half-current > span {
+  /* stylelint-disable max-line-length */
   background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F33D5D ), color-stop(0.5,  #e1e1e1 ), to( #e1e1e1 ));
+  /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -40189,7 +40191,9 @@ mor-rate .rate-list.in-hover > li.half-current > span {
 }
 mor-rate .rate-list.in-hover > li.half-hover > i,
 mor-rate .rate-list.in-hover > li.half-hover > span {
+  /* stylelint-disable max-line-length */
   background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F86F88 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
+  /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -40250,7 +40254,9 @@ mor-rate.st-disabled .rate-list > li.half-current > i,
 mor-rate.st-readonly .rate-list > li.half-current > i,
 mor-rate.st-disabled .rate-list > li.half-current > span,
 mor-rate.st-readonly .rate-list > li.half-current > span {
+  /* stylelint-disable max-line-length */
   background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #D22343 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
+  /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -44637,7 +44643,6 @@ mor-multiinput > .itemlist > .multiinput-item > span {
   overflow: hidden;
   display: inline-block;
   box-sizing: border-box;
-  vertical-align: middle;
   line-height: 1.15;
   vertical-align: top;
 }
