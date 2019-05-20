@@ -948,7 +948,7 @@ mor-checkbox{
     }
 
     each(range(11), {
-        @colorName : "colorNeutral@{value}";
+        @colorName : 'colorNeutral@{value}';
 
         &.co-n@{value}{
             > .il label.checked .box when (@value > 5) {
@@ -960,7 +960,7 @@ mor-checkbox{
                 background: @@colorName;
                 border-color: @@colorName;
             }
-            
+
             > .il label when (@value <= 5){
                 span{
                     color: darken(@@colorName, 5%);

@@ -1144,7 +1144,7 @@ mor-table{
     }
 
     each(range(11), {
-        @colorName : "colorNeutral@{value}";
+        @colorName : 'colorNeutral@{value}';
 
         &.co-n@{value} when (@value > 1) {
             border-color: @@colorName !important;
@@ -1317,7 +1317,7 @@ mor-table{
             }
 
             each(range(11), {
-                @colorName : "colorNeutral@{value}";
+                @colorName : 'colorNeutral@{value}';
 
                 &.cco-n@{value}{
                     background: darken(@@colorName, 5%) !important;
@@ -1386,7 +1386,7 @@ mor-table{
                 }
 
                 each(range(11), {
-                    @colorName : "colorNeutral@{value}";
+                    @colorName : 'colorNeutral@{value}';
 
                     &.cco-n@{value}{
                         background: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 8%)) !important;

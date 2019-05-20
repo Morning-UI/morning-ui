@@ -702,10 +702,10 @@ mor-switch{
             }
         }
     }
-    
+
     each(range(11), {
-        @colorName : "colorNeutral@{value}";
-        
+        @colorName : 'colorNeutral@{value}';
+
         &.co-n@{value}{
             .track when (@value <= 5){
                 background: darken(@colorBlack, 25%);

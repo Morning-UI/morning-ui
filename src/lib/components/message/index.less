@@ -1,5 +1,5 @@
 .message-style(@background; @color; @style) {
-    .msg-co-@{style}{
+    .msg-co-@{style} {
         background-color: @background;
 
         .bo-ti{
@@ -214,9 +214,9 @@ mor-message{
     .message-style(@colorBlack, @colorWhite, bk);
 
     each(range(11), {
-        @colorName : "colorNeutral@{value}";
+        @colorName : 'colorNeutral@{value}';
 
-        .message-style(@@colorName, if((@value > 5), @colorWhite, @colorBlack), ~"n@{value}");
+        .message-style(@@colorName, if((@value > 5), @colorWhite, @colorBlack), ~'n@{value}');
     });
 
     .message-style(@colorWhite, @colorBlack, wh);

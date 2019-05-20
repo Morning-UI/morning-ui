@@ -286,10 +286,10 @@ mor-calendar{
                 color: fade(@colorWhite, 50%);
             }
         }
-        
+
         each(range(11), {
-            @colorName : "colorNeutral@{value}";
-            
+            @colorName : 'colorNeutral@{value}';
+
             &.bg-mark-n@{value}{
                 background: @@colorName;
                 color: if((@value > 5), @colorWhite, @colorBlack);
@@ -361,7 +361,7 @@ mor-calendar{
     }
 
     each(range(11), {
-        @colorName : "colorNeutral@{value}";
+        @colorName : 'colorNeutral@{value}';
 
         .p-mark-n@{value}::after{
             background: @@colorName;
