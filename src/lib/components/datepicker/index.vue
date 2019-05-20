@@ -502,7 +502,6 @@ export default {
 
             if (this.conf.monthPick) {
 
-
                 return +addYears(this.data.currentDate, 1);
 
             }
@@ -1090,6 +1089,8 @@ export default {
         },
         _highlightDate : function (start, end) {
 
+            const dayStep = 26;
+
             if (!this.conf.isRange) {
 
                 return;
@@ -1172,7 +1173,7 @@ export default {
                     start,
                     end
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = [];
 
@@ -1199,13 +1200,13 @@ export default {
                     start : start0,
                     end : end0
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = eachDayOfInterval({
-                    start : start0,
+                    start : start1,
                     end
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1231,13 +1232,13 @@ export default {
                     start,
                     end : end0
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = eachDayOfInterval({
                     start : start1,
                     end : end1
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1247,20 +1248,20 @@ export default {
                 start <= input1CalendarEnd &&
                 end > input1CalendarEnd) {
 
-                let end = addDays(+input1CalendarEnd, 1);
+                let end0 = addDays(+input1CalendarEnd, 1);
 
                 if (this.conf.monthPick) {
 
-                    end = endOfMonth(end);
+                    end0 = endOfMonth(end0);
 
                 }
 
                 input0HighlightDays = [];
                 input1HighlightDays = eachDayOfInterval({
                     start,
-                    end
+                    end : end0
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1287,13 +1288,13 @@ export default {
                     start : start0,
                     end : end0
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = eachDayOfInterval({
                     start : start1,
                     end : end1
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1308,7 +1309,7 @@ export default {
                     start,
                     end
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = [];
 
@@ -1334,14 +1335,14 @@ export default {
                     start,
                     end : end0
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
                 input1HighlightDays = eachDayOfInterval({
                     start : start1,
                     end
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1357,7 +1358,7 @@ export default {
                     start,
                     end
                 }, {
-                    step : (this.conf.monthPick ? 26 : 1)
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }

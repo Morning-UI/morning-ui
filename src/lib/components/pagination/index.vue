@@ -268,7 +268,7 @@ export default {
             this.data.hideEnd = end - (start > this.data.total ? (start - this.data.total) - 1 : 0);
             this.data.hideStart = start + (end < 1 ? - end + 1 : 0);
 
-            if (this.data.total <= this.conf.maxShow){
+            if (this.data.total <= this.conf.maxShow) {
 
                 this.data.len = this.data.total;
                 this.data.offset = 0;

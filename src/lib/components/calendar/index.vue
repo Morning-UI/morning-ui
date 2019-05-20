@@ -489,21 +489,17 @@ export default {
                 nextDate = item.next.date;
                 nextHighlight = this._isHighlight(nextDate);
 
-            } else {
-
-                if (this.conf.mode === 'day') {
+            } else if (this.conf.mode === 'day') {
                     
-                    nextHighlight = this._isHighlight(addDays(currentDate, 1));
+                nextHighlight = this._isHighlight(addDays(currentDate, 1));
 
-                } else if (this.conf.mode === 'month') {
-                    
-                    nextHighlight = this._isHighlight(addMonths(currentDate, 1));
+            } else if (this.conf.mode === 'month') {
+                
+                nextHighlight = this._isHighlight(addMonths(currentDate, 1));
 
-                } else if (this.conf.mode === 'year') {
-                    
-                    nextHighlight = this._isHighlight(addYears(currentDate, 1));
-
-                }
+            } else if (this.conf.mode === 'year') {
+                
+                nextHighlight = this._isHighlight(addYears(currentDate, 1));
 
             }
 
@@ -512,21 +508,17 @@ export default {
                 prevDate = item.prev.date;
                 prevHighlight = this._isHighlight(prevDate);
 
-            } else {
+            } else if (this.conf.mode === 'day') {
 
-                if (this.conf.mode === 'day') {
+                prevHighlight = this._isHighlight(addDays(currentDate, -1));
 
-                    prevHighlight = this._isHighlight(addDays(currentDate, -1));
-    
-                } else if (this.conf.mode === 'month') {
-                    
-                    prevHighlight = this._isHighlight(addMonths(currentDate, -1));
+            } else if (this.conf.mode === 'month') {
+                
+                prevHighlight = this._isHighlight(addMonths(currentDate, -1));
 
-                } else if (this.conf.mode === 'year') {
-                    
-                    prevHighlight = this._isHighlight(addYears(currentDate, -1));
-
-                }
+            } else if (this.conf.mode === 'year') {
+                
+                prevHighlight = this._isHighlight(addYears(currentDate, -1));
 
             }
 
@@ -670,12 +662,6 @@ export default {
             let pointHl = this._pointMarkHighlight(item);
             let selectHl = this._selectHighlight(item);
             let nowHl = this._isNow(item);
-
-            if ( this.uiid === 160) {
-
-                console.log(199, this.uiid, selectHl, item);
-
-            }
 
             return Object.assign(bgMarkHl, pointHl, selectHl, nowHl);
 
