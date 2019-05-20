@@ -14,11 +14,11 @@ mor-pagination{
             display: inline-block;
             vertical-align: middle;
             padding: 0 0.8em;
-            background-color: @colorExtraLightSilver !important;
+            background-color: @colorComponentItemBg !important;
             cursor: pointer;
             line-height: 2.4em;
             height: 2.4em;
-            color: @colorLightBlue !important;
+            color: darken(@colorComponentItemFont, 3%) !important;
             text-decoration: none !important;
 
             &.ignore{
@@ -57,13 +57,13 @@ mor-pagination{
 
             &:not(.current):not(.ignore):hover{
                 text-decoration: none !important;
-                background-color: @colorSilver !important;
-                color: @colorBlue !important;
+                background-color: darken(@colorComponentItemBgHover, 5%) !important;
+                color: darken(@colorComponentItemFontHover, 3%) !important;
             }
 
             &:not(.current):not(.ignore):active{
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.18) inset;
-                color: @colorBlue !important;
+                color: darken(@colorComponentItemFontHover, 3%) !important;
             }
 
             &:not(.ignore).current{
@@ -89,12 +89,9 @@ mor-pagination{
             display: inline-block;
             vertical-align: middle;
             padding: 0 0.8em;
-            // background-color: @colorExtraLightSilver !important;
-            // cursor: pointer;
             line-height: 2.4em;
             height: 2.4em;
-            color: @colorLightBlue !important;
-            // text-decoration: none !important;
+            color: darken(@colorComponentItemFont, 3%) !important;
         }
 
         > .page-jump{
@@ -111,14 +108,9 @@ mor-pagination{
                 border-top-right-radius: @borderRadius;
                 border-bottom-right-radius: @borderRadius;
 
-                // &:focus{
-                //     border-color: @borderColorDark;
-                //     color: @fontColor !important;
-                // }
-
                 .textinput-wrap > input{
                     vertical-align: top !important;
-                    border: 1px solid @colorLightGray;
+                    border: 1px solid @colorFormBorder;
                     padding: 0 1.5em 0 0.8em;
                     line-height: 2.4em;
                     height: 2.4em;
@@ -134,11 +126,11 @@ mor-pagination{
                 right: @borderRadius;
                 z-index: 10;
                 width: 24px;
-                color: @colorExtraLightBlue;
+                color: darken(@colorComponentItemFont, 3%);
                 cursor: pointer;
 
                 &:hover{
-                    color: @colorBlue;
+                    color: darken(@colorComponentItemFontHover, 3%);
                 }
             }
         }
@@ -461,259 +453,33 @@ mor-pagination{
         }
     }
 
-    &.co-lbk{
-        .list > a{
-            &.current{
-                background-color: @colorLightBlack !important;
-            }
-        }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        .page-jump .mo-icon:hover{
-            color: @colorLightBlack !important;
-        }
-    }
-
-    &.co-elbk{
-        .list > a{
-            &.current{
-                background-color: @colorExtraLightBlack !important;
-            }
-        }
-
-        .page-jump .mo-icon:hover{
-            color: @colorExtraLightBlack !important;
-        }
-    }
-
-    &.co-bu{
-        .list > a{
-            &.current{
-                background-color: @colorBlue !important;
-            }
-        }
-
-        .page-jump .mo-icon:hover{
-            color: @colorBlue !important;
-        }
-    }
-
-    &.co-lbu{
-        .list > a{
-            &.current{
-                background-color: @colorLightBlue !important;
-            }
-        }
-
-        .page-jump .mo-icon:hover{
-            color: @colorLightBlue !important;
-        }
-    }
-
-    &.co-elbu{
-        .list > a{
-            &.current{
-                background-color: @colorExtraLightBlue !important;
-            }
-        }
-
-        .page-jump .mo-icon{
-            color: @colorLightBlue !important;
-
-            &:hover{
-                color: @colorExtraLightBlue !important;
-            }
-        }
-    }
-
-    &.co-si{
-        .list > a{
-            background-color: @colorExtraLightBlack !important;
-            color: @colorWhite !important;
-
-            &.current{
-                background-color: @colorSilver !important;
-                color: @colorBlack !important;
-            }
-        }
-
-        .page-nav{
-            color: @colorWhite !important;
-        }
-
-        .page-jump{
-            mor-textinput.page-num .textinput-wrap > input{
-                border: none;
-                background: @colorExtraLightBlack;
-                color: @colorWhite !important;
-            }
-
-            .mo-icon{
-                color: @colorGray !important;
-
-                &:hover{
-                    color: @colorWhite !important;
+        &.co-n@{value}{
+            .list > a{
+                &.current{
+                    background-color: @@colorName !important;
+                    color: if((@value > 5), @colorWhite, @colorBlack) !important;
                 }
             }
-        }
-    }
 
-    &.co-lsi{
-        .list > a{
-            background-color: @colorExtraLightBlack !important;
-            color: @colorWhite !important;
-
-            &.current{
-                background-color: @colorLightSilver !important;
-                color: @colorBlack !important;
+            .page-jump .mo-icon:hover{
+                color: @@colorName !important;
             }
         }
-
-        .page-nav{
-            color: @colorWhite !important;
-        }
-
-        .page-jump{
-            mor-textinput.page-num .textinput-wrap > input{
-                border: none;
-                background: @colorExtraLightBlack;
-                color: @colorWhite !important;
-            }
-
-            .mo-icon{
-                color: @colorGray !important;
-
-                &:hover{
-                    color: @colorWhite !important;
-                }
-            }
-        }
-    }
-
-    &.co-elsi{
-        .list > a{
-            background-color: @colorExtraLightBlack !important;
-            color: @colorWhite !important;
-
-            &.current{
-                background-color: @colorExtraLightSilver !important;
-                color: @colorBlack !important;
-            }
-        }
-
-        .page-nav{
-            color: @colorWhite !important;
-        }
-
-        .page-jump{
-            mor-textinput.page-num .textinput-wrap > input{
-                border: none;
-                background: @colorExtraLightBlack;
-                color: @colorWhite !important;
-            }
-
-            .mo-icon{
-                color: @colorGray !important;
-
-                &:hover{
-                    color: @colorWhite !important;
-                }
-            }
-        }
-    }
-
-    &.co-g{
-        .list > a{
-            background-color: @colorBlack !important;
-            color: @colorWhite !important;
-
-            &.current{
-                background-color: @colorGray !important;
-                color: @colorBlack !important;
-            }
-        }
-
-        .page-nav{
-            color: @colorWhite !important;
-        }
-
-        .page-jump{
-            mor-textinput.page-num .textinput-wrap > input{
-                border: none;
-                background: @colorBlack;
-                color: @colorWhite !important;
-            }
-
-            .mo-icon{
-                color: @colorExtraLightBlack !important;
-
-                &:hover{
-                    color: @colorWhite !important;
-                }
-            }
-        }
-    }
-
-    &.co-lg{
-        .list > a{
-            background-color: @colorBlack !important;
-            color: @colorWhite !important;
-
-            &.current{
-                background-color: @colorLightGray !important;
-                color: @colorBlack !important;
-            }
-        }
-
-        .page-nav{
-            color: @colorWhite !important;
-        }
-
-        .page-jump{
-            mor-textinput.page-num .textinput-wrap > input{
-                border: none;
-                background: @colorBlack;
-                color: @colorWhite !important;
-            }
-
-            .mo-icon{
-                color: @colorExtraLightBlack !important;
-
-                &:hover{
-                    color: @colorWhite !important;
-                }
-            }
-        }
-    }
+    });
 
     &.co-wh{
         .list > a{
-            background-color: @colorBlack !important;
-            color: @colorWhite !important;
-
             &.current{
                 background-color: @colorWhite !important;
                 color: @colorBlack !important;
             }
         }
 
-        .page-nav{
+        .page-jump .mo-icon:hover{
             color: @colorWhite !important;
-        }
-
-        .page-jump{
-            mor-textinput.page-num .textinput-wrap > input{
-                border: none;
-                background: @colorBlack;
-                color: @colorWhite !important;
-            }
-
-            .mo-icon{
-                color: @colorExtraLightBlack !important;
-
-                &:hover{
-                    color: @colorWhite !important;
-                }
-            }
         }
     }
 

@@ -54,7 +54,7 @@
                 </span>
 
                 <i
-                    class="mo-icon mo-icon-error-cf"
+                    class="mo-icon mo-icon-close"
                     v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
                     @click.stop="_deleteItem(index)"
                 ></i>
@@ -92,7 +92,7 @@
         class="multiform-dialog"
         width="500px"
         height="75%"
-        color="gray"
+        color="neutral-2"
         :showType="conf.showType"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
@@ -113,7 +113,7 @@
         class="multiform-batch-dialog"
         width="500px"
         height="240px"
-        color="gray"
+        color="neutral-2"
         :showType="conf.showType"
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"

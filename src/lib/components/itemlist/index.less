@@ -47,7 +47,7 @@ mor-itemlist{
 
             > .desc{
                 margin: 0.3em 0 0 !important;
-                color: @colorBlue;
+                color: darken(@colorComponentItemFont, 12%);
                 line-height: 1em;
             }
 
@@ -58,7 +58,7 @@ mor-itemlist{
             }
 
             > .additional{
-                color: @colorExtraLightBlue;
+                color: @colorComponentItemFont;
                 line-height: 1em;
             }
 
@@ -72,7 +72,7 @@ mor-itemlist{
     }
 
     &.underline > mor-ul > li{
-        border-bottom: 1px @colorGray solid;
+        border-bottom: 1px @colorComponentItemBorder solid;
 
         &:last-child{
             border-bottom: none;

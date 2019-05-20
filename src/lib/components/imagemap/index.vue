@@ -60,7 +60,7 @@
     <morning-dialog
         class="mor-imagemap-map show-no-animate"
         :class="{'imagemap-disabled' : (conf.state === 'disabled' || conf.state === 'readonly')}"
-        color="gray"
+        color="neutral-2"
         width="60%"
         height="90%"
         :auto-close="false"
@@ -133,7 +133,7 @@
 
     <morning-dialog
         class="mor-imagemap-dialog-zone"
-        color="gray"
+        color="neutral-2"
         width="600px"
         height="90%"
         :ref="'ui-imagemap-zonedialog-'+uiid"
@@ -220,7 +220,7 @@
 
     <morning-dialog
         class="mor-imagemap-dialog-scale"
-        color="gray"
+        color="neutral-2"
         width="500px"
         height="300px"
         :ref="'ui-imagemap-scaledialog-'+uiid"

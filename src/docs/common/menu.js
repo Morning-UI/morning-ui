@@ -126,5 +126,8 @@ export default {
         反馈问题 : '/guide/report.html',
         更新日志 : '/guide/logs.html',
         参与者公约 : '/guide/codeofconduct.html'
+    },
+    design : {
+        色彩 : '/design/color.html'
     }
 };

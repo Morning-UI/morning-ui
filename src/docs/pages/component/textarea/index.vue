@@ -168,7 +168,7 @@
     段落输入框可调整大小。
     >tpl
     <div style="width:300px;">
-        <ui-textarea :maxlength="50" resize="both"></ui-textarea>
+        <ui-textarea resize="both"></ui-textarea>
     </div>
     ---
     #demo
@@ -176,7 +176,7 @@
     段落输入框可调整高度。
     >tpl
     <div style="width:300px;">
-        <ui-textarea :maxlength="50" resize="vertical"></ui-textarea>
+        <ui-textarea resize="vertical"></ui-textarea>
     </div>
     :::
 

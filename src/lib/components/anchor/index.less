@@ -15,7 +15,7 @@ mor-anchor{
 
         .line{
             width: 2px;
-            background: lighten(@colorExtraLightBlue, 15%);
+            background: @colorComponentItemBorder;
             height: 100%;
             position: absolute;
             left: 4px;
@@ -42,15 +42,15 @@ mor-anchor{
                 font-size: @fontSize*0.75;
                 line-height: 1.4em;
                 margin: 4px 0;
-                color: @colorLightBlue;
+                color: @colorComponentItemFont;
 
                 &:hover{
                     cursor: pointer;
-                    color: @colorBlack;
+                    color: @colorComponentItemFontHover;
                 }
 
                 &.current{
-                    color: @colorTheme;
+                    color: @colorComponentItemFontCurrent;
                 }
             }
         }

@@ -102,7 +102,7 @@ mor-colorpicker{
     &.st-disabled,
     &.st-readonly{
         .preview-wrap{
-            border-color: @colorExtraLightBlue;
+            border-color: @colorFormBorderDisable;
         }
 
         .preview{
@@ -298,7 +298,7 @@ mor-colorpicker{
     .values{
         height: @fontSize*3.5;
         font-size: 0;
-        border-top: 1px @colorExtraLightSilver solid;
+        border-top: 1px @colorFormBorder solid;
 
         .input{
             width: 90%;
@@ -369,7 +369,7 @@ mor-colorpicker{
 
     .palettes{
         padding: @fontSize;
-        border-top: 1px @colorExtraLightSilver solid;
+        border-top: 1px @colorFormBorder solid;
         margin: 0;
         list-style: none;
         display: flex;
@@ -430,11 +430,11 @@ mor-colorpicker{
                     right: 0.5em;
                     line-height: @fontSize*2.625;
                     font-size: 14px;
-                    color: @colorExtraLightBlue;
+                    color: @colorFormItemColor;
 
                     &:hover{
                         cursor: pointer;
-                        color: @colorLightBlue;
+                        color: @colorFormItemColorHover;
                     }
                 }
             }
@@ -445,10 +445,10 @@ mor-colorpicker{
                 padding: 0.5em;
                 justify-content: space-between;
                 box-sizing: border-box;
-                border-top: 1px @colorExtraLightSilver solid;
+                border-top: 1px @colorFormBorder solid;
 
                 &:hover{
-                    background: @colorExtraLightSilver;
+                    background: @colorFormBackgroundHover;
                     cursor: pointer;
                 }
 
@@ -479,13 +479,13 @@ mor-colorpicker{
         height: @fontSize*2;
         margin: @fontSize*0.75 0;
         text-align: center;
-        color: @colorExtraLightBlue;
+        color: @colorFormItemColor;
         cursor: pointer;
         border-radius: @borderRadius;
 
         &:hover{
-            color: @colorBlue;
-            background: @colorExtraLightSilver;
+            color: @colorFormItemColorHover;
+            background: @colorFromItemBackgroundHover;
         }
     }
 
@@ -493,7 +493,7 @@ mor-colorpicker{
         position: absolute;
         top: @fontSize*0.375;
         right: @fontSize*0.375;
-        color: @colorExtraLightBlue;
+        color: @colorFormItemColor;
         margin: 0;
 
         .mo-icon{

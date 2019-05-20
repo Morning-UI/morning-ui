@@ -40,8 +40,8 @@
         <br>
 
         <span id="demo33">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo33" color="silver">
-            <ui-h size="xxs" color="light-black">标题</ui-h>
+        <ui-tip target="#demo33" color="neutral-4">
+            <ui-h size="xxs" color="neutral-10">标题</ui-h>
             <p>很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
         </ui-tip>
     </div>
@@ -117,10 +117,10 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|不支持|-|
-    |色彩|全部|`theme`|
+    |色彩|全部(除`transparent`)|`theme`|
     |状态|不支持|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @layout:color

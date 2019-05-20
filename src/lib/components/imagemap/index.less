@@ -8,8 +8,8 @@ mor-imagemap{
 
     .imagemap-operate{
         display: block;
-        color: @colorLightBlue;
-        background: @colorLightGray;
+        color: @colorFormAddonFont;
+        background: @colorFormAddonBg;
         text-align: center;
         margin-top: -2px;
         border: 1px @colorFormBorder solid;
@@ -33,15 +33,15 @@ mor-imagemap{
 
         &:hover{
             text-decoration: none;
-            color: @colorExtraLightBlack;
-            background: @colorFormBorder;
+            color: @colorFormAddonFontHover;
+            background: @colorFormAddonBgHover;
             cursor: pointer;
         }
 
         &.loading:hover{
             cursor: default;
-            color: @colorLightBlue;
-            background: @colorLightGray;
+            color: @colorFormAddonFontHover;
+            background: @colorFormAddonBgHover;
         }
     }
 
@@ -54,7 +54,7 @@ mor-imagemap{
             background: @colorFormBackgroundDisable;
 
             &:hover{
-                color: @colorLightBlue;
+                color: @colorFormAddonFont;
             }
         }
     }
@@ -89,7 +89,7 @@ mor-imagemap{
         left: 0;
         cursor: crosshair;
         font-size: @fontSize*0.875;
-        border: 1px @colorExtraLightSilver solid;
+        border: 1px @colorFormBorder solid;
         box-sizing: content-box;
 
         &.disable-add-spot{
@@ -184,10 +184,10 @@ mor-imagemap{
 
     .zone{
         box-sizing: border-box;
-        border: 1px dashed @colorExtraLightBlack;
+        border: 1px dashed @colorNeutral10;
         position: absolute;
         display: block;
-        background-color: %(~'%d40', @colorExtraLightBlack);
+        background-color: %(~'%d40', @colorNeutral10);
         cursor: move;
 
         &.resize-top{
@@ -240,7 +240,7 @@ mor-imagemap{
 
         &:hover,
         &.resize{
-            border: 1px dashed @colorExtraLightBlack;
+            border: 1px dashed @colorNeutral11;
             background-color: %(~'%d30', darken(@colorPrimary, 5%));
             border-width: 2px;
         }

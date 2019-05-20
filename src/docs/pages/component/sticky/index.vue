@@ -73,11 +73,11 @@
     >tpl
     <div style="position:relative;height:300px;padding: 0 200px;">
         <ui-sticky position="parent" :top="10">
-            <ui-btn color="blue">吸附在父节点顶部的跟随</ui-btn>
+            <ui-btn color="neutral-8">吸附在父节点顶部的跟随</ui-btn>
         </ui-sticky>
         <div style="height: 228px;"></div>
         <ui-sticky style="margin-left: 180px;" position="parent" :bottom="10">
-            <ui-btn color="blue">吸附在父节点底部的跟随</ui-btn>
+            <ui-btn color="neutral-8">吸附在父节点底部的跟随</ui-btn>
         </ui-sticky>
     </div>
     ---
@@ -88,11 +88,11 @@
     <div style="height:300px;overflow-y: auto;">
         <div style="position:relative;height:600px;padding: 0 200px;">
             <ui-sticky position="parent" :top="10">
-                <ui-btn color="blue">吸附在父节点顶部的跟随</ui-btn>
+                <ui-btn color="neutral-8">吸附在父节点顶部的跟随</ui-btn>
             </ui-sticky>
             <div style="height: 528px;"></div>
             <ui-sticky style="margin-left: 180px;" position="parent" :bottom="10">
-                <ui-btn color="blue">吸附在父节点底部的跟随</ui-btn>
+                <ui-btn color="neutral-8">吸附在父节点底部的跟随</ui-btn>
             </ui-sticky>
         </div>
     </div>
@@ -129,7 +129,7 @@
     >tpl
     <div>
         <ui-sticky style="margin-left: 400px;">
-            <ui-btn color="silver">position为viewport的吸附</ui-btn>
+            <ui-btn color="neutral-4">position为viewport的吸附</ui-btn>
         </ui-sticky>
     </div>
     ---
@@ -139,7 +139,7 @@
     >tpl
     <div style="position:relative;height:300px;padding: 0 200px;">
         <ui-sticky position="parent" top="40" style="margin-left: 200px;">
-            <ui-btn color="silver">position为parent的吸附</ui-btn>
+            <ui-btn color="neutral-4">position为parent的吸附</ui-btn>
         </ui-sticky>
     </div>
     :::
@@ -161,7 +161,7 @@
     >tpl
     <div>
         <ui-sticky :top="70" style="margin-left: 400px;">
-            <ui-btn color="silver">吸附在距离视窗底部70px的位置</ui-btn>
+            <ui-btn color="neutral-4">吸附在距离视窗底部70px的位置</ui-btn>
         </ui-sticky>
     </div>
     :::
@@ -183,7 +183,7 @@
     >tpl
     <div>
         <ui-sticky :bottom="40" style="margin-left: 400px;">
-            <ui-btn color="silver">吸附在距离视窗底部40px的位置</ui-btn>
+            <ui-btn color="neutral-4">吸附在距离视窗底部40px的位置</ui-btn>
         </ui-sticky>
     </div>
     :::

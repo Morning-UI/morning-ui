@@ -27,10 +27,10 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|不支持|-|
-    |色彩|全部|`black`|
+    |色彩|全部(除`transparent`)|`black`|
     |状态|`normal`<br/>`apparent`|`normal`|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @layout:color

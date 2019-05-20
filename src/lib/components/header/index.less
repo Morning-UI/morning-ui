@@ -244,165 +244,29 @@ mor-header{
         }
     }
 
-    &.co-lbk{
-        color: @colorLightBlack;
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        &.mark{
-            border-left-color: @colorLightBlack;
+        &.co-n@{value}{
+            color: @@colorName;
+
+            &.mark{
+                border-left-color: @@colorName;
+            }
+
+            &.underline{
+                border-bottom-color: @@colorName;
+            }
+
+            small when (@value > 5) {
+                color: lighten(@@colorName, @value * 2.5%);
+            }
+
+            small when (@value <= 5) {
+                color: darken(@@colorName, @value * 3%);
+            }
         }
-
-        &.underline{
-            border-bottom-color: @colorLightBlack;
-        }
-
-        small{
-            color: lighten(@colorLightBlack, 35%);
-        }
-    }
-
-    &.co-elbk{
-        color: @colorExtraLightBlack;
-
-        &.mark{
-            border-left-color: @colorExtraLightBlack;
-        }
-
-        &.underline{
-            border-bottom-color: @colorExtraLightBlack;
-        }
-
-        small{
-            color: lighten(@colorExtraLightBlack, 25%);
-        }
-    }
-
-    &.co-bu{
-        color: @colorBlue;
-
-        &.mark{
-            border-left-color: @colorBlue;
-        }
-
-        &.underline{
-            border-bottom-color: @colorBlue;
-        }
-
-        small{
-            color: lighten(@colorBlue, 15%);
-        }
-    }
-
-    &.co-lbu{
-        color: @colorLightBlue;
-
-        &.mark{
-            border-left-color: @colorLightBlue;
-        }
-
-        &.underline{
-            border-bottom-color: @colorLightBlue;
-        }
-
-        small{
-            color: lighten(@colorLightBlue, 15%);
-        }
-    }
-
-    &.co-elbu{
-        color: @colorExtraLightBlue;
-
-        &.mark{
-            border-left-color: @colorExtraLightBlue;
-        }
-
-        &.underline{
-            border-bottom-color: @colorExtraLightBlue;
-        }
-
-        small{
-            color: lighten(@colorExtraLightBlue, 15%);
-        }
-    }
-
-    &.co-si{
-        color: @colorSilver;
-
-        &.mark{
-            border-left-color: @colorSilver;
-        }
-
-        &.underline{
-            border-bottom-color: @colorSilver;
-        }
-
-        small{
-            color: darken(@colorSilver, 5%);
-        }
-    }
-
-    &.co-lsi{
-        color: @colorLightSilver;
-
-        &.mark{
-            border-left-color: @colorLightSilver;
-        }
-
-        &.underline{
-            border-bottom-color: @colorLightSilver;
-        }
-
-        small{
-            color: darken(@colorLightSilver, 5%);
-        }
-    }
-
-    &.co-elsi{
-        color: @colorExtraLightSilver;
-
-        &.mark{
-            border-left-color: @colorExtraLightSilver;
-        }
-
-        &.underline{
-            border-bottom-color: @colorExtraLightSilver;
-        }
-
-        small{
-            color: darken(@colorExtraLightSilver, 5%);
-        }
-    }
-
-    &.co-g{
-        color: @colorGray;
-
-        &.mark{
-            border-left-color: @colorGray;
-        }
-
-        &.underline{
-            border-bottom-color: @colorGray;
-        }
-
-        small{
-            color: darken(@colorGray, 5%);
-        }
-    }
-
-    &.co-lg{
-        color: @colorLightGray;
-
-        &.mark{
-            border-left-color: @colorLightGray;
-        }
-
-        &.underline{
-            border-bottom-color: @colorLightGray;
-        }
-
-        small{
-            color: darken(@colorLightGray, 10%);
-        }
-    }
+    });
 
     &.co-wh{
         color: @colorWhite;

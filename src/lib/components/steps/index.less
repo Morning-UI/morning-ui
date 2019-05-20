@@ -16,7 +16,7 @@ mor-steps{
         .link{
             width: 100%;
             height: @lineHeight;
-            background: @colorExtraLightSilver;
+            background: @colorComponentItemBorder;
             margin-top: (@fontSize*1.5 - @lineHeight) / 2;
         }
     }
@@ -29,7 +29,7 @@ mor-steps{
         .mark{
             font-size: @fontSize*0.8125;
             background: @colorWhite;
-            border: 2px @colorLightSilver solid;
+            border: 2px @colorComponentItemBorder solid;
             width: @fontSize*1.5;
             height: @fontSize*1.5;
             border-radius: 50%;
@@ -37,7 +37,7 @@ mor-steps{
             text-align: center;
             position: relative;
             display: block;
-            color: @colorBlue;
+            color: darken(@colorComponentItemFont, 5%);
             left: 50%;
             transform: translateX(-50%);
             box-sizing: border-box;
@@ -61,7 +61,7 @@ mor-steps{
             height: @lineHeight;
             top: (@fontSize*1.5 - @lineHeight) / 2;
             left: 0;
-            background: @colorExtraLightSilver;
+            background: @colorComponentItemBorder;
         }
 
         .title{
@@ -70,7 +70,7 @@ mor-steps{
             min-width: 50px;
             max-width: 160px;
             padding-top: @fontSize*0.75;
-            color: @colorLightBlack;
+            color: @colorNeutral11;
         }
 
         .desc{
@@ -78,7 +78,7 @@ mor-steps{
             display: block;
             min-width: 100px;
             max-width: 160px;
-            color: @colorExtraLightBlue;
+            color: @colorNeutral7;
         }
 
         &.first{
@@ -100,7 +100,7 @@ mor-steps{
             }
 
             + .link + .step .bg{
-                background: linear-gradient(to left, @colorExtraLightSilver 0%, @colorExtraLightSilver 50%, @colorTheme 51%, @colorTheme 100%);
+                background: linear-gradient(to left, @colorComponentItemBorder 0%, @colorComponentItemBorder 50%, @colorTheme 51%, @colorTheme 100%);
             }
 
             + .link + .step.last .bg{
@@ -127,7 +127,7 @@ mor-steps{
             }
 
             .desc{
-                color: @colorExtraLightBlack;
+                color: @colorNeutral9;
             }
 
             &.highlight .mark{
@@ -185,7 +185,7 @@ mor-steps{
 
             &.done{
                 + .link + .step .bg{
-                    background: @colorExtraLightSilver;
+                    background: @colorComponentItemBorder;
                 }
             }
         }

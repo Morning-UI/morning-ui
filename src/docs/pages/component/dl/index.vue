@@ -69,7 +69,7 @@
     |色彩|不支持|-|
     |状态|`normal`<br/>`apparent`|`normal`|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @layout:state-na

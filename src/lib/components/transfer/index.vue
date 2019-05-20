@@ -84,7 +84,7 @@
                     :class="{
                         circle : !conf.sourceToTargetText
                     }"
-                    color="silver"
+                    color="neutral-4"
                     :size="conf.size === 'xs' ? 'xxs' : 'xs'"
                     :state="conf.state"
                     @emit="_toTarget"
@@ -97,7 +97,7 @@
                 :class="{
                     circle : !conf.targetToSourceText
                 }"
-                color="silver"
+                color="neutral-4"
                 :size="conf.size === 'xs' ? 'xxs' : 'xs'"
                 :state="conf.state"
                 @emit="_toSource"

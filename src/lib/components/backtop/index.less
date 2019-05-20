@@ -3,10 +3,10 @@ mor-backtop{
     height: @fontSize*2.5;
     line-height: @fontSize*2.5;
     text-align: center;
-    background-color: @colorExtraLightBlue;
+    background-color: darken(@colorComponentItemBg, 8%);
     cursor: pointer;
     transition: background-color 0.2s, opacity 0.2s;
-    color: @colorExtraLightBlack;
+    color: darken(@colorComponentItemFont, 20%);
     font-size: @fontSize*0.875;
     padding: 0 1em;
     opacity: 0;
@@ -15,7 +15,7 @@ mor-backtop{
     > i,
     > .mo-icon,
     > .iconfont{
-        color: @colorExtraLightBlack;
+        color: @colorComponentItemFont;
     }
 
     &.show{
@@ -24,7 +24,7 @@ mor-backtop{
     }
 
     &:hover{
-        background-color: @colorLightBlue;
+        background-color: darken(@colorComponentItemBgHover, 15%);
         color: @colorBlack;
 
         > i,

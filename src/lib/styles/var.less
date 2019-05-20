@@ -8,18 +8,20 @@
 @colorPrimary : #2185D0;
 @colorMinor : #A9A9A9;
 @colorInfo : #03A6B9;
-@colorBlack : #17212D;
-@colorLightBlack : #303C4B;
-@colorExtraLightBlack : #45505C;
-@colorBlue : #7C8BA0;
-@colorLightBlue : #8E9CAF;
-@colorExtraLightBlue : #A8B3C2;
-@colorSilver : #D6DDE5;
-@colorLightSilver : #E2E8EE;
-@colorExtraLightSilver : #EDF1F5;
-@colorGray : #E6E6E6;
-@colorLightGray : #F0F0F0;
+@colorTransparent : transparent;
 @colorWhite : #FFFFFF;
+@colorBlack : #000000;
+@colorNeutral1 : #F0F0F0;
+@colorNeutral2 : #E5E5E5;
+@colorNeutral3 : #E0E0E0;
+@colorNeutral4 : #D9D9D9;
+@colorNeutral5 : #CCCCCC;
+@colorNeutral6 : #B2B2B2;
+@colorNeutral7 : #999999;
+@colorNeutral8 : #7F7F7F;
+@colorNeutral9 : #666666;
+@colorNeutral10 : #4C4C4C;
+@colorNeutral11 : #333333;
 @borderRadius : 3px;
 @gridColumnNumber : 24;
 @gridGutterWidthXs : 4px;
@@ -33,28 +35,47 @@
 @formInputFontSizeS : @fontSize*0.8125;
 @formHeightXs : 28px;
 @formInputFontSizeXs : @fontSize*0.75;
-@colorFormBorder : @colorGray;
-@colorFormBorderHover : darken(@colorGray, 6%);
-@colorFormBorderFocus : @colorLightBlue;
-@colorFormBorderDisable : darken(@colorGray, 25%);
+@colorComponentItemBorder : lighten(@colorNeutral3, 2%);
+@colorComponentItemBorderHover : darken(@colorNeutral3, 6%);
+@colorComponentItemBorderCurrent : darken(@colorNeutral3, 1%);
+@colorComponentItemBorderDisabled : @colorNeutral3;
+@colorComponentItemBg : lighten(@colorNeutral1, 2%);
+@colorComponentItemBgHover : @colorNeutral1;
+@colorComponentItemBgCurrent : @colorWhite;
+@colorComponentItemBgDisabled : @colorNeutral3;
+@colorComponentItemFont : @colorNeutral6;
+@colorComponentItemFontHover : @colorNeutral9;
+@colorComponentItemFontCurrent : @colorTheme;
+@colorComponentItemFontDisabled : @colorNeutral9;
+@colorImageBorder : @colorComponentItemBorder;
+@colorFormBorder : @colorNeutral2;
+@colorFormBorderHover : darken(@colorNeutral2, 6%);
+@colorFormBorderFocus : @colorNeutral6;
+@colorFormBorderDisable : darken(@colorNeutral2, 25%);
 @colorFormBackground : @colorWhite;
-@colorFormBackgroundHover : lighten(@colorLightGray, 2%);
-@colorFormBackgroundFocus : lighten(@colorLightGray, 1.2%);
-@colorFormBackgroundDisable : lighten(@colorGray, 2%);
-@colorFormTextLight : darken(@colorGray, 5%);
-@colorFormPlaceholder : darken(@colorGray, 20%);
-@colorFormPlaceholderHover : darken(@colorGray, 30%);
+@colorFormBackgroundHover : lighten(@colorNeutral1, 2%);
+@colorFormBackgroundFocus : lighten(@colorNeutral1, 1.2%);
+@colorFormBackgroundDisable : lighten(@colorNeutral2, 2%);
+@colorFormAddonFont : @colorNeutral8;
+@colorFormAddonFontHover : @colorNeutral10;
+@colorFormAddonBg : darken(@colorComponentItemBg, 2%);
+@colorFormAddonBgHover : darken(@colorComponentItemBgHover, 2%);
+@colorFormTextLight : darken(@colorNeutral2, 5%); // 后续版本中判断是否需要删除，是否有在使用
+@colorFormPlaceholder : darken(@colorNeutral2, 20%);
+@colorFormPlaceholderHover : darken(@colorNeutral2, 30%);
 @colorFormText : @colorBlack;
-@colorFormTextNote : @colorLightBlack;
-@colorFormTextMisc : darken(@colorGray, 15%);
+@colorFormTextNote : @colorNeutral7;
+@colorFormTextMisc : darken(@colorNeutral2, 15%); // 后续版本中判断是否需要删除，是否有在使用
 @colorFormTextHover : @colorBlack;
 @colorFormTextFocus : @colorBlack;
-@colorFormTextDisable : darken(@colorGray, 35%);
-@colorFormItemColor : darken(@colorFormPlaceholder, 10%);
-@colorFormItemColorHover : darken(@colorFormPlaceholderHover, 10%);
-@colorFormItemColorDisable : darken(@colorFormPlaceholder, 10%);
-@colorFromItemBackground : darken(@colorFormBackgroundHover, 2%);
-@colorFromItemBackgroundHover : darken(@colorFormBackgroundHover, 5%);
+@colorFormTextDisable : darken(@colorNeutral2, 35%);
+@colorFormItemColor : darken(@colorFormPlaceholder, 8%);
+@colorFormItemColorHover : darken(@colorFormPlaceholderHover, 12%);
+@colorFormItemColorCurrent : darken(@colorFormPlaceholderHover, 15%);
+@colorFormItemColorDisable : darken(@colorFormPlaceholder, 12%);
+@colorFromItemBackground : @colorFormBackgroundHover;
+@colorFromItemBackgroundHover : darken(@colorFormBackgroundHover, 2%);
+@colorFromItemBackgroundCurrent : darken(@colorFormBackgroundHover, 3%);
 @colorFromItemBackgroundDisable : darken(@colorFormBackgroundDisable, 8%);
 
 // ---
@@ -104,44 +125,48 @@
         color: @colorBlack;
     }
 
-    &.co-lbk{
-        color: @colorLightBlack;
+    &.co-n11{
+        color: @colorNeutral11;
     }
 
-    &.co-elbk{
-        color: @colorExtraLightBlack;
+    &.co-n10{
+        color: @colorNeutral10;
     }
 
-    &.co-bu{
-        color: @colorBlue;
+    &.co-n9{
+        color: @colorNeutral9;
     }
 
-    &.co-lbu{
-        color: @colorLightBlue;
+    &.co-n8{
+        color: @colorNeutral8;
     }
 
-    &.co-elbu{
-        color: @colorExtraLightBlue;
+    &.co-n7{
+        color: @colorNeutral7;
     }
 
-    &.co-si{
-        color: @colorSilver;
+    &.co-n6{
+        color: @colorNeutral6;
     }
 
-    &.co-lsi{
-        color: @colorLightSilver;
+    &.co-n5{
+        color: @colorNeutral5;
     }
 
-    &.co-elsi{
-        color: @colorExtraLightSilver;
+    &.co-n4{
+        color: @colorNeutral4;
     }
 
-    &.co-g{
-        color: @colorGray;
+    &.co-n3{
+        color: @colorNeutral3;
     }
 
-    &.co-lg{
-        color: @colorLightGray;
+    &.co-n2{
+        color: @colorNeutral2;
+    }
+
+    &.co-n1{
+        color: @colorNeutral1;
     }
 
     &.co-wh{
@@ -202,7 +227,7 @@
 
     > .form-note{
         font-size: @fontSize*0.75;
-        color: @colorLightBlue;
+        color: @colorNeutral6;
 
         + .form-body{
             margin-top: @fontSize*0.5;

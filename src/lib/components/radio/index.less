@@ -966,800 +966,108 @@ mor-radio{
         }
     }
 
-    &.co-lbk{
-        > .il label.checked .box{
-            background: @colorLightBlack;
-            border-color: @colorLightBlack;
-        }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        &.border > .il label.checked{
-            border-color: @colorLightBlack;
-        }
-
-        &.type-point{
-            .radio-point{
-                background: @colorLightBlack;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    &:not(.checked):hover{
-                        border-color: @colorLightBlack;
-
-                        span{
-                            color: @colorLightBlack;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorLightBlack;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorLightBlack;
-                        border-color: @colorLightBlack;
-
-                        + label{
-                            border-left-color: @colorLightBlack;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: saturate(@colorLightBlack, 10%);
-                    border-color: saturate(@colorLightBlack, 10%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: saturate(@colorLightBlack, 10%);
-                border-color: saturate(@colorLightBlack, 10%);
-            }
-        }
-    }
-
-    &.co-elbk{
-        > .il label.checked .box{
-            background: @colorExtraLightBlack;
-            border-color: @colorExtraLightBlack;
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorExtraLightBlack;
-        }
-
-        &.type-point{
-            .radio-point{
-                background: @colorExtraLightBlack;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    &:not(.checked):hover{
-                        border-color: @colorExtraLightBlack;
-
-                        span{
-                            color: @colorExtraLightBlack;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorExtraLightBlack;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorExtraLightBlack;
-                        border-color: @colorExtraLightBlack;
-
-                        + label{
-                            border-left-color: @colorExtraLightBlack;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: saturate(@colorExtraLightBlack, 10%);
-                    border-color: saturate(@colorExtraLightBlack, 10%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: saturate(@colorExtraLightBlack, 10%);
-                border-color: saturate(@colorExtraLightBlack, 10%);
-            }
-        }
-    }
-
-    &.co-bu{
-        > .il label.checked .box{
-            background: @colorBlue;
-            border-color: @colorBlue;
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorBlue;
-        }
-
-        &.type-point{
-            .radio-point{
-                background: @colorBlue;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    &:not(.checked):hover{
-                        border-color: @colorBlue;
-
-                        span{
-                            color: @colorBlue;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorBlue;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorBlue;
-                        border-color: @colorBlue;
-
-                        + label{
-                            border-left-color: @colorBlue;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorBlue, 10%);
-                    border-color: desaturate(@colorBlue, 10%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorBlue, 10%);
-                border-color: desaturate(@colorBlue, 10%);
-            }
-        }
-    }
-
-    &.co-lbu{
-        > .il label.checked .box{
-            background: @colorLightBlue;
-            border-color: @colorLightBlue;
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorLightBlue;
-        }
-
-        &.type-point{
-            .radio-point{
-                background: @colorLightBlue;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    &:not(.checked):hover{
-                        border-color: @colorLightBlue;
-
-                        span{
-                            color: @colorLightBlue;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorLightBlue;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorLightBlue;
-                        border-color: @colorLightBlue;
-
-                        + label{
-                            border-left-color: @colorLightBlue;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorLightBlue, 10%);
-                    border-color: desaturate(@colorLightBlue, 10%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorLightBlue, 10%);
-                border-color: desaturate(@colorLightBlue, 10%);
-            }
-        }
-    }
-
-    &.co-elbu{
-        > .il label.checked .box{
-            background: @colorExtraLightBlue;
-            border-color: @colorExtraLightBlue;
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorExtraLightBlue;
-        }
-
-        &.type-point{
-            .radio-point{
-                background: @colorExtraLightBlue;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    &:not(.checked):hover{
-                        border-color: @colorExtraLightBlue;
-
-                        span{
-                            color: @colorExtraLightBlue;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorExtraLightBlue;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorExtraLightBlue;
-                        border-color: @colorExtraLightBlue;
-
-                        + label{
-                            border-left-color: @colorExtraLightBlue;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorExtraLightBlue, 10%);
-                    border-color: desaturate(@colorExtraLightBlue, 10%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorExtraLightBlue, 10%);
-                border-color: desaturate(@colorExtraLightBlue, 10%);
-            }
-        }
-    }
-
-    &.co-si{
-        > .il label{
-            span{
-                color: @colorExtraLightBlue;
+        &.co-n@{value}{
+            > .il label.checked .box when (@value > 5) {
+                background: @@colorName;
+                border-color: @@colorName;
             }
 
-            .box{
-                border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
+            > .il label when (@value <= 5) {
                 span{
-                    color: @colorLightSilver;
+                    color: darken(@@colorName, 5%);
                 }
-            }
 
-            &.checked{
                 .box{
-                    background: @colorSilver;
-                    border-color: @colorSilver;
-                    color: @colorSilver;
+                    border: 1px @colorWhite solid;
                 }
 
-                .mo-icon{
-                    color: @colorExtraLightBlack;
-                }
-            }
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorLightSilver;
-        }
-
-        &.type-point{
-            .il label.checked .box{
-                background: @colorBlack !important;
-            }
-
-            .radio-point{
-                background: @colorSilver;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
+                &:hover,
+                &.checked{
                     span{
-                        color: lighten(@colorFormPlaceholder, 10%);
+                        color: @colorWhite;
+                    }
+                }
+
+                &.checked{
+                    .box{
+                        background: @@colorName;
+                        border-color: @@colorName;
+                        color: @@colorName;
                     }
 
-                    &:not(.checked):hover{
-                        border-color: @colorSilver;
-
-                        span{
-                            color: @colorWhite;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorSilver;
-                        }
+                    .mo-icon{
+                        color: @colorBlack;
                     }
+                }
+            }
 
-                    &.checked{
-                        background: @colorSilver;
-                        border-color: @colorSilver;
+            &.border > .il label.checked{
+                border-color: @@colorName;
+            }
 
-                        span{
-                            color: @colorBlack;
+            &.type-point{
+                .il label.checked .box when (@value <= 5) {
+                    background: @colorBlack !important;
+                }
+
+                .radio-point{
+                    background: @@colorName;
+                }
+            }
+
+            &.type-button{
+                > .il {
+                    label{
+                        &:not(.checked):hover{
+                            border-color: @@colorName;
+
+                            span{
+                                color: @@colorName;
+                            }
+
+                            &:not(.checked) + label:not(.checked){
+                                border-left-color: @@colorName;
+                            }
                         }
 
-                        + label{
-                            border-left-color: @colorSilver;
+                        &.checked{
+                            background: @@colorName;
+                            border-color: @@colorName;
+
+                            + label{
+                                border-left-color: @@colorName;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
+            &.st-disabled,
+            &.st-readonly{
+                > .il label.checked{
+                    .box {
+                        background: if((@value > 5), saturate(@colorBlack, 10%), saturate(@colorWhite, 10%));
+                        border-color: if((@value > 5), saturate(@colorBlack, 10%), saturate(@colorWhite, 10%));
+                    }
+                }
+            }
+
+            > .il label.checked.disabled{
                 .box {
-                    background: desaturate(@colorSilver, 20%);
-                    border-color: desaturate(@colorSilver, 20%);
+                    background: if((@value > 5), saturate(@colorBlack, 10%), saturate(@colorWhite, 10%));
+                    border-color: if((@value > 5), saturate(@colorBlack, 10%), saturate(@colorWhite, 10%));
                 }
             }
         }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorSilver, 20%);
-                border-color: desaturate(@colorSilver, 20%);
-            }
-        }
-    }
-
-    &.co-lsi{
-        > .il label{
-            span{
-                color: @colorExtraLightBlue;
-            }
-
-            .box{
-                border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
-                span{
-                    color: @colorLightSilver;
-                }
-            }
-
-            &.checked{
-                .box{
-                    background: @colorLightSilver;
-                    border-color: @colorLightSilver;
-                    color: @colorLightSilver;
-                }
-
-                .mo-icon{
-                    color: @colorExtraLightBlack;
-                }
-            }
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorLightSilver;
-        }
-
-        &.type-point{
-            .il label.checked .box{
-                background: @colorBlack !important;
-            }
-
-            .radio-point{
-                background: @colorLightSilver;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    span{
-                        color: lighten(@colorFormPlaceholder, 10%);
-                    }
-
-                    &:not(.checked):hover{
-                        border-color: @colorLightSilver;
-
-                        span{
-                            color: @colorLightSilver;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorLightSilver;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorLightSilver;
-                        border-color: @colorLightSilver;
-
-                        span{
-                            color: @colorBlack;
-                        }
-
-                        + label{
-                            border-left-color: @colorLightSilver;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorLightSilver, 20%);
-                    border-color: desaturate(@colorLightSilver, 20%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorLightSilver, 20%);
-                border-color: desaturate(@colorLightSilver, 20%);
-            }
-        }
-    }
-
-    &.co-elsi{
-        > .il label{
-            span{
-                color: @colorExtraLightBlue;
-            }
-
-            .box{
-                border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
-                span{
-                    color: @colorLightSilver;
-                }
-            }
-
-            &.checked{
-                .box{
-                    background: @colorExtraLightSilver;
-                    border-color: @colorExtraLightSilver;
-                    color: @colorExtraLightSilver;
-                }
-
-                .mo-icon{
-                    color: @colorExtraLightBlack;
-                }
-            }
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorExtraLightSilver;
-        }
-
-        &.type-point{
-            .il label.checked .box{
-                background: @colorBlack !important;
-            }
-
-            .radio-point{
-                background: @colorExtraLightSilver;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    span{
-                        color: lighten(@colorFormPlaceholder, 10%);
-                    }
-
-                    &:not(.checked):hover{
-                        border-color: @colorExtraLightSilver;
-
-                        span{
-                            color: @colorWhite;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorExtraLightSilver;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorExtraLightSilver;
-                        border-color: @colorExtraLightSilver;
-
-                        span{
-                            color: @colorBlack;
-                        }
-
-                        + label{
-                            border-left-color: @colorExtraLightSilver;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorExtraLightSilver, 20%);
-                    border-color: desaturate(@colorExtraLightSilver, 20%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorExtraLightSilver, 20%);
-                border-color: desaturate(@colorExtraLightSilver, 20%);
-            }
-        }
-    }
-
-    &.co-g{
-        > .il label{
-            span{
-                color: @colorGray;
-            }
-
-            .box{
-                border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
-                span{
-                    color: @colorWhite;
-                }
-            }
-
-            &.checked{
-                .box{
-                    background: @colorGray;
-                    border-color: @colorGray;
-                    color: @colorGray;
-                }
-
-                .mo-icon{
-                    color: @colorBlack;
-                }
-            }
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorGray;
-        }
-
-        &.type-point{
-            .il label.checked .box{
-                background: @colorBlack !important;
-            }
-
-            .radio-point{
-                background: @colorGray;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    span{
-                        color: lighten(@colorFormPlaceholder, 10%);
-                    }
-
-                    &:not(.checked):hover{
-                        border-color: @colorGray;
-
-                        span{
-                            color: @colorWhite;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorGray;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorGray;
-                        border-color: @colorGray;
-
-                        span{
-                            color: @colorBlack;
-                        }
-
-                        + label{
-                            border-left-color: @colorGray;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorGray, 20%);
-                    border-color: desaturate(@colorGray, 20%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorGray, 20%);
-                border-color: desaturate(@colorGray, 20%);
-            }
-        }
-    }
-
-    &.co-lg{
-        > .il label{
-            span{
-                color: @colorGray;
-            }
-
-            .box{
-                border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
-                span{
-                    color: @colorWhite;
-                }
-            }
-
-            &.checked{
-                .box{
-                    background: @colorLightGray;
-                    border-color: @colorLightGray;
-                    color: @colorLightGray;
-                }
-
-                .mo-icon{
-                    color: @colorBlack;
-                }
-            }
-        }
-
-        &.border > .il label.checked{
-            border-color: @colorLightGray;
-        }
-
-        &.type-point{
-            .il label.checked .box{
-                background: @colorBlack !important;
-            }
-
-            .radio-point{
-                background: @colorLightGray;
-            }
-        }
-
-        &.type-button{
-            > .il {
-                label{
-                    span{
-                        color: lighten(@colorFormPlaceholder, 10%);
-                    }
-
-                    &:not(.checked):hover{
-                        border-color: @colorLightGray;
-
-                        span{
-                            color: @colorWhite;
-                        }
-
-                        &:not(.checked) + label:not(.checked){
-                            border-left-color: @colorLightGray;
-                        }
-                    }
-
-                    &.checked{
-                        background: @colorLightGray;
-                        border-color: @colorLightGray;
-
-                        span{
-                            color: @colorBlack;
-                        }
-
-                        + label{
-                            border-left-color: @colorLightGray;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.st-disabled,
-        &.st-readonly{
-            > .il label.checked{
-                .box {
-                    background: desaturate(@colorLightGray, 20%);
-                    border-color: desaturate(@colorLightGray, 20%);
-                }
-            }
-        }
-
-        > .il label.checked.disabled{
-            .box {
-                background: desaturate(@colorLightGray, 20%);
-                border-color: desaturate(@colorLightGray, 20%);
-            }
-        }
-    }
+    });
 
     &.co-wh{
         > .il label{
             span{
-                color: @colorGray;
+                color: @colorNeutral2;
             }
 
             .box{

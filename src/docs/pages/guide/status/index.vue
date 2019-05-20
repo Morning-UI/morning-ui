@@ -44,146 +44,25 @@
 
     ## 色彩
 
-    组件的配色，包含：`主题色`、`功能色`、`辅助色`。
+    色彩指定了组件采用的配色，常见的色彩包含：`主题色`、`功能色`、`辅助色`，完整的色彩名称及色值可在[设计/色彩](/design/color.html)中查看。
 
-    #### 主题色
+    在组件文档的`形态`标签中可查看组件支持的色彩，对于支持的色彩可通过组件的`color`配置来设置，比如：
 
-    UI的主色彩，Morning默认采用红色，使用者可以自己定义主题色。
-
-    <div class="colorFlex">
-        <div class="item w3" style="background:#f86f88;">
-            <p class="key">light-theme</p>
-            <p class="name">浅主题色</p>
-            <p class="color">#f86f88</p>
-        </div>
-        <div class="item w3" style="background:#f33d5d;">
-            <p class="key">theme</p>
-            <p class="name">主题色</p>
-            <p class="color">#f33d5d</p>
-        </div>
-        <div class="item w3" style="background:#d22343;">
-            <p class="key">dark-theme</p>
-            <p class="name">深主题色</p>
-            <p class="color">#d22343</p>
-        </div>
+    :::vue
+    @name:通过`color`设置组件的色彩
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-btn color="black">设置黑色的按钮</ui-btn>
+        <ui-btn color="neutral-6">设置中性色6的按钮</ui-btn>
     </div>
+    :::
 
-    #### 功能色
+    在非组件的样式中也建议使用Morning UI的配色来达到视觉效果的一致。在组件外使用这些颜色，可以使用以下方式：
 
-    功能色具有一定的含义，可以用在特定的场景，比如绿色表示成功，黄色表示警告。
-
-    <div class="colorFlex">
-        <div class="item w3" style="background:#4dbd67;">
-            <p class="key">success</p>
-            <p class="name">成功/正确</p>
-            <p class="color">#4dbd67</p>
-        </div>
-        <div class="item w3" style="background:#f0ad4e;">
-            <p class="key">warning</p>
-            <p class="name">警告/注意</p>
-            <p class="color">#f0ad4e</p>
-        </div>
-        <div class="item w3" style="background:#d64431;">
-            <p class="key">danger</p>
-            <p class="name">错误/危险</p>
-            <p class="color">#d64431</p>
-        </div>
-    </div>
-    
-    <div class="colorFlex">
-        <div class="item w3" style="background:#2185d0;">
-            <p class="key">primary</p>
-            <p class="name">主要/关键</p>
-            <p class="color">#2185d0</p>
-        </div>
-        <div class="item w3" style="background:#a9a9a9;">
-            <p class="key">minor</p>
-            <p class="name">次要/不醒目</p>
-            <p class="color">#a9a9a9</p>
-        </div>
-        <div class="item w3" style="background:#03a6b9;">
-            <p class="key">info</p>
-            <p class="name">信息/额外</p>
-            <p class="color">#03a6b9</p>
-        </div>
-    </div>
-
-    #### 辅助色
-
-    用于边框、背景、文本等场景。辅助色具有一定色阶，可用来表现层次。
-
-    <div class="colorFlex">
-        <div class="item w4 group">
-            <div class="item" style="background:#17212d">
-                <p class="key">black</p>
-                <p class="name">黑色</p>
-                <p class="color">#17212d</p>
-            </div>
-            <div class="item" style="background:#303c4b">
-                <p class="key">light-black</p>
-                <p class="name">浅黑色</p>
-                <p class="color">#303c4b</p>
-            </div>
-            <div class="item" style="background:#45505c">
-                <p class="key">extra-light-black</p>
-                <p class="name">超浅黑色</p>
-                <p class="color">#45505c</p>
-            </div>
-        </div>
-        <div class="item w4 group">
-            <div class="item" style="background:#7c8ba0">
-                <p class="key">blue</p>
-                <p class="name">青色</p>
-                <p class="color">#7c8ba0</p>
-            </div>
-            <div class="item" style="background:#8e9caf">
-                <p class="key">light-blue</p>
-                <p class="name">浅青色</p>
-                <p class="color">#8e9caf</p>
-            </div>
-            <div class="item" style="background:#a8b3c2">
-                <p class="key">extra-light-blue</p>
-                <p class="name">超浅青色</p>
-                <p class="color">#a8b3c2</p>
-            </div>
-        </div>
-        <div class="item w4 group colorDark">
-            <div class="item" style="background:#d6dde5">
-                <p class="key">silver</p>
-                <p class="name">银色</p>
-                <p class="color">#d6dde5</p>
-            </div>
-            <div class="item" style="background:#e2e8ee">
-                <p class="key">light-silver</p>
-                <p class="name">浅银色</p>
-                <p class="color">#e2e8ee</p>
-            </div>
-            <div class="item" style="background:#edf1f5">
-                <p class="key">extra-light-silver</p>
-                <p class="name">超浅银色</p>
-                <p class="color">#edf1f5</p>
-            </div>
-        </div>
-        <div class="item w4 group colorDark">
-            <div class="item" style="background:#e6e6e6">
-                <p class="key">gray</p>
-                <p class="name">灰色</p>
-                <p class="color">#e6e6e6</p>
-            </div>
-            <div class="item" style="background:#f0f0f0">
-                <p class="key">light-gray</p>
-                <p class="name">浅灰色</p>
-                <p class="color">#f0f0f0</p>
-            </div>
-            <div class="item" style="background:#fff">
-                <p class="key">white</p>
-                <p class="name">白色</p>
-                <p class="color">#ffffff</p>
-            </div>
-        </div>
-    </div>
-
-    你也可以在组件外使用这些颜色，查看：[配色](/component/uniformcolor.html)。
+    - 通过CSS类，请查看：[配色](/component/uniformcolor.html)
+    - 使用色值，请查看：[设计/色彩](/design/color.html)
 
     ## 状态
 

@@ -16,9 +16,9 @@ mor-datepicker{
 
         .input-group-addon{
             font-size: @fontSize*0.75;
-            color: @colorBlue;
+            color: @colorFormAddonFont;
             text-align: center;
-            background-color: @colorLightGray;
+            background-color: @colorFormAddonBg;
             border-top: 1px solid @colorFormBorder;
             border-bottom: 1px solid @colorFormBorder;
             border-left: 1px solid @colorFormBorder;
@@ -52,14 +52,14 @@ mor-datepicker{
         }
 
         .separator{
-            color: @colorBlue;
+            color: @colorFormAddonFont;
             text-align: center;
             box-sizing: border-box;
             border-top: 1px solid @colorFormBorder;
             border-bottom: 1px solid @colorFormBorder;
 
             &.block{
-                background-color: @colorLightGray;
+                background-color: @colorFormAddonBg;
             }
 
             &.inline{
@@ -320,10 +320,10 @@ mor-datepicker{
                     margin: 0;
                     cursor: pointer;
                     font-size: @fontSize*0.8125;
-                    color: @colorExtraLightBlue;
+                    color: @colorFormItemColor;
 
                     &:hover{
-                        color: @colorBlack;
+                        color: @colorFormItemColorHover;
                     }
                 }
             }
