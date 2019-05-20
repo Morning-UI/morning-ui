@@ -38,51 +38,19 @@ mor-mark{
     }
 
     &.co-bk{
-        background-color: lighten(@colorBlack, 25%);
+        background-color: @colorBlack;
     }
 
-    &.co-lbk{
-        background-color: lighten(@colorLightBlack, 25%);
-    }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-    &.co-elbk{
-        background-color: lighten(@colorExtraLightBlack, 25%);
-    }
-
-    &.co-bu{
-        background-color: lighten(@colorBlue, 18%);
-    }
-
-    &.co-lbu{
-        background-color: lighten(@colorLightBlue, 18%);
-    }
-
-    &.co-elbu{
-        background-color: lighten(@colorExtraLightBlue, 18%);
-    }
-
-    &.co-si{
-        background-color: lighten(@colorSilver, 0%);
-    }
-
-    &.co-lsi{
-        background-color: lighten(@colorLightSilver, 0%);
-    }
-
-    &.co-elsi{
-        background-color: lighten(@colorExtraLightSilver, 0%);
-    }
-
-    &.co-g{
-        background-color: lighten(@colorGray, 0%);
-    }
-
-    &.co-lg{
-        background-color: lighten(@colorLightGray, 0%);
-    }
+        &.co-n@{value}{
+            background-color: @@colorName;
+        }
+    });
 
     &.co-wh{
-        background-color: lighten(@colorWhite, 0%);
+        background-color: @colorWhite;
     }
 
     &.st-normal{}

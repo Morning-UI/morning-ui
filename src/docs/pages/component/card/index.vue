@@ -94,7 +94,7 @@
     卡片的头尾部支持HTML，所以可以组合出更复杂的头部。
     >tpl
     <div style="width:240px;height:360px;">
-        <ui-card color="extra-light-silver">
+        <ui-card color="neutral-1">
             <div slot="header">
                 <ui-h size="xxs">内容列表</ui-h>
                 <ui-textinput inside-name="搜索内容"></ui-textinput>
@@ -106,8 +106,8 @@
             <div>卡片</div>
             <div slot="footer">
                 <ui-label size="xs">标签1</ui-label>
-                <ui-label size="xs" color="light-blue">标签2</ui-label>
-                <ui-label size="xs" color="light-blue">标签3</ui-label>
+                <ui-label size="xs" color="neutral-3">标签2</ui-label>
+                <ui-label size="xs" color="neutral-3">标签3</ui-label>
             </div>
         </ui-card>
     </div>
@@ -123,7 +123,7 @@
     一般可以配合自定义头部内容使用。
     >tpl
     <div style="width:240px;height:360px;">
-        <ui-card color="extra-light-silver" class="inside-padding">
+        <ui-card color="neutral-1" class="inside-padding">
             <div slot="header">
                 <ui-h size="xxs">内容列表</ui-h>
                 <div class="operate" style="margin:10px 0">
@@ -135,8 +135,8 @@
             <div>卡片</div>
             <div slot="footer">
                 <ui-label size="xs">标签1</ui-label>
-                <ui-label size="xs" color="light-blue">标签2</ui-label>
-                <ui-label size="xs" color="light-blue">标签3</ui-label>
+                <ui-label size="xs" color="neutral-3">标签2</ui-label>
+                <ui-label size="xs" color="neutral-3">标签3</ui-label>
             </div>
         </ui-card>
     </div>
@@ -149,10 +149,10 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|不支持|-|
-    |色彩|全部|`theme`|
+    |色彩|全部(除`transparent`)|`theme`|
     |状态|不支持|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @layout:color

@@ -11,7 +11,7 @@ mor-breadcrumbs{
 
         li{
             display: inline-block;
-            color: @colorExtraLightBlue;
+            color: @colorComponentItemFont;
             vertical-align: middle;
 
             &:hover{
@@ -20,7 +20,7 @@ mor-breadcrumbs{
             }
 
             &.root:not(.choose){
-                color: @colorExtraLightBlue;
+                color: @colorComponentItemFont;
                 cursor: default;
             }
 
@@ -35,7 +35,7 @@ mor-breadcrumbs{
 
             &.separator{
                 cursor: default;
-                color: darken(@colorGray, 8%);
+                color: darken(@colorComponentItemBorder, 8%);
                 margin: 0 0.5em;
             }
         }

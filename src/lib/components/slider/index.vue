@@ -73,7 +73,7 @@
                 <morning-tip
                     :target="'#ui-slider-tip-'+this.uiid"
                     :ref="'ui-slider-tip-'+this.uiid"
-                    color="extra-light-blue"
+                    color="neutral-10"
                     trigger="method"
                     offset="0, 0"
                 >{{conf.tipFormatter(data.end)}}</morning-tip>

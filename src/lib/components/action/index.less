@@ -200,65 +200,15 @@ mor-action{
         }
     }
 
-    &.co-lbk {
-        .title h5{
-            color: @colorLightBlack;
-        }
-    }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-    &.co-elbk {
-        .title h5{
-            color: @colorExtraLightBlack;
+        &.co-n@{value}{
+            .title h5{
+                color: @@colorName;
+            }
         }
-    }
-
-    &.co-bu {
-        .title h5{
-            color: @colorBlue;
-        }
-    }
-
-    &.co-lbu {
-        .title h5{
-            color: @colorLightBlue;
-        }
-    }
-
-    &.co-elbu {
-        .title h5{
-            color: @colorExtraLightBlue;
-        }
-    }
-
-    &.co-si {
-        .title h5{
-            color: @colorSilver;
-        }
-    }
-
-    &.co-lsi {
-        .title h5{
-            color: @colorLightSilver;
-        }
-    }
-
-    &.co-elsi {
-        .title h5{
-            color: @colorExtraLightSilver;
-        }
-    }
-
-    &.co-g {
-        .title h5{
-            color: @colorGray;
-        }
-    }
-
-    &.co-lg {
-        .title h5{
-            color: @colorLightGray;
-        }
-    }
+    });
 
     &.co-wh {
         .title h5{

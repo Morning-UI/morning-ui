@@ -26,14 +26,14 @@
                 <template v-if="conf.direction === 'horizontal'">
                     <morning-btn
                         class="circle left-btn"
-                        color="extra-light-silver"
+                        color="neutral-3"
                         @emit="prev"
                     >
                         <i class="mo-icon mo-icon-left"></i>
                     </morning-btn>
                     <morning-btn
                         class="circle right-btn"
-                        color="extra-light-silver"
+                        color="neutral-3"
                         @emit="next"
                     >
                         <i class="mo-icon mo-icon-right"></i>
@@ -42,14 +42,14 @@
                 <template v-else>
                     <morning-btn
                         class="circle up-btn"
-                        color="extra-light-silver"
+                        color="neutral-3"
                         @emit="prev"
                     >
                         <i class="mo-icon mo-icon-up"></i>
                     </morning-btn>
                     <morning-btn
                         class="circle down-btn"
-                        color="extra-light-silver"
+                        color="neutral-3"
                         @emit="next"
                     >
                         <i class="mo-icon mo-icon-down"></i>

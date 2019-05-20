@@ -84,7 +84,7 @@
         <ui-drawer ref="demo4">
             <div slot="header">
                 <h1>This is title</h1>
-                <ui-link color="silver" js="window.morning.findVM('demo4').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
+                <ui-link color="neutral-4" js="window.morning.findVM('demo4').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
             </div>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo4').toggle(true);">显示抽屉</ui-link>
@@ -166,7 +166,7 @@
     <div>
         <ui-drawer ref="demo9" width="400px">
             <ui-box class="margin">
-                <ui-header size="xs" color="extra-light-black" class="underline">
+                <ui-header size="xs" color="neutral-10" class="underline">
                     个人资料
                 </ui-header>
                 <ui-dl class="horizontal" style="margin-top:1.5em;">
@@ -183,7 +183,7 @@
                 </ui-dl>
             </ui-box>
             <ui-box class="margin">
-                <ui-header size="xs" color="extra-light-black" class="underline">
+                <ui-header size="xs" color="neutral-10" class="underline">
                     支付信息
                 </ui-header>
                 <ui-dl class="horizontal" style="margin-top:1.5em;">
@@ -385,7 +385,7 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     [[[配置]]]
 
@@ -466,7 +466,7 @@
         <ui-drawer ref="demo18" :auto-close="false" width="400px">
             <div slot="header">
                 <h1>点击遮照区域不会关闭，需点右侧关闭</h1>
-                <ui-link color="silver" js="window.morning.findVM('demo18').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
+                <ui-link color="neutral-4" js="window.morning.findVM('demo18').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
             </div>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo18').toggle(true);">显示抽屉</ui-link>

@@ -30,7 +30,7 @@
                     <div class="bg"></div>
                     <div class="mark">
                         <template v-if="conf.currentType === 'progress' && index === (conf.doneStep + 1)">
-                            <morning-load :time="false"></morning-load>
+                            <morning-load :done-time="false"></morning-load>
                         </template>
                         <template v-else-if="conf.showIcon && index <= conf.doneStep">
                             <i class="mo-icon mo-icon-close" v-if="conf.failed.indexOf(index) !== -1"></i>
@@ -61,7 +61,7 @@
                     <div class="bg"></div>
                     <div class="mark">
                         <template v-if="conf.currentType === 'progress' && index === (conf.doneStep + 1)">
-                            <morning-load :time="false"></morning-load>
+                            <morning-load :done-time="false"></morning-load>
                         </template>
                         <template v-else-if="conf.showIcon && index <= conf.doneStep">
                             <i class="mo-icon mo-icon-close" v-if="conf.failed.indexOf(index) !== -1"></i>

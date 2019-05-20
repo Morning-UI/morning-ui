@@ -303,104 +303,23 @@ mor-badge{
         }
     }
 
-    &.co-lbk{
-        background-color: @colorLightBlack;
-        border-color: @colorLightBlack;
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        &.plain{
-            color: @colorLightBlack;
+        &.co-n@{value}{
+            background-color: @@colorName;
+            border-color: @@colorName;
+            color: if((@value > 5), @colorWhite, @colorBlack);
+
+            &.plain{
+                color: @@colorName;
+            }
         }
-    }
-
-    &.co-elbk{
-        background-color: @colorExtraLightBlack;
-        border-color: @colorExtraLightBlack;
-
-        &.plain{
-            color: @colorExtraLightBlack;
-        }
-    }
-
-    &.co-bu{
-        background-color: @colorBlue;
-        border-color: @colorBlue;
-
-        &.plain{
-            color: @colorBlue;
-        }
-    }
-
-    &.co-lbu{
-        background-color: @colorLightBlue;
-        border-color: @colorLightBlue;
-
-        &.plain{
-            color: @colorLightBlue;
-        }
-    }
-
-    &.co-elbu{
-        background-color: @colorExtraLightBlue;
-        border-color: @colorExtraLightBlue;
-
-        &.plain{
-            color: @colorExtraLightBlue;
-        }
-    }
-
-    &.co-si{
-        background-color: @colorSilver;
-        color: @colorLightBlack;
-        border-color: @colorSilver;
-
-        &.plain{
-            color: @colorSilver;
-        }
-    }
-
-    &.co-lsi{
-        background-color: @colorLightSilver;
-        color: @colorLightBlack;
-        border-color: @colorLightSilver;
-
-        &.plain{
-            color: @colorLightSilver;
-        }
-    }
-
-    &.co-elsi{
-        background-color: @colorExtraLightSilver;
-        color: @colorLightBlack;
-        border-color: @colorExtraLightSilver;
-
-        &.plain{
-            color: @colorExtraLightSilver;
-        }
-    }
-
-    &.co-g{
-        background-color: @colorGray;
-        color: @colorLightBlack;
-        border-color: @colorGray;
-
-        &.plain{
-            color: @colorGray;
-        }
-    }
-
-    &.co-lg{
-        background-color: @colorLightGray;
-        color: @colorLightBlack;
-        border-color: @colorLightGray;
-
-        &.plain{
-            color: @colorLightGray;
-        }
-    }
+    });
 
     &.co-wh{
         background-color: @colorWhite;
-        color: @colorLightBlack;
+        color: @colorBlack;
         border-color: @colorWhite;
 
         &.plain{

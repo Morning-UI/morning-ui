@@ -31,7 +31,7 @@
                 <morning-tip
                     v-if="!conf.src"
                     :target="'#mor-media-play-'+uiid"
-                    color="extra-light-black"
+                    color="neutral-10"
                 >
                     无视频
                 </morning-tip>

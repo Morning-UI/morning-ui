@@ -168,7 +168,7 @@
     下面是一个完整的模拟盒内容推荐布局。
     >tpl
     <div>
-        <ui-dialog ref="demo9" color="light-gray">
+        <ui-dialog ref="demo9" color="neutral-1">
             <div slot="header">选择一张图片</div>
             <ui-grid class="fill">
                 <div class="row">
@@ -211,12 +211,12 @@
             <ui-link js="window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
         </ui-dialog>
 
-        <ui-dialog ref="demo11" color="extra-light-black" width="40%" height="40%">
+        <ui-dialog ref="demo11" color="neutral-10" width="40%" height="40%">
             <div slot="header">第二级</div>
             <ui-link js="window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</ui-link>
         </ui-dialog>
 
-        <ui-dialog ref="demo12" color="light-blue" width="20%" height="20%">
+        <ui-dialog ref="demo12" color="neutral-7" width="20%" height="20%">
             <div slot="header">第三级</div>
         </ui-dialog>
 
@@ -231,10 +231,10 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|不支持|-|
-    |色彩|全部|`theme`|
+    |色彩|全部(除`transparent`)|`theme`|
     |状态|不支持|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @layout:color

@@ -81,10 +81,10 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|全部|`m`|
-    |色彩|全部|`theme`|
+    |色彩|全部(除`transparent`)|`theme`|
     |状态|`normal`<br/>`apparent`|`normal`|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @name:尺寸
@@ -216,7 +216,7 @@
     <div>
         <ui-badge type="counter" :count="count"></ui-badge>
         <ui-badge color="primary" class="circle" type="counter" :count="count"></ui-badge>
-        <ui-badge color="blue" class="plain" type="counter" :count="count"></ui-badge>
+        <ui-badge color="neutral-8" class="plain" type="counter" :count="count"></ui-badge>
         <br>
         <ui-link js="this.count++">计数+1</ui-link>
     </div>

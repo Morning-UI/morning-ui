@@ -1,253 +1,42 @@
 @import './var.less';
 
-.mo-co-font-theme{
-    color: @colorTheme;
+.generate-color(@name, @color) {
+    .mo-co-font-@{name} {
+        color: @color;
+    }
+
+    .mo-co-border-@{name} {
+        border-color: @color;
+    }
+
+    .mo-co-bg-@{name} {
+        background-color: @color;
+    }
 }
 
-.mo-co-font-light-theme{
-    color: @colorLightTheme;
-}
+.generate-color(theme, @colorTheme);
+.generate-color(light-theme, @colorLightTheme);
+.generate-color(dark-theme, @colorDarkTheme);
 
-.mo-co-font-dark-theme{
-    color: @colorDarkTheme;
-}
+.generate-color(success, @colorSuccess);
+.generate-color(warning, @colorWarning);
+.generate-color(danger, @colorDanger);
+.generate-color(primary, @colorPrimary);
+.generate-color(minor, @colorMinor);
+.generate-color(info, @colorInfo);
 
-.mo-co-font-success{
-    color: @colorSuccess;
-}
+.generate-color(neutral-11, @colorNeutral11);
+.generate-color(neutral-10, @colorNeutral10);
+.generate-color(neutral-9, @colorNeutral9);
+.generate-color(neutral-8, @colorNeutral8);
+.generate-color(neutral-7, @colorNeutral7);
+.generate-color(neutral-6, @colorNeutral6);
+.generate-color(neutral-5, @colorNeutral5);
+.generate-color(neutral-4, @colorNeutral4);
+.generate-color(neutral-3, @colorNeutral3);
+.generate-color(neutral-2, @colorNeutral2);
+.generate-color(neutral-1, @colorNeutral1);
 
-.mo-co-font-warning{
-    color: @colorWarning;
-}
-
-.mo-co-font-danger{
-    color: @colorDanger;
-}
-
-.mo-co-font-primary{
-    color: @colorPrimary;
-}
-
-.mo-co-font-minor{
-    color: @colorMinor;
-}
-
-.mo-co-font-info{
-    color: @colorInfo;
-}
-
-.mo-co-font-black{
-    color: @colorBlack;
-}
-
-.mo-co-font-light-black{
-    color: @colorLightBlack;
-}
-
-.mo-co-font-extra-light-black{
-    color: @colorExtraLightBlack;
-}
-
-.mo-co-font-blue{
-    color: @colorBlue;
-}
-
-.mo-co-font-light-blue{
-    color: @colorLightBlue;
-}
-
-.mo-co-font-extra-light-blue{
-    color: @colorExtraLightBlue;
-}
-
-.mo-co-font-silver{
-    color: @colorSilver;
-}
-
-.mo-co-font-light-silver{
-    color: @colorLightSilver;
-}
-
-.mo-co-font-extra-light-silver{
-    color: @colorExtraLightSilver;
-}
-
-.mo-co-font-gray{
-    color: @colorGray;
-}
-
-.mo-co-font-light-gray{
-    color: @colorLightGray;
-}
-
-.mo-co-font-white{
-    color: @colorWhite;
-}
-
-.mo-co-border-theme{
-    border-color: @colorTheme;
-}
-
-.mo-co-border-light-theme{
-    border-color: @colorLightTheme;
-}
-
-.mo-co-border-dark-theme{
-    border-color: @colorDarkTheme;
-}
-
-.mo-co-border-success{
-    border-color: @colorSuccess;
-}
-
-.mo-co-border-warning{
-    border-color: @colorWarning;
-}
-
-.mo-co-border-danger{
-    border-color: @colorDanger;
-}
-
-.mo-co-border-primary{
-    border-color: @colorPrimary;
-}
-
-.mo-co-border-minor{
-    border-color: @colorMinor;
-}
-
-.mo-co-border-info{
-    border-color: @colorInfo;
-}
-
-.mo-co-border-black{
-    border-color: @colorBlack;
-}
-
-.mo-co-border-light-black{
-    border-color: @colorLightBlack;
-}
-
-.mo-co-border-extra-light-black{
-    border-color: @colorExtraLightBlack;
-}
-
-.mo-co-border-blue{
-    border-color: @colorBlue;
-}
-
-.mo-co-border-light-blue{
-    border-color: @colorLightBlue;
-}
-
-.mo-co-border-extra-light-blue{
-    border-color: @colorExtraLightBlue;
-}
-
-.mo-co-border-silver{
-    border-color: @colorSilver;
-}
-
-.mo-co-border-light-silver{
-    border-color: @colorLightSilver;
-}
-
-.mo-co-border-extra-light-silver{
-    border-color: @colorExtraLightSilver;
-}
-
-.mo-co-border-gray{
-    border-color: @colorGray;
-}
-
-.mo-co-border-light-gray{
-    border-color: @colorLightGray;
-}
-
-.mo-co-border-white{
-    border-color: @colorWhite;
-}
-
-.mo-co-bg-theme{
-    background-color: @colorTheme;
-}
-
-.mo-co-bg-light-theme{
-    background-color: @colorLightTheme;
-}
-
-.mo-co-bg-dark-theme{
-    background-color: @colorDarkTheme;
-}
-
-.mo-co-bg-success{
-    background-color: @colorSuccess;
-}
-
-.mo-co-bg-warning{
-    background-color: @colorWarning;
-}
-
-.mo-co-bg-danger{
-    background-color: @colorDanger;
-}
-
-.mo-co-bg-primary{
-    background-color: @colorPrimary;
-}
-
-.mo-co-bg-minor{
-    background-color: @colorMinor;
-}
-
-.mo-co-bg-info{
-    background-color: @colorInfo;
-}
-
-.mo-co-bg-black{
-    background-color: @colorBlack;
-}
-
-.mo-co-bg-light-black{
-    background-color: @colorLightBlack;
-}
-
-.mo-co-bg-extra-light-black{
-    background-color: @colorExtraLightBlack;
-}
-
-.mo-co-bg-blue{
-    background-color: @colorBlue;
-}
-
-.mo-co-bg-light-blue{
-    background-color: @colorLightBlue;
-}
-
-.mo-co-bg-extra-light-blue{
-    background-color: @colorExtraLightBlue;
-}
-
-.mo-co-bg-silver{
-    background-color: @colorSilver;
-}
-
-.mo-co-bg-light-silver{
-    background-color: @colorLightSilver;
-}
-
-.mo-co-bg-extra-light-silver{
-    background-color: @colorExtraLightSilver;
-}
-
-.mo-co-bg-gray{
-    background-color: @colorGray;
-}
-
-.mo-co-bg-light-gray{
-    background-color: @colorLightGray;
-}
-
-.mo-co-bg-white{
-    background-color: @colorWhite;
-}
+.generate-color(white, @colorWhite);
+.generate-color(black, @colorBlack);
+.generate-color(transparent, @colorTransparent);

@@ -17,20 +17,20 @@ mor-counter{
         padding: 0 0.7em;
         border: 1px @colorFormBorder solid;
         cursor: pointer;
-        background: @colorExtraLightSilver;
-        color: @colorBlue;
+        background: @colorComponentItemBg;
+        color: @colorComponentItemFont;
         position: relative;
 
         &:hover{
-            color: @colorLightBlack;
-            background: @colorLightSilver;
+            color: @colorComponentItemFontHover;
+            background: @colorComponentItemBgHover;
             border-color: @colorFormBorderHover;
         }
 
         &:active{
             color: @colorBlack;
             border-color: @colorFormBorderFocus;
-            background: @colorSilver;
+            background: darken(@colorComponentItemBgHover, 7%);
             z-index: 3;
         }
     }
@@ -217,12 +217,12 @@ mor-counter{
             cursor: not-allowed !important;
 
             &:hover{
-                color: @colorBlue;
+                color: @colorComponentItemFont;
                 border-color: @colorFormBorderDisable;
             }
 
             &:active{
-                color: @colorBlue;
+                color: @colorComponentItemFont;
                 border-color: @colorFormBorderDisable;
                 z-index: 1;
             }

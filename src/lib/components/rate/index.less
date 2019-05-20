@@ -34,7 +34,7 @@ mor-rate{
             > i,
             > span{
                 vertical-align: top;
-                color: @colorSilver;
+                color: darken(@colorComponentItemBg, 8%);
                 pointer-events: none;
             }
 
@@ -48,7 +48,9 @@ mor-rate{
             &.half-current{
                 > i,
                 > span{
-                    background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorTheme ~'), color-stop(0.5, ' @colorSilver ~'), to(' @colorSilver ~'))';
+                    /* stylelint-disable max-line-length */
+                    background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorTheme ~'), color-stop(0.5, ' darken(@colorComponentItemBg, 8%) ~'), to(' darken(@colorComponentItemBg, 8%) ~'))';
+                    /* stylelint-enable max-line-length */
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                 }
@@ -67,7 +69,7 @@ mor-rate{
                 &.half-current{
                     > i,
                     > span{
-                        color: @colorSilver;
+                        color: darken(@colorComponentItemBgHover, 8%);
                         background: none;
                         -webkit-background-clip: initial;
                         -webkit-text-fill-color: initial;
@@ -77,7 +79,9 @@ mor-rate{
                 &.half-hover{
                     > i,
                     > span{
-                        background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorLightTheme ~'), color-stop(0.5, ' @colorSilver ~'), to(' @colorSilver ~'))';
+                        /* stylelint-disable max-line-length */
+                        background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorLightTheme ~'), color-stop(0.5, ' darken(@colorComponentItemBgHover, 8%) ~'), to(' darken(@colorComponentItemBgHover, 8%) ~'))';
+                        /* stylelint-enable max-line-length */
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
                     }
@@ -94,7 +98,7 @@ mor-rate{
             }
 
             + .note{
-                color: @colorBlue;
+                color: @colorFormTextNote;
             }
         }
     }
@@ -177,7 +181,9 @@ mor-rate{
                 &.half-current{
                     > i,
                     > span{
-                        background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorDarkTheme ~'), color-stop(0.5, ' @colorSilver ~'), to(' @colorSilver ~'))';
+                        /* stylelint-disable max-line-length */
+                        background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorDarkTheme ~'), color-stop(0.5, ' darken(@colorComponentItemBgHover, 8%) ~'), to(' darken(@colorComponentItemBgHover, 8%) ~'))';
+                        /* stylelint-enable max-line-length */
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
                     }

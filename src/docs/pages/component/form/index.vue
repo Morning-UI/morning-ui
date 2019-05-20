@@ -240,7 +240,7 @@
     |色彩|不支持|-|
     |状态|暂不支持(使用单个表单来控制)|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     [[[配置]]]
 

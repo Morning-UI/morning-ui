@@ -261,105 +261,23 @@ mor-statistic{
         }
     }
 
-    &.co-lbk{
-        .value{
-            color: @colorLightBlack;
-        }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        .label{
-            color: lighten(@colorLightBlack, 30%);
-        }
-    }
+        &.co-n@{value}{
+            .value{
+                color: @@colorName;
+            }
 
-    &.co-elbk{
-        .value{
-            color: @colorExtraLightBlack;
-        }
+            .label when (@value > 5){
+                color: lighten(@@colorName, @value%);
+            }
 
-        .label{
-            color: lighten(@colorExtraLightBlack, 30%);
+            .label when (@value <= 5){
+                color: darken(@@colorName, @value * 1.5%);
+            }
         }
-    }
-
-    &.co-bu{
-        .value{
-            color: @colorBlue;
-        }
-
-        .label{
-            color: lighten(@colorBlue, 20%);
-        }
-    }
-
-    &.co-lbu{
-        .value{
-            color: @colorLightBlue;
-        }
-
-        .label{
-            color: lighten(@colorLightBlue, 20%);
-        }
-    }
-
-    &.co-elbu{
-        .value{
-            color: @colorExtraLightBlue;
-        }
-
-        .label{
-            color: lighten(@colorExtraLightBlue, 20%);
-        }
-    }
-
-    &.co-si{
-        .value{
-            color: @colorSilver;
-        }
-
-        .label{
-            color: darken(@colorSilver, 5%);
-        }
-    }
-
-    &.co-lsi{
-        .value{
-            color: @colorLightSilver;
-        }
-
-        .label{
-            color: darken(@colorLightSilver, 5%);
-        }
-    }
-
-    &.co-elsi{
-        .value{
-            color: @colorExtraLightSilver;
-        }
-
-        .label{
-            color: darken(@colorExtraLightSilver, 5%);
-        }
-    }
-
-    &.co-g{
-        .value{
-            color: @colorGray;
-        }
-
-        .label{
-            color: darken(@colorGray, 5%);
-        }
-    }
-
-    &.co-lg{
-        .value{
-            color: @colorLightGray;
-        }
-
-        .label{
-            color: darken(@colorLightGray, 5%);
-        }
-    }
+    });
 
     &.co-wh{
         .value{

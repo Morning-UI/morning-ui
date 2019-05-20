@@ -294,245 +294,33 @@ mor-link{
         }
     }
 
-    &.co-lbk{
-        color: @colorLightBlack;
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorLightBlack;
+        &.co-n@{value}{
+            color: @@colorName;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @@colorName;
+                }
+            }
+
+            &:not(.st-disabled):hover,
+            &.st-hover{
+                color: if((@value > 5), lighten(@@colorName, 15%), darken(@@colorName, 15%));
+            }
+
+            &:not(.st-disabled):active,
+            &.st-active{
+                color: if((@value > 5), lighten(@@colorName, 25%), darken(@@colorName, 25%));
+            }
+
+            &.st-disabled{
+                color: if((@value > 5), lighten(@@colorName, 40%), darken(@@colorName, 30%));
             }
         }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: lighten(@colorLightBlack, 15%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: lighten(@colorLightBlack, 25%);
-        }
-
-        &.st-disabled{
-            color: lighten(@colorLightBlack, 40%);
-        }
-    }
-
-    &.co-elbk{
-        color: @colorExtraLightBlack;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlack;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: lighten(@colorExtraLightBlack, 10%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: lighten(@colorExtraLightBlack, 20%);
-        }
-
-        &.st-disabled{
-            color: lighten(@colorExtraLightBlack, 40%);
-        }
-    }
-
-    &.co-bu{
-        color: @colorBlue;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorBlue;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorBlue, 15%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorBlue, 20%);
-        }
-
-        &.st-disabled{
-            color: lighten(@colorBlue, 20%);
-        }
-    }
-
-    &.co-lbu{
-        color: @colorLightBlue;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorLightBlue;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorLightBlue, 15%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorLightBlue, 20%);
-        }
-
-        &.st-disabled{
-            color: lighten(@colorLightBlue, 20%);
-        }
-    }
-
-    &.co-elbu{
-        color: @colorExtraLightBlue;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightBlue;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorExtraLightBlue, 15%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorExtraLightBlue, 20%);
-        }
-
-        &.st-disabled{
-            color: lighten(@colorExtraLightBlue, 10%);
-        }
-    }
-
-    &.co-si{
-        color: @colorSilver;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorSilver;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorSilver, 8%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorSilver, 12%);
-        }
-
-        &.st-disabled{
-            color: darken(@colorSilver, 30%);
-        }
-    }
-
-    &.co-lsi{
-        color: @colorLightSilver;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorLightSilver;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorLightSilver, 8%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorLightSilver, 12%);
-        }
-
-        &.st-disabled{
-            color: darken(@colorLightSilver, 30%);
-        }
-    }
-
-    &.co-elsi{
-        color: @colorExtraLightSilver;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorExtraLightSilver;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorExtraLightSilver, 8%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorExtraLightSilver, 12%);
-        }
-
-        &.st-disabled{
-            color: darken(@colorExtraLightSilver, 30%);
-        }
-    }
-
-    &.co-g{
-        color: @colorGray;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorGray;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorGray, 8%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorGray, 12%);
-        }
-
-        &.st-disabled{
-            color: darken(@colorGray, 30%);
-        }
-    }
-
-    &.co-lg{
-        color: @colorLightGray;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorLightGray;
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            color: darken(@colorLightGray, 8%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            color: darken(@colorLightGray, 12%);
-        }
-
-        &.st-disabled{
-            color: darken(@colorLightGray, 30%);
-        }
-    }
+    });
 
     &.co-wh{
         color: @colorWhite;

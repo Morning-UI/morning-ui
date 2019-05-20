@@ -94,7 +94,7 @@
 
                     <morning-popover :target="'#mor-upload-input-remote-'+uiid" v-if="conf.allowUrl">
                         <div class="url-upload-box">
-                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-4" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                         </div>
                     </morning-popover>
                 </div>
@@ -124,7 +124,7 @@
 
                         <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
                             <div class="url-upload-box">
-                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-4" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                             </div>
                         </morning-popover>
                     </div>
@@ -222,11 +222,11 @@
         <template v-else-if="conf.type === 'button'">
             <morning-popover :target="'#mor-upload-button-remote-'+uiid" v-if="conf.allowUrl">
                 <div class="url-upload-box">
-                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-4" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                 </div>
             </morning-popover>
             <morning-btn
-                color="light-gray"
+                color="neutral-2"
                 class="upload-file upload-button"
                 :state="ismax ? 'disabled' : conf.state"
                 :id="'mor-upload-button-remote-'+uiid"

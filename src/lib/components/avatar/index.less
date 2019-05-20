@@ -193,75 +193,21 @@ mor-avatar{
         }
     }
 
-    &.co-lbk{
-        > .wrap{
-            background-color: @colorLightBlack;
-        }
-    }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-    &.co-elbk{
-        > .wrap{
-            background-color: @colorExtraLightBlack;
+        &.co-n@{value}{
+            > .wrap{
+                background-color: @@colorName;
+                color: if((@value > 5), @colorWhite, @colorBlack);
+            }
         }
-    }
-
-    &.co-bu{
-        > .wrap{
-            background-color: @colorBlue;
-        }
-    }
-
-    &.co-lbu{
-        > .wrap{
-            background-color: @colorLightBlue;
-        }
-    }
-
-    &.co-elbu{
-        > .wrap{
-            background-color: @colorExtraLightBlue;
-        }
-    }
-
-    &.co-si{
-        > .wrap{
-            background-color: @colorSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-lsi{
-        > .wrap{
-            background-color: @colorLightSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-elsi{
-        > .wrap{
-            background-color: @colorExtraLightSilver;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-g{
-        > .wrap{
-            background-color: @colorGray;
-            color: @colorLightBlack;
-        }
-    }
-
-    &.co-lg{
-        > .wrap{
-            background-color: @colorLightGray;
-            color: @colorLightBlack;
-        }
-    }
+    });
 
     &.co-wh{
         > .wrap{
             background-color: @colorWhite;
-            color: @colorLightBlack;
+            color: @colorBlack;
         }
     }
 
@@ -273,7 +219,7 @@ mor-avatar{
 
     &.avatar-image{
         > .wrap{
-            background-color: @colorExtraLightSilver;
+            background-color: @colorComponentItemBg;
         }
     }
 

@@ -41,7 +41,7 @@ mor-progress{
             height: @fontSize*0.5;
             border-radius: @fontSize;
             width: calc(100% - 60px);
-            background: @colorExtraLightSilver;
+            background: @colorNeutral1;
             margin: @fontSize*0.25 0;
             vertical-align: top;
         }
@@ -51,7 +51,7 @@ mor-progress{
             border-radius: @fontSize;
             width: 50%;
             height: 100%;
-            background: @colorBlue;
+            background: @colorNeutral7;
             transition: width 0.2s, color 0.2s;
 
             &.done{
@@ -80,7 +80,7 @@ mor-progress{
             font-size: @fontSize*0.8125;
             vertical-align: top;
             position: relative;
-            color: @colorExtraLightBlack;
+            color: @colorBlack;
             line-height: @fontSize;
 
             .mo-icon-error-cf{
@@ -101,11 +101,11 @@ mor-progress{
                 }
 
                 .track-bg{
-                    stroke: @colorExtraLightSilver;
+                    stroke: @colorNeutral1;
                 }
 
                 .main{
-                    stroke: @colorBlue;
+                    stroke: @colorNeutral7;
                     transition: stroke-dasharray 0.2s, stroke-opacity 0.2s;
 
                     &.done{
@@ -249,135 +249,36 @@ mor-progress{
         }
     }
 
-    &.co-lbk{
-        .progress-wrap .main{
-            background: @colorLightBlack;
-        }
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
 
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorLightBlack;
-        }
-    }
+        &.co-n@{value}{
+            .line-track when (@value <= 5) {
+                background: @colorNeutral10;
+            }
 
-    &.co-elbk{
-        .progress-wrap .main{
-            background: @colorExtraLightBlack;
-        }
+            .progress-wrap .ring-track svg .track-bg when (@value <= 5) {
+                background: @colorNeutral10;
+            }
 
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorExtraLightBlack;
-        }
-    }
+            .progress-wrap .main{
+                background: @@colorName;
+            }
 
-    &.co-bu{
-        .progress-wrap .main{
-            background: @colorBlue;
-        }
+            .progress-wrap .ring-track svg .main{
+                stroke: @@colorName;
+            }
 
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorBlue;
+            .progress-wrap .note{
+                color: if((@value > 5), @colorBlack, @colorWhite);
+            }
         }
-    }
-
-    &.co-lbu{
-        .progress-wrap .main{
-            background: @colorLightBlue;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorLightBlue;
-        }
-    }
-
-    &.co-elbu{
-        .progress-wrap .main{
-            background: @colorExtraLightBlue;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorExtraLightBlue;
-        }
-    }
-
-    &.co-si{
-        .line-track,
-        .progress-wrap .ring-track svg .track-bg{
-            background: @colorLightBlack;
-        }
-
-        .progress-wrap .main{
-            background: @colorSilver;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorSilver;
-        }
-    }
-
-    &.co-lsi{
-        .line-track,
-        .progress-wrap .ring-track svg .track-bg{
-            background: @colorLightBlack;
-        }
-
-        .progress-wrap .main{
-            background: @colorLightSilver;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorLightSilver;
-        }
-    }
-
-    &.co-elsi{
-        .line-track,
-        .progress-wrap .ring-track svg .track-bg{
-            background: @colorLightBlack;
-        }
-
-        .progress-wrap .main{
-            background: @colorExtraLightSilver;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorExtraLightSilver;
-        }
-    }
-
-    &.co-g{
-        .line-track,
-        .progress-wrap .ring-track svg .track-bg{
-            background: @colorLightBlack;
-        }
-
-        .progress-wrap .main{
-            background: @colorGray;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorGray;
-        }
-    }
-
-    &.co-lg{
-        .line-track,
-        .progress-wrap .ring-track svg .track-bg{
-            background: @colorLightBlack;
-        }
-
-        .progress-wrap .main{
-            background: @colorLightGray;
-        }
-
-        .progress-wrap .ring-track svg .main{
-            stroke: @colorLightGray;
-        }
-    }
+    });
 
     &.co-wh{
         .line-track,
         .progress-wrap .ring-track svg .track-bg{
-            background: @colorLightBlack;
+            background: @colorNeutral10;
         }
 
         .progress-wrap .main{
@@ -386,6 +287,10 @@ mor-progress{
 
         .progress-wrap .ring-track svg .main{
             stroke: @colorWhite;
+        }
+
+        .progress-wrap .note{
+            color: @colorWhite;
         }
     }
 

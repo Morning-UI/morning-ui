@@ -34,14 +34,14 @@ mor-menu{
     &.line{
         .pos-top{
             .root-menu{
-                border-bottom: 1px @colorLightSilver solid;
+                border-bottom: 1px @colorNeutral2 solid;
 
                 > li{
                     > a{
-                        border-bottom: 1px @colorLightSilver solid;
+                        border-bottom: 1px @colorNeutral2 solid;
 
                         &:hover{
-                            color: @colorExtraLightBlack;
+                            color: @colorNeutral10;
                             border-bottom-color: @colorTheme;
                         }
 
@@ -85,7 +85,7 @@ mor-menu{
 
         .pos-side{
             .root-menu{
-                border-right: 1px @colorLightSilver solid;
+                border-right: 1px @colorNeutral2 solid;
 
                 &.current,
                 &.last-current{
@@ -144,7 +144,7 @@ mor-menu{
                 > li{
                     > a{
                         &:hover{
-                            background-color: @colorExtraLightSilver;
+                            background-color: @colorNeutral2;
                         }
 
                         &.current{
@@ -692,17 +692,17 @@ mor-menu{
             .root-menu,
             mor-private-menu .sub-menu{
                 background: @colorBlack;
-                color: @colorGray;
+                color: @colorNeutral3;
             }
 
             .root-menu,
             .sub-menu{
                 > li > a{
-                    color: @colorLightBlue;
+                    color: @colorNeutral6;
                 }
 
                 > li > a:hover{
-                    color: @colorLightGray;
+                    color: @colorNeutral2;
                 }
 
                 > li.current > a{
@@ -714,7 +714,7 @@ mor-menu{
                         background: darken(@colorBlack, 10%);
 
                         &:hover{
-                            color: @colorLightBlue;
+                            color: @colorNeutral6;
                             background: darken(@colorBlack, 10%);
                         }
                     }
@@ -722,8 +722,8 @@ mor-menu{
             }
 
             .sub-menu > li.menu-group-title{
-                border-top-color: @colorExtraLightBlack;
-                border-bottom-color: @colorExtraLightBlack;
+                border-top-color: @colorNeutral10;
+                border-bottom-color: @colorNeutral10;
             }
         }
 
@@ -731,35 +731,35 @@ mor-menu{
             .pos-top,
             .pos-side{
                 .root-menu{
-                    border-bottom-color: @colorExtraLightBlack;
-                    border-right-color: @colorExtraLightBlack;
+                    border-bottom-color: @colorNeutral10;
+                    border-right-color: @colorNeutral10;
                 }
 
                 .root-menu,
                 .sub-menu{
                     > li > a:hover{
-                        border-bottom-color: @colorExtraLightBlack;
+                        border-bottom-color: @colorNeutral10;
                     }
 
                     > li.current > a{
-                        border-bottom-color: @colorLightGray;
+                        border-bottom-color: @colorNeutral3;
                         border-right-color: lighten(@colorBlack, 15%);
                         background: lighten(@colorBlack, 3%);
                     }
 
                     > li.last-current > a{
-                        border-right-color: @colorLightGray;
+                        border-right-color: @colorNeutral3;
                     }
 
                     > li > a{
-                        border-bottom-color: @colorExtraLightBlack;
+                        border-bottom-color: @colorNeutral10;
                     }
                 }
             }
 
             .pos-top > .root-menu{
                 > li > a{
-                    border-bottom: 2px @colorExtraLightBlack solid;
+                    border-bottom: 2px @colorNeutral10 solid;
                 }
             }
         }
@@ -768,14 +768,14 @@ mor-menu{
             .pos-top{
                 .root-menu{
                     > li:not(.is-disable) > a:hover{
-                        background-color: @colorExtraLightBlack;
+                        background-color: @colorNeutral10;
                     }
                 }
 
                 .root-menu,
                 .sub-menu{
                     > li.current > a{
-                        background-color: @colorExtraLightBlack;
+                        background-color: @colorNeutral10;
                     }
                 }
             }
@@ -783,7 +783,7 @@ mor-menu{
             .pos-side{
                 // .sub-menu{
                 //     > li.last-current > a{
-                //         background-color: @colorExtraLightBlack;
+                //         background-color: @colorNeutral10;
                 //     }
                 // }
             }
@@ -800,286 +800,6 @@ mor-menu{
         }
     }
 
-    &.co-lbk{
-        .pos-top,
-        .pos-side{
-            .root-menu,
-            mor-private-menu .sub-menu{
-                background: @colorLightBlack;
-                color: @colorGray;
-            }
-
-            .root-menu,
-            .sub-menu{
-                > li > a{
-                    color: @colorLightBlue;
-                }
-
-                > li > a:hover{
-                    color: @colorLightGray;
-                }
-
-                > li.current > a{
-                    color: @colorWhite;
-                }
-
-                > li.is-disable{
-                    > a{
-                        background: darken(@colorLightBlack, 10%);
-
-                        &:hover{
-                            color: @colorLightBlue;
-                            background: darken(@colorLightBlack, 10%);
-                        }
-                    }
-                }
-            }
-
-            .sub-menu > li.menu-group-title{
-                border-top-color: @colorExtraLightBlack;
-                border-bottom-color: @colorExtraLightBlack;
-            }
-        }
-
-        &.line{
-            .pos-top,
-            .pos-side{
-                .root-menu{
-                    border-bottom-color: @colorExtraLightBlack;
-                    border-right-color: @colorExtraLightBlack;
-                }
-
-                .root-menu,
-                .sub-menu{
-                    > li > a:hover{
-                        border-bottom-color: @colorExtraLightBlack;
-                    }
-
-                    > li.current > a{
-                        border-bottom-color: @colorLightGray;
-                        border-right-color: lighten(@colorLightBlack, 15%);
-                        background: lighten(@colorLightBlack, 3%);
-                    }
-
-                    > li.last-current > a{
-                        border-right-color: @colorLightGray;
-                    }
-
-                    > li > a{
-                        border-bottom-color: @colorExtraLightBlack;
-                    }
-                }
-            }
-
-            .pos-top > .root-menu{
-                > li > a{
-                    border-bottom: 2px @colorExtraLightBlack solid;
-                }
-            }
-        }
-
-        &.block{
-            .pos-top{
-                .root-menu{
-                    > li:not(.is-disable) > a:hover{
-                        background-color: @colorExtraLightBlack;
-                    }
-                }
-
-                .root-menu,
-                .sub-menu{
-                    > li.current > a{
-                        background-color: @colorExtraLightBlack;
-                    }
-                }
-            }
-
-            // .pos-side{
-            //     .sub-menu{
-            //         > li.last-current > a{
-            //             background-color: @colorExtraLightBlack;
-            //         }
-            //     }
-            // }
-        }
-
-        &.collapse{
-            .pos-side{
-                .root-menu{
-                    > li > a:hover{
-                        background: lighten(@colorLightBlack, 5%);
-                    }
-                }
-            }
-        }
-    }
-
-    &.co-elbk{
-        .pos-top,
-        .pos-side{
-            .root-menu,
-            mor-private-menu .sub-menu{
-                background: @colorExtraLightBlack;
-                color: @colorLightGray;
-            }
-
-            .root-menu,
-            .sub-menu{
-                > li > a{
-                    color: @colorLightBlue;
-                }
-
-                > li > a:hover{
-                    color: lighten(@colorLightGray, 5%);
-                }
-
-                > li.current > a{
-                    color: @colorWhite;
-                }
-
-                > li.is-disable{
-                    > a{
-                        background: darken(@colorExtraLightBlack, 10%);
-
-                        &:hover{
-                            color: @colorLightBlue;
-                            background: darken(@colorExtraLightBlack, 10%);
-                        }
-                    }
-                }
-            }
-
-            .sub-menu > li.menu-group-title{
-                border-top-color: @colorBlue;
-                border-bottom-color: @colorBlue;
-            }
-        }
-
-        &.line{
-            .pos-top,
-            .pos-side{
-                .root-menu{
-                    border-bottom-color: @colorBlue;
-                    border-right-color: @colorBlue;
-                }
-
-                .root-menu,
-                .sub-menu{
-                    > li > a:hover{
-                        border-bottom-color: @colorBlue;
-                    }
-
-                    > li.current > a{
-                        border-bottom-color: lighten(@colorLightGray, 5%);
-                        border-right-color: lighten(@colorExtraLightBlack, 15%);
-                        background: lighten(@colorExtraLightBlack, 3%);
-                    }
-
-                    > li.last-current > a{
-                        border-right-color: lighten(@colorLightGray, 5%);
-                    }
-
-                    > li > a{
-                        border-bottom-color: @colorBlue;
-                    }
-                }
-            }
-
-            .pos-top > .root-menu{
-                > li > a{
-                    border-bottom: 2px @colorBlue solid;
-                }
-            }
-        }
-
-        &.block{
-            .pos-top{
-                .root-menu{
-                    > li:not(.is-disable) > a:hover{
-                        background-color: @colorBlue;
-                    }
-                }
-
-                .root-menu,
-                .sub-menu{
-                    > li.current > a{
-                        background-color: @colorBlue;
-                    }
-                }
-            }
-
-            // .pos-side{
-            //     .sub-menu{
-            //         > li.last-current > a{
-            //             background-color: @colorBlue;
-            //         }
-            //     }
-            // }
-        }
-
-        &.collapse{
-            .pos-side{
-                .root-menu{
-                    > li > a:hover{
-                        background: lighten(@colorExtraLightBlack, 5%);
-                    }
-                }
-            }
-        }
-    }
-
-    &.co-g{
-        .pos-top,
-        .pos-side{
-            .root-menu,
-            .sub-menu{
-                background: @colorGray;
-
-                > li.is-disable{
-                    > a{
-                        background: darken(@colorGray, 5%);
-                    }
-                }
-            }
-        }
-
-        &.collapse{
-            .pos-side{
-                .root-menu{
-                    > li > a:hover{
-                        background: darken(@colorGray, 8%);
-                    }
-                }
-            }
-        }
-    }
-
-    &.co-lg{
-        .pos-top,
-        .pos-side{
-            .root-menu,
-            .sub-menu{
-                background: @colorLightGray;
-
-                > li.is-disable{
-                    > a{
-                        background: darken(@colorLightGray, 5%);
-                    }
-                }
-            }
-        }
-
-        &.collapse{
-            .pos-side{
-                .root-menu{
-                    > li > a:hover{
-                        background: darken(@colorLightGray, 10%);
-                    }
-                }
-            }
-        }
-    }
-
     &.co-wh{
         .pos-top,
         .pos-side{
@@ -1088,10 +808,10 @@ mor-menu{
                 background: @colorWhite;
 
                 > li > a{
-                    color: @colorLightBlue;
+                    color: @colorNeutral8;
 
                     &:hover{
-                        color: @colorExtraLightBlack;
+                        color: @colorNeutral10;
                     }
 
                     &.current{
@@ -1105,10 +825,10 @@ mor-menu{
 
                 > li.is-disable{
                     > a{
-                        background: @colorExtraLightSilver;
+                        background: @colorNeutral1;
 
                         &:hover{
-                            color: @colorLightBlue;
+                            color: @colorNeutral6;
                         }
                     }
                 }
@@ -1119,7 +839,7 @@ mor-menu{
                     &.is-disable{
                         > a{
                             &:hover{
-                                border-bottom-color: @colorLightSilver;
+                                border-bottom-color: @colorNeutral2;
                             }
                         }
                     }
@@ -1131,7 +851,7 @@ mor-menu{
             .pos-side{
                 .root-menu{
                     > li > a:hover{
-                        background: @colorLightSilver;
+                        background: @colorNeutral2;
                     }
                 }
             }
@@ -1171,7 +891,7 @@ mor-menu{
                         &.has-child-menu{
                             &:hover{
                                 cursor: default;
-                                color: @colorLightBlue;
+                                color: @colorNeutral6;
                             }
                         }
                     }
@@ -1212,7 +932,7 @@ mor-menu{
                         }
 
                         &:hover{
-                            background: @colorExtraLightSilver;
+                            background: @colorNeutral1;
                         }
                     }
 

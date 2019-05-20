@@ -27,7 +27,7 @@ mor-transfer{
 
     .transfer-source-list,
     .transfer-target-list{
-        border: 1px @colorSilver solid;
+        border: 1px @colorFormBorder solid;
         background: @colorWhite;
         border-radius: 3px;
         overflow: hidden;
@@ -40,7 +40,7 @@ mor-transfer{
         height: 100%;
 
         .transfer-title{
-            background: @colorExtraLightSilver;
+            background: @colorComponentItemBg;
             font-size: 0;
             position: relative;
             flex-shrink: 0;
@@ -110,7 +110,7 @@ mor-transfer{
         .transfer-footer{
             flex-shrink: 0;
             flex-grow: 0;
-            border-top: 1px @colorLightSilver solid;
+            border-top: 1px lighten(@colorFormBorder, 3%) solid;
 
             &:empty{
                 display: none;
@@ -354,7 +354,7 @@ mor-transfer{
     &.st-readonly{
         .transfer-source-list,
         .transfer-target-list{
-            border: 1px @colorExtraLightBlue solid;
+            border: 1px @colorFormBorderDisable solid;
         }
     }
 

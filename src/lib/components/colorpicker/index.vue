@@ -98,7 +98,7 @@
                         <i class="mo-icon mo-icon-copy"></i>
                     </div>
                 </div>
-                <morning-tip :ref="'mor-colorpicker-copytip-'+uiid" :target="'#mor-colorpicker-copy-'+uiid" color="light-blue" offset="3px 0">
+                <morning-tip :ref="'mor-colorpicker-copytip-'+uiid" :target="'#mor-colorpicker-copy-'+uiid" color="neutral-10" offset="3px 0">
                     {{data.copyNote || colorString}}
                 </morning-tip>
                 <div class="slider-tool">
@@ -185,7 +185,7 @@
                         <morning-tip
                             :key="index"
                             :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index"
-                            color="light-blue"
+                            color="neutral-10"
                             offset="3px 0"
                         >
                             {{color}}
@@ -211,7 +211,7 @@
                         <morning-tip
                             :key="index"
                             :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index"
-                            color="light-blue"
+                            color="neutral-10"
                             offset="3px 0">
                             {{color}}
                         </morning-tip>

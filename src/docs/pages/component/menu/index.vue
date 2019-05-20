@@ -886,10 +886,10 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|`m` `s` `xs` `xxs`|`m`|
-    |色彩|`white` `gray` `light-gray` `black` `light-black` `extra-light-black`|`white`|
+    |色彩|`white` `black`|`white`|
     |状态|不支持|-|
 
-    <a href="/guide/status.html">查看形态文档</a>
+    <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
     :::vue
     @name:尺寸
@@ -999,7 +999,7 @@
     >name
     color-repeat
     >rules
-    color:gray
+    color:neutral-white
     >tpl
     <div style="width:700px;padding:20px;">
         <ui-menu
@@ -1071,7 +1071,7 @@
     >name
     color-repeat
     >rules
-    color:gray
+    color:neutral-white
     >desc
     侧边栏导航菜单的尺寸。
     >tpl
@@ -1146,7 +1146,7 @@
     >name
     color-repeat
     >rules
-    color:gray
+    color:neutral-white
     >desc
     线条风格的菜单。
     >tpl
@@ -1290,7 +1290,7 @@
     >name
     color-repeat
     >rules
-    color:gray
+    color:neutral-white
     >desc
     区块风格的菜单。
     >tpl
@@ -1438,7 +1438,7 @@
     >name
     color-repeat
     >rules
-    color:black
+    color:neutral-black
     >tpl
     <div style="width:700px;padding:20px;background:#646b75;">
         <ui-menu
@@ -1510,9 +1510,9 @@
     >name
     color-repeat
     >rules
-    color:black
+    color:neutral-black
     >desc
-    侧边栏导航菜单的尺寸。
+    侧边栏导航菜单。
     >tpl
     <div style="width:260px;padding:20px;background:#646b75;">
         <ui-menu
@@ -1585,7 +1585,7 @@
     >name
     color-repeat
     >rules
-    color:black
+    color:neutral-black
     >desc
     线条风格的菜单。
     >tpl
@@ -1729,7 +1729,7 @@
     >name
     color-repeat
     >rules
-    color:black
+    color:neutral-black
     >desc
     区块风格的菜单。
     >tpl

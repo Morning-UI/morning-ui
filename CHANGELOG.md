@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 0.12.34
+
+#### 改进
+
+- `辅助色`现在被改进为`中性色`，原有的12种辅助色现在调整为14种中性色，详见文档的`设计/色彩`章节
+- 所有组件中使用和支持的`辅助色`现在被调整为`中性色`
+- 优化`ui-select`、`ui-multiinput`、`ui-multiform`中的多选项目样式 
+
+#### 修复
+
+- 修复`ui-multiinput`可以输入空数值的问题
+- 修复`ui-steps`加载中状态未显示的问题
+
+#### 更多
+
+- 新增`设计/色彩`文档，原有的`形态/色彩`部分内容被调整至此文档
+- `ui-menu`移除4种色彩支持：`gray`、`light-gray`、`light-black`、`extra-light-black`
+
+<ui-label color="primary">升级注意事项</ui-label>
+
+- `ui-menu`移除4种色彩支持，请替换为`white`或`black`
+- `辅助色`现在被改进为`中性色`，在使用`color`配置以及配色时需要注意以下替换（色值不一致）：
+    - `light-black` 替换为 `neutral-11`
+    - `extra-light-black` 替换为 `neutral-10`
+    - `blue` 替换为 `neutral-9`
+    - `light-blue` 替换为 `neutral-8`
+    - `extra-light-blue` 替换为 `neutral-7`
+    - `silver` 替换为 `neutral-6`
+    - `light-silver` 替换为 `neutral-5`
+    - `extra-light-silver` 替换为 `neutral-4`
+    - `light-gray` 替换为 `neutral-3`
+    - `gray` 替换为 `neutral-2`
+    - 新增`neutral-1`、`transparent`
+
 ## 0.12.33
 
 #### 新特性
