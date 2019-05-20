@@ -18,6 +18,29 @@
     
     ### 更新记录
 
+    ### 0.12.35 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月20日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.35" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.35/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.35/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+    
+    - `ui-calendar`新增`mode`配置，可以设置日历仅显示月份、年份
+    - `ui-datepicker`新增`month-pick`配置，可以设置月份选择器
+    
+    #### 修复
+
+    - 修复`ui-pagination`分页显示不正确的问题
+    
+    ---
+
     ### 0.12.34 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">

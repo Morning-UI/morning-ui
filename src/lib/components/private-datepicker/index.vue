@@ -20,6 +20,7 @@
         :highlight-days="highlightDays"
         :has-quick-pick="hasQuickPick"
         :relative="relative"
+        :month-pick="monthPick"
         :_date-popover-add-class="_datePopoverAddClass"
         :_relative-time="_relativeTime"
         :_range-input-direction="_rangeInputDirection"
@@ -72,6 +73,7 @@
                 :highlight-now="true"
                 :highlight-hover="true"
                 :background-mark="backgroundMark"
+                :mode="conf.monthPick ? 'month' : 'day'"
 
                 @date-click="_clickDate"
                 @month-change="_refreshSelectable"
@@ -162,6 +164,10 @@ export default {
             type : Boolean,
             default : false
         },
+        monthPick : {
+            type : Boolean,
+            default : false
+        },
         _datePopoverAddClass : {
             type : String,
             default : ''
@@ -191,6 +197,7 @@ export default {
                 highlightDays : this.highlightDays,
                 hasQuickPick : this.hasQuickPick,
                 relative : this.relative,
+                monthPick : this.monthPick,
                 _datePopoverAddClass : this._datePopoverAddClass,
                 _relativeTime : this._relativeTime,
                 _rangeInputDirection : this._rangeInputDirection

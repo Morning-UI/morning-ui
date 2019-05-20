@@ -1,6 +1,23 @@
 # CHANGELOG
 
+## 0.12.35
+
+`2019年5月20日`
+
+#### 新特性
+
+- `ui-calendar`新增`mode`配置，可以设置日历仅显示月份、年份
+- `ui-datepicker`新增`month-pick`配置，可以设置月份选择器
+
+#### 修复
+
+- 修复`ui-pagination`分页显示不正确的问题
+
+---
+
 ## 0.12.34
+
+`2019年5月20日`
 
 #### 改进
 
@@ -18,7 +35,7 @@
 - 新增`设计/色彩`文档，原有的`形态/色彩`部分内容被调整至此文档
 - `ui-menu`移除4种色彩支持：`gray`、`light-gray`、`light-black`、`extra-light-black`
 
-<ui-label color="primary">升级注意事项</ui-label>
+__升级注意事项__
 
 - `ui-menu`移除4种色彩支持，请替换为`white`或`black`
 - `辅助色`现在被改进为`中性色`，在使用`color`配置以及配色时需要注意以下替换（色值不一致）：
@@ -35,6 +52,8 @@
     - 新增`neutral-1`、`transparent`
 
 ## 0.12.33
+
+`2019年5月16日`
 
 #### 新特性
 

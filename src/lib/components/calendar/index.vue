@@ -10,25 +10,26 @@
         :pick-year-month="pickYearMonth"
         :background-mark="backgroundMark"
         :point-mark="pointMark"
+        :mode="mode"
     >
 
     <header>
         <div class="topbar">
             <div class="prev-box">
-                <i class="mo-icon mo-icon-left-thin-twin prev-year" v-show="!data.monthPick && !data.yearPick" @click="_prevYear()"></i>
-                <i class="mo-icon mo-icon-left-thin prev" v-show="!data.monthPick" @click="_prev()"></i>
+                <i class="mo-icon mo-icon-left-thin-twin prev-year" v-show="conf.mode === 'day' && !data.monthPick && !data.yearPick" @click="_prevYear()"></i>
+                <i class="mo-icon mo-icon-left-thin prev" v-show="(conf.mode === 'day' && !data.monthPick) || (conf.mode === 'month') || (conf.mode === 'year')" @click="_prev()"></i>
             </div>
             <div class="yearmonth">
                 <span class="year" @click="toggleYearPick()">{{current.year}}年</span>
-                <span class="month" @click="toggleMonthPick()">{{current.month + 1}}月</span>
+                <span class="month" @click="toggleMonthPick()" v-show="conf.mode === 'day'">{{current.month + 1}}月</span>
             </div>
             <div class="next-box">
-                <i class="mo-icon mo-icon-right-thin next" v-show="!data.monthPick" @click="_next()"></i>
-                <i class="mo-icon mo-icon-right-thin-twin next-year" v-show="!data.monthPick && !data.yearPick" @click="_nextYear()"></i>
+                <i class="mo-icon mo-icon-right-thin next" v-show="(conf.mode === 'day' && !data.monthPick) || (conf.mode === 'month') || (conf.mode === 'year')" @click="_next()"></i>
+                <i class="mo-icon mo-icon-right-thin-twin next-year" v-show="conf.mode === 'day' && !data.monthPick && !data.yearPick" @click="_nextYear()"></i>
             </div>
         </div>
         <div class="titlebar">
-            <ul class="weekday" v-show="!data.monthPick && !data.yearPick">
+            <ul class="weekday" v-show="conf.mode === 'day' && !data.monthPick && !data.yearPick">
                 <li>日</li>
                 <li>一</li>
                 <li>二</li>
@@ -37,32 +38,62 @@
                 <li>五</li>
                 <li>六</li>
             </ul>
-            <div class="title" v-show="data.monthPick">
+            <div class="title" v-show="(conf.mode === 'day' && data.monthPick) || (conf.mode === 'month' && !data.yearPick)">
                 选择月份
             </div>
-            <div class="title" v-show="data.yearPick">
+            <div class="title" v-show="(conf.mode === 'day' && data.yearPick) || (conf.mode === 'month' && data.yearPick) || conf.mode === 'year'">
                 选择年份 <morning-small>({{pickyears.start}} - {{pickyears.end}})</morning-small>
             </div>
         </div>
     </header>
 
     <div class="calendar">
-        
-        <div class="pick-year" v-show="data.yearPick">
+
+        <div class="pick-year" v-show="conf.mode === 'year' || data.yearPick">
             <template v-for="(i, index) in pickyears.years">
-                <div class="year" :key="index" @click="set(i, 'year');toggleYearPick(false);">
-                    {{i}}
+                <div
+                    class="year"
+                    :key="index"
+                    :class="[
+                        _highlightClass({
+                            date : new Date(i, 0, 1)
+                        })
+                    ]"
+                    @click="_yearClick(i);((conf.mode === 'month') && _dateClick(new Date(i, 0, 1)))"
+                    @mouseenter="(conf.mode === 'month') && _dateEnter(new Date(i, 0, 1))"
+                    @mouseleave="(conf.mode === 'month') && _dateLeave(new Date(i, 0, 1))"
+                >
+                    <div class="select-layer">
+                        <div class="inner-layer">
+                            {{i}}
+                        </div>
+                    </div>
                 </div>
             </template>
         </div>
-        <div class="pick-month" v-show="data.monthPick">
+        <div class="pick-month" v-show="(conf.mode === 'month' && !data.yearPick) || data.monthPick">
             <template v-for="(i, index) in 12">
-                <div class="month" :key="index" @click="set(i - 1, 'month');toggleMonthPick(false);">
-                    {{i}}月
+                <div
+                    class="month"
+                    :key="index"
+                    :class="[
+                        _highlightClass({
+                            date : new Date(_getYear(data.current), i - 1, 1)
+                        })
+                    ]"
+                    @click="_monthClick(i);((conf.mode === 'month') && _dateClick(new Date(_getYear(data.current), i - 1, 1)))"
+                    @mouseenter="(conf.mode === 'month') && _dateEnter(new Date(_getYear(data.current), i - 1, 1))"
+                    @mouseleave="(conf.mode === 'month') && _dateLeave(new Date(_getYear(data.current), i - 1, 1))"
+                >
+                    <div class="select-layer">
+                        <div class="inner-layer">
+                            {{i}}月
+                        </div>
+                    </div>
                 </div>
             </template>
         </div>
-        <div class="pick-day" v-show="!data.monthPick && !data.yearPick">
+        <div class="pick-day" v-show="conf.mode === 'day' && !data.monthPick && !data.yearPick">
             <template v-for="(item, index) in calendarDay">
                 <div
                     class="day"
@@ -103,9 +134,14 @@ import {
     startOfDay,
     endOfDay,
     startOfMonth,
+    endOfMonth,
+    startOfYear,
+    endOfYear,
     lastDayOfMonth,
     eachDayOfInterval,
     isSameDay,
+    isSameMonth,
+    isSameYear,
     isValid,
     isWithinInterval,
     addDays,
@@ -149,6 +185,11 @@ export default {
         pointMark : {
             type : Array,
             default : (() => [])
+        },
+        mode : {
+            type : String,
+            default : 'day',
+            validator : (value => ['day', 'month', 'year'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -161,14 +202,17 @@ export default {
                 highlightDay : this.highlightDay,
                 pickYearMonth : this.pickYearMonth,
                 backgroundMark : this.backgroundMark,
-                pointMark : this.pointMark
+                pointMark : this.pointMark,
+                mode : this.mode
             };
 
         },
         moreClass : function () {
 
             return {
-                'highlight-hover' : !!this.highlightHover
+                'highlight-hover' : !!this.highlightHover,
+                'mode-month' : (this.conf.mode === 'month'),
+                'mode-year' : (this.conf.mode === 'year')
             };
 
         },
@@ -335,7 +379,12 @@ export default {
         },
         _isNow : function (item) {
 
-            if (this.conf.highlightNow && isSameDay(item.date, this.data.now)) {
+            if (this.conf.highlightNow &&
+                (
+                    (this.conf.mode === 'day' && isSameDay(item.date, this.data.now)) ||
+                    (this.conf.mode === 'month' && isSameMonth(item.date, this.data.now)) ||
+                    (this.conf.mode === 'year' && isSameYear(item.date, this.data.now))
+                )) {
 
                 return {
                     now : true
@@ -354,18 +403,54 @@ export default {
 
                 for (let item of this.data.highlightDay) {
 
-                    if (item instanceof Array &&
-                        isWithinInterval(date, {
-                            start : startOfDay(item[0]),
-                            end : endOfDay(item[1])
-                        })) {
+                    if (this.conf.mode === 'day') {
 
-                        result = true;
+                        if (item instanceof Array &&
+                            isWithinInterval(date, {
+                                start : startOfDay(item[0]),
+                                end : endOfDay(item[1])
+                            })) {
 
-                    } else if (isSameDay(date, item)) {
+                            result = true;
 
-                        result = true;
+                        } else if (isSameDay(date, item)) {
 
+                            result = true;
+
+                        }
+
+                    } else if (this.conf.mode === 'month') {
+
+                        if (item instanceof Array &&
+                            isWithinInterval(date, {
+                                start : startOfMonth(item[0]),
+                                end : endOfMonth(item[1])
+                            })) {
+
+                            result = true;
+
+                        } else if (isSameMonth(date, item)) {
+
+                            result = true;
+
+                        }
+                        
+                    } else if (this.conf.mode === 'year') {
+
+                        if (item instanceof Array &&
+                            isWithinInterval(date, {
+                                start : startOfYear(item[0]),
+                                end : endOfYear(item[1])
+                            })) {
+
+                            result = true;
+
+                        } else if (isSameYear(date, item)) {
+
+                            result = true;
+
+                        }
+                        
                     }
 
                     if (result) {
@@ -404,9 +489,17 @@ export default {
                 nextDate = item.next.date;
                 nextHighlight = this._isHighlight(nextDate);
 
-            } else {
-
+            } else if (this.conf.mode === 'day') {
+                    
                 nextHighlight = this._isHighlight(addDays(currentDate, 1));
+
+            } else if (this.conf.mode === 'month') {
+                
+                nextHighlight = this._isHighlight(addMonths(currentDate, 1));
+
+            } else if (this.conf.mode === 'year') {
+                
+                nextHighlight = this._isHighlight(addYears(currentDate, 1));
 
             }
 
@@ -415,9 +508,17 @@ export default {
                 prevDate = item.prev.date;
                 prevHighlight = this._isHighlight(prevDate);
 
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 prevHighlight = this._isHighlight(addDays(currentDate, -1));
+
+            } else if (this.conf.mode === 'month') {
+                
+                prevHighlight = this._isHighlight(addMonths(currentDate, -1));
+
+            } else if (this.conf.mode === 'year') {
+                
+                prevHighlight = this._isHighlight(addYears(currentDate, -1));
 
             }
 
@@ -461,14 +562,33 @@ export default {
         _backgroundMarkHighlight : function (item) {
 
             let result = {};
+            let start;
+            let end;
 
             for (let mark of this.conf.backgroundMark) {
+
+                if (this.conf.mode === 'day') {
+
+                    start = mark.start;
+                    end = mark.end;
+
+                } else if (this.conf.mode === 'month') {
+
+                    start = startOfMonth(mark.start);
+                    end = endOfMonth(mark.end);
+
+                } else if (this.conf.mode === 'year') {
+
+                    start = startOfYear(mark.start);
+                    end = endOfYear(mark.end);
+
+                }
 
                 if (isValid(mark.start) &&
                     isValid(mark.end) &&
                     isWithinInterval(item.date, {
-                        start : mark.start,
-                        end : mark.end
+                        start : start,
+                        end : end
                     })) {
 
                     if (mark.style) {
@@ -493,14 +613,33 @@ export default {
         _pointMarkHighlight : function (item) {
 
             let result = {};
+            let start;
+            let end;
 
             for (let mark of this.conf.pointMark) {
+
+                if (this.conf.mode === 'day') {
+
+                    start = mark.start;
+                    end = mark.end;
+
+                } else if (this.conf.mode === 'month') {
+
+                    start = startOfMonth(mark.start);
+                    end = endOfMonth(mark.end);
+
+                } else if (this.conf.mode === 'year') {
+
+                    start = startOfYear(mark.start);
+                    end = endOfYear(mark.end);
+
+                }
 
                 if (isValid(mark.start) &&
                     isValid(mark.end) &&
                     isWithinInterval(item.date, {
-                        start : mark.start,
-                        end : mark.end
+                        start : start,
+                        end : end
                     })) {
 
                     if (mark.style) {
@@ -543,9 +682,17 @@ export default {
 
                 this.data.yearPickOffset -= ((yearRange * 2) + 1);
 
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 this.sub();
+
+            } else if (this.conf.mode === 'month') {
+
+                this.sub(1, 'year');
+
+            } else if (this.conf.mode === 'year') {
+
+                this.sub(((yearRange * 2) + 1), 'year');
 
             }
 
@@ -556,9 +703,17 @@ export default {
 
                 this.data.yearPickOffset += ((yearRange * 2) + 1);
 
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 this.add();
+
+            } else if (this.conf.mode === 'month') {
+
+                this.add(1, 'year');
+
+            } else if (this.conf.mode === 'year') {
+
+                this.add(((yearRange * 2) + 1), 'year');
 
             }
 
@@ -576,6 +731,36 @@ export default {
         _dateLeave : function (date) {
 
             this.$emit('date-leave', date);
+
+        },
+        _yearClick : function (i) {
+
+            if (this.data.yearPick) {
+
+                this.set(i, 'year');
+                this.toggleYearPick(false);
+
+            }
+
+        },
+        _monthClick : function (i) {
+
+            if (this.data.monthPick) {
+
+                this.set(i - 1, 'month');
+                this.toggleMonthPick(false);
+
+            }
+
+        },
+        _getYear : function (date) {
+
+            return getYear(date);
+
+        },
+        _startOfMonth : function (date) {
+
+            return startOfMonth(date);
 
         },
         toggleYearPick : function (show) {

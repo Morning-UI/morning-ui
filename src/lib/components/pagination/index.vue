@@ -21,7 +21,7 @@
 
     <div class="list">
         <template v-if="conf.type === 'normal'">
-            <template v-if="data.hideEnd > 0">
+            <template v-if="data.hideEnd > 1">
                 <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
             </template>
 
@@ -34,7 +34,7 @@
                 </a>
             </template>
 
-            <template v-if="data.hideEnd > 0">
+            <template v-if="data.hideEnd > 1">
                 <a href="javascript:;" class="ignore">...</a>
             </template>
 
@@ -262,43 +262,46 @@ export default {
 
             let end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2),
-                len = this.data.total,
+                len = this.conf.maxShow,
                 offset = this.data.currentPage - Math.ceil((len - 1) / 2);
-
+            
             this.data.hideEnd = end - (start > this.data.total ? (start - this.data.total) - 1 : 0);
             this.data.hideStart = start + (end < 1 ? - end + 1 : 0);
 
-            if (this.data.hideEnd > 0) {
+            if (this.data.total <= this.conf.maxShow) {
 
-                len -= 1;
+                this.data.len = this.data.total;
+                this.data.offset = 0;
+
+            } else {
+            
+                if (this.data.hideEnd > 0) {
+                
+                    len -= 1;
+                
+                }
+                
+                if (this.data.hideStart < this.data.total) {
+                
+                    len -= 1;
+                
+                }
+
+                this.data.len = len;
+                
+                if (offset < 0) {
+                
+                    offset = 0;
+                
+                } else if (offset + this.data.len > this.data.total) {
+                
+                    offset = this.data.total - this.data.len;
+                
+                }
+                
+                this.data.offset = offset;
 
             }
-
-            if (this.data.hideStart < this.data.total) {
-
-                len -= 1;
-
-            }
-
-            if (this.conf.maxShow >= this.data.total && len > this.conf.maxShow) {
-
-                len = this.conf.maxShow;
-
-            }
-
-            this.data.len = len;
-
-            if (offset < 0) {
-
-                offset = 0;
-
-            } else if (offset + this.data.len > this.data.total) {
-
-                offset = this.data.total - this.data.len;
-
-            }
-
-            this.data.offset = offset;
 
         },
         getPage : function () {

@@ -30338,38 +30338,40 @@ exports.default = {
 
             var end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2),
-                len = this.data.total,
+                len = this.conf.maxShow,
                 offset = this.data.currentPage - Math.ceil((len - 1) / 2);
 
             this.data.hideEnd = end - (start > this.data.total ? start - this.data.total - 1 : 0);
             this.data.hideStart = start + (end < 1 ? -end + 1 : 0);
 
-            if (this.data.hideEnd > 0) {
+            if (this.data.total <= this.conf.maxShow) {
 
-                len -= 1;
+                this.data.len = this.data.total;
+                this.data.offset = 0;
+            } else {
+
+                if (this.data.hideEnd > 0) {
+
+                    len -= 1;
+                }
+
+                if (this.data.hideStart < this.data.total) {
+
+                    len -= 1;
+                }
+
+                this.data.len = len;
+
+                if (offset < 0) {
+
+                    offset = 0;
+                } else if (offset + this.data.len > this.data.total) {
+
+                    offset = this.data.total - this.data.len;
+                }
+
+                this.data.offset = offset;
             }
-
-            if (this.data.hideStart < this.data.total) {
-
-                len -= 1;
-            }
-
-            if (this.conf.maxShow >= this.data.total && len > this.conf.maxShow) {
-
-                len = this.conf.maxShow;
-            }
-
-            this.data.len = len;
-
-            if (offset < 0) {
-
-                offset = 0;
-            } else if (offset + this.data.len > this.data.total) {
-
-                offset = this.data.total - this.data.len;
-            }
-
-            this.data.offset = offset;
         },
         getPage: function getPage() {
 
@@ -31649,6 +31651,37 @@ var yearRange = 12; //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -31687,6 +31720,13 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        mode: {
+            type: String,
+            default: 'day',
+            validator: function validator(value) {
+                return ['day', 'month', 'year'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -31699,13 +31739,16 @@ exports.default = {
                 highlightDay: this.highlightDay,
                 pickYearMonth: this.pickYearMonth,
                 backgroundMark: this.backgroundMark,
-                pointMark: this.pointMark
+                pointMark: this.pointMark,
+                mode: this.mode
             };
         },
         moreClass: function moreClass() {
 
             return {
-                'highlight-hover': !!this.highlightHover
+                'highlight-hover': !!this.highlightHover,
+                'mode-month': this.conf.mode === 'month',
+                'mode-year': this.conf.mode === 'year'
             };
         },
         current: function current() {
@@ -31895,7 +31938,7 @@ exports.default = {
         },
         _isNow: function _isNow(item) {
 
-            if (this.conf.highlightNow && (0, _dateFns.isSameDay)(item.date, this.data.now)) {
+            if (this.conf.highlightNow && (this.conf.mode === 'day' && (0, _dateFns.isSameDay)(item.date, this.data.now) || this.conf.mode === 'month' && (0, _dateFns.isSameMonth)(item.date, this.data.now) || this.conf.mode === 'year' && (0, _dateFns.isSameYear)(item.date, this.data.now))) {
 
                 return {
                     now: true
@@ -31919,15 +31962,42 @@ exports.default = {
                         var item = _step3.value;
 
 
-                        if (item instanceof Array && (0, _dateFns.isWithinInterval)(date, {
-                            start: (0, _dateFns.startOfDay)(item[0]),
-                            end: (0, _dateFns.endOfDay)(item[1])
-                        })) {
+                        if (this.conf.mode === 'day') {
 
-                            result = true;
-                        } else if ((0, _dateFns.isSameDay)(date, item)) {
+                            if (item instanceof Array && (0, _dateFns.isWithinInterval)(date, {
+                                start: (0, _dateFns.startOfDay)(item[0]),
+                                end: (0, _dateFns.endOfDay)(item[1])
+                            })) {
 
-                            result = true;
+                                result = true;
+                            } else if ((0, _dateFns.isSameDay)(date, item)) {
+
+                                result = true;
+                            }
+                        } else if (this.conf.mode === 'month') {
+
+                            if (item instanceof Array && (0, _dateFns.isWithinInterval)(date, {
+                                start: (0, _dateFns.startOfMonth)(item[0]),
+                                end: (0, _dateFns.endOfMonth)(item[1])
+                            })) {
+
+                                result = true;
+                            } else if ((0, _dateFns.isSameMonth)(date, item)) {
+
+                                result = true;
+                            }
+                        } else if (this.conf.mode === 'year') {
+
+                            if (item instanceof Array && (0, _dateFns.isWithinInterval)(date, {
+                                start: (0, _dateFns.startOfYear)(item[0]),
+                                end: (0, _dateFns.endOfYear)(item[1])
+                            })) {
+
+                                result = true;
+                            } else if ((0, _dateFns.isSameYear)(date, item)) {
+
+                                result = true;
+                            }
                         }
 
                         if (result) {
@@ -31974,18 +32044,30 @@ exports.default = {
 
                 nextDate = item.next.date;
                 nextHighlight = this._isHighlight(nextDate);
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 nextHighlight = this._isHighlight((0, _dateFns.addDays)(currentDate, 1));
+            } else if (this.conf.mode === 'month') {
+
+                nextHighlight = this._isHighlight((0, _dateFns.addMonths)(currentDate, 1));
+            } else if (this.conf.mode === 'year') {
+
+                nextHighlight = this._isHighlight((0, _dateFns.addYears)(currentDate, 1));
             }
 
             if (item.prev) {
 
                 prevDate = item.prev.date;
                 prevHighlight = this._isHighlight(prevDate);
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 prevHighlight = this._isHighlight((0, _dateFns.addDays)(currentDate, -1));
+            } else if (this.conf.mode === 'month') {
+
+                prevHighlight = this._isHighlight((0, _dateFns.addMonths)(currentDate, -1));
+            } else if (this.conf.mode === 'year') {
+
+                prevHighlight = this._isHighlight((0, _dateFns.addYears)(currentDate, -1));
             }
 
             if (currentHighlight && prevHighlight && nextHighlight) {
@@ -32007,6 +32089,8 @@ exports.default = {
         _backgroundMarkHighlight: function _backgroundMarkHighlight(item) {
 
             var result = {};
+            var start = void 0;
+            var end = void 0;
 
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
@@ -32017,9 +32101,23 @@ exports.default = {
                     var mark = _step4.value;
 
 
+                    if (this.conf.mode === 'day') {
+
+                        start = mark.start;
+                        end = mark.end;
+                    } else if (this.conf.mode === 'month') {
+
+                        start = (0, _dateFns.startOfMonth)(mark.start);
+                        end = (0, _dateFns.endOfMonth)(mark.end);
+                    } else if (this.conf.mode === 'year') {
+
+                        start = (0, _dateFns.startOfYear)(mark.start);
+                        end = (0, _dateFns.endOfYear)(mark.end);
+                    }
+
                     if ((0, _dateFns.isValid)(mark.start) && (0, _dateFns.isValid)(mark.end) && (0, _dateFns.isWithinInterval)(item.date, {
-                        start: mark.start,
-                        end: mark.end
+                        start: start,
+                        end: end
                     })) {
 
                         if (mark.style) {
@@ -32053,6 +32151,8 @@ exports.default = {
         _pointMarkHighlight: function _pointMarkHighlight(item) {
 
             var result = {};
+            var start = void 0;
+            var end = void 0;
 
             var _iteratorNormalCompletion5 = true;
             var _didIteratorError5 = false;
@@ -32063,9 +32163,23 @@ exports.default = {
                     var mark = _step5.value;
 
 
+                    if (this.conf.mode === 'day') {
+
+                        start = mark.start;
+                        end = mark.end;
+                    } else if (this.conf.mode === 'month') {
+
+                        start = (0, _dateFns.startOfMonth)(mark.start);
+                        end = (0, _dateFns.endOfMonth)(mark.end);
+                    } else if (this.conf.mode === 'year') {
+
+                        start = (0, _dateFns.startOfYear)(mark.start);
+                        end = (0, _dateFns.endOfYear)(mark.end);
+                    }
+
                     if ((0, _dateFns.isValid)(mark.start) && (0, _dateFns.isValid)(mark.end) && (0, _dateFns.isWithinInterval)(item.date, {
-                        start: mark.start,
-                        end: mark.end
+                        start: start,
+                        end: end
                     })) {
 
                         if (mark.style) {
@@ -32114,9 +32228,15 @@ exports.default = {
             if (this.data.yearPick) {
 
                 this.data.yearPickOffset -= yearRange * 2 + 1;
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 this.sub();
+            } else if (this.conf.mode === 'month') {
+
+                this.sub(1, 'year');
+            } else if (this.conf.mode === 'year') {
+
+                this.sub(yearRange * 2 + 1, 'year');
             }
         },
         _next: function _next() {
@@ -32124,9 +32244,15 @@ exports.default = {
             if (this.data.yearPick) {
 
                 this.data.yearPickOffset += yearRange * 2 + 1;
-            } else {
+            } else if (this.conf.mode === 'day') {
 
                 this.add();
+            } else if (this.conf.mode === 'month') {
+
+                this.add(1, 'year');
+            } else if (this.conf.mode === 'year') {
+
+                this.add(yearRange * 2 + 1, 'year');
             }
         },
         _dateClick: function _dateClick(date) {
@@ -32140,6 +32266,30 @@ exports.default = {
         _dateLeave: function _dateLeave(date) {
 
             this.$emit('date-leave', date);
+        },
+        _yearClick: function _yearClick(i) {
+
+            if (this.data.yearPick) {
+
+                this.set(i, 'year');
+                this.toggleYearPick(false);
+            }
+        },
+        _monthClick: function _monthClick(i) {
+
+            if (this.data.monthPick) {
+
+                this.set(i - 1, 'month');
+                this.toggleMonthPick(false);
+            }
+        },
+        _getYear: function _getYear(date) {
+
+            return (0, _dateFns.getYear)(date);
+        },
+        _startOfMonth: function _startOfMonth(date) {
+
+            return (0, _dateFns.startOfMonth)(date);
         },
         toggleYearPick: function toggleYearPick(show) {
 
@@ -44538,6 +44688,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
 
 var _dateFns = __webpack_require__(10);
 
@@ -44641,6 +44795,10 @@ exports.default = {
             type: Boolean,
             default: false
         },
+        monthPick: {
+            type: Boolean,
+            default: false
+        },
         _relativeTime: {
             type: Boolean,
             default: false
@@ -44665,9 +44823,24 @@ exports.default = {
                 endName: this.endName,
                 doneHidden: this.doneHidden,
                 relative: this.relative,
+                monthPick: this.monthPick,
                 _quickPickUnit: this._quickPickUnit,
                 _relativeTime: this._relativeTime
             };
+        },
+        input1Date: function input1Date() {
+
+            if (this.data.currentDate === undefined) {
+
+                return undefined;
+            }
+
+            if (this.conf.monthPick) {
+
+                return +(0, _dateFns.addYears)(this.data.currentDate, 1);
+            }
+
+            return +(0, _dateFns.addMonths)(this.data.currentDate, 1);
         },
         moreClass: function moreClass() {
 
@@ -44799,7 +44972,13 @@ exports.default = {
         _input1DateChange: function _input1DateChange(date) {
             var _this2 = this;
 
-            this.data.currentDate = (0, _dateFns.subMonths)(date, 1);
+            if (this.conf.monthPick) {
+
+                this.data.currentDate = (0, _dateFns.subYears)(date, 1);
+            } else {
+
+                this.data.currentDate = (0, _dateFns.subMonths)(date, 1);
+            }
             this.$nextTick(function () {
                 return _this2._highlightDateFromValue();
             });
@@ -45190,6 +45369,8 @@ exports.default = {
         },
         _highlightDate: function _highlightDate(start, end) {
 
+            var dayStep = 26;
+
             if (!this.conf.isRange) {
 
                 return;
@@ -45217,23 +45398,52 @@ exports.default = {
                 end = mid;
             }
 
+            if (this.conf.monthPick) {
+
+                start = (0, _dateFns.startOfMonth)(start);
+                end = (0, _dateFns.endOfMonth)(end);
+            }
+
             var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
             var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
             var input0Calendar = input0.$refs['ui-calendar-' + input0.uiid];
-            var input0CalendarStart = (0, _dateFns.startOfMonth)(input0Calendar.getTime());
-            var input0CalendarEnd = (0, _dateFns.endOfMonth)(input0Calendar.getTime());
+            var input0CalendarStart = input0Calendar.getTime();
+            var input0CalendarEnd = input0Calendar.getTime();
             var input1Calendar = input1.$refs['ui-calendar-' + input1.uiid];
-            var input1CalendarStart = (0, _dateFns.startOfMonth)(input1Calendar.getTime());
-            var input1CalendarEnd = (0, _dateFns.endOfMonth)(input1Calendar.getTime());
+            var input1CalendarStart = input1Calendar.getTime();
+            var input1CalendarEnd = input1Calendar.getTime();
             var input0HighlightDays = void 0;
             var input1HighlightDays = void 0;
+
+            if (this.conf.monthPick) {
+
+                input0CalendarStart = (0, _dateFns.startOfYear)(input0CalendarStart);
+                input0CalendarEnd = (0, _dateFns.endOfYear)(input0CalendarEnd);
+                input1CalendarStart = (0, _dateFns.startOfYear)(input1CalendarStart);
+                input1CalendarEnd = (0, _dateFns.endOfYear)(input1CalendarEnd);
+            } else {
+
+                input0CalendarStart = (0, _dateFns.startOfMonth)(input0CalendarStart);
+                input0CalendarEnd = (0, _dateFns.endOfMonth)(input0CalendarEnd);
+                input1CalendarStart = (0, _dateFns.startOfMonth)(input1CalendarStart);
+                input1CalendarEnd = (0, _dateFns.endOfMonth)(input1CalendarEnd);
+            }
 
             // start超过左侧日历/end在左侧日历
             if (start < input0CalendarStart && end >= input0CalendarStart && end <= input0CalendarEnd) {
 
+                start = (0, _dateFns.subDays)(+input0CalendarStart, 1);
+
+                if (this.conf.monthPick) {
+
+                    start = (0, _dateFns.startOfMonth)(start);
+                }
+
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
+                    start: start,
                     end: end
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
                 input1HighlightDays = [];
             }
@@ -45241,49 +45451,105 @@ exports.default = {
             // start超过左侧日历/end在右侧日历
             if (start < input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
+                var start0 = (0, _dateFns.subDays)(+input0CalendarStart, 1);
+                var start1 = (0, _dateFns.subDays)(+input1CalendarStart, 1);
+                var end0 = (0, _dateFns.addDays)(+input0CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    start0 = (0, _dateFns.startOfMonth)(start0);
+                    start1 = (0, _dateFns.startOfMonth)(start1);
+                    end0 = (0, _dateFns.endOfMonth)(end0);
+                }
+
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                    start: start0,
+                    end: end0
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                    start: start1,
                     end: end
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
             }
 
             // start在左侧日历/end超过右侧日历
             if (start >= input0CalendarStart && start <= input0CalendarEnd && end > input1CalendarEnd) {
 
+                var _end = (0, _dateFns.addDays)(+input0CalendarEnd, 1);
+                var _start = (0, _dateFns.subDays)(+input1CalendarStart, 1);
+                var end1 = (0, _dateFns.addDays)(+input1CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    _end = (0, _dateFns.endOfMonth)(_end);
+                    _start = (0, _dateFns.startOfMonth)(_start);
+                    end1 = (0, _dateFns.endOfMonth)(end1);
+                }
+
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                    end: _end
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
+                    start: _start,
+                    end: end1
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
             }
 
             // start在右侧日历/end超过右侧日历
             if (start >= input1CalendarStart && start <= input1CalendarEnd && end > input1CalendarEnd) {
 
+                var _end2 = (0, _dateFns.addDays)(+input1CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    _end2 = (0, _dateFns.endOfMonth)(_end2);
+                }
+
                 input0HighlightDays = [];
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
-                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
+                    end: _end2
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
             }
 
             // start超过左侧日历/end超过右侧日历
             if (start < input0CalendarStart && end > input1CalendarEnd) {
 
+                var _start2 = (0, _dateFns.subDays)(+input0CalendarStart, 1);
+                var _end3 = (0, _dateFns.addDays)(+input0CalendarEnd, 1);
+                var _start3 = (0, _dateFns.subDays)(+input1CalendarStart, 1);
+                var _end4 = (0, _dateFns.addDays)(+input1CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    _start2 = (0, _dateFns.startOfMonth)(_start2);
+                    _end3 = (0, _dateFns.endOfMonth)(_end3);
+                    _start3 = (0, _dateFns.startOfMonth)(_start3);
+                    _end4 = (0, _dateFns.endOfMonth)(_end4);
+                }
+
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                    start: _start2,
+                    end: _end3
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
+                    start: _start3,
+                    end: _end4
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
             }
 
@@ -45293,6 +45559,8 @@ exports.default = {
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: end
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
                 input1HighlightDays = [];
             }
@@ -45300,14 +45568,27 @@ exports.default = {
             // start在左侧/end在右侧
             if (start <= input0CalendarEnd && start >= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
+                var _end5 = (0, _dateFns.addDays)(+input0CalendarEnd, 1);
+                var _start4 = (0, _dateFns.subDays)(+input1CalendarStart, 1);
+
+                if (this.conf.monthPick) {
+
+                    _end5 = (0, _dateFns.endOfMonth)(_end5);
+                    _start4 = (0, _dateFns.startOfMonth)(_start4);
+                }
+
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                    end: _end5
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
 
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                    start: _start4,
                     end: end
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
             }
 
@@ -45318,6 +45599,8 @@ exports.default = {
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: end
+                }, {
+                    step: this.conf.monthPick ? dayStep : 1
                 });
             }
 
@@ -51253,6 +51536,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -51318,6 +51603,10 @@ exports.default = {
             type: Boolean,
             default: false
         },
+        monthPick: {
+            type: Boolean,
+            default: false
+        },
         _datePopoverAddClass: {
             type: String,
             default: ''
@@ -51347,6 +51636,7 @@ exports.default = {
                 highlightDays: this.highlightDays,
                 hasQuickPick: this.hasQuickPick,
                 relative: this.relative,
+                monthPick: this.monthPick,
                 _datePopoverAddClass: this._datePopoverAddClass,
                 _relativeTime: this._relativeTime,
                 _rangeInputDirection: this._rangeInputDirection
@@ -59481,7 +59771,7 @@ var render = function() {
         [
           _vm.conf.type === "normal"
             ? [
-                _vm.data.hideEnd > 0
+                _vm.data.hideEnd > 1
                   ? [
                       _c(
                         "a",
@@ -59516,7 +59806,7 @@ var render = function() {
                     ]
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.data.hideEnd > 0
+                _vm.data.hideEnd > 1
                   ? [
                       _c(
                         "a",
@@ -60036,6 +60326,7 @@ var render = function() {
         "highlight-days": _vm.highlightDays,
         "has-quick-pick": _vm.hasQuickPick,
         relative: _vm.relative,
+        "month-pick": _vm.monthPick,
         "_date-popover-add-class": _vm._datePopoverAddClass,
         "_relative-time": _vm._relativeTime,
         "_range-input-direction": _vm._rangeInputDirection
@@ -60108,7 +60399,8 @@ var render = function() {
                   "highlight-day": _vm.getHighlightDays,
                   "highlight-now": true,
                   "highlight-hover": true,
-                  "background-mark": _vm.backgroundMark
+                  "background-mark": _vm.backgroundMark,
+                  mode: _vm.conf.monthPick ? "month" : "day"
                 },
                 on: {
                   "date-click": _vm._clickDate,
@@ -63303,6 +63595,7 @@ var render = function() {
         "end-name": _vm.endName,
         "done-hidden": _vm.doneHidden,
         relative: _vm.relative,
+        "month-pick": _vm.monthPick,
         "_quick-pick-unit": _vm._quickPickUnit,
         "_relative-time": _vm._relativeTime
       }
@@ -63354,6 +63647,7 @@ var render = function() {
                         "highlight-days": _vm.data.input0HighlightDays,
                         "has-quick-pick": this.conf.quickPick.length > 0,
                         relative: _vm.conf.relative,
+                        "month-pick": _vm.conf.monthPick,
                         "_date-popover-add-class": "date-select-0",
                         "_relative-time": _vm.conf._relativeTime,
                         "_range-input-direction":
@@ -63839,8 +64133,7 @@ var render = function() {
                           _vm.conf.endName === false
                             ? _vm.conf.insideName
                             : _vm.conf.endName,
-                        date:
-                          +_vm._addMonths(_vm.data.currentDate, 1) || undefined,
+                        date: _vm.input1Date,
                         format: _vm.conf.format,
                         align: _vm.conf.align,
                         "selectable-range": _vm.conf.selectableRange,
@@ -63848,6 +64141,7 @@ var render = function() {
                         "auto-refresh-calendar": false,
                         "highlight-days": _vm.data.input1HighlightDays,
                         relative: _vm.conf.relative,
+                        "month-pick": _vm.conf.monthPick,
                         "_date-popover-add-class": "date-select-1",
                         "_relative-time": _vm.conf._relativeTime,
                         "_range-input-direction":
@@ -63886,6 +64180,7 @@ var render = function() {
                         "show-timepicker-box": _vm.conf.showTimepickerBox,
                         "has-quick-pick": this.conf.quickPick.length > 0,
                         relative: _vm.conf.relative,
+                        "month-pick": _vm.conf.monthPick,
                         "_relative-time": _vm.conf._relativeTime
                       },
                       on: {
@@ -69884,7 +70179,8 @@ var render = function() {
         "highlight-day": _vm.highlightDay,
         "pick-year-month": _vm.pickYearMonth,
         "background-mark": _vm.backgroundMark,
-        "point-mark": _vm.pointMark
+        "point-mark": _vm.pointMark,
+        mode: _vm.mode
       }
     },
     [
@@ -69896,8 +70192,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.data.monthPick && !_vm.data.yearPick,
-                  expression: "!data.monthPick && !data.yearPick"
+                  value:
+                    _vm.conf.mode === "day" &&
+                    !_vm.data.monthPick &&
+                    !_vm.data.yearPick,
+                  expression:
+                    "conf.mode === 'day' && !data.monthPick && !data.yearPick"
                 }
               ],
               staticClass: "mo-icon mo-icon-left-thin-twin prev-year",
@@ -69913,8 +70213,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.data.monthPick,
-                  expression: "!data.monthPick"
+                  value:
+                    (_vm.conf.mode === "day" && !_vm.data.monthPick) ||
+                    _vm.conf.mode === "month" ||
+                    _vm.conf.mode === "year",
+                  expression:
+                    "(conf.mode === 'day' && !data.monthPick) || (conf.mode === 'month') || (conf.mode === 'year')"
                 }
               ],
               staticClass: "mo-icon mo-icon-left-thin prev",
@@ -69943,6 +70247,14 @@ var render = function() {
             _c(
               "span",
               {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.conf.mode === "day",
+                    expression: "conf.mode === 'day'"
+                  }
+                ],
                 staticClass: "month",
                 on: {
                   click: function($event) {
@@ -69960,8 +70272,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.data.monthPick,
-                  expression: "!data.monthPick"
+                  value:
+                    (_vm.conf.mode === "day" && !_vm.data.monthPick) ||
+                    _vm.conf.mode === "month" ||
+                    _vm.conf.mode === "year",
+                  expression:
+                    "(conf.mode === 'day' && !data.monthPick) || (conf.mode === 'month') || (conf.mode === 'year')"
                 }
               ],
               staticClass: "mo-icon mo-icon-right-thin next",
@@ -69977,8 +70293,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.data.monthPick && !_vm.data.yearPick,
-                  expression: "!data.monthPick && !data.yearPick"
+                  value:
+                    _vm.conf.mode === "day" &&
+                    !_vm.data.monthPick &&
+                    !_vm.data.yearPick,
+                  expression:
+                    "conf.mode === 'day' && !data.monthPick && !data.yearPick"
                 }
               ],
               staticClass: "mo-icon mo-icon-right-thin-twin next-year",
@@ -69999,8 +70319,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.data.monthPick && !_vm.data.yearPick,
-                  expression: "!data.monthPick && !data.yearPick"
+                  value:
+                    _vm.conf.mode === "day" &&
+                    !_vm.data.monthPick &&
+                    !_vm.data.yearPick,
+                  expression:
+                    "conf.mode === 'day' && !data.monthPick && !data.yearPick"
                 }
               ],
               staticClass: "weekday"
@@ -70029,8 +70353,11 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.data.monthPick,
-                  expression: "data.monthPick"
+                  value:
+                    (_vm.conf.mode === "day" && _vm.data.monthPick) ||
+                    (_vm.conf.mode === "month" && !_vm.data.yearPick),
+                  expression:
+                    "(conf.mode === 'day' && data.monthPick) || (conf.mode === 'month' && !data.yearPick)"
                 }
               ],
               staticClass: "title"
@@ -70045,8 +70372,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.data.yearPick,
-                  expression: "data.yearPick"
+                  value:
+                    (_vm.conf.mode === "day" && _vm.data.yearPick) ||
+                    (_vm.conf.mode === "month" && _vm.data.yearPick) ||
+                    _vm.conf.mode === "year",
+                  expression:
+                    "(conf.mode === 'day' && data.yearPick) || (conf.mode === 'month' && data.yearPick) || conf.mode === 'year'"
                 }
               ],
               staticClass: "title"
@@ -70076,8 +70407,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.data.yearPick,
-                expression: "data.yearPick"
+                value: _vm.conf.mode === "year" || _vm.data.yearPick,
+                expression: "conf.mode === 'year' || data.yearPick"
               }
             ],
             staticClass: "pick-year"
@@ -70090,53 +70421,37 @@ var render = function() {
                   {
                     key: index,
                     staticClass: "year",
+                    class: [
+                      _vm._highlightClass({
+                        date: new Date(i, 0, 1)
+                      })
+                    ],
                     on: {
                       click: function($event) {
-                        _vm.set(i, "year")
-                        _vm.toggleYearPick(false)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                " + _vm._s(i) + "\n            ")]
-                )
-              ]
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.data.monthPick,
-                expression: "data.monthPick"
-              }
-            ],
-            staticClass: "pick-month"
-          },
-          [
-            _vm._l(12, function(i, index) {
-              return [
-                _c(
-                  "div",
-                  {
-                    key: index,
-                    staticClass: "month",
-                    on: {
-                      click: function($event) {
-                        _vm.set(i - 1, "month")
-                        _vm.toggleMonthPick(false)
+                        _vm._yearClick(i)
+                        _vm.conf.mode === "month" &&
+                          _vm._dateClick(new Date(i, 0, 1))
+                      },
+                      mouseenter: function($event) {
+                        _vm.conf.mode === "month" &&
+                          _vm._dateEnter(new Date(i, 0, 1))
+                      },
+                      mouseleave: function($event) {
+                        _vm.conf.mode === "month" &&
+                          _vm._dateLeave(new Date(i, 0, 1))
                       }
                     }
                   },
                   [
-                    _vm._v(
-                      "\n                " + _vm._s(i) + "月\n            "
-                    )
+                    _c("div", { staticClass: "select-layer" }, [
+                      _c("div", { staticClass: "inner-layer" }, [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(i) +
+                            "\n                    "
+                        )
+                      ])
+                    ])
                   ]
                 )
               ]
@@ -70152,8 +70467,81 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: !_vm.data.monthPick && !_vm.data.yearPick,
-                expression: "!data.monthPick && !data.yearPick"
+                value:
+                  (_vm.conf.mode === "month" && !_vm.data.yearPick) ||
+                  _vm.data.monthPick,
+                expression:
+                  "(conf.mode === 'month' && !data.yearPick) || data.monthPick"
+              }
+            ],
+            staticClass: "pick-month"
+          },
+          [
+            _vm._l(12, function(i, index) {
+              return [
+                _c(
+                  "div",
+                  {
+                    key: index,
+                    staticClass: "month",
+                    class: [
+                      _vm._highlightClass({
+                        date: new Date(_vm._getYear(_vm.data.current), i - 1, 1)
+                      })
+                    ],
+                    on: {
+                      click: function($event) {
+                        _vm._monthClick(i)
+                        _vm.conf.mode === "month" &&
+                          _vm._dateClick(
+                            new Date(_vm._getYear(_vm.data.current), i - 1, 1)
+                          )
+                      },
+                      mouseenter: function($event) {
+                        _vm.conf.mode === "month" &&
+                          _vm._dateEnter(
+                            new Date(_vm._getYear(_vm.data.current), i - 1, 1)
+                          )
+                      },
+                      mouseleave: function($event) {
+                        _vm.conf.mode === "month" &&
+                          _vm._dateLeave(
+                            new Date(_vm._getYear(_vm.data.current), i - 1, 1)
+                          )
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "select-layer" }, [
+                      _c("div", { staticClass: "inner-layer" }, [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(i) +
+                            "月\n                    "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value:
+                  _vm.conf.mode === "day" &&
+                  !_vm.data.monthPick &&
+                  !_vm.data.yearPick,
+                expression:
+                  "conf.mode === 'day' && !data.monthPick && !data.yearPick"
               }
             ],
             staticClass: "pick-day"

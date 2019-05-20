@@ -25,6 +25,7 @@
         :end-name="endName"
         :done-hidden="doneHidden"
         :relative="relative"
+        :month-pick="monthPick"
         :_quick-pick-unit="_quickPickUnit"
         :_relative-time="_relativeTime"
     >
@@ -55,6 +56,7 @@
                     :highlight-days="data.input0HighlightDays"
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
+                    :month-pick="conf.monthPick"
                     :_date-popover-add-class="'date-select-0'"
                     :_relative-time="conf._relativeTime"
                     :_range-input-direction="conf.rangeInputDirection === 'vertical'"
@@ -183,7 +185,7 @@
                     :size="conf.size"
                     
                     :inside-name="(conf.endName === false) ? conf.insideName : conf.endName"
-                    :date="+_addMonths(data.currentDate, 1) || undefined"
+                    :date="input1Date"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -191,6 +193,7 @@
                     :auto-refresh-calendar="false"
                     :highlight-days="data.input1HighlightDays"
                     :relative="conf.relative"
+                    :month-pick="conf.monthPick"
                     :_date-popover-add-class="'date-select-1'"
                     :_relative-time="conf._relativeTime"
                     :_range-input-direction="conf.rangeInputDirection === 'vertical'"
@@ -224,6 +227,7 @@
                     :show-timepicker-box="conf.showTimepickerBox"
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
+                    :month-pick="conf.monthPick"
                     :_relative-time="conf._relativeTime"
 
                     @value-change="_syncValueFromInputToRoot"
@@ -365,6 +369,7 @@ import {
     startOfWeek,
     endOfWeek,
     addYears,
+    subYears,
     startOfYear,
     endOfYear,
     addHours,
@@ -453,6 +458,10 @@ export default {
             type : Boolean,
             default : false
         },
+        monthPick : {
+            type : Boolean,
+            default : false
+        },
         _relativeTime : {
             type : Boolean,
             default : false
@@ -477,9 +486,27 @@ export default {
                 endName : this.endName,
                 doneHidden : this.doneHidden,
                 relative : this.relative,
+                monthPick : this.monthPick,
                 _quickPickUnit : this._quickPickUnit,
                 _relativeTime : this._relativeTime
             };
+
+        },
+        input1Date : function () {
+
+            if (this.data.currentDate === undefined) {
+
+                return undefined;
+
+            }
+
+            if (this.conf.monthPick) {
+
+                return +addYears(this.data.currentDate, 1);
+
+            }
+
+            return +addMonths(this.data.currentDate, 1);
 
         },
         moreClass : function () {
@@ -636,7 +663,15 @@ export default {
         },
         _input1DateChange : function (date) {
 
-            this.data.currentDate = subMonths(date, 1);
+            if (this.conf.monthPick) {
+
+                this.data.currentDate = subYears(date, 1);
+
+            } else {
+
+                this.data.currentDate = subMonths(date, 1);
+
+            }
             this.$nextTick(() => this._highlightDateFromValue());
 
         },
@@ -1054,6 +1089,8 @@ export default {
         },
         _highlightDate : function (start, end) {
 
+            const dayStep = 26;
+
             if (!this.conf.isRange) {
 
                 return;
@@ -1085,25 +1122,58 @@ export default {
 
             }
 
+            if (this.conf.monthPick) {
+
+                start = startOfMonth(start);
+                end = endOfMonth(end);
+
+            }
+
             let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
             let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
             let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
-            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
-            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
+            let input0CalendarStart = input0Calendar.getTime();
+            let input0CalendarEnd = input0Calendar.getTime();
             let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
-            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
-            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+            let input1CalendarStart = input1Calendar.getTime();
+            let input1CalendarEnd = input1Calendar.getTime();
             let input0HighlightDays;
             let input1HighlightDays;
+
+            if (this.conf.monthPick) {
+
+                input0CalendarStart = startOfYear(input0CalendarStart);
+                input0CalendarEnd = endOfYear(input0CalendarEnd);
+                input1CalendarStart = startOfYear(input1CalendarStart);
+                input1CalendarEnd = endOfYear(input1CalendarEnd);
+
+            } else {
+
+                input0CalendarStart = startOfMonth(input0CalendarStart);
+                input0CalendarEnd = endOfMonth(input0CalendarEnd);
+                input1CalendarStart = startOfMonth(input1CalendarStart);
+                input1CalendarEnd = endOfMonth(input1CalendarEnd);
+
+            }
 
             // start超过左侧日历/end在左侧日历
             if (start < input0CalendarStart &&
                 end >= input0CalendarStart &&
                 end <= input0CalendarEnd) {
 
+                start = subDays(+input0CalendarStart, 1);
+
+                if (this.conf.monthPick) {
+
+                    start = startOfMonth(start);
+
+                }
+
                 input0HighlightDays = eachDayOfInterval({
-                    start : subDays(+input0CalendarStart, 1),
+                    start,
                     end
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = [];
 
@@ -1114,13 +1184,29 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
+                let start0 = subDays(+input0CalendarStart, 1);
+                let start1 = subDays(+input1CalendarStart, 1);
+                let end0 = addDays(+input0CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    start0 = startOfMonth(start0);
+                    start1 = startOfMonth(start1);
+                    end0 = endOfMonth(end0);
+
+                }
+
                 input0HighlightDays = eachDayOfInterval({
-                    start : subDays(+input0CalendarStart, 1),
-                    end : addDays(+input0CalendarEnd, 1)
+                    start : start0,
+                    end : end0
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = eachDayOfInterval({
-                    start : subDays(+input1CalendarStart, 1),
+                    start : start1,
                     end
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1130,13 +1216,29 @@ export default {
                 start <= input0CalendarEnd &&
                 end > input1CalendarEnd) {
 
+                let end0 = addDays(+input0CalendarEnd, 1);
+                let start1 = subDays(+input1CalendarStart, 1);
+                let end1 = addDays(+input1CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    end0 = endOfMonth(end0);
+                    start1 = startOfMonth(start1);
+                    end1 = endOfMonth(end1);
+
+                }
+
                 input0HighlightDays = eachDayOfInterval({
                     start,
-                    end : addDays(+input0CalendarEnd, 1)
+                    end : end0
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = eachDayOfInterval({
-                    start : subDays(+input1CalendarStart, 1),
-                    end : addDays(+input1CalendarEnd, 1)
+                    start : start1,
+                    end : end1
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1146,10 +1248,20 @@ export default {
                 start <= input1CalendarEnd &&
                 end > input1CalendarEnd) {
 
+                let end0 = addDays(+input1CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    end0 = endOfMonth(end0);
+
+                }
+
                 input0HighlightDays = [];
                 input1HighlightDays = eachDayOfInterval({
                     start,
-                    end : addDays(+input1CalendarEnd, 1)
+                    end : end0
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1158,13 +1270,31 @@ export default {
             if (start < input0CalendarStart &&
                 end > input1CalendarEnd) {
 
+                let start0 = subDays(+input0CalendarStart, 1);
+                let end0 = addDays(+input0CalendarEnd, 1);
+                let start1 = subDays(+input1CalendarStart, 1);
+                let end1 = addDays(+input1CalendarEnd, 1);
+
+                if (this.conf.monthPick) {
+
+                    start0 = startOfMonth(start0);
+                    end0 = endOfMonth(end0);
+                    start1 = startOfMonth(start1);
+                    end1 = endOfMonth(end1);
+
+                }
+
                 input0HighlightDays = eachDayOfInterval({
-                    start : subDays(+input0CalendarStart, 1),
-                    end : addDays(+input0CalendarEnd, 1)
+                    start : start0,
+                    end : end0
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = eachDayOfInterval({
-                    start : subDays(+input1CalendarStart, 1),
-                    end : addDays(+input1CalendarEnd, 1)
+                    start : start1,
+                    end : end1
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1178,6 +1308,8 @@ export default {
                 input0HighlightDays = eachDayOfInterval({
                     start,
                     end
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
                 input1HighlightDays = [];
 
@@ -1189,14 +1321,28 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
+                let end0 = addDays(+input0CalendarEnd, 1);
+                let start1 = subDays(+input1CalendarStart, 1);
+
+                if (this.conf.monthPick) {
+
+                    end0 = endOfMonth(end0);
+                    start1 = startOfMonth(start1);
+
+                }
+
                 input0HighlightDays = eachDayOfInterval({
                     start,
-                    end : addDays(+input0CalendarEnd, 1)
+                    end : end0
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
                 input1HighlightDays = eachDayOfInterval({
-                    start : subDays(+input1CalendarStart, 1),
+                    start : start1,
                     end
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }
@@ -1211,6 +1357,8 @@ export default {
                 input1HighlightDays = eachDayOfInterval({
                     start,
                     end
+                }, {
+                    step : (this.conf.monthPick ? dayStep : 1)
                 });
 
             }

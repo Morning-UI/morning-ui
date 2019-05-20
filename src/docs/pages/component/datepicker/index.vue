@@ -640,7 +640,7 @@
     >conf-desc
     日期区间选择时`结束日期`表单显示的名称，若设为`false`则显示`inside-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示。
     >conf-accept
-    任意字符串`false`:显示`inside-name`
+    任意字符串<br>`false`:显示`inside-name`
     >conf-type
     String<br>Boolean
     >conf-default
@@ -815,6 +815,36 @@
     >tpl
     <div style="width:300px;">
         <ui-datepicker form-name="相对日期" relative :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']"></ui-datepicker>
+    </div>
+    :::
+
+    :::vue
+    @name:month-pick
+    ---
+    #config
+    >conf-desc
+    日期选择器开启月份选择模式。
+    <br>
+    可以配合`format="yyyy-MM"`配置来显示月份。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :month-pick="true" format="yyyy-MM"></ui-datepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`is-range`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" is-range :month-pick="true" format="yyyy-MM"></ui-datepicker>
     </div>
     :::
 
