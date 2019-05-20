@@ -123,7 +123,86 @@ mor-calendar{
             color: @colorComponentItemFont;
             background-color: @colorComponentItemBg;
         }
+    }
 
+    .p-mark-s::after{
+        background: @colorSuccess;
+    }
+
+    .p-mark-w::after{
+        background: @colorWarning;
+    }
+
+    .p-mark-d::after{
+        background: @colorDanger;
+    }
+
+    .p-mark-p::after{
+        background: @colorPrimary;
+    }
+
+    .p-mark-m::after{
+        background: @colorMinor;
+    }
+
+    .p-mark-i::after{
+        background: @colorInfo;
+    }
+
+    .p-mark-bk::after{
+        background: @colorBlack;
+    }
+
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
+
+        .p-mark-n@{value}::after{
+            background: @@colorName;
+        }
+    });
+
+    .p-mark-wh::after{
+        background: @colorWhite;
+    }
+
+    .pick-month,
+    .pick-year{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .pick-month .month{
+        width: calc(100% / 3);
+        padding: 0;
+        height: @fontSize*3.75;
+        line-height: @fontSize*3.75;
+        text-align: center;
+        color: @colorComponentItemFontHover;
+
+        &:hover{
+            color: @colorBlack;
+            background-color: @colorComponentItemBgHover;
+            cursor: pointer;
+        }
+    }
+
+    .pick-year .year{
+        width: calc(100% / 5);
+        padding: 0;
+        height: @fontSize*3;
+        line-height: @fontSize*3;
+        text-align: center;
+        color: @colorComponentItemFontHover;
+
+        &:hover{
+            color: @colorBlack;
+            background-color: @colorComponentItemBgHover;
+            cursor: pointer;
+        }
+    }
+
+    .day{
         &.now{
             margin-bottom: 0;
 
@@ -134,7 +213,25 @@ mor-calendar{
                 box-sizing: border-box;
             }
         }
+    }
 
+    .pick-month .month,
+    .pick-year .year{
+        &.now{
+            margin-bottom: 0;
+
+            .inner-layer{
+                color: @colorTheme;
+                border: 2px @colorTheme solid;
+                line-height: calc(@fontSize*2 - 4px);
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    .day,
+    .pick-month .month,
+    .pick-year .year{
         &.highlight{
             margin-bottom: 0;
 
@@ -218,8 +315,8 @@ mor-calendar{
         }
 
         &.bg-mark-s{
-            background: @colorSuccess;
-            color: @colorWhite;
+            background: @colorSuccess !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: darken(@colorSuccess, 8%);
@@ -228,8 +325,8 @@ mor-calendar{
         }
 
         &.bg-mark-w{
-            background: @colorWarning;
-            color: @colorWhite;
+            background: @colorWarning !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: darken(@colorWarning, 8%);
@@ -238,8 +335,8 @@ mor-calendar{
         }
 
         &.bg-mark-d{
-            background: @colorDanger;
-            color: @colorWhite;
+            background: @colorDanger !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: darken(@colorDanger, 8%);
@@ -248,8 +345,8 @@ mor-calendar{
         }
 
         &.bg-mark-p{
-            background: @colorPrimary;
-            color: @colorWhite;
+            background: @colorPrimary !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: darken(@colorPrimary, 8%);
@@ -258,8 +355,8 @@ mor-calendar{
         }
 
         &.bg-mark-m{
-            background: @colorMinor;
-            color: @colorWhite;
+            background: @colorMinor !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: darken(@colorMinor, 8%);
@@ -268,8 +365,8 @@ mor-calendar{
         }
 
         &.bg-mark-i{
-            background: @colorInfo;
-            color: @colorWhite;
+            background: @colorInfo !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: darken(@colorInfo, 8%);
@@ -278,8 +375,8 @@ mor-calendar{
         }
 
         &.bg-mark-bk{
-            background: @colorBlack;
-            color: @colorWhite;
+            background: @colorBlack !important;
+            color: @colorWhite !important;
 
             &.no-curt-m{
                 background: lighten(@colorBlack, 8%);
@@ -291,8 +388,8 @@ mor-calendar{
             @colorName : 'colorNeutral@{value}';
 
             &.bg-mark-n@{value}{
-                background: @@colorName;
-                color: if((@value > 5), @colorWhite, @colorBlack);
+                background: @@colorName !important;
+                color: if((@value > 5), @colorWhite, @colorBlack) !important;
 
                 &.no-curt-m{
                     background: lighten(@@colorName, 8%);
@@ -303,8 +400,8 @@ mor-calendar{
         });
 
         &.bg-mark-wh{
-            background: @colorWhite;
-            color: @colorBlack;
+            background: @colorWhite !important;
+            color: @colorBlack !important;
 
             &.no-curt-m{
                 background: lighten(@colorWhite, 8%);
@@ -332,80 +429,94 @@ mor-calendar{
         }
     }
 
-    .p-mark-s::after{
-        background: @colorSuccess;
-    }
-
-    .p-mark-w::after{
-        background: @colorWarning;
-    }
-
-    .p-mark-d::after{
-        background: @colorDanger;
-    }
-
-    .p-mark-p::after{
-        background: @colorPrimary;
-    }
-
-    .p-mark-m::after{
-        background: @colorMinor;
-    }
-
-    .p-mark-i::after{
-        background: @colorInfo;
-    }
-
-    .p-mark-bk::after{
-        background: @colorBlack;
-    }
-
-    each(range(11), {
-        @colorName : 'colorNeutral@{value}';
-
-        .p-mark-n@{value}::after{
-            background: @@colorName;
-        }
-    });
-
-    .p-mark-wh::after{
-        background: @colorWhite;
-    }
-
-    .pick-month,
-    .pick-year{
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
-
-    .pick-month .month{
-        width: calc(100% / 3);
-        padding: 0;
-        height: @fontSize*3.75;
-        line-height: @fontSize*3.75;
-        text-align: center;
-        color: @colorComponentItemFontHover;
-
-        &:hover{
-            color: @colorBlack;
-            background-color: @colorComponentItemBgHover;
-            cursor: pointer;
-        }
-    }
-
+    .pick-month .month,
     .pick-year .year{
-        width: calc(100% / 5);
-        padding: 0;
-        height: @fontSize*3;
-        line-height: @fontSize*3;
-        text-align: center;
-        color: @colorComponentItemFontHover;
+        &.start{
+            .select-layer{
+                padding-right: 0;
+                width: 100%;
+            }
+        }
 
-        &:hover{
-            color: @colorBlack;
-            background-color: @colorComponentItemBgHover;
-            cursor: pointer;
+        &.end{
+            text-align: left;
+
+            .inner-layer{
+                background-color: @colorLightTheme;
+                color: @colorWhite;
+            }
+
+            .select-layer{
+                width: 100%;
+                padding-left: 0;
+            }
+        }
+    }
+
+    &.mode-month{
+        .pick-month .month{
+            &:hover{
+                color: @colorComponentItemFontHover;
+                background-color: inherit;
+                cursor: default;
+            }
+        }
+
+        &.highlight-hover{
+            .month{
+                &:hover{
+                    color: @colorTheme;
+                    font-weight: 700;
+                }
+
+                &.bg-mark-disabled:hover{
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    &.mode-year{
+        .pick-year .year{
+            &:hover{
+                color: @colorComponentItemFontHover;
+                background-color: inherit;
+                cursor: default;
+            }
+        }
+
+        &.highlight-hover{
+            .year{
+                &:hover{
+                    color: @colorTheme;
+                    font-weight: 700;
+                }
+
+                &.bg-mark-disabled:hover{
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    &.mode-month,
+    &.mode-year{
+        .month,
+        .year{
+            .select-layer{
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                padding: 0;
+                font-size: inherit;
+            }
+
+            .inner-layer{
+                line-height: inherit !important;
+                height: inherit !important;
+                width: inherit !important;
+            }
         }
     }
 

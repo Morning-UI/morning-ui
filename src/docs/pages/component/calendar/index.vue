@@ -283,6 +283,160 @@
     </div>
     :::
 
+    :::vue
+    @name:mode
+    ---
+    #config
+    >conf-desc
+    日历显示日期的模式。
+    >conf-accept
+    `'day'`：显示到天<br>`'month'`：显示到月份<br>`'year'`：显示到年
+    >conf-type
+    String
+    >conf-default
+    `'day'`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px">
+        <ui-calendar mode="month"></ui-calendar>
+    </div>
+    ---
+    #demo
+    >tpl
+    <div style="width:300px">
+        <ui-calendar mode="year"></ui-calendar>
+    </div>
+    ---
+    #demo
+    >desc
+    `mode`配合`highlight-now`一起使用。
+    >tpl
+    <div style="width:300px">
+        <ui-calendar mode="month" highlight-now></ui-calendar>
+        <br>
+        <ui-calendar mode="year" highlight-now></ui-calendar>
+    </div>
+    ---
+    #demo
+    >desc
+    `mode`配合`highlight-hover`一起使用。
+    >tpl
+    <div style="width:300px">
+        <ui-calendar mode="month" highlight-hover></ui-calendar>
+        <br>
+        <ui-calendar mode="year" highlight-hover></ui-calendar>
+    </div>
+    ---
+    #demo
+    >desc
+    `mode`配合`highlight-day`一起使用。
+    >tpl
+    <div style="width:300px">
+        <ui-calendar
+            mode="month"
+            :date="+new Date('2017-11-01')"
+            :highlight-day="[
+                new Date('2017-03-01'),
+                +new Date('2017-04-01'),
+                new Date('2017-05-01'),
+                +new Date('2017-09-01')
+            ]"
+        ></ui-calendar>
+        <br>
+        <ui-calendar
+            mode="year"
+            :date="+new Date('2017-11-01')"
+            :highlight-day="[
+                new Date('2011-01-01'),
+                +new Date('2012-01-01'),
+                new Date('2013-01-01'),
+                +new Date('2022-01-01')
+            ]"
+        ></ui-calendar>
+    </div>
+    ---
+    #demo
+    >desc
+    `mode`配合`background-mark`一起使用。
+    >tpl
+    <div style="width:300px">
+        <ui-calendar
+            mode="month"
+            :date="+new Date('2017-11-01')"
+            :background-mark="[
+                {
+                    start: new Date('2017-03-01'),
+                    end: new Date('2017-06-01'),
+                    style: 'primary'
+                },
+                {
+                    start: new Date('2017-11-01'),
+                    end: new Date('2017-11-01'),
+                    style: 'danger'
+                }
+            ]"
+        ></ui-calendar>
+        <br>
+        <ui-calendar
+            mode="year"
+            :date="+new Date('2017-11-01')"
+            :background-mark="[
+                {
+                    start: new Date('2009-01-01'),
+                    end: new Date('2012-01-01'),
+                    style: 'primary'
+                },
+                {
+                    start: new Date('2020-01-01'),
+                    end: new Date('2020-01-01'),
+                    style: 'danger'
+                }
+            ]"
+        ></ui-calendar>
+    </div>
+    ---
+    #demo
+    >desc
+    `mode`配合`point-mark`一起使用。
+    >tpl
+    <div style="width:300px">
+        <ui-calendar
+            mode="month"
+            :date="+new Date('2017-11-01')"
+            :point-mark="[
+                {
+                    start: new Date('2017-03-01'),
+                    end: new Date('2017-06-01'),
+                    style: 'primary'
+                },
+                {
+                    start: new Date('2017-11-01'),
+                    end: new Date('2017-11-01'),
+                    style: 'danger'
+                }
+            ]"
+        ></ui-calendar>
+        <br>
+        <ui-calendar
+            mode="year"
+            :date="+new Date('2017-11-01')"
+            :point-mark="[
+                {
+                    start: new Date('2009-01-01'),
+                    end: new Date('2012-01-01'),
+                    style: 'primary'
+                },
+                {
+                    start: new Date('2020-01-01'),
+                    end: new Date('2020-01-01'),
+                    style: 'danger'
+                }
+            ]"
+        ></ui-calendar>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::vue
@@ -626,6 +780,7 @@
     #event
     >event-desc
     某个日期被点击时触发。
+    若`mode="month"`则某个月份被点击时触发。
     >event-args
     |date|用户点击的日期|`Date`|
     ---
@@ -651,6 +806,7 @@
     #event
     >event-desc
     鼠标移入某个日期时触发。
+    若`mode="month"`则鼠标移入某个月份时触发。
     >event-args
     |date|鼠标移入的日期|`Date`|
     ---
@@ -676,6 +832,7 @@
     #event
     >event-desc
     鼠标移出某个日期时触发。
+    若`mode="month"`则鼠标移出某个月份时触发。
     >event-args
     |date|鼠标移出的日期|`Date`|
     ---
