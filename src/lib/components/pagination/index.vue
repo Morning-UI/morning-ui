@@ -449,7 +449,7 @@ export default {
             
             this._refreshCurrentItems();
             this._setMaxshow();
-            this.$emit('emit');
+            this.$emit('emit', this.getPage());
 
         });
 

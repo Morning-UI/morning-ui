@@ -25595,16 +25595,145 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
     name: 'img',
     props: {
-        src: String,
-        width: String,
-        height: String,
-        alt: String,
-        title: String
+        src: {
+            type: String,
+            default: undefined
+        },
+        width: {
+            type: String,
+            default: 'auto'
+        },
+        height: {
+            type: String,
+            default: 'auto'
+        },
+        alt: {
+            type: String,
+            default: undefined
+        },
+        title: {
+            type: String,
+            default: undefined
+        },
+        preview: {
+            type: Boolean,
+            default: false
+        }
+    },
+    computed: {
+        _conf: function _conf() {
+
+            return {
+                src: this.src,
+                width: this.width,
+                height: this.height,
+                alt: this.alt,
+                title: this.title,
+                preview: this.preview
+            };
+        },
+        moreClass: function moreClass() {
+
+            var classes = {
+                'can-preview': this.conf.preview
+            };
+
+            return classes;
+        }
+    },
+    data: function data() {
+
+        return {
+            data: {
+                showPreview: false
+            }
+        };
+    },
+    methods: {
+        _onClick: function _onClick() {
+
+            if (this.conf.preview === false) {
+
+                return;
+            }
+
+            this.data.showPreview = !this.data.showPreview;
+        },
+        _previewHide: function _previewHide() {
+
+            this.data.showPreview = false;
+        },
+        togglePreview: function togglePreview(show) {
+
+            if (this.conf.preview === false) {
+
+                return this;
+            }
+
+            if (show === undefined) {
+
+                show = !this.data.showPreview;
+            }
+
+            this.data.showPreview = !!show;
+
+            return this;
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('data.showPreview', function () {
+
+            var $dialog = _this.$refs['ui-dialog-preview-' + _this.uiid];
+
+            if (_this.data.showPreview) {
+
+                $dialog.toggle(true);
+                _this.$emit('show-preview');
+            } else {
+
+                $dialog.toggle(false);
+                _this.$emit('hide-preview');
+            }
+        });
     }
 };
 module.exports = exports['default'];
@@ -30503,7 +30632,7 @@ exports.default = {
 
             _this._refreshCurrentItems();
             _this._setMaxshow();
-            _this.$emit('emit');
+            _this.$emit('emit', _this.getPage());
         });
     }
 };
@@ -47344,6 +47473,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _axiosMin = __webpack_require__(632);
 
@@ -47479,7 +47626,8 @@ exports.default = {
                 showFiles: [],
                 currentPreview: -1,
                 fetchRemoteFile: false,
-                dragover: false
+                dragover: false,
+                imgPreviewUrl: false
             }
         };
     },
@@ -47496,6 +47644,8 @@ exports.default = {
             return value;
         },
         _isImage: function _isImage(file) {
+
+            console.log(123, file);
 
             if (file.file && /^image/.test(file.file.type) || file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path)) {
 
@@ -48041,6 +48191,14 @@ exports.default = {
                 this._getFiles(evt);
             }
         },
+        _openPreview: function _openPreview(url) {
+
+            this.data.imgPreviewUrl = url;
+        },
+        _previewHide: function _previewHide() {
+
+            this.data.imgPreviewUrl = false;
+        },
         uploadUrl: function uploadUrl(url) {
 
             if (!this.conf.allowUrl) {
@@ -48111,6 +48269,19 @@ exports.default = {
         }, {
             immediate: true,
             deep: true
+        });
+
+        this.$watch('data.imgPreviewUrl', function () {
+
+            var $dialog = _this3.$refs['ui-dialog-preview-' + _this3.uiid];
+
+            if (_this3.data.imgPreviewUrl) {
+
+                $dialog.toggle(true);
+            } else {
+
+                $dialog.toggle(false);
+            }
         });
     }
 };
@@ -58505,19 +58676,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("mor-img", { class: [], attrs: { _uiid: _vm.uiid } }, [
-    _c("img", {
+  return _c(
+    "mor-img",
+    {
+      class: [_vm.moreClass],
       attrs: {
+        _uiid: _vm.uiid,
         src: _vm.src,
         width: _vm.width,
         height: _vm.height,
         alt: _vm.alt,
-        title: _vm.title
+        title: _vm.title,
+        preview: _vm.preview
       }
-    }),
-    _vm._v(" "),
-    _c("p", { staticClass: "note" }, [_vm._t("default")], 2)
-  ])
+    },
+    [
+      _c("img", {
+        attrs: {
+          src: _vm.conf.src,
+          width: _vm.conf.width,
+          height: _vm.conf.height,
+          alt: _vm.conf.alt,
+          title: _vm.conf.title
+        },
+        on: { click: _vm._onClick }
+      }),
+      _vm._v(" "),
+      _c("p", { staticClass: "note" }, [_vm._t("default")], 2),
+      _vm._v(" "),
+      _vm.conf.preview
+        ? _c(
+            "morning-dialog",
+            {
+              ref: "ui-dialog-preview-" + _vm.uiid,
+              staticClass: "ui-dialog-preview",
+              attrs: { width: "auto", height: "auto", "show-type": "center" },
+              on: { hide: _vm._previewHide }
+            },
+            [
+              _c("img", {
+                style: {
+                  maxWidth: "100%",
+                  maxHeight: "100%"
+                },
+                attrs: {
+                  src: _vm.conf.src,
+                  alt: _vm.conf.alt,
+                  title: _vm.conf.title
+                }
+              })
+            ]
+          )
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -62577,7 +62790,9 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm._openFile(item.path)
+                                  _vm._isImage(item)
+                                    ? _vm._openPreview(item.path)
+                                    : _vm._openFile(item.path)
                                 }
                               }
                             },
@@ -62674,7 +62889,7 @@ var render = function() {
                                     "morning-btn",
                                     {
                                       ref: "mor-url-btn-" + _vm.uiid,
-                                      attrs: { size: "xs", color: "neutral-4" },
+                                      attrs: { size: "xs", color: "silver" },
                                       on: { emit: _vm._uploadRemoteFile }
                                     },
                                     [_vm._v("通过URL上传")]
@@ -62784,7 +62999,7 @@ var render = function() {
                                               ref: "mor-url-btn-" + _vm.uiid,
                                               attrs: {
                                                 size: "xs",
-                                                color: "neutral-4"
+                                                color: "silver"
                                               },
                                               on: {
                                                 emit: _vm._uploadRemoteFile
@@ -62923,11 +63138,21 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        return _vm._openFile(
+                                        _vm._isImage(
                                           _vm.data.showFiles[
                                             _vm.data.currentPreview
-                                          ].path
+                                          ]
                                         )
+                                          ? _vm._openPreview(
+                                              _vm.data.showFiles[
+                                                _vm.data.currentPreview
+                                              ].path
+                                            )
+                                          : _vm._openFile(
+                                              _vm.data.showFiles[
+                                                _vm.data.currentPreview
+                                              ].path
+                                            )
                                       }
                                     }
                                   },
@@ -63053,7 +63278,9 @@ var render = function() {
                                   click: function($event) {
                                     _vm.conf.state === "readonly" ||
                                     _vm.conf.state === "disabled"
-                                      ? _vm._openFile(item.path)
+                                      ? _vm._isImage(item)
+                                        ? _vm._openPreview(item.path)
+                                        : _vm._openFile(item.path)
                                       : _vm._switchPreview(index)
                                   }
                                 }
@@ -63099,7 +63326,9 @@ var render = function() {
                                           click: function($event) {
                                             $event.preventDefault()
                                             $event.stopPropagation()
-                                            return _vm._openFile(item.path)
+                                            _vm._isImage(item)
+                                              ? _vm._openPreview(item.path)
+                                              : _vm._openFile(item.path)
                                           }
                                         }
                                       })
@@ -63171,7 +63400,7 @@ var render = function() {
                               "morning-btn",
                               {
                                 ref: "mor-url-btn-" + _vm.uiid,
-                                attrs: { size: "xs", color: "neutral-4" },
+                                attrs: { size: "xs", color: "silver" },
                                 on: { emit: _vm._uploadRemoteFile }
                               },
                               [_vm._v("通过URL上传")]
@@ -63188,7 +63417,7 @@ var render = function() {
                   {
                     staticClass: "upload-file upload-button",
                     attrs: {
-                      color: "neutral-2",
+                      color: "light-gray",
                       state: _vm.ismax ? "disabled" : _vm.conf.state,
                       id: "mor-upload-button-remote-" + _vm.uiid
                     },
@@ -63249,7 +63478,9 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm._openFile(item.path)
+                                    _vm._isImage(item)
+                                      ? _vm._openPreview(item.path)
+                                      : _vm._openFile(item.path)
                                   }
                                 }
                               },
@@ -63294,7 +63525,9 @@ var render = function() {
                                           click: function($event) {
                                             $event.preventDefault()
                                             $event.stopPropagation()
-                                            return _vm._openFile(item.path)
+                                            _vm._isImage(item)
+                                              ? _vm._openPreview(item.path)
+                                              : _vm._openFile(item.path)
                                           }
                                         }
                                       })
@@ -63350,6 +63583,25 @@ var render = function() {
             : _vm._e()
         ],
         2
+      ),
+      _vm._v(" "),
+      _c(
+        "morning-dialog",
+        {
+          ref: "ui-dialog-preview-" + _vm.uiid,
+          staticClass: "ui-dialog-preview",
+          attrs: { width: "auto", height: "auto", "show-type": "center" },
+          on: { hide: _vm._previewHide }
+        },
+        [
+          _c("img", {
+            style: {
+              maxWidth: "100%",
+              maxHeight: "100%"
+            },
+            attrs: { src: _vm.data.imgPreviewUrl }
+          })
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "error-message" }, [

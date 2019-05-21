@@ -295,6 +295,23 @@ body > div > footer .tolab {
 .contributors {
   margin: 5px 0 20px 0;
 }
+.example {
+  font-size: 0;
+}
+.example > p {
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: top;
+  width: 10%;
+}
+.example > img {
+  padding: 15px;
+  border-radius: 3px;
+}
+img {
+  padding: 15px;
+  border-radius: 3px;
+}
 /*
  * Hopscotch
  * by Jan T. Sott
