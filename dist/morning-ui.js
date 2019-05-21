@@ -47645,8 +47645,6 @@ exports.default = {
         },
         _isImage: function _isImage(file) {
 
-            console.log(123, file);
-
             if (file.file && /^image/.test(file.file.type) || file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path)) {
 
                 return true;
@@ -78895,7 +78893,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.34',
+    version: '0.12.36',
     map: {}
 };
 
