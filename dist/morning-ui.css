@@ -29530,6 +29530,9 @@ mor-img .note {
 mor-img .note:empty {
   display: none;
 }
+mor-img.can-preview img {
+  cursor: pointer;
+}
 mor-img.round {
   border-radius: 3px;
   overflow: hidden;
@@ -29543,6 +29546,11 @@ mor-img.thumbnail {
   padding: 6.4px;
   overflow: hidden;
   border: 1px solid #e5e5e5;
+}
+.ui-dialog-preview > .content > .body {
+  position: relative;
+  font-size: 0;
+  padding: 8px;
 }
 mor-btn {
   display: inline-block;

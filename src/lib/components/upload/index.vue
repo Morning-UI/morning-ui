@@ -62,7 +62,7 @@
                             :key="index"
                             :class="item.classList"
 
-                            @click="_openFile(item.path)"
+                            @click="_isImage(item) ? _openPreview(item.path) : _openFile(item.path)"
                         >
                             <i
                                 class="progress"
@@ -94,7 +94,7 @@
 
                     <morning-popover :target="'#mor-upload-input-remote-'+uiid" v-if="conf.allowUrl">
                         <div class="url-upload-box">
-                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-4" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                         </div>
                     </morning-popover>
                 </div>
@@ -124,7 +124,7 @@
 
                         <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
                             <div class="url-upload-box">
-                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-4" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                             </div>
                         </morning-popover>
                     </div>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <div class="upload-box-operate" v-if="conf.state !== 'readonly' && conf.state !== 'disabled' && data.showFiles[data.currentPreview].status === 'done'">
-                        <a href="javascript:;" title="打开文件" @click="_openFile(data.showFiles[data.currentPreview].path)">
+                        <a href="javascript:;" title="打开文件" @click="_isImage(data.showFiles[data.currentPreview]) ? _openPreview(data.showFiles[data.currentPreview].path) : _openFile(data.showFiles[data.currentPreview].path)">
                             <i class="mo-icon mo-icon-fullscreen"></i>
                         </a>
                         <a href="javascript:;" title="上传文件" @click="_emitFilePicker" v-if="!ismax">
@@ -189,7 +189,7 @@
                             thumbnail : conf.listType === 'thumbnail'
                         }, item.classList]"
 
-                        @click="(conf.state === 'readonly' || conf.state === 'disabled') ? _openFile(item.path) : _switchPreview(index)"
+                        @click="(conf.state === 'readonly' || conf.state === 'disabled') ? (_isImage(item) ? _openPreview(item.path) : _openFile(item.path)) : _switchPreview(index)"
                     >
                         <i
                             class="progress"
@@ -209,7 +209,7 @@
                         </div>
 
                         <div class="upload-operate">
-                            <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
+                            <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_isImage(item) ? _openPreview(item.path) : _openFile(item.path)"></i>
                             <i class="mo-icon mo-icon-refresh reupload" v-if="item.status === 'fail'" title="重新上传" @click.prevent.stop="_upload(index)"></i>
                             <i class="mo-icon mo-icon-close remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
                             <i class="mo-icon mo-icon-arrow-up uploading" v-if="item.status === 'uploading'" title="上传中"></i>
@@ -222,11 +222,11 @@
         <template v-else-if="conf.type === 'button'">
             <morning-popover :target="'#mor-upload-button-remote-'+uiid" v-if="conf.allowUrl">
                 <div class="url-upload-box">
-                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-4" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                 </div>
             </morning-popover>
             <morning-btn
-                color="neutral-2"
+                color="light-gray"
                 class="upload-file upload-button"
                 :state="ismax ? 'disabled' : conf.state"
                 :id="'mor-upload-button-remote-'+uiid"
@@ -251,7 +251,7 @@
                             thumbnail : conf.listType === 'thumbnail'
                         }, item.classList]"
 
-                        @click="_openFile(item.path)"
+                        @click="_isImage(item) ? _openPreview(item.path) : _openFile(item.path)"
                     >
                         <i
                             class="progress"
@@ -271,7 +271,7 @@
                         </div>
 
                         <div class="upload-operate">
-                            <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_openFile(item.path)"></i>
+                            <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_isImage(item) ? _openPreview(item.path) : _openFile(item.path)"></i>
                             <i class="mo-icon mo-icon-refresh reupload" v-if="item.status === 'fail'" title="重新上传" @click.prevent.stop="_upload(index)"></i>
                             <i class="mo-icon mo-icon-close remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
                             <i class="mo-icon mo-icon-arrow-up uploading" v-if="item.status === 'uploading'" title="上传中"></i>
@@ -281,6 +281,24 @@
             </div>
         </template>
     </div>
+
+    <morning-dialog
+        :ref="'ui-dialog-preview-'+uiid"
+        class="ui-dialog-preview"
+        :width="'auto'"
+        :height="'auto'"
+        show-type="center"
+
+        @hide="_previewHide"
+    >
+        <img
+            :src="data.imgPreviewUrl"
+            :style="{
+                maxWidth : '100%',
+                maxHeight : '100%'
+            }"
+        />
+    </morning-dialog>
 
     <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -418,7 +436,8 @@ export default {
                 showFiles : [],
                 currentPreview : -1,
                 fetchRemoteFile : false,
-                dragover : false
+                dragover : false,
+                imgPreviewUrl : false
             }
         };
 
@@ -1049,6 +1068,16 @@ export default {
             }
 
         },
+        _openPreview : function (url) {
+
+            this.data.imgPreviewUrl = url;
+
+        },
+        _previewHide : function () {
+
+            this.data.imgPreviewUrl = false;
+
+        },
         uploadUrl : function (url) {
             
             if (!this.conf.allowUrl) {
@@ -1106,6 +1135,22 @@ export default {
         }, {
             immediate : true,
             deep : true
+        });
+
+        this.$watch('data.imgPreviewUrl', () => {
+
+            let $dialog = this.$refs[`ui-dialog-preview-${this.uiid}`];
+
+            if (this.data.imgPreviewUrl) {
+
+                $dialog.toggle(true);
+
+            } else {
+
+                $dialog.toggle(false);
+
+            }
+
         });
 
     }

@@ -441,6 +441,8 @@
     #event
     >event-desc
     当页码改变时时触发。
+    >event-args
+    |page|当前页码|`Number`|
     ---
     #demo
     >tpl
@@ -451,8 +453,8 @@
     >script
     {
         methods : {
-            echo : function () {
-                console.log('demo7.console1', 'emit event!');
+            echo : function (page) {
+                console.log('demo7.console1', 'emit event!', page);
             }
         }
     }

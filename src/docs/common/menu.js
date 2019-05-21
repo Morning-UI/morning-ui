@@ -32,11 +32,11 @@ export default {
         巨幕 : '/component/jumbotron.html',
         // 工具条 : 'b',
         文章 : '/component/article.html',
-        图片 : '/component/img.html',
         // 代码 : 'b',
         交互组件 : null,
         按钮 : '/component/btn.html',
         链接 : '/component/link.html',
+        图片 : '/component/img.html',
         下拉菜单 : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
@@ -128,6 +128,9 @@ export default {
         参与者公约 : '/guide/codeofconduct.html'
     },
     design : {
+        原则 : null,
+        间距 : '/design/spacing.html',
+        对齐 : '/design/align.html',
         色彩 : '/design/color.html'
     }
 };

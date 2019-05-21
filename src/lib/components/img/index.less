@@ -25,6 +25,12 @@ mor-img{
         }
     }
 
+    &.can-preview{
+        img{
+            cursor: pointer;
+        }
+    }
+
     &.round{
         border-radius: @borderRadius;
         overflow: hidden;
@@ -44,4 +50,10 @@ mor-img{
 
     // default status
     &{}
+}
+
+.ui-dialog-preview > .content > .body{
+    position: relative;
+    font-size: 0;
+    padding: 8px;
 }

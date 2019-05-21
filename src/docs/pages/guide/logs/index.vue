@@ -18,9 +18,38 @@
     
     ### 更新记录
 
+    ### 0.12.36 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年4月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.36" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.36/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.36/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-img`从样式组件变更为交互组件，支持`preview`配置预览图片
+    - `ui-img`新增`show-preview`和`hide-preview`事件
+    - `ui-img`新增`togglePreview`方法
+    
+    #### 改进
+    
+    - `ui-pagination`的`emit`事件新增当前页码参数
+    - `ui-upload`当上传的文件为图片时，现在可以通过弹窗进行预览
+    
+    #### 更多
+    
+    - 新增`设计/原则/间距`、`设计/原则/对齐`文档
+    
+    ---
+
     ### 0.12.35 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
-    <ui-textcolor color="light-blue">
+    <ui-textcolor color="neutral-8">
         <ui-small>
             发布于2019年4月20日，
             Archive :
@@ -43,7 +72,7 @@
 
     ### 0.12.34 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
-    <ui-textcolor color="light-blue">
+    <ui-textcolor color="neutral-8">
         <ui-small>
             发布于2019年5月20日，
             Archive :
