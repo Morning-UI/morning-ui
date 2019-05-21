@@ -66,12 +66,6 @@
                 <li><a href="/component/statistic.html">统计<p>&lt;statistic></p></a></li>
             </ul>
         </div>
-        <div class="sub-group">
-            <h4><i class="iconfont">&#xe669;</i>图片</h4>
-            <ul>
-                <li><a href="/component/img.html">图片<p>&lt;img></p></a></li>
-            </ul>
-        </div>
     </div>
 
     <div class="group">
@@ -79,6 +73,7 @@
         <div class="sub-group">
             <h4><i class="iconfont">&#xe769;</i>展示</h4>
             <ul>
+                <li><a href="/component/img.html">图片<p>&lt;img></p></a></li>
                 <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
                 <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>

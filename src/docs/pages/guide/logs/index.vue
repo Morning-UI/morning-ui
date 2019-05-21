@@ -20,7 +20,7 @@
 
     ### 0.12.35 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
-    <ui-textcolor color="light-blue">
+    <ui-textcolor color="neutral-8">
         <ui-small>
             发布于2019年4月20日，
             Archive :
@@ -43,7 +43,7 @@
 
     ### 0.12.34 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
-    <ui-textcolor color="light-blue">
+    <ui-textcolor color="neutral-8">
         <ui-small>
             发布于2019年5月20日，
             Archive :

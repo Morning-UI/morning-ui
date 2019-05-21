@@ -87,6 +87,186 @@
     <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
 
+    [[[配置]]]
+
+    :::vue
+    @name:src
+    ---
+    #config
+    >conf-desc
+    图片地址。
+    >conf-accept
+    url地址
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
+    <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    :::
+
+    :::vue
+    @name:width
+    ---
+    #config
+    >conf-desc
+    图片的宽度。
+    >conf-accept
+    宽度数值(等价`img`标签的`width`属性)
+    >conf-type
+    String
+    >conf-default
+    `'auto'`
+    ---
+    #demo
+    >tpl
+    <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" width="130"></ui-img>
+    :::
+
+    :::vue
+    @name:height
+    ---
+    #config
+    >conf-desc
+    图片的高度。
+    >conf-accept
+    宽度数值(等价`img`标签的`height`属性)
+    >conf-type
+    String
+    >conf-default
+    `'auto'`
+    ---
+    #demo
+    >tpl
+    <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" height="130"></ui-img>
+    :::
+
+    :::vue
+    @name:alt
+    ---
+    #config
+    >conf-desc
+    图片加载失败显示内容。
+    >conf-accept
+    文字
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
+    <ui-img src="https://d13yacurqjgar.cloudfront.net/noimg.jpeg" alt="这里是alt"></ui-img>
+    :::
+
+    :::vue
+    @name:title
+    ---
+    #config
+    >conf-desc
+    图片的标题
+    >conf-accept
+    文字
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
+    <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" title="这里是title"></ui-img>
+    :::
+
+    :::vue
+    @name:preview
+    ---
+    #config
+    >conf-desc
+    是否开启图片预览，开启后点击图片可以进行预览。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" :preview="true"></ui-img>
+    :::
+
+    [[[方法]]]
+
+    :::vue
+    @name:togglePreview([show])
+    ---
+    #method
+    >method-desc
+    切换图片的预览显示/隐藏，必须开启`preview`配置。
+    >method-args
+    |show|YES|切换到显示或隐藏状态，不输入则切换到反向状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-img ref="demo3" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" :preview="true"></ui-img>
+        <br><br> 
+        <ui-link js="morning.findVM('demo3').togglePreview(true);">显示预览</ui-link>
+        <ui-link js="morning.findVM('demo3').togglePreview(false);">隐藏预览</ui-link>
+        <ui-link js="morning.findVM('demo3').togglePreview();">切换反方向</ui-link>
+    </div>
+    :::
+
+    [[[事件]]]
+
+    :::vue
+    @name:show-preview
+    ---
+    #event
+    >event-desc
+    当图片预览显示时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" :preview="true" @show-preview="echo"></ui-img>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'show-preview event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:hide-preview
+    ---
+    #event
+    >event-desc
+    当图片预览隐藏时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" :preview="true" @hide-preview="echo"></ui-img>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'hide-preview event!');
+            }
+        }
+    }
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/img/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

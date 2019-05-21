@@ -29,4 +29,24 @@ export default {
 </script>
 
 <style lang="less">
+.example{
+    font-size: 0;
+
+    > p{
+        font-size: 14px;
+        display: inline-block;
+        vertical-align: top;
+        width: 10%;
+    }
+
+    > img{
+        padding: 15px;
+        border-radius: 3px;
+    }
+}
+
+img{
+    padding: 15px;
+    border-radius: 3px;
+}
 </style>
