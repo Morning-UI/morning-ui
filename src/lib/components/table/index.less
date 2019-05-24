@@ -1132,7 +1132,7 @@ mor-table{
             .empty-image i,
             .empty-image i.iconfont,
             .empty-image i.mo-icon{
-                color: @colorBlack;
+                color: @colorNeutral5;
                 opacity: 0.6;
             }
 
@@ -1200,7 +1200,7 @@ mor-table{
                 .empty-image i,
                 .empty-image i.iconfont,
                 .empty-image i.mo-icon{
-                    color: if((@value > 5), @colorWhite, @colorBlack);
+                    color: if((@value > 5), @colorWhite, @colorNeutral5);
                     opacity: 0.6;
                 }
 
@@ -1320,7 +1320,7 @@ mor-table{
                 @colorName : 'colorNeutral@{value}';
 
                 &.cco-n@{value}{
-                    background: darken(@@colorName, 5%) !important;
+                    background: @@colorName !important;
                     color: if((@value > 5), @colorWhite, @colorBlack) !important;
                 }
             });

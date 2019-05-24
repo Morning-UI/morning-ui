@@ -94,7 +94,7 @@
 
                     <morning-popover :target="'#mor-upload-input-remote-'+uiid" v-if="conf.allowUrl">
                         <div class="url-upload-box">
-                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                            <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-2" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                         </div>
                     </morning-popover>
                 </div>
@@ -124,7 +124,7 @@
 
                         <morning-popover :target="'#mor-upload-box-remote-'+uiid" v-if="conf.allowUrl">
                             <div class="url-upload-box">
-                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                                <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-2" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                             </div>
                         </morning-popover>
                     </div>
@@ -222,11 +222,11 @@
         <template v-else-if="conf.type === 'button'">
             <morning-popover :target="'#mor-upload-button-remote-'+uiid" v-if="conf.allowUrl">
                 <div class="url-upload-box">
-                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="silver" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
+                    <morning-btn :ref="'mor-url-btn-'+uiid" size="xs" color="neutral-2" @emit="_uploadRemoteFile">通过URL上传</morning-btn>
                 </div>
             </morning-popover>
             <morning-btn
-                color="light-gray"
+                color="neutral-1"
                 class="upload-file upload-button"
                 :state="ismax ? 'disabled' : conf.state"
                 :id="'mor-upload-button-remote-'+uiid"
@@ -236,9 +236,17 @@
                 <span v-if="data.dragover">松开鼠标上传</span>
                 <span v-else>上传{{conf.itemName}}</span>
             </morning-btn>
-            <div class="filelist" v-if="conf.showList && (data.showFiles.length > 0 || !!conf.insideName)" :class="{'thumbnail-list' : conf.listType === 'thumbnail'}">
-                <div class="inside-name" v-if="!!conf.insideName">{{conf.insideName}}</div>
-                <div class="inside-name max" v-if="ismax && !conf.hiddenMaxAlert">最多只能上传{{conf.max}}个文件</div>
+            <div class="inside-name" v-if="!!conf.insideName">{{conf.insideName}}</div>
+            <div class="inside-name max" v-if="ismax && !conf.hiddenMaxAlert">最多只能上传{{conf.max}}个文件</div>
+            <div
+                class="filelist"
+                v-if="conf.showList && (data.showFiles.length > 0 || !!conf.insideName)"
+                :class="{
+                    'type-box' : conf.type === 'box',
+                    'type-button' : conf.type === 'button',
+                    'thumbnail-list' : conf.listType === 'thumbnail'
+                }"
+            >
                 <template v-for="(item, index) in data.showFiles">
                     <a
                         class="file-item"

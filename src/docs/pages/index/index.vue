@@ -17,9 +17,9 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="neutral-5" size="xs">0.12.36</ui-label>
+                <ui-label color="neutral-5" size="xs">0.12.37</ui-label>
             </a>
-            <p>发布于2019年5月21日</p>
+            <p>发布于2019年5月24日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">
@@ -351,6 +351,8 @@ Vue.use(morning);
                     <h3>贡献者</h3>
                     <p class="desc">感谢以下贡献者：<br><br>
                         <a href="https://github.com/EarlyH">Early He</a><br>
+                        <a href="https://www.zhihu.com/people/zhang-ji-ji-61/columns">仉长娟</a><br>
+                        <a href="https://www.zhihu.com/people/qing-wa-kimo/activities">青蛙kimo</a><br>
                         <a href="https://github.com/echoZQ">echoZQ</a><br>
                         <a href="https://github.com/CFDylan">CFDylan</a><br>
                     </p>

@@ -18,6 +18,36 @@
     
     ### 更新记录
 
+    ### 0.12.37 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年4月24日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.36" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.36/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.36/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 改进
+    
+    - 优化`ui-table`的`col-set`、`row-set`、`cell-set`中的单元格背景色彩
+    - 现在当`ui-img`使用`preview`配置后，鼠标移入会显示提示浮层
+    
+    #### 修复
+    
+    - 修复`ui-upload`在开启`list-type=“thumbnail”`和`inside-name`配置后文字错位的问题
+    - 修复`ui-upload`组件`type=“button”`时，按钮色彩不正确的问题
+    
+    #### 更多
+                                                                                                            
+    - 新增`设计/原则/对比`、`设计/原则/操作定义`文档
+    - 更新`致谢`文档，新增贡献者
+    - 更新文档中关于Vue的版本限定
+    
+    ---
+
     ### 0.12.36 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">

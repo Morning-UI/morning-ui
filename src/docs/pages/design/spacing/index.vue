@@ -27,7 +27,7 @@
 
     <div class="example">
         <p>示例：</p>
-        <img src="http://h0.hucdn.com/open201921/cb0022499738ad9d_678x136.jpg" />
+        <img src="http://h0.hucdn.com/open201921/99885980a5210d94_678x136.jpg" />
     </div>
 
     ##### 横向

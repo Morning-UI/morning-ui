@@ -25627,6 +25627,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -25671,9 +25678,7 @@ exports.default = {
         },
         moreClass: function moreClass() {
 
-            var classes = {
-                'can-preview': this.conf.preview
-            };
+            var classes = {};
 
             return classes;
         }
@@ -47491,6 +47496,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _axiosMin = __webpack_require__(632);
 
@@ -58696,9 +58709,16 @@ var render = function() {
           height: _vm.conf.height,
           alt: _vm.conf.alt,
           title: _vm.conf.title
-        },
-        on: { click: _vm._onClick }
+        }
       }),
+      _vm._v(" "),
+      _vm.conf.preview
+        ? _c(
+            "div",
+            { staticClass: "preview-note", on: { click: _vm._onClick } },
+            [_c("i", { staticClass: "mo-icon mo-icon-fullscreen" })]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "note" }, [_vm._t("default")], 2),
       _vm._v(" "),
@@ -62887,7 +62907,7 @@ var render = function() {
                                     "morning-btn",
                                     {
                                       ref: "mor-url-btn-" + _vm.uiid,
-                                      attrs: { size: "xs", color: "silver" },
+                                      attrs: { size: "xs", color: "neutral-2" },
                                       on: { emit: _vm._uploadRemoteFile }
                                     },
                                     [_vm._v("通过URL上传")]
@@ -62997,7 +63017,7 @@ var render = function() {
                                               ref: "mor-url-btn-" + _vm.uiid,
                                               attrs: {
                                                 size: "xs",
-                                                color: "silver"
+                                                color: "neutral-2"
                                               },
                                               on: {
                                                 emit: _vm._uploadRemoteFile
@@ -63398,7 +63418,7 @@ var render = function() {
                               "morning-btn",
                               {
                                 ref: "mor-url-btn-" + _vm.uiid,
-                                attrs: { size: "xs", color: "silver" },
+                                attrs: { size: "xs", color: "neutral-2" },
                                 on: { emit: _vm._uploadRemoteFile }
                               },
                               [_vm._v("通过URL上传")]
@@ -63415,7 +63435,7 @@ var render = function() {
                   {
                     staticClass: "upload-file upload-button",
                     attrs: {
-                      color: "light-gray",
+                      color: "neutral-1",
                       state: _vm.ismax ? "disabled" : _vm.conf.state,
                       id: "mor-upload-button-remote-" + _vm.uiid
                     },
@@ -63430,6 +63450,18 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
+                !!_vm.conf.insideName
+                  ? _c("div", { staticClass: "inside-name" }, [
+                      _vm._v(_vm._s(_vm.conf.insideName))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.ismax && !_vm.conf.hiddenMaxAlert
+                  ? _c("div", { staticClass: "inside-name max" }, [
+                      _vm._v("最多只能上传" + _vm._s(_vm.conf.max) + "个文件")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _vm.conf.showList &&
                 (_vm.data.showFiles.length > 0 || !!_vm.conf.insideName)
                   ? _c(
@@ -63437,24 +63469,12 @@ var render = function() {
                       {
                         staticClass: "filelist",
                         class: {
+                          "type-box": _vm.conf.type === "box",
+                          "type-button": _vm.conf.type === "button",
                           "thumbnail-list": _vm.conf.listType === "thumbnail"
                         }
                       },
                       [
-                        !!_vm.conf.insideName
-                          ? _c("div", { staticClass: "inside-name" }, [
-                              _vm._v(_vm._s(_vm.conf.insideName))
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.ismax && !_vm.conf.hiddenMaxAlert
-                          ? _c("div", { staticClass: "inside-name max" }, [
-                              _vm._v(
-                                "最多只能上传" + _vm._s(_vm.conf.max) + "个文件"
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
                         _vm._l(_vm.data.showFiles, function(item, index) {
                           return [
                             _c(
@@ -78893,7 +78913,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.36',
+    version: '0.12.37',
     map: {}
 };
 
