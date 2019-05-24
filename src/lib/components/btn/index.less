@@ -609,7 +609,7 @@ mor-btn{
 
             &:not(.st-disabled):hover,
             &.st-hover{
-                background-color: lighten(@@colorName, 5%);
+                background-color: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 5%));
 
                 &.plain{
                     color: if((@value > 5), @colorWhite, @colorBlack);
@@ -618,7 +618,7 @@ mor-btn{
 
             &:not(.st-disabled):active,
             &.st-active{
-                background-color: lighten(@@colorName, 10%);
+                background-color: if((@value > 5), lighten(@@colorName, 10%), darken(@@colorName, 10%));
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
             }
 

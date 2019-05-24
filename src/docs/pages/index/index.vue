@@ -351,6 +351,8 @@ Vue.use(morning);
                     <h3>贡献者</h3>
                     <p class="desc">感谢以下贡献者：<br><br>
                         <a href="https://github.com/EarlyH">Early He</a><br>
+                        <a href="https://www.zhihu.com/people/zhang-ji-ji-61/columns">仉长娟</a><br>
+                        <a href="#">李健</a><br>
                         <a href="https://github.com/echoZQ">echoZQ</a><br>
                         <a href="https://github.com/CFDylan">CFDylan</a><br>
                     </p>

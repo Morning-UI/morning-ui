@@ -16,9 +16,16 @@
             :height="conf.height"
             :alt="conf.alt"
             :title="conf.title"
-
-            @click="_onClick"
         />
+
+        <div
+            v-if="conf.preview"
+            class="preview-note"
+            @click="_onClick"
+        >
+            <i class="mo-icon mo-icon-fullscreen"></i>
+        </div>
+
         <p class="note">
             <slot></slot>
         </p>
@@ -93,9 +100,7 @@ export default {
         },
         moreClass : function () {
 
-            let classes = {
-                'can-preview' : this.conf.preview
-            };
+            let classes = {};
 
             return classes;
 
