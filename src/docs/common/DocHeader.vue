@@ -90,7 +90,6 @@ body > div > header {
         img {
             width: 53px;
             height: 50px;
-            margin-top: 15px;
             display: inline-block;
         }
     }

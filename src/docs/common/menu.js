@@ -131,6 +131,8 @@ export default {
         原则 : null,
         间距 : '/design/spacing.html',
         对齐 : '/design/align.html',
-        色彩 : '/design/color.html'
+        色彩 : '/design/color.html',
+        对比 : '/design/compared.html',
+        操作定义 : '/design/op-definition.html'
     }
 };
