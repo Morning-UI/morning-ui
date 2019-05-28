@@ -5,9 +5,9 @@
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",
   "scripts": {
-    "build": "./node_modules/.bin/parallel-webpack --config ./build/webpack.prod.config.js --mode production",
+    "build": "node --max-old-space-size=4096 ./node_modules/.bin/parallel-webpack --config ./build/webpack.prod.config.js --mode production",
     "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.config.js --mode development",
-    "build-profile": "./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --mode production --profile --json > webpack-profile.json",
+    "build-profile": "node --max-old-space-size=4096 ./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --mode production --profile --json > webpack-profile.json",
     "lint": "npm run js-lint && npm run css-lint",
     "js-lint": "node_modules/.bin/eslint --ext js,vue src/ build/ test/ bin/ server/",
     "js-lint-fix": "npm run lint -- --fix",

@@ -842,6 +842,7 @@
     |hide|在表格中隐藏列，用于某些在`list`存在但不需要在展示的数据。列隐藏后在导出`.csv`文件时仍然会存在，如在导出`.csv`文件时也要排除，使用`col-set`配置的`export`属性来控制|`true`<br>`false`|Boolean|`false`|
     |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
     |sort|开启单列排序，必需启用`show-col-name`才有效。多列排序需要启用`multi-sort`配置|`true`<br>`false`|Boolean|`false`|
+    |sortmode|排序的模式，注意当`sortmode`不为`normal`时，必须开启`multi-sort`才生效。|`'normal'`:标准排序<br>`'asc desc'`:仅正倒序排序(默认正序)<br>`'desc asc'`:仅正倒序排序(默认倒序)<br>`'no asc'`:仅正序排序<br>`'no desc'`:仅倒序排序|String|`'normal'`|
     |pos|列的位置，这是一个数字，默认为0，表示按照数据输入的顺序。数值越大的列将会显示的越后面，数值也可以为负数。|位置数值|Number|`0`|
     <br>
     注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
@@ -1106,6 +1107,66 @@
             colset : [
                 {col : 'name', name : 'Name', sort : true, title : true},
                 {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    sortmode
+    >desc
+    通过`sortmode`字段可以设置仅正序倒序排序，必须配合`multi-sort`配置。
+    >tpl
+    <ui-table :list="list" :col-set="colset" multi-sort :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true, sortmode : 'asc desc'},
+                {col : 'age', name : 'Age', sort : true, sortmode : 'asc desc'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    sortmode
+    >desc
+    通过`sortmode`字段可以设置仅正序倒序排序，默认设置倒序，必须配合`multi-sort`配置。
+    >tpl
+    <ui-table :list="list" :col-set="colset" multi-sort :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true, sortmode : 'desc asc'},
+                {col : 'age', name : 'Age', sort : true, sortmode : 'desc asc'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    sortmode
+    >desc
+    通过`sortmode`字段可以设置仅支持正序，必须配合`multi-sort`配置。
+    >tpl
+    <ui-table :list="list" :col-set="colset" multi-sort :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true, sortmode : 'no asc'},
+                {col : 'age', name : 'Age', sort : true, sortmode : 'no asc'},
                 {col : 'gender', name : 'Gender'},
                 {col : 'job', name : 'Job'}
             ]
@@ -1426,6 +1487,52 @@
         },
         methods : {
             customSort : function (key, type) {
+
+                if (type === 'desc') {
+
+                    this.list = sortby(this.list, (val) => {
+
+                        return val[key];
+
+                    });
+
+                } else if (type === 'asc') {
+
+                    this.list = sortby(this.list, (val) => {
+
+                        return -val[key];
+
+                    });
+
+                } else {
+
+                    // 原始顺序
+                    this.list = window.demodata.list;
+
+                }
+
+            }
+        }
+    }
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" :col-set="colset" show-col-name multi-sort custom-sort @col-sort="customSort"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', sort : true, sortmode : 'desc asc'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        },
+        methods : {
+            customSort : function (key, type) {
+
+                console.log(99, key, type);
 
                 if (type === 'desc') {
 

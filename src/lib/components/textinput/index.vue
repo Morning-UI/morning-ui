@@ -28,45 +28,47 @@
 
         <div class="input-group-addon" v-html="conf.prepend" v-show="!!conf.prepend"></div>
 
-        <template v-if="inputType === 'text'">
-            <input
-                type="text"
-                key="is-text"
+        <div class="input-wrap" :class="inputClass">
+            <template v-if="inputType === 'text'">
+                <input
+                    type="text"
+                    key="is-text"
 
-                :class="inputClass"
-                :placeholder="placeholder"
-                :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-                :maxlength="conf.maxlength"
+                    :class="inputClass"
+                    :placeholder="placeholder"
+                    :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+                    :maxlength="conf.maxlength"
 
-                @focus="_focus()"
-                @blur="_blur()"
+                    @focus="_focus()"
+                    @blur="_blur()"
 
-                :value="data.value"
-                @input="$emit('input', $event.target.value)"
-            />
-        </template>
-        <template v-else>
-            <input
-                type="password"
-                key="is-password"
-                
-                :class="inputClass"
-                :placeholder="placeholder"
-                :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-                :maxlength="conf.maxlength"
+                    :value="data.value"
+                    @input="$emit('input', $event.target.value)"
+                />
+            </template>
+            <template v-else>
+                <input
+                    type="password"
+                    key="is-password"
+                    
+                    :class="inputClass"
+                    :placeholder="placeholder"
+                    :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+                    :maxlength="conf.maxlength"
 
-                @focus="_focus()"
-                @blur="_blur()"
+                    @focus="_focus()"
+                    @blur="_blur()"
 
-                :value="data.value"
-                @input="$emit('input', $event.target.value)"
-            />
-        </template>
+                    :value="data.value"
+                    @input="$emit('input', $event.target.value)"
+                />
+            </template>
+
+            <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
+        </div>
 
         <div class="input-group-addon" v-html="conf.append" v-show="!!conf.append"></div>
 
-        <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
-        
     </div>
 
     <div class="error-message">{{conf._errorMessage}}</div>
@@ -163,12 +165,14 @@ export default {
             if (this.conf.prepend) {
                 
                 classes[`input-group-prepend-${this.conf.prependType}`] = true;
+                classes[`input-group-prepend`] = true;
 
             }
 
             if (this.conf.append) {
                 
                 classes[`input-group-append-${this.conf.appendType}`] = true;
+                classes[`input-group-append`] = true;
 
             }
 
