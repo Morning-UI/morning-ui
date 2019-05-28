@@ -15,6 +15,39 @@
                     <!-- AREA END -->
                      
 
+                    <ui-form
+                    :rules="{
+                        name : {
+                            type: 'array',
+                            required: true,
+                            message : '姓名必须填写'
+                        }
+                    }"
+                    >
+                    <ui-formitem label="姓名">
+                    <ui-select
+                        form-name="Select designer"
+                        ref="demo1"
+                        form-key="name"
+                        :list="{
+                            tim : 'Tim Boelaars',
+                            andrew : 'Andrew Colin Beck',
+                            gustavo : 'Gustavo Zambelli',
+                            victor : 'Victor Erixon',
+                            shaun : 'Shaun Moynihan',
+                            emir : 'Emir Ayouni',
+                            katherine : 'Katherine Rainey',
+                            jax : 'Jax Berndt',
+                            elizabeth : 'Elizabeth Chiu',
+                            sara : 'Sara Nicely',
+                            anna : 'Anna Broussard'
+                        }"
+                    >
+                    </ui-select>
+
+                    </ui-formitem>
+                    </ui-form>
+
                 </div>
             </div>
         </div>
@@ -66,6 +99,9 @@ export default {
         }
     },
     mounted : function () {
+
+        window.morning.findVM('demo1').state = 'disabled';
+        window.morning.findVM('demo1').set(["emir"]);
     }
 };
 </script>

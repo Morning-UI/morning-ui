@@ -133,6 +133,8 @@ export default {
         对齐 : '/design/align.html',
         色彩 : '/design/color.html',
         对比 : '/design/compared.html',
-        操作定义 : '/design/op-definition.html'
+        操作定义 : '/design/op-definition.html',
+        视觉 : null,
+        字体 : '/design/font.html'
     }
 };

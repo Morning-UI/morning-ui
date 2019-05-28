@@ -75,6 +75,7 @@ body > div > header {
     height: 80px;
     position: relative;
     z-index: 99;
+    font-family: PingFangSC-Thin, sans-serif;
 
     .nav {
         width: 1150px;
@@ -102,6 +103,7 @@ body > div > header {
         margin-left: 0;
         font-size: 26px;
         opacity: 0.8;
+        font-family: PingFangSC-Thin, sans-serif;
     }
 
     .menu{
@@ -126,6 +128,7 @@ body > div > header {
                 opacity: 0.7;
                 font-size: 13px;
                 text-decoration: none;
+                font-family: PingFangSC-Thin, sans-serif;
 
                 &:hover {
                     opacity: 0.8;
