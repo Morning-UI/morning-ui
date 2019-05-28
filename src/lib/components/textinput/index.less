@@ -10,6 +10,10 @@ mor-textinput{
 
     .setup-form();
 
+    .input-wrap{
+        position: relative;
+    }
+
     input{
         box-sizing: border-box;
         z-index: 2;
@@ -76,7 +80,6 @@ mor-textinput{
 
     &.input-group {
         .cleanicon{
-            right: 2.5em;
             z-index: 2;
         }
 
@@ -113,18 +116,18 @@ mor-textinput{
             border-bottom-right-radius: 0;
         }
 
-        input + .input-group-addon {
+        .input-wrap + .input-group-addon {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             border-left: 0;
         }
 
-        .input-group-addon + input.has-append {
+        .input-group-addon + .input-wrap.has-append > input {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
 
-        .input-group-addon + input.has-prepend {
+        .input-group-addon + .input-wrap.has-prepend > input {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
@@ -135,7 +138,7 @@ mor-textinput{
                 padding-right: 0;
             }
 
-            .input-group-addon + input{
+            .input-group-addon + .input-wrap > input{
                 border-left: 0;
             }
 
@@ -181,10 +184,6 @@ mor-textinput{
         }
 
         &.input-group {
-            .cleanicon{
-                right: 1.8em;
-            }
-
             .input-group-addon {
                 padding: @fontSize*0.3125 @fontSize*0.625;
                 font-size: @formInputFontSizeXs;
@@ -195,12 +194,6 @@ mor-textinput{
                 > i{
                     font-size: @formInputFontSizeXs;
                 }
-            }
-        }
-
-        &.input-group-append-block{
-            .cleanicon{
-                right: 2.6em;
             }
         }
     }
@@ -222,10 +215,6 @@ mor-textinput{
         }
 
         &.input-group {
-            .cleanicon{
-                right: 2.1em;
-            }
-
             .input-group-addon {
                 padding: @fontSize*0.375 @fontSize*0.75;
                 font-size: @formInputFontSizeS;
@@ -236,12 +225,6 @@ mor-textinput{
                 > i{
                     font-size: @formInputFontSizeS;
                 }
-            }
-        }
-
-        &.input-group-append-block{
-            .cleanicon{
-                right: 3em;
             }
         }
     }
@@ -263,10 +246,6 @@ mor-textinput{
         }
 
         &.input-group {
-            .cleanicon{
-                right: 2.1em;
-            }
-
             .input-group-addon {
                 padding: @fontSize*0.375 @fontSize*0.75;
                 font-size: @formInputFontSize;
@@ -277,12 +256,6 @@ mor-textinput{
                 > i{
                     font-size: @formInputFontSize;
                 }
-            }
-        }
-
-        &.input-group-append-block{
-            .cleanicon{
-                right: 3.3em;
             }
         }
     }

@@ -94,8 +94,7 @@ export default {
         'colSetMap',
         'rowSetMap',
         'sortCol',
-        'uiid',
-
+        'uiid'
     ],
     methods : {
         _syncRowChecked : function (line) {

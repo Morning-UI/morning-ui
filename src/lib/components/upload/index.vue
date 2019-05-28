@@ -176,7 +176,15 @@
 
                 <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
             </div>
-            <div class="filelist" v-if="conf.showList && data.showFiles.length > 0" :class="{'thumbnail-list' : conf.listType === 'thumbnail'}">
+            <div
+                class="filelist"
+                v-if="conf.showList && data.showFiles.length > 0"
+                :class="{
+                    'type-box' : conf.type === 'box',
+                    'type-button' : conf.type === 'button',
+                    'thumbnail-list' : conf.listType === 'thumbnail'
+                }"
+            >
                 <template v-for="(item, index) in data.showFiles">
                     <a
                         class="file-item"

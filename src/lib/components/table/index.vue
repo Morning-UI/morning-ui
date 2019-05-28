@@ -331,7 +331,8 @@ export default {
                 sortCol : [],
                 rowChecked : {},
                 rowCheckedChangeCount : 0,
-                rowCheckedChangeLock : false
+                rowCheckedChangeLock : false,
+                initedSetCol : false
             }
         };
 
@@ -344,12 +345,14 @@ export default {
             this._setCol();
             this._setRow();
             this._setCell();
+            this._initSetCol();
 
         },
         _sortCol : function (col) {
 
             let type = 'desc';
             let sortColIndex;
+            let colSetMap = this.colSetMap[col];
 
             if (this.data.sort[col] === undefined) {
 
@@ -359,19 +362,90 @@ export default {
 
                 }
 
-                this.data.sort[col] = {
-                    type : 'no',
-                    origin : {}
-                };
+                if (
+                    (colSetMap.sortmode === 'desc asc' || colSetMap.sortmode === 'asc desc') &&
+                    this.conf.multiSort
+                ) {
+
+                    this.data.sort[col] = {
+                        origin : {}
+                    };
+
+                    // 这里用反向的，因为后续逻辑会做一次切换
+                    if (colSetMap.sortmode === 'desc asc') {
+
+                        this.data.sort[col].type = 'asc';
+
+                    } else if (colSetMap.sortmode === 'asc desc') {
+
+                        this.data.sort[col].type = 'desc';
+
+                    }
+
+                } else {
+
+                    this.data.sort[col] = {
+                        type : 'no',
+                        origin : {}
+                    };
+
+                }
 
             }
 
-            if (this.data.sort[col].type === 'desc') {
+            if (
+                (colSetMap.sortmode === 'desc asc' || colSetMap.sortmode === 'asc desc') &&
+                this.conf.multiSort
+            ) {
+                
+                if (this.data.sort[col].type === 'desc') {
+
+                    type = 'asc';
+
+                } else {
+
+                    type = 'desc';
+                    this.data.sort[col].origin = {
+                        title : extend([], this.data.titleRows),
+                        normal : extend([], this.data.normalRows)
+                    };
+
+                }
+
+            } else if (
+                (colSetMap.sortmode === 'no asc' || colSetMap.sortmode === 'no desc') &&
+                this.conf.multiSort
+            ) {
+
+                if (this.data.sort[col].type === 'no') {
+
+                    if (colSetMap.sortmode === 'no asc') {
+                        
+                        type = 'asc';
+
+                    } else {
+                        
+                        type = 'desc';
+
+                    }
+
+                    this.data.sort[col].origin = {
+                        title : extend([], this.data.titleRows),
+                        normal : extend([], this.data.normalRows)
+                    };
+
+                } else {
+
+                    type = 'no';
+
+                }
+
+            } else if (this.data.sort[col].type === 'desc') {
 
                 type = 'asc';
 
             } else if (this.data.sort[col].type === 'asc') {
-
+                
                 type = 'no';
 
             } else {
@@ -404,16 +478,19 @@ export default {
 
             this.data.sort[col].type = type;
 
-            if (this.conf.customSort) {
-                
-                this._sort();
+            // if (this.conf.customSort) {
 
-            }
+            this._sort();
+
+            // }
     
             this.$emit('col-sort', col, this.data.sort[col].type);
 
         },
         _sort : function () {
+
+            let nosortCols = 0;
+            let lastCol;
 
             for (let col of this.data.sortCol) {
 
@@ -424,6 +501,8 @@ export default {
                 let mainRows;
                 let newMainRows = [];
                 let newSubRows = [];
+
+                lastCol = col;
 
                 if (sort.type === 'asc' ||
                     sort.type === 'desc') {
@@ -467,7 +546,18 @@ export default {
                     this.data.titleRows = sort.origin.title;
                     this.data.normalRows = sort.origin.normal;
 
+                } else {
+
+                    nosortCols++;
+
                 }
+
+            }
+
+            if (nosortCols === this.data.sortCol.length) {
+                    
+                this.data.titleRows = this.data.sort[lastCol].origin.title;
+                this.data.normalRows = this.data.sort[lastCol].origin.normal;
 
             }
 
@@ -497,6 +587,31 @@ export default {
                 }
 
             }
+
+        },
+        _initSetCol : function () {
+
+            if (this.data.initedSetCol) {
+
+                return;
+
+            }
+
+            this.data.initedSetCol = true;
+
+            this.Vue.nextTick(() => {
+
+                for (let set of this.conf.colSet) {
+
+                    if (set.sortmode !== 'normal') {
+
+                        this._sortCol(set.col);
+
+                    }
+
+                }
+
+            });
 
         },
         _setCol : function () {
@@ -591,6 +706,7 @@ export default {
                     hide : false,
                     export : true,
                     sort : false,
+                    sortmode : 'normal',
                     pos : 0
                 }, item));
 
