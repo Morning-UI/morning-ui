@@ -18,6 +18,37 @@
     
     ### 更新记录
 
+    ### 0.12.38 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年4月28日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.38" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.38/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.38/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    -  `ui-table`的`col-set`配置新增`sortmode`可以设置多种排序类型
+    
+    #### 改进
+    
+    - 采用了新的字体标准，优先字体从`苹方`切换为`Helvetica`和`Microsoft YaHei`
+    
+    #### 修复
+    
+    - 修复`ui-textinput`在使用`append`和`prepend`配置时，清空按钮位置不正确的问题
+    - 修复`ui-table`排序失效的一个问题
+    
+    <ui-label color="primary">升级注意事项</ui-label>
+    
+    - 由于字体调整可能引起部分场景下文字的位置需要微调
+    
+    ---
+
     ### 0.12.37 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
