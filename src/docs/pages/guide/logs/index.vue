@@ -18,11 +18,39 @@
     
     ### 更新记录
 
+    ### 0.12.39 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年5月30日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.39" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.39/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.39/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-table`支持嵌套子内容，详见文档
+    
+    #### 改进
+    
+    - 优化`ui-dialog`的标题字体颜色和边距
+    - 统一`ui-upload`中移除文件的图标
+    - 优化`ui-checkbox`和`ui-radio`的文案颜色
+    
+    #### 更多
+    
+    - 新增`设计/视觉/布局`文档
+    
+    ---
+
     ### 0.12.38 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
         <ui-small>
-            发布于2019年4月28日，
+            发布于2019年5月28日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.38" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.38/dist/" target="_blank">jsdelivr(CDN)</a>
@@ -53,7 +81,7 @@
     
     <ui-textcolor color="neutral-8">
         <ui-small>
-            发布于2019年4月24日，
+            发布于2019年5月24日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.36" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.36/dist/" target="_blank">jsdelivr(CDN)</a>
@@ -83,7 +111,7 @@
     
     <ui-textcolor color="neutral-8">
         <ui-small>
-            发布于2019年4月21日，
+            发布于2019年5月21日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.36" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.36/dist/" target="_blank">jsdelivr(CDN)</a>
@@ -112,7 +140,7 @@
 
     <ui-textcolor color="neutral-8">
         <ui-small>
-            发布于2019年4月20日，
+            发布于2019年5月20日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.35" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.35/dist/" target="_blank">jsdelivr(CDN)</a>
