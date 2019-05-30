@@ -325,6 +325,31 @@
     :::
 
     :::vue
+    @name:嵌套子内容
+    ---
+    #demo
+    >desc
+    注意使用嵌套子内容时，无法使用标题列(`col-set`中将列设为`title`)。
+    >tpl
+    <ui-table :list="mainList"></ui-table>
+    >script
+    {
+        data : {
+            mainList : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<ui-card><div>这里是卡片内容</div></ui-card>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher', __expand : '<ui-table :list="context.list1"></ui-table>'}
+            ],
+            list1: [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
     @name:无数据
     ---
     #demo
@@ -440,6 +465,27 @@
                 {name : 'Victor Erixon', job : 'doctors'},
                 {name : 'Shaun Moynihan'},
                 {}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    在`list`中使用`__expand`来实现嵌套子内容。注意：无法同时使用标题列(`col-set`中将列设为`title`)。
+    >tpl
+    <ui-table :list="mainList"></ui-table>
+    >script
+    {
+        data : {
+            mainList : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<ui-card><div>这里是卡片内容</div></ui-card>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher', __expand : '<ui-table :list="context.list1"></ui-table>'}
+            ],
+            list1: [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'}
             ]
         }
     }

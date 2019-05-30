@@ -44,14 +44,14 @@ mor-checkbox{
 
             span{
                 vertical-align: middle;
-                color: @colorFormPlaceholder;
+                color: @colorNeutral9;
                 transition: 0.2s;
                 -webkit-user-select: text;
             }
 
             .box{
                 vertical-align: middle;
-                background: #FFF;
+                background: @colorWhite;
                 border-radius: @borderRadius;
                 display: inline-block;
                 border: 1px @colorFormBorder solid;
@@ -61,7 +61,7 @@ mor-checkbox{
             }
 
             .mo-icon{
-                color: #FFF;
+                color: @colorWhite;
                 opacity: 0;
                 transform: scale(0);
                 transition: transform 0.2s;
@@ -73,10 +73,6 @@ mor-checkbox{
             }
 
             &:hover{
-                span{
-                    color: darken(@colorFormPlaceholderHover, 10%);
-                }
-
                 .box{
                     border-color: darken(@colorFormBorderHover, 10%);
                 }
@@ -84,10 +80,6 @@ mor-checkbox{
 
             &.checked,
             &.part-checked{
-                span{
-                    color: @colorFormTextFocus;
-                }
-
                 .mo-icon{
                     opacity: 1;
                 }
@@ -971,13 +963,6 @@ mor-checkbox{
                     border: 1px @colorWhite solid;
                 }
 
-                &:hover,
-                &.checked{
-                    span{
-                        color: @colorWhite;
-                    }
-                }
-
                 &.checked,
                 &.part-checked{
                     .box{
@@ -1054,13 +1039,6 @@ mor-checkbox{
             // &,
             .box{
                 border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
-                span{
-                    color: @colorWhite;
-                }
             }
 
             &.checked,

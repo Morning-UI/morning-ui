@@ -44,7 +44,7 @@ mor-radio{
 
             span{
                 vertical-align: middle;
-                color: @colorFormPlaceholder;
+                color: @colorNeutral9;
                 transition: 0.2s;
                 -webkit-user-select: text;
             }
@@ -72,10 +72,6 @@ mor-radio{
             }
 
             &:hover{
-                span{
-                    color: darken(@colorFormPlaceholderHover, 10%);
-                }
-
                 .box{
                     border-color: darken(@colorFormBorderHover, 10%);
                 }
@@ -984,13 +980,6 @@ mor-radio{
                     border: 1px @colorWhite solid;
                 }
 
-                &:hover,
-                &.checked{
-                    span{
-                        color: @colorWhite;
-                    }
-                }
-
                 &.checked{
                     .box{
                         background: @@colorName;
@@ -1072,13 +1061,6 @@ mor-radio{
 
             .box{
                 border: 1px @colorWhite solid;
-            }
-
-            &:hover,
-            &.checked{
-                span{
-                    color: @colorWhite;
-                }
             }
 
             &.checked{

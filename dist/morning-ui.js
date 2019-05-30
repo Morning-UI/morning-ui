@@ -27573,6 +27573,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _arrayUniq = __webpack_require__(12);
 
@@ -27832,6 +27834,9 @@ exports.default = {
                 normalRows: [],
                 titleKeys: [],
                 titleRows: [],
+                rowExpand: [],
+                rowExpandOpen: [],
+                hasRowExpand: false,
                 listDataJson: '[]',
                 sort: {},
                 sortCol: [],
@@ -28209,7 +28214,7 @@ exports.default = {
 
                     if ($rows) {
 
-                        $rows = $rows.querySelectorAll('tbody tr, thead tr');
+                        $rows = $rows.querySelectorAll('tbody tr:not(.expand-row), thead tr');
 
                         var _iteratorNormalCompletion9 = true;
                         var _didIteratorError9 = false;
@@ -28533,7 +28538,7 @@ exports.default = {
                             $cell = $cell.querySelectorAll('thead th');
                         } else {
 
-                            $cell = $cell.querySelectorAll('tbody tr')[rowIndex];
+                            $cell = $cell.querySelectorAll('tbody tr:not(.expand-row)')[rowIndex];
                             $cell = $cell.querySelectorAll('td');
                         }
 
@@ -28625,8 +28630,8 @@ exports.default = {
         },
         _syncRowHeight: function _syncRowHeight() {
 
-            var $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr');
-            var $titleRows = this.$el.querySelectorAll('.title-table tbody > tr');
+            var $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr:not(.expand-row)');
+            var $titleRows = this.$el.querySelectorAll('.title-table tbody > tr:not(.expand-row)');
 
             for (var index in $normalRows) {
 
@@ -28726,16 +28731,16 @@ exports.default = {
         },
         _rowOver: function _rowOver(line) {
 
-            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[line];
-            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[line];
+            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr:not(.expand-row)')[line];
+            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)')[line];
 
             $titleTr.classList.add('hover');
             $normalTr.classList.add('hover');
         },
         _rowOut: function _rowOut(line) {
 
-            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[line];
-            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[line];
+            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr:not(.expand-row)')[line];
+            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)')[line];
 
             $titleTr.classList.remove('hover');
             $normalTr.classList.remove('hover');
@@ -28894,6 +28899,8 @@ exports.default = {
             var normalRows = [];
             var titleKeys = [];
             var normalKeys = [];
+            var rowExpand = [];
+            var rowExpandOpen = [];
 
             list = (0, _extend2.default)(true, [], list);
 
@@ -28943,26 +28950,30 @@ exports.default = {
                                 var _key2 = _step20.value;
 
 
-                                var _set2 = this.colSetMap[_key2];
+                                // __expand is special key
+                                if (_key2 !== '__expand') {
 
-                                if (_set2 && _set2.title === true) {
+                                    var _set2 = this.colSetMap[_key2];
 
-                                    titleKeys.push({
-                                        key: _key2,
-                                        pos: _set2.pos
-                                    });
-                                } else if (_set2) {
+                                    if (_set2 && _set2.title === true) {
 
-                                    normalKeys.push({
-                                        key: _key2,
-                                        pos: _set2.pos
-                                    });
-                                } else {
+                                        titleKeys.push({
+                                            key: _key2,
+                                            pos: _set2.pos
+                                        });
+                                    } else if (_set2) {
 
-                                    normalKeys.push({
-                                        key: _key2,
-                                        pos: 0
-                                    });
+                                        normalKeys.push({
+                                            key: _key2,
+                                            pos: _set2.pos
+                                        });
+                                    } else {
+
+                                        normalKeys.push({
+                                            key: _key2,
+                                            pos: 0
+                                        });
+                                    }
                                 }
                             }
                         } catch (err) {
@@ -29085,6 +29096,8 @@ exports.default = {
 
                     titleRows.push(titleCol);
                     normalRows.push(normalCol);
+                    rowExpand.push(_item.__expand);
+                    rowExpandOpen.push(false);
                 }
             } catch (err) {
                 _didIteratorError21 = true;
@@ -29106,6 +29119,29 @@ exports.default = {
             this.data.titleRows = titleRows;
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
+            this.data.rowExpand = rowExpand;
+            this.data.rowExpandOpen = rowExpandOpen;
+
+            var uniqRowExpand = (0, _arrayUniq2.default)(rowExpand);
+
+            if (uniqRowExpand.length === 1 && uniqRowExpand[0] === undefined) {
+
+                this.data.hasRowExpand = false;
+            } else {
+
+                this.data.hasRowExpand = true;
+            }
+        },
+        _expandRow: function _expandRow(row) {
+
+            var open = (0, _extend2.default)([], this.data.rowExpandOpen);
+
+            if (open[row] !== undefined) {
+
+                open[row] = !open[row];
+            }
+
+            this.data.rowExpandOpen = open;
         },
         _tableScroll: function _tableScroll(evt) {
 
@@ -29148,7 +29184,7 @@ exports.default = {
             }
 
             var $lastClickNormalTr = this.$el.querySelector('.normal-table tbody tr.last-click');
-            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr');
+            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)');
 
             return Array.from($normalTr).indexOf($lastClickNormalTr);
         },
@@ -29163,8 +29199,8 @@ exports.default = {
 
             this.cleanHighlightRow();
 
-            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
-            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[rowNum];
+            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr:not(.expand-row)')[rowNum];
+            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)')[rowNum];
 
             if ($titleTr) {
 
@@ -29610,6 +29646,38 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59458,7 +59526,8 @@ var render = function() {
                         "row-click": _vm._rowClick,
                         "cell-click": _vm._cellClick,
                         "cell-enter": _vm._cellEnter,
-                        "cell-leave": _vm._cellLeave
+                        "cell-leave": _vm._cellLeave,
+                        "expand-row": _vm._expandRow
                       }
                     })
                   ],
@@ -59536,7 +59605,8 @@ var render = function() {
                         "row-click": _vm._rowClick,
                         "cell-click": _vm._cellClick,
                         "cell-enter": _vm._cellEnter,
-                        "cell-leave": _vm._cellLeave
+                        "cell-leave": _vm._cellLeave,
+                        "expand-row": _vm._expandRow
                       }
                     })
                   ],
@@ -63246,7 +63316,7 @@ var render = function() {
                                               _vm._v(" "),
                                               _c("i", {
                                                 staticClass:
-                                                  "mo-icon mo-icon-close remove",
+                                                  "mo-icon mo-icon-del remove",
                                                 on: {
                                                   click: function($event) {
                                                     $event.preventDefault()
@@ -63495,7 +63565,7 @@ var render = function() {
                                   item.status === "fail"
                                     ? _c("i", {
                                         staticClass:
-                                          "mo-icon mo-icon-close remove",
+                                          "mo-icon mo-icon-del remove",
                                         on: {
                                           click: function($event) {
                                             $event.preventDefault()
@@ -63694,7 +63764,7 @@ var render = function() {
                                   item.status === "fail"
                                     ? _c("i", {
                                         staticClass:
-                                          "mo-icon mo-icon-close remove",
+                                          "mo-icon mo-icon-del remove",
                                         on: {
                                           click: function($event) {
                                             $event.preventDefault()
@@ -71460,7 +71530,7 @@ var render = function() {
           _c(
             "tr",
             [
-              _vm.conf.multiSelect && _vm.data.titleKeys.length === 0
+              _vm.data.titleKeys.length === 0 && _vm.conf.multiSelect
                 ? _c(
                     "th",
                     { staticClass: "table-checked" },
@@ -71621,116 +71691,182 @@ var render = function() {
     _vm._v(" "),
     _c(
       "tbody",
-      _vm._l(_vm.data.normalRows, function(row, line) {
-        return _c(
-          "tr",
-          {
-            key: line,
-            on: {
-              mouseover: function($event) {
-                return _vm.$emit("row-mouseover", line)
-              },
-              mouseout: function($event) {
-                return _vm.$emit("row-mouseout", line)
-              },
-              click: function($event) {
-                return _vm.$emit("row-click", line)
-              }
-            }
-          },
-          [
-            _vm.conf.multiSelect && _vm.data.titleKeys.length === 0
-              ? _c(
-                  "td",
-                  { staticClass: "table-checked" },
-                  [
-                    _c("morning-checkbox", {
-                      ref: "mor-table-row-checked-" + _vm.uiid + "-" + line,
-                      refInFor: true,
-                      attrs: {
-                        list: { checked: "" },
-                        parent:
-                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked",
-                        disabledOptions:
-                          _vm.rowSetMap[line + 1] &&
-                          _vm.rowSetMap[line + 1].disableSelection
-                            ? ["checked"]
-                            : undefined
-                      },
-                      on: {
-                        "value-change": function($event) {
-                          return _vm._syncRowChecked(line)
-                        }
-                      }
-                    })
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._l(row, function(col, index) {
-              return [
-                _c(
-                  "td",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value:
-                          !_vm.colSetMap[_vm.data.normalKeys[index]] ||
-                          !_vm.colSetMap[_vm.data.normalKeys[index]].hide,
-                        expression:
-                          "!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
-                      }
-                    ],
-                    key: index,
-                    on: {
-                      click: function($event) {
-                        return _vm.$emit(
-                          "cell-click",
-                          line,
-                          _vm.data.normalKeys[index]
-                        )
-                      },
-                      mouseenter: function($event) {
-                        return _vm.$emit(
-                          "cell-enter",
-                          line,
-                          _vm.data.normalKeys[index]
-                        )
-                      },
-                      mouseleave: function($event) {
-                        return _vm.$emit(
-                          "cell-leave",
-                          line,
-                          _vm.data.normalKeys[index]
-                        )
-                      }
-                    }
+      [
+        _vm._l(_vm.data.normalRows, function(row, line) {
+          return [
+            _c(
+              "tr",
+              {
+                key: line,
+                class: {
+                  "odd-row": line % 2 === 1
+                },
+                on: {
+                  mouseover: function($event) {
+                    return _vm.$emit("row-mouseover", line)
                   },
-                  [
-                    _c(
+                  mouseout: function($event) {
+                    return _vm.$emit("row-mouseout", line)
+                  },
+                  click: function($event) {
+                    return _vm.$emit("row-click", line)
+                  }
+                }
+              },
+              [
+                _vm.conf.multiSelect && _vm.data.titleKeys.length === 0
+                  ? _c(
+                      "td",
+                      { staticClass: "table-checked" },
+                      [
+                        _c("morning-checkbox", {
+                          ref: "mor-table-row-checked-" + _vm.uiid + "-" + line,
+                          refInFor: true,
+                          attrs: {
+                            list: { checked: "" },
+                            parent:
+                              "#mor-table-row-checked-" +
+                              _vm.uiid +
+                              "-all:checked",
+                            disabledOptions:
+                              _vm.rowSetMap[line + 1] &&
+                              _vm.rowSetMap[line + 1].disableSelection
+                                ? ["checked"]
+                                : undefined
+                          },
+                          on: {
+                            "value-change": function($event) {
+                              return _vm._syncRowChecked(line)
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.data.titleKeys.length === 0 && _vm.data.rowExpand[line]
+                  ? _c(
+                      "td",
                       {
-                        template: "<div>" + col + "</div>",
-                        data: function() {
-                          return {
-                            context: this.$parent.$parent.$vnode.context
+                        staticClass: "table-expand",
+                        on: {
+                          click: function($event) {
+                            return _vm.$emit("expand-row", line)
                           }
                         }
                       },
-                      { tag: "component" }
+                      [
+                        !_vm.data.rowExpandOpen[line]
+                          ? _c("i", { staticClass: "mo-icon mo-icon-down" })
+                          : _c("i", { staticClass: "mo-icon mo-icon-up" })
+                      ]
                     )
-                  ],
-                  1
-                )
-              ]
-            })
-          ],
-          2
-        )
-      }),
-      0
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.data.titleKeys.length === 0 &&
+                _vm.data.hasRowExpand &&
+                !_vm.data.rowExpand[line]
+                  ? _c("td", { staticClass: "table-expand" })
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(row, function(col, index) {
+                  return [
+                    _c(
+                      "td",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              !_vm.colSetMap[_vm.data.normalKeys[index]] ||
+                              !_vm.colSetMap[_vm.data.normalKeys[index]].hide,
+                            expression:
+                              "!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
+                          }
+                        ],
+                        key: index,
+                        on: {
+                          click: function($event) {
+                            return _vm.$emit(
+                              "cell-click",
+                              line,
+                              _vm.data.normalKeys[index]
+                            )
+                          },
+                          mouseenter: function($event) {
+                            return _vm.$emit(
+                              "cell-enter",
+                              line,
+                              _vm.data.normalKeys[index]
+                            )
+                          },
+                          mouseleave: function($event) {
+                            return _vm.$emit(
+                              "cell-leave",
+                              line,
+                              _vm.data.normalKeys[index]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          {
+                            template: "<div>" + col + "</div>",
+                            data: function() {
+                              return {
+                                context: this.$parent.$parent.$vnode.context
+                              }
+                            }
+                          },
+                          { tag: "component" }
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.data.titleKeys.length === 0 && _vm.data.rowExpand[line]
+              ? [
+                  _c(
+                    "tr",
+                    {
+                      key: _vm.index,
+                      staticClass: "expand-row",
+                      class: { open: _vm.data.rowExpandOpen[line] }
+                    },
+                    [
+                      _c(
+                        {
+                          template:
+                            "<td colspan=" +
+                            (row.length + 1) +
+                            " class='expand-row-col'><div class='expand-row-col-wrap'>" +
+                            _vm.data.rowExpand[line] +
+                            "</div></td>",
+                          data: function() {
+                            return {
+                              context: this.$parent.$parent.$vnode.context
+                            }
+                          }
+                        },
+                        { tag: "component" }
+                      )
+                    ],
+                    1
+                  )
+                ]
+              : _vm._e()
+          ]
+        })
+      ],
+      2
     )
   ])
 }
@@ -79039,7 +79175,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.38',
+    version: '0.12.39',
     map: {}
 };
 

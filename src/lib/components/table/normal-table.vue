@@ -3,7 +3,7 @@
             <thead v-if="conf.showColName">
                 <tr>
                     <th
-                        v-if="conf.multiSelect && data.titleKeys.length === 0"
+                        v-if="data.titleKeys.length === 0 && conf.multiSelect"
                         class="table-checked"
                     >
                         <morning-checkbox
@@ -41,37 +41,68 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    v-for="(row, line) of data.normalRows"
-                    :key="line"
-                    @mouseover="$emit('row-mouseover', line)"
-                    @mouseout="$emit('row-mouseout', line)"
-                    @click="$emit('row-click', line)"
-                >
-                    <td
-                        v-if="conf.multiSelect && data.titleKeys.length === 0"
-                        class="table-checked"
+                <template v-for="(row, line) of data.normalRows">
+                    <tr
+                        :key="line"
+                        @mouseover="$emit('row-mouseover', line)"
+                        @mouseout="$emit('row-mouseout', line)"
+                        @click="$emit('row-click', line)"
+                        :class="{
+                            'odd-row' : (line % 2 === 1)
+                        }"
                     >
-                        <morning-checkbox
-                            :list="{checked:''}"
-                            :ref="'mor-table-row-checked-'+uiid+'-'+line"
-                            @value-change="_syncRowChecked(line)"
-                            :parent="'#mor-table-row-checked-'+uiid+'-all:checked'"
-                            :disabledOptions="(rowSetMap[line + 1] && rowSetMap[line + 1].disableSelection) ? ['checked'] : undefined"
-                        ></morning-checkbox>
-                    </td>
-                    <template v-for="(col, index) of row">
                         <td
-                            v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
-                            :key="index"
-
-                            @click="$emit('cell-click', line, data.normalKeys[index])"
-                            @mouseenter="$emit('cell-enter', line, data.normalKeys[index])"
-                            @mouseleave="$emit('cell-leave', line, data.normalKeys[index])"
+                            v-if="conf.multiSelect && data.titleKeys.length === 0"
+                            class="table-checked"
                         >
+                            <morning-checkbox
+                                :list="{checked:''}"
+                                :ref="'mor-table-row-checked-'+uiid+'-'+line"
+                                @value-change="_syncRowChecked(line)"
+                                :parent="'#mor-table-row-checked-'+uiid+'-all:checked'"
+                                :disabledOptions="(rowSetMap[line + 1] && rowSetMap[line + 1].disableSelection) ? ['checked'] : undefined"
+                            ></morning-checkbox>
+                        </td>
+                        <td
+                            v-if="data.titleKeys.length === 0 && data.rowExpand[line]"
+                            @click="$emit('expand-row', line)"
+                            class="table-expand"
+                        >
+                            <i class="mo-icon mo-icon-down" v-if="!data.rowExpandOpen[line]"></i>
+                            <i class="mo-icon mo-icon-up" v-else></i>
+                        </td>
+                        <td
+                            v-if="data.titleKeys.length === 0 && data.hasRowExpand && !data.rowExpand[line]"
+                            class="table-expand"
+                        ></td>
+                        <template v-for="(col, index) of row">
+                            <td
+                                v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
+                                :key="index"
+
+                                @click="$emit('cell-click', line, data.normalKeys[index])"
+                                @mouseenter="$emit('cell-enter', line, data.normalKeys[index])"
+                                @mouseleave="$emit('cell-leave', line, data.normalKeys[index])"
+                            >
+                                <component
+                                    :is="{
+                                        template : ('<div>' + col + '</div>'),
+                                        data : function () {
+                                            return {
+                                                context : this.$parent.$parent.$vnode.context
+                                            };
+                                        }
+                                    }"
+                                ></component>
+                            </td>
+                        </template>
+                    </tr>
+                    <template v-if="data.titleKeys.length === 0 && data.rowExpand[line]">
+
+                        <tr class="expand-row" :key="index" :class="{open : data.rowExpandOpen[line]}">
                             <component
                                 :is="{
-                                    template : ('<div>' + col + '</div>'),
+                                    template : ('<td colspan=' + (row.length + 1) + ' class=\'expand-row-col\'><div class=\'expand-row-col-wrap\'>' + data.rowExpand[line] + '</div></td>'),
                                     data : function () {
                                         return {
                                             context : this.$parent.$parent.$vnode.context
@@ -79,9 +110,10 @@
                                     }
                                 }"
                             ></component>
-                        </td>
+                        </tr>
+
                     </template>
-                </tr>
+                </template>
             </tbody>
     </table>
 </template>

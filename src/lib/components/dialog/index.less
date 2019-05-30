@@ -42,7 +42,7 @@ mor-dialog{
             line-height: @headerHeight;
             height: @headerHeight;
             width: 100%;
-            padding: 0 1.5em;
+            padding: 0 1em;
             box-sizing: border-box;
             position: relative;
 
@@ -246,7 +246,7 @@ mor-dialog{
         &.co-n@{value}{
             > .content > header{
                 background-color: @@colorName;
-                color: if((@value > 5), @colorWhite, @colorBlack);
+                color: if((@value > 5), @colorWhite, @colorNeutral11);
             }
         }
     });
@@ -254,7 +254,7 @@ mor-dialog{
     &.co-wh {
         > .content > header{
             background-color: @colorWhite;
-            color: @colorBlack;
+            color: @colorNeutral11;
         }
     }
 

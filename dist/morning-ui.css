@@ -31667,7 +31667,7 @@ mor-table header h1 {
   text-overflow: ellipsis;
 }
 mor-table header .action {
-  margin-left: 8px;
+  margin-left: 16px;
 }
 mor-table header .custom-header {
   max-width: 60%;
@@ -31720,9 +31720,6 @@ mor-table .table thead tr {
 mor-table .table tbody {
   width: 100%;
 }
-mor-table .table tr {
-  height: 40px;
-}
 mor-table .table tr th {
   font-weight: 400;
   line-height: 1.2em;
@@ -31732,11 +31729,33 @@ mor-table .table tr th {
   border-bottom-width: 2px;
   border-bottom-style: solid;
 }
-mor-table .table tr td {
+mor-table .table > tbody > tr {
+  height: 40px;
+}
+mor-table .table > tbody > tr.expand-row {
+  background: #FFFFFF !important;
+  border-top-width: 1px;
+  display: none;
+}
+mor-table .table > tbody > tr.expand-row.open {
+  display: table-row;
+}
+mor-table .table > tbody > tr > td {
   min-width: 50px;
   overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
+}
+mor-table .table > tbody > tr > td.expand-row-col {
+  width: 100%;
+  padding: 0 !important;
+  border: none !important;
+}
+mor-table .table > tbody > tr > td.expand-row-col .expand-row-col-wrap {
+  background: #FFFFFF !important;
+  padding: 16px;
+  border-top-width: 1px;
+  border-top-style: solid;
 }
 mor-table .table .th-sort .mo-icon {
   font-size: 12px;
@@ -31801,12 +31820,12 @@ mor-table .cell-align-right {
   text-align: right;
 }
 mor-table.vertical-border .table th,
-mor-table.vertical-border .table td {
+mor-table.vertical-border .table > tbody > tr > td {
   border-left-width: 1px !important;
   border-left-style: solid !important;
 }
 mor-table.vertical-border .table th:first-child,
-mor-table.vertical-border .table td:first-child {
+mor-table.vertical-border .table > tbody > tr > td:first-child {
   border-left: none !important;
 }
 mor-table.horizontal-border .table th,
@@ -31833,13 +31852,13 @@ mor-table.si-xl header h1 {
 mor-table.si-xl header .custom-header {
   height: 96px;
 }
-mor-table.si-xl .table {
-  font-size: 18px;
-}
 mor-table.si-xl .table tr th {
   padding: 18px !important;
 }
-mor-table.si-xl .table tr td {
+mor-table.si-xl .table > tbody {
+  font-size: 18px;
+}
+mor-table.si-xl .table > tbody > tr > td {
   padding: 18px !important;
 }
 mor-table.si-l > .wrap tr > td.no-data {
@@ -31857,13 +31876,13 @@ mor-table.si-l header h1 {
 mor-table.si-l header .custom-header {
   height: 72px;
 }
-mor-table.si-l .table {
-  font-size: 16px;
-}
 mor-table.si-l .table tr th {
   padding: 14px !important;
 }
-mor-table.si-l .table tr td {
+mor-table.si-l .table > tbody {
+  font-size: 16px;
+}
+mor-table.si-l .table > tbody > tr > td {
   padding: 14px !important;
 }
 mor-table.si-m > .wrap tr > td.no-data {
@@ -31881,13 +31900,13 @@ mor-table.si-m header h1 {
 mor-table.si-m header .custom-header {
   height: 52px;
 }
-mor-table.si-m .table {
-  font-size: 14px;
-}
 mor-table.si-m .table tr th {
   padding: 10px !important;
 }
-mor-table.si-m .table tr td {
+mor-table.si-m .table > tbody {
+  font-size: 14px;
+}
+mor-table.si-m .table > tbody > tr > td {
   padding: 10px !important;
 }
 mor-table.si-s > .wrap tr > td.no-data {
@@ -31905,13 +31924,13 @@ mor-table.si-s header h1 {
 mor-table.si-s header .custom-header {
   height: 40px;
 }
-mor-table.si-s .table {
-  font-size: 13px;
-}
 mor-table.si-s .table tr th {
   padding: 8px !important;
 }
-mor-table.si-s .table tr td {
+mor-table.si-s .table > tbody {
+  font-size: 13px;
+}
+mor-table.si-s .table > tbody > tr > td {
   padding: 8px !important;
 }
 mor-table.si-xs > .wrap tr > td.no-data {
@@ -31929,13 +31948,13 @@ mor-table.si-xs header h1 {
 mor-table.si-xs header .custom-header {
   height: 30px;
 }
-mor-table.si-xs .table {
-  font-size: 12px;
-}
 mor-table.si-xs .table tr th {
   padding: 3px !important;
 }
-mor-table.si-xs .table tr td {
+mor-table.si-xs .table > tbody {
+  font-size: 12px;
+}
+mor-table.si-xs .table > tbody > tr > td {
   padding: 3px !important;
 }
 mor-table.co-t {
@@ -31955,30 +31974,31 @@ mor-table.co-t .co-style td {
 mor-table.co-t .co-style th,
 mor-table.co-t .co-style td,
 mor-table.co-t .co-style tr,
+mor-table.co-t .co-style .expand-row-col-wrap,
 mor-table.co-t .co-style {
   border-color: #be0c2b !important;
 }
 mor-table.co-t .co-style tr {
   background-color: #d60d31;
 }
-mor-table.co-t.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-t.ts-zp .co-style tr.odd-row td {
   background-color: #ee0f36;
 }
-mor-table.co-t.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-t:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-t.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-t:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-t.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-t:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-t:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #be0c2b;
   border-color: #be0c2b !important;
 }
-mor-table.co-t.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-t:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-t.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-t:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-t.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-t:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-t:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #be0c2b !important;
 }
 mor-table.co-t mor-empty .empty-image i,
@@ -32008,30 +32028,31 @@ mor-table.co-lt .co-style td {
 mor-table.co-lt .co-style th,
 mor-table.co-lt .co-style td,
 mor-table.co-lt .co-style tr,
+mor-table.co-lt .co-style .expand-row-col-wrap,
 mor-table.co-lt .co-style {
   border-color: #dd0b31 !important;
 }
 mor-table.co-lt .co-style tr {
   background-color: #f4264c;
 }
-mor-table.co-lt.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-lt.ts-zp .co-style tr.odd-row td {
   background-color: #f63e60;
 }
-mor-table.co-lt.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-lt:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-lt.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-lt:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-lt.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-lt:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #dd0b31;
   border-color: #dd0b31 !important;
 }
-mor-table.co-lt.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-lt:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-lt.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-lt:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-lt.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-lt:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #dd0b31 !important;
 }
 mor-table.co-lt mor-empty .empty-image i,
@@ -32061,30 +32082,31 @@ mor-table.co-dt .co-style td {
 mor-table.co-dt .co-style th,
 mor-table.co-dt .co-style td,
 mor-table.co-dt .co-style tr,
+mor-table.co-dt .co-style .expand-row-col-wrap,
 mor-table.co-dt .co-style {
   border-color: #7b1427 !important;
 }
 mor-table.co-dt .co-style tr {
   background-color: #90182e;
 }
-mor-table.co-dt.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-dt.ts-zp .co-style tr.odd-row td {
   background-color: #a61c35;
 }
-mor-table.co-dt.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-dt:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-dt.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-dt:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-dt.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-dt:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #7b1427;
   border-color: #7b1427 !important;
 }
-mor-table.co-dt.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-dt:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-dt.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-dt:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-dt.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-dt:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #7b1427 !important;
 }
 mor-table.co-dt mor-empty .empty-image i,
@@ -32114,30 +32136,31 @@ mor-table.co-s .co-style td {
 mor-table.co-s .co-style th,
 mor-table.co-s .co-style td,
 mor-table.co-s .co-style tr,
+mor-table.co-s .co-style .expand-row-col-wrap,
 mor-table.co-s .co-style {
   border-color: #256534 !important;
 }
 mor-table.co-s .co-style tr {
   background-color: #338a47;
 }
-mor-table.co-s.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-s.ts-zp .co-style tr.odd-row td {
   background-color: #3a9d51;
 }
-mor-table.co-s.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-s:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-s.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-s:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-s.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-s:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-s:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-s:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-s:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #256534;
   border-color: #256534 !important;
 }
-mor-table.co-s.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-s:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-s.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-s:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-s.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-s:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-s:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-s:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-s:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #256534 !important;
 }
 mor-table.co-s mor-empty .empty-image i,
@@ -32167,30 +32190,31 @@ mor-table.co-w .co-style td {
 mor-table.co-w .co-style th,
 mor-table.co-w .co-style td,
 mor-table.co-w .co-style tr,
+mor-table.co-w .co-style .expand-row-col-wrap,
 mor-table.co-w .co-style {
   border-color: #b06d0f !important;
 }
 mor-table.co-w .co-style tr {
   background-color: #df8a13;
 }
-mor-table.co-w.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-w.ts-zp .co-style tr.odd-row td {
   background-color: #ec971f;
 }
-mor-table.co-w.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-w:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-w.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-w:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-w.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-w:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-w:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-w:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-w:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #b06d0f;
   border-color: #b06d0f !important;
 }
-mor-table.co-w.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-w:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-w.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-w:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-w.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-w:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-w:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-w:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-w:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #b06d0f !important;
 }
 mor-table.co-w mor-empty .empty-image i,
@@ -32220,30 +32244,31 @@ mor-table.co-d .co-style td {
 mor-table.co-d .co-style th,
 mor-table.co-d .co-style td,
 mor-table.co-d .co-style tr,
+mor-table.co-d .co-style .expand-row-col-wrap,
 mor-table.co-d .co-style {
   border-color: #712116 !important;
 }
 mor-table.co-d .co-style tr {
   background-color: #9c2d1f;
 }
-mor-table.co-d.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-d.ts-zp .co-style tr.odd-row td {
   background-color: #b13323;
 }
-mor-table.co-d.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-d:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-d.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-d:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-d.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-d:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-d:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-d:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-d:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #712116;
   border-color: #712116 !important;
 }
-mor-table.co-d.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-d:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-d.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-d:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-d.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-d:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-d:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-d:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-d:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #712116 !important;
 }
 mor-table.co-d mor-empty .empty-image i,
@@ -32273,30 +32298,31 @@ mor-table.co-p .co-style td {
 mor-table.co-p .co-style th,
 mor-table.co-p .co-style td,
 mor-table.co-p .co-style tr,
+mor-table.co-p .co-style .expand-row-col-wrap,
 mor-table.co-p .co-style {
   border-color: #103f62 !important;
 }
 mor-table.co-p .co-style tr {
   background-color: #175b8e;
 }
-mor-table.co-p.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-p.ts-zp .co-style tr.odd-row td {
   background-color: #1a69a4;
 }
-mor-table.co-p.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-p:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-p.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-p:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-p.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-p:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-p:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-p:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-p:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #103f62;
   border-color: #103f62 !important;
 }
-mor-table.co-p.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-p:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-p.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-p:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-p.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-p:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-p:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-p:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-p:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #103f62 !important;
 }
 mor-table.co-p mor-empty .empty-image i,
@@ -32326,30 +32352,31 @@ mor-table.co-m .co-style td {
 mor-table.co-m .co-style th,
 mor-table.co-m .co-style td,
 mor-table.co-m .co-style tr,
+mor-table.co-m .co-style .expand-row-col-wrap,
 mor-table.co-m .co-style {
   border-color: #696969 !important;
 }
 mor-table.co-m .co-style tr {
   background-color: #838383;
 }
-mor-table.co-m.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-m.ts-zp .co-style tr.odd-row td {
   background-color: #909090;
 }
-mor-table.co-m.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-m:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-m.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-m:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-m.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-m:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-m:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #696969;
   border-color: #696969 !important;
 }
-mor-table.co-m.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-m:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-m.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-m:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-m.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-m:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-m:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #696969 !important;
 }
 mor-table.co-m mor-empty .empty-image i,
@@ -32379,30 +32406,31 @@ mor-table.co-i .co-style td {
 mor-table.co-i .co-style th,
 mor-table.co-i .co-style td,
 mor-table.co-i .co-style tr,
+mor-table.co-i .co-style .expand-row-col-wrap,
 mor-table.co-i .co-style {
   border-color: #01353c !important;
 }
 mor-table.co-i .co-style tr {
   background-color: #02626e;
 }
-mor-table.co-i.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-i.ts-zp .co-style tr.odd-row td {
   background-color: #027987;
 }
-mor-table.co-i.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-i:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-i.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-i:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-i.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-i:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-i:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #01353c;
   border-color: #01353c !important;
 }
-mor-table.co-i.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-i:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-i.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-i:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-i.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-i:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-i:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #01353c !important;
 }
 mor-table.co-i mor-empty .empty-image i,
@@ -32432,30 +32460,31 @@ mor-table.co-bk .co-style td {
 mor-table.co-bk .co-style th,
 mor-table.co-bk .co-style td,
 mor-table.co-bk .co-style tr,
+mor-table.co-bk .co-style .expand-row-col-wrap,
 mor-table.co-bk .co-style {
   border-color: #000000 !important;
 }
 mor-table.co-bk .co-style tr {
   background-color: #000000;
 }
-mor-table.co-bk.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-bk.ts-zp .co-style tr.odd-row td {
   background-color: #000000;
 }
-mor-table.co-bk.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-bk:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-bk.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-bk:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-bk.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-bk:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-bk:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-bk:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-bk:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #0d0d0d;
   border-color: #0d0d0d !important;
 }
-mor-table.co-bk.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-bk:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-bk.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-bk:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-bk.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-bk:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-bk:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-bk:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-bk:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #0d0d0d !important;
 }
 mor-table.co-bk mor-empty .empty-image i,
@@ -32485,30 +32514,31 @@ mor-table.co-n1 .co-style td {
 mor-table.co-n1 .co-style th,
 mor-table.co-n1 .co-style td,
 mor-table.co-n1 .co-style tr,
+mor-table.co-n1 .co-style .expand-row-col-wrap,
 mor-table.co-n1 .co-style {
   border-color: #F0F0F0 !important;
 }
 mor-table.co-n1 .co-style tr {
   background-color: #f8f8f8;
 }
-mor-table.co-n1.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n1.ts-zp .co-style tr.odd-row td {
   background-color: #ffffff;
 }
-mor-table.co-n1.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n1:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n1.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n1:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n1.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n1:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n1:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n1:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n1:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #e3e3e3;
   border-color: #e3e3e3 !important;
 }
-mor-table.co-n1.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n1:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n1.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n1:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n1.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n1:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n1:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n1:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n1:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #e3e3e3 !important;
 }
 mor-table.co-n1 mor-empty .empty-image i,
@@ -32538,30 +32568,31 @@ mor-table.co-n2 .co-style td {
 mor-table.co-n2 .co-style th,
 mor-table.co-n2 .co-style td,
 mor-table.co-n2 .co-style tr,
+mor-table.co-n2 .co-style .expand-row-col-wrap,
 mor-table.co-n2 .co-style {
   border-color: #E5E5E5 !important;
 }
 mor-table.co-n2 .co-style tr {
   background-color: #ededed;
 }
-mor-table.co-n2.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n2.ts-zp .co-style tr.odd-row td {
   background-color: #f9f9f9;
 }
-mor-table.co-n2.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n2:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n2.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n2:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n2.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n2:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n2:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n2:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n2:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #d8d8d8;
   border-color: #d8d8d8 !important;
 }
-mor-table.co-n2.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n2:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n2.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n2:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n2.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n2:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n2:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n2:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n2:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #d8d8d8 !important;
 }
 mor-table.co-n2 mor-empty .empty-image i,
@@ -32591,30 +32622,31 @@ mor-table.co-n3 .co-style td {
 mor-table.co-n3 .co-style th,
 mor-table.co-n3 .co-style td,
 mor-table.co-n3 .co-style tr,
+mor-table.co-n3 .co-style .expand-row-col-wrap,
 mor-table.co-n3 .co-style {
   border-color: #E0E0E0 !important;
 }
 mor-table.co-n3 .co-style tr {
   background-color: #e8e8e8;
 }
-mor-table.co-n3.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n3.ts-zp .co-style tr.odd-row td {
   background-color: #f4f4f4;
 }
-mor-table.co-n3.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n3:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n3.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n3:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n3.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n3:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n3:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n3:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n3:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #d3d3d3;
   border-color: #d3d3d3 !important;
 }
-mor-table.co-n3.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n3:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n3.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n3:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n3.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n3:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n3:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n3:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n3:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #d3d3d3 !important;
 }
 mor-table.co-n3 mor-empty .empty-image i,
@@ -32644,30 +32676,31 @@ mor-table.co-n4 .co-style td {
 mor-table.co-n4 .co-style th,
 mor-table.co-n4 .co-style td,
 mor-table.co-n4 .co-style tr,
+mor-table.co-n4 .co-style .expand-row-col-wrap,
 mor-table.co-n4 .co-style {
   border-color: #D9D9D9 !important;
 }
 mor-table.co-n4 .co-style tr {
   background-color: #e1e1e1;
 }
-mor-table.co-n4.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n4.ts-zp .co-style tr.odd-row td {
   background-color: #ededed;
 }
-mor-table.co-n4.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n4:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n4.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n4:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n4.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n4:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n4:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n4:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n4:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #cccccc;
   border-color: #cccccc !important;
 }
-mor-table.co-n4.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n4:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n4.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n4:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n4.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n4:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n4:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n4:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n4:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #cccccc !important;
 }
 mor-table.co-n4 mor-empty .empty-image i,
@@ -32697,30 +32730,31 @@ mor-table.co-n5 .co-style td {
 mor-table.co-n5 .co-style th,
 mor-table.co-n5 .co-style td,
 mor-table.co-n5 .co-style tr,
+mor-table.co-n5 .co-style .expand-row-col-wrap,
 mor-table.co-n5 .co-style {
   border-color: #CCCCCC !important;
 }
 mor-table.co-n5 .co-style tr {
   background-color: #d4d4d4;
 }
-mor-table.co-n5.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n5.ts-zp .co-style tr.odd-row td {
   background-color: #e0e0e0;
 }
-mor-table.co-n5.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n5:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n5.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n5:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n5.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n5:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n5:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n5:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n5:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #bfbfbf;
   border-color: #bfbfbf !important;
 }
-mor-table.co-n5.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n5:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n5.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n5:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n5.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n5:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n5:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n5:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n5:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #bfbfbf !important;
 }
 mor-table.co-n5 mor-empty .empty-image i,
@@ -32750,30 +32784,31 @@ mor-table.co-n6 .co-style td {
 mor-table.co-n6 .co-style th,
 mor-table.co-n6 .co-style td,
 mor-table.co-n6 .co-style tr,
+mor-table.co-n6 .co-style .expand-row-col-wrap,
 mor-table.co-n6 .co-style {
   border-color: #B2B2B2 !important;
 }
 mor-table.co-n6 .co-style tr {
   background-color: #aaaaaa;
 }
-mor-table.co-n6.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n6.ts-zp .co-style tr.odd-row td {
   background-color: #a5a5a5;
 }
-mor-table.co-n6.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n6:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n6.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n6:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n6.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n6:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n6:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n6:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n6:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #bfbfbf;
   border-color: #bfbfbf !important;
 }
-mor-table.co-n6.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n6:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n6.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n6:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n6.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n6:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n6:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n6:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n6:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #bfbfbf !important;
 }
 mor-table.co-n6 mor-empty .empty-image i,
@@ -32803,30 +32838,31 @@ mor-table.co-n7 .co-style td {
 mor-table.co-n7 .co-style th,
 mor-table.co-n7 .co-style td,
 mor-table.co-n7 .co-style tr,
+mor-table.co-n7 .co-style .expand-row-col-wrap,
 mor-table.co-n7 .co-style {
   border-color: #999999 !important;
 }
 mor-table.co-n7 .co-style tr {
   background-color: #919191;
 }
-mor-table.co-n7.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n7.ts-zp .co-style tr.odd-row td {
   background-color: #8c8c8c;
 }
-mor-table.co-n7.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n7:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n7.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n7:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n7.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n7:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n7:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n7:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n7:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #a6a6a6;
   border-color: #a6a6a6 !important;
 }
-mor-table.co-n7.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n7:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n7.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n7:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n7.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n7:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n7:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n7:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n7:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #a6a6a6 !important;
 }
 mor-table.co-n7 mor-empty .empty-image i,
@@ -32856,30 +32892,31 @@ mor-table.co-n8 .co-style td {
 mor-table.co-n8 .co-style th,
 mor-table.co-n8 .co-style td,
 mor-table.co-n8 .co-style tr,
+mor-table.co-n8 .co-style .expand-row-col-wrap,
 mor-table.co-n8 .co-style {
   border-color: #7F7F7F !important;
 }
 mor-table.co-n8 .co-style tr {
   background-color: #777777;
 }
-mor-table.co-n8.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n8.ts-zp .co-style tr.odd-row td {
   background-color: #727272;
 }
-mor-table.co-n8.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n8:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n8.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n8:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n8.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n8:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n8:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n8:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n8:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #8c8c8c;
   border-color: #8c8c8c !important;
 }
-mor-table.co-n8.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n8:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n8.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n8:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n8.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n8:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n8:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n8:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n8:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #8c8c8c !important;
 }
 mor-table.co-n8 mor-empty .empty-image i,
@@ -32909,30 +32946,31 @@ mor-table.co-n9 .co-style td {
 mor-table.co-n9 .co-style th,
 mor-table.co-n9 .co-style td,
 mor-table.co-n9 .co-style tr,
+mor-table.co-n9 .co-style .expand-row-col-wrap,
 mor-table.co-n9 .co-style {
   border-color: #666666 !important;
 }
 mor-table.co-n9 .co-style tr {
   background-color: #5e5e5e;
 }
-mor-table.co-n9.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n9.ts-zp .co-style tr.odd-row td {
   background-color: #595959;
 }
-mor-table.co-n9.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n9:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n9.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n9:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n9.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n9:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n9:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n9:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n9:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #737373;
   border-color: #737373 !important;
 }
-mor-table.co-n9.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n9:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n9.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n9:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n9.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n9:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n9:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n9:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n9:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #737373 !important;
 }
 mor-table.co-n9 mor-empty .empty-image i,
@@ -32962,30 +33000,31 @@ mor-table.co-n10 .co-style td {
 mor-table.co-n10 .co-style th,
 mor-table.co-n10 .co-style td,
 mor-table.co-n10 .co-style tr,
+mor-table.co-n10 .co-style .expand-row-col-wrap,
 mor-table.co-n10 .co-style {
   border-color: #4C4C4C !important;
 }
 mor-table.co-n10 .co-style tr {
   background-color: #444444;
 }
-mor-table.co-n10.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n10.ts-zp .co-style tr.odd-row td {
   background-color: #3f3f3f;
 }
-mor-table.co-n10.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n10:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n10.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n10:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n10.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n10:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n10:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n10:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n10:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #595959;
   border-color: #595959 !important;
 }
-mor-table.co-n10.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n10:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n10.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n10:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n10.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n10:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n10:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n10:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n10:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #595959 !important;
 }
 mor-table.co-n10 mor-empty .empty-image i,
@@ -33015,30 +33054,31 @@ mor-table.co-n11 .co-style td {
 mor-table.co-n11 .co-style th,
 mor-table.co-n11 .co-style td,
 mor-table.co-n11 .co-style tr,
+mor-table.co-n11 .co-style .expand-row-col-wrap,
 mor-table.co-n11 .co-style {
   border-color: #333333 !important;
 }
 mor-table.co-n11 .co-style tr {
   background-color: #2b2b2b;
 }
-mor-table.co-n11.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-n11.ts-zp .co-style tr.odd-row td {
   background-color: #262626;
 }
-mor-table.co-n11.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n11:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-n11.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n11:not(.no-hover-effect) .table tr.hover td,
-mor-table.co-n11.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table.co-n11:not(.no-hover-effect) .table tr.last-click td {
+mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n11:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n11:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table.co-n11:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #404040;
   border-color: #404040 !important;
 }
-mor-table.co-n11.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n11:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-n11.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n11:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.co-n11.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table.co-n11:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n11:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n11:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table.co-n11:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #404040 !important;
 }
 mor-table.co-n11 mor-empty .empty-image i,
@@ -33068,17 +33108,18 @@ mor-table.co-wh .co-style td {
 mor-table.co-wh .co-style th,
 mor-table.co-wh .co-style td,
 mor-table.co-wh .co-style tr,
+mor-table.co-wh .co-style .expand-row-col-wrap,
 mor-table.co-wh .co-style {
   border-color: #f2f2f2 !important;
 }
 mor-table.co-wh .co-style tr {
   background-color: #FFFFFF;
 }
-mor-table.co-wh.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.co-wh.ts-zp .co-style tr.odd-row td {
   background-color: #fafafa;
 }
-mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table.co-wh:not(.no-hover-effect) .table tr:hover td,
+mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr:not(.expand-row):hover td,
+mor-table.co-wh:not(.no-hover-effect) .table tr:not(.expand-row):hover td,
 mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr.hover td,
 mor-table.co-wh:not(.no-hover-effect) .table tr.hover td,
 mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr.last-click td,
@@ -33086,8 +33127,8 @@ mor-table.co-wh:not(.no-hover-effect) .table tr.last-click td {
   background-color: #F0F0F0;
   border-color: #F0F0F0 !important;
 }
-mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.co-wh:not(.no-hover-effect) .table tr:hover + tr > td,
+mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr:not(.expand-row):hover + tr > td,
+mor-table.co-wh:not(.no-hover-effect) .table tr:not(.expand-row):hover + tr > td,
 mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
 mor-table.co-wh:not(.no-hover-effect) .table tr.hover + tr > td,
 mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
@@ -33298,6 +33339,18 @@ mor-table:not(.no-hover-effect) .table tr.hover th.cco-wh,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-wh {
   background: #ebebeb !important;
 }
+mor-table .table > tbody > tr > td.table-expand {
+  cursor: pointer;
+  max-width: 1px;
+  min-width: 1px;
+}
+mor-table .table > tbody > tr > td.table-expand .mo-icon {
+  color: #B2B2B2;
+  font-size: 13px;
+}
+mor-table .table > tbody > tr > td.table-expand + td {
+  border-left: none !important;
+}
 mor-table header {
   background-color: #F0F0F0;
   color: #000000;
@@ -33312,30 +33365,31 @@ mor-table .co-style td {
 mor-table .co-style th,
 mor-table .co-style td,
 mor-table .co-style tr,
+mor-table .co-style .expand-row-col-wrap,
 mor-table .co-style {
   border-color: #F0F0F0 !important;
 }
 mor-table .co-style tr {
   background-color: #f8f8f8;
 }
-mor-table.ts-zp .co-style tr:nth-child(2n) td {
+mor-table.ts-zp .co-style tr.odd-row td {
   background-color: #ffffff;
 }
-mor-table.ts-zp:not(.no-hover-effect) .table tr:hover td,
-mor-table:not(.no-hover-effect) .table tr:hover td,
-mor-table.ts-zp:not(.no-hover-effect) .table tr.hover td,
-mor-table:not(.no-hover-effect) .table tr.hover td,
-mor-table.ts-zp:not(.no-hover-effect) .table tr.last-click td,
-mor-table:not(.no-hover-effect) .table tr.last-click td {
+mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
+mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table:not(.no-hover-effect) .table > tbody > tr.hover td,
+mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
+mor-table:not(.no-hover-effect) .table > tbody > tr.last-click td {
   background-color: #e3e3e3;
   border-color: #e3e3e3 !important;
 }
-mor-table.ts-zp:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table:not(.no-hover-effect) .table tr:hover + tr > td,
-mor-table.ts-zp:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table:not(.no-hover-effect) .table tr.hover + tr > td,
-mor-table.ts-zp:not(.no-hover-effect) .table tr.last-click + tr > td,
-mor-table:not(.no-hover-effect) .table tr.last-click + tr > td {
+mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
+mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
+mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
+mor-table:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
   border-top-color: #e3e3e3 !important;
 }
 mor-table mor-empty .empty-image i,
@@ -33363,13 +33417,13 @@ mor-table header h1 {
 mor-table header .custom-header {
   height: 52px;
 }
-mor-table .table {
-  font-size: 14px;
-}
 mor-table .table tr th {
   padding: 10px !important;
 }
-mor-table .table tr td {
+mor-table .table > tbody {
+  font-size: 14px;
+}
+mor-table .table > tbody > tr > td {
   padding: 10px !important;
 }
 mor-menu {
@@ -34569,7 +34623,7 @@ mor-dialog > .content > header {
   line-height: 50px;
   height: 50px;
   width: 100%;
-  padding: 0 1.5em;
+  padding: 0 1em;
   box-sizing: border-box;
   position: relative;
 }
@@ -34707,23 +34761,23 @@ mor-dialog.co-bk > .content > header {
 }
 mor-dialog.co-n1 > .content > header {
   background-color: #F0F0F0;
-  color: #000000;
+  color: #333333;
 }
 mor-dialog.co-n2 > .content > header {
   background-color: #E5E5E5;
-  color: #000000;
+  color: #333333;
 }
 mor-dialog.co-n3 > .content > header {
   background-color: #E0E0E0;
-  color: #000000;
+  color: #333333;
 }
 mor-dialog.co-n4 > .content > header {
   background-color: #D9D9D9;
-  color: #000000;
+  color: #333333;
 }
 mor-dialog.co-n5 > .content > header {
   background-color: #CCCCCC;
-  color: #000000;
+  color: #333333;
 }
 mor-dialog.co-n6 > .content > header {
   background-color: #B2B2B2;
@@ -34751,7 +34805,7 @@ mor-dialog.co-n11 > .content > header {
 }
 mor-dialog.co-wh > .content > header {
   background-color: #FFFFFF;
-  color: #000000;
+  color: #333333;
 }
 mor-dialog > .content > header {
   background-color: #F33D5D;
@@ -41534,13 +41588,13 @@ mor-checkbox > .il label {
 }
 mor-checkbox > .il label span {
   vertical-align: middle;
-  color: #b2b2b2;
+  color: #666666;
   transition: 0.2s;
   -webkit-user-select: text;
 }
 mor-checkbox > .il label .box {
   vertical-align: middle;
-  background: #FFF;
+  background: #FFFFFF;
   border-radius: 3px;
   display: inline-block;
   border: 1px #E5E5E5 solid;
@@ -41549,7 +41603,7 @@ mor-checkbox > .il label .box {
   position: relative;
 }
 mor-checkbox > .il label .mo-icon {
-  color: #FFF;
+  color: #FFFFFF;
   opacity: 0;
   transform: scale(0);
   transition: transform 0.2s;
@@ -41559,15 +41613,8 @@ mor-checkbox > .il label .mo-icon {
   vertical-align: middle;
   word-break: break-word;
 }
-mor-checkbox > .il label:hover span {
-  color: #7f7f7f;
-}
 mor-checkbox > .il label:hover .box {
   border-color: #bcbcbc;
-}
-mor-checkbox > .il label.checked span,
-mor-checkbox > .il label.part-checked span {
-  color: #000000;
 }
 mor-checkbox > .il label.checked .mo-icon,
 mor-checkbox > .il label.part-checked .mo-icon {
@@ -42154,10 +42201,6 @@ mor-checkbox.co-n1 > .il label span {
 mor-checkbox.co-n1 > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-checkbox.co-n1 > .il label:hover span,
-mor-checkbox.co-n1 > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-checkbox.co-n1 > .il label.checked .box,
 mor-checkbox.co-n1 > .il label.part-checked .box {
   background: #F0F0F0;
@@ -42205,10 +42248,6 @@ mor-checkbox.co-n2 > .il label span {
 }
 mor-checkbox.co-n2 > .il label .box {
   border: 1px #FFFFFF solid;
-}
-mor-checkbox.co-n2 > .il label:hover span,
-mor-checkbox.co-n2 > .il label.checked span {
-  color: #FFFFFF;
 }
 mor-checkbox.co-n2 > .il label.checked .box,
 mor-checkbox.co-n2 > .il label.part-checked .box {
@@ -42258,10 +42297,6 @@ mor-checkbox.co-n3 > .il label span {
 mor-checkbox.co-n3 > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-checkbox.co-n3 > .il label:hover span,
-mor-checkbox.co-n3 > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-checkbox.co-n3 > .il label.checked .box,
 mor-checkbox.co-n3 > .il label.part-checked .box {
   background: #E0E0E0;
@@ -42310,10 +42345,6 @@ mor-checkbox.co-n4 > .il label span {
 mor-checkbox.co-n4 > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-checkbox.co-n4 > .il label:hover span,
-mor-checkbox.co-n4 > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-checkbox.co-n4 > .il label.checked .box,
 mor-checkbox.co-n4 > .il label.part-checked .box {
   background: #D9D9D9;
@@ -42361,10 +42392,6 @@ mor-checkbox.co-n5 > .il label span {
 }
 mor-checkbox.co-n5 > .il label .box {
   border: 1px #FFFFFF solid;
-}
-mor-checkbox.co-n5 > .il label:hover span,
-mor-checkbox.co-n5 > .il label.checked span {
-  color: #FFFFFF;
 }
 mor-checkbox.co-n5 > .il label.checked .box,
 mor-checkbox.co-n5 > .il label.part-checked .box {
@@ -42654,10 +42681,6 @@ mor-checkbox.co-wh > .il label span {
 mor-checkbox.co-wh > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-checkbox.co-wh > .il label:hover span,
-mor-checkbox.co-wh > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-checkbox.co-wh > .il label.checked .box,
 mor-checkbox.co-wh > .il label.part-checked .box {
   background: #FFFFFF;
@@ -42864,7 +42887,7 @@ mor-radio > .il label {
 }
 mor-radio > .il label span {
   vertical-align: middle;
-  color: #b2b2b2;
+  color: #666666;
   transition: 0.2s;
   -webkit-user-select: text;
 }
@@ -42887,9 +42910,6 @@ mor-radio > .il label .mo-icon {
   text-align: center;
   vertical-align: middle;
   word-break: break-word;
-}
-mor-radio > .il label:hover span {
-  color: #7f7f7f;
 }
 mor-radio > .il label:hover .box {
   border-color: #bcbcbc;
@@ -43447,10 +43467,6 @@ mor-radio.co-n1 > .il label span {
 mor-radio.co-n1 > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-radio.co-n1 > .il label:hover span,
-mor-radio.co-n1 > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-radio.co-n1 > .il label.checked .box {
   background: #F0F0F0;
   border-color: #F0F0F0;
@@ -43498,10 +43514,6 @@ mor-radio.co-n2 > .il label span {
 }
 mor-radio.co-n2 > .il label .box {
   border: 1px #FFFFFF solid;
-}
-mor-radio.co-n2 > .il label:hover span,
-mor-radio.co-n2 > .il label.checked span {
-  color: #FFFFFF;
 }
 mor-radio.co-n2 > .il label.checked .box {
   background: #E5E5E5;
@@ -43551,10 +43563,6 @@ mor-radio.co-n3 > .il label span {
 mor-radio.co-n3 > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-radio.co-n3 > .il label:hover span,
-mor-radio.co-n3 > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-radio.co-n3 > .il label.checked .box {
   background: #E0E0E0;
   border-color: #E0E0E0;
@@ -43603,10 +43611,6 @@ mor-radio.co-n4 > .il label span {
 mor-radio.co-n4 > .il label .box {
   border: 1px #FFFFFF solid;
 }
-mor-radio.co-n4 > .il label:hover span,
-mor-radio.co-n4 > .il label.checked span {
-  color: #FFFFFF;
-}
 mor-radio.co-n4 > .il label.checked .box {
   background: #D9D9D9;
   border-color: #D9D9D9;
@@ -43654,10 +43658,6 @@ mor-radio.co-n5 > .il label span {
 }
 mor-radio.co-n5 > .il label .box {
   border: 1px #FFFFFF solid;
-}
-mor-radio.co-n5 > .il label:hover span,
-mor-radio.co-n5 > .il label.checked span {
-  color: #FFFFFF;
 }
 mor-radio.co-n5 > .il label.checked .box {
   background: #CCCCCC;
@@ -43916,10 +43916,6 @@ mor-radio.co-wh > .il label span {
 }
 mor-radio.co-wh > .il label .box {
   border: 1px #FFFFFF solid;
-}
-mor-radio.co-wh > .il label:hover span,
-mor-radio.co-wh > .il label.checked span {
-  color: #FFFFFF;
 }
 mor-radio.co-wh > .il label.checked .box {
   background: #FFFFFF;
