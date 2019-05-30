@@ -259,13 +259,7 @@
     >conf-desc
     表单项名称的位置。
     >conf-accept
-    `'head-left'` : 头部左对齐<br>
-    `'head-right'` : 头部右对齐<br>
-    `'head-center'` : 头部居中<br>
-    `'left-align'` : 左侧左对齐<br>
-    `'center-align'` : 左侧居中<br>
-    `'right-align'` : 左侧右对齐<br>
-    `'center'` : 左侧垂直居中<br>
+    `'head-left'` : 头部左对齐<br>`'head-right'` : 头部右对齐<br>`'head-center'` : 头部居中<br>`'left-align'` : 左侧左对齐<br>`'center-align'` : 左侧居中<br>`'right-align'` : 左侧右对齐<br>`'center'` : 左侧垂直居中<br>
     >conf-type
     String
     >conf-default
