@@ -61,6 +61,7 @@
                         @cell-click="_cellClick"
                         @cell-enter="_cellEnter"
                         @cell-leave="_cellLeave"
+                        @expand-row="_expandRow"
                     ></normal-table>
                 </td>
                 <td class="title-td">
@@ -112,6 +113,7 @@
                         @cell-click="_cellClick"
                         @cell-enter="_cellEnter"
                         @cell-leave="_cellLeave"
+                        @expand-row="_expandRow"
                     ></normal-table>
                 </td>
             </tr>
@@ -326,6 +328,9 @@ export default {
                 normalRows : [],
                 titleKeys : [],
                 titleRows : [],
+                rowExpand : [],
+                rowExpandOpen : [],
+                hasRowExpand : false,
                 listDataJson : '[]',
                 sort : {},
                 sortCol : [],
@@ -638,7 +643,7 @@ export default {
 
                 if ($rows) {
 
-                    $rows = $rows.querySelectorAll('tbody tr, thead tr');
+                    $rows = $rows.querySelectorAll('tbody tr:not(.expand-row), thead tr');
 
                     for (let $row of $rows) {
 
@@ -820,7 +825,7 @@ export default {
 
                     } else {
 
-                        $cell = $cell.querySelectorAll('tbody tr')[rowIndex];
+                        $cell = $cell.querySelectorAll('tbody tr:not(.expand-row)')[rowIndex];
                         $cell = $cell.querySelectorAll('td');
 
                     }
@@ -890,8 +895,8 @@ export default {
         },
         _syncRowHeight : function () {
 
-            let $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr');
-            let $titleRows = this.$el.querySelectorAll('.title-table tbody > tr');
+            let $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr:not(.expand-row)');
+            let $titleRows = this.$el.querySelectorAll('.title-table tbody > tr:not(.expand-row)');
 
             for (let index in $normalRows) {
 
@@ -1006,8 +1011,8 @@ export default {
         },
         _rowOver : function (line) {
 
-            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[line];
-            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[line];
+            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr:not(.expand-row)')[line];
+            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)')[line];
 
             $titleTr.classList.add('hover');
             $normalTr.classList.add('hover');
@@ -1015,8 +1020,8 @@ export default {
         },
         _rowOut : function (line) {
 
-            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[line];
-            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[line];
+            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr:not(.expand-row)')[line];
+            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)')[line];
 
             $titleTr.classList.remove('hover');
             $normalTr.classList.remove('hover');
@@ -1179,6 +1184,8 @@ export default {
             let normalRows = [];
             let titleKeys = [];
             let normalKeys = [];
+            let rowExpand = [];
+            let rowExpandOpen = [];
 
             list = extend(true, [], list);
 
@@ -1220,29 +1227,34 @@ export default {
 
                     for (let key of Object.keys(item)) {
 
-                        let set = this.colSetMap[key];
+                        // __expand is special key
+                        if (key !== '__expand') {
 
-                        if (set &&
-                            set.title === true) {
+                            let set = this.colSetMap[key];
 
-                            titleKeys.push({
-                                key,
-                                pos : set.pos
-                            });
+                            if (set &&
+                                set.title === true) {
 
-                        } else if (set) {
+                                titleKeys.push({
+                                    key,
+                                    pos : set.pos
+                                });
 
-                            normalKeys.push({
-                                key,
-                                pos : set.pos
-                            });
+                            } else if (set) {
 
-                        } else {
+                                normalKeys.push({
+                                    key,
+                                    pos : set.pos
+                                });
 
-                            normalKeys.push({
-                                key,
-                                pos : 0
-                            });
+                            } else {
+
+                                normalKeys.push({
+                                    key,
+                                    pos : 0
+                                });
+
+                            }
 
                         }
 
@@ -1294,6 +1306,8 @@ export default {
 
                 titleRows.push(titleCol);
                 normalRows.push(normalCol);
+                rowExpand.push(item.__expand);
+                rowExpandOpen.push(false);
 
             }
 
@@ -1302,6 +1316,33 @@ export default {
             this.data.titleRows = titleRows;
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
+            this.data.rowExpand = rowExpand;
+            this.data.rowExpandOpen = rowExpandOpen;
+
+            let uniqRowExpand = arrayUniq(rowExpand);
+
+            if (uniqRowExpand.length === 1 && uniqRowExpand[0] === undefined) {
+                
+                this.data.hasRowExpand = false;
+
+            } else {
+
+                this.data.hasRowExpand = true;
+
+            }
+
+        },
+        _expandRow : function (row) {
+
+            let open = extend([], this.data.rowExpandOpen);
+
+            if (open[row] !== undefined) {
+
+                open[row] = !open[row];
+
+            }
+
+            this.data.rowExpandOpen = open;
 
         },
         _tableScroll : function (evt) {
@@ -1352,7 +1393,7 @@ export default {
             }
 
             let $lastClickNormalTr = this.$el.querySelector('.normal-table tbody tr.last-click');
-            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr');
+            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)');
 
             return Array.from($normalTr).indexOf($lastClickNormalTr);
 
@@ -1369,8 +1410,8 @@ export default {
 
             this.cleanHighlightRow();
 
-            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
-            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[rowNum];
+            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr:not(.expand-row)')[rowNum];
+            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr:not(.expand-row)')[rowNum];
 
             if ($titleTr) {
 

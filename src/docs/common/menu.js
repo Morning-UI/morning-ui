@@ -135,6 +135,7 @@ export default {
         对比 : '/design/compared.html',
         操作定义 : '/design/op-definition.html',
         视觉 : null,
-        字体 : '/design/font.html'
+        字体 : '/design/font.html',
+        布局 : '/design/layout.html'
     }
 };

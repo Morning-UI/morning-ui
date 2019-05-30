@@ -156,7 +156,7 @@
 
                             <div class="upload-failed-operate">
                                 <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(data.currentPreview)"></i>
-                                <i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(data.currentPreview)"></i>
+                                <i class="mo-icon mo-icon-del remove" @click.prevent="_removeFile(data.currentPreview)"></i>
                             </div>
                         </div>
                     </div>
@@ -219,7 +219,7 @@
                         <div class="upload-operate">
                             <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_isImage(item) ? _openPreview(item.path) : _openFile(item.path)"></i>
                             <i class="mo-icon mo-icon-refresh reupload" v-if="item.status === 'fail'" title="重新上传" @click.prevent.stop="_upload(index)"></i>
-                            <i class="mo-icon mo-icon-close remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
+                            <i class="mo-icon mo-icon-del remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
                             <i class="mo-icon mo-icon-arrow-up uploading" v-if="item.status === 'uploading'" title="上传中"></i>
                         </div>
                     </a>
@@ -289,7 +289,7 @@
                         <div class="upload-operate">
                             <i class="mo-icon mo-icon-fullscreen openfile" v-if="item.status === 'done'" title="打开文件" @click.prevent.stop="_isImage(item) ? _openPreview(item.path) : _openFile(item.path)"></i>
                             <i class="mo-icon mo-icon-refresh reupload" v-if="item.status === 'fail'" title="重新上传" @click.prevent.stop="_upload(index)"></i>
-                            <i class="mo-icon mo-icon-close remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
+                            <i class="mo-icon mo-icon-del remove" v-if="item.status === 'done' || item.status === 'fail'" @click.prevent.stop="_removeFile(index)"></i>
                             <i class="mo-icon mo-icon-arrow-up uploading" v-if="item.status === 'uploading'" title="上传中"></i>
                         </div>
                     </a>

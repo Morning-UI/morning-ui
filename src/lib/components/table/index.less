@@ -48,7 +48,7 @@ mor-table{
         }
 
         .action{
-            margin-left: @fontSize/2;
+            margin-left: @fontSize;
         }
 
         .custom-header{
@@ -106,24 +106,51 @@ mor-table{
             width: 100%;
         }
 
-        tr{
+        tr th{
+            font-weight: 400;
+            line-height: 1.2em;
+            height: @fontSize*1.25;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+        }
+
+        > tbody > tr{
             height: @fontSize*2.5;
 
-            th{
-                font-weight: 400;
-                line-height: 1.2em;
-                height: @fontSize*1.25;
-                overflow: hidden;
-                white-space: nowrap;
-                border-bottom-width: 2px;
-                border-bottom-style: solid;
+            &.expand-row{
+                background: @colorWhite !important;
+                border-top-width: 1px;
+                display: none;
+
+                &.open{
+                    display: table-row;
+                }
             }
 
-            td{
+            > td{
                 min-width: @fontSize*3.125;
                 overflow: hidden;
                 word-break: break-all;
                 text-overflow: ellipsis;
+
+                &.expand-row-col{
+                    width: 100%;
+                    padding: 0 !important;
+                    border: none !important;
+
+                    .expand-row-col-wrap{
+                        background: @colorWhite !important;
+                        padding: @fontSize;
+                        border-top-width: 1px;
+                        border-top-style: solid;
+
+                        > mor-table{
+                            // border-radius: 0;
+                        }
+                    }
+                }
             }
         }
 
@@ -216,13 +243,13 @@ mor-table{
     &.vertical-border{
         .table{
             th,
-            td{
+            > tbody > tr > td{
                 border-left-width: 1px !important;
                 border-left-style: solid !important;
             }
 
             th:first-child,
-            td:first-child{
+            > tbody > tr > td:first-child{
                 border-left: none !important;
             }
         }
@@ -265,15 +292,15 @@ mor-table{
             }
         }
 
-        .table{
+        .table tr th{
+            padding: @fontSize*1.125 !important;
+        }
+
+        .table > tbody{
             font-size: @fontSize*1.125;
 
-            tr{
-                th{
-                    padding: @fontSize*1.125 !important;
-                }
-
-                td{
+            > tr{
+                > td{
                     padding: @fontSize*1.125 !important;
                 }
             }
@@ -302,15 +329,15 @@ mor-table{
             }
         }
 
-        .table{
+        .table tr th{
+            padding: @fontSize*0.875 !important;
+        }
+
+        .table > tbody{
             font-size: @fontSize*1;
 
-            tr{
-                th{
-                    padding: @fontSize*0.875 !important;
-                }
-
-                td{
+            > tr{
+                > td{
                     padding: @fontSize*0.875 !important;
                 }
             }
@@ -339,15 +366,15 @@ mor-table{
             }
         }
 
-        .table{
+        .table tr th{
+            padding: @fontSize*0.625 !important;
+        }
+
+        .table > tbody{
             font-size: @fontSize*0.875;
 
-            tr{
-                th{
-                    padding: @fontSize*0.625 !important;
-                }
-
-                td{
+            > tr{
+                > td{
                     padding: @fontSize*0.625 !important;
                 }
             }
@@ -376,15 +403,15 @@ mor-table{
             }
         }
 
-        .table{
+        .table tr th{
+            padding: @fontSize*0.5 !important;
+        }
+
+        .table > tbody{
             font-size: @fontSize*0.8125;
 
-            tr{
-                th{
-                    padding: @fontSize*0.5 !important;
-                }
-
-                td{
+            > tr{
+                > td{
                     padding: @fontSize*0.5 !important;
                 }
             }
@@ -413,15 +440,15 @@ mor-table{
             }
         }
 
-        .table{
+        .table tr th{
+            padding: @fontSize*0.1875 !important;
+        }
+
+        .table > tbody{
             font-size: @fontSize*0.75;
 
-            tr{
-                th{
-                    padding: @fontSize*0.1875 !important;
-                }
-
-                td{
+            > tr{
+                > td{
                     padding: @fontSize*0.1875 !important;
                 }
             }
@@ -447,6 +474,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorTheme, 20%) !important;
             }
@@ -457,16 +485,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorTheme, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorTheme, 20%);
                     border-color: darken(@colorTheme, 20%) !important;
@@ -512,6 +540,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorLightTheme, 25%) !important;
             }
@@ -522,16 +551,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorLightTheme, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorLightTheme, 25%);
                     border-color: darken(@colorLightTheme, 25%) !important;
@@ -577,6 +606,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorDarkTheme, 20%) !important;
             }
@@ -587,16 +617,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorDarkTheme, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorDarkTheme, 20%);
                     border-color: darken(@colorDarkTheme, 20%) !important;
@@ -642,6 +672,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorSuccess, 25%) !important;
             }
@@ -652,16 +683,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorSuccess, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorSuccess, 25%);
                     border-color: darken(@colorSuccess, 25%) !important;
@@ -707,6 +738,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorWarning, 25%) !important;
             }
@@ -717,16 +749,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorWarning, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorWarning, 25%);
                     border-color: darken(@colorWarning, 25%) !important;
@@ -772,6 +804,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorDanger, 25%) !important;
             }
@@ -782,16 +815,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorDanger, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorDanger, 25%);
                     border-color: darken(@colorDanger, 25%) !important;
@@ -837,6 +870,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorPrimary, 25%) !important;
             }
@@ -847,16 +881,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorPrimary, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorPrimary, 25%);
                     border-color: darken(@colorPrimary, 25%) !important;
@@ -902,6 +936,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorMinor, 25%) !important;
             }
@@ -912,16 +947,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorMinor, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorMinor, 25%);
                     border-color: darken(@colorMinor, 25%) !important;
@@ -967,6 +1002,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorInfo, 25%) !important;
             }
@@ -977,16 +1013,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorInfo, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorInfo, 25%);
                     border-color: darken(@colorInfo, 25%) !important;
@@ -1032,6 +1068,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: @colorBlack !important;
             }
@@ -1042,16 +1079,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorBlack, 10%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: lighten(@colorBlack, 5%);
                     border-color: lighten(@colorBlack, 5%) !important;
@@ -1097,6 +1134,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: @colorNeutral1 !important;
             }
@@ -1107,16 +1145,16 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: lighten(@colorNeutral1, 8%);
             }
         }
 
-        &.ts-zp:not(.no-hover-effect) .table,
-        &:not(.no-hover-effect) .table{
-            tr:hover,
-            tr.hover,
-            tr.last-click{
+        &.ts-zp:not(.no-hover-effect) .table > tbody,
+        &:not(.no-hover-effect) .table > tbody{
+            > tr:not(.expand-row):hover,
+            > tr.hover,
+            > tr.last-click{
                 td{
                     background-color: darken(@colorNeutral1, 5%);
                     border-color: darken(@colorNeutral1, 5%) !important;
@@ -1165,6 +1203,7 @@ mor-table{
                 th,
                 td,
                 tr,
+                .expand-row-col-wrap,
                 &{
                     border-color: @@colorName !important;
                 }
@@ -1175,16 +1214,16 @@ mor-table{
             }
 
             &.ts-zp .co-style{
-                tr:nth-child(2n) td{
+                tr.odd-row td{
                     background-color: if((@value > 5), darken(@@colorName, 5%), lighten(@@colorName, 8%));
                 }
             }
 
-            &.ts-zp:not(.no-hover-effect) .table,
-            &:not(.no-hover-effect) .table{
-                tr:hover,
-                tr.hover,
-                tr.last-click{
+            &.ts-zp:not(.no-hover-effect) .table > tbody,
+            &:not(.no-hover-effect) .table > tbody{
+                > tr:not(.expand-row):hover,
+                > tr.hover,
+                > tr.last-click{
                     td{
                         background-color: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 5%));
                         border-color: if((@value > 5), lighten(@@colorName, 5%), darken(@@colorName, 5%)) !important;
@@ -1231,6 +1270,7 @@ mor-table{
             th,
             td,
             tr,
+            .expand-row-col-wrap,
             &{
                 border-color: darken(@colorWhite, 5%) !important;
             }
@@ -1241,14 +1281,14 @@ mor-table{
         }
 
         &.ts-zp .co-style{
-            tr:nth-child(2n) td{
+            tr.odd-row td{
                 background-color: darken(@colorWhite, 2%);
             }
         }
 
         &.ts-zp:not(.no-hover-effect) .table,
         &:not(.no-hover-effect) .table{
-            tr:hover,
+            tr:not(.expand-row):hover,
             tr.hover,
             tr.last-click {
                 td{
@@ -1397,6 +1437,21 @@ mor-table{
                     background: darken(@colorWhite, 8%) !important;
                 }
             }
+        }
+    }
+
+    .table > tbody > tr > td.table-expand{
+        cursor: pointer;
+        max-width: 1px;
+        min-width: 1px;
+
+        .mo-icon{
+            color: @colorNeutral6;
+            font-size: @fontSize*0.8125;
+        }
+
+        + td{
+            border-left: none !important;
         }
     }
 
