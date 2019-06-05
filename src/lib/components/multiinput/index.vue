@@ -15,7 +15,7 @@
         :max="max"
 
         @keydown.enter="_enterInput"
-        @keydown.backspace="_deleteItem(data.value.length - 1)"
+        @keydown.backspace="_backspace()"
         @click="_focusInput"
     >
 
@@ -153,7 +153,8 @@ export default {
             data : {
                 inputValue : '',
                 inputWidth : '0em',
-                focus : false
+                focus : false,
+                backspace : 0
             }
         };
 
@@ -294,6 +295,21 @@ export default {
             this.set(value);
                 
         },
+        _backspace : function () {
+
+            if (this.data.inputValue === '') {
+
+                if (this.data.backspace > 0) {
+
+                    this._deleteItem(this.data.value.length - 1);
+
+                }
+
+                this.data.backspace++;
+
+            }
+
+        },
         add : function (item, index) {
 
             let value = this.get();
@@ -372,6 +388,12 @@ export default {
         this.$on('input', value => {
 
             this.data.inputValue = value;
+
+        });
+
+        this.$watch('data.inputValue', () => {
+
+            this.data.backspace = 0;
 
         });
 

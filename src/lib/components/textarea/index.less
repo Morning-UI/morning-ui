@@ -8,6 +8,10 @@ mor-textarea{
 
     .setup-form();
 
+    .textarea-wrap{
+        font-size: 0;
+    }
+
     textarea{
         box-sizing: border-box;
         z-index: 2;
@@ -78,19 +82,23 @@ mor-textarea{
     }
 
     &.has-maxlength{
-        padding-bottom: @fontSize*1.25;
+        textarea{
+            padding-bottom: 1.8em;
+        }
     }
 
     .maxlength{
         position: absolute;
         color: @colorFormTextNote;
-        font-size: @fontSize*0.75;
-        left: 0;
-        bottom: 0;
-    }
+        font-size: @fontSize*0.8125;
+        right: 0.5em;
+        bottom: 0.25em;
 
-    &.is-maxlength{
-        .maxlength{
+        span.has-content{
+            color: @colorNeutral10;
+        }
+
+        span.is-maxlen{
             color: @colorDanger;
         }
     }

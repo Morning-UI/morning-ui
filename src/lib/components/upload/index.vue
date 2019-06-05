@@ -478,7 +478,7 @@ export default {
             if ((
                 file.file && /^image/.test(file.file.type)
             ) || (
-                file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path)
+                file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path.toLowerCase())
             )) {
 
                 return true;

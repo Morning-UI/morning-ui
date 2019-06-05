@@ -661,6 +661,13 @@ export default {
         },
         _wrapClick : function (evt) {
 
+            if (this.conf.state === 'readonly' ||
+                this.conf.state === 'disabled') {
+
+                return;
+
+            }
+
             if (this.conf.separateEmit) {
 
                 return;
