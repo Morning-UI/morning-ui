@@ -39018,6 +39018,11 @@ exports.default = {
         },
         _wrapClick: function _wrapClick(evt) {
 
+            if (this.conf.state === 'readonly' || this.conf.state === 'disabled') {
+
+                return;
+            }
+
             if (this.conf.separateEmit) {
 
                 return;
@@ -42416,7 +42421,8 @@ exports.default = {
             data: {
                 inputValue: '',
                 inputWidth: '0em',
-                focus: false
+                focus: false,
+                backspace: 0
             }
         };
     },
@@ -42531,6 +42537,18 @@ exports.default = {
             value.splice(to, 0, value.splice(from, 1)[0]);
             this.set(value);
         },
+        _backspace: function _backspace() {
+
+            if (this.data.inputValue === '') {
+
+                if (this.data.backspace > 0) {
+
+                    this._deleteItem(this.data.value.length - 1);
+                }
+
+                this.data.backspace++;
+            }
+        },
         add: function add(item, index) {
 
             var value = this.get();
@@ -42599,6 +42617,11 @@ exports.default = {
         this.$on('input', function (value) {
 
             _this3.data.inputValue = value;
+        });
+
+        this.$watch('data.inputValue', function () {
+
+            _this3.data.backspace = 0;
         });
 
         this.$watch('conf.canMove', function (newVal) {
@@ -47848,7 +47871,7 @@ exports.default = {
         },
         _isImage: function _isImage(file) {
 
-            if (file.file && /^image/.test(file.file.type) || file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path)) {
+            if (file.file && /^image/.test(file.file.type) || file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path.toLowerCase())) {
 
                 return true;
             }
@@ -65882,7 +65905,7 @@ var render = function() {
             ) {
               return null
             }
-            return _vm._deleteItem(_vm.data.value.length - 1)
+            return _vm._backspace()
           }
         ],
         click: _vm._focusInput

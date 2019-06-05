@@ -42,7 +42,12 @@
         ></textarea>
 
         <div class="maxlength" v-if="conf.maxlength !== Infinity">
-            {{(data.value || '').length}}/{{conf.maxlength}}
+            <span
+                :class="{
+                    'has-content':((data.value || '').length > 0),
+                    'is-maxlen' : ((data.value || '').length === conf.maxlength)
+                }"
+            >{{(data.value || '').length}}</span> / {{conf.maxlength}}
         </div>
         
     </div>
@@ -52,7 +57,7 @@
 
     </mor-textarea>
 </template>
- 
+
 <script>
 export default {
     origin : 'Form',
@@ -102,8 +107,7 @@ export default {
             let classes = {};
 
             classes = {
-                'has-maxlength' : this.conf.maxlength !== Infinity,
-                'is-maxlength' : this.conf.maxlength === (this.data.value || '').length
+                'has-maxlength' : this.conf.maxlength !== Infinity
             };
 
             if (this.conf.resize !== 'none') {

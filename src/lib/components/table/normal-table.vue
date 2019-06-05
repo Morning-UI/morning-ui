@@ -99,7 +99,7 @@
                     </tr>
                     <template v-if="data.titleKeys.length === 0 && data.rowExpand[line]">
 
-                        <tr class="expand-row" :key="index" :class="{open : data.rowExpandOpen[line]}">
+                        <tr class="expand-row" :key="line" :class="{open : data.rowExpandOpen[line]}">
                             <component
                                 :is="{
                                     template : ('<td colspan=' + (row.length + 1) + ' class=\'expand-row-col\'><div class=\'expand-row-col-wrap\'>' + data.rowExpand[line] + '</div></td>'),
