@@ -147,7 +147,7 @@ export default {
     props : {
         insideName : {
             type : String,
-            default : ''
+            default : '请选择'
         },
         list : {
             type : [Object, Array],
@@ -924,6 +924,7 @@ export default {
             this.data.multiinputLastValue = values;
 
             this._set(values, true);
+            searchMultiinput.focusInput();
 
             this.Vue.nextTick(() => {
 

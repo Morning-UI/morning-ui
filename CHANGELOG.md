@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.12.41
+
+`2019年6月5日`
+
+#### 新特性
+
+- `ui-multiinput`组件新增`focusInput`方法
+- `ui-pagination`组件新增`always-show-nav-arrow`配置，可以设置翻页导航按钮显示逻辑
+
+#### 改进
+
+- `ui-textinput`、`ui-textarea`、`ui-multiinput`组件的`inside-name`配置默认值改为`请输入`
+- `ui-select`、`ui-cascader`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件的`inside-name`配置默认值改为`请选择`
+- 优化`ui-table`组件斑马纹样式
+- 现在`ui-select`在多选搜索模式下，鼠标选中项目后搜索框仍然聚焦
+- 优化`ui-breadcrumbs`的配色
+
+#### 修复
+
+- 修复`ui-textarea`可以通过`set()`方法设置超过长度字符串的问题
+
 ## 0.12.40
 
 `2019年6月5日`

@@ -49,6 +49,7 @@
                         :style="{width: data.inputWidth}"
                         :placeholder="conf.insideName"
                         key="set-max-show-name"
+                        :ref="'ui-multiinput-input'+uiid"
 
                         :value="data.inputValue"
                         @input="$emit('input', $event.target.value)"
@@ -61,6 +62,7 @@
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
                         key="set-max-hide-name"
+                        :ref="'ui-multiinput-input'+uiid"
 
                         :value="data.inputValue"
                         @input="$emit('input', $event.target.value)"
@@ -79,6 +81,7 @@
                         :style="{width: data.inputWidth}"
                         :placeholder="conf.insideName"
                         key="unset-max-show-name"
+                        :ref="'ui-multiinput-input'+uiid"
 
                         :value="data.inputValue"
                         @input="$emit('input', $event.target.value)"
@@ -91,6 +94,7 @@
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
                         key="unset-max-hide-name"
+                        :ref="'ui-multiinput-input'+uiid"
 
                         :value="data.inputValue"
                         @input="$emit('input', $event.target.value)"
@@ -118,7 +122,7 @@ export default {
     props : {
         insideName : {
             type : String,
-            default : ''
+            default : '请输入'
         },
         canMove : {
             type : Boolean,
@@ -368,6 +372,19 @@ export default {
         getInput : function () {
 
             return this.data.inputValue;
+
+        },
+        focusInput : function () {
+
+            let $input = this.$refs[`ui-multiinput-input${this.uiid}`];
+
+            if ($input) {
+
+                $input.focus();
+
+            }
+
+            return this;
 
         }
     },

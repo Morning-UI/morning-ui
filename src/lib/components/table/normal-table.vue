@@ -48,7 +48,7 @@
                         @mouseout="$emit('row-mouseout', line)"
                         @click="$emit('row-click', line)"
                         :class="{
-                            'odd-row' : (line % 2 === 1)
+                            'even-row' : (line % 2 === 0)
                         }"
                     >
                         <td

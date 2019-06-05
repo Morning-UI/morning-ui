@@ -10,6 +10,7 @@
         :max-show="maxShow"
         :jump-page="jumpPage"
         :type="type"
+        :always-show-nav-arrow="alwaysShowNavArrow"
     >
 
     <div class="page-content">
@@ -21,8 +22,8 @@
 
     <div class="list">
         <template v-if="conf.type === 'normal'">
-            <template v-if="data.hideEnd > 1">
-                <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
+            <template v-if="data.hideEnd > 1 || conf.alwaysShowNavArrow">
+                <a href="javascript:;" class="prev" :class="{'cant-click' : (data.currentPage === 1)}" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
             </template>
 
             <template v-if="data.hideEnd >= 1">
@@ -75,8 +76,8 @@
                 </a>
             </template>
 
-            <template v-if="data.hideStart < data.total">
-                <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
+            <template v-if="data.hideStart < data.total || conf.alwaysShowNavArrow">
+                <a href="javascript:;" class="next" :class="{'cant-click' : (data.currentPage === data.total)}" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
             </template>
         </template>
 
@@ -85,7 +86,8 @@
                 href="javascript:;"
                 class="prev"
                 :class="{
-                    'disabled' : data.currentPage <= 1
+                    'disabled' : (data.currentPage <= 1 && !conf.alwaysShowNavArrow),
+                    'cant-click' : (data.currentPage <= 1 && conf.alwaysShowNavArrow)
                 }"
                 @click="to(data.currentPage - 1)"
             ><i class="mo-icon mo-icon-left"></i></a>
@@ -96,7 +98,8 @@
                 href="javascript:;"
                 class="next"
                 :class="{
-                    'disabled' : data.currentPage >= data.total
+                    'disabled' : (data.currentPage >= data.total && !conf.alwaysShowNavArrow),
+                    'cant-click' : (data.currentPage >= data.total && conf.alwaysShowNavArrow)
                 }"
                 @click="to(data.currentPage + 1)"
             ><i class="mo-icon mo-icon-right"></i></a>
@@ -107,7 +110,8 @@
                 href="javascript:;"
                 class="prev"
                 :class="{
-                    'disabled' : data.currentPage <= 1
+                    'disabled' : (data.currentPage <= 1 && !conf.alwaysShowNavArrow),
+                    'cant-click' : (data.currentPage <= 1 && conf.alwaysShowNavArrow)
                 }"
                 @click="to(data.currentPage - 1)"
             ><i class="mo-icon mo-icon-left"></i></a>
@@ -115,7 +119,8 @@
                 href="javascript:;"
                 class="next"
                 :class="{
-                    'disabled' : data.currentPage >= data.total
+                    'disabled' : (data.currentPage >= data.total && !conf.alwaysShowNavArrow),
+                    'cant-click' : (data.currentPage <= 1 && conf.alwaysShowNavArrow)
                 }"
                 @click="to(data.currentPage + 1)"
             ><i class="mo-icon mo-icon-right"></i></a>
@@ -168,6 +173,10 @@ export default {
             type : String,
             default : 'normal',
             validator : (value => ['normal', 'simple', 'mini'].indexOf(value) !== -1)
+        },
+        alwaysShowNavArrow : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -180,7 +189,8 @@ export default {
                 page : this.page,
                 maxShow : this.maxShow,
                 jumpPage : this.jumpPage,
-                type : this.type
+                type : this.type,
+                alwaysShowNavArrow : this.alwaysShowNavArrow
             };
 
         },

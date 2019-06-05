@@ -118,7 +118,7 @@
     >conf-type
     String
     >conf-default
-    `''`
+    `'请选择'`
     ---
     #demo
     >tpl
