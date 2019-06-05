@@ -36670,6 +36670,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -36720,8 +36725,7 @@ exports.default = {
             var classes = {};
 
             classes = {
-                'has-maxlength': this.conf.maxlength !== Infinity,
-                'is-maxlength': this.conf.maxlength === (this.data.value || '').length
+                'has-maxlength': this.conf.maxlength !== Infinity
             };
 
             if (this.conf.resize !== 'none') {
@@ -68636,13 +68640,18 @@ var render = function() {
         _vm._v(" "),
         _vm.conf.maxlength !== Infinity
           ? _c("div", { staticClass: "maxlength" }, [
-              _vm._v(
-                "\n        " +
-                  _vm._s((_vm.data.value || "").length) +
-                  "/" +
-                  _vm._s(_vm.conf.maxlength) +
-                  "\n    "
-              )
+              _c(
+                "span",
+                {
+                  class: {
+                    "has-content": (_vm.data.value || "").length > 0,
+                    "is-maxlen":
+                      (_vm.data.value || "").length === _vm.conf.maxlength
+                  }
+                },
+                [_vm._v(_vm._s((_vm.data.value || "").length))]
+              ),
+              _vm._v(" / " + _vm._s(_vm.conf.maxlength) + "\n    ")
             ])
           : _vm._e()
       ]),
@@ -71860,7 +71869,7 @@ var render = function() {
                   _c(
                     "tr",
                     {
-                      key: _vm.index,
+                      key: line,
                       staticClass: "expand-row",
                       class: { open: _vm.data.rowExpandOpen[line] }
                     },
