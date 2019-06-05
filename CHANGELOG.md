@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.12.40
+
+`2019年6月5日`
+    
+#### 改进
+
+- 优化表单组件背景`hover`状态配色
+- 优化所有表单组件处于`disabled`和`readonly`状态时的背景色和边框色
+- 现在当`ui-select`处于`disabled`和`readonly`状态时，点击不会显示下拉列表
+- 现在`ui-rate`处于禁用状态时会显示禁用鼠标样式
+- 优化当`ui-checkbox`和`ui-radio`组件处于`disabled`和`readonly`状态时，鼠标`hover`时文本颜色不会改变
+- `ui-textarea`组件的最大长度显示位置现在调整到了右下角
+
+#### 修复
+
+- 修复`ui-multiinput`的`backspace`快捷键删除逻辑
+- 修复`ui-upload`组件当图片尾缀大写时无法识别的问题
+
 ## 0.12.39
 
 `2019年5月30日`

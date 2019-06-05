@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.12.40 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年6月5日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.40" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.40/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.40/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 改进
+    
+    - 优化表单组件背景`hover`状态配色
+    - 优化所有表单组件处于`disabled`和`readonly`状态时的背景色和边框色
+    - 现在当`ui-select`处于`disabled`和`readonly`状态时，点击不会显示下拉列表
+    - 现在`ui-rate`处于禁用状态时会显示禁用鼠标样式
+    - 优化当`ui-checkbox`和`ui-radio`组件处于`disabled`和`readonly`状态时，鼠标`hover`时文本颜色不会改变
+    - `ui-textarea`组件的最大长度显示位置现在调整到了右下角
+    
+    #### 修复
+    
+    - 修复`ui-multiinput`的`backspace`快捷键删除逻辑
+    - 修复`ui-upload`组件当图片尾缀大写时无法识别的问题
+    
+    ---
+
     ### 0.12.39 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
