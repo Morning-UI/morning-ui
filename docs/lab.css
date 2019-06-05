@@ -22,9 +22,6 @@
 .markdown-body mor-table table tr {
   border-top: initial;
 }
-.markdown-body mor-table table tr:nth-child(2n) {
-  background-color: #FAFAFA;
-}
 .markdown-body mor-table table * {
   box-sizing: inherit;
 }

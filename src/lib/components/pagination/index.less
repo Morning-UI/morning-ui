@@ -14,10 +14,10 @@ mor-pagination{
             display: inline-block;
             vertical-align: middle;
             padding: 0 0.8em;
-            background-color: @colorComponentItemBg !important;
             cursor: pointer;
             line-height: 2.4em;
             height: 2.4em;
+            background-color: @colorComponentItemBg !important;
             color: darken(@colorComponentItemFont, 3%) !important;
             text-decoration: none !important;
 
@@ -39,6 +39,12 @@ mor-pagination{
             &.prev,
             &.next{
                 padding: 0 0.6em;
+
+                &.cant-click{
+                    background-color: @colorComponentItemBgDisabled !important;
+                    color: darken(@colorComponentItemFontDisabled, 3%) !important;
+                    cursor: not-allowed;
+                }
             }
 
             &:not(:first-child){
@@ -55,13 +61,13 @@ mor-pagination{
                 border-bottom-right-radius: @borderRadius;
             }
 
-            &:not(.current):not(.ignore):hover{
+            &:not(.current):not(.ignore):not(.cant-click):hover{
                 text-decoration: none !important;
                 background-color: darken(@colorComponentItemBgHover, 5%) !important;
                 color: darken(@colorComponentItemFontHover, 3%) !important;
             }
 
-            &:not(.current):not(.ignore):active{
+            &:not(.current):not(.ignore):not(.cant-click):active{
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.18) inset;
                 color: darken(@colorComponentItemFontHover, 3%) !important;
             }
@@ -108,13 +114,13 @@ mor-pagination{
                 border-top-right-radius: @borderRadius;
                 border-bottom-right-radius: @borderRadius;
 
-                .textinput-wrap > input{
+                .textinput-wrap > .input-wrap > input{
                     vertical-align: top !important;
                     border: 1px solid @colorFormBorder;
                     padding: 0 1.5em 0 0.8em;
-                    line-height: 2.4em;
-                    height: 2.4em;
-                    width: 4.5em;
+                    line-height: 2.8em;
+                    height: 2.8em;
+                    width: 6em;
                     border-top-left-radius: 0;
                     border-bottom-left-radius: 0;
                 }

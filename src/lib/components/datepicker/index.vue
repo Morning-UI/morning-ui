@@ -392,7 +392,7 @@ export default {
     props : {
         insideName : {
             type : String,
-            default : ''
+            default : '请选择'
         },
         date : {
             type : Number,

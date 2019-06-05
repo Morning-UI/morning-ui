@@ -61,7 +61,7 @@
     >conf-type
     String
     >conf-default
-    `''`
+    `'请输入'`
     ---
     #demo
     >tpl
@@ -281,6 +281,26 @@
         </div>
         <br>
         <ui-link js="alert(morning.findVM('demo9').getInput());">获取输入框内容</ui-link>
+    </div>
+    :::
+    
+    :::vue
+    @name:focusInput()
+    ---
+    #method
+    >method-desc
+    输入框聚焦。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-multiinput ref="demo11" form-name="输入标签"></ui-multiinput>
+        </div>
+        <br>
+        <ui-link js="morning.findVM('demo11').focusInput();">聚焦输入框</ui-link>
     </div>
     :::
 

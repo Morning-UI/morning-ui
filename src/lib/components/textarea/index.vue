@@ -65,7 +65,7 @@ export default {
     props : {
         insideName : {
             type : String,
-            default : ''
+            default : '请输入'
         },
         rows : {
             type : Number,
@@ -156,7 +156,13 @@ export default {
 
             if (typeof value === 'object') {
 
-                return JSON.stringify(value);
+                value = JSON.stringify(value);
+
+            }
+
+            if (value.length > this.conf.maxlength) {
+
+                value = value.slice(0, this.conf.maxlength);
 
             }
 
