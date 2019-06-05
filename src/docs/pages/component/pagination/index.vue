@@ -320,6 +320,24 @@
     <ui-pagination :total="10" type="mini"></ui-pagination>
     :::
 
+    :::vue
+    @name:always-show-nav-arrow
+    ---
+    #config
+    >conf-desc
+    是否一直显示翻页导航按钮(如果关闭则会在需要时显示)。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >tpl
+    <ui-pagination :total="10" :always-show-nav-arrow="false"></ui-pagination>
+    :::
+
     [[[方法]]]
 
     :::vue

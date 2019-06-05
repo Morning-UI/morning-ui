@@ -2001,7 +2001,7 @@ textarea {
 .mor-media-volume .slider .note {
   display: none;
 }
-input::-webkit-input-placeholder {
+::-webkit-input-placeholder {
   opacity: 1;
 }
 /* stylelint-disable at-rule-empty-line-before */
@@ -31981,7 +31981,7 @@ mor-table.co-t .co-style {
 mor-table.co-t .co-style tr {
   background-color: #d60d31;
 }
-mor-table.co-t.ts-zp .co-style tr.odd-row td {
+mor-table.co-t.ts-zp .co-style tr.even-row td {
   background-color: #ee0f36;
 }
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32035,7 +32035,7 @@ mor-table.co-lt .co-style {
 mor-table.co-lt .co-style tr {
   background-color: #f4264c;
 }
-mor-table.co-lt.ts-zp .co-style tr.odd-row td {
+mor-table.co-lt.ts-zp .co-style tr.even-row td {
   background-color: #f63e60;
 }
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32089,7 +32089,7 @@ mor-table.co-dt .co-style {
 mor-table.co-dt .co-style tr {
   background-color: #90182e;
 }
-mor-table.co-dt.ts-zp .co-style tr.odd-row td {
+mor-table.co-dt.ts-zp .co-style tr.even-row td {
   background-color: #a61c35;
 }
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32143,7 +32143,7 @@ mor-table.co-s .co-style {
 mor-table.co-s .co-style tr {
   background-color: #338a47;
 }
-mor-table.co-s.ts-zp .co-style tr.odd-row td {
+mor-table.co-s.ts-zp .co-style tr.even-row td {
   background-color: #3a9d51;
 }
 mor-table.co-s.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32197,7 +32197,7 @@ mor-table.co-w .co-style {
 mor-table.co-w .co-style tr {
   background-color: #df8a13;
 }
-mor-table.co-w.ts-zp .co-style tr.odd-row td {
+mor-table.co-w.ts-zp .co-style tr.even-row td {
   background-color: #ec971f;
 }
 mor-table.co-w.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32251,7 +32251,7 @@ mor-table.co-d .co-style {
 mor-table.co-d .co-style tr {
   background-color: #9c2d1f;
 }
-mor-table.co-d.ts-zp .co-style tr.odd-row td {
+mor-table.co-d.ts-zp .co-style tr.even-row td {
   background-color: #b13323;
 }
 mor-table.co-d.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32305,7 +32305,7 @@ mor-table.co-p .co-style {
 mor-table.co-p .co-style tr {
   background-color: #175b8e;
 }
-mor-table.co-p.ts-zp .co-style tr.odd-row td {
+mor-table.co-p.ts-zp .co-style tr.even-row td {
   background-color: #1a69a4;
 }
 mor-table.co-p.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32359,7 +32359,7 @@ mor-table.co-m .co-style {
 mor-table.co-m .co-style tr {
   background-color: #838383;
 }
-mor-table.co-m.ts-zp .co-style tr.odd-row td {
+mor-table.co-m.ts-zp .co-style tr.even-row td {
   background-color: #909090;
 }
 mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32413,7 +32413,7 @@ mor-table.co-i .co-style {
 mor-table.co-i .co-style tr {
   background-color: #02626e;
 }
-mor-table.co-i.ts-zp .co-style tr.odd-row td {
+mor-table.co-i.ts-zp .co-style tr.even-row td {
   background-color: #027987;
 }
 mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32467,7 +32467,7 @@ mor-table.co-bk .co-style {
 mor-table.co-bk .co-style tr {
   background-color: #000000;
 }
-mor-table.co-bk.ts-zp .co-style tr.odd-row td {
+mor-table.co-bk.ts-zp .co-style tr.even-row td {
   background-color: #000000;
 }
 mor-table.co-bk.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32521,7 +32521,7 @@ mor-table.co-n1 .co-style {
 mor-table.co-n1 .co-style tr {
   background-color: #f8f8f8;
 }
-mor-table.co-n1.ts-zp .co-style tr.odd-row td {
+mor-table.co-n1.ts-zp .co-style tr.even-row td {
   background-color: #ffffff;
 }
 mor-table.co-n1.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32575,7 +32575,7 @@ mor-table.co-n2 .co-style {
 mor-table.co-n2 .co-style tr {
   background-color: #ededed;
 }
-mor-table.co-n2.ts-zp .co-style tr.odd-row td {
+mor-table.co-n2.ts-zp .co-style tr.even-row td {
   background-color: #f9f9f9;
 }
 mor-table.co-n2.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32629,7 +32629,7 @@ mor-table.co-n3 .co-style {
 mor-table.co-n3 .co-style tr {
   background-color: #e8e8e8;
 }
-mor-table.co-n3.ts-zp .co-style tr.odd-row td {
+mor-table.co-n3.ts-zp .co-style tr.even-row td {
   background-color: #f4f4f4;
 }
 mor-table.co-n3.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32683,7 +32683,7 @@ mor-table.co-n4 .co-style {
 mor-table.co-n4 .co-style tr {
   background-color: #e1e1e1;
 }
-mor-table.co-n4.ts-zp .co-style tr.odd-row td {
+mor-table.co-n4.ts-zp .co-style tr.even-row td {
   background-color: #ededed;
 }
 mor-table.co-n4.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32737,7 +32737,7 @@ mor-table.co-n5 .co-style {
 mor-table.co-n5 .co-style tr {
   background-color: #d4d4d4;
 }
-mor-table.co-n5.ts-zp .co-style tr.odd-row td {
+mor-table.co-n5.ts-zp .co-style tr.even-row td {
   background-color: #e0e0e0;
 }
 mor-table.co-n5.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32791,7 +32791,7 @@ mor-table.co-n6 .co-style {
 mor-table.co-n6 .co-style tr {
   background-color: #aaaaaa;
 }
-mor-table.co-n6.ts-zp .co-style tr.odd-row td {
+mor-table.co-n6.ts-zp .co-style tr.even-row td {
   background-color: #a5a5a5;
 }
 mor-table.co-n6.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32845,7 +32845,7 @@ mor-table.co-n7 .co-style {
 mor-table.co-n7 .co-style tr {
   background-color: #919191;
 }
-mor-table.co-n7.ts-zp .co-style tr.odd-row td {
+mor-table.co-n7.ts-zp .co-style tr.even-row td {
   background-color: #8c8c8c;
 }
 mor-table.co-n7.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32899,7 +32899,7 @@ mor-table.co-n8 .co-style {
 mor-table.co-n8 .co-style tr {
   background-color: #777777;
 }
-mor-table.co-n8.ts-zp .co-style tr.odd-row td {
+mor-table.co-n8.ts-zp .co-style tr.even-row td {
   background-color: #727272;
 }
 mor-table.co-n8.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32953,7 +32953,7 @@ mor-table.co-n9 .co-style {
 mor-table.co-n9 .co-style tr {
   background-color: #5e5e5e;
 }
-mor-table.co-n9.ts-zp .co-style tr.odd-row td {
+mor-table.co-n9.ts-zp .co-style tr.even-row td {
   background-color: #595959;
 }
 mor-table.co-n9.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -33007,7 +33007,7 @@ mor-table.co-n10 .co-style {
 mor-table.co-n10 .co-style tr {
   background-color: #444444;
 }
-mor-table.co-n10.ts-zp .co-style tr.odd-row td {
+mor-table.co-n10.ts-zp .co-style tr.even-row td {
   background-color: #3f3f3f;
 }
 mor-table.co-n10.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -33061,7 +33061,7 @@ mor-table.co-n11 .co-style {
 mor-table.co-n11 .co-style tr {
   background-color: #2b2b2b;
 }
-mor-table.co-n11.ts-zp .co-style tr.odd-row td {
+mor-table.co-n11.ts-zp .co-style tr.even-row td {
   background-color: #262626;
 }
 mor-table.co-n11.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -33115,7 +33115,7 @@ mor-table.co-wh .co-style {
 mor-table.co-wh .co-style tr {
   background-color: #FFFFFF;
 }
-mor-table.co-wh.ts-zp .co-style tr.odd-row td {
+mor-table.co-wh.ts-zp .co-style tr.even-row td {
   background-color: #fafafa;
 }
 mor-table.co-wh.ts-zp:not(.no-hover-effect) .table tr:not(.expand-row):hover td,
@@ -33372,7 +33372,7 @@ mor-table .co-style {
 mor-table .co-style tr {
   background-color: #f8f8f8;
 }
-mor-table.ts-zp .co-style tr.odd-row td {
+mor-table.ts-zp .co-style tr.even-row td {
   background-color: #ffffff;
 }
 mor-table.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -34185,10 +34185,10 @@ mor-pagination > .list > a {
   display: inline-block;
   vertical-align: middle;
   padding: 0 0.8em;
-  background-color: #f5f5f5 !important;
   cursor: pointer;
   line-height: 2.4em;
   height: 2.4em;
+  background-color: #f5f5f5 !important;
   color: #aaaaaa !important;
   text-decoration: none !important;
 }
@@ -34208,6 +34208,12 @@ mor-pagination > .list > a.prev,
 mor-pagination > .list > a.next {
   padding: 0 0.6em;
 }
+mor-pagination > .list > a.prev.cant-click,
+mor-pagination > .list > a.next.cant-click {
+  background-color: #E0E0E0 !important;
+  color: #5e5e5e !important;
+  cursor: not-allowed;
+}
 mor-pagination > .list > a:not(:first-child) {
   border-left: none;
 }
@@ -34219,12 +34225,12 @@ mor-pagination > .list > a:last-child {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-mor-pagination > .list > a:not(.current):not(.ignore):hover {
+mor-pagination > .list > a:not(.current):not(.ignore):not(.cant-click):hover {
   text-decoration: none !important;
   background-color: #e3e3e3 !important;
   color: #5e5e5e !important;
 }
-mor-pagination > .list > a:not(.current):not(.ignore):active {
+mor-pagination > .list > a:not(.current):not(.ignore):not(.cant-click):active {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.18) inset;
   color: #5e5e5e !important;
 }
@@ -34264,13 +34270,13 @@ mor-pagination > .list > .page-jump mor-textinput.page-num {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-mor-pagination > .list > .page-jump mor-textinput.page-num .textinput-wrap > input {
+mor-pagination > .list > .page-jump mor-textinput.page-num .textinput-wrap > .input-wrap > input {
   vertical-align: top !important;
   border: 1px solid #E5E5E5;
   padding: 0 1.5em 0 0.8em;
-  line-height: 2.4em;
-  height: 2.4em;
-  width: 4.5em;
+  line-height: 2.8em;
+  height: 2.8em;
+  width: 6em;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -36915,7 +36921,7 @@ mor-breadcrumbs ul {
 }
 mor-breadcrumbs ul li {
   display: inline-block;
-  color: #B2B2B2;
+  color: #666666;
   vertical-align: middle;
 }
 mor-breadcrumbs ul li:hover {
@@ -36927,11 +36933,11 @@ mor-breadcrumbs ul li.root:not(.choose) {
   cursor: default;
 }
 mor-breadcrumbs ul li.last {
-  color: #000000;
+  color: #333333;
 }
 mor-breadcrumbs ul li.last:hover {
   cursor: default;
-  color: #000000;
+  color: #333333;
 }
 mor-breadcrumbs ul li.separator {
   cursor: default;

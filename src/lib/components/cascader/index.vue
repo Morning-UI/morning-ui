@@ -148,7 +148,7 @@ export default {
     props : {
         insideName : {
             type : String,
-            default : '选择'
+            default : '请选择'
         },
         list : {
             type : Object,

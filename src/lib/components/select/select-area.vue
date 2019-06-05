@@ -65,6 +65,7 @@
                         :align="conf.align"
                         :size="conf.size"
                         :inside-clearable="false"
+                        inside-name=""
                         @value-change="_searchKeyChange()"
                         @focus="_textinputFocus()"
                         @blur="_textinputBlur()"

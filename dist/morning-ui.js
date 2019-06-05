@@ -30532,6 +30532,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 var PAGE_SIZE_DEFAULT = 10;
 
@@ -30569,6 +30574,10 @@ exports.default = {
             validator: function validator(value) {
                 return ['normal', 'simple', 'mini'].indexOf(value) !== -1;
             }
+        },
+        alwaysShowNavArrow: {
+            type: Boolean,
+            default: true
         }
     },
     computed: {
@@ -30581,7 +30590,8 @@ exports.default = {
                 page: this.page,
                 maxShow: this.maxShow,
                 jumpPage: this.jumpPage,
-                type: this.type
+                type: this.type,
+                alwaysShowNavArrow: this.alwaysShowNavArrow
             };
         },
         moreClass: function moreClass() {
@@ -36441,7 +36451,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请输入'
         },
         hideValue: {
             type: Boolean,
@@ -36682,7 +36692,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请输入'
         },
         rows: {
             type: Number,
@@ -36767,7 +36777,12 @@ exports.default = {
 
             if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
 
-                return JSON.stringify(value);
+                value = JSON.stringify(value);
+            }
+
+            if (value.length > this.conf.maxlength) {
+
+                value = value.slice(0, this.conf.maxlength);
             }
 
             return String(value);
@@ -38515,7 +38530,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请选择'
         },
         list: {
             type: [Object, Array],
@@ -39305,6 +39320,7 @@ exports.default = {
             this.data.multiinputLastValue = values;
 
             this._set(values, true);
+            searchMultiinput.focusInput();
 
             this.Vue.nextTick(function () {
 
@@ -40024,6 +40040,7 @@ exports.default = {
     },
     props: ['conf', 'data', 'sizeClass', 'stateClass', 'listStyle', 'uiid', 'isMax', '_wrapClick', '_multiinputFocus', '_multiinputValueChange', '_searchKeyChange', '_multiinputFocusNoSearch', '_textinputFocus', '_textinputBlur', '_listClick', '_itemHover', 'showItemList', 'set']
 }; //
+//
 //
 //
 //
@@ -41726,7 +41743,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: '选择'
+            default: '请选择'
         },
         list: {
             type: Object,
@@ -42378,6 +42395,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
 
 var _Move = __webpack_require__(50);
 
@@ -42392,7 +42413,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请输入'
         },
         canMove: {
             type: Boolean,
@@ -42602,6 +42623,17 @@ exports.default = {
         getInput: function getInput() {
 
             return this.data.inputValue;
+        },
+        focusInput: function focusInput() {
+
+            var $input = this.$refs['ui-multiinput-input' + this.uiid];
+
+            if ($input) {
+
+                $input.focus();
+            }
+
+            return this;
         }
     },
     created: function created() {
@@ -44196,7 +44228,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请选择'
         },
         format: {
             type: String,
@@ -45062,7 +45094,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请选择'
         },
         date: {
             type: Number,
@@ -46576,7 +46608,7 @@ exports.default = {
     props: {
         insideName: {
             type: String,
-            default: ''
+            default: '请选择'
         },
         date: {
             type: Number,
@@ -60199,7 +60231,8 @@ var render = function() {
         page: _vm.page,
         "max-show": _vm.maxShow,
         "jump-page": _vm.jumpPage,
-        type: _vm.type
+        type: _vm.type,
+        "always-show-nav-arrow": _vm.alwaysShowNavArrow
       }
     },
     [
@@ -60221,12 +60254,13 @@ var render = function() {
         [
           _vm.conf.type === "normal"
             ? [
-                _vm.data.hideEnd > 1
+                _vm.data.hideEnd > 1 || _vm.conf.alwaysShowNavArrow
                   ? [
                       _c(
                         "a",
                         {
                           staticClass: "prev",
+                          class: { "cant-click": _vm.data.currentPage === 1 },
                           attrs: { href: "javascript:;" },
                           on: {
                             click: function($event) {
@@ -60348,12 +60382,17 @@ var render = function() {
                     ]
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.data.hideStart < _vm.data.total
+                _vm.data.hideStart < _vm.data.total ||
+                _vm.conf.alwaysShowNavArrow
                   ? [
                       _c(
                         "a",
                         {
                           staticClass: "next",
+                          class: {
+                            "cant-click":
+                              _vm.data.currentPage === _vm.data.total
+                          },
                           attrs: { href: "javascript:;" },
                           on: {
                             click: function($event) {
@@ -60373,7 +60412,11 @@ var render = function() {
                   {
                     staticClass: "prev",
                     class: {
-                      disabled: _vm.data.currentPage <= 1
+                      disabled:
+                        _vm.data.currentPage <= 1 &&
+                        !_vm.conf.alwaysShowNavArrow,
+                      "cant-click":
+                        _vm.data.currentPage <= 1 && _vm.conf.alwaysShowNavArrow
                     },
                     attrs: { href: "javascript:;" },
                     on: {
@@ -60400,7 +60443,12 @@ var render = function() {
                   {
                     staticClass: "next",
                     class: {
-                      disabled: _vm.data.currentPage >= _vm.data.total
+                      disabled:
+                        _vm.data.currentPage >= _vm.data.total &&
+                        !_vm.conf.alwaysShowNavArrow,
+                      "cant-click":
+                        _vm.data.currentPage >= _vm.data.total &&
+                        _vm.conf.alwaysShowNavArrow
                     },
                     attrs: { href: "javascript:;" },
                     on: {
@@ -60418,7 +60466,11 @@ var render = function() {
                   {
                     staticClass: "prev",
                     class: {
-                      disabled: _vm.data.currentPage <= 1
+                      disabled:
+                        _vm.data.currentPage <= 1 &&
+                        !_vm.conf.alwaysShowNavArrow,
+                      "cant-click":
+                        _vm.data.currentPage <= 1 && _vm.conf.alwaysShowNavArrow
                     },
                     attrs: { href: "javascript:;" },
                     on: {
@@ -60435,7 +60487,11 @@ var render = function() {
                   {
                     staticClass: "next",
                     class: {
-                      disabled: _vm.data.currentPage >= _vm.data.total
+                      disabled:
+                        _vm.data.currentPage >= _vm.data.total &&
+                        !_vm.conf.alwaysShowNavArrow,
+                      "cant-click":
+                        _vm.data.currentPage <= 1 && _vm.conf.alwaysShowNavArrow
                     },
                     attrs: { href: "javascript:;" },
                     on: {
@@ -65972,6 +66028,7 @@ var render = function() {
                             !!_vm.conf.insideName
                               ? _c("input", {
                                   key: "set-max-show-name",
+                                  ref: "ui-multiinput-input" + _vm.uiid,
                                   style: { width: _vm.data.inputWidth },
                                   attrs: {
                                     type: "text",
@@ -65991,6 +66048,7 @@ var render = function() {
                                 })
                               : _c("input", {
                                   key: "set-max-hide-name",
+                                  ref: "ui-multiinput-input" + _vm.uiid,
                                   style: { width: _vm.data.inputWidth },
                                   attrs: { type: "text" },
                                   domProps: { value: _vm.data.inputValue },
@@ -66018,6 +66076,7 @@ var render = function() {
                       !!_vm.conf.insideName
                         ? _c("input", {
                             key: "unset-max-show-name",
+                            ref: "ui-multiinput-input" + _vm.uiid,
                             style: { width: _vm.data.inputWidth },
                             attrs: {
                               type: "text",
@@ -66034,6 +66093,7 @@ var render = function() {
                           })
                         : _c("input", {
                             key: "unset-max-hide-name",
+                            ref: "ui-multiinput-input" + _vm.uiid,
                             style: { width: _vm.data.inputWidth },
                             attrs: { type: "text" },
                             domProps: { value: _vm.data.inputValue },
@@ -71731,7 +71791,7 @@ var render = function() {
               {
                 key: line,
                 class: {
-                  "odd-row": line % 2 === 1
+                  "even-row": line % 2 === 0
                 },
                 on: {
                   mouseover: function($event) {
@@ -72011,7 +72071,8 @@ var render = function() {
                           id: "ui-select-ti-" + _vm.uiid,
                           align: _vm.conf.align,
                           size: _vm.conf.size,
-                          "inside-clearable": false
+                          "inside-clearable": false,
+                          "inside-name": ""
                         },
                         on: {
                           "value-change": function($event) {
