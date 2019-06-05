@@ -36670,6 +36670,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -36720,8 +36725,7 @@ exports.default = {
             var classes = {};
 
             classes = {
-                'has-maxlength': this.conf.maxlength !== Infinity,
-                'is-maxlength': this.conf.maxlength === (this.data.value || '').length
+                'has-maxlength': this.conf.maxlength !== Infinity
             };
 
             if (this.conf.resize !== 'none') {
@@ -39017,6 +39021,11 @@ exports.default = {
             this.toggle();
         },
         _wrapClick: function _wrapClick(evt) {
+
+            if (this.conf.state === 'readonly' || this.conf.state === 'disabled') {
+
+                return;
+            }
 
             if (this.conf.separateEmit) {
 
@@ -42416,7 +42425,8 @@ exports.default = {
             data: {
                 inputValue: '',
                 inputWidth: '0em',
-                focus: false
+                focus: false,
+                backspace: 0
             }
         };
     },
@@ -42531,6 +42541,18 @@ exports.default = {
             value.splice(to, 0, value.splice(from, 1)[0]);
             this.set(value);
         },
+        _backspace: function _backspace() {
+
+            if (this.data.inputValue === '') {
+
+                if (this.data.backspace > 0) {
+
+                    this._deleteItem(this.data.value.length - 1);
+                }
+
+                this.data.backspace++;
+            }
+        },
         add: function add(item, index) {
 
             var value = this.get();
@@ -42599,6 +42621,11 @@ exports.default = {
         this.$on('input', function (value) {
 
             _this3.data.inputValue = value;
+        });
+
+        this.$watch('data.inputValue', function () {
+
+            _this3.data.backspace = 0;
         });
 
         this.$watch('conf.canMove', function (newVal) {
@@ -47848,7 +47875,7 @@ exports.default = {
         },
         _isImage: function _isImage(file) {
 
-            if (file.file && /^image/.test(file.file.type) || file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path)) {
+            if (file.file && /^image/.test(file.file.type) || file.path && /\.(png|jpg|jpeg|gif)$/.test(file.path.toLowerCase())) {
 
                 return true;
             }
@@ -65882,7 +65909,7 @@ var render = function() {
             ) {
               return null
             }
-            return _vm._deleteItem(_vm.data.value.length - 1)
+            return _vm._backspace()
           }
         ],
         click: _vm._focusInput
@@ -68613,13 +68640,18 @@ var render = function() {
         _vm._v(" "),
         _vm.conf.maxlength !== Infinity
           ? _c("div", { staticClass: "maxlength" }, [
-              _vm._v(
-                "\n        " +
-                  _vm._s((_vm.data.value || "").length) +
-                  "/" +
-                  _vm._s(_vm.conf.maxlength) +
-                  "\n    "
-              )
+              _c(
+                "span",
+                {
+                  class: {
+                    "has-content": (_vm.data.value || "").length > 0,
+                    "is-maxlen":
+                      (_vm.data.value || "").length === _vm.conf.maxlength
+                  }
+                },
+                [_vm._v(_vm._s((_vm.data.value || "").length))]
+              ),
+              _vm._v(" / " + _vm._s(_vm.conf.maxlength) + "\n    ")
             ])
           : _vm._e()
       ]),
@@ -71837,7 +71869,7 @@ var render = function() {
                   _c(
                     "tr",
                     {
-                      key: _vm.index,
+                      key: line,
                       staticClass: "expand-row",
                       class: { open: _vm.data.rowExpandOpen[line] }
                     },
