@@ -14,7 +14,8 @@
                     <ui-table :list="list" export-csv></ui-table>
                     <!-- AREA END -->
                      
-
+<ui-link js="window.morning.findVM('demo10').toggle(true);">显示模拟盒</ui-link>
+                    <ui-dialog ref="demo10" @hide="dialogHide">
                     <ui-form
                     :rules="{
                         name : {
@@ -29,6 +30,8 @@
                         form-name="Select designer"
                         ref="demo1"
                         form-key="name"
+                        can-search
+                        multi-select
                         :list="{
                             tim : 'Tim Boelaars',
                             andrew : 'Andrew Colin Beck',
@@ -47,6 +50,7 @@
 
                     </ui-formitem>
                     </ui-form>
+                    </ui-dialog>
 
                 </div>
             </div>
@@ -96,12 +100,15 @@ export default {
         },
         echo2 : function (text) {
             console.log('5599!');
+        },
+        dialogHide : function () {
+            window.morning.findVM('demo1').set(undefined);
         }
     },
     mounted : function () {
 
-        window.morning.findVM('demo1').state = 'disabled';
-        window.morning.findVM('demo1').set(["emir"]);
+        // window.morning.findVM('demo1').state = 'disabled';
+        // window.morning.findVM('demo1').set(["emir"]);
     }
 };
 </script>
