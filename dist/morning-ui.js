@@ -39134,6 +39134,7 @@ exports.default = {
                     }
                 }
 
+                this._inputRefocus();
                 this.set(value);
 
                 if (this.conf.doneHidden === 'auto') {
@@ -39320,7 +39321,6 @@ exports.default = {
             this.data.multiinputLastValue = values;
 
             this._set(values, true);
-            searchMultiinput.focusInput();
 
             this.Vue.nextTick(function () {
 
@@ -39692,6 +39692,8 @@ exports.default = {
                 var value = this.get() || [];
                 var selectValue = this.data.itemValMap[this.showItemList[this.data.hoverIndex]];
 
+                this._inputRefocus();
+
                 if (value.indexOf(selectValue) !== -1) {
 
                     value.splice(value.indexOf(selectValue), 1);
@@ -39728,6 +39730,15 @@ exports.default = {
         _unlockMouseenterLock: function _unlockMouseenterLock() {
 
             this.data.mouseenterHoverLock = false;
+        },
+        _inputRefocus: function _inputRefocus() {
+
+            var $searchMultiinput = this.data.$selectArea.querySelector('#ui-select-mi-' + this.uiid);
+
+            if ($searchMultiinput && $searchMultiinput._vm) {
+
+                $searchMultiinput._vm.focusInput();
+            }
         },
         toggle: function toggle(show) {
 
