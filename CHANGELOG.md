@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.12.43
+
+`2019年6月16日`
+
+#### 新特性
+
+- `ui-table`新增`checkedAllRows()`和`uncheckAllRows`两个方法
+- `ui-checkbox`新增`indeterminate`和`checked-state`配置
+- `ui-checkbox`新增`getCheckedState()`方法
+
+#### 修复
+
+- 修复部分表单组件在`ui-form`中的宽度无法自适应的问题
+- 修复部分具有`align`配置的组件再显示错误提示时文字对齐的问题
+- 修复`ui-textarea`组件开启`maxlength`配置后错误提示文字错位的问题
+- 修复`ui-pagination`的`total`配置小于`1`时显示异常
+
 ## 0.12.42
 
 `2019年6月11日`

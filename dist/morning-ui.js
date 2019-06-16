@@ -40801,8 +40801,6 @@ exports.default = {
 
             var state = this.data.checkedState[key];
 
-            console.log(state);
-
             if (state === undefined) {
 
                 state = 1;
@@ -79445,7 +79443,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.42',
+    version: '0.12.43',
     map: {}
 };
 
