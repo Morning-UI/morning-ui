@@ -1933,6 +1933,54 @@
     }
     :::
 
+    :::vue
+    @name:checkedAllRows()
+    ---
+    #method
+    >method-desc
+    选中所有行，需要开启`multi-select`配置。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo11" :list="list" multi-select></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo11').checkedAllRows();">选中所有行</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:uncheckAllRows()
+    ---
+    #method
+    >method-desc
+    取消选中所有行，需要开启`multi-select`配置。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo12" :list="list" multi-select></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo12').uncheckAllRows();">取消选中所有行</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
     [[[事件]]]
 
     :::vue

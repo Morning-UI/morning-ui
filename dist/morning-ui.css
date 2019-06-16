@@ -38615,12 +38615,14 @@ mor-textinput > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-textinput > .error-message:empty {
   display: none;
 }
 mor-textinput .input-wrap {
   position: relative;
+  width: 100%;
 }
 mor-textinput input {
   box-sizing: border-box;
@@ -38880,12 +38882,14 @@ mor-textarea > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-textarea > .error-message:empty {
   display: none;
 }
 mor-textarea .textarea-wrap {
   font-size: 0;
+  position: relative;
 }
 mor-textarea textarea {
   box-sizing: border-box;
@@ -39020,6 +39024,7 @@ mor-texteditor > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-texteditor > .error-message:empty {
   display: none;
@@ -39522,6 +39527,7 @@ mor-switch > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-switch > .error-message:empty {
   display: none;
@@ -40398,6 +40404,7 @@ mor-rate > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-rate > .error-message:empty {
   display: none;
@@ -40579,6 +40586,7 @@ mor-counter > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-counter > .error-message:empty {
   display: none;
@@ -40828,6 +40836,7 @@ mor-select > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-select > .error-message:empty {
   display: none;
@@ -41589,6 +41598,7 @@ mor-checkbox > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-checkbox > .error-message:empty {
   display: none;
@@ -42868,6 +42878,7 @@ mor-radio > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-radio > .error-message:empty {
   display: none;
@@ -44081,6 +44092,7 @@ mor-transfer > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-transfer > .error-message:empty {
   display: none;
@@ -44530,6 +44542,7 @@ mor-cascader > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-cascader > .error-message:empty {
   display: none;
@@ -44797,6 +44810,7 @@ mor-multiinput > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-multiinput > .error-message:empty {
   display: none;
@@ -45062,6 +45076,7 @@ mor-multiform > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-multiform > .error-message:empty {
   display: none;
@@ -45436,6 +45451,7 @@ mor-slider > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-slider > .error-message:empty {
   display: none;
@@ -45835,6 +45851,7 @@ mor-timepicker > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-timepicker > .error-message:empty {
   display: none;
@@ -45987,6 +46004,7 @@ mor-datepicker > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-datepicker > .error-message:empty {
   display: none;
@@ -46287,6 +46305,7 @@ mor-datetimepicker > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-datetimepicker > .error-message:empty {
   display: none;
@@ -46344,6 +46363,7 @@ mor-upload > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-upload > .error-message:empty {
   display: none;
@@ -47068,6 +47088,7 @@ mor-colorpicker > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-colorpicker > .error-message:empty {
   display: none;
@@ -47553,6 +47574,7 @@ mor-imagemap > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-imagemap > .error-message:empty {
   display: none;
@@ -47883,6 +47905,7 @@ mor-form > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-form > .error-message:empty {
   display: none;
@@ -47987,6 +48010,7 @@ mor-private-timepicker > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-private-timepicker > .error-message:empty {
   display: none;
@@ -48137,6 +48161,7 @@ mor-private-datepicker > .error-message {
   font-size: 12px;
   margin-top: 4px;
   color: #D64431;
+  text-align: left;
 }
 mor-private-datepicker > .error-message:empty {
   display: none;

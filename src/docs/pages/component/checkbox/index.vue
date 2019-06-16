@@ -534,6 +534,73 @@
     </div>
     :::
 
+    :::vue
+    @name:indeterminate
+    ---
+    #config
+    >conf-desc
+    开启此配置后复选框组件将转换成纯展示模式，所有表单相关的能力都将失效。通过`checked-state`配置来修改复选框组件的展示状态。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :indeterminate="true"
+            :checked-state="{
+                Tim : 0
+            }"
+        ></ui-checkbox>
+    </div>
+    :::
+
+    :::vue
+    @name:checked-state
+    ---
+    #config
+    >conf-desc
+    此配置必须配合`indeterminate`配置一起使用，可以用来控制组件的选中状态。值是一个对象，对象的键名为需要控制选项的`key`，键值为一个状态数字：`-1`是未选中，`0`是部分选中，`1`是选中。未设置的`key`默认为未选中。
+    >conf-accept
+    对象
+    >conf-type
+    `Object`
+    >conf-default
+    `{}`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :indeterminate="true"
+            :checked-state="{
+                Tim : 0,
+                Andrew : 1
+            }"
+        ></ui-checkbox>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset
@@ -574,6 +641,41 @@
         <ui-link js="morning.findVM('demo2').toggle('Tim');">切换Tim至相反状态</ui-link>
         <ui-link js="morning.findVM('demo2').toggle('Tim', true);">切换Tim至选中</ui-link>
         <ui-link js="morning.findVM('demo2').toggle('Tim', false);">切换Tim至未选中</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:getCheckedState()
+    ---
+    #method
+    >method-desc
+    返回当前复选框的选中状态，仅在使用`indeterminate`配置时有效。
+    >method-return
+    返回一个对象。<br>对象的键名为选项的`key`，键值为一个状态数字：<br>`-1`是未选中<br>`0`是部分选中<br>`1`是选中
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-checkbox
+                ref="demo3"
+                form-name="姓名"
+                :list="{
+                    Tim : 'Tim Boelaars',
+                    Andrew : 'Andrew Colin Beck',
+                    Victor : 'Victor Erixon',
+                    Shaun : 'Shaun Moynihan',
+                    Emir : 'Emir Ayouni'
+                }"
+                :indeterminate="true"
+                :checked-state="{
+                    Tim : 0,
+                    Andrew : 1
+                }"
+            ></ui-checkbox>
+        </div>
+        <br>
+        <ui-link js="console.log(morning.findVM('demo3').getCheckedState());">获取选中状态</ui-link>
     </div>
     :::
 
