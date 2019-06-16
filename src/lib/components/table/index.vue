@@ -1495,6 +1495,26 @@ export default {
 
             return this;
 
+        },
+        checkedAllRows : function () {
+
+            let checkedRows = {};
+
+            for (let line in this.data.normalRows) {
+
+                checkedRows[line] = true;
+
+            }
+
+            this.data.rowChecked = checkedRows;
+
+            return this;
+
+        },
+        uncheckAllRows : function () {
+
+            return this.setCheckedRows();
+
         }
     },
     mounted : function () {

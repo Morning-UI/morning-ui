@@ -18,6 +18,33 @@
     
     ### 更新记录
 
+    ### 0.12.43 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年6月16日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.43" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.43/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.43/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-table`新增`checkedAllRows()`和`uncheckAllRows`两个方法
+    - `ui-checkbox`新增`indeterminate`和`checked-state`配置
+    - `ui-checkbox`新增`getCheckedState()`方法
+    
+    #### 修复
+    
+    - 修复部分表单组件在`ui-form`中的宽度无法自适应的问题
+    - 修复部分具有`align`配置的组件再显示错误提示时文字对齐的问题
+    - 修复`ui-textarea`组件开启`maxlength`配置后错误提示文字错位的问题
+    - 修复`ui-pagination`的`total`配置小于`1`时显示异常
+    
+    ---
+
     ### 0.12.42 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">

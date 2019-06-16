@@ -8,49 +8,29 @@
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
                 <div style="width:300px;">
+        
 
+        <ui-form style="width:600px;" :rules="rule">
+            <ui-formitem label="姓名">
+               <ui-textinput form-key="name"></ui-textinput>
+            </ui-formitem>
+            <ui-formitem label="简介">
+               <ui-textarea form-key="introduction"></ui-textarea>
+            </ui-formitem>
+            <ui-formitem label="简介">
+               <ui-datepicker form-key="test" align="center"></ui-datepicker>
+            </ui-formitem>
+            <ui-formitem label="简介">
+               <ui-datetimepicker form-key="test2" align="center"></ui-datetimepicker>
+            </ui-formitem>
+            <ui-formitem label="简介">
+               <ui-timepicker align="center"></ui-timepicker>
+            </ui-formitem>
+            <ui-formitem label="简介">
+               <ui-textarea form-key="test3" maxlength="200"></ui-textarea>
+            </ui-formitem>
+        </ui-form>
 
-                    <!-- AREA START -->
-                    <ui-table :list="list" export-csv></ui-table>
-                    <!-- AREA END -->
-                     
-<ui-link js="window.morning.findVM('demo10').toggle(true);">显示模拟盒</ui-link>
-                    <ui-dialog ref="demo10" @hide="dialogHide">
-                    <ui-form
-                    :rules="{
-                        name : {
-                            type: 'array',
-                            required: true,
-                            message : '姓名必须填写'
-                        }
-                    }"
-                    >
-                    <ui-formitem label="姓名">
-                    <ui-select
-                        form-name="Select designer"
-                        ref="demo1"
-                        form-key="name"
-                        can-search
-                        multi-select
-                        :list="{
-                            tim : 'Tim Boelaars',
-                            andrew : 'Andrew Colin Beck',
-                            gustavo : 'Gustavo Zambelli',
-                            victor : 'Victor Erixon',
-                            shaun : 'Shaun Moynihan',
-                            emir : 'Emir Ayouni',
-                            katherine : 'Katherine Rainey',
-                            jax : 'Jax Berndt',
-                            elizabeth : 'Elizabeth Chiu',
-                            sara : 'Sara Nicely',
-                            anna : 'Anna Broussard'
-                        }"
-                    >
-                    </ui-select>
-
-                    </ui-formitem>
-                    </ui-form>
-                    </ui-dialog>
 
                 </div>
             </div>
@@ -86,6 +66,20 @@ export default {
             flags : {
                 0 : '0',
                 1 : '1'
+            },
+            rule : {
+                test : {
+                    required : true,
+                    message : '姓名必须填写'
+                },
+                test2 : {
+                    required : true,
+                    message : '姓名必须填写'
+                },
+                test3 : {
+                    required : true,
+                    message : '姓名必须填写'
+                }
             }
         };
 
