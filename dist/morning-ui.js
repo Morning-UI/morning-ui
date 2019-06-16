@@ -29333,6 +29333,23 @@ exports.default = {
             this.data.rowChecked = checkedRows;
 
             return this;
+        },
+        checkedAllRows: function checkedAllRows() {
+
+            var checkedRows = {};
+
+            for (var line in this.data.normalRows) {
+
+                checkedRows[line] = true;
+            }
+
+            this.data.rowChecked = checkedRows;
+
+            return this;
+        },
+        uncheckAllRows: function uncheckAllRows() {
+
+            return this.setCheckedRows();
         }
     },
     mounted: function mounted() {
@@ -30546,7 +30563,10 @@ exports.default = {
     props: {
         total: {
             type: Number,
-            default: 1
+            default: 1,
+            validator: function validator(value) {
+                return value > 0;
+            }
         },
         list: {
             type: [Object, Array],
@@ -30633,6 +30653,11 @@ exports.default = {
             } else {
 
                 total = this.conf.total;
+            }
+
+            if (total < 1) {
+
+                total = 1;
             }
 
             this.data.total = total;
@@ -40418,6 +40443,37 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _extend = __webpack_require__(2);
 
@@ -40469,6 +40525,16 @@ exports.default = {
             validator: function validator(value) {
                 return ['check', 'button'].indexOf(value) !== -1;
             }
+        },
+        indeterminate: {
+            type: Boolean,
+            default: false
+        },
+        checkedState: {
+            type: Object,
+            default: function _default() {
+                return {};
+            }
         }
     },
     computed: {
@@ -40481,7 +40547,9 @@ exports.default = {
                 hiddenOptions: this.hiddenOptions,
                 max: this.max,
                 parent: this.parent,
-                type: this.type
+                type: this.type,
+                indeterminate: this.indeterminate,
+                checkedState: this.checkedState
             };
         },
         moreClass: function moreClass() {
@@ -40536,7 +40604,8 @@ exports.default = {
                 parentKey: null,
                 linkedVm: {},
                 linkedVmKeyMap: {},
-                partCheckedKeys: []
+                partCheckedKeys: [],
+                checkedState: {}
             }
         };
     },
@@ -40728,7 +40797,32 @@ exports.default = {
                 }
             }
         },
+        _toggleCheckedState: function _toggleCheckedState(key) {
+
+            var state = this.data.checkedState[key];
+
+            console.log(state);
+
+            if (state === undefined) {
+
+                state = 1;
+            } else if (state === 1) {
+
+                state = -1;
+            } else if (state === -1 || state === 0) {
+
+                state = 1;
+            }
+
+            this.data.checkedState[key] = state;
+            this.$forceUpdate();
+        },
         toggle: function toggle(key, checked) {
+
+            if (this.conf.indeterminate) {
+
+                return this;
+            }
 
             if (this.data.disabledOptions[key]) {
 
@@ -40766,6 +40860,10 @@ exports.default = {
             this.set((0, _arrayUniq2.default)(list));
 
             return this;
+        },
+        getCheckedState: function getCheckedState() {
+
+            return (0, _extend2.default)({}, this.data.checkedState);
         }
     },
     created: function created() {},
@@ -40819,6 +40917,18 @@ exports.default = {
                 _this.data.$parentVm._syncLinkedCheckedStatus(_this.data.parentKey, _this.uiid);
             }
         });
+
+        this.$watch('conf.checkedState', function () {
+
+            for (var key in _this.conf.checkedState) {
+
+                _this.data.checkedState[key] = _this.conf.checkedState[key];
+            }
+        }, {
+            deep: true,
+            immediate: true
+        });
+
         this.$on('value-change', function () {
 
             if (_this.data.$parentVm) {
@@ -66999,7 +67109,9 @@ var render = function() {
         "hidden-options": _vm.hiddenOptions,
         max: _vm.max,
         parent: _vm.parent,
-        type: _vm.type
+        type: _vm.type,
+        indeterminate: _vm.indeterminate,
+        "checked-state": _vm.checkedState
       }
     },
     [
@@ -67021,61 +67133,33 @@ var render = function() {
         [
           _vm._l(_vm.conf.list, function(name, key) {
             return [
-              _vm.data.value.indexOf(key) !== -1
+              _vm.conf.indeterminate
                 ? [
                     _c(
                       "label",
                       {
                         key: key,
-                        staticClass: "checked",
                         class: {
+                          checked: _vm.data.checkedState[key] === 1,
+                          "part-checked": _vm.data.checkedState[key] === 0,
                           disabled: _vm.data.disabledOptions[key],
                           hidden: _vm.conf.hiddenOptions.indexOf(key) !== -1
                         },
                         attrs: { value: key },
                         on: {
                           click: function($event) {
-                            _vm.conf.state !== "readonly" && _vm.toggle(key)
+                            _vm.conf.state !== "readonly" &&
+                              _vm._toggleCheckedState(key)
                           }
                         }
                       },
                       [
                         _c("p", { staticClass: "box" }, [
-                          _c("i", { staticClass: "mo-icon mo-icon-check" })
-                        ]),
-                        _vm._v(" "),
-                        _vm.conf.acceptHtml
-                          ? [
-                              _c("span", {
-                                domProps: { innerHTML: _vm._s(name) }
+                          _vm.data.checkedState[key] === 0
+                            ? _c("i", {
+                                staticClass: "mo-icon part-checked-icon"
                               })
-                            ]
-                          : [_c("span", [_vm._v(_vm._s(name))])]
-                      ],
-                      2
-                    )
-                  ]
-                : _vm.data.partCheckedKeys.indexOf(key) !== -1
-                ? [
-                    _c(
-                      "label",
-                      {
-                        key: key,
-                        staticClass: "part-checked",
-                        class: {
-                          disabled: _vm.data.disabledOptions[key],
-                          hidden: _vm.conf.hiddenOptions.indexOf(key) !== -1
-                        },
-                        attrs: { value: key },
-                        on: {
-                          click: function($event) {
-                            _vm.conf.state !== "readonly" && _vm.toggle(key)
-                          }
-                        }
-                      },
-                      [
-                        _c("p", { staticClass: "box" }, [
-                          _c("i", { staticClass: "mo-icon part-checked-icon" })
+                            : _c("i", { staticClass: "mo-icon mo-icon-check" })
                         ]),
                         _vm._v(" "),
                         _vm.conf.acceptHtml
@@ -67090,36 +67174,118 @@ var render = function() {
                     )
                   ]
                 : [
-                    _c(
-                      "label",
-                      {
-                        key: key,
-                        class: {
-                          disabled: _vm.data.disabledOptions[key],
-                          hidden: _vm.conf.hiddenOptions.indexOf(key) !== -1
-                        },
-                        attrs: { value: key },
-                        on: {
-                          click: function($event) {
-                            _vm.conf.state !== "readonly" && _vm.toggle(key)
-                          }
-                        }
-                      },
-                      [
-                        _c("p", { staticClass: "box" }, [
-                          _c("i", { staticClass: "mo-icon mo-icon-check" })
-                        ]),
-                        _vm._v(" "),
-                        _vm.conf.acceptHtml
-                          ? [
-                              _c("span", {
-                                domProps: { innerHTML: _vm._s(name) }
-                              })
-                            ]
-                          : [_c("span", [_vm._v(_vm._s(name))])]
-                      ],
-                      2
-                    )
+                    _vm.data.value.indexOf(key) !== -1
+                      ? [
+                          _c(
+                            "label",
+                            {
+                              key: key,
+                              staticClass: "checked",
+                              class: {
+                                disabled: _vm.data.disabledOptions[key],
+                                hidden:
+                                  _vm.conf.hiddenOptions.indexOf(key) !== -1
+                              },
+                              attrs: { value: key },
+                              on: {
+                                click: function($event) {
+                                  _vm.conf.state !== "readonly" &&
+                                    _vm.toggle(key)
+                                }
+                              }
+                            },
+                            [
+                              _c("p", { staticClass: "box" }, [
+                                _c("i", {
+                                  staticClass: "mo-icon mo-icon-check"
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _vm.conf.acceptHtml
+                                ? [
+                                    _c("span", {
+                                      domProps: { innerHTML: _vm._s(name) }
+                                    })
+                                  ]
+                                : [_c("span", [_vm._v(_vm._s(name))])]
+                            ],
+                            2
+                          )
+                        ]
+                      : _vm.data.partCheckedKeys.indexOf(key) !== -1
+                      ? [
+                          _c(
+                            "label",
+                            {
+                              key: key,
+                              staticClass: "part-checked",
+                              class: {
+                                disabled: _vm.data.disabledOptions[key],
+                                hidden:
+                                  _vm.conf.hiddenOptions.indexOf(key) !== -1
+                              },
+                              attrs: { value: key },
+                              on: {
+                                click: function($event) {
+                                  _vm.conf.state !== "readonly" &&
+                                    _vm.toggle(key)
+                                }
+                              }
+                            },
+                            [
+                              _c("p", { staticClass: "box" }, [
+                                _c("i", {
+                                  staticClass: "mo-icon part-checked-icon"
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _vm.conf.acceptHtml
+                                ? [
+                                    _c("span", {
+                                      domProps: { innerHTML: _vm._s(name) }
+                                    })
+                                  ]
+                                : [_c("span", [_vm._v(_vm._s(name))])]
+                            ],
+                            2
+                          )
+                        ]
+                      : [
+                          _c(
+                            "label",
+                            {
+                              key: key,
+                              class: {
+                                disabled: _vm.data.disabledOptions[key],
+                                hidden:
+                                  _vm.conf.hiddenOptions.indexOf(key) !== -1
+                              },
+                              attrs: { value: key },
+                              on: {
+                                click: function($event) {
+                                  _vm.conf.state !== "readonly" &&
+                                    _vm.toggle(key)
+                                }
+                              }
+                            },
+                            [
+                              _c("p", { staticClass: "box" }, [
+                                _c("i", {
+                                  staticClass: "mo-icon mo-icon-check"
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _vm.conf.acceptHtml
+                                ? [
+                                    _c("span", {
+                                      domProps: { innerHTML: _vm._s(name) }
+                                    })
+                                  ]
+                                : [_c("span", [_vm._v(_vm._s(name))])]
+                            ],
+                            2
+                          )
+                        ]
                   ]
             ]
           })

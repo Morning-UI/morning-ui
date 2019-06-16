@@ -147,7 +147,8 @@ export default {
     props : {
         total : {
             type : Number,
-            default : 1
+            default : 1,
+            validator : (value => (value > 0))
         },
         list : {
             type : [Object, Array],
@@ -238,6 +239,12 @@ export default {
             } else {
 
                 total = this.conf.total;
+
+            }
+
+            if (total < 1) {
+
+                total = 1;
 
             }
 

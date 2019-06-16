@@ -17,6 +17,8 @@
         :max="max"
         :parent="parent"
         :type="type"
+        :indeterminate="indeterminate"
+        :checked-state="checkedState"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -25,39 +27,22 @@
     <div class="il form-body">
         <template v-for="(name, key) in conf.list">
 
-            <template v-if="data.value.indexOf(key) !== -1">
+            <template v-if="conf.indeterminate">
                 <label
-                    class="checked"
                     :class="{
+                        checked : (data.checkedState[key] === 1),
+                        'part-checked' : (data.checkedState[key] === 0),
                         disabled : data.disabledOptions[key],
                         hidden : (conf.hiddenOptions.indexOf(key) !== -1)
                     }"
                     :value="key"
                     :key="key"
-                    @click="conf.state !== 'readonly' && toggle(key)"
+                    @click="conf.state !== 'readonly' && _toggleCheckedState(key)"
                 >
-                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
-                    <template v-if="conf.acceptHtml">
-                        <span v-html="name"></span>
-                    </template>
-                    <template v-else>
-                        <span>{{name}}</span>
-                    </template>
-                </label>
-            </template>
-
-            <template v-else-if="data.partCheckedKeys.indexOf(key) !== -1">
-                <label
-                    class="part-checked"
-                    :class="{
-                        disabled : data.disabledOptions[key],
-                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
-                    }"
-                    :value="key"
-                    :key="key"
-                    @click="conf.state !== 'readonly' && toggle(key)"
-                >
-                    <p class="box"><i class="mo-icon part-checked-icon"></i></p>
+                    <p class="box">
+                        <i class="mo-icon part-checked-icon" v-if="data.checkedState[key] === 0"></i>
+                        <i class="mo-icon mo-icon-check" v-else></i>
+                    </p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>
@@ -68,23 +53,69 @@
             </template>
 
             <template v-else>
-                <label
-                    :class="{
-                        disabled : data.disabledOptions[key],
-                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
-                    }"
-                    :value="key"
-                    :key="key"
-                    @click="conf.state !== 'readonly' && toggle(key)"
-                >
-                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
-                    <template v-if="conf.acceptHtml">
-                        <span v-html="name"></span>
-                    </template>
-                    <template v-else>
-                        <span>{{name}}</span>
-                    </template>
-                </label>
+
+                <template v-if="data.value.indexOf(key) !== -1">
+                    <label
+                        class="checked"
+                        :class="{
+                            disabled : data.disabledOptions[key],
+                            hidden : (conf.hiddenOptions.indexOf(key) !== -1)
+                        }"
+                        :value="key"
+                        :key="key"
+                        @click="conf.state !== 'readonly' && toggle(key)"
+                    >
+                        <p class="box"><i class="mo-icon mo-icon-check"></i></p>
+                        <template v-if="conf.acceptHtml">
+                            <span v-html="name"></span>
+                        </template>
+                        <template v-else>
+                            <span>{{name}}</span>
+                        </template>
+                    </label>
+                </template>
+
+                <template v-else-if="data.partCheckedKeys.indexOf(key) !== -1">
+                    <label
+                        class="part-checked"
+                        :class="{
+                            disabled : data.disabledOptions[key],
+                            hidden : (conf.hiddenOptions.indexOf(key) !== -1)
+                        }"
+                        :value="key"
+                        :key="key"
+                        @click="conf.state !== 'readonly' && toggle(key)"
+                    >
+                        <p class="box"><i class="mo-icon part-checked-icon"></i></p>
+                        <template v-if="conf.acceptHtml">
+                            <span v-html="name"></span>
+                        </template>
+                        <template v-else>
+                            <span>{{name}}</span>
+                        </template>
+                    </label>
+                </template>
+
+                <template v-else>
+                    <label
+                        :class="{
+                            disabled : data.disabledOptions[key],
+                            hidden : (conf.hiddenOptions.indexOf(key) !== -1)
+                        }"
+                        :value="key"
+                        :key="key"
+                        @click="conf.state !== 'readonly' && toggle(key)"
+                    >
+                        <p class="box"><i class="mo-icon mo-icon-check"></i></p>
+                        <template v-if="conf.acceptHtml">
+                            <span v-html="name"></span>
+                        </template>
+                        <template v-else>
+                            <span>{{name}}</span>
+                        </template>
+                    </label>
+                </template>
+
             </template>
 
         </template>
@@ -132,6 +163,14 @@ export default {
             type : String,
             default : 'check',
             validator : (value => ['check', 'button'].indexOf(value) !== -1)
+        },
+        indeterminate : {
+            type : Boolean,
+            default : false
+        },
+        checkedState : {
+            type : Object,
+            default : (() => ({}))
         }
     },
     computed : {
@@ -144,7 +183,9 @@ export default {
                 hiddenOptions : this.hiddenOptions,
                 max : this.max,
                 parent : this.parent,
-                type : this.type
+                type : this.type,
+                indeterminate : this.indeterminate,
+                checkedState : this.checkedState
             };
 
         },
@@ -214,7 +255,8 @@ export default {
                 parentKey : null,
                 linkedVm : {},
                 linkedVmKeyMap : {},
-                partCheckedKeys : []
+                partCheckedKeys : [],
+                checkedState : {}
             }
         };
 
@@ -361,7 +403,35 @@ export default {
             }
 
         },
+        _toggleCheckedState : function (key) {
+
+            let state = this.data.checkedState[key];
+
+            if (state === undefined) {
+
+                state = 1;
+
+            } else if (state === 1) {
+
+                state = -1;
+
+            } else if (state === -1 || state === 0) {
+
+                state = 1;
+
+            }
+
+            this.data.checkedState[key] = state;
+            this.$forceUpdate();
+
+        },
         toggle : function (key, checked) {
+
+            if (this.conf.indeterminate) {
+
+                return this;
+
+            }
 
             if (this.data.disabledOptions[key]) {
 
@@ -402,10 +472,15 @@ export default {
                 list.splice(list.indexOf(key), 1);
             
             }
-            
+
             this.set(arrayUniq(list));
 
             return this;
+
+        },
+        getCheckedState : function () {
+
+            return extend({}, this.data.checkedState);
 
         }
     },
@@ -470,6 +545,20 @@ export default {
             }
 
         });
+
+        this.$watch('conf.checkedState', () => {
+
+            for (let key in this.conf.checkedState) {
+
+                this.data.checkedState[key] = this.conf.checkedState[key];
+
+            }
+
+        }, {
+            deep : true,
+            immediate : true
+        });
+
         this.$on('value-change', () => {
 
             if (this.data.$parentVm) {
