@@ -407,8 +407,6 @@ export default {
 
             let state = this.data.checkedState[key];
 
-            console.log(state);
-
             if (state === undefined) {
 
                 state = 1;
