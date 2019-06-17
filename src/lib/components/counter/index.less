@@ -29,7 +29,7 @@ mor-counter{
 
         &:active{
             color: @colorBlack;
-            border-color: @colorFormBorderFocus;
+            border-color: @colorFormBorderFocusGray;
             background: darken(@colorComponentItemBgHover, 7%);
             z-index: 3;
         }
@@ -92,7 +92,7 @@ mor-counter{
         }
 
         &:focus{
-            border-color: @colorFormBorderFocus;
+            .setup-form-focus();
             color: @colorFormTextFocus !important;
         }
     }
