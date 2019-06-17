@@ -50,7 +50,8 @@
 @colorImageBorder : @colorComponentItemBorder;
 @colorFormBorder : @colorNeutral2;
 @colorFormBorderHover : darken(@colorNeutral2, 6%);
-@colorFormBorderFocus : @colorNeutral6;
+@colorFormBorderFocus : @colorTheme;//@colorNeutral6;
+@colorFormBorderFocusGray : @colorNeutral6;
 @colorFormBorderDisable : @colorNeutral4;
 @colorFormBackground : @colorWhite;
 @colorFormBackgroundHover : lighten(@colorNeutral1, 3%);
@@ -363,5 +364,17 @@
             left: calc(50% - @size);
             margin: 0 @size*2;
         }
+    }
+}
+
+.setup-form-focus() {
+    transition: border-color 0.2s, box-shadow 0.2s;
+    border-color: @colorFormBorderFocus;
+    box-shadow: 0 0 0 2px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.15);
+}
+
+.setup-form-focus-animate() {
+    &.focus-once{
+        animation: formFocusAnimate 0.42s ease-out;
     }
 }

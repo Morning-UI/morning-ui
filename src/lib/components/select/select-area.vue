@@ -17,7 +17,8 @@
         <div
             class="wrap"
             :class="{
-                'showwrap' : (conf.separateEmit && !!data.showlist)
+                showwrap : (conf.separateEmit && !!data.showlist),
+                focus : data.showlist
             }"
             :id="'mor-select-wrap-'+uiid"
             @click="_wrapClick"

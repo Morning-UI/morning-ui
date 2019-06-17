@@ -21,7 +21,7 @@
     
     <div class="wrap form-body">
         <div class="close-note" v-if="conf.closeNote" v-html="conf.closeNote"></div>
-        <div class="track" @click="conf.state !== 'readonly' && toggle()">
+        <div class="track" @click="_clickTrack()" :class="{'focus-once' : (data.trackClickCount % 2 === 1)}">
             <div class="open-mark" v-if="conf.openMark" v-html="conf.openMark"></div>
             <div class="point"></div>
             <div class="close-mark" v-if="conf.closeMark" v-html="conf.closeMark"></div>
@@ -79,7 +79,10 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                trackClickCount : 0,
+                trackClickTimer : null
+            }
         };
 
     },
@@ -87,6 +90,25 @@ export default {
         _valueFilter : function (value) {
 
             return !!value;
+
+        },
+        _clickTrack : function () {
+
+            const time = 420;
+
+            if (this.conf.state !== 'readonly') {
+
+                this.toggle();
+                this.data.trackClickCount++;
+
+                clearTimeout(this.data.trackClickTimer);
+                this.data.trackClickTimer = setTimeout(() => {
+
+                    this.data.trackClickCount = 0;
+
+                }, time);
+
+            }
 
         },
         toggle : function (open) {

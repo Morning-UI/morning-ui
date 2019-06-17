@@ -32,9 +32,9 @@
                     }"
                     :value="key"
                     :key="key"
-                    @click="conf.state !== 'readonly' && toggle(key)"
+                    @click="_itemClick(key)"
                 >
-                    <p class="box">
+                    <p class="box" :id="'ui-radio-itembox-'+uiid+'-'+key">
                         <i class="mo-icon mo-icon-check" v-if="conf.type === 'check'"></i>
                         <i class="radio-point" v-else></i>
                     </p>
@@ -55,9 +55,9 @@
                     }"
                     :value="key"
                     :key="key"
-                    @click="conf.state !== 'readonly' && toggle(key)"
+                    @click="_itemClick(key)"
                 >
-                    <p class="box">
+                    <p class="box" :id="'ui-radio-itembox-'+uiid+'-'+key">
                         <i class="mo-icon mo-icon-check" v-if="conf.type === 'check'"></i>
                         <i class="radio-point" v-else></i>
                     </p>
@@ -164,6 +164,26 @@ export default {
             if (this.data.disabledOptions[this.get()]) {
 
                 this.set(undefined);
+
+            }
+
+        },
+        _itemClick : function (key) {
+
+            const time = 420;
+
+            if (this.conf.state !== 'readonly') {
+
+                let $item = document.querySelector(`#ui-radio-itembox-${this.uiid}-${key}`);
+
+                this.toggle(key);
+                $item.classList.add('focus-once');
+
+                setTimeout(() => {
+
+                    $item.classList.remove('focus-once');
+
+                }, time);
 
             }
 

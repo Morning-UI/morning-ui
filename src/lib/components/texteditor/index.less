@@ -16,6 +16,12 @@ mor-texteditor{
 
     .editor-wrap{
         height: calc(100% - 32px);
+        border: 1px @colorNeutral5 solid;
+        border-radius: @borderRadius;
+
+        &.focus{
+            .setup-form-focus();
+        }
     }
 
     > .form-name:empty + .editor-wrap{
@@ -30,6 +36,9 @@ mor-texteditor{
 
     .toolbar{
         width: 100%;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
 
         .editor-logo{
             display: inline-block;
@@ -58,6 +67,8 @@ mor-texteditor{
         height: 100%;
         overflow-y: auto;
         overflow-x: visible;
+        width: 100%;
+        border: none !important;
     }
 
     .ql-formats{

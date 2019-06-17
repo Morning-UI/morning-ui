@@ -13,8 +13,6 @@
 
     &.showlist{
         .wrap{
-            border-color: @colorFormBorder;
-
             > mor-textinput{
                 cursor: initial;
             }
@@ -44,6 +42,7 @@
             > mor-textinput{
                 input{
                     color: @colorFormTextFocus !important;
+                    box-shadow: none !important;
                 }
             }
 
@@ -152,6 +151,7 @@
             input{
                 vertical-align: top !important;
                 border: none;
+                box-shadow: none !important;
             }
         }
 
@@ -164,6 +164,10 @@
 
             .itemlist{
                 border: none;
+
+                &.focus{
+                    box-shadow: none !important;
+                }
 
                 > input{
                     cursor: pointer;
@@ -374,6 +378,12 @@ mor-select{
     }
 
     .setup-wrap(false);
+
+    .wrap{
+        &.focus{
+            .setup-form-focus();
+        }
+    }
 
     &.separate{
         height: 0;

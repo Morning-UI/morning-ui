@@ -9,6 +9,12 @@ mor-multiinput{
 
     .setup-form();
 
+    &:hover{
+        > .itemlist{
+            border-color: @colorFormBorderHover;
+        }
+    }
+
     > .itemlist{
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
@@ -110,12 +116,9 @@ mor-multiinput{
         .disabled-placeholder{
             display: none;
         }
-    }
 
-    &.focus,
-    &:hover{
-        > .itemlist{
-            border-color: @colorFormBorderHover;
+        &.focus{
+            .setup-form-focus();
         }
     }
 

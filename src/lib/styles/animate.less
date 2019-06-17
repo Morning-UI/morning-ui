@@ -68,3 +68,20 @@
         transform: scale(0);
     }
 }
+@keyframes formFocusAnimate{
+    from {
+        box-shadow: 0 0 0 1px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.4);
+    }
+
+    45%{
+        box-shadow: 0 0 0 2.5px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.25);
+    }
+
+    90%{
+        box-shadow: 0 0 0 4px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.1);
+    }
+
+    to {
+        box-shadow: 0 0 0 4px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0);
+    }
+}
