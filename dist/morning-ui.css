@@ -40886,9 +40886,6 @@ mor-select .select-area.focus-search .wrap > .selected {
 mor-select .select-area.searching .wrap > .selected {
   visibility: hidden;
 }
-mor-select .select-area.showlist .wrap {
-  border-color: #E5E5E5;
-}
 mor-select .select-area.showlist .wrap > mor-textinput {
   cursor: initial;
 }
@@ -40906,6 +40903,7 @@ mor-select .select-area.is-max li {
 }
 mor-select .select-area.select-item .wrap > mor-textinput input {
   color: #000000 !important;
+  box-shadow: none !important;
 }
 mor-select .select-area.select-item .wrap > .selected {
   color: #000000;
@@ -40990,6 +40988,7 @@ mor-select .wrap > mor-textinput {
 mor-select .wrap > mor-textinput input {
   vertical-align: top !important;
   border: none;
+  box-shadow: none !important;
 }
 mor-select .wrap > mor-multiinput {
   margin: 0;
@@ -41000,6 +40999,9 @@ mor-select .wrap > mor-multiinput {
 }
 mor-select .wrap > mor-multiinput .itemlist {
   border: none;
+}
+mor-select .wrap > mor-multiinput .itemlist.focus {
+  box-shadow: none !important;
 }
 mor-select .wrap > mor-multiinput .itemlist > input {
   cursor: pointer;
@@ -41162,6 +41164,11 @@ mor-select.input-group .input-group-addon {
   line-height: 40px;
   font-size: 14px;
 }
+mor-select .wrap.focus {
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+}
 mor-select.separate {
   height: 0;
   min-height: 0;
@@ -41312,6 +41319,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap .wrap > mor-textinput input {
   vertical-align: top !important;
   border: none;
+  box-shadow: none !important;
 }
 .mor-select-wrap .wrap > mor-multiinput {
   margin: 0;
@@ -41322,6 +41330,9 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap .wrap > mor-multiinput .itemlist {
   border: none;
+}
+.mor-select-wrap .wrap > mor-multiinput .itemlist.focus {
+  box-shadow: none !important;
 }
 .mor-select-wrap .wrap > mor-multiinput .itemlist > input {
   cursor: pointer;
@@ -41499,9 +41510,6 @@ mor-select.input-group .select-area {
 .mor-select-wrap.searching .wrap > .selected {
   visibility: hidden;
 }
-.mor-select-wrap.showlist .wrap {
-  border-color: #E5E5E5;
-}
 .mor-select-wrap.showlist .wrap > mor-textinput {
   cursor: initial;
 }
@@ -41519,6 +41527,7 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap.select-item .wrap > mor-textinput input {
   color: #000000 !important;
+  box-shadow: none !important;
 }
 .mor-select-wrap.select-item .wrap > .selected {
   color: #000000;
@@ -41662,6 +41671,9 @@ mor-checkbox > .il label .box {
   transition: 0.2s;
   box-sizing: border-box;
   position: relative;
+}
+mor-checkbox > .il label .box.focus-once {
+  animation: formFocusAnimate 0.42s ease-out;
 }
 mor-checkbox > .il label .mo-icon {
   color: #FFFFFF;
@@ -42941,6 +42953,9 @@ mor-radio > .il label .box {
   border: 1px #E5E5E5 solid;
   transition: 0.2s;
   box-sizing: border-box;
+}
+mor-radio > .il label .box.focus-once {
+  animation: formFocusAnimate 0.42s ease-out;
 }
 mor-radio > .il label .mo-icon {
   color: #FFF;
@@ -44855,6 +44870,9 @@ mor-multiinput > .error-message {
 mor-multiinput > .error-message:empty {
   display: none;
 }
+mor-multiinput:hover > .itemlist {
+  border-color: #d6d6d6;
+}
 mor-multiinput > .itemlist {
   border: 1px #E5E5E5 solid;
   border-radius: 3px;
@@ -44941,9 +44959,10 @@ mor-multiinput > .itemlist > span {
 mor-multiinput > .itemlist .disabled-placeholder {
   display: none;
 }
-mor-multiinput.focus > .itemlist,
-mor-multiinput:hover > .itemlist {
-  border-color: #d6d6d6;
+mor-multiinput > .itemlist.focus {
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-multiinput.can-move > .itemlist > .multiinput-item {
   cursor: move;
@@ -47166,6 +47185,11 @@ mor-colorpicker .preview-wrap {
   border-radius: 3px;
   box-sizing: border-box;
   margin-bottom: 5px;
+}
+mor-colorpicker .preview-wrap.focus {
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-colorpicker .preview {
   box-sizing: border-box;

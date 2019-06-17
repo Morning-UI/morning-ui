@@ -37831,6 +37831,8 @@ exports.default = {
         _clickTrack: function _clickTrack() {
             var _this = this;
 
+            var time = 420;
+
             if (this.conf.state !== 'readonly') {
 
                 this.toggle();
@@ -37840,7 +37842,7 @@ exports.default = {
                 this.data.trackClickTimer = setTimeout(function () {
 
                     _this.data.trackClickCount = 0;
-                }, 420);
+                }, time);
             }
         },
         toggle: function toggle(open) {
@@ -40253,6 +40255,7 @@ exports.default = {
 //
 //
 //
+//
 
 module.exports = exports['default'];
 
@@ -40850,6 +40853,32 @@ exports.default = {
             this.data.checkedState[key] = state;
             this.$forceUpdate();
         },
+        _itemClick: function _itemClick(key) {
+            var indeterminate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+
+            var time = 420;
+
+            if (this.conf.state !== 'readonly') {
+
+                var $item = document.querySelector('#ui-checkbox-itembox-' + this.uiid + '-' + key);
+
+                if (indeterminate) {
+
+                    this._toggleCheckedState(key);
+                } else {
+
+                    this.toggle(key);
+                }
+
+                $item.classList.add('focus-once');
+
+                setTimeout(function () {
+
+                    $item.classList.remove('focus-once');
+                }, time);
+            }
+        },
         toggle: function toggle(key, checked) {
 
             if (this.conf.indeterminate) {
@@ -41197,6 +41226,23 @@ exports.default = {
             if (this.data.disabledOptions[this.get()]) {
 
                 this.set(undefined);
+            }
+        },
+        _itemClick: function _itemClick(key) {
+
+            var time = 420;
+
+            if (this.conf.state !== 'readonly') {
+
+                var $item = document.querySelector('#ui-radio-itembox-' + this.uiid + '-' + key);
+
+                this.toggle(key);
+                $item.classList.add('focus-once');
+
+                setTimeout(function () {
+
+                    $item.classList.remove('focus-once');
+                }, time);
             }
         },
         toggle: function toggle(key) {
@@ -42559,6 +42605,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
 
 var _Move = __webpack_require__(50);
 
@@ -42595,9 +42646,7 @@ exports.default = {
         },
         moreClass: function moreClass() {
 
-            return {
-                focus: this.data.focus
-            };
+            return {};
         }
     },
     data: function data() {
@@ -62417,6 +62466,7 @@ var render = function() {
         "div",
         {
           staticClass: "preview-wrap form-body",
+          class: { focus: _vm.data.showPicker },
           attrs: { id: "mor-colorpicker-wrap-" + _vm.uiid }
         },
         [
@@ -66100,35 +66150,6 @@ var render = function() {
         "inside-name": _vm.insideName,
         "can-move": _vm.canMove,
         max: _vm.max
-      },
-      on: {
-        keydown: [
-          function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm._enterInput($event)
-          },
-          function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k(
-                $event.keyCode,
-                "backspace",
-                undefined,
-                $event.key,
-                undefined
-              )
-            ) {
-              return null
-            }
-            return _vm._backspace()
-          }
-        ],
-        click: _vm._focusInput
       }
     },
     [
@@ -66146,7 +66167,41 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "itemlist form-body" },
+        {
+          staticClass: "itemlist form-body",
+          class: {
+            focus: _vm.data.focus
+          },
+          on: {
+            keydown: [
+              function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm._enterInput($event)
+              },
+              function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k(
+                    $event.keyCode,
+                    "backspace",
+                    undefined,
+                    $event.key,
+                    undefined
+                  )
+                ) {
+                  return null
+                }
+                return _vm._backspace()
+              }
+            ],
+            click: _vm._focusInput
+          }
+        },
         [
           _vm._l(_vm.data.value, function(value, index) {
             return _c(
@@ -67024,16 +67079,27 @@ var render = function() {
                         attrs: { value: key },
                         on: {
                           click: function($event) {
-                            _vm.conf.state !== "readonly" && _vm.toggle(key)
+                            return _vm._itemClick(key)
                           }
                         }
                       },
                       [
-                        _c("p", { staticClass: "box" }, [
-                          _vm.conf.type === "check"
-                            ? _c("i", { staticClass: "mo-icon mo-icon-check" })
-                            : _c("i", { staticClass: "radio-point" })
-                        ]),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "box",
+                            attrs: {
+                              id: "ui-radio-itembox-" + _vm.uiid + "-" + key
+                            }
+                          },
+                          [
+                            _vm.conf.type === "check"
+                              ? _c("i", {
+                                  staticClass: "mo-icon mo-icon-check"
+                                })
+                              : _c("i", { staticClass: "radio-point" })
+                          ]
+                        ),
                         _vm._v(" "),
                         _vm.conf.acceptHtml
                           ? [
@@ -67058,16 +67124,27 @@ var render = function() {
                         attrs: { value: key },
                         on: {
                           click: function($event) {
-                            _vm.conf.state !== "readonly" && _vm.toggle(key)
+                            return _vm._itemClick(key)
                           }
                         }
                       },
                       [
-                        _c("p", { staticClass: "box" }, [
-                          _vm.conf.type === "check"
-                            ? _c("i", { staticClass: "mo-icon mo-icon-check" })
-                            : _c("i", { staticClass: "radio-point" })
-                        ]),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "box",
+                            attrs: {
+                              id: "ui-radio-itembox-" + _vm.uiid + "-" + key
+                            }
+                          },
+                          [
+                            _vm.conf.type === "check"
+                              ? _c("i", {
+                                  staticClass: "mo-icon mo-icon-check"
+                                })
+                              : _c("i", { staticClass: "radio-point" })
+                          ]
+                        ),
                         _vm._v(" "),
                         _vm.conf.acceptHtml
                           ? [
@@ -67189,19 +67266,29 @@ var render = function() {
                         attrs: { value: key },
                         on: {
                           click: function($event) {
-                            _vm.conf.state !== "readonly" &&
-                              _vm._toggleCheckedState(key)
+                            return _vm._itemClick(key, true)
                           }
                         }
                       },
                       [
-                        _c("p", { staticClass: "box" }, [
-                          _vm.data.checkedState[key] === 0
-                            ? _c("i", {
-                                staticClass: "mo-icon part-checked-icon"
-                              })
-                            : _c("i", { staticClass: "mo-icon mo-icon-check" })
-                        ]),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "box",
+                            attrs: {
+                              id: "ui-checkbox-itembox-" + _vm.uiid + "-" + key
+                            }
+                          },
+                          [
+                            _vm.data.checkedState[key] === 0
+                              ? _c("i", {
+                                  staticClass: "mo-icon part-checked-icon"
+                                })
+                              : _c("i", {
+                                  staticClass: "mo-icon mo-icon-check"
+                                })
+                          ]
+                        ),
                         _vm._v(" "),
                         _vm.conf.acceptHtml
                           ? [
@@ -67230,17 +67317,29 @@ var render = function() {
                               attrs: { value: key },
                               on: {
                                 click: function($event) {
-                                  _vm.conf.state !== "readonly" &&
-                                    _vm.toggle(key)
+                                  return _vm._itemClick(key)
                                 }
                               }
                             },
                             [
-                              _c("p", { staticClass: "box" }, [
-                                _c("i", {
-                                  staticClass: "mo-icon mo-icon-check"
-                                })
-                              ]),
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "box",
+                                  attrs: {
+                                    id:
+                                      "ui-checkbox-itembox-" +
+                                      _vm.uiid +
+                                      "-" +
+                                      key
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mo-icon mo-icon-check"
+                                  })
+                                ]
+                              ),
                               _vm._v(" "),
                               _vm.conf.acceptHtml
                                 ? [
@@ -67268,17 +67367,29 @@ var render = function() {
                               attrs: { value: key },
                               on: {
                                 click: function($event) {
-                                  _vm.conf.state !== "readonly" &&
-                                    _vm.toggle(key)
+                                  return _vm._itemClick(key)
                                 }
                               }
                             },
                             [
-                              _c("p", { staticClass: "box" }, [
-                                _c("i", {
-                                  staticClass: "mo-icon part-checked-icon"
-                                })
-                              ]),
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "box",
+                                  attrs: {
+                                    id:
+                                      "ui-checkbox-itembox-" +
+                                      _vm.uiid +
+                                      "-" +
+                                      key
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mo-icon part-checked-icon"
+                                  })
+                                ]
+                              ),
                               _vm._v(" "),
                               _vm.conf.acceptHtml
                                 ? [
@@ -67304,17 +67415,29 @@ var render = function() {
                               attrs: { value: key },
                               on: {
                                 click: function($event) {
-                                  _vm.conf.state !== "readonly" &&
-                                    _vm.toggle(key)
+                                  return _vm._itemClick(key)
                                 }
                               }
                             },
                             [
-                              _c("p", { staticClass: "box" }, [
-                                _c("i", {
-                                  staticClass: "mo-icon mo-icon-check"
-                                })
-                              ]),
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "box",
+                                  attrs: {
+                                    id:
+                                      "ui-checkbox-itembox-" +
+                                      _vm.uiid +
+                                      "-" +
+                                      key
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mo-icon mo-icon-check"
+                                  })
+                                ]
+                              ),
                               _vm._v(" "),
                               _vm.conf.acceptHtml
                                 ? [
@@ -72252,7 +72375,8 @@ var render = function() {
         {
           staticClass: "wrap",
           class: {
-            showwrap: _vm.conf.separateEmit && !!_vm.data.showlist
+            showwrap: _vm.conf.separateEmit && !!_vm.data.showlist,
+            focus: _vm.data.showlist
           },
           attrs: { id: "mor-select-wrap-" + _vm.uiid },
           on: { click: _vm._wrapClick }
@@ -79511,7 +79635,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.43',
+    version: '0.12.44',
     map: {}
 };
 
