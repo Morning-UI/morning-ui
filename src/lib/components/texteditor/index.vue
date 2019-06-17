@@ -20,7 +20,7 @@
         <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
         <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-        <div class="editor-wrap form-body">
+        <div class="editor-wrap form-body" :class="{focus : data.quillFocus}">
             <div class="toolbar">
                 <div v-if="conf.markdown" class="editor-logo" title="Markdown编辑">
                     <i class="mo-icon mo-icon-markdown-f"></i>
@@ -176,7 +176,6 @@
                 </template>
             </div>
             <div class="quill"></div>
-            
         </div>
 
         <morning-dialog
@@ -790,7 +789,8 @@ export default {
         return {
             data : {
                 quill : null,
-                dontSetHtml : false
+                dontSetHtml : false,
+                quillFocus : false
             }
         };
 
@@ -901,7 +901,28 @@ export default {
 
             });
 
+            this.data.quill.on('editor-change', () => {
+
+                this._quillCheckFocus();
+
+            });
+
             this.setHtml(this.get());
+
+        },
+        _quillCheckFocus : function () {
+
+            let focus = this.data.quill.hasFocus();
+
+            if (focus) {
+
+                this.data.quillFocus = true;
+
+            } else {
+
+                this.data.quillFocus = false;
+
+            }
 
         },
         getHtml : function () {

@@ -13,16 +13,21 @@
         :inside-name="insideName"
         :can-move="canMove"
         :max="max"
-
-        @keydown.enter="_enterInput"
-        @keydown.backspace="_backspace()"
-        @click="_focusInput"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
-    <div class="itemlist form-body">
+    <div
+        class="itemlist form-body"
+        :class="{
+            focus : data.focus
+        }"
+
+        @keydown.enter="_enterInput"
+        @keydown.backspace="_backspace()"
+        @click="_focusInput"
+    >
 
         <div
             class="multiinput-item"
@@ -145,9 +150,7 @@ export default {
         },
         moreClass : function () {
 
-            return {
-                focus : this.data.focus
-            };
+            return {};
 
         }
     },

@@ -22,7 +22,7 @@
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
     <div class="cascader-wrap form-body">
-        <div class="cascader-input" :id="'mor-cascader-input-'+uiid" @click="_showPopover()">
+        <div class="cascader-input" :class="{focus: data.popoverShow}" :id="'mor-cascader-input-'+uiid" @click="_showPopover()">
             <morning-textinput
                 v-if="conf.canSearch && (conf.state !== 'readonly' && conf.state !== 'disabled')"
                 :id="'mor-cascader-ti-' + uiid"
@@ -32,6 +32,7 @@
                 }"
                 :size="conf.size"
                 :inside-clearable="false"
+                inside-name=""
                 @value-change="_search()"
                 @focus="_textinputFocus()"
                 @blur="_textinputBlur()"
@@ -275,7 +276,8 @@ export default {
                 valueName : '',
                 searchResult : [],
                 textinputEmpty : true,
-                textinputFocus : false
+                textinputFocus : false,
+                focus : false
             }
         };
 

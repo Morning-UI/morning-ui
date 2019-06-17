@@ -19,7 +19,7 @@
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
     
-    <div class="preview-wrap form-body" :id="'mor-colorpicker-wrap-'+uiid">
+    <div class="preview-wrap form-body" :class="{focus: data.showPicker}" :id="'mor-colorpicker-wrap-'+uiid">
         <div
             class="preview"
         >

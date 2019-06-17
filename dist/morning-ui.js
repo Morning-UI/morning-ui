@@ -37238,7 +37238,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //
 //
 //
-//
 
 _icons2.default.undo = __webpack_require__(608);
 _icons2.default.redo = __webpack_require__(609);
@@ -37499,7 +37498,8 @@ exports.default = {
         return {
             data: {
                 quill: null,
-                dontSetHtml: false
+                dontSetHtml: false,
+                quillFocus: false
             }
         };
     },
@@ -37597,7 +37597,24 @@ exports.default = {
                 _this4.$emit('selection-change');
             });
 
+            this.data.quill.on('editor-change', function () {
+
+                _this4._quillCheckFocus();
+            });
+
             this.setHtml(this.get());
+        },
+        _quillCheckFocus: function _quillCheckFocus() {
+
+            var focus = this.data.quill.hasFocus();
+
+            if (focus) {
+
+                this.data.quillFocus = true;
+            } else {
+
+                this.data.quillFocus = false;
+            }
         },
         getHtml: function getHtml() {
 
@@ -37800,13 +37817,31 @@ exports.default = {
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                trackClickCount: 0,
+                trackClickTimer: null
+            }
         };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
 
             return !!value;
+        },
+        _clickTrack: function _clickTrack() {
+            var _this = this;
+
+            if (this.conf.state !== 'readonly') {
+
+                this.toggle();
+                this.data.trackClickCount++;
+
+                clearTimeout(this.data.trackClickTimer);
+                this.data.trackClickTimer = setTimeout(function () {
+
+                    _this.data.trackClickCount = 0;
+                }, 420);
+            }
         },
         toggle: function toggle(open) {
 
@@ -40918,10 +40953,14 @@ exports.default = {
 
         this.$watch('conf.checkedState', function () {
 
+            var state = {};
+
             for (var key in _this.conf.checkedState) {
 
-                _this.data.checkedState[key] = _this.conf.checkedState[key];
+                state[key] = _this.conf.checkedState[key];
             }
+
+            _this.data.checkedState = (0, _extend2.default)({}, _this.data.checkedState, state);
         }, {
             deep: true,
             immediate: true
@@ -41854,6 +41893,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
     origin: 'Form',
@@ -41979,7 +42019,8 @@ exports.default = {
                 valueName: '',
                 searchResult: [],
                 textinputEmpty: true,
-                textinputFocus: false
+                textinputFocus: false,
+                focus: false
             }
         };
     },
@@ -66314,6 +66355,7 @@ var render = function() {
             "div",
             {
               staticClass: "cascader-input",
+              class: { focus: _vm.data.popoverShow },
               attrs: { id: "mor-cascader-input-" + _vm.uiid },
               on: {
                 click: function($event) {
@@ -66332,7 +66374,8 @@ var render = function() {
                     attrs: {
                       id: "mor-cascader-ti-" + _vm.uiid,
                       size: _vm.conf.size,
-                      "inside-clearable": false
+                      "inside-clearable": false,
+                      "inside-name": ""
                     },
                     on: {
                       "value-change": function($event) {
@@ -67859,9 +67902,10 @@ var render = function() {
           "div",
           {
             staticClass: "track",
+            class: { "focus-once": _vm.data.trackClickCount % 2 === 1 },
             on: {
               click: function($event) {
-                _vm.conf.state !== "readonly" && _vm.toggle()
+                return _vm._clickTrack()
               }
             }
           },
@@ -67964,758 +68008,782 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "editor-wrap form-body" }, [
-        _c(
-          "div",
-          { staticClass: "toolbar" },
-          [
-            _vm.conf.markdown
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "editor-logo",
-                    attrs: { title: "Markdown编辑" }
-                  },
-                  [_c("i", { staticClass: "mo-icon mo-icon-markdown-f" })]
-                )
-              : _c(
-                  "div",
-                  {
-                    staticClass: "editor-logo",
-                    attrs: { title: "富文本编辑" }
-                  },
-                  [_c("i", { staticClass: "mo-icon mo-icon-doc-f" })]
-                ),
-            _vm._v(" "),
-            _vm._l(_vm.toolSet, function(group, index) {
-              return [
-                _c(
-                  "div",
-                  { key: index, staticClass: "ql-formats" },
-                  [
-                    _vm._l(group, function(tool, sindex) {
-                      return [
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "header"
-                          ? [
-                              _c(
-                                "select",
-                                {
+      _c(
+        "div",
+        {
+          staticClass: "editor-wrap form-body",
+          class: { focus: _vm.data.quillFocus }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "toolbar" },
+            [
+              _vm.conf.markdown
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "editor-logo",
+                      attrs: { title: "Markdown编辑" }
+                    },
+                    [_c("i", { staticClass: "mo-icon mo-icon-markdown-f" })]
+                  )
+                : _c(
+                    "div",
+                    {
+                      staticClass: "editor-logo",
+                      attrs: { title: "富文本编辑" }
+                    },
+                    [_c("i", { staticClass: "mo-icon mo-icon-doc-f" })]
+                  ),
+              _vm._v(" "),
+              _vm._l(_vm.toolSet, function(group, index) {
+                return [
+                  _c(
+                    "div",
+                    { key: index, staticClass: "ql-formats" },
+                    [
+                      _vm._l(group, function(tool, sindex) {
+                        return [
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "header"
+                            ? [
+                                _c(
+                                  "select",
+                                  {
+                                    key: sindex,
+                                    staticClass: "ql-header",
+                                    attrs: {
+                                      id: "mor-te-tool-header-" + _vm.uiid
+                                    }
+                                  },
+                                  [
+                                    _vm._l(tool.header, function(
+                                      header,
+                                      tindex
+                                    ) {
+                                      return [
+                                        header === false
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "" }
+                                              },
+                                              [_vm._v("正常")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        header === 1
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "1" }
+                                              },
+                                              [_vm._v("标题1")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        header === 2
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "2" }
+                                              },
+                                              [_vm._v("标题2")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        header === 3
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "3" }
+                                              },
+                                              [_vm._v("标题3")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        header === 4
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "4" }
+                                              },
+                                              [_vm._v("标题4")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        header === 5
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "5" }
+                                              },
+                                              [_vm._v("标题5")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        header === 6
+                                          ? _c(
+                                              "option",
+                                              {
+                                                key: tindex,
+                                                attrs: { value: "6" }
+                                              },
+                                              [_vm._v("标题6")]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-header-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("设置标题")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "size"
+                            ? [
+                                _c(
+                                  "select",
+                                  {
+                                    key: sindex,
+                                    staticClass: "ql-size",
+                                    attrs: {
+                                      id: "mor-te-tool-size-" + _vm.uiid
+                                    }
+                                  },
+                                  [
+                                    _vm._l(tool.size, function(size, tindex) {
+                                      return [
+                                        _c(
+                                          "option",
+                                          {
+                                            key: tindex,
+                                            domProps: { value: size || "" }
+                                          },
+                                          [_vm._v(_vm._s(size || "默认"))]
+                                        )
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-size-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("字体大小")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "undo"
+                            ? [
+                                _c("button", {
                                   key: sindex,
-                                  staticClass: "ql-header",
+                                  staticClass: "ql-undo",
+                                  attrs: { id: "mor-te-tool-undo-" + _vm.uiid }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-undo-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("撤销")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "redo"
+                            ? [
+                                _c("button", {
+                                  key: sindex,
+                                  staticClass: "ql-redo",
+                                  attrs: { id: "mor-te-tool-redo-" + _vm.uiid }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-redo-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("重做")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "bold"
+                            ? [
+                                _c("button", {
+                                  key: sindex,
+                                  staticClass: "ql-bold",
+                                  attrs: { id: "mor-te-tool-bold-" + _vm.uiid }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-bold-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("加粗")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "italic"
+                            ? [
+                                _c("button", {
+                                  key: sindex,
+                                  staticClass: "ql-italic",
                                   attrs: {
-                                    id: "mor-te-tool-header-" + _vm.uiid
+                                    id: "mor-te-tool-italic-" + _vm.uiid
                                   }
-                                },
-                                [
-                                  _vm._l(tool.header, function(header, tindex) {
-                                    return [
-                                      header === false
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "" }
-                                            },
-                                            [_vm._v("正常")]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      header === 1
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "1" }
-                                            },
-                                            [_vm._v("标题1")]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      header === 2
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "2" }
-                                            },
-                                            [_vm._v("标题2")]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      header === 3
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "3" }
-                                            },
-                                            [_vm._v("标题3")]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      header === 4
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "4" }
-                                            },
-                                            [_vm._v("标题4")]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      header === 5
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "5" }
-                                            },
-                                            [_vm._v("标题5")]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      header === 6
-                                        ? _c(
-                                            "option",
-                                            {
-                                              key: tindex,
-                                              attrs: { value: "6" }
-                                            },
-                                            [_vm._v("标题6")]
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-italic-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("斜体")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "underline"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-underline",
                                   attrs: {
-                                    target: "#mor-te-tool-header-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    id: "mor-te-tool-underline-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("设置标题")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "size"
-                          ? [
-                              _c(
-                                "select",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-underline-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("下划线")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "strike"
+                            ? [
+                                _c("button", {
                                   key: sindex,
-                                  staticClass: "ql-size",
-                                  attrs: { id: "mor-te-tool-size-" + _vm.uiid }
-                                },
-                                [
-                                  _vm._l(tool.size, function(size, tindex) {
-                                    return [
-                                      _c(
-                                        "option",
-                                        {
+                                  staticClass: "ql-strike",
+                                  attrs: {
+                                    id: "mor-te-tool-strike-" + _vm.uiid
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-strike-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("删除线")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "divider"
+                            ? [
+                                _c("button", {
+                                  key: sindex,
+                                  staticClass: "ql-divider",
+                                  attrs: {
+                                    id: "mor-te-tool-divider-" + _vm.uiid
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-divider-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("横划线")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "color"
+                            ? [
+                                _c(
+                                  "select",
+                                  {
+                                    key: sindex,
+                                    staticClass: "ql-color",
+                                    attrs: {
+                                      id: "mor-te-tool-color-" + _vm.uiid
+                                    }
+                                  },
+                                  [
+                                    _vm._l(tool.color, function(color, tindex) {
+                                      return [
+                                        _c("option", {
                                           key: tindex,
-                                          domProps: { value: size || "" }
-                                        },
-                                        [_vm._v(_vm._s(size || "默认"))]
-                                      )
-                                    ]
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                          domProps: { value: color }
+                                        })
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-color-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("文本颜色")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "background"
+                            ? [
+                                _c(
+                                  "select",
+                                  {
+                                    key: sindex,
+                                    staticClass: "ql-background",
+                                    attrs: {
+                                      id: "mor-te-tool-background-" + _vm.uiid
+                                    }
+                                  },
+                                  [
+                                    _vm._l(tool.background, function(
+                                      background,
+                                      tindex
+                                    ) {
+                                      return [
+                                        _c("option", {
+                                          key: tindex,
+                                          domProps: { value: background }
+                                        })
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-background-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("背景颜色")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "align"
+                            ? [
+                                _c(
+                                  "select",
+                                  {
+                                    key: sindex,
+                                    staticClass: "ql-align",
+                                    attrs: {
+                                      id: "mor-te-tool-align-" + _vm.uiid
+                                    }
+                                  },
+                                  [
+                                    _vm._l(tool.align, function(align, tindex) {
+                                      return [
+                                        _c("option", {
+                                          key: tindex,
+                                          domProps: { value: align }
+                                        })
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-align-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("文本对齐")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "list" &&
+                          tool.list === "ordered"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-list",
                                   attrs: {
-                                    target: "#mor-te-tool-size-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    value: "ordered",
+                                    id: "mor-te-tool-list-ordered-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("字体大小")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "undo"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-undo",
-                                attrs: { id: "mor-te-tool-undo-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-list-ordered-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("有序列表")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "list" &&
+                          tool.list === "bullet"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-list",
                                   attrs: {
-                                    target: "#mor-te-tool-undo-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    value: "bullet",
+                                    id: "mor-te-tool-list-bullet-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("撤销")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "redo"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-redo",
-                                attrs: { id: "mor-te-tool-redo-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-list-bullet-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("无序列表")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "indent" &&
+                          tool.indent === "-1"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-indent",
                                   attrs: {
-                                    target: "#mor-te-tool-redo-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    value: "-1",
+                                    id: "mor-te-tool-indent--1-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("重做")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "bold"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-bold",
-                                attrs: { id: "mor-te-tool-bold-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-indent--1-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("减少缩进")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "indent" &&
+                          tool.indent === "+1"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-indent",
                                   attrs: {
-                                    target: "#mor-te-tool-bold-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    value: "+1",
+                                    id: "mor-te-tool-indent-1-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("加粗")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "italic"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-italic",
-                                attrs: { id: "mor-te-tool-italic-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-indent-1-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("增加缩进")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "script" &&
+                          tool.script === "sub"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-script",
                                   attrs: {
-                                    target: "#mor-te-tool-italic-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    value: "sub",
+                                    id: "mor-te-tool-script-sub-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("斜体")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "underline"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-underline",
-                                attrs: {
-                                  id: "mor-te-tool-underline-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-script-sub-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("下标")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          typeof tool === "object" &&
+                          Object.keys(tool)[0] === "script" &&
+                          tool.script === "super"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-script",
                                   attrs: {
-                                    target:
-                                      "#mor-te-tool-underline-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    value: "super",
+                                    id: "mor-te-tool-script-super-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("下划线")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "strike"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-strike",
-                                attrs: { id: "mor-te-tool-strike-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-script-super-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("上标")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "blockquote"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-blockquote",
                                   attrs: {
-                                    target: "#mor-te-tool-strike-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    id: "mor-te-tool-blockquote-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("删除线")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "divider"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-divider",
-                                attrs: { id: "mor-te-tool-divider-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-blockquote-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("引用")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "code-block"
+                            ? [
+                                _c("button", {
                                   key: sindex,
+                                  staticClass: "ql-code-block",
                                   attrs: {
-                                    target: "#mor-te-tool-divider-" + _vm.uiid,
-                                    color: "neutral-10"
+                                    id: "mor-te-tool-code-block-" + _vm.uiid
                                   }
-                                },
-                                [_vm._v("横划线")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "color"
-                          ? [
-                              _c(
-                                "select",
-                                {
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target:
+                                        "#mor-te-tool-code-block-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("代码")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "clean"
+                            ? [
+                                _c("button", {
                                   key: sindex,
-                                  staticClass: "ql-color",
-                                  attrs: { id: "mor-te-tool-color-" + _vm.uiid }
-                                },
-                                [
-                                  _vm._l(tool.color, function(color, tindex) {
-                                    return [
-                                      _c("option", {
-                                        key: tindex,
-                                        domProps: { value: color }
-                                      })
-                                    ]
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
+                                  staticClass: "ql-clean",
+                                  attrs: { id: "mor-te-tool-clean-" + _vm.uiid }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-clean-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("清除样式")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "link"
+                            ? [
+                                _c("button", {
                                   key: sindex,
-                                  attrs: {
-                                    target: "#mor-te-tool-color-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("文本颜色")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "background"
-                          ? [
-                              _c(
-                                "select",
-                                {
+                                  staticClass: "ql-link",
+                                  attrs: { id: "mor-te-tool-link-" + _vm.uiid }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-link-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("链接")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tool === "image"
+                            ? [
+                                _c("button", {
                                   key: sindex,
-                                  staticClass: "ql-background",
-                                  attrs: {
-                                    id: "mor-te-tool-background-" + _vm.uiid
-                                  }
-                                },
-                                [
-                                  _vm._l(tool.background, function(
-                                    background,
-                                    tindex
-                                  ) {
-                                    return [
-                                      _c("option", {
-                                        key: tindex,
-                                        domProps: { value: background }
-                                      })
-                                    ]
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-background-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("背景颜色")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "align"
-                          ? [
-                              _c(
-                                "select",
-                                {
-                                  key: sindex,
-                                  staticClass: "ql-align",
-                                  attrs: { id: "mor-te-tool-align-" + _vm.uiid }
-                                },
-                                [
-                                  _vm._l(tool.align, function(align, tindex) {
-                                    return [
-                                      _c("option", {
-                                        key: tindex,
-                                        domProps: { value: align }
-                                      })
-                                    ]
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target: "#mor-te-tool-align-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("文本对齐")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "list" &&
-                        tool.list === "ordered"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-list",
-                                attrs: {
-                                  value: "ordered",
-                                  id: "mor-te-tool-list-ordered-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-list-ordered-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("有序列表")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "list" &&
-                        tool.list === "bullet"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-list",
-                                attrs: {
-                                  value: "bullet",
-                                  id: "mor-te-tool-list-bullet-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-list-bullet-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("无序列表")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "indent" &&
-                        tool.indent === "-1"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-indent",
-                                attrs: {
-                                  value: "-1",
-                                  id: "mor-te-tool-indent--1-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-indent--1-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("减少缩进")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "indent" &&
-                        tool.indent === "+1"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-indent",
-                                attrs: {
-                                  value: "+1",
-                                  id: "mor-te-tool-indent-1-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target: "#mor-te-tool-indent-1-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("增加缩进")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "script" &&
-                        tool.script === "sub"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-script",
-                                attrs: {
-                                  value: "sub",
-                                  id: "mor-te-tool-script-sub-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-script-sub-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("下标")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        typeof tool === "object" &&
-                        Object.keys(tool)[0] === "script" &&
-                        tool.script === "super"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-script",
-                                attrs: {
-                                  value: "super",
-                                  id: "mor-te-tool-script-super-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-script-super-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("上标")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "blockquote"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-blockquote",
-                                attrs: {
-                                  id: "mor-te-tool-blockquote-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-blockquote-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("引用")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "code-block"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-code-block",
-                                attrs: {
-                                  id: "mor-te-tool-code-block-" + _vm.uiid
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target:
-                                      "#mor-te-tool-code-block-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("代码")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "clean"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-clean",
-                                attrs: { id: "mor-te-tool-clean-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target: "#mor-te-tool-clean-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("清除样式")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "link"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-link",
-                                attrs: { id: "mor-te-tool-link-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target: "#mor-te-tool-link-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("链接")]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        tool === "image"
-                          ? [
-                              _c("button", {
-                                key: sindex,
-                                staticClass: "ql-image",
-                                attrs: { id: "mor-te-tool-image-" + _vm.uiid }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "morning-tip",
-                                {
-                                  key: sindex,
-                                  attrs: {
-                                    target: "#mor-te-tool-image-" + _vm.uiid,
-                                    color: "neutral-10"
-                                  }
-                                },
-                                [_vm._v("图片")]
-                              )
-                            ]
-                          : _vm._e()
-                      ]
-                    })
-                  ],
-                  2
-                )
-              ]
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "quill" })
-      ]),
+                                  staticClass: "ql-image",
+                                  attrs: { id: "mor-te-tool-image-" + _vm.uiid }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "morning-tip",
+                                  {
+                                    key: sindex,
+                                    attrs: {
+                                      target: "#mor-te-tool-image-" + _vm.uiid,
+                                      color: "neutral-10"
+                                    }
+                                  },
+                                  [_vm._v("图片")]
+                                )
+                              ]
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "quill" })
+        ]
+      ),
       _vm._v(" "),
       _c(
         "morning-dialog",

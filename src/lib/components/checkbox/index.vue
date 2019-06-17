@@ -37,9 +37,9 @@
                     }"
                     :value="key"
                     :key="key"
-                    @click="conf.state !== 'readonly' && _toggleCheckedState(key)"
+                    @click="_itemClick(key, true)"
                 >
-                    <p class="box">
+                    <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key">
                         <i class="mo-icon part-checked-icon" v-if="data.checkedState[key] === 0"></i>
                         <i class="mo-icon mo-icon-check" v-else></i>
                     </p>
@@ -63,9 +63,9 @@
                         }"
                         :value="key"
                         :key="key"
-                        @click="conf.state !== 'readonly' && toggle(key)"
+                        @click="_itemClick(key)"
                     >
-                        <p class="box"><i class="mo-icon mo-icon-check"></i></p>
+                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key"><i class="mo-icon mo-icon-check"></i></p>
                         <template v-if="conf.acceptHtml">
                             <span v-html="name"></span>
                         </template>
@@ -84,9 +84,9 @@
                         }"
                         :value="key"
                         :key="key"
-                        @click="conf.state !== 'readonly' && toggle(key)"
+                        @click="_itemClick(key)"
                     >
-                        <p class="box"><i class="mo-icon part-checked-icon"></i></p>
+                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key"><i class="mo-icon part-checked-icon"></i></p>
                         <template v-if="conf.acceptHtml">
                             <span v-html="name"></span>
                         </template>
@@ -104,9 +104,9 @@
                         }"
                         :value="key"
                         :key="key"
-                        @click="conf.state !== 'readonly' && toggle(key)"
+                        @click="_itemClick(key)"
                     >
-                        <p class="box"><i class="mo-icon mo-icon-check"></i></p>
+                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key"><i class="mo-icon mo-icon-check"></i></p>
                         <template v-if="conf.acceptHtml">
                             <span v-html="name"></span>
                         </template>
@@ -425,6 +425,35 @@ export default {
             this.$forceUpdate();
 
         },
+        _itemClick : function (key, indeterminate = false) {
+
+            const time = 420;
+
+            if (this.conf.state !== 'readonly') {
+
+                let $item = document.querySelector(`#ui-checkbox-itembox-${this.uiid}-${key}`);
+
+                if (indeterminate) {
+
+                    this._toggleCheckedState(key);
+
+                } else {
+                    
+                    this.toggle(key);
+
+                }
+
+                $item.classList.add('focus-once');
+
+                setTimeout(() => {
+
+                    $item.classList.remove('focus-once');
+
+                }, time);
+
+            }
+
+        },
         toggle : function (key, checked) {
 
             if (this.conf.indeterminate) {
@@ -548,11 +577,15 @@ export default {
 
         this.$watch('conf.checkedState', () => {
 
+            let state = {};
+
             for (let key in this.conf.checkedState) {
 
-                this.data.checkedState[key] = this.conf.checkedState[key];
+                state[key] = this.conf.checkedState[key];
 
             }
+
+            this.data.checkedState = extend({}, this.data.checkedState, state);
 
         }, {
             deep : true,
