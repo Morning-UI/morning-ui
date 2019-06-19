@@ -79636,7 +79636,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.44',
+    version: '0.12.45',
     map: {}
 };
 
