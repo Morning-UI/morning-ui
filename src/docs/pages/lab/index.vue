@@ -1,6 +1,4 @@
 <template>
-    
-
     <div>
         <doc-header :category="category"></doc-header>
         <!-- darg icon https://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
@@ -8,29 +6,8 @@
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
                 <div style="width:300px;">
-        
 
-        <ui-form style="width:600px;" :rules="rule">
-            <ui-formitem label="姓名">
-               <ui-textinput form-key="name"></ui-textinput>
-            </ui-formitem>
-            <ui-formitem label="简介">
-               <ui-textarea form-key="introduction"></ui-textarea>
-            </ui-formitem>
-            <ui-formitem label="简介">
-               <ui-datepicker form-key="test" align="center"></ui-datepicker>
-            </ui-formitem>
-            <ui-formitem label="简介">
-               <ui-datetimepicker form-key="test2" align="center"></ui-datetimepicker>
-            </ui-formitem>
-            <ui-formitem label="简介">
-               <ui-timepicker align="center"></ui-timepicker>
-            </ui-formitem>
-            <ui-formitem label="简介">
-               <ui-textarea form-key="test3" maxlength="200"></ui-textarea>
-            </ui-formitem>
-        </ui-form>
-
+                    <ui-table :list="list" multi-select show-col-name :col-set="colset"></ui-table>
 
                 </div>
             </div>
@@ -47,6 +24,12 @@ export default {
     data : function () {
 
         return {
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
             list : [
                 {name : '<div>Tim, Boelaars</div><div>123123</div>', age : 20, gender : 'male', job : 'driver'},
                 {name : 'Andrew" Colin Beck', age : 41, gender : 'female', job : 'engineer'},
