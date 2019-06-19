@@ -333,6 +333,7 @@ export default {
                 childStatus = childStatus.sort();
 
                 if (
+                    (childStatus.length === 0) ||
                     (childStatus.length === 1 && childStatus[0] === -1) ||
                     (childStatus.length === 1 && childStatus[0] === -2) ||
                     (
@@ -611,6 +612,7 @@ export default {
         if (this.data.$parentVm) {
 
             delete this.data.$parentVm.data.linkedVm[`${this.data.parentKey}:${this.uiid}`];
+            this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey, this.uiid);
 
         }
 

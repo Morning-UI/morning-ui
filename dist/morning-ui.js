@@ -40749,7 +40749,7 @@ exports.default = {
                 childStatus = (0, _arrayUniq2.default)(childStatus);
                 childStatus = childStatus.sort();
 
-                if (childStatus.length === 1 && childStatus[0] === -1 || childStatus.length === 1 && childStatus[0] === -2 || childStatus.length === 2 && childStatus[0] === -1 && childStatus[1] === -2) {
+                if (childStatus.length === 0 || childStatus.length === 1 && childStatus[0] === -1 || childStatus.length === 1 && childStatus[0] === -2 || childStatus.length === 2 && childStatus[0] === -1 && childStatus[1] === -2) {
 
                     // all uncheck
                     this.toggle(key, false);
@@ -41011,6 +41011,7 @@ exports.default = {
         if (this.data.$parentVm) {
 
             delete this.data.$parentVm.data.linkedVm[this.data.parentKey + ':' + this.uiid];
+            this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey, this.uiid);
         }
     }
 };
@@ -79635,7 +79636,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.44',
+    version: '0.12.45',
     map: {}
 };
 
