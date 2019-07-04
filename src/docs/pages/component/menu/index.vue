@@ -2244,7 +2244,7 @@
     配合`position`一起使用。
     >tpl
     <div style="width:220px;">
-        <ui-menu :menu="menu" current-menu="order/history/week" position="side" side-collapse :position-current="true"></ui-menu>
+        <ui-menu :menu="menu" current-menu="order/history/week" position="side" :position-current="true"></ui-menu>
     </div>
     >script
     {
