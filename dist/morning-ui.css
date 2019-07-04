@@ -48277,7 +48277,7 @@ mor-private-menu .root-menu > li {
   position: relative;
 }
 mor-private-menu .root-menu > li:hover {
-  z-index: 2;
+  z-index: 9;
 }
 mor-private-menu .root-menu > li > a {
   width: 100%;
@@ -48294,7 +48294,7 @@ mor-private-menu .root-menu > li.current > a {
   font-weight: 600;
 }
 mor-private-menu .root-menu > li.current > .sub-menu-wrap {
-  z-index: 2;
+  z-index: 9;
 }
 mor-private-menu .sub-menu-wrap {
   width: 100%;
@@ -48379,6 +48379,7 @@ mor-private-menu.pos-side-with-collapse .root-menu > li:hover > .sub-menu-wrap,
 mor-private-menu.pos-top .root-menu > li.show > .sub-menu-wrap,
 mor-private-menu.pos-side-with-collapse .root-menu > li.show > .sub-menu-wrap {
   display: block;
+  z-index: 9;
 }
 mor-private-menu.pos-top .sub-menu-wrap,
 mor-private-menu.pos-side-with-collapse .sub-menu-wrap {
@@ -48414,6 +48415,7 @@ mor-private-menu.pos-side-with-collapse .sub-menu > li:hover > .sub-menu-wrap,
 mor-private-menu.pos-top .sub-menu > li.show > .sub-menu-wrap,
 mor-private-menu.pos-side-with-collapse .sub-menu > li.show > .sub-menu-wrap {
   display: block;
+  z-index: 9;
 }
 mor-private-menu.pos-top .root-menu > li.is-disable:hover > .sub-menu-wrap,
 mor-private-menu.pos-side-with-collapse .root-menu > li.is-disable:hover > .sub-menu-wrap,

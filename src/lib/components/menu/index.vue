@@ -31,10 +31,12 @@
 </template>
  
 <script>
-// import extend                       from 'extend';
+import IndexManager                 from 'Utils/IndexManager';
+
 export default {
     origin : 'UI',
     name : 'menu',
+    mixins : [IndexManager],
     props : {
         menu : {
             type : Object,
