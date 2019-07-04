@@ -18,6 +18,28 @@
     
     ### 更新记录
 
+    ### 0.12.46 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月4日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.46" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.46/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.46/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 修复`ui-tab`的`append`和`prepend`配置更新后组件未更新的问题
+    - 修复组件底层配置赋值问题引起的`ui-btn`和`ui-link`在`state`等配置变化时展现错误的问题
+    - 修复`ui-cascader`在特定的条件下会报错的问题
+    - 修复`ui-menu`当两个子菜单的`key`一样时，定位当前菜单不准确的问题
+    - 调整`ui-menu`菜单的`z-index`，解决部分场景下会被其他组件遮挡的问题
+
+    ---
+
     ### 0.12.45 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">

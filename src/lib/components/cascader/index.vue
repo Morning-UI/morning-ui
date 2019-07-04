@@ -417,7 +417,13 @@ export default {
 
             this.Vue.nextTick(() => {
 
-                this.$refs[`mor-cascader-popover-${this.uiid}`].position();
+                let $popover = this.$refs[`mor-cascader-popover-${this.uiid}`];
+
+                if ($popover) {
+
+                    $popover.position();
+
+                }
     
             });
 

@@ -12,7 +12,7 @@ mor-private-menu{
             position: relative;
 
             &:hover{
-                z-index: 2;
+                z-index: 9;
             }
 
             > a{
@@ -35,7 +35,7 @@ mor-private-menu{
                 }
 
                 > .sub-menu-wrap{
-                    z-index: 2;
+                    z-index: 9;
                 }
             }
         }
@@ -153,6 +153,7 @@ mor-private-menu{
                 &.show{
                     > .sub-menu-wrap{
                         display: block;
+                        z-index: 9;
                     }
                 }
             }
@@ -191,6 +192,7 @@ mor-private-menu{
                 &.show{
                     > .sub-menu-wrap{
                         display: block;
+                        z-index: 9;
                     }
                 }
             }
@@ -217,6 +219,24 @@ mor-private-menu{
             padding-top: 0 !important;
             padding-left: 3px;
             transform: none;
+        }
+    }
+
+    &.pos-side-with-collapse{
+        .root-menu{
+            > li{
+                &.show{
+                    > .sub-menu-wrap{
+                        display: none !important;
+                    }
+                }
+
+                &:hover{
+                    > .sub-menu-wrap{
+                        display: block !important;
+                    }
+                }
+            }
         }
     }
 

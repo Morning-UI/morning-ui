@@ -25885,10 +25885,10 @@ exports.default = {
 
                 if (this.conf.newTab) {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank"></a><slot></slot>';
                 } else {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_self">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_self"></a><slot></slot>';
                 }
             } else {
 
@@ -26090,10 +26090,10 @@ exports.default = {
 
                 if (this.conf.newTab) {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank"></a><slot></slot>';
                 } else {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_self">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_self"></a><slot></slot>';
                 }
             } else {
 
@@ -26808,6 +26808,13 @@ exports.default = {
             });
         }, {
             immediate: true
+        });
+
+        this.$watch('conf.append', this._getNamelist, {
+            deep: true
+        });
+        this.$watch('conf.prepend', this._getNamelist, {
+            deep: true
         });
     },
     updated: function updated() {
@@ -29894,7 +29901,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-// import extend                       from 'extend';
 exports.default = {
     origin: 'UI',
     name: 'menu',
@@ -42209,7 +42215,12 @@ exports.default = {
 
             this.Vue.nextTick(function () {
 
-                _this.$refs['mor-cascader-popover-' + _this.uiid].position();
+                var $popover = _this.$refs['mor-cascader-popover-' + _this.uiid];
+
+                if ($popover) {
+
+                    $popover.position();
+                }
             });
         },
         _searchPopoverShow: function _searchPopoverShow() {
@@ -52980,6 +52991,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -52987,6 +53000,10 @@ exports.default = {
     name: 'private-menu',
     props: {
         itemKey: {
+            type: String,
+            default: ''
+        },
+        parentPath: {
             type: String,
             default: ''
         },
@@ -53028,6 +53045,7 @@ exports.default = {
 
             return {
                 itemKey: this.itemKey,
+                parentPath: this.parentPath,
                 deep: this.deep,
                 menu: this.menu,
                 currentMenu: this.currentMenu,
@@ -53093,6 +53111,25 @@ exports.default = {
             }
 
             return menu;
+        },
+        _isCurrent: function _isCurrent(key, deep) {
+
+            var fullPath = this.conf.parentPath.split('/');
+
+            if (fullPath[0] === '') {
+
+                fullPath.shift();
+            }
+
+            fullPath.push(key);
+            fullPath = fullPath.join('/');
+
+            if (key === this.currentMenuList[deep] && this.conf.currentMenu === fullPath) {
+
+                return true;
+            }
+
+            return false;
         },
         _emit: function _emit(data) {
 
@@ -60195,6 +60232,7 @@ var render = function() {
       attrs: {
         _uiid: _vm.uiid,
         "item-key": _vm.itemKey,
+        "parent-path": _vm.parentPath,
         deep: _vm.deep,
         menu: _vm.menu,
         "current-menu": _vm.currentMenu,
@@ -60234,9 +60272,9 @@ var render = function() {
                         {
                           key: key,
                           class: {
-                            current: key === _vm.currentMenuList[_vm.deep],
+                            current: _vm._isCurrent(key, _vm.deep),
                             "last-current":
-                              key === _vm.currentMenuList[_vm.deep] &&
+                              _vm._isCurrent(key, _vm.deep) &&
                               _vm.deep === _vm.currentMenuList.length - 1,
                             "has-group": name !== "__all",
                             show: !!_vm.data.itemShowList[
@@ -60264,9 +60302,9 @@ var render = function() {
                         {
                           key: key,
                           class: {
-                            current: key === _vm.currentMenuList[_vm.deep],
+                            current: _vm._isCurrent(key, _vm.deep),
                             "last-current":
-                              key === _vm.currentMenuList[_vm.deep] &&
+                              _vm._isCurrent(key, _vm.deep) &&
                               _vm.deep === _vm.currentMenuList.length - 1,
                             "has-group": name !== "__all",
                             "is-disable": item.disable,
@@ -60331,6 +60369,9 @@ var render = function() {
                                 },
                                 attrs: {
                                   "item-key": key,
+                                  "parent-path": _vm.conf.parentPath
+                                    ? _vm.conf.parentPath + "/" + key
+                                    : key,
                                   deep: _vm.conf.deep + 1,
                                   menu: item.children,
                                   groups: item.groups,
@@ -79636,7 +79677,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.45',
+    version: '0.12.46',
     map: {}
 };
 
@@ -80100,7 +80141,9 @@ exports.default = function (Elements) {
 
             this.$watch('size', function (val) {
 
-                _this.conf.size = val;
+                _this.conf = Object.assign({}, _this.conf, {
+                    size: val
+                });
 
                 if (val === undefined) {
 
@@ -80115,7 +80158,9 @@ exports.default = function (Elements) {
 
             this.$watch('color', function (val) {
 
-                _this.conf.color = val;
+                _this.conf = Object.assign({}, _this.conf, {
+                    color: val
+                });
 
                 if (val === undefined) {
 
@@ -80130,7 +80175,9 @@ exports.default = function (Elements) {
 
             this.$watch('state', function (val) {
 
-                _this.conf.state = val;
+                _this.conf = Object.assign({}, _this.conf, {
+                    state: val
+                });
 
                 if (val === undefined) {
 
