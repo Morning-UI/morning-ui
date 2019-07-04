@@ -25885,10 +25885,10 @@ exports.default = {
 
                 if (this.conf.newTab) {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank"></a><slot></slot>';
                 } else {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_self">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_self"></a><slot></slot>';
                 }
             } else {
 
@@ -26090,10 +26090,10 @@ exports.default = {
 
                 if (this.conf.newTab) {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank"></a><slot></slot>';
                 } else {
 
-                    shadowHtml += '<a href="' + this.conf.link + '" target="_self">555</a><slot></slot>';
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_self"></a><slot></slot>';
                 }
             } else {
 
@@ -26808,6 +26808,13 @@ exports.default = {
             });
         }, {
             immediate: true
+        });
+
+        this.$watch('conf.append', this._getNamelist, {
+            deep: true
+        });
+        this.$watch('conf.prepend', this._getNamelist, {
+            deep: true
         });
     },
     updated: function updated() {
@@ -42209,7 +42216,12 @@ exports.default = {
 
             this.Vue.nextTick(function () {
 
-                _this.$refs['mor-cascader-popover-' + _this.uiid].position();
+                var $popover = _this.$refs['mor-cascader-popover-' + _this.uiid];
+
+                if ($popover) {
+
+                    $popover.position();
+                }
             });
         },
         _searchPopoverShow: function _searchPopoverShow() {
@@ -80100,7 +80112,9 @@ exports.default = function (Elements) {
 
             this.$watch('size', function (val) {
 
-                _this.conf.size = val;
+                _this.conf = Object.assign({}, _this.conf, {
+                    size: val
+                });
 
                 if (val === undefined) {
 
@@ -80115,7 +80129,9 @@ exports.default = function (Elements) {
 
             this.$watch('color', function (val) {
 
-                _this.conf.color = val;
+                _this.conf = Object.assign({}, _this.conf, {
+                    color: val
+                });
 
                 if (val === undefined) {
 
@@ -80130,7 +80146,9 @@ exports.default = function (Elements) {
 
             this.$watch('state', function (val) {
 
-                _this.conf.state = val;
+                _this.conf = Object.assign({}, _this.conf, {
+                    state: val
+                });
 
                 if (val === undefined) {
 

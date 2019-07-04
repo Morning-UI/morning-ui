@@ -494,6 +494,13 @@ export default {
             immediate : true
         });
 
+        this.$watch('conf.append', this._getNamelist, {
+            deep : true
+        });
+        this.$watch('conf.prepend', this._getNamelist, {
+            deep : true
+        });
+
     },
     updated : function () {
 

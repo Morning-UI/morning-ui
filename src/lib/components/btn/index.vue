@@ -131,11 +131,11 @@ export default {
 
                 if (this.conf.newTab) {
                     
-                    shadowHtml += `<a href="${this.conf.link}" target="_blank">555</a><slot></slot>`;
+                    shadowHtml += `<a href="${this.conf.link}" target="_blank"></a><slot></slot>`;
 
                 } else {
                     
-                    shadowHtml += `<a href="${this.conf.link}" target="_self">555</a><slot></slot>`;
+                    shadowHtml += `<a href="${this.conf.link}" target="_self"></a><slot></slot>`;
 
                 }
 
