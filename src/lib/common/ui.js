@@ -71,7 +71,9 @@ export default Elements => Elements.extend({
 
         this.$watch('size', val => {
 
-            this.conf.size = val;
+            this.conf = Object.assign({}, this.conf, {
+                size : val
+            });
 
             if (val === undefined) {
 
@@ -89,7 +91,9 @@ export default Elements => Elements.extend({
 
         this.$watch('color', val => {
 
-            this.conf.color = val;
+            this.conf = Object.assign({}, this.conf, {
+                color : val
+            });
 
             if (val === undefined) {
 
@@ -107,7 +111,9 @@ export default Elements => Elements.extend({
 
         this.$watch('state', val => {
 
-            this.conf.state = val;
+            this.conf = Object.assign({}, this.conf, {
+                state : val
+            });
 
             if (val === undefined) {
 

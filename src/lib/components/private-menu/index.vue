@@ -4,6 +4,7 @@
         :class="[moreClass]"
 
         :item-key="itemKey"
+        :parent-path="parentPath"
         :deep="deep"
         :menu="menu"
         :current-menu="currentMenu"
@@ -29,8 +30,8 @@
                     v-if="typeof item === 'string'"
                     :key="key"
                     :class="{
-                        'current' : (key === currentMenuList[deep]),
-                        'last-current' : (key === currentMenuList[deep] && deep === currentMenuList.length-1),
+                        'current' : _isCurrent(key, deep),
+                        'last-current' : (_isCurrent(key, deep) && deep === currentMenuList.length-1),
                         'has-group' : name !== '__all',
                         'show' : !!data.itemShowList['menu-item-'+conf.deep+'-'+key]
                     }"
@@ -41,8 +42,8 @@
                     v-else
                     :key="key"
                     :class="{
-                        'current' : (key === currentMenuList[deep]),
-                        'last-current' : (key === currentMenuList[deep] && deep === currentMenuList.length-1),
+                        'current' : _isCurrent(key, deep),
+                        'last-current' : (_isCurrent(key, deep) && deep === currentMenuList.length-1),
                         'has-group' : name !== '__all',
                         'is-disable' : item.disable,
                         'is-hidden' : item.hidden,
@@ -80,6 +81,7 @@
                             'deep-submenu' : conf.deep > 0
                         }"
                         :item-key="key"
+                        :parent-path="conf.parentPath ? (conf.parentPath + '/' + key) : key"
                         :deep="conf.deep+1"
                         :menu="item.children"
                         :groups="item.groups"
@@ -105,6 +107,10 @@ export default {
     name : 'private-menu',
     props : {
         itemKey : {
+            type : String,
+            default : ''
+        },
+        parentPath : {
             type : String,
             default : ''
         },
@@ -142,6 +148,7 @@ export default {
 
             return {
                 itemKey : this.itemKey,
+                parentPath : this.parentPath,
                 deep : this.deep,
                 menu : this.menu,
                 currentMenu : this.currentMenu,
@@ -192,6 +199,28 @@ export default {
             }
 
             return menu;
+
+        },
+        _isCurrent : function (key, deep) {
+
+            let fullPath = this.conf.parentPath.split('/');
+
+            if (fullPath[0] === '') {
+
+                fullPath.shift();
+
+            }
+
+            fullPath.push(key);
+            fullPath = fullPath.join('/');
+
+            if (key === this.currentMenuList[deep] && this.conf.currentMenu === fullPath) {
+
+                return true;
+
+            }
+
+            return false;
 
         },
         _emit : function (data) {

@@ -5,9 +5,16 @@
         <div class="lab" style="width:1130px">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <div style="width:300px;">
+                <div style="width:600px;display: flex;">
 
-                    <ui-table :list="list" multi-select show-col-name :col-set="colset"></ui-table>
+                    <ui-menu :menu="menu" class="block" current-menu="application/create" position="side" side-collapse></ui-menu>
+                    <ui-datetimepicker form-name="日期时间"></ui-datetimepicker>
+
+                    <!-- <ui-tab>
+                        <div slot="第一页">第一页</div>
+                        <div slot="第二页">第二页</div>
+                        <div slot="第三页">第三页</div>
+                    </ui-tab> -->
 
                 </div>
             </div>
@@ -15,7 +22,7 @@
         <doc-footer></doc-footer>
     </div>
 </template>
- 
+
 <script>
 import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocFooter                    from 'Docs/common/DocFooter.vue';
@@ -24,6 +31,7 @@ export default {
     data : function () {
 
         return {
+            menu : {"index":{"name":"<i class=\"iconfont icon-apps\"></i>首页","link":"/cloud/index"},"application":{"name":"<i class=\"iconfont icon-preview\"></i>应用管理","children":{"list":{"name":"应用列表","link":"/cloud/application/list"},"create":{"name":"创建应用","link":"/cloud/application/create"}}},"work":{"name":"<i class=\"iconfont icon-preview\"></i>容器服务","children":{"create":{"name":"创建容器","link":"/cloud/work/create"},"list":{"name":"容器列表","link":"/cloud/work/list"}}},"environment":{"name":"<i class=\"iconfont icon-book\"></i>环境管理","children":{"list":{"name":"环境列表","link":"/cloud/environment/list"}}}},
             colset : [
                 {col : 'name', name : 'Name'},
                 {col : 'age', name : 'Age'},

@@ -31,7 +31,6 @@
 </template>
  
 <script>
-// import extend                       from 'extend';
 export default {
     origin : 'UI',
     name : 'menu',
