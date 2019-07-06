@@ -213,7 +213,13 @@ export default {
                 };
 
             }
-            
+
+            if (!this.data.forceUpdateEmiter) {
+
+                return {};
+
+            }
+
             let fullwidth = this.data.$track.clientWidth;
 
             return {
@@ -262,7 +268,8 @@ export default {
                 pointWidth : 0,
                 hidePartPoints : false,
                 $track : null,
-                $tip : null
+                $tip : null,
+                forceUpdateEmiter : 1
             }
         };
 
@@ -514,6 +521,11 @@ export default {
                 this.data.droping = false;
 
             });
+
+        },
+        _forceUpdate : function () {
+
+            this.data.forceUpdateEmiter++;
 
         }
     },

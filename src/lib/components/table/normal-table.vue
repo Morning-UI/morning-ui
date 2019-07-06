@@ -19,7 +19,16 @@
                             v-show="!colSetMap[key] || !colSetMap[key].hide"
                             :key="key"
                         >
-                            <span v-html="colSetMap[key].name"></span>
+                            <component
+                                :is="{
+                                    template : ('<span>' + colSetMap[key].name + '</span>'),
+                                    data : function () {
+                                        return {
+                                            context : this.$parent.$parent.$vnode.context
+                                        };
+                                    }
+                                }"
+                            ></component>
                             <span class="th-sort" v-if="colSetMap[key].sort">
                                 <i class="mo-icon mo-icon-sort no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')"></i>
                                 <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>

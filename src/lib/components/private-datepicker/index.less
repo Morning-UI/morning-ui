@@ -1,3 +1,5 @@
+@calendarMinWidth : 240px;
+
 mor-private-datepicker{
     display: block;
     width: 100%;
@@ -16,7 +18,7 @@ mor-private-datepicker{
 }
 
 .mor-private-datepicker-popover{
-    min-width: calc(280px + 2px);
+    min-width: calc(@calendarMinWidth + 2px);
     top: @formHeight + 3;
     box-sizing: border-box;
     font-size: @fontSize*0.875;
