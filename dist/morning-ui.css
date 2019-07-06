@@ -35755,6 +35755,7 @@ mor-calendar .day {
   width: calc(100% / 7);
   text-align: center;
   color: #333333;
+  margin: 1px 0;
 }
 mor-calendar .day.no-curt-m {
   color: #CCCCCC;
@@ -46372,13 +46373,13 @@ mor-datetimepicker > .error-message:empty {
 }
 .mor-private-datepicker-popover .timepicker {
   width: 100%;
-  height: 40px;
+  height: 32px;
   position: relative;
 }
 .mor-private-datepicker-popover .timepicker mor-timepicker {
   transform: scale(0.8);
   z-index: 2;
-  width: 150px;
+  width: 130px;
   position: absolute;
   right: 5px;
   transform-origin: right;

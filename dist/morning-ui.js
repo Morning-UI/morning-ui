@@ -29592,6 +29592,15 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'uiid'],
@@ -29670,6 +29679,15 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -35464,6 +35482,10 @@ exports.default = {
         };
     },
     methods: {
+        _showVolume: function _showVolume() {
+
+            this.$refs['mor-media-volume-slider-' + this.uiid]._forceUpdate();
+        },
         volume: function volume() {
 
             return this._mcVolume.apply(this, arguments);
@@ -35491,6 +35513,7 @@ exports.default = {
         this.data.mc$media = this.$el.querySelector('audio');
     }
 }; //
+//
 //
 //
 //
@@ -35662,6 +35685,10 @@ exports.default = {
         };
     },
     methods: {
+        _showVolume: function _showVolume() {
+
+            this.$refs['mor-media-volume-slider-' + this.uiid]._forceUpdate();
+        },
         volume: function volume() {
 
             return this._mcVolume.apply(this, arguments);
@@ -35689,6 +35716,8 @@ exports.default = {
         this.data.mc$media = this.$el.querySelector('video');
     }
 }; //
+//
+//
 //
 //
 //
@@ -43914,6 +43943,11 @@ exports.default = {
                 };
             }
 
+            if (!this.data.forceUpdateEmiter) {
+
+                return {};
+            }
+
             var fullwidth = this.data.$track.clientWidth;
 
             return {
@@ -43974,7 +44008,8 @@ exports.default = {
                 pointWidth: 0,
                 hidePartPoints: false,
                 $track: null,
-                $tip: null
+                $tip: null,
+                forceUpdateEmiter: 1
             }
         };
     },
@@ -44189,6 +44224,10 @@ exports.default = {
 
                 _this2.data.droping = false;
             });
+        },
+        _forceUpdate: function _forceUpdate() {
+
+            this.data.forceUpdateEmiter++;
         }
     },
     created: function created() {},
@@ -46710,6 +46749,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
 //
 //
 //
@@ -62499,7 +62540,8 @@ var render = function() {
             {
               ref: "mor-media-volumetip-" + _vm.uiid,
               staticClass: "mor-media-volume",
-              attrs: { target: "#mor-media-volume-" + _vm.uiid }
+              attrs: { target: "#mor-media-volume-" + _vm.uiid },
+              on: { show: _vm._showVolume }
             },
             [
               _c(
@@ -62743,7 +62785,8 @@ var render = function() {
             {
               ref: "mor-media-volumetip-" + _vm.uiid,
               staticClass: "mor-media-volume",
-              attrs: { target: "#mor-media-volume-" + _vm.uiid }
+              attrs: { target: "#mor-media-volume-" + _vm.uiid },
+              on: { show: _vm._showVolume }
             },
             [
               _c(
@@ -68070,7 +68113,8 @@ var render = function() {
                       align: "right",
                       "selectable-range": _vm.timeSelectableRangeAll,
                       relative: _vm.conf.relative,
-                      state: _vm.isRelativeDatetime1 ? "readonly" : "normal"
+                      state: _vm.isRelativeDatetime1 ? "readonly" : "normal",
+                      size: "s"
                     },
                     on: {
                       "value-change": function($event) {
@@ -68094,7 +68138,10 @@ var render = function() {
                           align: "right",
                           "selectable-range": _vm.timeSelectableRangeAll,
                           relative: _vm.conf.relative,
-                          state: _vm.isRelativeDatetime2 ? "readonly" : "normal"
+                          state: _vm.isRelativeDatetime2
+                            ? "readonly"
+                            : "normal",
+                          size: "s"
                         },
                         on: {
                           "value-change": function($event) {
@@ -71765,11 +71812,18 @@ var render = function() {
                           key: key
                         },
                         [
-                          _c("span", {
-                            domProps: {
-                              innerHTML: _vm._s(_vm.colSetMap[key].name)
-                            }
-                          }),
+                          _c(
+                            {
+                              template:
+                                "<span>" + _vm.colSetMap[key].name + "</span>",
+                              data: function() {
+                                return {
+                                  context: this.$parent.$parent.$vnode.context
+                                }
+                              }
+                            },
+                            { tag: "component" }
+                          ),
                           _vm._v(" "),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
@@ -71813,7 +71867,8 @@ var render = function() {
                                   : _vm._e()
                               ])
                             : _vm._e()
-                        ]
+                        ],
+                        1
                       )
                     : _c(
                         "th",
@@ -72071,11 +72126,18 @@ var render = function() {
                           key: key
                         },
                         [
-                          _c("span", {
-                            domProps: {
-                              innerHTML: _vm._s(_vm.colSetMap[key].name)
-                            }
-                          }),
+                          _c(
+                            {
+                              template:
+                                "<span>" + _vm.colSetMap[key].name + "</span>",
+                              data: function() {
+                                return {
+                                  context: this.$parent.$parent.$vnode.context
+                                }
+                              }
+                            },
+                            { tag: "component" }
+                          ),
                           _vm._v(" "),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
@@ -72119,7 +72181,8 @@ var render = function() {
                                   : _vm._e()
                               ])
                             : _vm._e()
-                        ]
+                        ],
+                        1
                       )
                     : _c(
                         "th",
