@@ -19,7 +19,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar></ui-calendar>
     </div>
     :::
@@ -51,7 +51,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar :date="+new Date('2015-11-11')"></ui-calendar>
     </div>
     :::
@@ -71,7 +71,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar highlight-now></ui-calendar>
     </div>
     :::
@@ -91,7 +91,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar highlight-hover></ui-calendar>
     </div>
     :::
@@ -113,7 +113,7 @@
     >desc
     高亮指定的日期（若一段日期是连续的则会显示连续的样式），接受`Date`对象和时间戳。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             :date="+new Date('2017-11-01')"
             :highlight-day="[
@@ -129,7 +129,7 @@
     >desc
     高亮指定的日期范围。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             :date="+new Date('2017-11-01')"
             :highlight-day="[
@@ -158,7 +158,7 @@
     >desc
     点击头部的年份来选择年份，选完后会显示月份选择器。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar pick-year-month></ui-calendar>
     </div>
     :::
@@ -178,7 +178,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar 
             :date="+new Date('2017-11-01')"
             :background-mark="[
@@ -200,7 +200,7 @@
     >desc
     跨月份的标记。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             :date="+new Date('2017-11-01')"
             :background-mark="[
@@ -217,7 +217,7 @@
     >desc
     禁用样式配合`highlight-hover`。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             highlight-hover
             :date="+new Date('2017-11-01')"
@@ -247,7 +247,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             :date="+new Date('2017-11-01')"
             :point-mark="[
@@ -269,7 +269,7 @@
     >desc
     跨月份的标记。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             :date="+new Date('2017-11-01')"
             :point-mark="[
@@ -298,13 +298,13 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar mode="month"></ui-calendar>
     </div>
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar mode="year"></ui-calendar>
     </div>
     ---
@@ -312,7 +312,7 @@
     >desc
     `mode`配合`highlight-now`一起使用。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar mode="month" highlight-now></ui-calendar>
         <br>
         <ui-calendar mode="year" highlight-now></ui-calendar>
@@ -322,7 +322,7 @@
     >desc
     `mode`配合`highlight-hover`一起使用。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar mode="month" highlight-hover></ui-calendar>
         <br>
         <ui-calendar mode="year" highlight-hover></ui-calendar>
@@ -332,7 +332,7 @@
     >desc
     `mode`配合`highlight-day`一起使用。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             mode="month"
             :date="+new Date('2017-11-01')"
@@ -360,7 +360,7 @@
     >desc
     `mode`配合`background-mark`一起使用。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             mode="month"
             :date="+new Date('2017-11-01')"
@@ -400,7 +400,7 @@
     >desc
     `mode`配合`point-mark`一起使用。
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar
             mode="month"
             :date="+new Date('2017-11-01')"
@@ -453,7 +453,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo1"></ui-calendar>
         </div>
         <br>
@@ -477,7 +477,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo2"></ui-calendar>
         </div>
         <br>
@@ -501,7 +501,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo3"></ui-calendar>
         </div>
         <br>
@@ -521,7 +521,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo4"></ui-calendar>
         </div>
         <br>
@@ -543,7 +543,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo5"></ui-calendar>
         </div>
         <br>
@@ -566,7 +566,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo6"></ui-calendar>
         </div>
         <br>
@@ -590,7 +590,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo7"></ui-calendar>
         </div>
         <br>
@@ -615,7 +615,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo8"></ui-calendar>
         </div>
         <br>
@@ -639,7 +639,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar
                 ref="demo9"
                 :date="new Date('2017-10-01')"
@@ -672,7 +672,7 @@
     #demo
     >tpl
     <div>
-        <div style="width:300px">
+        <div style="width:260px">
             <ui-calendar ref="demo10" :date="new Date('2017-11-01')"></ui-calendar>
         </div>
         <br>
@@ -691,7 +691,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar ref="demo11" @change="echo"></ui-calendar>
         <ui-link js="window.morning.findVM('demo11').setTime(+new Date('2017-10-01'));">触发change事件</ui-link>
     </div>
@@ -714,7 +714,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar ref="demo12" @month-change="echo"></ui-calendar>
         <ui-link js="window.morning.findVM('demo12').sub(1, 'month');">触发month-change事件</ui-link>
     </div>
@@ -737,7 +737,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar ref="demo13" @year-change="echo"></ui-calendar>
         <ui-link js="window.morning.findVM('demo13').sub(1, 'year');">触发year-change事件</ui-link>
     </div>
@@ -760,7 +760,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <ui-calendar ref="demo14" @highlight="echo" :date="new Date('2017-01-01')"></ui-calendar>
         <ui-link js="window.morning.findVM('demo14').setHighlight([new Date('2017-01-01')]);">触发highlight事件</ui-link>
     </div>
@@ -786,7 +786,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <p>点击一个日期来触发</p>
         <ui-calendar ref="demo15" @date-click="echo"></ui-calendar>
     </div>
@@ -812,7 +812,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <p>鼠标移入日期来触发</p>
         <ui-calendar ref="demo15" @date-enter="echo"></ui-calendar>
     </div>
@@ -838,7 +838,7 @@
     ---
     #demo
     >tpl
-    <div style="width:300px">
+    <div style="width:260px">
         <p>鼠标移出日期来触发</p>
         <ui-calendar ref="demo15" @date-leave="echo"></ui-calendar>
     </div>

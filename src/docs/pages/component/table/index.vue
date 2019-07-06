@@ -264,6 +264,29 @@
     ---
     #demo
     >desc
+    你也可以通过`col-set`配置在标题中使用Vue组件。
+    >tpl
+    <ui-table :list="list" :col-set="colset" show-col-name></ui-table>
+    >script
+    {
+        data : {
+            colset : [
+                {col : 'name', name : '<span>Name <ui-btn size="xxs">查看更多</ui-btn></span>'},
+                {col : 'age', name : '<span>Age <i id="demo13" class="mo-icon-question-cf"></i> <ui-tip target="#demo13">这里是详细信息</ui-tip></span>'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'},
+                {col : 'action', name : 'Action'}
+            ],
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '-'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '-'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '-'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
     但需要注意的是由于在`list`配置中通过字符串模板的形式使用，所以在模板中的组件无法直接使用上下文的`props`、`data`、`methods`等属性或方法。
     <br><br>
     为此表格组件通过`context`来帮你精确定位上下文。

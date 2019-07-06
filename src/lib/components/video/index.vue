@@ -76,6 +76,8 @@
                 class="mor-media-volume"
                 :ref="'mor-media-volumetip-'+uiid"
                 :target="'#mor-media-volume-'+uiid"
+
+                @show="_showVolume"
             >
                 <div class="slider">
                     <morning-slider
@@ -148,6 +150,11 @@ export default {
 
     },
     methods : {
+        _showVolume : function () {
+
+            this.$refs[`mor-media-volume-slider-${this.uiid}`]._forceUpdate();
+
+        },
         volume : function (...args) {
 
             return this._mcVolume(...args);

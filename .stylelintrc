@@ -27,7 +27,8 @@
                 /^grid/,
                 /^form/,
                 /^import\-normalize/,
-                /^quickPickWidth$/
+                /^quickPickWidth$/,
+                /^calendar/
             ]
         }],
         "comment-no-empty" : true,
