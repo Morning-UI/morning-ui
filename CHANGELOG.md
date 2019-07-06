@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.12.47
+
+`2019年7月6日`
+
+#### 改进
+
+- 优化`ui-calendar`的日期面板，现在更为紧凑
+- 优化`ui-datepicker`和`ui-datetimepicker`的日期选择面板
+- `ui-table`现在支持在表头中使用Vue组件，详见文档
+
+#### 修复
+
+- 修复`ui-audio`和`ui-video`组件无法通过拖拽调整音量的问题
+
 ## 0.12.46
 
 `2019年7月4日`

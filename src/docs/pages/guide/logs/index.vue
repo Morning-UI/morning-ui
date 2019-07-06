@@ -18,6 +18,30 @@
     
     ### 更新记录
 
+    ### 0.12.47 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月6日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.47" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.47/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.47/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 改进
+
+    - 优化`ui-calendar`的日期面板，现在更为紧凑
+    - 优化`ui-datepicker`和`ui-datetimepicker`的日期选择面板
+    - `ui-table`现在支持在表头中使用Vue组件，详见文档
+
+    #### 修复
+
+    - 修复`ui-audio`和`ui-video`组件无法通过拖拽调整音量的问题
+
+    ---
+
     ### 0.12.46 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
