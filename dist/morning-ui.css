@@ -35705,8 +35705,7 @@ mor-calendar header .topbar .yearmonth .year {
 mor-calendar header .titlebar .weekday,
 mor-calendar header .titlebar .title {
   border-top: 1px #e5e5e5 solid;
-  border-bottom: 1px #e5e5e5 solid;
-  padding: 4px 0;
+  padding: 16px 0;
 }
 mor-calendar header .titlebar .weekday {
   list-style: none;
@@ -35716,18 +35715,17 @@ mor-calendar header .titlebar .weekday {
 }
 mor-calendar header .titlebar .weekday li {
   display: inline-block;
-  font-size: 13px;
+  font-size: 12px;
   margin: 0;
-  color: #9e9e9e;
+  color: #666666;
 }
 mor-calendar header .titlebar .title {
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   color: #B2B2B2;
 }
 mor-calendar .calendar {
-  padding-top: 0.5em;
-  min-width: 280px;
+  min-width: 240px;
 }
 mor-calendar .pick-day {
   display: flex;
@@ -35736,28 +35734,30 @@ mor-calendar .pick-day {
 }
 mor-calendar .select-layer {
   display: inline-block;
-  padding: 0.25em;
+  padding: 1px;
   width: 100%;
-  font-size: 16px;
+  font-size: 0;
   box-sizing: border-box;
+  vertical-align: top;
 }
 mor-calendar .inner-layer {
   display: inline-block;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  border-radius: 100em;
+  width: 26px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 3px;
   padding: 0;
   font-size: 12px;
+  vertical-align: top;
+  white-space: nowrap;
 }
 mor-calendar .day {
   width: calc(100% / 7);
   text-align: center;
-  color: #000000;
+  color: #333333;
 }
 mor-calendar .day.no-curt-m {
-  color: #B2B2B2;
-  background-color: #f5f5f5;
+  color: #CCCCCC;
 }
 mor-calendar .p-mark-s::after {
   background: #4DBD67;
@@ -35825,8 +35825,8 @@ mor-calendar .pick-year {
 mor-calendar .pick-month .month {
   width: calc(100% / 3);
   padding: 0;
-  height: 60px;
-  line-height: 60px;
+  height: 42px;
+  line-height: 42px;
   text-align: center;
   color: #666666;
 }
@@ -35838,8 +35838,8 @@ mor-calendar .pick-month .month:hover {
 mor-calendar .pick-year .year {
   width: calc(100% / 5);
   padding: 0;
-  height: 48px;
-  line-height: 48px;
+  height: 34px;
+  line-height: 34px;
   text-align: center;
   color: #666666;
 }
@@ -35852,9 +35852,9 @@ mor-calendar .day.now {
   margin-bottom: 0;
 }
 mor-calendar .day.now .inner-layer {
-  color: #F33D5D;
-  border: 2px #F33D5D solid;
-  line-height: calc(16px*2 - 4px);
+  color: #D22343;
+  border: 1px #D22343 solid;
+  line-height: calc(16px*1.5 - 2px);
   box-sizing: border-box;
 }
 mor-calendar .pick-month .month.now,
@@ -35863,9 +35863,9 @@ mor-calendar .pick-year .year.now {
 }
 mor-calendar .pick-month .month.now .inner-layer,
 mor-calendar .pick-year .year.now .inner-layer {
-  color: #F33D5D;
-  border: 2px #F33D5D solid;
-  line-height: calc(16px*2 - 4px);
+  color: #D22343;
+  border: 1px #D22343 solid;
+  line-height: calc(16px*1.5 - 2px);
   box-sizing: border-box;
 }
 mor-calendar .day.highlight,
@@ -35876,7 +35876,7 @@ mor-calendar .pick-year .year.highlight {
 mor-calendar .day.highlight .inner-layer,
 mor-calendar .pick-month .month.highlight .inner-layer,
 mor-calendar .pick-year .year.highlight .inner-layer {
-  background-color: #F86F88;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .day.middle .select-layer,
@@ -35897,16 +35897,16 @@ mor-calendar .pick-year .year.start {
 mor-calendar .day.start .inner-layer,
 mor-calendar .pick-month .month.start .inner-layer,
 mor-calendar .pick-year .year.start .inner-layer {
-  background-color: #F86F88;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .day.start .select-layer,
 mor-calendar .pick-month .month.start .select-layer,
 mor-calendar .pick-year .year.start .select-layer {
   text-align: center;
-  padding-right: calc(50% - 16px);
+  padding-right: calc(50% - 13px);
   background-color: #fee9ec;
-  border-radius: 100em 0 0 100em;
+  border-radius: 3px 0 0 3px;
   width: auto;
 }
 mor-calendar .day.end,
@@ -35917,16 +35917,16 @@ mor-calendar .pick-year .year.end {
 mor-calendar .day.end .inner-layer,
 mor-calendar .pick-month .month.end .inner-layer,
 mor-calendar .pick-year .year.end .inner-layer {
-  background-color: #F86F88;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .day.end .select-layer,
 mor-calendar .pick-month .month.end .select-layer,
 mor-calendar .pick-year .year.end .select-layer {
   text-align: center;
-  padding-left: calc(50% - 16px);
+  padding-left: calc(50% - 13px);
   background-color: #fee9ec;
-  border-radius: 0 100em 100em 0;
+  border-radius: 0 3px 3px 0;
   width: auto;
 }
 mor-calendar .day.start.bg-mark-disabled .inner-layer,
@@ -35953,11 +35953,11 @@ mor-calendar .pick-year .year.p-mark {
 mor-calendar .day.p-mark::after,
 mor-calendar .pick-month .month.p-mark::after,
 mor-calendar .pick-year .year.p-mark::after {
-  width: 6px;
-  height: 6px;
-  margin-left: -3px;
-  border-radius: 6px;
-  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 4px;
+  bottom: 1px;
   display: block;
   position: absolute;
   content: '';
@@ -36225,7 +36225,7 @@ mor-calendar .pick-year .year.end {
 }
 mor-calendar .pick-month .month.end .inner-layer,
 mor-calendar .pick-year .year.end .inner-layer {
-  background-color: #F86F88;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .pick-month .month.end .select-layer,
@@ -36239,7 +36239,7 @@ mor-calendar.mode-month .pick-month .month:hover {
   cursor: default;
 }
 mor-calendar.mode-month.highlight-hover .month:hover {
-  color: #F33D5D;
+  color: #D22343;
   font-weight: 700;
 }
 mor-calendar.mode-month.highlight-hover .month.bg-mark-disabled:hover {
@@ -36251,7 +36251,7 @@ mor-calendar.mode-year .pick-year .year:hover {
   cursor: default;
 }
 mor-calendar.mode-year.highlight-hover .year:hover {
-  color: #F33D5D;
+  color: #D22343;
   font-weight: 700;
 }
 mor-calendar.mode-year.highlight-hover .year.bg-mark-disabled:hover {
@@ -36277,7 +36277,7 @@ mor-calendar.mode-year .year .inner-layer {
   width: inherit !important;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day:hover {
-  color: #F33D5D;
+  color: #D22343;
   font-weight: 700;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day.bg-mark-disabled:hover {
@@ -46250,8 +46250,8 @@ mor-datepicker.range-input-vertical .datepicker-input-1 {
   font-size: 14px;
 }
 .mor-private-datepicker-popover {
-  min-width: 282px;
-  max-width: 282px;
+  min-width: 242px;
+  max-width: 242px;
 }
 .mor-private-datepicker-popover .date-select {
   position: relative;
@@ -46260,8 +46260,8 @@ mor-datepicker.range-input-vertical .datepicker-input-1 {
   border-color: #E5E5E5;
 }
 .mor-private-datepicker-popover.date-select-0 {
-  min-width: 281px;
-  max-width: 281px;
+  min-width: 241px;
+  max-width: 241px;
 }
 .mor-private-datepicker-popover.date-select-0 .date-select {
   border-bottom-right-radius: 0;
@@ -46269,8 +46269,8 @@ mor-datepicker.range-input-vertical .datepicker-input-1 {
   border-right: none;
 }
 .mor-private-datepicker-popover.date-select-1 {
-  min-width: 281px;
-  max-width: 281px;
+  min-width: 241px;
+  max-width: 241px;
 }
 .mor-private-datepicker-popover.date-select-1 .popover-arrow {
   display: none;
@@ -46280,12 +46280,12 @@ mor-datepicker.range-input-vertical .datepicker-input-1 {
   border-top-left-radius: 0;
 }
 .mor-private-datepicker-popover.has-quick-pick {
-  max-width: 382px;
-  min-width: 382px;
+  max-width: 342px;
+  min-width: 342px;
 }
 .mor-private-datepicker-popover.has-quick-pick.date-select-0 {
-  min-width: 381px;
-  max-width: 381px;
+  min-width: 341px;
+  max-width: 341px;
 }
 .mor-private-datepicker-popover.has-quick-pick .quickpick {
   display: inline-block;
@@ -46319,14 +46319,15 @@ mor-datepicker.range-input-vertical .datepicker-input-1 {
   margin: 0;
   cursor: pointer;
   font-size: 13px;
-  color: #9e9e9e;
+  color: #4C4C4C;
 }
 .mor-private-datepicker-popover.has-quick-pick .quickpick ul li:hover {
-  color: #7a7a7a;
+  color: #000000;
+  font-weight: 700;
 }
 .mor-private-datepicker-popover.has-quick-pick mor-calendar {
   display: inline-block;
-  width: 280px;
+  width: 240px;
   font-size: 14px;
   box-sizing: border-box;
   margin-left: 100px;
@@ -48231,7 +48232,7 @@ mor-private-datepicker > .error-message:empty {
   display: none;
 }
 .mor-private-datepicker-popover {
-  min-width: calc(280px + 2px);
+  min-width: calc(240px + 2px);
   top: 45px;
   box-sizing: border-box;
   font-size: 14px;

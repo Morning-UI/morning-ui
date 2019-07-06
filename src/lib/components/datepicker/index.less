@@ -1,4 +1,5 @@
 @quickPickWidth : 100px;
+@calendarMinWidth : 240px;
 
 mor-datepicker{
     display: block;
@@ -252,8 +253,8 @@ mor-datepicker{
 }
 
 .mor-private-datepicker-popover{
-    min-width: 280px + 2px;
-    max-width: 280px + 2px;
+    min-width: @calendarMinWidth + 2px;
+    max-width: @calendarMinWidth + 2px;
 
     .date-select{
         position: relative;
@@ -264,8 +265,8 @@ mor-datepicker{
     }
 
     &.date-select-0{
-        min-width: 280px + 1px;
-        max-width: 280px + 1px;
+        min-width: @calendarMinWidth + 1px;
+        max-width: @calendarMinWidth + 1px;
 
         .date-select{
             border-bottom-right-radius: 0;
@@ -275,8 +276,8 @@ mor-datepicker{
     }
 
     &.date-select-1{
-        min-width: 280px + 1px;
-        max-width: 280px + 1px;
+        min-width: @calendarMinWidth + 1px;
+        max-width: @calendarMinWidth + 1px;
 
         .popover-arrow{
             display: none;
@@ -289,12 +290,12 @@ mor-datepicker{
     }
 
     &.has-quick-pick{
-        max-width: @quickPickWidth + 280px + 2px;
-        min-width: @quickPickWidth + 280px + 2px;
+        max-width: @quickPickWidth + @calendarMinWidth + 2px;
+        min-width: @quickPickWidth + @calendarMinWidth + 2px;
 
         &.date-select-0{
-            min-width: @quickPickWidth + 280px + 1px;
-            max-width: @quickPickWidth + 280px + 1px;
+            min-width: @quickPickWidth + @calendarMinWidth + 1px;
+            max-width: @quickPickWidth + @calendarMinWidth + 1px;
         }
 
         .quickpick{
@@ -320,10 +321,11 @@ mor-datepicker{
                     margin: 0;
                     cursor: pointer;
                     font-size: @fontSize*0.8125;
-                    color: @colorFormItemColor;
+                    color: @colorNeutral10;
 
                     &:hover{
-                        color: @colorFormItemColorHover;
+                        color: @colorBlack;
+                        font-weight: 700;
                     }
                 }
             }
@@ -331,7 +333,7 @@ mor-datepicker{
 
         mor-calendar{
             display: inline-block;
-            width: 280px;
+            width: @calendarMinWidth;
             font-size: @fontSize*0.875;
             box-sizing: border-box;
             margin-left: @quickPickWidth;

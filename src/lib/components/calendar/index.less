@@ -1,3 +1,5 @@
+@calendarMinWidth : 240px;
+
 mor-calendar{
     display: block;
     user-select: none;
@@ -59,8 +61,8 @@ mor-calendar{
             .weekday,
             .title{
                 border-top: 1px @colorComponentItemBorder solid;
-                border-bottom: 1px @colorComponentItemBorder solid;
-                padding: @fontSize*0.25 0;
+                // border-bottom: 1px @colorComponentItemBorder solid;
+                padding: @fontSize 0;
             }
 
             .weekday{
@@ -71,23 +73,23 @@ mor-calendar{
 
                 li{
                     display: inline-block;
-                    font-size: @fontSize*0.8125;
+                    font-size: @fontSize*0.75;
                     margin: 0;
-                    color: darken(@colorComponentItemFont, 8%);
+                    color: @colorNeutral9;
                 }
             }
 
             .title{
                 text-align: center;
-                font-size: @fontSize*0.8125;
+                font-size: @fontSize*0.75;
                 color: @colorComponentItemFont;
             }
         }
     }
 
     .calendar{
-        padding-top: 0.5em;
-        min-width: 280px;
+        // padding-top: 0.5em;
+        min-width: @calendarMinWidth;
     }
 
     .pick-day{
@@ -98,30 +100,34 @@ mor-calendar{
 
     .select-layer{
         display: inline-block;
-        padding: 0.25em;
+        padding: 1px;
         width: 100%;
-        font-size: @fontSize;
+        font-size: 0;//@fontSize;
         box-sizing: border-box;
+        vertical-align: top;
     }
 
     .inner-layer{
         display: inline-block;
-        width: @fontSize*2;
-        height: @fontSize*2;
-        line-height: @fontSize*2;
-        border-radius: 100em;
+        width: @fontSize*1.625;
+        height: @fontSize*1.5;
+        line-height: @fontSize*1.5;
+        border-radius: @borderRadius;
         padding: 0;
         font-size: @fontSize*0.75;
+        vertical-align: top;
+        white-space: nowrap;
     }
 
     .day{
         width: calc(100% / 7);
         text-align: center;
-        color: @colorBlack;
+        color: @colorNeutral11;
+        margin: 1px 0;
 
         &.no-curt-m{
-            color: @colorComponentItemFont;
-            background-color: @colorComponentItemBg;
+            color: @colorNeutral5;
+            // background-color: @colorComponentItemBg;
         }
     }
 
@@ -175,8 +181,8 @@ mor-calendar{
     .pick-month .month{
         width: calc(100% / 3);
         padding: 0;
-        height: @fontSize*3.75;
-        line-height: @fontSize*3.75;
+        height: @fontSize*2.625;
+        line-height: @fontSize*2.625;
         text-align: center;
         color: @colorComponentItemFontHover;
 
@@ -190,8 +196,8 @@ mor-calendar{
     .pick-year .year{
         width: calc(100% / 5);
         padding: 0;
-        height: @fontSize*3;
-        line-height: @fontSize*3;
+        height: @fontSize*2.125;
+        line-height: @fontSize*2.125;
         text-align: center;
         color: @colorComponentItemFontHover;
 
@@ -207,9 +213,9 @@ mor-calendar{
             margin-bottom: 0;
 
             .inner-layer{
-                color: @colorTheme;
-                border: 2px @colorTheme solid;
-                line-height: calc(@fontSize*2 - 4px);
+                color: @colorDarkTheme;
+                border: 1px @colorDarkTheme solid;
+                line-height: calc(@fontSize*1.5 - 2px);
                 box-sizing: border-box;
             }
         }
@@ -221,9 +227,9 @@ mor-calendar{
             margin-bottom: 0;
 
             .inner-layer{
-                color: @colorTheme;
-                border: 2px @colorTheme solid;
-                line-height: calc(@fontSize*2 - 4px);
+                color: @colorDarkTheme;
+                border: 1px @colorDarkTheme solid;
+                line-height: calc(@fontSize*1.5 - 2px);
                 box-sizing: border-box;
             }
         }
@@ -236,7 +242,7 @@ mor-calendar{
             margin-bottom: 0;
 
             .inner-layer{
-                background-color: @colorLightTheme;
+                background-color: @colorTheme;
                 color: @colorWhite;
             }
         }
@@ -257,15 +263,15 @@ mor-calendar{
             text-align: right;
 
             .inner-layer{
-                background-color: @colorLightTheme;
+                background-color: @colorTheme;
                 color: @colorWhite;
             }
 
             .select-layer{
                 text-align: center;
-                padding-right: calc(50% - @fontSize);
+                padding-right: calc(50% - 13px);
                 background-color: lighten(@colorLightTheme, 25%);
-                border-radius: 100em 0 0 100em;
+                border-radius: @borderRadius 0 0 @borderRadius;
                 width: auto;
             }
         }
@@ -274,15 +280,15 @@ mor-calendar{
             text-align: left;
 
             .inner-layer{
-                background-color: @colorLightTheme;
+                background-color: @colorTheme;
                 color: @colorWhite;
             }
 
             .select-layer{
                 text-align: center;
-                padding-left: calc(50% - @fontSize);
+                padding-left: calc(50% - 13px);
                 background-color: lighten(@colorLightTheme, 25%);
-                border-radius: 0 100em 100em 0;
+                border-radius: 0 @borderRadius @borderRadius 0;
                 width: auto;
             }
         }
@@ -302,11 +308,11 @@ mor-calendar{
             position: relative;
 
             &::after{
-                width: 6px;
-                height: 6px;
-                margin-left: -3px;
-                border-radius: 6px;
-                bottom: 4px;
+                width: 4px;
+                height: 4px;
+                margin-left: -2px;
+                border-radius: 4px;
+                bottom: 1px;
                 display: block;
                 position: absolute;
                 content: '';
@@ -442,7 +448,7 @@ mor-calendar{
             text-align: left;
 
             .inner-layer{
-                background-color: @colorLightTheme;
+                background-color: @colorTheme;
                 color: @colorWhite;
             }
 
@@ -465,7 +471,7 @@ mor-calendar{
         &.highlight-hover{
             .month{
                 &:hover{
-                    color: @colorTheme;
+                    color: @colorDarkTheme;
                     font-weight: 700;
                 }
 
@@ -488,7 +494,7 @@ mor-calendar{
         &.highlight-hover{
             .year{
                 &:hover{
-                    color: @colorTheme;
+                    color: @colorDarkTheme;
                     font-weight: 700;
                 }
 
@@ -524,7 +530,7 @@ mor-calendar{
         .calendar {
             .pick-day .day{
                 &:hover{
-                    color: @colorTheme;
+                    color: @colorDarkTheme;
                     font-weight: 700;
                 }
 

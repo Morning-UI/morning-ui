@@ -840,7 +840,7 @@
     >desc
     配合`is-range`一起使用。
     >tpl
-    <div style="width:300px;">
+    <div style="width:420px;">
         <ui-datetimepicker form-name="相对日期" relative is-range v-model="value" ref="demo7"></ui-datetimepicker>
         <ui-link js="console.log(morning.findVM('demo7').getDate());">获取5小时前至现在的时间对象</ui-link>
     </div>

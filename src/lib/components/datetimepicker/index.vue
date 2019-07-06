@@ -68,6 +68,7 @@
                     :selectable-range="timeSelectableRangeAll"
                     :relative="conf.relative"
                     :state="isRelativeDatetime1 ? 'readonly' : 'normal'"
+                    size="s"
     
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
@@ -81,6 +82,7 @@
                     :selectable-range="timeSelectableRangeAll"
                     :relative="conf.relative"
                     :state="isRelativeDatetime2 ? 'readonly' : 'normal'"
+                    size="s"
 
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
