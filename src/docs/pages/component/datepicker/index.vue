@@ -88,6 +88,57 @@
         }
     }
     :::
+
+    :::vue
+    @name:定义底部额外内容
+    ---
+    #demo
+    >desc
+    可以通过名为`footer`的`slot`来定义日期选择器底部的内容。
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker
+            form-name="日期"
+            ref="demo12"
+            :quick-pick="[
+                '今天',
+                '昨天',
+                '2 天前',
+                '3 天前',
+                '1 周前',
+                '1 月前',
+                '1 年前',
+            ]"
+        >
+            <div slot="footer" style="text-align:right;">
+                <ui-btn size="xs" class="plain" color="minor" style="vertical-align:top;" @emit="$refs['demo12'].set(undefined)">清空</ui-btn>
+                <ui-btn size="xs" @emit="$refs['demo12'].togglePicker(false)">确定</ui-btn>
+            </div>
+        </ui-datepicker>
+    </dic>
+    ---
+    #demo
+    >desc
+    配合`is-range`一起使用。
+    >tpl
+    <div style="width:420px;">
+        <ui-datepicker
+            form-name="日期"
+            ref="demo13"
+            is-range
+            :quick-pick="[
+                '本周',
+                '本月',
+                '今年',
+            ]"
+        >
+            <div slot="footer" style="text-align:right;">
+                <ui-btn size="xs" class="plain" color="minor" style="vertical-align:top;" @emit="$refs['demo13'].set(undefined)">清空</ui-btn>
+                <ui-btn size="xs" @emit="$refs['demo13'].togglePicker(false)">确定</ui-btn>
+            </div>
+        </ui-datepicker>
+    </dic>
+    :::
     
     [[[形态]]]
     

@@ -9,6 +9,7 @@
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :item-name="itemName"
@@ -25,67 +26,71 @@
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
+    
+    <div class="form-body">
+        <div class="itemlist">
+            <p class="name" v-if="!!conf.insideName">
+                <morning-center class="fill">{{conf.insideName}}</morning-center>
+            </p>
 
-    <div class="itemlist form-body">
-        <p class="name" v-if="!!conf.insideName">
-            <morning-center class="fill">{{conf.insideName}}</morning-center>
-        </p>
-
-        <div class="itemwrap" :class="{hidename:!conf.insideName}">
-        
-            <div
-                class="multiform-item"
-                v-for="(item, index) of data.value"
-                :class="{'has-img' : (conf.itemFiller(item) && conf.itemFiller(item).thumb)}"
-                :key="index"
-                @click="_fillItem(index)"
-                @mousedown="_moveItemRecord(index)"
-            >
-                <img
-                    class="thumb"
-                    v-if="conf.itemFiller(item) && conf.itemFiller(item).thumb"
-                    :src="conf.itemFiller(item).thumb" />
-
-                <span v-if="conf.itemFiller(item) && conf.itemFiller(item).title">
-                    {{conf.itemName}} : {{conf.itemFiller(item).title}}
-                </span>
-                <span v-else>
-                    {{conf.itemName}}
-                </span>
-
-                <i
-                    class="mo-icon mo-icon-close"
-                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
-                    @click.stop="_deleteItem(index)"
-                ></i>
-            </div>
+            <div class="itemwrap" :class="{hidename:!conf.insideName}">
             
-            <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
-                <template v-if="conf.max">
-                    <a
-                        href="javascript:;"
-                        class="add multiform-item"
-                        v-if="data.value.length < conf.max"
-                        @click="_addItemDialog"
-                        key="set-max"
-                    >
-                        <span>添加{{conf.itemName}}</span> <i class="mo-icon mo-icon-plus-cf"></i>
-                    </a>
-                    <span v-else>最多只能输入{{conf.max}}项</span>
-                </template>
+                <div
+                    class="multiform-item"
+                    v-for="(item, index) of data.value"
+                    :class="{'has-img' : (conf.itemFiller(item) && conf.itemFiller(item).thumb)}"
+                    :key="index"
+                    @click="_fillItem(index)"
+                    @mousedown="_moveItemRecord(index)"
+                >
+                    <img
+                        class="thumb"
+                        v-if="conf.itemFiller(item) && conf.itemFiller(item).thumb"
+                        :src="conf.itemFiller(item).thumb" />
 
-                <template v-else>
-                    <a
-                        href="javascript:;"
-                        class="add multiform-item"
-                        @click="_addItemDialog"
-                        key="unset-max"
-                    >
-                        <span>添加{{conf.itemName}}</span> <i class="mo-icon mo-icon-plus-cf"></i>
-                    </a>
+                    <span v-if="conf.itemFiller(item) && conf.itemFiller(item).title">
+                        {{conf.itemName}} : {{conf.itemFiller(item).title}}
+                    </span>
+                    <span v-else>
+                        {{conf.itemName}}
+                    </span>
+
+                    <i
+                        class="mo-icon mo-icon-close"
+                        v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
+                        @click.stop="_deleteItem(index)"
+                    ></i>
+                </div>
+                
+                <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
+                    <template v-if="conf.max">
+                        <a
+                            href="javascript:;"
+                            class="add multiform-item"
+                            v-if="data.value.length < conf.max"
+                            @click="_addItemDialog"
+                            key="set-max"
+                        >
+                            <span>添加{{conf.itemName}}</span> <i class="mo-icon mo-icon-plus-cf"></i>
+                        </a>
+                        <span v-else>最多只能输入{{conf.max}}项</span>
+                    </template>
+
+                    <template v-else>
+                        <a
+                            href="javascript:;"
+                            class="add multiform-item"
+                            @click="_addItemDialog"
+                            key="unset-max"
+                        >
+                            <span>添加{{conf.itemName}}</span> <i class="mo-icon mo-icon-plus-cf"></i>
+                        </a>
+                    </template>
                 </template>
-            </template>
+            </div>
         </div>
+        
+        <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable && data.value && data.value.length > 0" @click.stop="set(undefined)"></i>
     </div>
 
     <morning-dialog
