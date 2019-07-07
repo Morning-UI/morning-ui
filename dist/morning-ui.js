@@ -45340,6 +45340,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 var _dateFns = __webpack_require__(10);
 
@@ -45922,7 +45929,12 @@ exports.default = {
 
                 var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
                 var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
-                var $input1DateSelect = input1.data.$dateWrap.querySelector('.date-select');
+                var $input1DateSelect = void 0;
+
+                if (input1.data.$dateWrap) {
+
+                    $input1DateSelect = input1.data.$dateWrap.querySelector('.date-select');
+                }
 
                 input0.data.keepInputFocus = false;
                 input1.data.keepInputFocus = false;
@@ -46762,6 +46774,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
 //
 //
 //
@@ -52246,6 +52260,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -52487,6 +52505,7 @@ exports.default = {
                 this.$refs['ui-private-datepicker-popover-' + this.uiid].show();
             } else if (show === false && this.data.state !== 'disabled') {
 
+                this._blur();
                 this.$refs['ui-private-datepicker-popover-' + this.uiid].hide();
             } else if (this.data.inputFocus && this.data.state !== 'disabled') {
 
@@ -52498,6 +52517,7 @@ exports.default = {
 
                 setTimeout(function () {
 
+                    _this._blur();
                     _this.$refs['ui-private-datepicker-popover-' + _this.uiid].hide();
                 });
             }
@@ -67617,6 +67637,19 @@ var render = function() {
                               )
                             ]
                           )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$slots.footer
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "footer-range-select-start",
+                              attrs: { slot: "footer" },
+                              slot: "footer"
+                            },
+                            [_vm._t("footer")],
+                            2
+                          )
                         : _vm._e()
                     ],
                     2
@@ -67665,7 +67698,13 @@ var render = function() {
                         "date-change": _vm._input1DateChange
                       }
                     },
-                    [_vm._t("timepicker2", null, { slot: "timepicker" })],
+                    [
+                      _vm._t("timepicker2", null, { slot: "timepicker" }),
+                      _vm._v(" "),
+                      _vm.$slots.footer
+                        ? _vm._t("footer", null, { slot: "footer" })
+                        : _vm._e()
+                    ],
                     2
                   )
                 ]
@@ -68083,6 +68122,10 @@ var render = function() {
                               )
                             ]
                           )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$slots.footer
+                        ? _vm._t("footer", null, { slot: "footer" })
                         : _vm._e()
                     ],
                     2
@@ -68266,8 +68309,13 @@ var render = function() {
                     ],
                     1
                   )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.$slots.footer
+                ? _vm._t("footer", null, { slot: "footer" })
                 : _vm._e()
-            ]
+            ],
+            2
           )
         ],
         1
@@ -71400,6 +71448,13 @@ var render = function() {
                 }
               })
             ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "date-select-footer" },
+            [_vm._t("footer")],
             2
           )
         ]
@@ -79852,7 +79907,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.47',
+    version: '0.12.48',
     map: {}
 };
 
