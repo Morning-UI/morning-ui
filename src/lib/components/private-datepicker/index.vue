@@ -58,7 +58,7 @@
     >
 
         <div class="date-select">
-
+            
             <div class="timepicker" v-if="conf.showTimepickerBox">
                 <slot name="timepicker"></slot>
             </div>
@@ -80,6 +80,10 @@
                 @date-enter="_dateEnter"
             ></morning-calendar>
 
+        </div>
+
+        <div class="date-select-footer">
+            <slot name="footer"></slot>
         </div>
 
     </morning-popover>
@@ -337,6 +341,7 @@ export default {
 
             } else if (show === false && (this.data.state !== 'disabled')) {
 
+                this._blur();
                 this.$refs[`ui-private-datepicker-popover-${this.uiid}`].hide();
 
             } else if (this.data.inputFocus && (this.data.state !== 'disabled')) {
@@ -350,6 +355,7 @@ export default {
 
                 setTimeout(() => {
 
+                    this._blur();
                     this.$refs[`ui-private-datepicker-popover-${this.uiid}`].hide();
 
                 });

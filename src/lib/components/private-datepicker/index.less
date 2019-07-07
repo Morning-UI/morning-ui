@@ -47,6 +47,20 @@ mor-private-datepicker{
         }
     }
 
+    .date-select-footer{
+        padding: @fontSize*0.5;
+        border-top: 1px @colorNeutral2 solid;
+
+        &:empty{
+            display: none;
+        }
+
+        .footer-range-select-start{
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
     &.si-m {
         top: @formHeight + 3;
     }

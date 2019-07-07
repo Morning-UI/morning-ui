@@ -789,6 +789,22 @@ mor-menu{
             }
         }
 
+        &.expand{
+            .pos-side{
+                .root-menu,
+                .sub-menu{
+                    > li{
+                        &.last-current{
+                            > a{
+                                background-color: lighten(@colorTheme, 5%);
+                                border-right: 4px darken(@colorTheme, 10%) solid;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         &.collapse{
             .pos-side{
                 .root-menu{
@@ -840,6 +856,22 @@ mor-menu{
                         > a{
                             &:hover{
                                 border-bottom-color: @colorNeutral2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.expand{
+            .pos-side{
+                .root-menu,
+                .sub-menu{
+                    > li{
+                        &.last-current{
+                            > a{
+                                background-color: lighten(@colorTheme, 2%);
+                                border-right: 4px @colorTheme solid;
                             }
                         }
                     }
@@ -899,13 +931,6 @@ mor-menu{
                     &.current{
                         > a{
                             border-right: none;
-                        }
-                    }
-
-                    &.last-current{
-                        > a{
-                            background-color: lighten(@colorTheme, 37%);
-                            border-right: 4px @colorTheme solid;
                         }
                     }
                 }

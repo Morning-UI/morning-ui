@@ -87,6 +87,8 @@
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
             </div>
+            
+            <slot name="footer" slot="footer" v-if="$slots.footer"></slot>
         </morning-datepicker>
     </div>
 
