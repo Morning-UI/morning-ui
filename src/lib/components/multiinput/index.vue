@@ -9,6 +9,7 @@
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :can-move="canMove"
@@ -19,96 +20,101 @@
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
     <div
-        class="itemlist form-body"
+        class="form-body"
         :class="{
             focus : data.focus
         }"
-
-        @keydown.enter="_enterInput"
-        @keydown.backspace="_backspace()"
-        @click="_focusInput"
     >
 
         <div
-            class="multiinput-item"
-            v-for="(value, index) in data.value"
-            :key="index"
-            @mousedown="_moveItemRecord(index)"
+            class="multiinput-itemlist"
+
+            @keydown.enter="_enterInput"
+            @keydown.backspace="_backspace()"
+            @click="_focusInput"
         >
-            <span :title="value">{{value}}</span>
-            <i
-                class="mo-icon mo-icon-close"
-                v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
-                @click="_deleteItem(index)"
-            ></i>
-        </div>
+            <div
+                class="multiinput-item"
+                v-for="(value, index) in data.value"
+                :key="index"
+                @mousedown="_moveItemRecord(index)"
+            >
+                <span :title="value">{{value}}</span>
+                <i
+                    class="mo-icon mo-icon-close"
+                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
+                    @click="_deleteItem(index)"
+                ></i>
+            </div>
 
-        <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
-            <template v-if="conf.max">
-                <template v-if="data.value.length < conf.max">
-                    <input
-                        type="text"
-                        v-if="!!conf.insideName"
-                        @focus="_focusInput"
-                        @blur="_blurInput"
-                        :style="{width: data.inputWidth}"
-                        :placeholder="conf.insideName"
-                        key="set-max-show-name"
-                        :ref="'ui-multiinput-input'+uiid"
+            <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
+                <template v-if="conf.max">
+                    <template v-if="data.value.length < conf.max">
+                        <input
+                            type="text"
+                            v-if="!!conf.insideName"
+                            @focus="_focusInput"
+                            @blur="_blurInput"
+                            :style="{width: data.inputWidth}"
+                            :placeholder="conf.insideName"
+                            key="set-max-show-name"
+                            :ref="'ui-multiinput-input'+uiid"
 
-                        :value="data.inputValue"
-                        @input="$emit('input', $event.target.value)"
-                    />
+                            :value="data.inputValue"
+                            @input="$emit('input', $event.target.value)"
+                        />
 
-                    <input
-                        type="text"
-                        v-else
-                        @focus="_focusInput"
-                        @blur="_blurInput"
-                        :style="{width: data.inputWidth}"
-                        key="set-max-hide-name"
-                        :ref="'ui-multiinput-input'+uiid"
+                        <input
+                            type="text"
+                            v-else
+                            @focus="_focusInput"
+                            @blur="_blurInput"
+                            :style="{width: data.inputWidth}"
+                            key="set-max-hide-name"
+                            :ref="'ui-multiinput-input'+uiid"
 
-                        :value="data.inputValue"
-                        @input="$emit('input', $event.target.value)"
-                    />
+                            :value="data.inputValue"
+                            @input="$emit('input', $event.target.value)"
+                        />
+                    </template>
+                    <template v-else>
+                        <span>最多只能输入{{conf.max}}项</span>
+                    </template>
                 </template>
                 <template v-else>
-                    <span>最多只能输入{{conf.max}}项</span>
+                        <input
+                            type="text"
+                            v-if="!!conf.insideName"
+                            @focus="_focusInput"
+                            @blur="_blurInput"
+                            :style="{width: data.inputWidth}"
+                            :placeholder="conf.insideName"
+                            key="unset-max-show-name"
+                            :ref="'ui-multiinput-input'+uiid"
+
+                            :value="data.inputValue"
+                            @input="$emit('input', $event.target.value)"
+                        />
+
+                        <input
+                            type="text"
+                            v-else
+                            @focus="_focusInput"
+                            @blur="_blurInput"
+                            :style="{width: data.inputWidth}"
+                            key="unset-max-hide-name"
+                            :ref="'ui-multiinput-input'+uiid"
+
+                            :value="data.inputValue"
+                            @input="$emit('input', $event.target.value)"
+                        />
                 </template>
             </template>
-            <template v-else>
-                    <input
-                        type="text"
-                        v-if="!!conf.insideName"
-                        @focus="_focusInput"
-                        @blur="_blurInput"
-                        :style="{width: data.inputWidth}"
-                        :placeholder="conf.insideName"
-                        key="unset-max-show-name"
-                        :ref="'ui-multiinput-input'+uiid"
 
-                        :value="data.inputValue"
-                        @input="$emit('input', $event.target.value)"
-                    />
+            <input class="disabled-placeholder" />
+        </div>
 
-                    <input
-                        type="text"
-                        v-else
-                        @focus="_focusInput"
-                        @blur="_blurInput"
-                        :style="{width: data.inputWidth}"
-                        key="unset-max-hide-name"
-                        :ref="'ui-multiinput-input'+uiid"
-
-                        :value="data.inputValue"
-                        @input="$emit('input', $event.target.value)"
-                    />
-            </template>
-        </template>
-
-        <input class="disabled-placeholder" />
-        
+        <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable && data.value && data.value.length > 0" @click.stop="set(undefined)"></i>
     </div>
 
     <div class="error-message">{{conf._errorMessage}}</div>
@@ -420,7 +426,7 @@ export default {
         this.$watch('conf.canMove', newVal => {
 
             this.Move.target = '.multiinput-item';
-            this.Move.container = '.itemlist';
+            this.Move.container = '.multiinput-itemlist';
             this.Move.can = !!newVal;
 
         }, {

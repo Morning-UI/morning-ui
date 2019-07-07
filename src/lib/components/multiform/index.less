@@ -11,13 +11,12 @@ mor-multiform{
 
     .setup-form();
 
-    > .itemlist{
-        border: 1px @colorFormBorder solid;
-        border-radius: @borderRadius;
+    .form-body > .itemlist{
         position: relative;
         overflow: hidden;
         font-size: 0;
         box-sizing: border-box;
+        width: calc(100% - @fontSize*2.5);
 
         > .name{
             height: 100%;
@@ -148,21 +147,48 @@ mor-multiform{
         }
     }
 
+    .form-body{
+        position: relative;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+
+        .cleanicon{
+            position: absolute;
+            display: none;
+            font-size: @fontSize*0.875;
+            color: @colorFormPlaceholder;
+            right: 0;
+            top: 0;
+            width: 24px;
+            height: @fontSize*2.5;
+            line-height: @fontSize*2.5;
+
+            &:hover{
+                color: @colorFormPlaceholderHover;
+                cursor: pointer;
+            }
+        }
+
+        &:hover .cleanicon{
+            display: block;
+        }
+    }
+
     &.focus,
     &:hover{
-        > .itemlist{
+        .form-body{
             border-color: @colorFormBorderHover;
         }
     }
 
     &.can-move{
-        > .itemlist > .itemwrap > .multiform-item:not(.add){
+        .form-body > .itemlist > .itemwrap > .multiform-item:not(.add){
             cursor: move;
         }
     }
 
     &.si-m{
-        > .itemlist{
+        .form-body > .itemlist{
             padding: @fontSize*0.1875 @fontSize*0.3125;
             min-height: @formHeight;
 
@@ -220,7 +246,7 @@ mor-multiform{
     }
 
     &.si-s{
-        > .itemlist{
+        .form-body > .itemlist{
             padding: @fontSize*0.125 @fontSize*0.25;
             min-height: @formHeightS;
 
@@ -278,7 +304,7 @@ mor-multiform{
     }
 
     &.si-xs{
-        > .itemlist{
+        .form-body > .itemlist{
             padding: @fontSize*0.0625 @fontSize*0.25;
             min-height: @formHeightXs;
 
@@ -339,7 +365,7 @@ mor-multiform{
 
     &.st-disabled,
     &.st-readonly{
-        > .itemlist{
+        .form-body > .itemlist{
             -webkit-user-select: none;
             cursor: not-allowed !important;
             background-color: @colorFormBackgroundDisable;

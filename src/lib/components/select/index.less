@@ -157,12 +157,16 @@
 
         > mor-multiinput{
             margin: 0;
-            width: calc(100% - 3.5em);
+            width: calc(100% - @fontSize*2.5);
             background-color: #FFF;
             vertical-align: top;
             left: 0.35em;
 
-            .itemlist{
+            .multiinput-itemlist{
+                width: 100%;
+            }
+
+            .form-body{
                 border: none;
 
                 &.focus{
@@ -172,12 +176,16 @@
                 > input{
                     cursor: pointer;
                 }
+
+                .cleanicon{
+                    display: none !important;
+                }
             }
         }
 
         > .selected{
             color: @colorFormPlaceholder;
-            width: calc(100% - 3.5em);
+            width: calc(100% - @fontSize*2.5);
             padding: if(@is-separate, 0 2em 0 1em, 0 1em);
             position: relative;
             pointer-events: none;
@@ -206,14 +214,16 @@
             transform: rotateX(0deg);
             transition: transform 0.2s;
             z-index: 2;
+            top: 0;
+            right: 0;
             color: @colorFormPlaceholder;
 
             &.cleanicon{
                 display: none;
-                right: if(@is-separate, 0, 1.5em);
                 font-size: @fontSize*0.875;
-                top: 0;
                 color: @colorFormPlaceholder;
+                background: @colorWhite;
+                z-index: 3;
 
                 &:hover{
                     color: @colorFormPlaceholderHover;
@@ -222,8 +232,6 @@
             }
 
             &.drop{
-                top: 0;
-                right: 0;
                 font-size: 30px;
                 text-indent: 1px;
             }

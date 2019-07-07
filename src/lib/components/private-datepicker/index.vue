@@ -34,7 +34,6 @@
         :state="conf.state"
         :size="conf.size"
         prepend="<i class='mo-icon mo-icon-date'></i>"
-        :inside-clearable="false"
 
         @focus="_inputFocus"
         @blur="_inputBlur"
@@ -371,6 +370,12 @@ export default {
         },
         _inputBlur : function () {
 
+            this._syncInputValue();
+            this.$emit('input-blur');
+
+        },
+        _syncInputValue : function () {
+
             if (this.data.inputValue === undefined ||
                 this.data.inputValue === '') {
 
@@ -409,8 +414,6 @@ export default {
                 }
 
             }
-
-            this.$emit('input-blur');
 
         },
         _blur : function (evt) {
@@ -817,6 +820,7 @@ export default {
         this.$watch('data.inputFocus', this._toggleSelector, {
             immediate : true
         });
+        this.$watch('data.inputValue', this._syncInputValue);
 
     },
     beforeDestory : function () {
