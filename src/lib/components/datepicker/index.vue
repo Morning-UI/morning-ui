@@ -174,6 +174,10 @@
                             </template>
                         </ul>
                     </div>
+                    
+                    <div slot="footer" class="footer-range-select-start" v-if="$slots.footer">
+                        <slot name="footer"></slot>
+                    </div>
                 </morning-private-datepicker>
 
                 <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
@@ -208,6 +212,7 @@
                     @date-change = "_input1DateChange"
                 >
                     <slot name="timepicker2" slot="timepicker"></slot>
+                    <slot name="footer" slot="footer" v-if="$slots.footer"></slot>
                 </morning-private-datepicker>
             </template>
 
@@ -342,6 +347,8 @@
                             </template>
                         </ul>
                     </div>
+
+                    <slot name="footer" slot="footer" v-if="$slots.footer"></slot>
 
                 </morning-private-datepicker>
             </template>
@@ -973,7 +980,13 @@ export default {
 
                 let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
                 let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-                let $input1DateSelect = input1.data.$dateWrap.querySelector('.date-select');
+                let $input1DateSelect;
+
+                if (input1.data.$dateWrap) {
+
+                    $input1DateSelect = input1.data.$dateWrap.querySelector('.date-select');
+
+                }
                 
                 input0.data.keepInputFocus = false;
                 input1.data.keepInputFocus = false;

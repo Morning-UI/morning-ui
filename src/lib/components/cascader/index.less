@@ -51,6 +51,7 @@ mor-cascader{
                 padding: 0 1em;
                 position: relative;
                 z-index: 1;
+                height: 100%;
 
                 &.has-selected{
                     color: @colorFormText;
@@ -68,12 +69,39 @@ mor-cascader{
 
             > .mo-icon{
                 position: absolute;
-                right: 0;
-                top: 0;
+                width: 24px;
                 transform: rotateX(0deg);
                 transition: transform 0.2s;
-                text-indent: 1px;
                 z-index: 2;
+                top: 0;
+                right: 0;
+                color: @colorFormPlaceholder;
+                height: 100%;
+
+                &.cleanicon{
+                    display: none;
+                    font-size: @fontSize*0.875;
+                    color: @colorFormPlaceholder;
+                    background: @colorWhite;
+                    z-index: 3;
+
+                    &:hover{
+                        color: @colorFormPlaceholderHover;
+                        cursor: pointer;
+                    }
+                }
+
+                &.drop{
+                    font-size: 30px;
+                    text-indent: 1px;
+                }
+            }
+
+            &:hover,
+            &.hover{
+                > .mo-icon.cleanicon{
+                    display: block;
+                }
             }
         }
     }
@@ -104,13 +132,8 @@ mor-cascader{
                 }
 
                 > .note{
-                    width: calc(100% - 2em);
+                    width: calc(100% - @fontSize*2.5);
                     font-size: @formInputFontSize;
-                }
-
-                > .mo-icon{
-                    width: @fontSize*1.5;
-                    font-size: @fontSize*1.875;
                 }
             }
         }
@@ -132,13 +155,8 @@ mor-cascader{
                 }
 
                 > .note{
-                    width: calc(100% - 2em);
+                    width: calc(100% - @fontSize*2.5);
                     font-size: @formInputFontSizeS;
-                }
-
-                > .mo-icon{
-                    width: @fontSize*1.5;
-                    font-size: @fontSize*1.875;
                 }
             }
         }
@@ -160,13 +178,8 @@ mor-cascader{
                 }
 
                 > .note{
-                    width: calc(100% - 2em);
+                    width: calc(100% - @fontSize*2.5);
                     font-size: @formInputFontSizeXs;
-                }
-
-                > .mo-icon{
-                    width: @fontSize*1.5;
-                    font-size: @fontSize*1.875;
                 }
             }
         }

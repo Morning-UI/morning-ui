@@ -33919,6 +33919,11 @@ mor-menu.co-bk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
   background-color: #4C4C4C;
 }
+mor-menu.co-bk.expand .pos-side .root-menu > li.last-current > a,
+mor-menu.co-bk.expand .pos-side .sub-menu > li.last-current > a {
+  background-color: #f45571;
+  border-right: 4px #ee0f36 solid;
+}
 mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
   background: #0d0d0d;
 }
@@ -33968,6 +33973,11 @@ mor-menu.co-wh .pos-top .root-menu > li.is-disable > a:hover,
 mor-menu.co-wh .pos-side .root-menu > li.is-disable > a:hover {
   border-bottom-color: #E5E5E5;
 }
+mor-menu.co-wh.expand .pos-side .root-menu > li.last-current > a,
+mor-menu.co-wh.expand .pos-side .sub-menu > li.last-current > a {
+  background-color: #f44765;
+  border-right: 4px #F33D5D solid;
+}
 mor-menu.co-wh.collapse .pos-side .root-menu > li > a:hover {
   background: #E5E5E5;
 }
@@ -33989,11 +33999,6 @@ mor-menu.expand .pos-side .sub-menu > li > a.has-child-menu:hover {
 mor-menu.expand .pos-side .root-menu > li.current > a,
 mor-menu.expand .pos-side .sub-menu > li.current > a {
   border-right: none;
-}
-mor-menu.expand .pos-side .root-menu > li.last-current > a,
-mor-menu.expand .pos-side .sub-menu > li.last-current > a {
-  background-color: #feeff1;
-  border-right: 4px #F33D5D solid;
 }
 mor-menu.expand .pos-side .sub-menu-wrap {
   display: block;
@@ -34133,6 +34138,11 @@ mor-menu .pos-side .sub-menu > li.is-disable > a:hover {
 mor-menu .pos-top .root-menu > li.is-disable > a:hover,
 mor-menu .pos-side .root-menu > li.is-disable > a:hover {
   border-bottom-color: #E5E5E5;
+}
+mor-menu.expand .pos-side .root-menu > li.last-current > a,
+mor-menu.expand .pos-side .sub-menu > li.last-current > a {
+  background-color: #f44765;
+  border-right: 4px #F33D5D solid;
 }
 mor-menu.collapse .pos-side .root-menu > li > a:hover {
   background: #E5E5E5;
@@ -35731,6 +35741,7 @@ mor-calendar .pick-day {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding-bottom: 8px;
 }
 mor-calendar .select-layer {
   display: inline-block;
@@ -40993,23 +41004,29 @@ mor-select .wrap > mor-textinput input {
 }
 mor-select .wrap > mor-multiinput {
   margin: 0;
-  width: calc(100% - 3.5em);
+  width: calc(100% - 16px*2.5);
   background-color: #FFF;
   vertical-align: top;
   left: 0.35em;
 }
-mor-select .wrap > mor-multiinput .itemlist {
+mor-select .wrap > mor-multiinput .multiinput-itemlist {
+  width: 100%;
+}
+mor-select .wrap > mor-multiinput .form-body {
   border: none;
 }
-mor-select .wrap > mor-multiinput .itemlist.focus {
+mor-select .wrap > mor-multiinput .form-body.focus {
   box-shadow: none !important;
 }
-mor-select .wrap > mor-multiinput .itemlist > input {
+mor-select .wrap > mor-multiinput .form-body > input {
   cursor: pointer;
+}
+mor-select .wrap > mor-multiinput .form-body .cleanicon {
+  display: none !important;
 }
 mor-select .wrap > .selected {
   color: #b2b2b2;
-  width: calc(100% - 3.5em);
+  width: calc(100% - 16px*2.5);
   padding: 0 1em;
   position: relative;
   pointer-events: none;
@@ -41035,22 +41052,22 @@ mor-select .wrap > .mo-icon {
   transform: rotateX(0deg);
   transition: transform 0.2s;
   z-index: 2;
+  top: 0;
+  right: 0;
   color: #b2b2b2;
 }
 mor-select .wrap > .mo-icon.cleanicon {
   display: none;
-  right: 1.5em;
   font-size: 14px;
-  top: 0;
   color: #b2b2b2;
+  background: #FFFFFF;
+  z-index: 3;
 }
 mor-select .wrap > .mo-icon.cleanicon:hover {
   color: #999999;
   cursor: pointer;
 }
 mor-select .wrap > .mo-icon.drop {
-  top: 0;
-  right: 0;
   font-size: 30px;
   text-indent: 1px;
 }
@@ -41324,23 +41341,29 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap .wrap > mor-multiinput {
   margin: 0;
-  width: calc(100% - 3.5em);
+  width: calc(100% - 16px*2.5);
   background-color: #FFF;
   vertical-align: top;
   left: 0.35em;
 }
-.mor-select-wrap .wrap > mor-multiinput .itemlist {
+.mor-select-wrap .wrap > mor-multiinput .multiinput-itemlist {
+  width: 100%;
+}
+.mor-select-wrap .wrap > mor-multiinput .form-body {
   border: none;
 }
-.mor-select-wrap .wrap > mor-multiinput .itemlist.focus {
+.mor-select-wrap .wrap > mor-multiinput .form-body.focus {
   box-shadow: none !important;
 }
-.mor-select-wrap .wrap > mor-multiinput .itemlist > input {
+.mor-select-wrap .wrap > mor-multiinput .form-body > input {
   cursor: pointer;
+}
+.mor-select-wrap .wrap > mor-multiinput .form-body .cleanicon {
+  display: none !important;
 }
 .mor-select-wrap .wrap > .selected {
   color: #b2b2b2;
-  width: calc(100% - 3.5em);
+  width: calc(100% - 16px*2.5);
   padding: 0 2em 0 1em;
   position: relative;
   pointer-events: none;
@@ -41366,22 +41389,22 @@ mor-select.input-group .select-area {
   transform: rotateX(0deg);
   transition: transform 0.2s;
   z-index: 2;
+  top: 0;
+  right: 0;
   color: #b2b2b2;
 }
 .mor-select-wrap .wrap > .mo-icon.cleanicon {
   display: none;
-  right: 0;
   font-size: 14px;
-  top: 0;
   color: #b2b2b2;
+  background: #FFFFFF;
+  z-index: 3;
 }
 .mor-select-wrap .wrap > .mo-icon.cleanicon:hover {
   color: #999999;
   cursor: pointer;
 }
 .mor-select-wrap .wrap > .mo-icon.drop {
-  top: 0;
-  right: 0;
   font-size: 30px;
   text-indent: 1px;
 }
@@ -44632,6 +44655,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
   padding: 0 1em;
   position: relative;
   z-index: 1;
+  height: 100%;
 }
 mor-cascader .cascader-wrap .cascader-input > .note.has-selected {
   color: #000000;
@@ -44647,12 +44671,33 @@ mor-cascader .cascader-wrap .cascader-input.focus {
 }
 mor-cascader .cascader-wrap .cascader-input > .mo-icon {
   position: absolute;
-  right: 0;
-  top: 0;
+  width: 24px;
   transform: rotateX(0deg);
   transition: transform 0.2s;
-  text-indent: 1px;
   z-index: 2;
+  top: 0;
+  right: 0;
+  color: #b2b2b2;
+  height: 100%;
+}
+mor-cascader .cascader-wrap .cascader-input > .mo-icon.cleanicon {
+  display: none;
+  font-size: 14px;
+  color: #b2b2b2;
+  background: #FFFFFF;
+  z-index: 3;
+}
+mor-cascader .cascader-wrap .cascader-input > .mo-icon.cleanicon:hover {
+  color: #999999;
+  cursor: pointer;
+}
+mor-cascader .cascader-wrap .cascader-input > .mo-icon.drop {
+  font-size: 30px;
+  text-indent: 1px;
+}
+mor-cascader .cascader-wrap .cascader-input:hover > .mo-icon.cleanicon,
+mor-cascader .cascader-wrap .cascader-input.hover > .mo-icon.cleanicon {
+  display: block;
 }
 mor-cascader.popover-show .cascader-wrap .cascader-input > .mo-icon {
   transform: rotateX(180deg);
@@ -44669,12 +44714,8 @@ mor-cascader.si-m .cascader-wrap .cascader-input .textinput-wrap input {
   height: 40px;
 }
 mor-cascader.si-m .cascader-wrap .cascader-input > .note {
-  width: calc(100% - 2em);
+  width: calc(100% - 16px*2.5);
   font-size: 14px;
-}
-mor-cascader.si-m .cascader-wrap .cascader-input > .mo-icon {
-  width: 24px;
-  font-size: 30px;
 }
 mor-cascader.si-s .cascader-wrap .cascader-input {
   height: 32px;
@@ -44688,12 +44729,8 @@ mor-cascader.si-s .cascader-wrap .cascader-input .textinput-wrap input {
   height: 30px;
 }
 mor-cascader.si-s .cascader-wrap .cascader-input > .note {
-  width: calc(100% - 2em);
+  width: calc(100% - 16px*2.5);
   font-size: 13px;
-}
-mor-cascader.si-s .cascader-wrap .cascader-input > .mo-icon {
-  width: 24px;
-  font-size: 30px;
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input {
   height: 28px;
@@ -44707,12 +44744,8 @@ mor-cascader.si-xs .cascader-wrap .cascader-input .textinput-wrap input {
   height: 26px;
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input > .note {
-  width: calc(100% - 2em);
+  width: calc(100% - 16px*2.5);
   font-size: 12px;
-}
-mor-cascader.si-xs .cascader-wrap .cascader-input > .mo-icon {
-  width: 24px;
-  font-size: 30px;
 }
 mor-cascader.st-disabled .cascader-wrap .cascader-input,
 mor-cascader.st-readonly .cascader-wrap .cascader-input {
@@ -44738,12 +44771,8 @@ mor-cascader .cascader-wrap .cascader-input .textinput-wrap input {
   height: 40px;
 }
 mor-cascader .cascader-wrap .cascader-input > .note {
-  width: calc(100% - 2em);
+  width: calc(100% - 16px*2.5);
   font-size: 14px;
-}
-mor-cascader .cascader-wrap .cascader-input > .mo-icon {
-  width: 24px;
-  font-size: 30px;
 }
 .mor-cascader-popover .popover-con .popover-body {
   padding: 0;
@@ -44871,16 +44900,15 @@ mor-multiinput > .error-message {
 mor-multiinput > .error-message:empty {
   display: none;
 }
-mor-multiinput:hover > .itemlist {
+mor-multiinput:hover .form-body {
   border-color: #d6d6d6;
 }
-mor-multiinput > .itemlist {
-  border: 1px #E5E5E5 solid;
-  border-radius: 3px;
+mor-multiinput .form-body > .multiinput-itemlist {
   position: relative;
   font-size: 0;
+  width: calc(100% - 16px*2.5);
 }
-mor-multiinput > .itemlist > .multiinput-item {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item {
   color: #9e9e9e !important;
   background-color: #f8f8f8;
   display: inline-block;
@@ -44892,7 +44920,7 @@ mor-multiinput > .itemlist > .multiinput-item {
   cursor: default;
   box-sizing: border-box;
 }
-mor-multiinput > .itemlist > .multiinput-item > span {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > span {
   max-width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -44902,12 +44930,12 @@ mor-multiinput > .itemlist > .multiinput-item > span {
   line-height: 1.15;
   vertical-align: top;
 }
-mor-multiinput > .itemlist > .multiinput-item:hover {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item:hover {
   text-decoration: none;
   color: #7a7a7a !important;
   background: #f3f3f3;
 }
-mor-multiinput > .itemlist > .multiinput-item > i.mo-icon {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > i.mo-icon {
   font-size: 12px;
   position: absolute;
   right: 0.5em;
@@ -44915,24 +44943,24 @@ mor-multiinput > .itemlist > .multiinput-item > i.mo-icon {
   transform: translateY(-50%);
   cursor: pointer;
 }
-mor-multiinput > .itemlist > .multiinput-item > i.mo-icon:hover {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > i.mo-icon:hover {
   color: #D64431 !important;
 }
-mor-multiinput > .itemlist > .multiinput-item.move-moving {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.move-moving {
   opacity: 0.5;
 }
-mor-multiinput > .itemlist > .multiinput-item.move-drag-item {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.move-drag-item {
   opacity: 1;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
   max-width: none;
   z-index: 2;
 }
-mor-multiinput > .itemlist > .multiinput-item.move-drag-item:hover {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.move-drag-item:hover {
   cursor: move;
   color: #9e9e9e !important;
   background-color: #f8f8f8;
 }
-mor-multiinput > .itemlist > input {
+mor-multiinput .form-body > .multiinput-itemlist > input {
   border: none;
   outline: none;
   color: #000000 !important;
@@ -44942,131 +44970,154 @@ mor-multiinput > .itemlist > input {
   background: rgba(0, 0, 0, 0);
   box-sizing: border-box;
 }
-mor-multiinput > .itemlist > input::placeholder {
+mor-multiinput .form-body > .multiinput-itemlist > input::placeholder {
   color: #b2b2b2;
 }
-mor-multiinput > .itemlist > input:hover::placeholder {
+mor-multiinput .form-body > .multiinput-itemlist > input:hover::placeholder {
   color: #999999;
 }
-mor-multiinput > .itemlist > input:focus {
+mor-multiinput .form-body > .multiinput-itemlist > input:focus {
   color: #000000 !important;
 }
-mor-multiinput > .itemlist > span {
+mor-multiinput .form-body > .multiinput-itemlist > span {
   color: #bfbfbf !important;
   width: 100%;
   text-align: center;
   display: block;
 }
-mor-multiinput > .itemlist .disabled-placeholder {
+mor-multiinput .form-body > .multiinput-itemlist .disabled-placeholder {
   display: none;
 }
-mor-multiinput > .itemlist.focus {
+mor-multiinput .form-body {
+  position: relative;
+  border: 1px #E5E5E5 solid;
+  border-radius: 3px;
+}
+mor-multiinput .form-body.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
   border-color: #F33D5D;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
-mor-multiinput.can-move > .itemlist > .multiinput-item {
+mor-multiinput .form-body .cleanicon {
+  position: absolute;
+  display: none;
+  font-size: 14px;
+  color: #b2b2b2;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 40px;
+  line-height: 40px;
+}
+mor-multiinput .form-body .cleanicon:hover {
+  color: #999999;
+  cursor: pointer;
+}
+mor-multiinput .form-body:hover .cleanicon {
+  display: block;
+}
+mor-multiinput.can-move .form-body > .multiinput-itemlist > .multiinput-item {
   cursor: move;
 }
-mor-multiinput.si-m > .itemlist {
+mor-multiinput.si-m .form-body > .multiinput-itemlist {
   padding: 3px 5px;
 }
-mor-multiinput.si-m > .itemlist > .multiinput-item {
+mor-multiinput.si-m .form-body > .multiinput-itemlist > .multiinput-item {
   margin: 3px 1.6px;
   padding: 5px 9px;
   font-size: 13px;
   height: calc(42px - 16px*0.375 - 16px*0.375 - 2px);
 }
-mor-multiinput.si-m > .itemlist > .multiinput-item > span {
+mor-multiinput.si-m .form-body > .multiinput-itemlist > .multiinput-item > span {
   padding-right: 1em;
   line-height: calc(42px - 16px*0.375 - 16px*0.375 - 16px*0.625 - 2px);
 }
-mor-multiinput.si-m > .itemlist > input {
+mor-multiinput.si-m .form-body > .multiinput-itemlist > input {
   margin: 3px 1.6px;
   padding: 3px;
   font-size: 14px;
   line-height: calc(42px - 16px*0.375 - 16px*0.375 - 2px);
   height: calc(42px - 16px*0.375 - 16px*0.375 - 2px);
 }
-mor-multiinput.si-m > .itemlist > span {
+mor-multiinput.si-m .form-body > .multiinput-itemlist > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
-mor-multiinput.si-s > .itemlist {
+mor-multiinput.si-s .form-body > .multiinput-itemlist {
   padding: 2px 4px;
 }
-mor-multiinput.si-s > .itemlist > .multiinput-item {
+mor-multiinput.si-s .form-body > .multiinput-itemlist > .multiinput-item {
   margin: 1px 1.6px;
   padding: 3px 6px;
   font-size: 13px;
   height: calc(32px - 16px*0.25 - 2px);
 }
-mor-multiinput.si-s > .itemlist > .multiinput-item > span {
+mor-multiinput.si-s .form-body > .multiinput-itemlist > .multiinput-item > span {
   padding-right: 1.5em;
   line-height: calc(32px - 16px*0.125 - 16px*0.25 - 16px*0.375 - 2px);
 }
-mor-multiinput.si-s > .itemlist > input {
+mor-multiinput.si-s .form-body > .multiinput-itemlist > input {
   margin: 1px 1.6px;
   padding: 3px;
   font-size: 14px;
   line-height: calc(32px - 16px*0.125 - 16px*0.25 - 2px);
   height: calc(32px - 16px*0.125 - 16px*0.25 - 2px);
 }
-mor-multiinput.si-s > .itemlist > span {
+mor-multiinput.si-s .form-body > .multiinput-itemlist > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
-mor-multiinput.si-xs > .itemlist {
+mor-multiinput.si-xs .form-body > .multiinput-itemlist {
   padding: 2px 2px;
 }
-mor-multiinput.si-xs > .itemlist > .multiinput-item {
+mor-multiinput.si-xs .form-body > .multiinput-itemlist > .multiinput-item {
   margin: 1px 1.6px;
   padding: 2px 6px;
   font-size: 13px;
   height: calc(28px - 16px*0.25 - 2px);
 }
-mor-multiinput.si-xs > .itemlist > .multiinput-item > span {
+mor-multiinput.si-xs .form-body > .multiinput-itemlist > .multiinput-item > span {
   padding-right: 1.5em;
   vertical-align: top;
   line-height: calc(28px - 16px*0.125 - 16px*0.25 - 16px*0.25 - 2px);
 }
-mor-multiinput.si-xs > .itemlist > input {
+mor-multiinput.si-xs .form-body > .multiinput-itemlist > input {
   margin: 1px 1.6px;
   padding: 2px;
   font-size: 14px;
   line-height: calc(28px - 16px*0.125 - 16px*0.25 - 2px);
   height: calc(28px - 16px*0.125 - 16px*0.25 - 2px);
 }
-mor-multiinput.si-xs > .itemlist > span {
+mor-multiinput.si-xs .form-body > .multiinput-itemlist > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
-mor-multiinput.st-disabled > .itemlist,
-mor-multiinput.st-readonly > .itemlist {
-  -webkit-user-select: none;
-  cursor: not-allowed !important;
+mor-multiinput.st-disabled .form-body,
+mor-multiinput.st-readonly .form-body {
   border-color: #D9D9D9;
   background-color: #f7f7f7;
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
 }
-mor-multiinput.st-disabled > .itemlist > .multiinput-item,
-mor-multiinput.st-readonly > .itemlist > .multiinput-item {
+mor-multiinput.st-disabled .form-body:hover,
+mor-multiinput.st-readonly .form-body:hover {
+  border-color: #D9D9D9;
+}
+mor-multiinput.st-disabled .form-body > .multiinput-itemlist > .multiinput-item,
+mor-multiinput.st-readonly .form-body > .multiinput-itemlist > .multiinput-item {
   cursor: not-allowed !important;
   background: #e2e2e2;
 }
-mor-multiinput.st-disabled > .itemlist > .multiinput-item > span,
-mor-multiinput.st-readonly > .itemlist > .multiinput-item > span {
+mor-multiinput.st-disabled .form-body > .multiinput-itemlist > .multiinput-item > span,
+mor-multiinput.st-readonly .form-body > .multiinput-itemlist > .multiinput-item > span {
   padding-right: 0;
 }
-mor-multiinput.st-disabled > .itemlist > .multiinput-item:hover,
-mor-multiinput.st-readonly > .itemlist > .multiinput-item:hover {
+mor-multiinput.st-disabled .form-body > .multiinput-itemlist > .multiinput-item:hover,
+mor-multiinput.st-readonly .form-body > .multiinput-itemlist > .multiinput-item:hover {
   color: #939393 !important;
 }
-mor-multiinput.st-disabled > .itemlist:hover,
-mor-multiinput.st-readonly > .itemlist:hover {
-  border-color: #D9D9D9;
-}
-mor-multiinput.st-disabled > .itemlist .disabled-placeholder,
-mor-multiinput.st-readonly > .itemlist .disabled-placeholder {
+mor-multiinput.st-disabled .form-body > .multiinput-itemlist .disabled-placeholder,
+mor-multiinput.st-readonly .form-body > .multiinput-itemlist .disabled-placeholder {
   width: 0;
   pointer-events: none;
   user-select: none;
@@ -45074,27 +45125,27 @@ mor-multiinput.st-readonly > .itemlist .disabled-placeholder {
   visibility: hidden;
   display: inline-block;
 }
-mor-multiinput > .itemlist {
+mor-multiinput .form-body > .multiinput-itemlist {
   padding: 3px 5px;
 }
-mor-multiinput > .itemlist > .multiinput-item {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item {
   margin: 3px 1.6px;
   padding: 5px 9px;
   font-size: 13px;
   height: calc(42px - 16px*0.375 - 16px*0.375 - 2px);
 }
-mor-multiinput > .itemlist > .multiinput-item > span {
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > span {
   padding-right: 1em;
   line-height: calc(42px - 16px*0.375 - 16px*0.375 - 16px*0.625 - 2px);
 }
-mor-multiinput > .itemlist > input {
+mor-multiinput .form-body > .multiinput-itemlist > input {
   margin: 3px 1.6px;
   padding: 3px;
   font-size: 14px;
   line-height: calc(42px - 16px*0.375 - 16px*0.375 - 2px);
   height: calc(42px - 16px*0.375 - 16px*0.375 - 2px);
 }
-mor-multiinput > .itemlist > span {
+mor-multiinput .form-body > .multiinput-itemlist > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
@@ -45141,15 +45192,14 @@ mor-multiform > .error-message {
 mor-multiform > .error-message:empty {
   display: none;
 }
-mor-multiform > .itemlist {
-  border: 1px #E5E5E5 solid;
-  border-radius: 3px;
+mor-multiform .form-body > .itemlist {
   position: relative;
   overflow: hidden;
   font-size: 0;
   box-sizing: border-box;
+  width: calc(100% - 16px*2.5);
 }
-mor-multiform > .itemlist > .name {
+mor-multiform .form-body > .itemlist > .name {
   height: 100%;
   position: absolute;
   width: 20%;
@@ -45161,7 +45211,7 @@ mor-multiform > .itemlist > .name {
   left: 0;
   top: 0;
 }
-mor-multiform > .itemlist > .itemwrap {
+mor-multiform .form-body > .itemlist > .itemwrap {
   position: relative;
   font-size: 0;
   display: inline-block;
@@ -45169,11 +45219,11 @@ mor-multiform > .itemlist > .itemwrap {
   left: 20%;
   top: 0;
 }
-mor-multiform > .itemlist > .itemwrap.hidename {
+mor-multiform .form-body > .itemlist > .itemwrap.hidename {
   width: 100%;
   left: 0;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item {
   color: #9e9e9e !important;
   background-color: #f8f8f8;
   display: inline-block;
@@ -45185,7 +45235,7 @@ mor-multiform > .itemlist > .itemwrap > .multiform-item {
   box-sizing: border-box;
   max-width: 95%;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item > span {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > span {
   max-width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -45195,27 +45245,27 @@ mor-multiform > .itemlist > .itemwrap > .multiform-item > span {
   vertical-align: top;
   box-sizing: border-box;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item:hover {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item:hover {
   text-decoration: none;
   color: #7a7a7a !important;
   background: #f3f3f3;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.move-moving {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.move-moving {
   opacity: 0.2;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i.iconfont,
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i.iconfont,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i {
   position: absolute;
   transform: translateY(-50%);
   cursor: pointer;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i.mo-icon:hover,
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i.iconfont:hover,
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i:hover {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i.mo-icon:hover,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i.iconfont:hover,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i:hover {
   color: #D64431 !important;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.move-drag-item {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.move-drag-item {
   opacity: 1;
   position: absolute;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
@@ -45223,29 +45273,29 @@ mor-multiform > .itemlist > .itemwrap > .multiform-item.move-drag-item {
   box-sizing: border-box;
   max-width: 95%;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.move-drag-item:hover {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.move-drag-item:hover {
   cursor: move;
   color: #9e9e9e !important;
   background-color: #f3f3f3;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > span {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-right: 0;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > i {
   right: auto;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add:hover {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add:hover {
   cursor: pointer;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add:hover > i.mo-icon {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add:hover > i.mo-icon {
   color: #999999 !important;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.has-img {
   border-radius: 0 100px 100px 0;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   position: absolute;
   top: 0;
   left: 0;
@@ -45253,225 +45303,248 @@ mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   box-sizing: border-box;
   background: #f0f0f0;
 }
-mor-multiform > .itemlist > .itemwrap > span {
+mor-multiform .form-body > .itemlist > .itemwrap > span {
   color: #bfbfbf !important;
   width: 100%;
   text-align: center;
   display: block;
 }
-mor-multiform.focus > .itemlist,
-mor-multiform:hover > .itemlist {
+mor-multiform .form-body {
+  position: relative;
+  border: 1px #E5E5E5 solid;
+  border-radius: 3px;
+}
+mor-multiform .form-body .cleanicon {
+  position: absolute;
+  display: none;
+  font-size: 14px;
+  color: #b2b2b2;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 40px;
+  line-height: 40px;
+}
+mor-multiform .form-body .cleanicon:hover {
+  color: #999999;
+  cursor: pointer;
+}
+mor-multiform .form-body:hover .cleanicon {
+  display: block;
+}
+mor-multiform.focus .form-body,
+mor-multiform:hover .form-body {
   border-color: #d6d6d6;
 }
-mor-multiform.can-move > .itemlist > .itemwrap > .multiform-item:not(.add) {
+mor-multiform.can-move .form-body > .itemlist > .itemwrap > .multiform-item:not(.add) {
   cursor: move;
 }
-mor-multiform.si-m > .itemlist {
+mor-multiform.si-m .form-body > .itemlist {
   padding: 3px 5px;
   min-height: 42px;
 }
-mor-multiform.si-m > .itemlist > .name {
+mor-multiform.si-m .form-body > .itemlist > .name {
   font-size: 13px;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item {
   padding: 0 1.2em;
   margin: 2px 2px;
   line-height: 30px;
   height: 30px;
   font-size: 13px;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item > i.iconfont,
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item > i {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item > i.iconfont,
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item > i {
   right: 1em;
   font-size: 12px;
   top: 50%;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.add {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.add {
   padding: 0 1.4em;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.add > span {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-left: 1em;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.add > i {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.add > i {
   top: 50%;
   left: 1.3em;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.has-img {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.has-img {
   padding-left: 3em;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   height: 30px;
   width: 30px;
 }
-mor-multiform.si-m > .itemlist > .itemwrap > span {
+mor-multiform.si-m .form-body > .itemlist > .itemwrap > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
-mor-multiform.si-s > .itemlist {
+mor-multiform.si-s .form-body > .itemlist {
   padding: 2px 4px;
   min-height: 32px;
 }
-mor-multiform.si-s > .itemlist > .name {
+mor-multiform.si-s .form-body > .itemlist > .name {
   font-size: 12px;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item {
   padding: 0 1em;
   margin: 1px 2px;
   line-height: 24px;
   height: 24px;
   font-size: 12px;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item > i.iconfont,
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item > i {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item > i.iconfont,
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item > i {
   right: 0.6em;
   font-size: 12px;
   top: 50%;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.add {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.add {
   padding: 0 1.2em;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.add > span {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-left: 1em;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.add > i {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.add > i {
   top: 50%;
   left: 1em;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.has-img {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.has-img {
   padding-left: 2.6em;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   height: 24px;
   width: 24px;
 }
-mor-multiform.si-s > .itemlist > .itemwrap > span {
+mor-multiform.si-s .form-body > .itemlist > .itemwrap > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
-mor-multiform.si-xs > .itemlist {
+mor-multiform.si-xs .form-body > .itemlist {
   padding: 1px 4px;
   min-height: 28px;
 }
-mor-multiform.si-xs > .itemlist > .name {
+mor-multiform.si-xs .form-body > .itemlist > .name {
   font-size: 11px;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item {
   padding: 0 1em;
   margin: 1px 2px;
   line-height: 22px;
   height: 22px;
   font-size: 11px;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item > i.iconfont,
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item > i {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item > i.iconfont,
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item > i {
   right: 0.6em;
   font-size: 12px;
   top: 50%;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.add {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.add {
   padding: 0 1.2em;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.add > span {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-left: 1em;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.add > i {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.add > i {
   top: 50%;
   left: 1em;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.has-img {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.has-img {
   padding-left: 2.4em;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   height: 22px;
   width: 22px;
 }
-mor-multiform.si-xs > .itemlist > .itemwrap > span {
+mor-multiform.si-xs .form-body > .itemlist > .itemwrap > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
-mor-multiform.st-disabled > .itemlist,
-mor-multiform.st-readonly > .itemlist {
+mor-multiform.st-disabled .form-body > .itemlist,
+mor-multiform.st-readonly .form-body > .itemlist {
   -webkit-user-select: none;
   cursor: not-allowed !important;
   background-color: #f7f7f7;
   border-color: #D9D9D9;
 }
-mor-multiform.st-disabled > .itemlist > .name,
-mor-multiform.st-readonly > .itemlist > .name {
+mor-multiform.st-disabled .form-body > .itemlist > .name,
+mor-multiform.st-readonly .form-body > .itemlist > .name {
   background-color: #d7d7d7;
   color: #666666;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item {
+mor-multiform.st-disabled .form-body > .itemlist > .itemwrap > .multiform-item,
+mor-multiform.st-readonly .form-body > .itemlist > .itemwrap > .multiform-item {
   cursor: not-allowed !important;
   background-color: #e2e2e2;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item > span,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item > span {
+mor-multiform.st-disabled .form-body > .itemlist > .itemwrap > .multiform-item > span,
+mor-multiform.st-readonly .form-body > .itemlist > .itemwrap > .multiform-item > span {
   padding-right: 0;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item:hover,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item:hover {
+mor-multiform.st-disabled .form-body > .itemlist > .itemwrap > .multiform-item:hover,
+mor-multiform.st-readonly .form-body > .itemlist > .itemwrap > .multiform-item:hover {
   color: #939393 !important;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item.add:hover,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item.add:hover {
+mor-multiform.st-disabled .form-body > .itemlist > .itemwrap > .multiform-item.add:hover,
+mor-multiform.st-readonly .form-body > .itemlist > .itemwrap > .multiform-item.add:hover {
   cursor: default;
 }
-mor-multiform.st-disabled > .itemlist:hover,
-mor-multiform.st-readonly > .itemlist:hover {
+mor-multiform.st-disabled .form-body > .itemlist:hover,
+mor-multiform.st-readonly .form-body > .itemlist:hover {
   border-color: #D9D9D9;
 }
-mor-multiform > .itemlist {
+mor-multiform .form-body > .itemlist {
   padding: 3px 5px;
   min-height: 42px;
 }
-mor-multiform > .itemlist > .name {
+mor-multiform .form-body > .itemlist > .name {
   font-size: 13px;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item {
   padding: 0 1.2em;
   margin: 2px 2px;
   line-height: 30px;
   height: 30px;
   font-size: 13px;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i.iconfont,
-mor-multiform > .itemlist > .itemwrap > .multiform-item > i {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i.mo-icon,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i.iconfont,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > i {
   right: 1em;
   font-size: 12px;
   top: 50%;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add {
   padding: 0 1.4em;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > span {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-left: 1em;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
-mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > i.iconfont,
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > i {
   top: 50%;
   left: 1.3em;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.has-img {
   padding-left: 3em;
 }
-mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
+mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   height: 30px;
   width: 30px;
 }
-mor-multiform > .itemlist > .itemwrap > span {
+mor-multiform .form-body > .itemlist > .itemwrap > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
 }
@@ -48255,6 +48328,17 @@ mor-private-datepicker > .error-message:empty {
 .mor-private-datepicker-popover .date-select mor-calendar .month,
 .mor-private-datepicker-popover .date-select mor-calendar .year {
   cursor: pointer;
+}
+.mor-private-datepicker-popover .date-select-footer {
+  padding: 8px;
+  border-top: 1px #E5E5E5 solid;
+}
+.mor-private-datepicker-popover .date-select-footer:empty {
+  display: none;
+}
+.mor-private-datepicker-popover .date-select-footer .footer-range-select-start {
+  opacity: 0;
+  pointer-events: none;
 }
 .mor-private-datepicker-popover.si-m {
   top: 45px;

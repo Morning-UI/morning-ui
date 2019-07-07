@@ -34,7 +34,6 @@
         :state="conf.state"
         :size="conf.size"
         prepend="<i class='mo-icon mo-icon-date'></i>"
-        :inside-clearable="false"
 
         @focus="_inputFocus"
         @blur="_inputBlur"
@@ -59,7 +58,7 @@
     >
 
         <div class="date-select">
-
+            
             <div class="timepicker" v-if="conf.showTimepickerBox">
                 <slot name="timepicker"></slot>
             </div>
@@ -81,6 +80,10 @@
                 @date-enter="_dateEnter"
             ></morning-calendar>
 
+        </div>
+
+        <div class="date-select-footer">
+            <slot name="footer"></slot>
         </div>
 
     </morning-popover>
@@ -338,6 +341,7 @@ export default {
 
             } else if (show === false && (this.data.state !== 'disabled')) {
 
+                this._blur();
                 this.$refs[`ui-private-datepicker-popover-${this.uiid}`].hide();
 
             } else if (this.data.inputFocus && (this.data.state !== 'disabled')) {
@@ -351,6 +355,7 @@ export default {
 
                 setTimeout(() => {
 
+                    this._blur();
                     this.$refs[`ui-private-datepicker-popover-${this.uiid}`].hide();
 
                 });
@@ -370,6 +375,12 @@ export default {
 
         },
         _inputBlur : function () {
+
+            this._syncInputValue();
+            this.$emit('input-blur');
+
+        },
+        _syncInputValue : function () {
 
             if (this.data.inputValue === undefined ||
                 this.data.inputValue === '') {
@@ -409,8 +420,6 @@ export default {
                 }
 
             }
-
-            this.$emit('input-blur');
 
         },
         _blur : function (evt) {
@@ -817,6 +826,7 @@ export default {
         this.$watch('data.inputFocus', this._toggleSelector, {
             immediate : true
         });
+        this.$watch('data.inputValue', this._syncInputValue);
 
     },
     beforeDestory : function () {

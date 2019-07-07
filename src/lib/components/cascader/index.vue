@@ -9,6 +9,7 @@
         :group="group"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :list="list"
@@ -47,7 +48,8 @@
                 v-else
             >{{data.valueName}}</span>
 
-            <i class="mo-icon mo-icon-dropdown"></i>
+            <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable && data.value !== undefined && data.value.length > 0" @click.stop="set(undefined)"></i>
+            <i class="mo-icon mo-icon-dropdown drop"></i>
         </div>
 
         <morning-popover

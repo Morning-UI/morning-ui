@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.12.48
+
+`2019年7月8日`
+
+#### 新特性
+
+- `ui-cascader`、`ui-multiinput`、`ui-multiform`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`支持数值清空按钮
+- `ui-datepicker`和`ui-datetimepicker`支持底部插槽`footer`
+
+#### 改进
+
+- 优化组件中下拉箭头和清空按钮的图标展现位置
+
+#### 修复
+
+- 修复`ui-menu`在深色模式下开启`side-expand`配置后，当前所在菜单项的颜色不适配问题
+
 ## 0.12.47
 
 `2019年7月6日`

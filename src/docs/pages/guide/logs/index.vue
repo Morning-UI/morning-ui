@@ -18,6 +18,33 @@
     
     ### 更新记录
 
+    ### 0.12.48 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月8日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.48" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.48/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.48/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-cascader`、`ui-multiinput`、`ui-multiform`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`支持数值清空按钮
+    - `ui-datepicker`和`ui-datetimepicker`支持底部插槽`footer`
+
+    #### 改进
+
+    - 优化组件中下拉箭头和清空按钮的图标展现位置
+
+    #### 修复
+
+    - 修复`ui-menu`在深色模式下开启`side-expand`配置后，当前所在菜单项的颜色不适配问题
+
+    ---
+
     ### 0.12.47 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">

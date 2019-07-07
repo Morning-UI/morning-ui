@@ -10,16 +10,15 @@ mor-multiinput{
     .setup-form();
 
     &:hover{
-        > .itemlist{
+        .form-body{
             border-color: @colorFormBorderHover;
         }
     }
 
-    > .itemlist{
-        border: 1px @colorFormBorder solid;
-        border-radius: @borderRadius;
+    .form-body > .multiinput-itemlist{
         position: relative;
         font-size: 0;
+        width: calc(100% - @fontSize*2.5);
 
         > .multiinput-item{
             color: @colorFormItemColor !important;
@@ -116,20 +115,47 @@ mor-multiinput{
         .disabled-placeholder{
             display: none;
         }
+    }
+
+    .form-body{
+        position: relative;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
 
         &.focus{
             .setup-form-focus();
         }
+
+        .cleanicon{
+            position: absolute;
+            display: none;
+            font-size: @fontSize*0.875;
+            color: @colorFormPlaceholder;
+            right: 0;
+            top: 0;
+            width: 24px;
+            height: @fontSize*2.5;
+            line-height: @fontSize*2.5;
+
+            &:hover{
+                color: @colorFormPlaceholderHover;
+                cursor: pointer;
+            }
+        }
+
+        &:hover .cleanicon{
+            display: block;
+        }
     }
 
     &.can-move{
-        > .itemlist > .multiinput-item{
+        .form-body > .multiinput-itemlist > .multiinput-item{
             cursor: move;
         }
     }
 
     &.si-m{
-        > .itemlist{
+        .form-body > .multiinput-itemlist{
             padding: @fontSize*0.1875 @fontSize*0.3125;
 
             > .multiinput-item{
@@ -160,7 +186,7 @@ mor-multiinput{
     }
 
     &.si-s{
-        > .itemlist{
+        .form-body > .multiinput-itemlist{
             padding: @fontSize*0.125 @fontSize*0.25;
 
             > .multiinput-item{
@@ -191,7 +217,7 @@ mor-multiinput{
     }
 
     &.si-xs{
-        > .itemlist{
+        .form-body > .multiinput-itemlist{
             padding: @fontSize*0.125 @fontSize*0.125;
 
             > .multiinput-item{
@@ -226,12 +252,18 @@ mor-multiinput{
 
     &.st-disabled,
     &.st-readonly{
-        > .itemlist{
-            -webkit-user-select: none;
-            cursor: not-allowed !important;
+        .form-body{
             border-color: @colorFormBorderDisable;
             background-color: @colorFormBackgroundDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
 
+            &:hover{
+                border-color: @colorFormBorderDisable;
+            }
+        }
+
+        .form-body > .multiinput-itemlist{
             > .multiinput-item{
                 cursor: not-allowed !important;
                 background: @colorFromItemBackgroundDisable;
@@ -243,10 +275,6 @@ mor-multiinput{
                 &:hover{
                     color: @colorFormItemColorDisable !important;
                 }
-            }
-
-            &:hover{
-                border-color: @colorFormBorderDisable;
             }
 
             .disabled-placeholder{

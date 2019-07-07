@@ -23,7 +23,6 @@
         :align="conf.align"
         :state="conf.state"
         :size="conf.size"
-        :inside-clearable="false"
         
         prepend="<i class='mo-icon mo-icon-time-co'></i>"
 
@@ -260,6 +259,15 @@ export default {
         _inputBlur : function () {
 
             this.data.inputFocus = false;
+            this._syncInputValue();
+
+        },
+        _inputFocus : function () {
+
+            this.data.inputFocus = true;
+
+        },
+        _syncInputValue : function () {
 
             if (this.data.inputValue === undefined ||
                 this.data.inputValue === '') {
@@ -291,11 +299,6 @@ export default {
                 }
 
             }
-
-        },
-        _inputFocus : function () {
-
-            this.data.inputFocus = true;
 
         },
         _focusType : function (type) {
@@ -689,6 +692,7 @@ export default {
         this.$watch('data.inputFocus', this._toggleSelector, {
             immediate : true
         });
+        this.$watch('data.inputValue', this._syncInputValue);
 
     }
 };
