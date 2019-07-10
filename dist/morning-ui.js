@@ -39861,12 +39861,6 @@ exports.default = {
 
             if (show) {
 
-                // if (!this.conf.separateEmit) {
-
-                //     this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
-
-                // } else 
-
                 if (typeof this.conf.listWidth === 'number') {
 
                     this.data.$listWrap.style.width = this.conf.listWidth + 'px';
@@ -79923,7 +79917,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.49',
+    version: '0.12.50',
     map: {}
 };
 
