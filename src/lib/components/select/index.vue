@@ -1362,13 +1362,13 @@ export default {
 
             if (show) {
 
-                if (!this.conf.separateEmit) {
-
-                    this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
-
-                } else if (typeof this.conf.listWidth === 'number') {
+                if (typeof this.conf.listWidth === 'number') {
 
                     this.data.$listWrap.style.width = `${this.conf.listWidth}px`;
+
+                } else if (!this.conf.separateEmit) {
+                    
+                    this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
 
                 } else {
 
@@ -1382,7 +1382,15 @@ export default {
 
                 if (!this.conf.separateEmit) {
 
-                    this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
+                    if (typeof this.conf.listWidth === 'number') {
+
+                        this.data.$listWrap.style.width = `${this.conf.listWidth}px`;
+
+                    } else {
+
+                        this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
+
+                    }
 
                 }
 

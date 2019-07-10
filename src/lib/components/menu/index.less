@@ -744,7 +744,7 @@ mor-menu{
                     > li.current > a{
                         border-bottom-color: @colorNeutral3;
                         border-right-color: lighten(@colorBlack, 15%);
-                        background: lighten(@colorBlack, 3%);
+                        background: lighten(@colorBlack, 8%);
                     }
 
                     > li.last-current > a{
@@ -789,14 +789,14 @@ mor-menu{
             }
         }
 
-        &.expand{
+        &.expand.line{
             .pos-side{
                 .root-menu,
                 .sub-menu{
                     > li{
                         &.last-current{
                             > a{
-                                background-color: lighten(@colorTheme, 5%);
+                                background: lighten(@colorBlack, 20%);
                                 border-right: 4px darken(@colorTheme, 10%) solid;
                             }
                         }
@@ -863,14 +863,28 @@ mor-menu{
             }
         }
 
-        &.expand.co-bk{
+        &.expand{
             .pos-side{
                 .root-menu,
                 .sub-menu{
                     > li{
                         &.last-current{
                             > a{
-                                background-color: lighten(@colorTheme, 2%);
+                                color: @colorTheme;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.expand.line{
+            .pos-side{
+                .root-menu,
+                .sub-menu{
+                    > li{
+                        &.last-current{
+                            > a{
                                 border-right: 4px @colorTheme solid;
                             }
                         }
@@ -931,6 +945,13 @@ mor-menu{
                     &.current{
                         > a{
                             border-right: none;
+                        }
+                    }
+
+                    &.last-current{
+                        > a{
+                            background-color: lighten(@colorTheme, 37%);
+                            border-right: 4px @colorTheme solid;
                         }
                     }
                 }

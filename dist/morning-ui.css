@@ -33895,7 +33895,7 @@ mor-menu.co-bk.line .pos-top .sub-menu > li.current > a,
 mor-menu.co-bk.line .pos-side .sub-menu > li.current > a {
   border-bottom-color: #E0E0E0;
   border-right-color: #262626;
-  background: #080808;
+  background: #141414;
 }
 mor-menu.co-bk.line .pos-top .root-menu > li.last-current > a,
 mor-menu.co-bk.line .pos-side .root-menu > li.last-current > a,
@@ -33919,9 +33919,9 @@ mor-menu.co-bk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
   background-color: #4C4C4C;
 }
-mor-menu.co-bk.expand .pos-side .root-menu > li.last-current > a,
-mor-menu.co-bk.expand .pos-side .sub-menu > li.last-current > a {
-  background-color: #f45571;
+mor-menu.co-bk.expand.line .pos-side .root-menu > li.last-current > a,
+mor-menu.co-bk.expand.line .pos-side .sub-menu > li.last-current > a {
+  background: #333333;
   border-right: 4px #ee0f36 solid;
 }
 mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
@@ -33973,9 +33973,12 @@ mor-menu.co-wh .pos-top .root-menu > li.is-disable > a:hover,
 mor-menu.co-wh .pos-side .root-menu > li.is-disable > a:hover {
   border-bottom-color: #E5E5E5;
 }
-mor-menu.co-wh.expand.co-bk .pos-side .root-menu > li.last-current > a,
-mor-menu.co-wh.expand.co-bk .pos-side .sub-menu > li.last-current > a {
-  background-color: #f44765;
+mor-menu.co-wh.expand .pos-side .root-menu > li.last-current > a,
+mor-menu.co-wh.expand .pos-side .sub-menu > li.last-current > a {
+  color: #F33D5D;
+}
+mor-menu.co-wh.expand.line .pos-side .root-menu > li.last-current > a,
+mor-menu.co-wh.expand.line .pos-side .sub-menu > li.last-current > a {
   border-right: 4px #F33D5D solid;
 }
 mor-menu.co-wh.collapse .pos-side .root-menu > li > a:hover {
@@ -33999,6 +34002,11 @@ mor-menu.expand .pos-side .sub-menu > li > a.has-child-menu:hover {
 mor-menu.expand .pos-side .root-menu > li.current > a,
 mor-menu.expand .pos-side .sub-menu > li.current > a {
   border-right: none;
+}
+mor-menu.expand .pos-side .root-menu > li.last-current > a,
+mor-menu.expand .pos-side .sub-menu > li.last-current > a {
+  background-color: #feeff1;
+  border-right: 4px #F33D5D solid;
 }
 mor-menu.expand .pos-side .sub-menu-wrap {
   display: block;
@@ -34139,9 +34147,12 @@ mor-menu .pos-top .root-menu > li.is-disable > a:hover,
 mor-menu .pos-side .root-menu > li.is-disable > a:hover {
   border-bottom-color: #E5E5E5;
 }
-mor-menu.expand.co-bk .pos-side .root-menu > li.last-current > a,
-mor-menu.expand.co-bk .pos-side .sub-menu > li.last-current > a {
-  background-color: #f44765;
+mor-menu.expand .pos-side .root-menu > li.last-current > a,
+mor-menu.expand .pos-side .sub-menu > li.last-current > a {
+  color: #F33D5D;
+}
+mor-menu.expand.line .pos-side .root-menu > li.last-current > a,
+mor-menu.expand.line .pos-side .sub-menu > li.last-current > a {
   border-right: 4px #F33D5D solid;
 }
 mor-menu.collapse .pos-side .root-menu > li > a:hover {
