@@ -31,7 +31,7 @@
                     :key="key"
                     :class="{
                         'current' : _isCurrent(key, deep),
-                        'last-current' : (_isCurrent(key, deep) && deep === currentMenuList.length-1),
+                        'last-current' : (_isCurrent(key, deep, true) && deep === currentMenuList.length-1),
                         'has-group' : name !== '__all',
                         'show' : !!data.itemShowList['menu-item-'+conf.deep+'-'+key]
                     }"
@@ -43,7 +43,7 @@
                     :key="key"
                     :class="{
                         'current' : _isCurrent(key, deep),
-                        'last-current' : (_isCurrent(key, deep) && deep === currentMenuList.length-1),
+                        'last-current' : (_isCurrent(key, deep, true) && deep === currentMenuList.length-1),
                         'has-group' : name !== '__all',
                         'is-disable' : item.disable,
                         'is-hidden' : item.hidden,
@@ -201,9 +201,10 @@ export default {
             return menu;
 
         },
-        _isCurrent : function (key, deep) {
+        _isCurrent : function (key, deep, isLastCurrent = false) {
 
             let fullPath = this.conf.parentPath.split('/');
+            let parentPath = this.currentMenuList.slice(0, deep + 1);
 
             if (fullPath[0] === '') {
 
@@ -213,8 +214,14 @@ export default {
 
             fullPath.push(key);
             fullPath = fullPath.join('/');
+            parentPath = parentPath.join('/');
 
-            if (key === this.currentMenuList[deep] && this.conf.currentMenu === fullPath) {
+            if (key === this.currentMenuList[deep] &&
+                (
+                    (!isLastCurrent && (fullPath === parentPath)) ||
+                    this.conf.currentMenu === fullPath
+                    )
+                ) {
 
                 return true;
 

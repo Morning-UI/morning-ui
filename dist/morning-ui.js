@@ -53193,8 +53193,11 @@ exports.default = {
             return menu;
         },
         _isCurrent: function _isCurrent(key, deep) {
+            var isLastCurrent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
 
             var fullPath = this.conf.parentPath.split('/');
+            var parentPath = this.currentMenuList.slice(0, deep + 1);
 
             if (fullPath[0] === '') {
 
@@ -53203,8 +53206,9 @@ exports.default = {
 
             fullPath.push(key);
             fullPath = fullPath.join('/');
+            parentPath = parentPath.join('/');
 
-            if (key === this.currentMenuList[deep] && this.conf.currentMenu === fullPath) {
+            if (key === this.currentMenuList[deep] && (!isLastCurrent && fullPath === parentPath || this.conf.currentMenu === fullPath)) {
 
                 return true;
             }
@@ -60354,7 +60358,7 @@ var render = function() {
                           class: {
                             current: _vm._isCurrent(key, _vm.deep),
                             "last-current":
-                              _vm._isCurrent(key, _vm.deep) &&
+                              _vm._isCurrent(key, _vm.deep, true) &&
                               _vm.deep === _vm.currentMenuList.length - 1,
                             "has-group": name !== "__all",
                             show: !!_vm.data.itemShowList[
@@ -60384,7 +60388,7 @@ var render = function() {
                           class: {
                             current: _vm._isCurrent(key, _vm.deep),
                             "last-current":
-                              _vm._isCurrent(key, _vm.deep) &&
+                              _vm._isCurrent(key, _vm.deep, true) &&
                               _vm.deep === _vm.currentMenuList.length - 1,
                             "has-group": name !== "__all",
                             "is-disable": item.disable,
