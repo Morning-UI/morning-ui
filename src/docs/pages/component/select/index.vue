@@ -1769,7 +1769,7 @@
     >conf-desc
     下拉列表的宽度(单位px)，如果设为`false`则下拉列表会根据内容自动调整宽度。
     <br>
-    若未开启`separate-emit`下拉列表的宽度等于组件本身的宽度。
+    若未开启`separate-emit`下拉列表的宽度默认等于组件本身的宽度。
     >conf-accept
     `false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)
     >conf-type
