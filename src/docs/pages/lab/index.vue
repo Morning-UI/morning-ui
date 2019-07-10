@@ -7,9 +7,14 @@
             <div class="area">
                 <div style="width:600px;display: flex;">
 
-                    <ui-menu :menu="menu" class="block" current-menu="application/create" position="side" side-collapse></ui-menu>
+                    <ui-menu :menu="menu" class="block" current-menu="index"
+    position="side"
+  :position-current="true"
+  color="white"
+  :side-expand="true"
+                    ></ui-menu>
                     <ui-datetimepicker form-name="日期时间"></ui-datetimepicker>
-
+<!-- side-collapse -->
                     <!-- <ui-tab>
                         <div slot="第一页">第一页</div>
                         <div slot="第二页">第二页</div>
