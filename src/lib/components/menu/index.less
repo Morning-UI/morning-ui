@@ -863,6 +863,21 @@ mor-menu{
             }
         }
 
+        &.expand{
+            .pos-side{
+                .root-menu,
+                .sub-menu{
+                    > li{
+                        &.last-current{
+                            > a{
+                                color: @colorTheme;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         &.expand.line{
             .pos-side{
                 .root-menu,
@@ -870,7 +885,6 @@ mor-menu{
                     > li{
                         &.last-current{
                             > a{
-                                // background-color: lighten(@colorTheme, 2%);
                                 border-right: 4px @colorTheme solid;
                             }
                         }
