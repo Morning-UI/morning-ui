@@ -1362,12 +1362,6 @@ export default {
 
             if (show) {
 
-                // if (!this.conf.separateEmit) {
-
-                //     this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
-
-                // } else 
-
                 if (typeof this.conf.listWidth === 'number') {
 
                     this.data.$listWrap.style.width = `${this.conf.listWidth}px`;

@@ -216,12 +216,13 @@ export default {
             fullPath = fullPath.join('/');
             parentPath = parentPath.join('/');
 
-            if (key === this.currentMenuList[deep] &&
+            if (
+                key === this.currentMenuList[deep] &&
                 (
                     (!isLastCurrent && (fullPath === parentPath)) ||
                     this.conf.currentMenu === fullPath
-                    )
-                ) {
+                )
+            ) {
 
                 return true;
 
