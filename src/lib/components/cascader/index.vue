@@ -17,6 +17,7 @@
         :show-last-name="showLastName"
         :change-on-select="changeOnSelect"
         :can-search="canSearch"
+        :list-width="listWidth"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -173,6 +174,10 @@ export default {
         canSearch : {
             type : Boolean,
             default : false
+        },
+        listWidth : {
+            type : [Boolean, Number],
+            default : false
         }
     },
     computed : {
@@ -184,7 +189,8 @@ export default {
                 submenuTrigger : this.submenuTrigger,
                 showLastName : this.showLastName,
                 changeOnSelect : this.changeOnSelect,
-                canSearch : this.canSearch
+                canSearch : this.canSearch,
+                listWidth : this.listWidth
             };
 
         },
@@ -501,7 +507,11 @@ export default {
 
                 let $body = this.$refs[`mor-cascader-search-result-${this.uiid}`].$el.querySelector('.popover-body');
 
-                if ($body) {
+                if (typeof this.conf.listWidth === 'number') {
+
+                    $body.style.width = `${this.conf.listWidth}px`;
+
+                } else if ($body) {
 
                     $body.style.width = `${this.$el.clientWidth}px`;
 
