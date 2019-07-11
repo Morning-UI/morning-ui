@@ -14,6 +14,7 @@
   :side-expand="true"
                     ></ui-menu>
                     <ui-datetimepicker form-name="日期时间"></ui-datetimepicker>
+                    <ui-cascader :list-width="600" form-name="地址" :list="listcascader" can-search></ui-cascader>
 <!-- side-collapse -->
                     <!-- <ui-tab>
                         <div slot="第一页">第一页</div>
@@ -36,6 +37,50 @@ export default {
     data : function () {
 
         return {
+            listcascader : {
+                "zj" : {
+                    name : "浙江省浙江省浙江省浙江省浙江省",
+                    children : {
+                        "hz" : {
+                            name : "杭州杭州杭州杭州杭州杭州杭州",
+                            children : {
+                                "xcq" : "下城区下城区下城区下城区下城区下城区",
+                                "xhq" : "西湖区西湖区西湖区西湖区西湖区西湖区",
+                                "jgq" : "江干区江干区江干区江干区江干区江干区"
+                            }
+                        },
+                        "nb" : {
+                            name : "宁波",
+                            children : {
+                                "jbq" : "江北区",
+                                "zhq" : "镇海区"
+                            }
+                        },
+                        "wz" : "温州"
+                    }
+                },
+                "js" : {
+                    name : "江苏省",
+                    children : {
+                        "nj" : {
+                            name : "南京",
+                            children : {
+                                "xwq" : "玄武区",
+                                "jnq" : "江宁区"
+                            }
+                        },
+                        "sz" : "苏州"
+                    }
+                },
+                "gd" : {
+                    name : "广东省",
+                    children : {
+                        "gz" : "广州",
+                        "sz" : "深圳",
+                        "fs" : "佛山"
+                    }
+                }
+            },
             menu : {"index":{"name":"<i class=\"iconfont icon-apps\"></i>首页","link":"/cloud/index"},"application":{"name":"<i class=\"iconfont icon-preview\"></i>应用管理","children":{"list":{"name":"应用列表","link":"/cloud/application/list"},"create":{"name":"创建应用","link":"/cloud/application/create"}}},"work":{"name":"<i class=\"iconfont icon-preview\"></i>容器服务","children":{"create":{"name":"创建容器","link":"/cloud/work/create"},"list":{"name":"容器列表","link":"/cloud/work/list"}}},"environment":{"name":"<i class=\"iconfont icon-book\"></i>环境管理","children":{"list":{"name":"环境列表","link":"/cloud/environment/list"}}}},
             colset : [
                 {col : 'name', name : 'Name'},

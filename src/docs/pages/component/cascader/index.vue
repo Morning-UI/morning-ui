@@ -595,6 +595,75 @@
         }
     }
     :::
+    
+    :::vue
+    @name:list-width
+    ---
+    #config
+    >conf-desc
+    搜索时下拉列表的宽度(单位px)，如果设为`false`则会根据组件宽度自动调整宽度（仅在开启`can-search`配置时生效）。
+    >conf-accept
+    `false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)
+    >conf-type
+    Boolean<br>Number
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-cascader form-name="地址" :list="list" :can-search="true" :list-width="450"></ui-cascader>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                "zj" : {
+                    name : "浙江省",
+                    children : {
+                        "hz" : {
+                            name : "杭州",
+                            children : {
+                                "xcq" : "下城区",
+                                "xhq" : "西湖区",
+                                "jgq" : "江干区"
+                            }
+                        },
+                        "nb" : {
+                            name : "宁波",
+                            children : {
+                                "jbq" : "江北区",
+                                "zhq" : "镇海区"
+                            }
+                        },
+                        "wz" : "温州"
+                    }
+                },
+                "js" : {
+                    name : "江苏省",
+                    children : {
+                        "nj" : {
+                            name : "南京",
+                            children : {
+                                "xwq" : "玄武区",
+                                "jnq" : "江宁区"
+                            }
+                        },
+                        "sz" : "苏州"
+                    }
+                },
+                "gd" : {
+                    name : "广东省",
+                    children : {
+                        "gz" : "广州",
+                        "sz" : "深圳",
+                        "fs" : "佛山"
+                    }
+                }
+            }
+        }
+    }
+    :::
 
     [[[方法]]]
 

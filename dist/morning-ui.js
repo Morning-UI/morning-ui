@@ -41984,6 +41984,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
     origin: 'Form',
@@ -42018,6 +42019,10 @@ exports.default = {
         canSearch: {
             type: Boolean,
             default: false
+        },
+        listWidth: {
+            type: [Boolean, Number],
+            default: false
         }
     },
     computed: {
@@ -42029,7 +42034,8 @@ exports.default = {
                 submenuTrigger: this.submenuTrigger,
                 showLastName: this.showLastName,
                 changeOnSelect: this.changeOnSelect,
-                canSearch: this.canSearch
+                canSearch: this.canSearch,
+                listWidth: this.listWidth
             };
         },
         moreCLass: function moreCLass() {
@@ -42319,7 +42325,10 @@ exports.default = {
 
                 var $body = this.$refs['mor-cascader-search-result-' + this.uiid].$el.querySelector('.popover-body');
 
-                if ($body) {
+                if (typeof this.conf.listWidth === 'number') {
+
+                    $body.style.width = this.conf.listWidth + 'px';
+                } else if ($body) {
 
                     $body.style.width = this.$el.clientWidth + 'px';
                 }
@@ -66626,7 +66635,8 @@ var render = function() {
         "submenu-trigger": _vm.submenuTrigger,
         "show-last-name": _vm.showLastName,
         "change-on-select": _vm.changeOnSelect,
-        "can-search": _vm.canSearch
+        "can-search": _vm.canSearch,
+        "list-width": _vm.listWidth
       }
     },
     [
@@ -79917,7 +79927,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.50',
+    version: '0.12.51',
     map: {}
 };
 
