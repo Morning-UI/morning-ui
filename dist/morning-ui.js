@@ -71132,7 +71132,7 @@ var render = function() {
   return _c(
     "mor-form",
     {
-      class: [_vm.moreClass],
+      class: [_vm.formClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -80612,6 +80612,12 @@ exports.default = function (UI) {
                 type: String,
                 default: undefined
             },
+            formWidth: {
+                type: String,
+                validator: function validator(value) {
+                    return ['xs', 's', 'm', 'l', 'xl'].indexOf(value) !== -1;
+                }
+            },
             group: {
                 type: [Array, String],
                 default: function _default() {
@@ -80645,6 +80651,7 @@ exports.default = function (UI) {
                     formName: this.formName,
                     formNote: this.formNote,
                     formKey: this.formKey,
+                    formWidth: this.formWidth,
                     group: this.group,
                     hideName: this.hideName,
                     clearable: this.clearable,
@@ -80654,9 +80661,16 @@ exports.default = function (UI) {
             },
             formClass: function formClass() {
 
-                return {
+                var classes = {
                     'has-cleanbtn': this.conf.clearable
                 };
+
+                if (this.conf.formWidth) {
+
+                    classes['fw-' + this.conf.formWidth] = true;
+                }
+
+                return classes;
             }
         },
         data: function data() {

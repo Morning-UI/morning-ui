@@ -34840,6 +34840,11 @@ mor-dialog > .content > footer .operate {
 mor-dialog > .content > footer .operate > * {
   margin-left: 0.2em;
 }
+mor-dialog.white-footer > .content > footer {
+  background: #FFFFFF;
+  border-top-color: #FFFFFF;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+}
 mor-dialog.has-footer > .content > .body {
   bottom: 50px;
 }
@@ -38783,6 +38788,26 @@ mor-textinput > .error-message {
 mor-textinput > .error-message:empty {
   display: none;
 }
+mor-textinput.fw-xs,
+mor-textinput.fw-xs .form-body {
+  width: 120px;
+}
+mor-textinput.fw-s,
+mor-textinput.fw-s .form-body {
+  width: 140px;
+}
+mor-textinput.fw-m,
+mor-textinput.fw-m .form-body {
+  width: 180px;
+}
+mor-textinput.fw-l,
+mor-textinput.fw-l .form-body {
+  width: 360px;
+}
+mor-textinput.fw-xl,
+mor-textinput.fw-xl .form-body {
+  width: 600px;
+}
 mor-textinput .input-wrap {
   position: relative;
   width: 100%;
@@ -39052,6 +39077,26 @@ mor-textarea > .error-message {
 mor-textarea > .error-message:empty {
   display: none;
 }
+mor-textarea.fw-xs,
+mor-textarea.fw-xs .form-body {
+  width: 120px;
+}
+mor-textarea.fw-s,
+mor-textarea.fw-s .form-body {
+  width: 140px;
+}
+mor-textarea.fw-m,
+mor-textarea.fw-m .form-body {
+  width: 180px;
+}
+mor-textarea.fw-l,
+mor-textarea.fw-l .form-body {
+  width: 360px;
+}
+mor-textarea.fw-xl,
+mor-textarea.fw-xl .form-body {
+  width: 600px;
+}
 mor-textarea .textarea-wrap {
   font-size: 0;
   position: relative;
@@ -39195,6 +39240,26 @@ mor-texteditor > .error-message {
 }
 mor-texteditor > .error-message:empty {
   display: none;
+}
+mor-texteditor.fw-xs,
+mor-texteditor.fw-xs .form-body {
+  width: 120px;
+}
+mor-texteditor.fw-s,
+mor-texteditor.fw-s .form-body {
+  width: 140px;
+}
+mor-texteditor.fw-m,
+mor-texteditor.fw-m .form-body {
+  width: 180px;
+}
+mor-texteditor.fw-l,
+mor-texteditor.fw-l .form-body {
+  width: 360px;
+}
+mor-texteditor.fw-xl,
+mor-texteditor.fw-xl .form-body {
+  width: 600px;
 }
 mor-texteditor.has-cleanbtn {
   padding-bottom: 26px;
@@ -39710,6 +39775,26 @@ mor-switch > .error-message {
 }
 mor-switch > .error-message:empty {
   display: none;
+}
+mor-switch.fw-xs,
+mor-switch.fw-xs .form-body {
+  width: 120px;
+}
+mor-switch.fw-s,
+mor-switch.fw-s .form-body {
+  width: 140px;
+}
+mor-switch.fw-m,
+mor-switch.fw-m .form-body {
+  width: 180px;
+}
+mor-switch.fw-l,
+mor-switch.fw-l .form-body {
+  width: 360px;
+}
+mor-switch.fw-xl,
+mor-switch.fw-xl .form-body {
+  width: 600px;
 }
 mor-switch.mor-switch.has-cleanbtn {
   padding-bottom: 26px;
@@ -40591,6 +40676,26 @@ mor-rate > .error-message {
 mor-rate > .error-message:empty {
   display: none;
 }
+mor-rate.fw-xs,
+mor-rate.fw-xs .form-body {
+  width: 120px;
+}
+mor-rate.fw-s,
+mor-rate.fw-s .form-body {
+  width: 140px;
+}
+mor-rate.fw-m,
+mor-rate.fw-m .form-body {
+  width: 180px;
+}
+mor-rate.fw-l,
+mor-rate.fw-l .form-body {
+  width: 360px;
+}
+mor-rate.fw-xl,
+mor-rate.fw-xl .form-body {
+  width: 600px;
+}
 mor-rate .rate-wrap {
   display: flex;
   flex-wrap: nowrap;
@@ -40608,9 +40713,10 @@ mor-rate .rate-list {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   list-style: none;
-  justify-content: space-around;
+  justify-content: left;
+  width: 100%;
 }
 mor-rate .rate-list > li {
   margin: 0;
@@ -40772,6 +40878,26 @@ mor-counter > .error-message {
 }
 mor-counter > .error-message:empty {
   display: none;
+}
+mor-counter.fw-xs,
+mor-counter.fw-xs .form-body {
+  width: 120px;
+}
+mor-counter.fw-s,
+mor-counter.fw-s .form-body {
+  width: 140px;
+}
+mor-counter.fw-m,
+mor-counter.fw-m .form-body {
+  width: 180px;
+}
+mor-counter.fw-l,
+mor-counter.fw-l .form-body {
+  width: 360px;
+}
+mor-counter.fw-xl,
+mor-counter.fw-xl .form-body {
+  width: 600px;
 }
 mor-counter .counter-wrap {
   display: flex;
@@ -41024,6 +41150,26 @@ mor-select > .error-message {
 }
 mor-select > .error-message:empty {
   display: none;
+}
+mor-select.fw-xs,
+mor-select.fw-xs .form-body {
+  width: 120px;
+}
+mor-select.fw-s,
+mor-select.fw-s .form-body {
+  width: 140px;
+}
+mor-select.fw-m,
+mor-select.fw-m .form-body {
+  width: 180px;
+}
+mor-select.fw-l,
+mor-select.fw-l .form-body {
+  width: 360px;
+}
+mor-select.fw-xl,
+mor-select.fw-xl .form-body {
+  width: 600px;
 }
 mor-select .select-area {
   position: relative;
@@ -41807,6 +41953,26 @@ mor-checkbox > .error-message {
 }
 mor-checkbox > .error-message:empty {
   display: none;
+}
+mor-checkbox.fw-xs,
+mor-checkbox.fw-xs .form-body {
+  width: 120px;
+}
+mor-checkbox.fw-s,
+mor-checkbox.fw-s .form-body {
+  width: 140px;
+}
+mor-checkbox.fw-m,
+mor-checkbox.fw-m .form-body {
+  width: 180px;
+}
+mor-checkbox.fw-l,
+mor-checkbox.fw-l .form-body {
+  width: 360px;
+}
+mor-checkbox.fw-xl,
+mor-checkbox.fw-xl .form-body {
+  width: 600px;
 }
 mor-checkbox > .il {
   display: flex;
@@ -43117,6 +43283,26 @@ mor-radio > .error-message {
 }
 mor-radio > .error-message:empty {
   display: none;
+}
+mor-radio.fw-xs,
+mor-radio.fw-xs .form-body {
+  width: 120px;
+}
+mor-radio.fw-s,
+mor-radio.fw-s .form-body {
+  width: 140px;
+}
+mor-radio.fw-m,
+mor-radio.fw-m .form-body {
+  width: 180px;
+}
+mor-radio.fw-l,
+mor-radio.fw-l .form-body {
+  width: 360px;
+}
+mor-radio.fw-xl,
+mor-radio.fw-xl .form-body {
+  width: 600px;
 }
 mor-radio > .il {
   display: flex;
@@ -44812,6 +44998,26 @@ mor-cascader > .error-message {
 mor-cascader > .error-message:empty {
   display: none;
 }
+mor-cascader.fw-xs,
+mor-cascader.fw-xs .form-body {
+  width: 120px;
+}
+mor-cascader.fw-s,
+mor-cascader.fw-s .form-body {
+  width: 140px;
+}
+mor-cascader.fw-m,
+mor-cascader.fw-m .form-body {
+  width: 180px;
+}
+mor-cascader.fw-l,
+mor-cascader.fw-l .form-body {
+  width: 360px;
+}
+mor-cascader.fw-xl,
+mor-cascader.fw-xl .form-body {
+  width: 600px;
+}
 mor-cascader .cascader-wrap .cascader-input {
   box-sizing: border-box;
   padding: 0;
@@ -45088,6 +45294,26 @@ mor-multiinput > .error-message {
 }
 mor-multiinput > .error-message:empty {
   display: none;
+}
+mor-multiinput.fw-xs,
+mor-multiinput.fw-xs .form-body {
+  width: 120px;
+}
+mor-multiinput.fw-s,
+mor-multiinput.fw-s .form-body {
+  width: 140px;
+}
+mor-multiinput.fw-m,
+mor-multiinput.fw-m .form-body {
+  width: 180px;
+}
+mor-multiinput.fw-l,
+mor-multiinput.fw-l .form-body {
+  width: 360px;
+}
+mor-multiinput.fw-xl,
+mor-multiinput.fw-xl .form-body {
+  width: 600px;
 }
 mor-multiinput:hover .form-body {
   border-color: #d6d6d6;
@@ -45399,6 +45625,26 @@ mor-multiform > .error-message {
 }
 mor-multiform > .error-message:empty {
   display: none;
+}
+mor-multiform.fw-xs,
+mor-multiform.fw-xs .form-body {
+  width: 120px;
+}
+mor-multiform.fw-s,
+mor-multiform.fw-s .form-body {
+  width: 140px;
+}
+mor-multiform.fw-m,
+mor-multiform.fw-m .form-body {
+  width: 180px;
+}
+mor-multiform.fw-l,
+mor-multiform.fw-l .form-body {
+  width: 360px;
+}
+mor-multiform.fw-xl,
+mor-multiform.fw-xl .form-body {
+  width: 600px;
 }
 mor-multiform .form-body > .itemlist {
   position: relative;
@@ -45796,6 +46042,26 @@ mor-slider > .error-message {
 }
 mor-slider > .error-message:empty {
   display: none;
+}
+mor-slider.fw-xs,
+mor-slider.fw-xs .form-body {
+  width: 120px;
+}
+mor-slider.fw-s,
+mor-slider.fw-s .form-body {
+  width: 140px;
+}
+mor-slider.fw-m,
+mor-slider.fw-m .form-body {
+  width: 180px;
+}
+mor-slider.fw-l,
+mor-slider.fw-l .form-body {
+  width: 360px;
+}
+mor-slider.fw-xl,
+mor-slider.fw-xl .form-body {
+  width: 600px;
 }
 mor-slider > .form-name {
   padding: 0 10px;
@@ -46197,6 +46463,26 @@ mor-timepicker > .error-message {
 mor-timepicker > .error-message:empty {
   display: none;
 }
+mor-timepicker.fw-xs,
+mor-timepicker.fw-xs .form-body {
+  width: 120px;
+}
+mor-timepicker.fw-s,
+mor-timepicker.fw-s .form-body {
+  width: 140px;
+}
+mor-timepicker.fw-m,
+mor-timepicker.fw-m .form-body {
+  width: 180px;
+}
+mor-timepicker.fw-l,
+mor-timepicker.fw-l .form-body {
+  width: 360px;
+}
+mor-timepicker.fw-xl,
+mor-timepicker.fw-xl .form-body {
+  width: 600px;
+}
 mor-timepicker .wrap {
   display: flex;
 }
@@ -46349,6 +46635,26 @@ mor-datepicker > .error-message {
 }
 mor-datepicker > .error-message:empty {
   display: none;
+}
+mor-datepicker.fw-xs,
+mor-datepicker.fw-xs .form-body {
+  width: 120px;
+}
+mor-datepicker.fw-s,
+mor-datepicker.fw-s .form-body {
+  width: 140px;
+}
+mor-datepicker.fw-m,
+mor-datepicker.fw-m .form-body {
+  width: 180px;
+}
+mor-datepicker.fw-l,
+mor-datepicker.fw-l .form-body {
+  width: 360px;
+}
+mor-datepicker.fw-xl,
+mor-datepicker.fw-xl .form-body {
+  width: 600px;
 }
 mor-datepicker .wrap {
   display: flex;
@@ -46652,6 +46958,26 @@ mor-datetimepicker > .error-message {
 mor-datetimepicker > .error-message:empty {
   display: none;
 }
+mor-datetimepicker.fw-xs,
+mor-datetimepicker.fw-xs .form-body {
+  width: 120px;
+}
+mor-datetimepicker.fw-s,
+mor-datetimepicker.fw-s .form-body {
+  width: 140px;
+}
+mor-datetimepicker.fw-m,
+mor-datetimepicker.fw-m .form-body {
+  width: 180px;
+}
+mor-datetimepicker.fw-l,
+mor-datetimepicker.fw-l .form-body {
+  width: 360px;
+}
+mor-datetimepicker.fw-xl,
+mor-datetimepicker.fw-xl .form-body {
+  width: 600px;
+}
 .mor-private-datepicker-popover .timepicker {
   width: 100%;
   height: 32px;
@@ -46709,6 +47035,26 @@ mor-upload > .error-message {
 }
 mor-upload > .error-message:empty {
   display: none;
+}
+mor-upload.fw-xs,
+mor-upload.fw-xs .form-body {
+  width: 120px;
+}
+mor-upload.fw-s,
+mor-upload.fw-s .form-body {
+  width: 140px;
+}
+mor-upload.fw-m,
+mor-upload.fw-m .form-body {
+  width: 180px;
+}
+mor-upload.fw-l,
+mor-upload.fw-l .form-body {
+  width: 360px;
+}
+mor-upload.fw-xl,
+mor-upload.fw-xl .form-body {
+  width: 600px;
 }
 mor-upload[type='button'] {
   -webkit-appearance: none;
@@ -47926,6 +48272,26 @@ mor-imagemap > .error-message {
 mor-imagemap > .error-message:empty {
   display: none;
 }
+mor-imagemap.fw-xs,
+mor-imagemap.fw-xs .form-body {
+  width: 120px;
+}
+mor-imagemap.fw-s,
+mor-imagemap.fw-s .form-body {
+  width: 140px;
+}
+mor-imagemap.fw-m,
+mor-imagemap.fw-m .form-body {
+  width: 180px;
+}
+mor-imagemap.fw-l,
+mor-imagemap.fw-l .form-body {
+  width: 360px;
+}
+mor-imagemap.fw-xl,
+mor-imagemap.fw-xl .form-body {
+  width: 600px;
+}
 mor-imagemap .imagemap-operate {
   display: block;
   color: #7F7F7F;
@@ -48257,6 +48623,38 @@ mor-form > .error-message {
 mor-form > .error-message:empty {
   display: none;
 }
+mor-form.fw-xs,
+mor-form.fw-xs .form-body {
+  width: 120px;
+}
+mor-form.fw-s,
+mor-form.fw-s .form-body {
+  width: 140px;
+}
+mor-form.fw-m,
+mor-form.fw-m .form-body {
+  width: 180px;
+}
+mor-form.fw-l,
+mor-form.fw-l .form-body {
+  width: 360px;
+}
+mor-form.fw-xl,
+mor-form.fw-xl .form-body {
+  width: 600px;
+}
+mor-form.fw-xs,
+mor-form.fw-s,
+mor-form.fw-m,
+mor-form.fw-l,
+mor-form.fw-xl,
+mor-form.fw-xs > .form-body,
+mor-form.fw-s > .form-body,
+mor-form.fw-m > .form-body,
+mor-form.fw-l > .form-body,
+mor-form.fw-xl > .form-body {
+  width: auto;
+}
 mor-form > .form-name {
   text-align: center;
   font-size: 20px;
@@ -48361,6 +48759,26 @@ mor-private-timepicker > .error-message {
 }
 mor-private-timepicker > .error-message:empty {
   display: none;
+}
+mor-private-timepicker.fw-xs,
+mor-private-timepicker.fw-xs .form-body {
+  width: 120px;
+}
+mor-private-timepicker.fw-s,
+mor-private-timepicker.fw-s .form-body {
+  width: 140px;
+}
+mor-private-timepicker.fw-m,
+mor-private-timepicker.fw-m .form-body {
+  width: 180px;
+}
+mor-private-timepicker.fw-l,
+mor-private-timepicker.fw-l .form-body {
+  width: 360px;
+}
+mor-private-timepicker.fw-xl,
+mor-private-timepicker.fw-xl .form-body {
+  width: 600px;
 }
 .mor-private-timepicker-popover {
   width: 160px;
@@ -48512,6 +48930,26 @@ mor-private-datepicker > .error-message {
 }
 mor-private-datepicker > .error-message:empty {
   display: none;
+}
+mor-private-datepicker.fw-xs,
+mor-private-datepicker.fw-xs .form-body {
+  width: 120px;
+}
+mor-private-datepicker.fw-s,
+mor-private-datepicker.fw-s .form-body {
+  width: 140px;
+}
+mor-private-datepicker.fw-m,
+mor-private-datepicker.fw-m .form-body {
+  width: 180px;
+}
+mor-private-datepicker.fw-l,
+mor-private-datepicker.fw-l .form-body {
+  width: 360px;
+}
+mor-private-datepicker.fw-xl,
+mor-private-datepicker.fw-xl .form-body {
+  width: 600px;
 }
 .mor-private-datepicker-popover {
   min-width: calc(240px + 2px);

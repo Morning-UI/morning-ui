@@ -12,6 +12,8 @@
 
     定义穿梭框，穿梭框是一个处理结构化数据的组件，数值中包含`source`和`target`两个数组，用于区分一组KEY分别属于哪一个数组。
 
+    __注意：`form-width`配置对此组件无效。__
+
     :::vue
     @name:使用
     ---
@@ -118,7 +120,7 @@
     [[[配置]]]
 
     :::preset
-    @name:formConfig
+    @name:formConfigWithoutFormWidth
     @uikey:transfer
     @defaultValue:{source:['item2','item3','item4','item5','item6','item7','item8','item9'],target:['item1']}
     @attrs: :list="{item1:'备选项-1',item2:'备选项-2',item3:'备选项-3',item4:'备选项-4',item5:'备选项-5',item6:'备选项-6',item7:'备选项-7',item8:'备选项-8',item9:'备选项-9'}"

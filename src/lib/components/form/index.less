@@ -8,6 +8,17 @@ mor-form{
 
     .setup-form();
 
+    &.fw-xs,
+    &.fw-s,
+    &.fw-m,
+    &.fw-l,
+    &.fw-xl{
+        &,
+        & > .form-body{
+            width: auto;
+        }
+    }
+
     > .form-name{
         text-align: center;
         font-size: @fontSize*1.25;
