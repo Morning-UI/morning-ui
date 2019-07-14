@@ -79,6 +79,21 @@
 @colorFromItemBackgroundCurrent : darken(@colorFormBackgroundHover, 3%);
 @colorFromItemBackgroundDisable : darken(@colorFormBackgroundDisable, 8%);
 
+@colorSetTheme : {
+    Theme: @colorTheme;
+    LightTheme: @colorLightTheme;
+    DarkTheme: @colorDarkTheme;
+};
+
+@colorSetFeatures : {
+    Success: @colorSuccess;
+    Warning: @colorWarning;
+    Danger: @colorDanger;
+    Primary: @colorPrimary;
+    Minor: @colorMinor;
+    Info: @colorInfo;
+};
+
 // ---
 
 .setup-font-color-theme() {
@@ -373,8 +388,8 @@
     box-shadow: 0 0 0 2px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.15);
 }
 
-.setup-form-focus-animate() {
+.setup-form-focus-animate(@color: '') {
     &.focus-once{
-        animation: formFocusAnimate 0.42s ease-out;
+        animation: ~'formFocusAnimate@{color}' 0.42s ease-out;
     }
 }

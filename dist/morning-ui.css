@@ -1656,6 +1656,132 @@ textarea {
     box-shadow: 0 0 0 4px rgba(243, 61, 93, 0);
   }
 }
+@keyframes formFocusAnimateTheme {
+  from {
+    box-shadow: 0 0 0 1px rgba(243, 61, 93, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(243, 61, 93, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0);
+  }
+}
+@keyframes formFocusAnimateLightTheme {
+  from {
+    box-shadow: 0 0 0 1px rgba(248, 111, 136, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(248, 111, 136, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(248, 111, 136, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(248, 111, 136, 0);
+  }
+}
+@keyframes formFocusAnimateDarkTheme {
+  from {
+    box-shadow: 0 0 0 1px rgba(210, 35, 67, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(210, 35, 67, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(210, 35, 67, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(210, 35, 67, 0);
+  }
+}
+@keyframes formFocusAnimateSuccess {
+  from {
+    box-shadow: 0 0 0 1px rgba(77, 189, 103, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(77, 189, 103, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(77, 189, 103, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(77, 189, 103, 0);
+  }
+}
+@keyframes formFocusAnimateWarning {
+  from {
+    box-shadow: 0 0 0 1px rgba(240, 173, 78, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(240, 173, 78, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(240, 173, 78, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(240, 173, 78, 0);
+  }
+}
+@keyframes formFocusAnimateDanger {
+  from {
+    box-shadow: 0 0 0 1px rgba(214, 68, 49, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(214, 68, 49, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(214, 68, 49, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(214, 68, 49, 0);
+  }
+}
+@keyframes formFocusAnimatePrimary {
+  from {
+    box-shadow: 0 0 0 1px rgba(33, 133, 208, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(33, 133, 208, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(33, 133, 208, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(33, 133, 208, 0);
+  }
+}
+@keyframes formFocusAnimateMinor {
+  from {
+    box-shadow: 0 0 0 1px rgba(169, 169, 169, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(169, 169, 169, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(169, 169, 169, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(169, 169, 169, 0);
+  }
+}
+@keyframes formFocusAnimateInfo {
+  from {
+    box-shadow: 0 0 0 1px rgba(3, 166, 185, 0.4);
+  }
+  45% {
+    box-shadow: 0 0 0 2.5px rgba(3, 166, 185, 0.25);
+  }
+  90% {
+    box-shadow: 0 0 0 4px rgba(3, 166, 185, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(3, 166, 185, 0);
+  }
+}
 .move-drag-item.fixed {
   position: fixed !important;
 }
@@ -41707,9 +41833,6 @@ mor-checkbox > .il label .box {
   box-sizing: border-box;
   position: relative;
 }
-mor-checkbox > .il label .box.focus-once {
-  animation: formFocusAnimate 0.42s ease-out;
-}
 mor-checkbox > .il label .mo-icon {
   color: #FFFFFF;
   opacity: 0;
@@ -41921,6 +42044,9 @@ mor-checkbox.si-xs.type-button > .il label {
   padding: 0.2em 0.6em;
   margin: 0;
 }
+mor-checkbox.co-t > .il label .box.focus-once {
+  animation: formFocusAnimateTheme 0.42s ease-out;
+}
 mor-checkbox.co-t > .il label.checked .box,
 mor-checkbox.co-t > .il label.part-checked .box {
   background: #F33D5D;
@@ -41957,6 +42083,9 @@ mor-checkbox.co-t > .il label.checked.disabled .box,
 mor-checkbox.co-t > .il label.part-checked.disabled .box {
   background: #de526a;
   border-color: #de526a;
+}
+mor-checkbox.co-lt > .il label .box.focus-once {
+  animation: formFocusAnimateLightTheme 0.42s ease-out;
 }
 mor-checkbox.co-lt > .il label.checked .box,
 mor-checkbox.co-lt > .il label.part-checked .box {
@@ -41995,6 +42124,9 @@ mor-checkbox.co-lt > .il label.part-checked.disabled .box {
   background: #e97e92;
   border-color: #e97e92;
 }
+mor-checkbox.co-dt > .il label .box.focus-once {
+  animation: formFocusAnimateDarkTheme 0.42s ease-out;
+}
 mor-checkbox.co-dt > .il label.checked .box,
 mor-checkbox.co-dt > .il label.part-checked .box {
   background: #D22343;
@@ -42031,6 +42163,9 @@ mor-checkbox.co-dt > .il label.checked.disabled .box,
 mor-checkbox.co-dt > .il label.part-checked.disabled .box {
   background: #b93c53;
   border-color: #b93c53;
+}
+mor-checkbox.co-s > .il label .box.focus-once {
+  animation: formFocusAnimateSuccess 0.42s ease-out;
 }
 mor-checkbox.co-s > .il label.checked .box,
 mor-checkbox.co-s > .il label.part-checked .box {
@@ -42069,6 +42204,9 @@ mor-checkbox.co-s > .il label.part-checked.disabled .box {
   background: #65a574;
   border-color: #65a574;
 }
+mor-checkbox.co-w > .il label .box.focus-once {
+  animation: formFocusAnimateWarning 0.42s ease-out;
+}
 mor-checkbox.co-w > .il label.checked .box,
 mor-checkbox.co-w > .il label.part-checked .box {
   background: #F0AD4E;
@@ -42105,6 +42243,9 @@ mor-checkbox.co-w > .il label.checked.disabled .box,
 mor-checkbox.co-w > .il label.part-checked.disabled .box {
   background: #ddaa61;
   border-color: #ddaa61;
+}
+mor-checkbox.co-d > .il label .box.focus-once {
+  animation: formFocusAnimateDanger 0.42s ease-out;
 }
 mor-checkbox.co-d > .il label.checked .box,
 mor-checkbox.co-d > .il label.part-checked .box {
@@ -42143,6 +42284,9 @@ mor-checkbox.co-d > .il label.part-checked.disabled .box {
   background: #bd574a;
   border-color: #bd574a;
 }
+mor-checkbox.co-p > .il label .box.focus-once {
+  animation: formFocusAnimatePrimary 0.42s ease-out;
+}
 mor-checkbox.co-p > .il label.checked .box,
 mor-checkbox.co-p > .il label.part-checked .box {
   background: #2185D0;
@@ -42180,6 +42324,9 @@ mor-checkbox.co-p > .il label.part-checked.disabled .box {
   background: #3982b8;
   border-color: #3982b8;
 }
+mor-checkbox.co-m > .il label .box.focus-once {
+  animation: formFocusAnimateMinor 0.42s ease-out;
+}
 mor-checkbox.co-m > .il label.checked .box,
 mor-checkbox.co-m > .il label.part-checked .box {
   background: #A9A9A9;
@@ -42216,6 +42363,9 @@ mor-checkbox.co-m > .il label.checked.disabled .box,
 mor-checkbox.co-m > .il label.part-checked.disabled .box {
   background: #a9a9a9;
   border-color: #a9a9a9;
+}
+mor-checkbox.co-i > .il label .box.focus-once {
+  animation: formFocusAnimateInfo 0.42s ease-out;
 }
 mor-checkbox.co-i > .il label.checked .box,
 mor-checkbox.co-i > .il label.part-checked .box {
@@ -42883,6 +43033,9 @@ mor-checkbox.type-button > .il label {
   padding: 0.5em 1em;
   margin: 0;
 }
+mor-checkbox > .il label .box.focus-once {
+  animation: formFocusAnimateTheme 0.42s ease-out;
+}
 mor-checkbox > .il label.checked .box,
 mor-checkbox > .il label.part-checked .box {
   background: #F33D5D;
@@ -42988,9 +43141,6 @@ mor-radio > .il label .box {
   border: 1px #E5E5E5 solid;
   transition: 0.2s;
   box-sizing: border-box;
-}
-mor-radio > .il label .box.focus-once {
-  animation: formFocusAnimate 0.42s ease-out;
 }
 mor-radio > .il label .mo-icon {
   color: #FFF;
@@ -43197,6 +43347,9 @@ mor-radio.si-xs.type-button > .il label {
   padding: 0.2em 0.6em;
   margin: 0;
 }
+mor-radio.co-t > .il label .box.focus-once {
+  animation: formFocusAnimateTheme 0.42s ease-out;
+}
 mor-radio.co-t > .il label.checked .box {
   background: #F33D5D;
   border-color: #F33D5D;
@@ -43231,6 +43384,9 @@ mor-radio.co-t.st-readonly > .il label.checked .box {
 mor-radio.co-t > .il label.checked.disabled .box {
   background: #de526a;
   border-color: #de526a;
+}
+mor-radio.co-lt > .il label .box.focus-once {
+  animation: formFocusAnimateLightTheme 0.42s ease-out;
 }
 mor-radio.co-lt > .il label.checked .box {
   background: #F86F88;
@@ -43267,6 +43423,9 @@ mor-radio.co-lt > .il label.checked.disabled .box {
   background: #e97e92;
   border-color: #e97e92;
 }
+mor-radio.co-dt > .il label .box.focus-once {
+  animation: formFocusAnimateDarkTheme 0.42s ease-out;
+}
 mor-radio.co-dt > .il label.checked .box {
   background: #D22343;
   border-color: #D22343;
@@ -43301,6 +43460,9 @@ mor-radio.co-dt.st-readonly > .il label.checked .box {
 mor-radio.co-dt > .il label.checked.disabled .box {
   background: #b93c53;
   border-color: #b93c53;
+}
+mor-radio.co-s > .il label .box.focus-once {
+  animation: formFocusAnimateSuccess 0.42s ease-out;
 }
 mor-radio.co-s > .il label.checked .box {
   background: #4DBD67;
@@ -43337,6 +43499,9 @@ mor-radio.co-s > .il label.checked.disabled .box {
   background: #65a574;
   border-color: #65a574;
 }
+mor-radio.co-w > .il label .box.focus-once {
+  animation: formFocusAnimateWarning 0.42s ease-out;
+}
 mor-radio.co-w > .il label.checked .box {
   background: #F0AD4E;
   border-color: #F0AD4E;
@@ -43371,6 +43536,9 @@ mor-radio.co-w.st-readonly > .il label.checked .box {
 mor-radio.co-w > .il label.checked.disabled .box {
   background: #ddaa61;
   border-color: #ddaa61;
+}
+mor-radio.co-d > .il label .box.focus-once {
+  animation: formFocusAnimateDanger 0.42s ease-out;
 }
 mor-radio.co-d > .il label.checked .box {
   background: #D64431;
@@ -43407,6 +43575,9 @@ mor-radio.co-d > .il label.checked.disabled .box {
   background: #bd574a;
   border-color: #bd574a;
 }
+mor-radio.co-p > .il label .box.focus-once {
+  animation: formFocusAnimatePrimary 0.42s ease-out;
+}
 mor-radio.co-p > .il label.checked .box {
   background: #2185D0;
   border-color: #2185D0;
@@ -43442,6 +43613,9 @@ mor-radio.co-p > .il label.checked.disabled .box {
   background: #3982b8;
   border-color: #3982b8;
 }
+mor-radio.co-m > .il label .box.focus-once {
+  animation: formFocusAnimateMinor 0.42s ease-out;
+}
 mor-radio.co-m > .il label.checked .box {
   background: #A9A9A9;
   border-color: #A9A9A9;
@@ -43476,6 +43650,9 @@ mor-radio.co-m.st-readonly > .il label.checked .box {
 mor-radio.co-m > .il label.checked.disabled .box {
   background: #a9a9a9;
   border-color: #a9a9a9;
+}
+mor-radio.co-i > .il label .box.focus-once {
+  animation: formFocusAnimateInfo 0.42s ease-out;
 }
 mor-radio.co-i > .il label.checked .box {
   background: #03A6B9;
@@ -44106,6 +44283,9 @@ mor-radio.border:not(.type-button) > .il label {
 mor-radio.type-button > .il label {
   padding: 0.5em 1em;
   margin: 0;
+}
+mor-radio > .il label .box.focus-once {
+  animation: formFocusAnimateTheme 0.42s ease-out;
 }
 mor-radio > .il label.checked .box {
   background: #F33D5D;
@@ -44928,6 +45108,13 @@ mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item {
   position: relative;
   cursor: default;
   box-sizing: border-box;
+  border: 1px solid #f8f8f8;
+}
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.will-delete {
+  border: 1px solid #d6d6d6;
+}
+mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.collapse-count > span {
+  padding-right: 0 !important;
 }
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > span {
   max-width: 100%;
@@ -45157,6 +45344,18 @@ mor-multiinput .form-body > .multiinput-itemlist > input {
 mor-multiinput .form-body > .multiinput-itemlist > span {
   font-size: 12px;
   padding: 0.4em 0.7em;
+}
+.mor-multiinput-tip-collapse {
+  max-width: 320px;
+}
+.mor-multiinput-tip-collapse .con {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3px 8px;
+}
+.mor-multiinput-tip-collapse .con span {
+  padding: 0 0.25em;
 }
 mor-multiform {
   position: relative;

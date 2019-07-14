@@ -54,8 +54,6 @@ mor-checkbox{
                 transition: 0.2s;
                 box-sizing: border-box;
                 position: relative;
-
-                .setup-form-focus-animate();
             }
 
             .mo-icon{
@@ -348,6 +346,10 @@ mor-checkbox{
     }
 
     &.co-t{
+        > .il label .box{
+            .setup-form-focus-animate('Theme');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorTheme;
@@ -407,6 +409,10 @@ mor-checkbox{
     }
 
     &.co-lt{
+        > .il label .box{
+            .setup-form-focus-animate('LightTheme');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorLightTheme;
@@ -466,6 +472,10 @@ mor-checkbox{
     }
 
     &.co-dt{
+        > .il label .box{
+            .setup-form-focus-animate('DarkTheme');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorDarkTheme;
@@ -525,6 +535,10 @@ mor-checkbox{
     }
 
     &.co-s{
+        > .il label .box{
+            .setup-form-focus-animate('Success');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorSuccess;
@@ -584,6 +598,10 @@ mor-checkbox{
     }
 
     &.co-w{
+        > .il label .box{
+            .setup-form-focus-animate('Warning');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorWarning;
@@ -643,6 +661,10 @@ mor-checkbox{
     }
 
     &.co-d{
+        > .il label .box{
+            .setup-form-focus-animate('Danger');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorDanger;
@@ -702,6 +724,10 @@ mor-checkbox{
     }
 
     &.co-p{
+        > .il label .box{
+            .setup-form-focus-animate('Primary');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorPrimary;
@@ -761,6 +787,10 @@ mor-checkbox{
     }
 
     &.co-m{
+        > .il label .box{
+            .setup-form-focus-animate('Minor');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorMinor;
@@ -820,6 +850,10 @@ mor-checkbox{
     }
 
     &.co-i{
+        > .il label .box{
+            .setup-form-focus-animate('Info');
+        }
+
         > .il label.checked .box,
         > .il label.part-checked .box{
             background: @colorInfo;

@@ -33,6 +33,7 @@
                     :hide-name="conf.hideName"
                     :state="conf.state"
                     :size="conf.size"
+                    :collapse-limit="conf.multiSelect ? conf.collapseLimit : Infinity"
                     key="multi-can-search"
 
                     v-if="conf.canSearch"
@@ -50,6 +51,7 @@
                     :hide-name="conf.hideName"
                     :state="conf.state"
                     :size="conf.size"
+                    :collapse-limit="conf.multiSelect ? conf.collapseLimit : Infinity"
                     key="multi-no-search"
 
                     v-else

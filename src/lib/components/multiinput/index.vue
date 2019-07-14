@@ -14,6 +14,7 @@
         :inside-name="insideName"
         :can-move="canMove"
         :max="max"
+        :collapse-limit="collapseLimit"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -35,7 +36,12 @@
         >
             <div
                 class="multiinput-item"
+                :class="{
+                    'will-delete' : (data.backspace > 0 && index === (data.value.length - 1))
+                }"
+
                 v-for="(value, index) in data.value"
+                v-if="index < conf.collapseLimit"
                 :key="index"
                 @mousedown="_moveItemRecord(index)"
             >
@@ -46,6 +52,33 @@
                     @click="_deleteItem(index)"
                 ></i>
             </div>
+
+            <div
+                id="mor-multiinput-collapse"
+                class="multiinput-item collapse-count"
+                :class="{
+                    'will-delete' : (data.backspace > 0 && (data.value.length - 1) >= conf.collapseLimit)
+                }"
+
+                v-if="data.value.length > conf.collapseLimit"
+            >
+                <span>+{{data.value.length - conf.collapseLimit}}</span>
+            </div>
+
+            <morning-tip
+                v-if="data.value.length > conf.collapseLimit"
+                class="mor-multiinput-tip-collapse"
+                color="neutral-9"
+
+                target="#mor-multiinput-collapse"
+            >
+                <span
+                    v-for="(value, index) in data.value"
+                    v-if="index >= conf.collapseLimit"
+                >
+                    {{value}} 
+                </span>
+            </morning-tip>
 
             <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
                 <template v-if="conf.max">
@@ -142,6 +175,10 @@ export default {
         max : {
             type : [Number, Boolean],
             default : false
+        },
+        collapseLimit : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -150,7 +187,8 @@ export default {
             return {
                 insideName : this.insideName,
                 canMove : this.canMove,
-                max : this.max
+                max : this.max,
+                collapseLimit : this.collapseLimit
             };
 
         },
@@ -314,11 +352,15 @@ export default {
 
                 if (this.data.backspace > 0) {
 
+                    this.data.backspace = 0;
                     this._deleteItem(this.data.value.length - 1);
+                    console.log(this.data.backspace);
+
+                } else {
+    
+                    this.data.backspace++;
 
                 }
-
-                this.data.backspace++;
 
             }
 
@@ -417,6 +459,18 @@ export default {
 
         });
 
+        this.$on('value-change', () => {
+
+            this.data.backspace = 0;
+
+        });
+
+        this.$on('input-blur', () => {
+
+            this.data.backspace = 0;
+
+        });
+
         this.$watch('data.inputValue', () => {
 
             this.data.backspace = 0;
@@ -424,6 +478,12 @@ export default {
         });
 
         this.$watch('conf.canMove', newVal => {
+
+            if (this.conf.collapseLimit !== Infinity) {
+
+                return;
+
+            }
 
             this.Move.target = '.multiinput-item';
             this.Move.container = '.multiinput-itemlist';

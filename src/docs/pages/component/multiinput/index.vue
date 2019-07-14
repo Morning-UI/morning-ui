@@ -23,7 +23,7 @@
     :::
 
     :::vue
-    @name:说明回车输入
+    @name:回车输入
     ---
     #demo
     >desc
@@ -32,6 +32,24 @@
     <div style="width:300px;">
         <ui-multiinput inside-name="按下回车输入标签"></ui-multiinput>
     </div>
+    :::
+
+    :::vue
+    @name:按键删除
+    ---
+    #demo
+    >desc
+    多项输入框的项目可以通过`backspace`(MacOS下为`delete`)按键进行删除。
+    >tpl
+    <div style="width:300px;">
+        <ui-multiinput inside-name="输入标签" v-model="value"></ui-multiinput>
+    </div>
+    >script
+    {
+        data : {
+            value : ['label1', 'label2']
+        }
+    }
     :::
 
     [[[形态]]]
@@ -75,7 +93,7 @@
     ---
     #config
     >conf-desc
-    输入项目是否可以移动。
+    输入项目是否可以移动(此配置无法和`collapse-limit`同时使用)。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -113,6 +131,32 @@
     >tpl
     <div style="width:300px;">
         <ui-multiinput form-name="输入标签" v-model="value" :max="3"></ui-multiinput>
+    </div>
+    >script
+    {
+        data : {
+            value : ['value1', 'value2', 'value3', 'value4']
+        }
+    }
+    :::
+
+    :::vue
+    @name:collapse-limit
+    ---
+    #config
+    >conf-desc
+    折叠超出特定数量的项目(此配置无法和`can-move`同时使用)。
+    >conf-accept
+    数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-multiinput form-name="输入标签" v-model="value" :collapse-limit="2"></ui-multiinput>
     </div>
     >script
     {
