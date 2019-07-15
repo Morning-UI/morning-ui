@@ -16,6 +16,35 @@ mor-cascader{
             border: 1px @colorFormBorder solid;
             color: @colorFormPlaceholder !important;
             cursor: pointer;
+            display: flex;
+
+            > mor-multiinput{
+                margin: 0;
+                width: calc(100% - @fontSize*2.5);
+                background-color: #FFF;
+                vertical-align: top;
+                left: 0.35em;
+
+                .multiinput-itemlist{
+                    width: 100%;
+                }
+
+                .form-body{
+                    border: none;
+
+                    &.focus{
+                        box-shadow: none !important;
+                    }
+
+                    > input{
+                        cursor: pointer;
+                    }
+
+                    .cleanicon{
+                        display: none !important;
+                    }
+                }
+            }
 
             mor-textinput{
                 position: absolute;
@@ -76,7 +105,6 @@ mor-cascader{
                 top: 0;
                 right: 0;
                 color: @colorFormPlaceholder;
-                height: 100%;
 
                 &.cleanicon{
                     display: none;
@@ -119,8 +147,8 @@ mor-cascader{
     &.si-m{
         .cascader-wrap{
             .cascader-input{
-                height: @formHeight;
-                line-height: @formHeight;
+                // height: @formHeight;
+                line-height: @formHeight - 2px;
 
                 .textinput-wrap{
                     height: @formHeight - 2px;
@@ -129,6 +157,11 @@ mor-cascader{
                     input{
                         height: @formHeight - 2px;
                     }
+                }
+
+                > mor-multiinput{
+                    min-height: @formHeight - 2px;
+                    font-size: @formInputFontSize;
                 }
 
                 > .note{
@@ -142,8 +175,8 @@ mor-cascader{
     &.si-s{
         .cascader-wrap{
             .cascader-input{
-                height: @formHeightS;
-                line-height: @formHeightS;
+                // height: @formHeightS;
+                line-height: @formHeightS - 2px;
 
                 .textinput-wrap{
                     height: @formHeightS - 2px;
@@ -152,6 +185,11 @@ mor-cascader{
                     input{
                         height: @formHeightS - 2px;
                     }
+                }
+
+                > mor-multiinput{
+                    min-height: @formHeightS - 2px;
+                    font-size: @formInputFontSizeS;
                 }
 
                 > .note{
@@ -165,8 +203,8 @@ mor-cascader{
     &.si-xs{
         .cascader-wrap{
             .cascader-input{
-                height: @formHeightXs;
-                line-height: @formHeightXs;
+                // height: @formHeightXs;
+                line-height: @formHeightXs - 2px;
 
                 .textinput-wrap{
                     height: @formHeightXs - 2px;
@@ -175,6 +213,11 @@ mor-cascader{
                     input{
                         height: @formHeightXs - 2px;
                     }
+                }
+
+                > mor-multiinput{
+                    min-height: @formHeightXs - 2px;
+                    font-size: @formInputFontSizeXs;
                 }
 
                 > .note{
@@ -196,6 +239,10 @@ mor-cascader{
                 -webkit-user-select: none;
                 cursor: not-allowed !important;
                 color: @colorFormTextDisable !important;
+
+                > mor-multiinput{
+                    background: transparent;
+                }
 
                 > .note{
                     color: @colorFormTextDisable !important;
@@ -240,6 +287,7 @@ mor-cascader{
                     font-size: @fontSize*0.875;
                     padding: 0.6em 1.5em;
                     cursor: pointer;
+                    display: flex;
 
                     &:hover{
                         background: @colorFromItemBackgroundHover;
@@ -257,6 +305,19 @@ mor-cascader{
                     &.disabled{
                         background: @colorFromItemBackgroundDisable;
                         cursor: not-allowed;
+                    }
+
+                    mor-checkbox{
+                        width: auto;
+                        font-size: 0;
+                        margin-right: @fontSize*0.25;
+                        align-items: center;
+                        display: flex;
+
+                        > .il label{
+                            margin-right: 0;
+                            font-size: 0;
+                        }
                     }
                 }
             }
@@ -281,9 +342,30 @@ mor-cascader{
         li{
             padding: 0.5em 1em;
             font-size: @fontSize*0.875;
-            // white-space: nowrap;
-            // text-overflow: ellipsis;
             overflow: hidden;
+            position: relative;
+
+            &.selected{
+                background: @colorFormBackgroundHover;
+                color: @colorTheme;
+                cursor: default;
+
+                &:hover{
+                    color: @colorTheme;
+                }
+
+                .mo-cascader-selected-icon{
+                    font-size: @fontSize*0.75;
+                    position: absolute;
+                    right: 5px;
+                    display: inline-block;
+                    width: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    box-sizing: border-box;
+                    color: @colorTheme;
+                }
+            }
         }
 
         li:not(.nomatch){

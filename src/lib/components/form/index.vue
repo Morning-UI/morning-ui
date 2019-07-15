@@ -1,7 +1,7 @@
 <template>
     <mor-form
         :_uiid="uiid"
-        :class="[moreClass]"
+        :class="[formClass, moreClass]"
 
         :form-name="formName"
         :form-note="formNote"

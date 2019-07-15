@@ -103,7 +103,7 @@
     @name:formStatus
     @uikey:texteditor
     @defaultValue:'<p>编辑你的文章...</p>'
-    @wrapStyle:width:100%;height:160px;padding-bottom:70px;
+    @wrapStyle:width:100%;
     :::
 
     [[[配置]]]
@@ -112,7 +112,8 @@
     @name:formConfig
     @uikey:texteditor
     @defaultValue:'<p>编辑你的文章...</p>'
-    @wrapStyle:width:100%;height:260px;padding-bottom:70px;
+    @wrapStyle:width:100%;
+    @attrs: :tools="[['bold', 'italic']]"
     :::
 
     :::vue

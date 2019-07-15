@@ -12,6 +12,8 @@
 
     定义颜色选择器。
 
+    __注意：`form-width`配置对此组件无效。__
+
     :::vue
     @name:使用
     ---
@@ -33,7 +35,7 @@
     [[[配置]]]
 
     :::preset
-    @name:formConfig
+    @name:formConfigWithoutFormWidth
     @uikey:colorpicker
     @defaultValue:'#ff0000'
     :::

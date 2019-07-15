@@ -3981,7 +3981,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -16762,6 +16762,76 @@ function subYears(dirtyDate, dirtyAmount) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+// there's 3 implementations written in increasing order of efficiency
+
+// 1 - no Set type is defined
+function uniqNoSet(arr) {
+	var ret = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (ret.indexOf(arr[i]) === -1) {
+			ret.push(arr[i]);
+		}
+	}
+
+	return ret;
+}
+
+// 2 - a simple Set type is defined
+function uniqSet(arr) {
+	var seen = new Set();
+	return arr.filter(function (el) {
+		if (!seen.has(el)) {
+			seen.add(el);
+			return true;
+		}
+
+		return false;
+	});
+}
+
+// 3 - a standard Set type is defined and it has a forEach method
+function uniqSetWithForEach(arr) {
+	var ret = [];
+
+	(new Set(arr)).forEach(function (el) {
+		ret.push(el);
+	});
+
+	return ret;
+}
+
+// V8 currently has a broken implementation
+// https://github.com/joyent/node/issues/8449
+function doesForEachActuallyWork() {
+	var ret = false;
+
+	(new Set([true])).forEach(function (el) {
+		ret = el;
+	});
+
+	return ret === true;
+}
+
+if ('Set' in global) {
+	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
+		module.exports = uniqSetWithForEach;
+	} else {
+		module.exports = uniqSet;
+	}
+} else {
+	module.exports = uniqNoSet;
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(13)))
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17108,76 +17178,6 @@ Delta.prototype.transformPosition = function (index, priority) {
 module.exports = Delta;
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-// there's 3 implementations written in increasing order of efficiency
-
-// 1 - no Set type is defined
-function uniqNoSet(arr) {
-	var ret = [];
-
-	for (var i = 0; i < arr.length; i++) {
-		if (ret.indexOf(arr[i]) === -1) {
-			ret.push(arr[i]);
-		}
-	}
-
-	return ret;
-}
-
-// 2 - a simple Set type is defined
-function uniqSet(arr) {
-	var seen = new Set();
-	return arr.filter(function (el) {
-		if (!seen.has(el)) {
-			seen.add(el);
-			return true;
-		}
-
-		return false;
-	});
-}
-
-// 3 - a standard Set type is defined and it has a forEach method
-function uniqSetWithForEach(arr) {
-	var ret = [];
-
-	(new Set(arr)).forEach(function (el) {
-		ret.push(el);
-	});
-
-	return ret;
-}
-
-// V8 currently has a broken implementation
-// https://github.com/joyent/node/issues/8449
-function doesForEachActuallyWork() {
-	var ret = false;
-
-	(new Set([true])).forEach(function (el) {
-		ret = el;
-	});
-
-	return ret === true;
-}
-
-if ('Set' in global) {
-	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
-		module.exports = uniqSetWithForEach;
-	} else {
-		module.exports = uniqSet;
-	}
-} else {
-	module.exports = uniqNoSet;
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(13)))
-
-/***/ }),
 /* 13 */
 /***/ (function(module, exports) {
 
@@ -17223,7 +17223,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -17716,7 +17716,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 __webpack_require__(532);
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -18848,7 +18848,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -27583,7 +27583,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -31916,7 +31916,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -36975,7 +36975,7 @@ var _core = __webpack_require__(531);
 
 var _core2 = _interopRequireDefault(_core);
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -38600,6 +38600,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _lodash = __webpack_require__(386);
 
@@ -38711,6 +38712,10 @@ exports.default = {
         listWidth: {
             type: [Boolean, Number],
             default: false
+        },
+        collapseLimit: {
+            type: Number,
+            default: Infinity
         }
     },
     computed: {
@@ -38737,7 +38742,8 @@ exports.default = {
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
                 itemTipDirect: this.itemTipDirect,
-                listWidth: this.listWidth
+                listWidth: this.listWidth,
+                collapseLimit: this.collapseLimit
             };
         },
         moreClass: function moreClass() {
@@ -40297,6 +40303,8 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
@@ -40554,15 +40562,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _extend = __webpack_require__(2);
+var _extend2 = __webpack_require__(2);
 
-var _extend2 = _interopRequireDefault(_extend);
+var _extend3 = _interopRequireDefault(_extend2);
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 exports.default = {
     origin: 'Form',
@@ -40891,7 +40901,7 @@ exports.default = {
                 state = 1;
             }
 
-            this.data.checkedState[key] = state;
+            this.data.checkedState = (0, _extend3.default)(true, {}, this.data.checkedState, _defineProperty({}, key, state));
             this.$forceUpdate();
         },
         _itemClick: function _itemClick(key) {
@@ -40932,7 +40942,7 @@ exports.default = {
                 return this;
             }
 
-            var list = (0, _extend2.default)(true, [], this.data.value);
+            var list = (0, _extend3.default)(true, [], this.data.value);
 
             if (checked === undefined) {
 
@@ -40966,7 +40976,7 @@ exports.default = {
         },
         getCheckedState: function getCheckedState() {
 
-            return (0, _extend2.default)({}, this.data.checkedState);
+            return (0, _extend3.default)({}, this.data.checkedState);
         }
     },
     created: function created() {},
@@ -41030,10 +41040,20 @@ exports.default = {
                 state[key] = _this.conf.checkedState[key];
             }
 
-            _this.data.checkedState = (0, _extend2.default)({}, _this.data.checkedState, state);
+            _this.data.checkedState = (0, _extend3.default)({}, _this.data.checkedState, state);
         }, {
             deep: true,
             immediate: true
+        });
+
+        this.$watch('data.checkedState', function (newValue, oldValue) {
+
+            if (_this.conf.indeterminate && JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+
+                _this.$emit('checked-state-change', (0, _extend3.default)(true, {}, newValue));
+            }
+        }, {
+            deep: true
         });
 
         this.$on('value-change', function () {
@@ -41836,155 +41856,15 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
+var _arrayUniq = __webpack_require__(11);
+
+var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
+
 var _GlobalEvent = __webpack_require__(9);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
     origin: 'Form',
@@ -42023,6 +41903,18 @@ exports.default = {
         listWidth: {
             type: [Boolean, Number],
             default: false
+        },
+        multiSelect: {
+            type: Boolean,
+            default: false
+        },
+        selectLeafNode: {
+            type: Boolean,
+            default: true
+        },
+        collapseLimit: {
+            type: Number,
+            default: Infinity
         }
     },
     computed: {
@@ -42035,7 +41927,10 @@ exports.default = {
                 showLastName: this.showLastName,
                 changeOnSelect: this.changeOnSelect,
                 canSearch: this.canSearch,
-                listWidth: this.listWidth
+                listWidth: this.listWidth,
+                multiSelect: this.multiSelect,
+                selectLeafNode: this.selectLeafNode,
+                collapseLimit: this.collapseLimit
             };
         },
         moreCLass: function moreCLass() {
@@ -42116,7 +42011,10 @@ exports.default = {
                 searchResult: [],
                 textinputEmpty: true,
                 textinputFocus: false,
-                focus: false
+                focus: false,
+                checkedState: {},
+                checkedStateTree: {},
+                checkedNameMap: {}
             }
         };
     },
@@ -42128,24 +42026,207 @@ exports.default = {
                 value = [];
             }
 
-            var key = void 0;
-            var currentMenu = this.conf.list;
+            if (!this.conf.multiSelect) {
 
-            for (var index in value) {
+                var key = void 0;
+                var currentMenu = this.conf.list;
 
-                key = value[index];
+                for (var index in value) {
 
-                if (currentMenu[key] === undefined) {
+                    key = value[index];
 
-                    value = value.slice(0, index);
+                    if (currentMenu[key] === undefined) {
 
-                    break;
+                        value = value.slice(0, index);
+
+                        break;
+                    }
+
+                    currentMenu = currentMenu[key].children || {};
                 }
-
-                currentMenu = currentMenu[key].children || {};
             }
 
             return value;
+        },
+        _valueHasItem: function _valueHasItem(itemValue) {
+
+            var found = false;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.data.value[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var item = _step.value;
+
+
+                    if (item.join('/') === itemValue.join('/')) {
+
+                        found = true;
+
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return found;
+        },
+        _multiinputValueChange: function _multiinputValueChange() {
+
+            var names = this.$refs['mor-cascader-mi-' + this.uiid].get();
+            var values = [];
+            var nodePaths = [];
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = names[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var name = _step2.value;
+
+
+                    for (var _key in this.data.checkedNameMap) {
+
+                        var itemName = this.data.checkedNameMap[_key];
+
+                        if (itemName === name) {
+
+                            values.push((0, _extend2.default)(true, [], _key.split('-')));
+                            nodePaths.push(_key);
+
+                            break;
+                        }
+                    }
+                }
+
+                // +++
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = nodePaths[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var item = _step3.value;
+
+
+                    for (var _key2 in this.data.checkedState) {
+
+                        var _checkedItem = this.data.checkedState[_key2];
+
+                        if (_key2 === item && _checkedItem.checked === -1) {
+
+                            if (this.conf.selectLeafNode && this._isLeafNode(_key2)) {
+
+                                this._checkedStateChange({
+                                    checked: 1
+                                }, _key2);
+                            } else if (!this.conf.selectLeafNode) {
+
+                                this._checkedStateChange({
+                                    checked: 1
+                                }, _key2);
+                            }
+                        }
+                    }
+                }
+
+                // ---
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
+            for (var key in this.data.checkedState) {
+
+                var checkedItem = this.data.checkedState[key];
+
+                if (nodePaths.indexOf(key) === -1 && checkedItem.checked === 1) {
+
+                    if (this.conf.selectLeafNode && this._isLeafNode(key)) {
+
+                        this._checkedStateChange({
+                            checked: -1
+                        }, key);
+                    } else if (!this.conf.selectLeafNode) {
+
+                        this._checkedStateChange({
+                            checked: -1
+                        }, key);
+                    }
+                }
+            }
+
+            this._set(values, true);
+            this.$refs['mor-cascader-popover-' + this.uiid].position();
+
+            if (values.length === 0) {
+
+                this.$forceUpdate();
+            }
+        },
+        _multiinputFocusNoSearch: function _multiinputFocusNoSearch() {
+
+            var searchMultiinput = this.$refs['mor-cascader-mi-' + this.uiid];
+
+            searchMultiinput._blurInput();
+            // this._multiinputFocus();
+        },
+        // _multiinputFocus : function () {
+
+        //     this.toggle(true);
+
+        // },
+        _onMultiValueChange: function _onMultiValueChange() {
+
+            if (!this.conf.multiSelect) {
+
+                return;
+            }
+
+            var searchMultiinput = this.$refs['mor-cascader-mi-' + this.uiid];
+            var names = this._getCurrentCheckedNodeName();
+
+            searchMultiinput._set(names, true);
         },
         _getCurrentList: function _getCurrentList() {
 
@@ -42185,32 +42266,295 @@ exports.default = {
                 this.data.valueName = name.join(' / ');
             }
         },
-        _selected: function _selected(level, key) {
+        _genCheckedStateTree: function _genCheckedStateTree() {
+            var _this = this;
+
+            var tree = {};
+            var nameMap = {};
+            var item = void 0;
+            var paths = void 0;
+            var genFn = function genFn(list, parentNodePaths, parentTree) {
+
+                for (var key in list) {
+
+                    var treeItem = {};
+
+                    item = list[key];
+                    paths = parentNodePaths.concat([key]);
+
+                    if (_this.data.checkedState[paths.join('-')] === undefined) {
+
+                        _this.data.checkedState[paths.join('-')] = {
+                            checked: -1
+                        };
+                    }
+
+                    if (typeof item === 'string') {
+
+                        treeItem.name = item;
+                    } else {
+
+                        treeItem.name = item.name;
+                    }
+
+                    treeItem.nodePath = paths.join('-');
+                    treeItem.parentNodePath = parentNodePaths.join('-');
+                    nameMap[paths.join('-')] = treeItem.name;
+                    parentTree[key] = treeItem;
+
+                    if (item.children) {
+
+                        treeItem.children = {};
+                        genFn(item.children, paths, treeItem.children);
+                    }
+                }
+            };
+
+            genFn(this.conf.list, [], tree);
+
+            this.data.checkedStateTree = tree;
+            this.data.checkedNameMap = nameMap;
+        },
+        _setAllChildNodeCheckedState: function _setAllChildNodeCheckedState(children, state) {
+
+            if (children) {
+
+                for (var key in children) {
+
+                    var item = children[key];
+
+                    this.data.checkedState[item.nodePath] = {
+                        checked: state
+                    };
+                }
+            }
+        },
+        _refreshCheckedState: function _refreshCheckedState(nodePath) {
+            var _this2 = this;
+
+            if (!this.conf.multiSelect || !this.conf.selectLeafNode) {
+
+                return;
+            }
+
+            var oldState = JSON.stringify(this.data.checkedState);
+            var walkTree = function walkTree(currentTree, parentItem) {
+
+                var siblings = [];
+
+                for (var key in currentTree) {
+
+                    var item = currentTree[key];
+                    var currentNodePath = item.nodePath;
+
+                    // hanlde child checkbox
+                    if (currentNodePath.indexOf(nodePath) === 0 && _this2.data.checkedState[currentNodePath].checked === 1) {
+
+                        // all child checked
+                        _this2._setAllChildNodeCheckedState(item.children, 1);
+                    } else if (currentNodePath.indexOf(nodePath) === 0 && _this2.data.checkedState[currentNodePath].checked === -1) {
+
+                        // all child uncheck
+                        _this2._setAllChildNodeCheckedState(item.children, -1);
+                    }
+
+                    if (item.children) {
+
+                        walkTree(item.children, item);
+                    }
+
+                    siblings.push(_this2.data.checkedState[currentNodePath].checked);
+                }
+
+                siblings = (0, _arrayUniq2.default)(siblings);
+
+                if (parentItem && siblings.length === 1 && siblings[0] === 1) {
+
+                    _this2.data.checkedState[parentItem.nodePath] = {
+                        checked: 1
+                    };
+                } else if (parentItem && siblings.length === 1 && siblings[0] === -1) {
+
+                    _this2.data.checkedState[parentItem.nodePath] = {
+                        checked: -1
+                    };
+                } else if (parentItem) {
+
+                    _this2.data.checkedState[parentItem.nodePath] = {
+                        checked: 0
+                    };
+                }
+            };
+
+            walkTree(this.data.checkedStateTree);
+
+            if (oldState !== JSON.stringify(this.data.checkedState)) {
+
+                this._refreshCheckedState();
+            }
+        },
+        _getNodePath: function _getNodePath(key, level) {
+            var separator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '/';
+
+
+            var currentList = this._getCurrentList();
+
+            currentList.splice(level);
+            currentList.push(key);
+            currentList = currentList.join(separator);
+
+            return currentList;
+        },
+        _checkedStateChange: function _checkedStateChange(state, nodePath) {
+
+            this.data.checkedState[nodePath] = state;
+            this._refreshCheckedState(nodePath);
+        },
+        _isLeafNode: function _isLeafNode(nodePath) {
+
+            var found = false;
+
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+                for (var _iterator4 = this.searchMap[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var item = _step4.value;
+
+
+                    if (item.value.join('-') === nodePath) {
+
+                        found = true;
+
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
+                    }
+                } finally {
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
+                    }
+                }
+            }
+
+            return found;
+        },
+        _getAllCheckedNode: function _getAllCheckedNode() {
+
+            var values = [];
+
+            for (var key in this.data.checkedState) {
+
+                if (this.data.checkedState[key].checked === 1) {
+
+                    if (this.conf.selectLeafNode && this._isLeafNode(key)) {
+
+                        values.push(key.split('-'));
+                    } else if (!this.conf.selectLeafNode) {
+
+                        values.push(key.split('-'));
+                    }
+                }
+            }
+
+            return values;
+        },
+        _getCurrentCheckedNodeName: function _getCurrentCheckedNodeName() {
+
+            var values = this.get();
+            var names = [];
+
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
+
+            try {
+                for (var _iterator5 = values[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var item = _step5.value;
+
+
+                    item = item.join('-');
+
+                    for (var key in this.data.checkedNameMap) {
+
+                        if (key === item) {
+
+                            names.push(this.data.checkedNameMap[key]);
+
+                            break;
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
+                    }
+                } finally {
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
+                    }
+                }
+            }
+
+            return names;
+        },
+        _selected: function _selected(evt, level, key) {
 
             var value = this._getCurrentList();
+            var formCheckbox = false;
+            var $checkbox = this.$refs['mor-cascader-node-' + this.uiid + '-' + this._getNodePath(key, level, '-')][0];
+
+            if (evt.path.indexOf($checkbox.$el) !== -1) {
+
+                var nodePath = this._getNodePath(key, level, '-');
+                var state = this.data.checkedState[nodePath].checked < 1 ? 1 : -1;
+
+                formCheckbox = true;
+                this._checkedStateChange({
+                    checked: state
+                }, nodePath);
+            }
 
             value.splice(level, value.length - level);
             value[level] = key;
             this.data.menuSelected = value;
 
-            if (this.conf.changeOnSelect) {
+            if (this.conf.multiSelect && formCheckbox) {
 
-                this._set(value, true);
-            }
+                this._set(this._getAllCheckedNode(), true);
+            } else {
 
-            // is last level, auto close popover
-            if (!this.data.menuList[level][key].children) {
-
-                if (!this.conf.changeOnSelect) {
+                if (this.conf.changeOnSelect) {
 
                     this._set(value, true);
                 }
 
-                this.$refs['mor-cascader-popover-' + this.uiid].hide();
+                if (!this.data.menuList[level][key].children) {
+
+                    // is last level, auto close popover
+                    if (!this.conf.changeOnSelect) {
+
+                        this._set(value, true);
+                    }
+
+                    this.$refs['mor-cascader-popover-' + this.uiid].hide();
+                }
             }
         },
         _computedMenuList: function _computedMenuList() {
-            var _this = this;
+            var _this3 = this;
 
             var value = this._getCurrentList();
             var currentList = (0, _extend2.default)(true, {}, this.conf.list);
@@ -42219,13 +42563,13 @@ exports.default = {
 
             currentList.__parentKey = undefined;
 
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator = value[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var key = _step.value;
+                for (var _iterator6 = value[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var key = _step6.value;
 
 
                     var item = currentList[key];
@@ -42239,16 +42583,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
                     }
                 } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
                     }
                 }
             }
@@ -42258,7 +42602,7 @@ exports.default = {
 
             this.Vue.nextTick(function () {
 
-                var $popover = _this.$refs['mor-cascader-popover-' + _this.uiid];
+                var $popover = _this3.$refs['mor-cascader-popover-' + _this3.uiid];
 
                 if ($popover) {
 
@@ -42346,7 +42690,18 @@ exports.default = {
                 }
             }
         },
-        _search: function _search() {
+        _searchKeyChange: function _searchKeyChange() {
+
+            var multiinput = this.$refs['mor-cascader-mi-' + this.uiid];
+
+            if (multiinput) {
+
+                this._search(multiinput.getInput(), true);
+            }
+        },
+        _search: function _search(keyword) {
+            var inMultiSelect = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
 
             if (this.conf.state === 'readonly' || this.conf.state === 'disabled') {
 
@@ -42361,7 +42716,11 @@ exports.default = {
             this.$refs['mor-cascader-popover-' + this.uiid].toggle(false);
 
             var results = [];
-            var keyword = this.$refs['mor-cascader-ti-' + this.uiid].get();
+
+            if (!inMultiSelect) {
+
+                keyword = this.$refs['mor-cascader-ti-' + this.uiid].get();
+            }
 
             if (keyword) {
 
@@ -42379,13 +42738,13 @@ exports.default = {
                 return results;
             }
 
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator2 = this.searchMap[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var item = _step2.value;
+                for (var _iterator7 = this.searchMap[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var item = _step7.value;
 
 
                     var regexp = null;
@@ -42425,29 +42784,29 @@ exports.default = {
 
                         var offset = 0;
 
-                        var _iteratorNormalCompletion3 = true;
-                        var _didIteratorError3 = false;
-                        var _iteratorError3 = undefined;
+                        var _iteratorNormalCompletion8 = true;
+                        var _didIteratorError8 = false;
+                        var _iteratorError8 = undefined;
 
                         try {
-                            for (var _iterator3 = result.pos[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                var pos = _step3.value;
+                            for (var _iterator8 = result.pos[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                                var pos = _step8.value;
 
 
                                 result.name = result.name.slice(0, pos.index + offset) + '<b>' + keyword + '</b>' + result.name.slice(pos.index + offset + pos.len);
                                 offset += pos.len + 6;
                             }
                         } catch (err) {
-                            _didIteratorError3 = true;
-                            _iteratorError3 = err;
+                            _didIteratorError8 = true;
+                            _iteratorError8 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
+                                if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                                    _iterator8.return();
                                 }
                             } finally {
-                                if (_didIteratorError3) {
-                                    throw _iteratorError3;
+                                if (_didIteratorError8) {
+                                    throw _iteratorError8;
                                 }
                             }
                         }
@@ -42456,16 +42815,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
                     }
                 } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
                     }
                 }
             }
@@ -42477,9 +42836,20 @@ exports.default = {
         },
         _pickSearchResult: function _pickSearchResult(value) {
 
-            this.set(value);
+            if (this.conf.multiSelect) {
+
+                var currentValue = this.get();
+
+                currentValue.push(value);
+                this.set(currentValue);
+                this.$refs['mor-cascader-mi-' + this.uiid].setInput(undefined);
+            } else {
+
+                this.set(value);
+                this.$refs['mor-cascader-ti-' + this.uiid].set(undefined);
+            }
+
             this.$refs['mor-cascader-search-result-' + this.uiid].toggle(false);
-            this.$refs['mor-cascader-ti-' + this.uiid].set(undefined);
             this.data.searchResult = [];
         }
     },
@@ -42488,7 +42858,7 @@ exports.default = {
         this._refreshSearchPopoverWidth();
     },
     mounted: function mounted() {
-        var _this2 = this;
+        var _this4 = this;
 
         this._refreshSearchPopoverWidth();
         this.data.menuSelected = this.get();
@@ -42502,29 +42872,266 @@ exports.default = {
 
         this.$watch('conf.list', function () {
 
-            _this2._computedMenuList();
+            _this4._computedMenuList();
+            _this4._genCheckedStateTree();
         }, {
             immediate: true
+        });
+
+        this.$watch('conf.selectLeafNode', function () {
+
+            _this4._set(undefined, true);
         });
 
         this._refreshValueName();
 
         this.$watch('data.menuSelected', function () {
 
-            _this2._computedMenuList();
+            _this4._computedMenuList();
         });
 
         this.$on('value-change', function () {
 
-            _this2.data.menuSelected = _this2.get();
-            _this2.Vue.nextTick(_this2._refreshValueName);
+            if (_this4.conf.multiSelect) {
+
+                _this4._onMultiValueChange();
+                _this4._refreshCheckedState();
+            } else {
+
+                _this4.data.menuSelected = _this4.get();
+                _this4.Vue.nextTick(_this4._refreshValueName);
+            }
         });
     },
     beforeDestroy: function beforeDestroy() {
 
         this._globalEventRemove('click', '_checkArea');
     }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 module.exports = exports['default'];
 
 /***/ }),
@@ -42674,6 +43281,44 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _Move = __webpack_require__(50);
 
@@ -42697,6 +43342,10 @@ exports.default = {
         max: {
             type: [Number, Boolean],
             default: false
+        },
+        collapseLimit: {
+            type: Number,
+            default: Infinity
         }
     },
     computed: {
@@ -42705,7 +43354,8 @@ exports.default = {
             return {
                 insideName: this.insideName,
                 canMove: this.canMove,
-                max: this.max
+                max: this.max,
+                collapseLimit: this.collapseLimit
             };
         },
         moreClass: function moreClass() {
@@ -42841,10 +43491,12 @@ exports.default = {
 
                 if (this.data.backspace > 0) {
 
+                    this.data.backspace = 0;
                     this._deleteItem(this.data.value.length - 1);
-                }
+                } else {
 
-                this.data.backspace++;
+                    this.data.backspace++;
+                }
             }
         },
         add: function add(item, index) {
@@ -42928,12 +43580,27 @@ exports.default = {
             _this3.data.inputValue = value;
         });
 
+        this.$on('value-change', function () {
+
+            _this3.data.backspace = 0;
+        });
+
+        this.$on('input-blur', function () {
+
+            _this3.data.backspace = 0;
+        });
+
         this.$watch('data.inputValue', function () {
 
             _this3.data.backspace = 0;
         });
 
         this.$watch('conf.canMove', function (newVal) {
+
+            if (_this3.conf.collapseLimit !== Infinity) {
+
+                return;
+            }
 
             _this3.Move.target = '.multiinput-item';
             _this3.Move.container = '.multiinput-itemlist';
@@ -43171,7 +43838,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -44491,7 +45158,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _dateFns = __webpack_require__(10);
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -53430,7 +54097,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -56226,7 +56893,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -61600,7 +62267,7 @@ var render = function() {
   return _c(
     "mor-form",
     {
-      class: [_vm.moreClass],
+      class: [_vm.formClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -66358,7 +67025,8 @@ var render = function() {
         _errorMessage: _vm._errorMessage,
         "inside-name": _vm.insideName,
         "can-move": _vm.canMove,
-        max: _vm.max
+        max: _vm.max,
+        "collapse-limit": _vm.collapseLimit
       }
     },
     [
@@ -66419,36 +67087,99 @@ var render = function() {
             },
             [
               _vm._l(_vm.data.value, function(value, index) {
-                return _c(
-                  "div",
-                  {
-                    key: index,
-                    staticClass: "multiinput-item",
-                    on: {
-                      mousedown: function($event) {
-                        return _vm._moveItemRecord(index)
-                      }
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { title: value } }, [
-                      _vm._v(_vm._s(value))
-                    ]),
-                    _vm._v(" "),
-                    _vm.conf.state !== "disabled" &&
-                    _vm.conf.state !== "readonly"
-                      ? _c("i", {
-                          staticClass: "mo-icon mo-icon-close",
+                return [
+                  index < _vm.conf.collapseLimit
+                    ? _c(
+                        "div",
+                        {
+                          key: index,
+                          staticClass: "multiinput-item",
+                          class: {
+                            "will-delete":
+                              _vm.data.backspace > 0 &&
+                              index === _vm.data.value.length - 1
+                          },
                           on: {
-                            click: function($event) {
-                              return _vm._deleteItem(index)
+                            mousedown: function($event) {
+                              return _vm._moveItemRecord(index)
                             }
                           }
-                        })
-                      : _vm._e()
-                  ]
-                )
+                        },
+                        [
+                          _c("span", { attrs: { title: value } }, [
+                            _vm._v(_vm._s(value))
+                          ]),
+                          _vm._v(" "),
+                          _vm.conf.state !== "disabled" &&
+                          _vm.conf.state !== "readonly"
+                            ? _c("i", {
+                                staticClass: "mo-icon mo-icon-close",
+                                on: {
+                                  click: function($event) {
+                                    return _vm._deleteItem(index)
+                                  }
+                                }
+                              })
+                            : _vm._e()
+                        ]
+                      )
+                    : _vm._e()
+                ]
               }),
+              _vm._v(" "),
+              _vm.data.value.length > _vm.conf.collapseLimit
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "multiinput-item collapse-count",
+                      class: {
+                        "will-delete":
+                          _vm.data.backspace > 0 &&
+                          _vm.data.value.length - 1 >= _vm.conf.collapseLimit
+                      },
+                      attrs: { id: "mor-multiinput-collapse" }
+                    },
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "+" +
+                            _vm._s(
+                              _vm.data.value.length - _vm.conf.collapseLimit
+                            )
+                        )
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.value.length > _vm.conf.collapseLimit
+                ? _c(
+                    "morning-tip",
+                    {
+                      staticClass: "mor-multiinput-tip-collapse",
+                      attrs: {
+                        color: "neutral-9",
+                        target: "#mor-multiinput-collapse"
+                      }
+                    },
+                    [
+                      _vm._l(_vm.data.value, function(value, index) {
+                        return [
+                          index >= _vm.conf.collapseLimit
+                            ? _c("span", { key: index }, [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(value) +
+                                    "\n                "
+                                )
+                              ])
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
                 ? [
@@ -66636,7 +67367,10 @@ var render = function() {
         "show-last-name": _vm.showLastName,
         "change-on-select": _vm.changeOnSelect,
         "can-search": _vm.canSearch,
-        "list-width": _vm.listWidth
+        "list-width": _vm.listWidth,
+        "multi-select": _vm.multiSelect,
+        "select-leaf-node": _vm.selectLeafNode,
+        "collapse-limit": _vm.collapseLimit
       }
     },
     [
@@ -66669,40 +67403,89 @@ var render = function() {
               }
             },
             [
-              _vm.conf.canSearch &&
-              (_vm.conf.state !== "readonly" && _vm.conf.state !== "disabled")
-                ? _c("morning-textinput", {
-                    ref: "mor-cascader-ti-" + _vm.uiid,
-                    class: {
-                      "empty-content": this.data.textinputEmpty
-                    },
-                    attrs: {
-                      id: "mor-cascader-ti-" + _vm.uiid,
-                      size: _vm.conf.size,
-                      "inside-clearable": false,
-                      "inside-name": ""
-                    },
-                    on: {
-                      "value-change": function($event) {
-                        return _vm._search()
-                      },
-                      focus: function($event) {
-                        return _vm._textinputFocus()
-                      },
-                      blur: function($event) {
-                        return _vm._textinputBlur()
-                      }
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.data.value.length === 0
-                ? _c("span", { staticClass: "note" }, [
-                    _vm._v(_vm._s(_vm.conf.insideName))
-                  ])
-                : _c("span", { staticClass: "note has-selected" }, [
-                    _vm._v(_vm._s(_vm.data.valueName))
-                  ]),
+              _vm.conf.multiSelect
+                ? [
+                    _vm.conf.canSearch
+                      ? _c("morning-multiinput", {
+                          key: "multi-can-search",
+                          ref: "mor-cascader-mi-" + _vm.uiid,
+                          attrs: {
+                            "inside-name": _vm.conf.insideName,
+                            "hide-name": _vm.conf.hideName,
+                            state: _vm.conf.state,
+                            size: _vm.conf.size,
+                            "collapse-limit": _vm.conf.multiSelect
+                              ? _vm.conf.collapseLimit
+                              : Infinity
+                          },
+                          on: {
+                            "value-change": function($event) {
+                              return _vm._multiinputValueChange()
+                            },
+                            "input-value-change": function($event) {
+                              return _vm._searchKeyChange()
+                            }
+                          }
+                        })
+                      : _c("morning-multiinput", {
+                          key: "multi-no-search",
+                          ref: "mor-cascader-mi-" + _vm.uiid,
+                          attrs: {
+                            "inside-name": _vm.conf.insideName,
+                            "hide-name": _vm.conf.hideName,
+                            state: _vm.conf.state,
+                            size: _vm.conf.size,
+                            "collapse-limit": _vm.conf.multiSelect
+                              ? _vm.conf.collapseLimit
+                              : Infinity
+                          },
+                          on: {
+                            "input-focus": function($event) {
+                              return _vm._multiinputFocusNoSearch()
+                            },
+                            "value-change": function($event) {
+                              return _vm._multiinputValueChange()
+                            }
+                          }
+                        })
+                  ]
+                : [
+                    _vm.conf.canSearch &&
+                    (_vm.conf.state !== "readonly" &&
+                      _vm.conf.state !== "disabled")
+                      ? _c("morning-textinput", {
+                          ref: "mor-cascader-ti-" + _vm.uiid,
+                          class: {
+                            "empty-content": this.data.textinputEmpty
+                          },
+                          attrs: {
+                            id: "mor-cascader-ti-" + _vm.uiid,
+                            size: _vm.conf.size,
+                            "inside-clearable": false,
+                            "inside-name": ""
+                          },
+                          on: {
+                            "value-change": function($event) {
+                              return _vm._search()
+                            },
+                            focus: function($event) {
+                              return _vm._textinputFocus()
+                            },
+                            blur: function($event) {
+                              return _vm._textinputBlur()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.data.value.length === 0
+                      ? _c("span", { staticClass: "note" }, [
+                          _vm._v(_vm._s(_vm.conf.insideName))
+                        ])
+                      : _c("span", { staticClass: "note has-selected" }, [
+                          _vm._v(_vm._s(_vm.data.valueName))
+                        ])
+                  ],
               _vm._v(" "),
               _c("i", {
                 directives: [
@@ -66730,7 +67513,7 @@ var render = function() {
               _vm._v(" "),
               _c("i", { staticClass: "mo-icon mo-icon-dropdown drop" })
             ],
-            1
+            2
           ),
           _vm._v(" "),
           _c(
@@ -66752,15 +67535,35 @@ var render = function() {
                 "ul",
                 [
                   _vm._l(_vm.data.searchResult, function(item, index) {
-                    return _c("li", {
-                      key: index,
-                      domProps: { innerHTML: _vm._s(item.name) },
-                      on: {
-                        click: function($event) {
-                          return _vm._pickSearchResult(item.value)
-                        }
-                      }
-                    })
+                    return [
+                      _vm._valueHasItem(item.value)
+                        ? _c("li", { key: index, staticClass: "selected" }, [
+                            _c("span", {
+                              domProps: { innerHTML: _vm._s(item.name) }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              staticClass:
+                                "mo-cascader-selected-icon mo-icon mo-icon-check"
+                            })
+                          ])
+                        : _c(
+                            "li",
+                            {
+                              key: index,
+                              on: {
+                                click: function($event) {
+                                  return _vm._pickSearchResult(item.value)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", {
+                                domProps: { innerHTML: _vm._s(item.name) }
+                              })
+                            ]
+                          )
+                    ]
                   }),
                   _vm._v(" "),
                   _vm.data.searchResult.length === 0
@@ -66825,7 +67628,11 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        return _vm._selected(level - 1, key)
+                                        return _vm._selected(
+                                          $event,
+                                          level - 1,
+                                          key
+                                        )
                                       },
                                       mouseenter: function($event) {
                                         return _vm._inMenu(level - 1, key)
@@ -66833,12 +67640,45 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item) +
-                                        "\n                        "
-                                    )
-                                  ]
+                                    _c("morning-checkbox", {
+                                      ref:
+                                        "mor-cascader-node-" +
+                                        _vm.uiid +
+                                        "-" +
+                                        _vm._getNodePath(key, level - 1, "-"),
+                                      refInFor: true,
+                                      attrs: {
+                                        size: "xs",
+                                        list: { checked: "" },
+                                        indeterminate: true,
+                                        "checked-state":
+                                          _vm.data.checkedState[
+                                            _vm._getNodePath(
+                                              key,
+                                              level - 1,
+                                              "-"
+                                            )
+                                          ]
+                                      },
+                                      on: {
+                                        "checked-state-change": function(
+                                          $event
+                                        ) {
+                                          _vm._checkedStateChange(
+                                            arguments[0],
+                                            _vm._getNodePath(
+                                              key,
+                                              level - 1,
+                                              "-"
+                                            )
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(item))])
+                                  ],
+                                  1
                                 )
                               : key !== "__parentKey" && !item.disable
                               ? _c(
@@ -66860,7 +67700,11 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        return _vm._selected(level - 1, key)
+                                        return _vm._selected(
+                                          $event,
+                                          level - 1,
+                                          key
+                                        )
                                       },
                                       mouseenter: function($event) {
                                         return _vm._inMenu(level - 1, key)
@@ -66868,12 +67712,45 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                           " +
-                                        _vm._s(item.name) +
-                                        "\n                        "
-                                    )
-                                  ]
+                                    _c("morning-checkbox", {
+                                      ref:
+                                        "mor-cascader-node-" +
+                                        _vm.uiid +
+                                        "-" +
+                                        _vm._getNodePath(key, level - 1, "-"),
+                                      refInFor: true,
+                                      attrs: {
+                                        size: "xs",
+                                        list: { checked: "" },
+                                        indeterminate: true,
+                                        "checked-state":
+                                          _vm.data.checkedState[
+                                            _vm._getNodePath(
+                                              key,
+                                              level - 1,
+                                              "-"
+                                            )
+                                          ]
+                                      },
+                                      on: {
+                                        "checked-state-change": function(
+                                          $event
+                                        ) {
+                                          _vm._checkedStateChange(
+                                            arguments[0],
+                                            _vm._getNodePath(
+                                              key,
+                                              level - 1,
+                                              "-"
+                                            )
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(item.name))])
+                                  ],
+                                  1
                                 )
                               : key !== "__parentKey" && item.disable
                               ? _c(
@@ -66896,12 +67773,45 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                           " +
-                                        _vm._s(item.name) +
-                                        "\n                        "
-                                    )
-                                  ]
+                                    _c("morning-checkbox", {
+                                      ref:
+                                        "mor-cascader-node-" +
+                                        _vm.uiid +
+                                        "-" +
+                                        _vm._getNodePath(key, level - 1, "-"),
+                                      refInFor: true,
+                                      attrs: {
+                                        size: "xs",
+                                        list: { checked: "" },
+                                        indeterminate: true,
+                                        "checked-state":
+                                          _vm.data.checkedState[
+                                            _vm._getNodePath(
+                                              key,
+                                              level - 1,
+                                              "-"
+                                            )
+                                          ]
+                                      },
+                                      on: {
+                                        "checked-state-change": function(
+                                          $event
+                                        ) {
+                                          _vm._checkedStateChange(
+                                            arguments[0],
+                                            _vm._getNodePath(
+                                              key,
+                                              level - 1,
+                                              "-"
+                                            )
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(item.name))])
+                                  ],
+                                  1
                                 )
                               : _vm._e()
                           ]
@@ -67804,7 +68714,8 @@ var render = function() {
         "inline-img-size": _vm.inlineImgSize,
         "item-tip": _vm.itemTip,
         "item-tip-direct": _vm.itemTipDirect,
-        "list-width": _vm.listWidth
+        "list-width": _vm.listWidth,
+        "collapse-limit": _vm.collapseLimit
       }
     },
     [
@@ -72686,7 +73597,10 @@ var render = function() {
                         "inside-name": _vm.conf.insideName,
                         "hide-name": _vm.conf.hideName,
                         state: _vm.conf.state,
-                        size: _vm.conf.size
+                        size: _vm.conf.size,
+                        "collapse-limit": _vm.conf.multiSelect
+                          ? _vm.conf.collapseLimit
+                          : Infinity
                       },
                       on: {
                         "input-focus": function($event) {
@@ -72709,7 +73623,10 @@ var render = function() {
                         "inside-name": _vm.conf.insideName,
                         "hide-name": _vm.conf.hideName,
                         state: _vm.conf.state,
-                        size: _vm.conf.size
+                        size: _vm.conf.size,
+                        "collapse-limit": _vm.conf.multiSelect
+                          ? _vm.conf.collapseLimit
+                          : Infinity
                       },
                       on: {
                         "input-focus": function($event) {
@@ -77073,7 +77990,7 @@ var _extend2 = __webpack_require__(2);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -80483,6 +81400,12 @@ exports.default = function (UI) {
                 type: String,
                 default: undefined
             },
+            formWidth: {
+                type: String,
+                validator: function validator(value) {
+                    return ['xs', 's', 'm', 'l', 'xl'].indexOf(value) !== -1;
+                }
+            },
             group: {
                 type: [Array, String],
                 default: function _default() {
@@ -80516,6 +81439,7 @@ exports.default = function (UI) {
                     formName: this.formName,
                     formNote: this.formNote,
                     formKey: this.formKey,
+                    formWidth: this.formWidth,
                     group: this.group,
                     hideName: this.hideName,
                     clearable: this.clearable,
@@ -80525,9 +81449,16 @@ exports.default = function (UI) {
             },
             formClass: function formClass() {
 
-                return {
+                var classes = {
                     'has-cleanbtn': this.conf.clearable
                 };
+
+                if (this.conf.formWidth) {
+
+                    classes['fw-' + this.conf.formWidth] = true;
+                }
+
+                return classes;
             }
         },
         data: function data() {
@@ -84646,7 +85577,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _arrayUniq = __webpack_require__(12);
+var _arrayUniq = __webpack_require__(11);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -86387,7 +87318,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -87707,7 +88638,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -88364,7 +89295,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _quillDelta = __webpack_require__(11);
+var _quillDelta = __webpack_require__(12);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 

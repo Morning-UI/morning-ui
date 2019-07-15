@@ -224,6 +224,44 @@
     </div>
     :::
 
+    :::vue
+    @name:纯白的模拟盒
+    ---
+    #demo
+    >desc
+    使用`class="white-footer"`和`color="white"`，可以设置纯白的模拟盒。
+    >tpl
+    <div>
+        <ui-dialog ref="demo28" color="white" class="white-footer">
+            <div slot="header">选择一张图片</div>
+            <ui-grid class="fill">
+                <div class="row">
+                    <div class="col-11">
+                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                    </div>
+                    <div class="col-2">
+                        <ui-divider>OR</ui-divider>
+                    </div>
+                    <div class="col-11">
+                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                    </div>
+                </div>
+            </ui-grid>
+            <div slot="footer">
+                <span>
+                    需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
+                </span>
+                <div class="operate">
+                    <ui-link class="margin" color="minor" js="window.morning.findVM('demo28').toggle(false);">取消</ui-link>
+                    <ui-btn color="success">左边</ui-btn>
+                    <ui-btn color="success">右边</ui-btn>
+                </div>
+            </div>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo28').toggle(true);">显示模拟盒</ui-link>
+    </div>
+    :::
+
     [[[形态]]]
 
     #### 支持
