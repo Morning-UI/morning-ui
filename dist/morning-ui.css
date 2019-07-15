@@ -1275,6 +1275,7 @@ template {
   border: 1px solid #ccc;
 }
 /* stylelint-disable at-rule-empty-line-before */
+/* stylelint-disable property-case,property-no-unknown */
 *,
 input,
 textarea {
@@ -45027,6 +45028,29 @@ mor-cascader .cascader-wrap .cascader-input {
   border: 1px #E5E5E5 solid;
   color: #b2b2b2 !important;
   cursor: pointer;
+  display: flex;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput {
+  margin: 0;
+  width: calc(100% - 16px*2.5);
+  background-color: #FFF;
+  vertical-align: top;
+  left: 0.35em;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput .multiinput-itemlist {
+  width: 100%;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput .form-body {
+  border: none;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput .form-body.focus {
+  box-shadow: none !important;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput .form-body > input {
+  cursor: pointer;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput .form-body .cleanicon {
+  display: none !important;
 }
 mor-cascader .cascader-wrap .cascader-input mor-textinput {
   position: absolute;
@@ -45075,7 +45099,6 @@ mor-cascader .cascader-wrap .cascader-input > .mo-icon {
   top: 0;
   right: 0;
   color: #b2b2b2;
-  height: 100%;
 }
 mor-cascader .cascader-wrap .cascader-input > .mo-icon.cleanicon {
   display: none;
@@ -45100,8 +45123,7 @@ mor-cascader.popover-show .cascader-wrap .cascader-input > .mo-icon {
   transform: rotateX(180deg);
 }
 mor-cascader.si-m .cascader-wrap .cascader-input {
-  height: 42px;
-  line-height: 42px;
+  line-height: 40px;
 }
 mor-cascader.si-m .cascader-wrap .cascader-input .textinput-wrap {
   height: 40px;
@@ -45110,13 +45132,16 @@ mor-cascader.si-m .cascader-wrap .cascader-input .textinput-wrap {
 mor-cascader.si-m .cascader-wrap .cascader-input .textinput-wrap input {
   height: 40px;
 }
+mor-cascader.si-m .cascader-wrap .cascader-input > mor-multiinput {
+  min-height: 40px;
+  font-size: 14px;
+}
 mor-cascader.si-m .cascader-wrap .cascader-input > .note {
   width: calc(100% - 16px*2.5);
   font-size: 14px;
 }
 mor-cascader.si-s .cascader-wrap .cascader-input {
-  height: 32px;
-  line-height: 32px;
+  line-height: 30px;
 }
 mor-cascader.si-s .cascader-wrap .cascader-input .textinput-wrap {
   height: 30px;
@@ -45125,13 +45150,16 @@ mor-cascader.si-s .cascader-wrap .cascader-input .textinput-wrap {
 mor-cascader.si-s .cascader-wrap .cascader-input .textinput-wrap input {
   height: 30px;
 }
+mor-cascader.si-s .cascader-wrap .cascader-input > mor-multiinput {
+  min-height: 30px;
+  font-size: 13px;
+}
 mor-cascader.si-s .cascader-wrap .cascader-input > .note {
   width: calc(100% - 16px*2.5);
   font-size: 13px;
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input {
-  height: 28px;
-  line-height: 28px;
+  line-height: 26px;
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input .textinput-wrap {
   height: 26px;
@@ -45139,6 +45167,10 @@ mor-cascader.si-xs .cascader-wrap .cascader-input .textinput-wrap {
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input .textinput-wrap input {
   height: 26px;
+}
+mor-cascader.si-xs .cascader-wrap .cascader-input > mor-multiinput {
+  min-height: 26px;
+  font-size: 12px;
 }
 mor-cascader.si-xs .cascader-wrap .cascader-input > .note {
   width: calc(100% - 16px*2.5);
@@ -45152,13 +45184,16 @@ mor-cascader.st-readonly .cascader-wrap .cascader-input {
   cursor: not-allowed !important;
   color: #8c8c8c !important;
 }
+mor-cascader.st-disabled .cascader-wrap .cascader-input > mor-multiinput,
+mor-cascader.st-readonly .cascader-wrap .cascader-input > mor-multiinput {
+  background: transparent;
+}
 mor-cascader.st-disabled .cascader-wrap .cascader-input > .note,
 mor-cascader.st-readonly .cascader-wrap .cascader-input > .note {
   color: #8c8c8c !important;
 }
 mor-cascader .cascader-wrap .cascader-input {
-  height: 42px;
-  line-height: 42px;
+  line-height: 40px;
 }
 mor-cascader .cascader-wrap .cascader-input .textinput-wrap {
   height: 40px;
@@ -45166,6 +45201,10 @@ mor-cascader .cascader-wrap .cascader-input .textinput-wrap {
 }
 mor-cascader .cascader-wrap .cascader-input .textinput-wrap input {
   height: 40px;
+}
+mor-cascader .cascader-wrap .cascader-input > mor-multiinput {
+  min-height: 40px;
+  font-size: 14px;
 }
 mor-cascader .cascader-wrap .cascader-input > .note {
   width: calc(100% - 16px*2.5);
@@ -45259,6 +45298,26 @@ mor-cascader .cascader-wrap .cascader-input > .note {
   padding: 0.5em 1em;
   font-size: 14px;
   overflow: hidden;
+  position: relative;
+}
+.mor-cascader-search-result ul li.selected {
+  background: #f8f8f8;
+  color: #F33D5D;
+  cursor: default;
+}
+.mor-cascader-search-result ul li.selected:hover {
+  color: #F33D5D;
+}
+.mor-cascader-search-result ul li.selected .mo-cascader-selected-icon {
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  display: inline-block;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  color: #F33D5D;
 }
 .mor-cascader-search-result ul li:not(.nomatch):hover {
   cursor: pointer;
@@ -45334,6 +45393,7 @@ mor-multiinput .form-body > .multiinput-itemlist {
   position: relative;
   font-size: 0;
   width: calc(100% - 16px*2.5);
+  line-height: 1.5;
 }
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item {
   color: #9e9e9e !important;

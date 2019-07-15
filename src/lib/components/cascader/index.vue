@@ -20,6 +20,7 @@
         :list-width="listWidth"
         :multi-select="multiSelect"
         :select-leaf-node="selectLeafNode"
+        :collapse-limit="collapseLimit"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -105,7 +106,23 @@
         >
     
             <ul>
-                <li v-for="(item, index) in data.searchResult" :key="index" v-html="item.name" @click="_pickSearchResult(item.value)"></li>
+                <template v-for="(item, index) in data.searchResult">
+                    <li
+                        v-if="_valueHasItem(item.value)"
+                        class="selected"
+                        :key="index"
+                    >
+                        <span v-html="item.name"></span>
+                        <i class="mo-cascader-selected-icon mo-icon mo-icon-check"></i>
+                    </li>
+                    <li
+                        v-else
+                        :key="index"
+                        @click="_pickSearchResult(item.value)"
+                    >
+                        <span v-html="item.name"></span>
+                    </li>
+                </template>
                 <li v-if="data.searchResult.length === 0" class="nomatch">
                     <morning-empty note="无匹配项目"></morning-empty>
                 </li>
@@ -251,6 +268,10 @@ export default {
         selectLeafNode : {
             type : Boolean,
             default : true
+        },
+        collapseLimit : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -265,7 +286,8 @@ export default {
                 canSearch : this.canSearch,
                 listWidth : this.listWidth,
                 multiSelect : this.multiSelect,
-                selectLeafNode : this.selectLeafNode
+                selectLeafNode : this.selectLeafNode,
+                collapseLimit : this.collapseLimit
             };
 
         },
@@ -362,7 +384,8 @@ export default {
                 textinputFocus : false,
                 focus : false,
                 checkedState : {},
-                checkedStateTree : {}
+                checkedStateTree : {},
+                checkedNameMap : {}
             }
         };
 
@@ -402,6 +425,25 @@ export default {
             return value;
 
         },
+        _valueHasItem : function (itemValue) {
+
+            let found = false;
+
+            for (let item of this.data.value) {
+
+                if (item.join('/') === itemValue.join('/')) {
+
+                    found = true;
+
+                    break;
+
+                }
+
+            }
+
+            return found;
+
+        },
         _multiinputValueChange : function () {
 
             let names = this.$refs[`mor-cascader-mi-${this.uiid}`].get();
@@ -410,12 +452,14 @@ export default {
 
             for (let name of names) {
 
-                for (let item of this.searchMap) {
+                for (let key in this.data.checkedNameMap) {
 
-                    if (item.name === name) {
+                    let itemName = this.data.checkedNameMap[key];
 
-                        values.push(extend(true, [], item.value));
-                        nodePaths.push(item.value.join('-'));
+                    if (itemName === name) {
+
+                        values.push(extend(true, [], key.split('-')));
+                        nodePaths.push(key);
 
                         break;
 
@@ -425,8 +469,6 @@ export default {
 
             }
 
-            console.log('_multiinputValueChange', values, nodePaths);
-
             // +++
             for (let item of nodePaths) {
 
@@ -435,12 +477,21 @@ export default {
                     let checkedItem = this.data.checkedState[key];
 
                     if (key === item &&
-                        checkedItem.checked === -1 &&
-                        this._isLeafNode(key)) {
+                        checkedItem.checked === -1) {
 
-                        this._checkedStateChange({
-                            checked : 1
-                        }, key);
+                        if (this.conf.selectLeafNode && this._isLeafNode(key)) {
+
+                            this._checkedStateChange({
+                                checked : 1
+                            }, key);
+
+                        } else if (!this.conf.selectLeafNode) {
+
+                            this._checkedStateChange({
+                                checked : 1
+                            }, key);
+
+                        }
 
                     }
 
@@ -454,12 +505,21 @@ export default {
                 let checkedItem = this.data.checkedState[key];
 
                 if (nodePaths.indexOf(key) === -1 &&
-                    checkedItem.checked === 1 &&
-                    this._isLeafNode(key)) {
+                    checkedItem.checked === 1) {
 
-                    this._checkedStateChange({
-                        checked : -1
-                    }, key);
+                    if (this.conf.selectLeafNode && this._isLeafNode(key)) {
+
+                        this._checkedStateChange({
+                            checked : -1
+                        }, key);
+
+                    } else if (!this.conf.selectLeafNode) {
+
+                        this._checkedStateChange({
+                            checked : -1
+                        }, key);
+
+                    }
 
                 }
 
@@ -552,6 +612,7 @@ export default {
         _genCheckedStateTree : function () {
 
             let tree = {};
+            let nameMap = {};
             let item;
             let paths;
             let genFn = (list, parentNodePaths, parentTree) => {
@@ -583,6 +644,7 @@ export default {
 
                     treeItem.nodePath = paths.join('-');
                     treeItem.parentNodePath = parentNodePaths.join('-');
+                    nameMap[paths.join('-')] = treeItem.name;
                     parentTree[key] = treeItem;
 
                     if (item.children) {
@@ -599,6 +661,7 @@ export default {
             genFn(this.conf.list, [], tree);
 
             this.data.checkedStateTree = tree;
+            this.data.checkedNameMap = nameMap;
 
         },
         _setAllChildNodeCheckedState : function (children, state) {
@@ -620,6 +683,12 @@ export default {
         },
         _refreshCheckedState : function (nodePath) {
 
+            if (!this.conf.multiSelect || !this.conf.selectLeafNode) {
+
+                return;
+
+            }
+
             let oldState = JSON.stringify(this.data.checkedState);
             let walkTree = (currentTree, parentItem) => {
 
@@ -629,8 +698,6 @@ export default {
 
                     let item = currentTree[key];
                     let currentNodePath = item.nodePath;
-
-                    console.log('_refreshCheckedState', currentNodePath, this.data.checkedState[currentNodePath].checked);
 
                     // hanlde child checkbox
                     if (currentNodePath.indexOf(nodePath) === 0 && this.data.checkedState[currentNodePath].checked === 1) {
@@ -701,8 +768,6 @@ export default {
         },
         _checkedStateChange : function (state, nodePath) {
 
-            console.log('_checkedStateChange', nodePath, state);
-
             this.data.checkedState[nodePath] = state;
             this._refreshCheckedState(nodePath);
 
@@ -732,9 +797,17 @@ export default {
 
             for (let key in this.data.checkedState) {
 
-                if (this.data.checkedState[key].checked === 1 && this._isLeafNode(key)) {
+                if (this.data.checkedState[key].checked === 1) {
 
-                    values.push(key.split('-'));
+                    if (this.conf.selectLeafNode && this._isLeafNode(key)) {
+
+                        values.push(key.split('-'));
+
+                    } else if (!this.conf.selectLeafNode) {
+
+                        values.push(key.split('-'));
+
+                    }
 
                 }
 
@@ -750,13 +823,13 @@ export default {
 
             for (let item of values) {
 
-                item = item.join('/');
+                item = item.join('-');
 
-                for (let searchItem of this.searchMap) {
+                for (let key in this.data.checkedNameMap) {
 
-                    if (searchItem.value.join('/') === item) {
+                    if (key === item) {
 
-                        names.push(searchItem.name);
+                        names.push(this.data.checkedNameMap[key]);
 
                         break;
 
@@ -966,7 +1039,18 @@ export default {
             }
 
         },
-        _search : function () {
+        _searchKeyChange : function () {
+
+            let multiinput = this.$refs[`mor-cascader-mi-${this.uiid}`];
+
+            if (multiinput) {
+    
+                this._search(multiinput.getInput(), true);
+
+            }
+
+        },
+        _search : function (keyword, inMultiSelect = false) {
 
             if (this.conf.state === 'readonly' ||
                 this.conf.state === 'disabled') {
@@ -984,7 +1068,12 @@ export default {
             this.$refs[`mor-cascader-popover-${this.uiid}`].toggle(false);
 
             let results = [];
-            let keyword = this.$refs[`mor-cascader-ti-${this.uiid}`].get();
+
+            if (!inMultiSelect) {
+
+                keyword = this.$refs[`mor-cascader-ti-${this.uiid}`].get();
+
+            }
 
             if (keyword) {
 
@@ -1068,9 +1157,22 @@ export default {
         },
         _pickSearchResult : function (value) {
 
-            this.set(value);
+            if (this.conf.multiSelect) {
+
+                let currentValue = this.get();
+
+                currentValue.push(value);
+                this.set(currentValue);
+                this.$refs[`mor-cascader-mi-${this.uiid}`].setInput(undefined);
+
+            } else {
+                
+                this.set(value);
+                this.$refs[`mor-cascader-ti-${this.uiid}`].set(undefined);
+
+            }
+
             this.$refs[`mor-cascader-search-result-${this.uiid}`].toggle(false);
-            this.$refs[`mor-cascader-ti-${this.uiid}`].set(undefined);
             this.data.searchResult = [];
 
         }
@@ -1100,6 +1202,12 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('conf.selectLeafNode', () => {
+
+            this._set(undefined, true);
+
         });
 
         this._refreshValueName();

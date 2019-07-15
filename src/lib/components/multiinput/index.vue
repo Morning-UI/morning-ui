@@ -34,24 +34,27 @@
             @keydown.backspace="_backspace()"
             @click="_focusInput"
         >
-            <div
-                class="multiinput-item"
-                :class="{
-                    'will-delete' : (data.backspace > 0 && index === (data.value.length - 1))
-                }"
-
+            <template
                 v-for="(value, index) in data.value"
-                v-if="index < conf.collapseLimit"
-                :key="index"
-                @mousedown="_moveItemRecord(index)"
             >
-                <span :title="value">{{value}}</span>
-                <i
-                    class="mo-icon mo-icon-close"
-                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
-                    @click="_deleteItem(index)"
-                ></i>
-            </div>
+                <div
+                    class="multiinput-item"
+                    :class="{
+                        'will-delete' : (data.backspace > 0 && index === (data.value.length - 1))
+                    }"
+
+                    v-if="index < conf.collapseLimit"
+                    :key="index"
+                    @mousedown="_moveItemRecord(index)"
+                >
+                    <span :title="value">{{value}}</span>
+                    <i
+                        class="mo-icon mo-icon-close"
+                        v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
+                        @click="_deleteItem(index)"
+                    ></i>
+                </div>
+            </template>
 
             <div
                 id="mor-multiinput-collapse"
@@ -72,12 +75,14 @@
 
                 target="#mor-multiinput-collapse"
             >
-                <span
-                    v-for="(value, index) in data.value"
-                    v-if="index >= conf.collapseLimit"
-                >
-                    {{value}} 
-                </span>
+                <template v-for="(value, index) in data.value">
+                    <span
+                        v-if="index >= conf.collapseLimit"
+                        :key="index"
+                    >
+                        {{value}}
+                    </span>
+                </template>
             </morning-tip>
 
             <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
@@ -354,7 +359,6 @@ export default {
 
                     this.data.backspace = 0;
                     this._deleteItem(this.data.value.length - 1);
-                    console.log(this.data.backspace);
 
                 } else {
     

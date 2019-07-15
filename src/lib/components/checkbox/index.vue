@@ -422,7 +422,9 @@ export default {
 
             }
 
-            this.data.checkedState[key] = state;
+            this.data.checkedState = extend(true, {}, this.data.checkedState, {
+                [key] : state
+            });
             this.$forceUpdate();
 
         },
@@ -595,7 +597,7 @@ export default {
 
         this.$watch('data.checkedState', (newValue, oldValue) => {
 
-            if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+            if (this.conf.indeterminate && JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
 
                 this.$emit('checked-state-change', extend(true, {}, newValue));
 

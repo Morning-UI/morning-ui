@@ -342,9 +342,30 @@ mor-cascader{
         li{
             padding: 0.5em 1em;
             font-size: @fontSize*0.875;
-            // white-space: nowrap;
-            // text-overflow: ellipsis;
             overflow: hidden;
+            position: relative;
+
+            &.selected{
+                background: @colorFormBackgroundHover;
+                color: @colorTheme;
+                cursor: default;
+
+                &:hover{
+                    color: @colorTheme;
+                }
+
+                .mo-cascader-selected-icon{
+                    font-size: @fontSize*0.75;
+                    position: absolute;
+                    right: 5px;
+                    display: inline-block;
+                    width: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    box-sizing: border-box;
+                    color: @colorTheme;
+                }
+            }
         }
 
         li:not(.nomatch){

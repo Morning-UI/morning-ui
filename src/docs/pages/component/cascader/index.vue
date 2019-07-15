@@ -732,6 +732,259 @@
             }
         }
     }
+    ---
+    #demo
+    >desc
+    配合`can-search`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-cascader form-name="地址" :list="list" multi-select can-search></ui-cascader>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                "zj" : {
+                    name : "浙江省",
+                    children : {
+                        "hz" : {
+                            name : "杭州",
+                            children : {
+                                "xcq" : "下城区",
+                                "xhq" : "西湖区",
+                                "jgq" : "江干区"
+                            }
+                        },
+                        "nb" : {
+                            name : "宁波",
+                            children : {
+                                "jbq" : "江北区",
+                                "zhq" : "镇海区"
+                            }
+                        },
+                        "wz" : "温州"
+                    }
+                },
+                "js" : {
+                    name : "江苏省",
+                    children : {
+                        "nj" : {
+                            name : "南京",
+                            children : {
+                                "xwq" : "玄武区",
+                                "jnq" : "江宁区"
+                            }
+                        },
+                        "sz" : "苏州"
+                    }
+                },
+                "gd" : {
+                    name : "广东省",
+                    children : {
+                        "gz" : "广州",
+                        "sz" : "深圳",
+                        "fs" : "佛山"
+                    }
+                }
+            }
+        }
+    }
+    :::
+    
+    :::vue
+    @name:select-leaf-node
+    ---
+    #config
+    >conf-desc
+    在多选模式下仅可选择叶子节点(必须启用`multi-select`此配置才会生效)。<br>
+    注意：变更此配置时会清空组件的值。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-cascader form-name="地址" :list="list" multi-select :select-leaf-node="false"></ui-cascader>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                "zj" : {
+                    name : "浙江省",
+                    children : {
+                        "hz" : {
+                            name : "杭州",
+                            children : {
+                                "xcq" : "下城区",
+                                "xhq" : "西湖区",
+                                "jgq" : "江干区"
+                            }
+                        },
+                        "nb" : {
+                            name : "宁波",
+                            children : {
+                                "jbq" : "江北区",
+                                "zhq" : "镇海区"
+                            }
+                        },
+                        "wz" : "温州"
+                    }
+                },
+                "js" : {
+                    name : "江苏省",
+                    children : {
+                        "nj" : {
+                            name : "南京",
+                            children : {
+                                "xwq" : "玄武区",
+                                "jnq" : "江宁区"
+                            }
+                        },
+                        "sz" : "苏州"
+                    }
+                },
+                "gd" : {
+                    name : "广东省",
+                    children : {
+                        "gz" : "广州",
+                        "sz" : "深圳",
+                        "fs" : "佛山"
+                    }
+                }
+            }
+        }
+    }
+    :::
+    
+    :::vue
+    @name:collapse-limit
+    ---
+    #config
+    >conf-desc
+    折叠超出特定数量的项目（仅在开启`multi-select`配置后生效）。
+    >conf-accept
+    数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-cascader form-name="地址" :list="list" multi-select :collapse-limit="1"></ui-cascader>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                "zj" : {
+                    name : "浙江省",
+                    children : {
+                        "hz" : {
+                            name : "杭州",
+                            children : {
+                                "xcq" : "下城区",
+                                "xhq" : "西湖区",
+                                "jgq" : "江干区"
+                            }
+                        },
+                        "nb" : {
+                            name : "宁波",
+                            children : {
+                                "jbq" : "江北区",
+                                "zhq" : "镇海区"
+                            }
+                        },
+                        "wz" : "温州"
+                    }
+                },
+                "js" : {
+                    name : "江苏省",
+                    children : {
+                        "nj" : {
+                            name : "南京",
+                            children : {
+                                "xwq" : "玄武区",
+                                "jnq" : "江宁区"
+                            }
+                        },
+                        "sz" : "苏州"
+                    }
+                },
+                "gd" : {
+                    name : "广东省",
+                    children : {
+                        "gz" : "广州",
+                        "sz" : "深圳",
+                        "fs" : "佛山"
+                    }
+                }
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`can-search`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-cascader form-name="地址" :list="list" multi-select :collapse-limit="1" can-search></ui-cascader>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                "zj" : {
+                    name : "浙江省",
+                    children : {
+                        "hz" : {
+                            name : "杭州",
+                            children : {
+                                "xcq" : "下城区",
+                                "xhq" : "西湖区",
+                                "jgq" : "江干区"
+                            }
+                        },
+                        "nb" : {
+                            name : "宁波",
+                            children : {
+                                "jbq" : "江北区",
+                                "zhq" : "镇海区"
+                            }
+                        },
+                        "wz" : "温州"
+                    }
+                },
+                "js" : {
+                    name : "江苏省",
+                    children : {
+                        "nj" : {
+                            name : "南京",
+                            children : {
+                                "xwq" : "玄武区",
+                                "jnq" : "江宁区"
+                            }
+                        },
+                        "sz" : "苏州"
+                    }
+                },
+                "gd" : {
+                    name : "广东省",
+                    children : {
+                        "gz" : "广州",
+                        "sz" : "深圳",
+                        "fs" : "佛山"
+                    }
+                }
+            }
+        }
+    }
     :::
 
     [[[方法]]]
@@ -764,11 +1017,13 @@
     #### 值过滤
 
     - 所有不支持的值类型，都会被尝试转换成空数组(`[]`)。
-    - 若数组中的KEY无法匹配对应层级的`list`配置，则数组仅保留可匹配部分。
+    - 在未开启`multi-select`配置的情况下，若数组中的KEY无法匹配对应层级的`list`配置，则数组仅保留可匹配部分。
 
     #### 值格式
 
     包含选中键值的数组(含层级关系)，键值是字符串。
+
+    若开启了`multi-select`配置，则数组中包含了多个项目，每一个项目是一个含层级关系的数组。
 
     #### 默认值
 

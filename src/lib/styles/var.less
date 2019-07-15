@@ -79,11 +79,13 @@
 @colorFromItemBackgroundCurrent : darken(@colorFormBackgroundHover, 3%);
 @colorFromItemBackgroundDisable : darken(@colorFormBackgroundDisable, 8%);
 
+/* stylelint-disable property-case,property-no-unknown */
+
 @colorSetTheme : {
     Theme: @colorTheme;
     LightTheme: @colorLightTheme;
     DarkTheme: @colorDarkTheme;
-};
+}
 
 @colorSetFeatures : {
     Success: @colorSuccess;
@@ -92,7 +94,9 @@
     Primary: @colorPrimary;
     Minor: @colorMinor;
     Info: @colorInfo;
-};
+}
+
+/* stylelint-enable property-case,property-no-unknown */
 
 // ---
 
