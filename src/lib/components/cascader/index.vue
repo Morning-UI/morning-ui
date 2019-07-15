@@ -18,6 +18,8 @@
         :change-on-select="changeOnSelect"
         :can-search="canSearch"
         :list-width="listWidth"
+        :multi-select="multiSelect"
+        :select-leaf-node="selectLeafNode"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -25,29 +27,64 @@
 
     <div class="cascader-wrap form-body">
         <div class="cascader-input" :class="{focus: data.popoverShow}" :id="'mor-cascader-input-'+uiid" @click="_showPopover()">
-            <morning-textinput
-                v-if="conf.canSearch && (conf.state !== 'readonly' && conf.state !== 'disabled')"
-                :id="'mor-cascader-ti-' + uiid"
-                :ref="'mor-cascader-ti-'+uiid"
-                :class="{
-                    'empty-content' : this.data.textinputEmpty
-                }"
-                :size="conf.size"
-                :inside-clearable="false"
-                inside-name=""
-                @value-change="_search()"
-                @focus="_textinputFocus()"
-                @blur="_textinputBlur()"
-            ></morning-textinput>
 
-            <span
-                class="note"
-                v-if="data.value.length === 0"
-            >{{conf.insideName}}</span>
-            <span
-                class="note has-selected"
-                v-else
-            >{{data.valueName}}</span>
+            <template v-if="conf.multiSelect">
+                <morning-multiinput
+                    :ref="'mor-cascader-mi-' + uiid"
+                    :inside-name="conf.insideName"
+                    :hide-name="conf.hideName"
+                    :state="conf.state"
+                    :size="conf.size"
+                    :collapse-limit="conf.multiSelect ? conf.collapseLimit : Infinity"
+                    key="multi-can-search"
+
+                    v-if="conf.canSearch"
+
+                    @value-change="_multiinputValueChange()"
+                    @input-value-change="_searchKeyChange()"
+                ></morning-multiinput>
+
+                <morning-multiinput
+                    :ref="'mor-cascader-mi-' + uiid"
+                    :inside-name="conf.insideName"
+                    :hide-name="conf.hideName"
+                    :state="conf.state"
+                    :size="conf.size"
+                    :collapse-limit="conf.multiSelect ? conf.collapseLimit : Infinity"
+                    key="multi-no-search"
+
+                    v-else
+
+                    @input-focus="_multiinputFocusNoSearch()"
+                    @value-change="_multiinputValueChange()"
+                ></morning-multiinput>
+            </template>
+
+            <template v-else>
+                <morning-textinput
+                    v-if="conf.canSearch && (conf.state !== 'readonly' && conf.state !== 'disabled')"
+                    :id="'mor-cascader-ti-' + uiid"
+                    :ref="'mor-cascader-ti-'+uiid"
+                    :class="{
+                        'empty-content' : this.data.textinputEmpty
+                    }"
+                    :size="conf.size"
+                    :inside-clearable="false"
+                    inside-name=""
+                    @value-change="_search()"
+                    @focus="_textinputFocus()"
+                    @blur="_textinputBlur()"
+                ></morning-textinput>
+
+                <span
+                    class="note"
+                    v-if="data.value.length === 0"
+                >{{conf.insideName}}</span>
+                <span
+                    class="note has-selected"
+                    v-else
+                >{{data.valueName}}</span>
+            </template>
 
             <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable && data.value !== undefined && data.value.length > 0" @click.stop="set(undefined)"></i>
             <i class="mo-icon mo-icon-dropdown drop"></i>
@@ -100,10 +137,19 @@
                                     current : (data.value[level - 1] === key && data.menuList[level - 1].__parentKey === data.value[level - 2]),
                                     'last-current' : (data.value[level - 1] === key && data.menuList[level - 1].__parentKey === data.value[level - 2] && level === data.value.length)
                                 }"
-                                @click="_selected(level - 1, key)"
+                                @click="_selected($event, level - 1, key)"
                                 @mouseenter="_inMenu(level - 1, key)"
                             >
-                                {{item}}
+                                <morning-checkbox
+                                    size="xs"
+                                    :list="{checked:''}"
+                                    :ref="'mor-cascader-node-'+uiid+'-'+_getNodePath(key, level - 1, '-')"
+                                    :indeterminate="true"
+                                    :checked-state="data.checkedState[_getNodePath(key, level - 1, '-')]"
+
+                                    @checked-state-change="_checkedStateChange(arguments[0], _getNodePath(key, level - 1, '-'))"
+                                ></morning-checkbox>
+                                <span>{{item}}</span>
                             </li>
                             <li
                                 v-else-if="key !== '__parentKey' && !item.disable"
@@ -112,10 +158,19 @@
                                     current : (data.value[level - 1] === key && data.menuList[level - 1].__parentKey === data.value[level - 2]),
                                     'last-current' : (data.value[level - 1] === key && data.menuList[level - 1].__parentKey === data.value[level - 2] && level === data.value.length)
                                 }"
-                                @click="_selected(level - 1, key)"
+                                @click="_selected($event, level - 1, key)"
                                 @mouseenter="_inMenu(level - 1, key)"
                             >
-                               {{item.name}}
+                                <morning-checkbox
+                                    size="xs"
+                                    :list="{checked:''}"
+                                    :ref="'mor-cascader-node-'+uiid+'-'+_getNodePath(key, level - 1, '-')"
+                                    :indeterminate="true"
+                                    :checked-state="data.checkedState[_getNodePath(key, level - 1, '-')]"
+
+                                    @checked-state-change="_checkedStateChange(arguments[0], _getNodePath(key, level - 1, '-'))"
+                                ></morning-checkbox>
+                                <span>{{item.name}}</span>
                             </li>
                             <li
                                 v-else-if="key !== '__parentKey' && item.disable"
@@ -126,7 +181,16 @@
                                 }"
                                 class="disabled"
                             >
-                               {{item.name}}
+                                <morning-checkbox
+                                    size="xs"
+                                    :list="{checked:''}"
+                                    :ref="'mor-cascader-node-'+uiid+'-'+_getNodePath(key, level - 1, '-')"
+                                    :indeterminate="true"
+                                    :checked-state="data.checkedState[_getNodePath(key, level - 1, '-')]"
+
+                                    @checked-state-change="_checkedStateChange(arguments[0], _getNodePath(key, level - 1, '-'))"
+                                ></morning-checkbox>
+                                <span>{{item.name}}</span>
                             </li>
                         </template>
                     </ul>
@@ -143,6 +207,7 @@
  
 <script>
 import extend                       from 'extend';
+import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
 export default {
@@ -178,6 +243,14 @@ export default {
         listWidth : {
             type : [Boolean, Number],
             default : false
+        },
+        multiSelect : {
+            type : Boolean,
+            default : false
+        },
+        selectLeafNode : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -190,7 +263,9 @@ export default {
                 showLastName : this.showLastName,
                 changeOnSelect : this.changeOnSelect,
                 canSearch : this.canSearch,
-                listWidth : this.listWidth
+                listWidth : this.listWidth,
+                multiSelect : this.multiSelect,
+                selectLeafNode : this.selectLeafNode
             };
 
         },
@@ -285,7 +360,9 @@ export default {
                 searchResult : [],
                 textinputEmpty : true,
                 textinputFocus : false,
-                focus : false
+                focus : false,
+                checkedState : {},
+                checkedStateTree : {}
             }
         };
 
@@ -299,26 +376,130 @@ export default {
 
             }
 
-            let key;
-            let currentMenu = this.conf.list;
+            if (!this.conf.multiSelect) {
 
-            for (let index in value) {
+                let key;
+                let currentMenu = this.conf.list;
 
-                key = value[index];
+                for (let index in value) {
 
-                if (currentMenu[key] === undefined) {
+                    key = value[index];
 
-                    value = value.slice(0, index);
+                    if (currentMenu[key] === undefined) {
 
-                    break;
+                        value = value.slice(0, index);
+
+                        break;
+
+                    }
+
+                    currentMenu = currentMenu[key].children || {};
 
                 }
-
-                currentMenu = currentMenu[key].children || {};
 
             }
 
             return value;
+
+        },
+        _multiinputValueChange : function () {
+
+            let names = this.$refs[`mor-cascader-mi-${this.uiid}`].get();
+            let values = [];
+            let nodePaths = [];
+
+            for (let name of names) {
+
+                for (let item of this.searchMap) {
+
+                    if (item.name === name) {
+
+                        values.push(extend(true, [], item.value));
+                        nodePaths.push(item.value.join('-'));
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            console.log('_multiinputValueChange', values, nodePaths);
+
+            // +++
+            for (let item of nodePaths) {
+
+                for (let key in this.data.checkedState) {
+
+                    let checkedItem = this.data.checkedState[key];
+
+                    if (key === item &&
+                        checkedItem.checked === -1 &&
+                        this._isLeafNode(key)) {
+
+                        this._checkedStateChange({
+                            checked : 1
+                        }, key);
+
+                    }
+
+                }
+
+            }
+
+            // ---
+            for (let key in this.data.checkedState) {
+                
+                let checkedItem = this.data.checkedState[key];
+
+                if (nodePaths.indexOf(key) === -1 &&
+                    checkedItem.checked === 1 &&
+                    this._isLeafNode(key)) {
+
+                    this._checkedStateChange({
+                        checked : -1
+                    }, key);
+
+                }
+
+            }
+
+            this._set(values, true);
+            this.$refs[`mor-cascader-popover-${this.uiid}`].position();
+
+            if (values.length === 0) {
+    
+                this.$forceUpdate();
+
+            }
+
+        },
+        _multiinputFocusNoSearch : function () {
+
+            let searchMultiinput = this.$refs[`mor-cascader-mi-${this.uiid}`];
+
+            searchMultiinput._blurInput();
+            // this._multiinputFocus();
+
+        },
+        // _multiinputFocus : function () {
+
+        //     this.toggle(true);
+
+        // },
+        _onMultiValueChange : function () {
+
+            if (!this.conf.multiSelect) {
+
+                return;
+
+            }
+
+            let searchMultiinput = this.$refs[`mor-cascader-mi-${this.uiid}`];
+            let names = this._getCurrentCheckedNodeName();
+
+            searchMultiinput._set(names, true);
 
         },
         _getCurrentList : function () {
@@ -368,30 +549,272 @@ export default {
             }
 
         },
-        _selected : function (level, key) {
+        _genCheckedStateTree : function () {
+
+            let tree = {};
+            let item;
+            let paths;
+            let genFn = (list, parentNodePaths, parentTree) => {
+
+                for (let key in list) {
+
+                    let treeItem = {};
+
+                    item = list[key];
+                    paths = parentNodePaths.concat([key]);
+                    
+                    if (this.data.checkedState[paths.join('-')] === undefined) {
+
+                        this.data.checkedState[paths.join('-')] = {
+                            checked : -1
+                        };
+
+                    }
+
+                    if (typeof item === 'string') {
+
+                        treeItem.name = item;
+
+                    } else {
+
+                        treeItem.name = item.name;
+
+                    }
+
+                    treeItem.nodePath = paths.join('-');
+                    treeItem.parentNodePath = parentNodePaths.join('-');
+                    parentTree[key] = treeItem;
+
+                    if (item.children) {
+
+                        treeItem.children = {};
+                        genFn(item.children, paths, treeItem.children);
+
+                    }
+
+                }
+
+            };
+
+            genFn(this.conf.list, [], tree);
+
+            this.data.checkedStateTree = tree;
+
+        },
+        _setAllChildNodeCheckedState : function (children, state) {
+
+            if (children) {
+                        
+                for (let key in children) {
+
+                    let item = children[key];
+
+                    this.data.checkedState[item.nodePath] = {
+                        checked : state
+                    };
+
+                }
+
+            }
+
+        },
+        _refreshCheckedState : function (nodePath) {
+
+            let oldState = JSON.stringify(this.data.checkedState);
+            let walkTree = (currentTree, parentItem) => {
+
+                let siblings = [];
+
+                for (let key in currentTree) {
+
+                    let item = currentTree[key];
+                    let currentNodePath = item.nodePath;
+
+                    console.log('_refreshCheckedState', currentNodePath, this.data.checkedState[currentNodePath].checked);
+
+                    // hanlde child checkbox
+                    if (currentNodePath.indexOf(nodePath) === 0 && this.data.checkedState[currentNodePath].checked === 1) {
+
+                        // all child checked
+                        this._setAllChildNodeCheckedState(item.children, 1);
+
+                    } else if (currentNodePath.indexOf(nodePath) === 0 && this.data.checkedState[currentNodePath].checked === -1) {
+
+                        // all child uncheck
+                        this._setAllChildNodeCheckedState(item.children, -1);
+
+                    }
+
+                    if (item.children) {
+
+                        walkTree(item.children, item);
+
+                    }
+
+                    siblings.push(this.data.checkedState[currentNodePath].checked);
+
+                }
+
+                siblings = arrayUniq(siblings);
+
+                if (parentItem && siblings.length === 1 && siblings[0] === 1) {
+
+                    this.data.checkedState[parentItem.nodePath] = {
+                        checked : 1
+                    };
+
+                } else if (parentItem && siblings.length === 1 && siblings[0] === -1) {
+
+                    this.data.checkedState[parentItem.nodePath] = {
+                        checked : -1
+                    };
+
+                } else if (parentItem) {
+
+                    this.data.checkedState[parentItem.nodePath] = {
+                        checked : 0
+                    };
+
+                }
+
+            };
+
+            walkTree(this.data.checkedStateTree);
+
+            if (oldState !== JSON.stringify(this.data.checkedState)) {
+
+                this._refreshCheckedState();
+
+            }
+
+        },
+        _getNodePath : function (key, level, separator = '/') {
+
+            let currentList = this._getCurrentList();
+
+            currentList.splice(level);
+            currentList.push(key);
+            currentList = currentList.join(separator);
+
+            return currentList;
+
+        },
+        _checkedStateChange : function (state, nodePath) {
+
+            console.log('_checkedStateChange', nodePath, state);
+
+            this.data.checkedState[nodePath] = state;
+            this._refreshCheckedState(nodePath);
+
+        },
+        _isLeafNode : function (nodePath) {
+
+            let found = false;
+
+            for (let item of this.searchMap) {
+
+                if (item.value.join('-') === nodePath) {
+
+                    found = true;
+
+                    break;
+
+                }
+
+            }
+
+            return found;
+
+        },
+        _getAllCheckedNode : function () {
+
+            let values = [];
+
+            for (let key in this.data.checkedState) {
+
+                if (this.data.checkedState[key].checked === 1 && this._isLeafNode(key)) {
+
+                    values.push(key.split('-'));
+
+                }
+
+            }
+
+            return values;
+
+        },
+        _getCurrentCheckedNodeName : function () {
+
+            let values = this.get();
+            let names = [];
+
+            for (let item of values) {
+
+                item = item.join('/');
+
+                for (let searchItem of this.searchMap) {
+
+                    if (searchItem.value.join('/') === item) {
+
+                        names.push(searchItem.name);
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            return names;
+
+        },
+        _selected : function (evt, level, key) {
 
             let value = this._getCurrentList();
+            let formCheckbox = false;
+            let $checkbox = this.$refs[`mor-cascader-node-${this.uiid}-${this._getNodePath(key, level, '-')}`][0];
+
+            if (evt.path.indexOf($checkbox.$el) !== -1) {
+
+                let nodePath = this._getNodePath(key, level, '-');
+                let state = (this.data.checkedState[nodePath].checked < 1) ? 1 : -1;
+
+                formCheckbox = true;
+                this._checkedStateChange({
+                    checked : state
+                }, nodePath);
+
+            }
 
             value.splice(level, value.length - level);
             value[level] = key;
             this.data.menuSelected = value;
 
-            if (this.conf.changeOnSelect) {
+            if (this.conf.multiSelect && formCheckbox) {
 
-                this._set(value, true);
+                this._set(this._getAllCheckedNode(), true);
 
-            }
+            } else {
 
-            // is last level, auto close popover
-            if (!this.data.menuList[level][key].children) {
-
-                if (!this.conf.changeOnSelect) {
+                if (this.conf.changeOnSelect) {
 
                     this._set(value, true);
 
                 }
 
-                this.$refs[`mor-cascader-popover-${this.uiid}`].hide();
+                if (!this.data.menuList[level][key].children) {
+
+                    // is last level, auto close popover
+                    if (!this.conf.changeOnSelect) {
+
+                        this._set(value, true);
+
+                    }
+
+                    this.$refs[`mor-cascader-popover-${this.uiid}`].hide();
+
+                }
 
             }
 
@@ -673,6 +1096,7 @@ export default {
         this.$watch('conf.list', () => {
 
             this._computedMenuList();
+            this._genCheckedStateTree();
 
         }, {
             immediate : true
@@ -688,8 +1112,17 @@ export default {
 
         this.$on('value-change', () => {
 
-            this.data.menuSelected = this.get();
-            this.Vue.nextTick(this._refreshValueName);
+            if (this.conf.multiSelect) {
+
+                this._onMultiValueChange();
+                this._refreshCheckedState();
+
+            } else {
+
+                this.data.menuSelected = this.get();
+                this.Vue.nextTick(this._refreshValueName);
+
+            }
 
         });
 

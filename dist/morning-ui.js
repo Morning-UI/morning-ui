@@ -41993,6 +41993,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -42031,6 +42040,14 @@ exports.default = {
         listWidth: {
             type: [Boolean, Number],
             default: false
+        },
+        multiSelect: {
+            type: Boolean,
+            default: false
+        },
+        selectLeafNode: {
+            type: Boolean,
+            default: true
         }
     },
     computed: {
@@ -42154,6 +42171,19 @@ exports.default = {
             }
 
             return value;
+        },
+        _getNodePath: function _getNodePath(key, level) {
+            var separator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '/';
+
+
+            var currentList = this._getCurrentList();
+
+            currentList.push(key);
+            currentList = currentList.join(separator);
+
+            console.log(112, currentList);
+
+            return currentList;
         },
         _getCurrentList: function _getCurrentList() {
 
@@ -65801,7 +65831,9 @@ var render = function() {
         "show-last-name": _vm.showLastName,
         "change-on-select": _vm.changeOnSelect,
         "can-search": _vm.canSearch,
-        "list-width": _vm.listWidth
+        "list-width": _vm.listWidth,
+        "multi-select": _vm.multiSelect,
+        "select-leaf-node": _vm.selectLeafNode
       }
     },
     [
@@ -65998,12 +66030,23 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item) +
-                                        "\n                        "
-                                    )
-                                  ]
+                                    _c("morning-checkbox", {
+                                      ref:
+                                        "mor-cascader-node-" +
+                                        _vm.uiid +
+                                        "-" +
+                                        _vm._getNodePath(key, level - 1, "-"),
+                                      refInFor: true,
+                                      attrs: {
+                                        list: { checked: "" },
+                                        indeterminate: true,
+                                        size: "xs"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(item))])
+                                  ],
+                                  1
                                 )
                               : key !== "__parentKey" && !item.disable
                               ? _c(

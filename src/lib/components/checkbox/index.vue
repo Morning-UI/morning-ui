@@ -593,6 +593,18 @@ export default {
             immediate : true
         });
 
+        this.$watch('data.checkedState', (newValue, oldValue) => {
+
+            if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+
+                this.$emit('checked-state-change', extend(true, {}, newValue));
+
+            }
+
+        }, {
+            deep : true
+        });
+
         this.$on('value-change', () => {
 
             if (this.data.$parentVm) {
