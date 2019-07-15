@@ -689,6 +689,46 @@
     @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
+    :::vue
+    @name:checked-state-change
+    ---
+    #event
+    >event-desc
+    在启用`indeterminate`配置时，当组件选择状态改变时触发。
+    >event-args
+    |checkedState|改变后的组件选中状态|详见[checked-state配置](#checked-state)|
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            ref="demo4"
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :indeterminate="true"
+            :checked-state="{
+                Tim : 0,
+                Andrew : 1
+            }"
+            @checked-state-change="echo"
+        ></ui-checkbox>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo4.checked-state-change', 'checked-state-change event!');
+            }
+        }
+    }
+    :::
+
     [[[表单值]]]
 
     #### 值类型

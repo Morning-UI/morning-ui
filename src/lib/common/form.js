@@ -18,6 +18,16 @@ export default UI => UI.extend({
             type : String,
             default : undefined
         },
+        formWidth : {
+            type : String,
+            validator : value => ([
+                'xs',
+                's',
+                'm',
+                'l',
+                'xl'
+            ].indexOf(value) !== -1)
+        },
         group : {
             type : [Array, String],
             default : () => ([])
@@ -49,6 +59,7 @@ export default UI => UI.extend({
                 formName : this.formName,
                 formNote : this.formNote,
                 formKey : this.formKey,
+                formWidth : this.formWidth,
                 group : this.group,
                 hideName : this.hideName,
                 clearable : this.clearable,
@@ -58,10 +69,18 @@ export default UI => UI.extend({
 
         },
         formClass : function () {
-    
-            return {
+
+            let classes = {
                 'has-cleanbtn' : this.conf.clearable
             };
+
+            if (this.conf.formWidth) {
+
+                classes[`fw-${this.conf.formWidth}`] = true;
+
+            }
+
+            return classes;
 
         }
     },

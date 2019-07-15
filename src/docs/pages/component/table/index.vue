@@ -1710,7 +1710,7 @@
     ---
     #demo
     >desc
-    开启此配置后，最后点击的行将被高亮。
+    开启此配置后，可以选择表格的行。
     >tpl
     <ui-table :list="list" multi-select></ui-table>
     >script

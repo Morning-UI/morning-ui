@@ -1043,6 +1043,178 @@ String
 :::
 
 :::vue
+@name:form-width
+---
+#config
+>conf-desc
+表单的宽度（使用后可保证全局视觉一致性）。
+>conf-accept
+\`xs\` / \`s\` / \`m\` / \`l\` / \`xl\` 
+>conf-type
+String
+>conf-default
+\`m\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="XS宽度" form-width="xs" {%&attrs%}>{%&slot%}</ui-{%uikey%}> <br><br>
+    <ui-{%uikey%} form-name="S宽度" form-width="s" {%&attrs%}>{%&slot%}</ui-{%uikey%}> <br><br>
+    <ui-{%uikey%} form-name="M宽度" form-width="m" {%&attrs%}>{%&slot%}</ui-{%uikey%}> <br><br>
+    <ui-{%uikey%} form-name="L宽度" form-width="l" {%&attrs%}>{%&slot%}</ui-{%uikey%}> <br><br>
+    <ui-{%uikey%} form-name="XL宽度" form-width="xl" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
+@name:group
+---
+#config
+>conf-desc
+表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组。
+<br><br>
+表单组可配合[\`form-key\`配置](#form-key)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
+>conf-accept
+若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组
+>conf-type
+String<br/>Array
+>conf-default
+\`[]\`
+---
+#demo
+>desc
+设置单个组。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <!-- 设置单个组 -->
+    <ui-{%uikey%} form-name="{%formName%}" form-key="{%formKey%}" group="{%formGroupOne%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+---
+#demo
+>desc
+设置多个组。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <!-- 设置多个组 -->
+    <ui-{%uikey%} form-name="{$formName}" form-key="{%formKey%}" :group="{%&formGroupMore%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
+@name:hide-name
+---
+#config
+>conf-desc
+隐藏表单名。
+>conf-accept
+\`true\`<br>\`false\`
+>conf-type
+Boolean
+>conf-default
+\`false\`
+---
+#demo
+>desc
+隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <p>{%formName%}</p>
+    <ui-{%uikey%} form-name="{%formName%}" hide-name {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
+@name:clearable
+---
+#config
+>conf-desc
+显示表单清空按钮。
+>conf-accept
+\`true\`<br>\`false\`
+>conf-type
+Boolean
+>conf-default
+\`false\`
+---
+#demo
+>desc
+隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
+:::
+`,
+    formConfigWithoutFormWidth : `
+:::vue
+@name:form-name
+---
+#config
+>conf-desc
+表单的名称（用于显示）。
+>conf-accept
+任意字符串
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
+@name:form-note
+---
+#config
+>conf-desc
+表单的备注（用于显示）。
+>conf-accept
+任意字符串
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-note="{%formNote%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
+@name:form-key
+---
+#config
+>conf-desc
+表单的Key（用于表单的唯一识别标示）。
+<br><br>
+表单的Key可配合[\`group\`配置](#group)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
+>conf-accept
+任意字符串(唯一)
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" form-key="{%formKey%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+:::
+
+:::vue
 @name:group
 ---
 #config
@@ -2486,6 +2658,7 @@ let extPreset = (content, paramStr) => {
     vars.formName = '表单名';
     vars.formNote = '表单备注';
     vars.formKey = 'formKey';
+    vars.formWidth = 'formWidth';
     vars.formGroupOne = 'groupName'; 
     vars.formGroupMore = `['group1', 'group2', 'group3']`;
 

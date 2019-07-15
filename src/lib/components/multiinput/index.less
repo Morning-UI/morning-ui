@@ -19,6 +19,7 @@ mor-multiinput{
         position: relative;
         font-size: 0;
         width: calc(100% - @fontSize*2.5);
+        line-height: 1.5;
 
         > .multiinput-item{
             color: @colorFormItemColor !important;
@@ -31,6 +32,17 @@ mor-multiinput{
             position: relative;
             cursor: default;
             box-sizing: border-box;
+            border: 1px solid @colorFromItemBackground;
+
+            &.will-delete{
+                border: 1px solid @colorFormBorderHover;
+            }
+
+            &.collapse-count{
+                > span{
+                    padding-right: 0 !important;
+                }
+            }
 
             > span{
                 max-width: 100%;
@@ -292,5 +304,20 @@ mor-multiinput{
     &{
         .si-m;
         .st-normal;
+    }
+}
+
+.mor-multiinput-tip-collapse{
+    max-width: @fontSize*20;
+
+    .con{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: @fontSize*0.1875 @fontSize*0.5;
+
+        span{
+            padding: 0 0.25em;
+        }
     }
 }

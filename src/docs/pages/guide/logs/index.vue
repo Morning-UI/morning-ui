@@ -18,6 +18,47 @@
     
     ### 更新记录
 
+    ### 0.12.52 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月15日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.52" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.52/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.52/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-cascader`新增`multi-select`配置，支持多选的级联选择
+    - `ui-cascader`新增`select-leaf-node`配置，支持多选非叶子结点
+    - `ui-multiinput`组件新增`collapse-limit`配置，当项目数量超过此配置时进行折叠
+    - `ui-select`组件新增`collapse-limit`配置
+    - `ui-cascader`新增`collapse-limit`配置
+    - `ui-dialog`新增`white-footer`样式类，可以支持纯白的模拟盒
+    - `ui-checkbox`新增`checked-state-change`
+    - 所有表单组件新增`form-width`配置，可以设置五种固定的宽度
+    
+    #### 改进
+    
+    - 优化`ui-multiinput`通过按键删除项目的逻辑及交互效果
+    - 优化`success`、`warning`、`danger`、`primary`四种功能色，与最新的设计规范保持一致
+    
+    #### 修复
+    
+    - 修复`ui-table`文档中关于`multi-select`配置的一处描述错误
+    - 修复`ui-radio`文档中表单基础配置部分缺失的问题
+    - 修复`ui-checkbox`和`ui-radio`在用户操作时的动效和`color`配置颜色(仅主题色和功能色)不匹配的问题
+    
+    #### 更多
+    
+    - `ui-multiinput`文档新增可通过按键删除项目
+    - `ui-select`的文档新增当开启`multi-select`和`can-search`配置后可以通过按键删除项目
+    
+    ---
+
     ### 0.12.51 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">

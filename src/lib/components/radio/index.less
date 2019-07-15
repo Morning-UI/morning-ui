@@ -53,8 +53,6 @@ mor-radio{
                 border: 1px @colorFormBorder solid;
                 transition: 0.2s;
                 box-sizing: border-box;
-
-                .setup-form-focus-animate();
             }
 
             .mo-icon{
@@ -351,6 +349,10 @@ mor-radio{
     }
 
     &.co-t{
+        > .il label .box{
+            .setup-form-focus-animate('Theme');
+        }
+
         > .il label.checked .box{
             background: @colorTheme;
             border-color: @colorTheme;
@@ -412,6 +414,10 @@ mor-radio{
     }
 
     &.co-lt{
+        > .il label .box{
+            .setup-form-focus-animate('LightTheme');
+        }
+
         > .il label.checked .box{
             background: @colorLightTheme;
             border-color: @colorLightTheme;
@@ -473,6 +479,10 @@ mor-radio{
     }
 
     &.co-dt{
+        > .il label .box{
+            .setup-form-focus-animate('DarkTheme');
+        }
+
         > .il label.checked .box{
             background: @colorDarkTheme;
             border-color: @colorDarkTheme;
@@ -534,6 +544,10 @@ mor-radio{
     }
 
     &.co-s{
+        > .il label .box{
+            .setup-form-focus-animate('Success');
+        }
+
         > .il label.checked .box{
             background: @colorSuccess;
             border-color: @colorSuccess;
@@ -595,6 +609,10 @@ mor-radio{
     }
 
     &.co-w{
+        > .il label .box{
+            .setup-form-focus-animate('Warning');
+        }
+
         > .il label.checked .box{
             background: @colorWarning;
             border-color: @colorWarning;
@@ -656,6 +674,10 @@ mor-radio{
     }
 
     &.co-d{
+        > .il label .box{
+            .setup-form-focus-animate('Danger');
+        }
+
         > .il label.checked .box{
             background: @colorDanger;
             border-color: @colorDanger;
@@ -717,6 +739,10 @@ mor-radio{
     }
 
     &.co-p{
+        > .il label .box{
+            .setup-form-focus-animate('Primary');
+        }
+
         > .il label.checked .box{
             background: @colorPrimary;
             border-color: @colorPrimary;
@@ -778,6 +804,10 @@ mor-radio{
     }
 
     &.co-m{
+        > .il label .box{
+            .setup-form-focus-animate('Minor');
+        }
+
         > .il label.checked .box{
             background: @colorMinor;
             border-color: @colorMinor;
@@ -839,6 +869,10 @@ mor-radio{
     }
 
     &.co-i{
+        > .il label .box{
+            .setup-form-focus-animate('Info');
+        }
+
         > .il label.checked .box{
             background: @colorInfo;
             border-color: @colorInfo;

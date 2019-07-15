@@ -79,6 +79,13 @@
 
     [[[配置]]]
 
+    :::preset
+    @name:formConfig
+    @uikey:radio
+    @defaultValue:['Tim']
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::
+
     :::vue
     @name:accept-html
     ---

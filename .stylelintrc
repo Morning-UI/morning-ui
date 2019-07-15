@@ -45,8 +45,8 @@
         "declaration-block-single-line-max-declarations" : 1,
         "selector-max-attribute" : 2,
         "selector-max-class" : 7,
-        "selector-max-combinators" : 6,
-        "selector-max-compound-selectors" : 7,
+        "selector-max-combinators" : 8,
+        "selector-max-compound-selectors" : 9,
         "selector-max-empty-lines" : 0,
         "selector-max-id" : 3,
         "selector-max-type" : 5,
@@ -105,7 +105,7 @@
         "block-closing-brace-empty-line-before" : "never",
         "block-closing-brace-newline-after" : "always",
         "block-closing-brace-newline-before" : "always",
-        "selector-class-pattern" : ["^[a-z0-9-()@: ]+$", {
+        "selector-class-pattern" : ["^[a-z0-9-()@: ']+$", {
             "resolveNestedSelectors" : true
         }],
         "selector-id-pattern" : ["^[a-z0-9-]+$", {

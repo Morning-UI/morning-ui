@@ -182,6 +182,8 @@
 
     下拉选择框组件支持快捷键选择，你可通过上下方向键选择项目，通过回车键来选中项目。
 
+    当组件开启`multi-select`和`can-search`配置后且焦点在输入框时，可以通过`backspace`(MacOS下为`delete`)键来删除项目。
+
     #### 数量较多的选项
 
     若下拉选择存在大量选项时，我们推荐以下方法进行优化：
@@ -1221,7 +1223,7 @@
     ---
     #config
     >conf-desc
-    允许选择多个项目。
+    允许选择多个项目(启用此配置后`change-on-select`配置将失效)。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -1258,7 +1260,7 @@
     ---
     #config
     >conf-desc
-    项目是否可以移动。
+    项目是否可以移动(此配置无法和`collapse-limit`同时使用)。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -1787,6 +1789,71 @@
             inside-name="Select designer"
             separate-emit=".demo14"
             :list-width="280"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+    
+    :::vue
+    @name:collapse-limit
+    ---
+    #config
+    >conf-desc
+    折叠超出特定数量的项目(仅在开启`multi-select`配置时生效，且无法和`can-move`一起使用)。
+    >conf-accept
+    数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            inside-name="Select designer"
+            multi-select
+            :collapse-limit="1"                        
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`can-search`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            inside-name="Select designer"
+            multi-select
+            can-search
+            :collapse-limit="1"                        
             :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',

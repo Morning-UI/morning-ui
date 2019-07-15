@@ -1,3 +1,5 @@
+@import './var.less';
+
 @keyframes apparent{
     from {
         opacity: 1;
@@ -85,3 +87,43 @@
         box-shadow: 0 0 0 4px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0);
     }
 }
+
+each(@colorSetTheme, {
+    @keyframes ~'formFocusAnimate@{key}' {
+        from {
+            box-shadow: 0 0 0 1px rgba(red(@value), green(@value), blue(@value), 0.4);
+        }
+
+        45%{
+            box-shadow: 0 0 0 2.5px rgba(red(@value), green(@value), blue(@value), 0.25);
+        }
+
+        90%{
+            box-shadow: 0 0 0 4px rgba(red(@value), green(@value), blue(@value), 0.1);
+        }
+
+        to {
+            box-shadow: 0 0 0 4px rgba(red(@value), green(@value), blue(@value), 0);
+        }
+    }
+});
+
+each(@colorSetFeatures, {
+    @keyframes ~'formFocusAnimate@{key}' {
+        from {
+            box-shadow: 0 0 0 1px rgba(red(@value), green(@value), blue(@value), 0.4);
+        }
+
+        45%{
+            box-shadow: 0 0 0 2.5px rgba(red(@value), green(@value), blue(@value), 0.25);
+        }
+
+        90%{
+            box-shadow: 0 0 0 4px rgba(red(@value), green(@value), blue(@value), 0.1);
+        }
+
+        to {
+            box-shadow: 0 0 0 4px rgba(red(@value), green(@value), blue(@value), 0);
+        }
+    }
+});

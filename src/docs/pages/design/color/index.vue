@@ -39,38 +39,38 @@
     功能色具有一定的含义，可以用在特定的场景，比如绿色表示成功，黄色表示警告。
 
     <div class="colorFlex">
-        <div class="item w3" style="background:#4dbd67;">
+        <div class="item w3" style="background:#1EB818;">
             <p class="key">success</p>
             <p class="name">成功/正确</p>
-            <p class="color">#4dbd67</p>
+            <p class="color">#1EB818</p>
         </div>
-        <div class="item w3" style="background:#f0ad4e;">
+        <div class="item w3" style="background:#FA9428;">
             <p class="key">warning</p>
             <p class="name">警告/注意</p>
-            <p class="color">#f0ad4e</p>
+            <p class="color">#FA9428</p>
         </div>
-        <div class="item w3" style="background:#d64431;">
+        <div class="item w3" style="background:#FA2833;">
             <p class="key">danger</p>
             <p class="name">错误/危险</p>
-            <p class="color">#d64431</p>
+            <p class="color">#FA2833</p>
         </div>
     </div>
     
     <div class="colorFlex">
-        <div class="item w3" style="background:#2185d0;">
+        <div class="item w3" style="background:#2879FA;">
             <p class="key">primary</p>
             <p class="name">主要/关键</p>
-            <p class="color">#2185d0</p>
+            <p class="color">#2879FA</p>
         </div>
         <div class="item w3" style="background:#a9a9a9;">
             <p class="key">minor</p>
             <p class="name">次要/不醒目</p>
             <p class="color">#a9a9a9</p>
         </div>
-        <div class="item w3" style="background:#03a6b9;">
+        <div class="item w3" style="background:#37B8B4;">
             <p class="key">info</p>
             <p class="name">信息/额外</p>
-            <p class="color">#03a6b9</p>
+            <p class="color">#37B8B4</p>
         </div>
     </div>
 

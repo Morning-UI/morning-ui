@@ -32,6 +32,7 @@
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
         :list-width="listWidth"
+        :collapse-limit="collapseLimit"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName && !conf.separateEmit">{{conf.formName}}</div>
@@ -229,6 +230,10 @@ export default {
         listWidth : {
             type : [Boolean, Number],
             default : false
+        },
+        collapseLimit : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -255,7 +260,8 @@ export default {
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect,
-                listWidth : this.listWidth
+                listWidth : this.listWidth,
+                collapseLimit : this.collapseLimit
             };
 
         },
