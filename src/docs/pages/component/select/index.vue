@@ -1223,7 +1223,7 @@
     ---
     #config
     >conf-desc
-    允许选择多个项目。
+    允许选择多个项目(启用此配置后`change-on-select`配置将失效)。
     >conf-accept
     `true`<br>`false`
     >conf-type
