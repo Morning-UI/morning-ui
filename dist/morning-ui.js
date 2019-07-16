@@ -42014,7 +42014,8 @@ exports.default = {
                 focus: false,
                 checkedState: {},
                 checkedStateTree: {},
-                checkedNameMap: {}
+                checkedNameMap: {},
+                checkedFullNameMap: {}
             }
         };
     },
@@ -42090,6 +42091,15 @@ exports.default = {
             var names = this.$refs['mor-cascader-mi-' + this.uiid].get();
             var values = [];
             var nodePaths = [];
+            var nameMap = void 0;
+
+            if (this.conf.selectLeafNode) {
+
+                nameMap = this.data.checkedFullNameMap;
+            } else {
+
+                nameMap = this.data.checkedNameMap;
+            }
 
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
@@ -42100,9 +42110,9 @@ exports.default = {
                     var name = _step2.value;
 
 
-                    for (var _key in this.data.checkedNameMap) {
+                    for (var _key in nameMap) {
 
-                        var itemName = this.data.checkedNameMap[_key];
+                        var itemName = nameMap[_key];
 
                         if (itemName === name) {
 
@@ -42271,9 +42281,10 @@ exports.default = {
 
             var tree = {};
             var nameMap = {};
+            var fullNameMap = {};
             var item = void 0;
             var paths = void 0;
-            var genFn = function genFn(list, parentNodePaths, parentTree) {
+            var genFn = function genFn(list, parentNodePaths, parentNodeNames, parentTree) {
 
                 for (var key in list) {
 
@@ -42297,23 +42308,26 @@ exports.default = {
                         treeItem.name = item.name;
                     }
 
+                    parentNodeNames = parentNodeNames.concat([treeItem.name]);
                     treeItem.nodePath = paths.join('-');
                     treeItem.parentNodePath = parentNodePaths.join('-');
                     nameMap[paths.join('-')] = treeItem.name;
+                    fullNameMap[paths.join('-')] = parentNodeNames.join(' / ');
                     parentTree[key] = treeItem;
 
                     if (item.children) {
 
                         treeItem.children = {};
-                        genFn(item.children, paths, treeItem.children);
+                        genFn(item.children, paths, parentNodeNames, treeItem.children);
                     }
                 }
             };
 
-            genFn(this.conf.list, [], tree);
+            genFn(this.conf.list, [], [], tree);
 
             this.data.checkedStateTree = tree;
             this.data.checkedNameMap = nameMap;
+            this.data.checkedFullNameMap = fullNameMap;
         },
         _setAllChildNodeCheckedState: function _setAllChildNodeCheckedState(children, state) {
 
@@ -42471,6 +42485,15 @@ exports.default = {
 
             var values = this.get();
             var names = [];
+            var nameMap = void 0;
+
+            if (this.conf.selectLeafNode) {
+
+                nameMap = this.data.checkedFullNameMap;
+            } else {
+
+                nameMap = this.data.checkedNameMap;
+            }
 
             var _iteratorNormalCompletion5 = true;
             var _didIteratorError5 = false;
@@ -42483,11 +42506,11 @@ exports.default = {
 
                     item = item.join('-');
 
-                    for (var key in this.data.checkedNameMap) {
+                    for (var key in nameMap) {
 
                         if (key === item) {
 
-                            names.push(this.data.checkedNameMap[key]);
+                            names.push(nameMap[key]);
 
                             break;
                         }
@@ -42534,7 +42557,7 @@ exports.default = {
             if (this.conf.multiSelect && formCheckbox) {
 
                 this._set(this._getAllCheckedNode(), true);
-            } else {
+            } else if (!this.conf.multiSelect) {
 
                 if (this.conf.changeOnSelect) {
 
@@ -80844,7 +80867,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.52',
+    version: '0.12.53',
     map: {}
 };
 

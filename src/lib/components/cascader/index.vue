@@ -385,7 +385,8 @@ export default {
                 focus : false,
                 checkedState : {},
                 checkedStateTree : {},
-                checkedNameMap : {}
+                checkedNameMap : {},
+                checkedFullNameMap : {}
             }
         };
 
@@ -449,12 +450,23 @@ export default {
             let names = this.$refs[`mor-cascader-mi-${this.uiid}`].get();
             let values = [];
             let nodePaths = [];
+            let nameMap;
+
+            if (this.conf.selectLeafNode) {
+
+                nameMap = this.data.checkedFullNameMap;
+
+            } else {
+
+                nameMap = this.data.checkedNameMap;
+
+            }
 
             for (let name of names) {
 
-                for (let key in this.data.checkedNameMap) {
+                for (let key in nameMap) {
 
-                    let itemName = this.data.checkedNameMap[key];
+                    let itemName = nameMap[key];
 
                     if (itemName === name) {
 
@@ -613,9 +625,10 @@ export default {
 
             let tree = {};
             let nameMap = {};
+            let fullNameMap = {};
             let item;
             let paths;
-            let genFn = (list, parentNodePaths, parentTree) => {
+            let genFn = (list, parentNodePaths, parentNodeNames, parentTree) => {
 
                 for (let key in list) {
 
@@ -641,16 +654,18 @@ export default {
                         treeItem.name = item.name;
 
                     }
-
+                    
+                    parentNodeNames = parentNodeNames.concat([treeItem.name]);
                     treeItem.nodePath = paths.join('-');
                     treeItem.parentNodePath = parentNodePaths.join('-');
                     nameMap[paths.join('-')] = treeItem.name;
+                    fullNameMap[paths.join('-')] = parentNodeNames.join(' / ');
                     parentTree[key] = treeItem;
 
                     if (item.children) {
 
                         treeItem.children = {};
-                        genFn(item.children, paths, treeItem.children);
+                        genFn(item.children, paths, parentNodeNames, treeItem.children);
 
                     }
 
@@ -658,10 +673,11 @@ export default {
 
             };
 
-            genFn(this.conf.list, [], tree);
+            genFn(this.conf.list, [], [], tree);
 
             this.data.checkedStateTree = tree;
             this.data.checkedNameMap = nameMap;
+            this.data.checkedFullNameMap = fullNameMap;
 
         },
         _setAllChildNodeCheckedState : function (children, state) {
@@ -820,16 +836,27 @@ export default {
 
             let values = this.get();
             let names = [];
+            let nameMap;
+
+            if (this.conf.selectLeafNode) {
+
+                nameMap = this.data.checkedFullNameMap;
+
+            } else {
+
+                nameMap = this.data.checkedNameMap;
+
+            }
 
             for (let item of values) {
 
                 item = item.join('-');
 
-                for (let key in this.data.checkedNameMap) {
+                for (let key in nameMap) {
 
                     if (key === item) {
 
-                        names.push(this.data.checkedNameMap[key]);
+                        names.push(nameMap[key]);
 
                         break;
 
@@ -868,7 +895,7 @@ export default {
 
                 this._set(this._getAllCheckedNode(), true);
 
-            } else {
+            } else if (!this.conf.multiSelect) {
 
                 if (this.conf.changeOnSelect) {
 
