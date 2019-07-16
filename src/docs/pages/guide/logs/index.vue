@@ -18,6 +18,29 @@
     
     ### 更新记录
 
+    ### 0.12.53 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月16日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.53" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.53/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.53/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 修复`ui-cascader`一个点击区域错误引起的赋值错误的问题
+    - 修复`ui-cascader`开启`select-leaf-node`配置后，项目名称未显示层级的问题
+
+    #### 更多
+
+    - 更新对比文档(`element@2.10.0`、`iview@3.4.2`、`antd@3.20.3`)
+
+    ---
+
     ### 0.12.52 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">

@@ -42545,7 +42545,6 @@ exports.default = {
                 var state = this.data.checkedState[nodePath].checked < 1 ? 1 : -1;
 
                 formCheckbox = true;
-                console.log(123);
                 this._checkedStateChange({
                     checked: state
                 }, nodePath);
@@ -80868,7 +80867,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.52',
+    version: '0.12.53',
     map: {}
 };
 
