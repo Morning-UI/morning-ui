@@ -42284,6 +42284,7 @@ exports.default = {
             var fullNameMap = {};
             var item = void 0;
             var paths = void 0;
+            var fullNames = void 0;
             var genFn = function genFn(list, parentNodePaths, parentNodeNames, parentTree) {
 
                 for (var key in list) {
@@ -42308,17 +42309,17 @@ exports.default = {
                         treeItem.name = item.name;
                     }
 
-                    parentNodeNames = parentNodeNames.concat([treeItem.name]);
+                    fullNames = parentNodeNames.concat([treeItem.name]);
                     treeItem.nodePath = paths.join('-');
                     treeItem.parentNodePath = parentNodePaths.join('-');
                     nameMap[paths.join('-')] = treeItem.name;
-                    fullNameMap[paths.join('-')] = parentNodeNames.join(' / ');
+                    fullNameMap[paths.join('-')] = fullNames.join(' / ');
                     parentTree[key] = treeItem;
 
                     if (item.children) {
 
                         treeItem.children = {};
-                        genFn(item.children, paths, parentNodeNames, treeItem.children);
+                        genFn(item.children, paths, fullNames, treeItem.children);
                     }
                 }
             };
@@ -80867,7 +80868,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.53',
+    version: '0.12.54',
     map: {}
 };
 
