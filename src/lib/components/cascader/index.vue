@@ -628,6 +628,7 @@ export default {
             let fullNameMap = {};
             let item;
             let paths;
+            let fullNames;
             let genFn = (list, parentNodePaths, parentNodeNames, parentTree) => {
 
                 for (let key in list) {
@@ -654,18 +655,18 @@ export default {
                         treeItem.name = item.name;
 
                     }
-                    
-                    parentNodeNames = parentNodeNames.concat([treeItem.name]);
+
+                    fullNames = parentNodeNames.concat([treeItem.name]);
                     treeItem.nodePath = paths.join('-');
                     treeItem.parentNodePath = parentNodePaths.join('-');
                     nameMap[paths.join('-')] = treeItem.name;
-                    fullNameMap[paths.join('-')] = parentNodeNames.join(' / ');
+                    fullNameMap[paths.join('-')] = fullNames.join(' / ');
                     parentTree[key] = treeItem;
 
                     if (item.children) {
 
                         treeItem.children = {};
-                        genFn(item.children, paths, parentNodeNames, treeItem.children);
+                        genFn(item.children, paths, fullNames, treeItem.children);
 
                     }
 
