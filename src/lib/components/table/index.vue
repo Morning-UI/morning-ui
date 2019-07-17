@@ -372,9 +372,10 @@ export default {
                     this.conf.multiSort
                 ) {
 
-                    this.data.sort[col] = {
+                    this.Vue.set(this.data.sort, col, {
+                        type : 'no',
                         origin : {}
-                    };
+                    });
 
                     // 这里用反向的，因为后续逻辑会做一次切换
                     if (colSetMap.sortmode === 'desc asc') {
@@ -389,10 +390,10 @@ export default {
 
                 } else {
 
-                    this.data.sort[col] = {
+                    this.Vue.set(this.data.sort, col, {
                         type : 'no',
                         origin : {}
-                    };
+                    });
 
                 }
 
@@ -483,11 +484,13 @@ export default {
 
             this.data.sort[col].type = type;
 
-            // if (this.conf.customSort) {
+            console.log(this.data.sort[col].type);
 
-            this._sort();
+            if (!this.conf.customSort) {
 
-            // }
+                this._sort();
+
+            }
     
             this.$emit('col-sort', col, this.data.sort[col].type);
 

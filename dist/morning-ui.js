@@ -27965,11 +27965,10 @@ exports.default = {
 
             this.data.sort[col].type = type;
 
-            // if (this.conf.customSort) {
+            if (this.conf.customSort) {
 
-            this._sort();
-
-            // }
+                this._sort();
+            }
 
             this.$emit('col-sort', col, this.data.sort[col].type);
         },
