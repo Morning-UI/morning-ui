@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.12.55 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月18日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.55" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.55/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.55/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-drawer`新增`after-show`和`after-hide`两个事件
+    
+    #### 改进
+    
+    - 优化`ui-table`在未使用标题列时的性能
+    
+    #### 修复
+    
+    - 修复`ui-table`组件的`custom-sort`配置失效的问题
+    - 修复安全性漏洞(CVE-2019-10742) 
+    - 修复底层`TriggerManager`引起的一个报错
+    
+    ---
+
     ### 0.12.54 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
