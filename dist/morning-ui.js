@@ -27966,8 +27966,6 @@ exports.default = {
 
             this.data.sort[col].type = type;
 
-            console.log(this.data.sort[col].type);
-
             if (!this.conf.customSort) {
 
                 this._sort();
@@ -85806,7 +85804,7 @@ var TriggerManager = {
                         }
                     } else if (trigger === 'hover' || trigger === 'foucs') {
 
-                        if (handlerInvoke[trigger].in instanceof Array && handlerInvoke[trigger].in.length > 0) {
+                        if (handlerInvoke[trigger] && handlerInvoke[trigger].in instanceof Array && handlerInvoke[trigger].in.length > 0) {
 
                             this._triggerChangeListeners({
                                 $targets: $targets,
@@ -85821,7 +85819,7 @@ var TriggerManager = {
                             }
                         }
 
-                        if (handlerInvoke[trigger].out instanceof Array && handlerInvoke[trigger].out.length > 0) {
+                        if (handlerInvoke[trigger] && handlerInvoke[trigger].out instanceof Array && handlerInvoke[trigger].out.length > 0) {
 
                             this._triggerChangeListeners({
                                 $targets: $targets,

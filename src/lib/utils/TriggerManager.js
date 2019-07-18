@@ -153,7 +153,8 @@ let TriggerManager = {
                 } else if (trigger === 'hover' ||
                            trigger === 'foucs') {
 
-                    if (handlerInvoke[trigger].in instanceof Array &&
+                    if (handlerInvoke[trigger] &&
+                        handlerInvoke[trigger].in instanceof Array &&
                         handlerInvoke[trigger].in.length > 0) {
 
                         this._triggerChangeListeners({
@@ -171,7 +172,8 @@ let TriggerManager = {
 
                     }
 
-                    if (handlerInvoke[trigger].out instanceof Array &&
+                    if (handlerInvoke[trigger] &&
+                        handlerInvoke[trigger].out instanceof Array &&
                         handlerInvoke[trigger].out.length > 0) {
 
                         this._triggerChangeListeners({

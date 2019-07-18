@@ -484,8 +484,6 @@ export default {
 
             this.data.sort[col].type = type;
 
-            console.log(this.data.sort[col].type);
-
             if (!this.conf.customSort) {
 
                 this._sort();
@@ -936,7 +934,6 @@ export default {
                 }
 
             }
-
 
         },
         _fixedTitleCol : function () {
