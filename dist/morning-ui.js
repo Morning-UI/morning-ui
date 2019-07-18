@@ -27879,9 +27879,10 @@ exports.default = {
 
                 if ((colSetMap.sortmode === 'desc asc' || colSetMap.sortmode === 'asc desc') && this.conf.multiSort) {
 
-                    this.data.sort[col] = {
+                    this.Vue.set(this.data.sort, col, {
+                        type: 'no',
                         origin: {}
-                    };
+                    });
 
                     // 这里用反向的，因为后续逻辑会做一次切换
                     if (colSetMap.sortmode === 'desc asc') {
@@ -27893,10 +27894,10 @@ exports.default = {
                     }
                 } else {
 
-                    this.data.sort[col] = {
+                    this.Vue.set(this.data.sort, col, {
                         type: 'no',
                         origin: {}
-                    };
+                    });
                 }
             }
 
@@ -27965,7 +27966,9 @@ exports.default = {
 
             this.data.sort[col].type = type;
 
-            if (this.conf.customSort) {
+            console.log(this.data.sort[col].type);
+
+            if (!this.conf.customSort) {
 
                 this._sort();
             }
@@ -28635,6 +28638,11 @@ exports.default = {
             }
         },
         _syncRowHeight: function _syncRowHeight() {
+
+            if (this.data.titleKeys.length === 0) {
+
+                return;
+            }
 
             var $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr:not(.expand-row)');
             var $titleRows = this.$el.querySelectorAll('.title-table tbody > tr:not(.expand-row)');
@@ -31170,6 +31178,7 @@ var moveOffset = 30; //
 //
 
 var moveDelayTime = 150;
+var toggleTime = 300;
 
 exports.default = {
     origin: 'UI',
@@ -31318,7 +31327,7 @@ exports.default = {
         },
         _moveParentDrawer: function _moveParentDrawer(move) {
 
-            if (this.$parent.uiname === 'drawer' && this.$parent.conf.position === this.conf.position) {
+            if (this.$parent && this.$parent.uiname === 'drawer' && this.$parent.conf.position === this.conf.position) {
 
                 this.$parent._moveDrawer(move);
             }
@@ -31335,10 +31344,16 @@ exports.default = {
             var _this = this;
 
             var isShown = this._isShown();
+            var toggleTimeoutTime = toggleTime;
 
             if (show === undefined) {
 
                 show = !this.data.show;
+            }
+
+            if (this.conf.showType === 'no') {
+
+                toggleTimeoutTime = 0;
             }
 
             clearTimeout(this.data.showingTimeout);
@@ -31359,6 +31374,11 @@ exports.default = {
 
                 this.$emit('show');
                 this.$emit('emit');
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(function () {
+
+                    _this.$emit('after-show');
+                }, toggleTimeoutTime);
             } else {
 
                 if (isShown) {
@@ -31368,6 +31388,12 @@ exports.default = {
 
                 this.$emit('hide');
                 this.$emit('emit');
+
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(function () {
+
+                    _this.$emit('after-hide');
+                }, toggleTimeoutTime);
             }
 
             return this;

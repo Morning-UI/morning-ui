@@ -898,6 +898,12 @@ export default {
         },
         _syncRowHeight : function () {
 
+            if (this.data.titleKeys.length === 0) {
+
+                return;
+
+            }
+
             let $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr:not(.expand-row)');
             let $titleRows = this.$el.querySelectorAll('.title-table tbody > tr:not(.expand-row)');
 
@@ -930,6 +936,7 @@ export default {
                 }
 
             }
+
 
         },
         _fixedTitleCol : function () {

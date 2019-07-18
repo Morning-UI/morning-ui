@@ -722,6 +722,60 @@
     :::
 
     :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当抽屉完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-drawer ref="demo36" @after-show="echo">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo36').toggle();">隐藏抽屉</ui-link> &nbsp;
+            </ui-center>
+        </ui-drawer>
+        <ui-link js="window.morning.findVM('demo36').toggle();">显示抽屉</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo36.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当抽屉完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-drawer ref="demo37" @after-hide="echo">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo37').toggle();">隐藏抽屉</ui-link> &nbsp;
+            </ui-center>
+        </ui-drawer>
+        <ui-link js="window.morning.findVM('demo37').toggle();">显示抽屉</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo37.console1', 'after-hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:生命周期事件
     ---
     #event
