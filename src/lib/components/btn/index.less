@@ -1,3 +1,72 @@
+@sizeName: xxl, xl, l, m, s, xs, xxs;
+@sizeFontSize: 1.3, 1.1, 1, 0.8125, 0.75, 0.75, 0.75;
+@sizeIFontSize: 2.2, 1.8, 1.6, 1.4, 1.2, 1, 0.75;
+@sizeMloaderWidth: 1.6em, 1.4em, 1.3em, 1.2em, 1.2em, 1.2em, 1em;
+@colorName: t, lt, dt, s, w, d, p, m, i, bk, wh;
+@colorMainColor: @colorTheme, @colorLightTheme, @colorDarkTheme, @colorSuccess, @colorWarning, @colorDanger, @colorPrimary, @colorMinor, @colorInfo, @colorBlack, @colorWhite;
+
+.setup-color(@selector, @colorHex, @name) {
+    @{selector} {
+        background-color: @colorHex;
+        color: if(
+            (
+                @name = wh or
+                @name = n1 or
+                @name = n2 or
+                @name = n3 or
+                @name = n4 or
+                @name = n5
+            ),
+            @colorBlack,
+            @colorWhite
+        );
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: if(
+                    (
+                        @name = wh or
+                        @name = n1 or
+                        @name = n2 or
+                        @name = n3 or
+                        @name = n4 or
+                        @name = n5
+                    ),
+                    @colorNeutral10,
+                    @colorWhite
+                );
+            }
+        }
+
+        // TODO : plain;
+        &.plain{
+            color: @colorHex;
+            border-color: darken(@colorHex, 5%);
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorHex;
+                }
+            }
+        }
+
+        &:not(.st-disabled):hover,
+        &.st-hover{
+            background-color: darken(@colorHex, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorHex;
+        }
+    }
+};
+
 mor-btn{
     display: inline-block;
     padding: 0 1.1em;
@@ -82,7 +151,6 @@ mor-btn{
             transform: translate(-50%, -50%);
 
             .mo-loader-path{
-                stroke: @colorWhite;
                 opacity: 0.85;
             }
         }
@@ -96,506 +164,76 @@ mor-btn{
         }
     }
 
-    &.si-xxl{
-        font-size: @fontSize*1.3;
+    each(@sizeName, {
+        & when(@value = m) {
+            font-size: @fontSize*extract(@sizeFontSize, @index);
+            
+            > i{
+                font-size: @fontSize*extract(@sizeIFontSize, @index);
+            }
 
-        > i{
-            font-size: @fontSize*2.2;
+            .mo-loader{
+                width: extract(@sizeMloaderWidth, @index);
+            }
         }
 
-        .mo-loader{
-            width: 1.6em;
+        &.si-@{value}{
+            font-size: @fontSize*extract(@sizeFontSize, @index);
+            
+            > i{
+                font-size: @fontSize*extract(@sizeIFontSize, @index);
+            }
+
+            .mo-loader{
+                width: extract(@sizeMloaderWidth, @index);
+            }
         }
-    }
-
-    &.si-xl{
-        font-size: @fontSize*1.1;
-
-        > i{
-            font-size: @fontSize*1.8;
-        }
-
-        .mo-loader{
-            width: 1.4em;
-        }
-    }
-
-    &.si-l{
-        font-size: @fontSize*1;
-
-        > i{
-            font-size: @fontSize*1.6;
-        }
-
-        .mo-loader{
-            width: 1.3em;
-        }
-    }
-
-    &.si-m{
-        font-size: @fontSize*0.8125;
-
-        > i{
-            font-size: @fontSize*1.4;
-        }
-
-        .mo-loader{
-            width: 1.2em;
-        }
-    }
+    });
 
     &.si-s{
-        font-size: @fontSize*0.75;
         height: 2.6em;
         line-height: 2.6em;
         padding: 0 0.8em;
 
-        > i{
-            font-size: @fontSize*1.2;
-        }
-
         &.circle{
             width: 2.6em;
-        }
-
-        .mo-loader{
-            width: 1.2em;
         }
     }
 
     &.si-xs{
-        font-size: @fontSize*0.75;
         height: 2.2em;
         line-height: 2.2em;
         padding: 0 0.6em;
 
-        > i{
-            font-size: @fontSize*1;
-        }
-
         &.circle{
             width: 2.2em;
-        }
-
-        .mo-loader{
-            width: 1.2em;
         }
     }
 
     &.si-xxs{
-        font-size: @fontSize*0.75;
         height: 1.8em;
         line-height: 1.8em;
         padding: 0 0.4em;
 
-        > i{
-            font-size: @fontSize*0.75;
-        }
-
         &.circle{
             width: 1.8em;
         }
-
-        .mo-loader{
-            width: 1em;
-        }
     }
 
-    &.co-t{
-        background-color: @colorTheme;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorTheme, 35%);
-            border-color: darken(@colorTheme, 5%);
-            color: @colorTheme;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorTheme;
-                }
-            }
+    each(@colorName, {
+        & when(@value = t) {
+            .setup-color(~'&', extract(@colorMainColor, @index), @value);
         }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorTheme, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorTheme, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorTheme;
-            color: lighten(@colorTheme, 25%);
-        }
-    }
-
-    &.co-lt{
-        background-color: @colorLightTheme;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorLightTheme, 25%);
-            border-color: darken(@colorLightTheme, 5%);
-            color: @colorLightTheme;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorLightTheme;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightTheme, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightTheme, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorLightTheme;
-            color: lighten(@colorLightTheme, 20%);
-        }
-    }
-
-    &.co-dt{
-        background-color: @colorDarkTheme;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorDarkTheme, 35%);
-            border-color: darken(@colorDarkTheme, 5%);
-            color: @colorDarkTheme;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorDarkTheme;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorDarkTheme, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorDarkTheme, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorDarkTheme;
-            color: lighten(@colorDarkTheme, 25%);
-        }
-    }
-
-    &.co-s{
-        background-color: @colorSuccess;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorSuccess, 38%);
-            border-color: darken(@colorSuccess, 5%);
-            color: @colorSuccess;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorSuccess;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorSuccess, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorSuccess, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorSuccess;
-            color: lighten(@colorSuccess, 35%);
-        }
-    }
-
-    &.co-w{
-        background-color: @colorWarning;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorWarning, 32%);
-            border-color: darken(@colorWarning, 5%);
-            color: @colorWarning;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorWarning;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorWarning, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorWarning, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorWarning;
-            color: lighten(@colorWarning, 35%);
-        }
-    }
-
-    &.co-d{
-        background-color: @colorDanger;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorDanger, 38%);
-            border-color: darken(@colorDanger, 5%);
-            color: @colorDanger;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorDanger;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorDanger, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorDanger, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorDanger;
-            color: lighten(@colorDanger, 35%);
-        }
-    }
-
-    &.co-p{
-        background-color: @colorPrimary;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorPrimary, 42%);
-            border-color: darken(@colorPrimary, 5%);
-            color: @colorPrimary;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorPrimary;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorPrimary, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorPrimary, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorPrimary;
-            color: lighten(@colorPrimary, 35%);
-        }
-    }
-
-    &.co-m{
-        background-color: @colorMinor;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorMinor, 26%);
-            border-color: darken(@colorMinor, 5%);
-            color: @colorMinor;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorMinor;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorMinor, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorMinor, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorMinor;
-            color: lighten(@colorMinor, 25%);
-        }
-    }
-
-    &.co-i{
-        background-color: @colorInfo;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorInfo, 60%);
-            border-color: darken(@colorInfo, 5%);
-            color: @colorInfo;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorInfo;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorInfo, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active,
-        &.st-disabled.plain{
-            background-color: darken(@colorInfo, 10%);
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorInfo;
-            color: lighten(@colorInfo, 20%);
-        }
-    }
-
-    &.co-bk{
-        background-color: @colorBlack;
-        color: @colorWhite;
-
-        &.plain{
-            background-color: lighten(@colorBlack, 55%);
-            border-color: @colorBlack;
-            color: @colorBlack;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorBlack;
-                }
-            }
-        }
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: lighten(@colorBlack, 5%);
-
-            &.plain{
-                color: @colorWhite;
-            }
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: lighten(@colorBlack, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
-        }
-
-        &.st-disabled,
-        &.st-disabled.plain{
-            border: none;
-            background-color: @colorBlack;
-            color: lighten(@colorBlack, 40%);
-        }
-    }
+        
+        .setup-color(e(%('&.co-%S', @value)), extract(@colorMainColor, @index), @value);
+    });
 
     each(range(11), {
         @colorName : 'colorNeutral@{value}';
+        
+        .setup-color(e(%('&.co-n%S', @value)), @@colorName, e(%('n%S', @value)));
 
         &.co-n@{value}{
-            background-color: @@colorName;
-            color: if((@value > 5), @colorWhite, @colorBlack);
-
-            .mo-loader when (@value <= 5){
-                .mo-loader-path{
-                    stroke: @colorNeutral10;
-                }
-            }
-
             &.plain{
                 background-color: transparent;
                 border-color: @@colorName;
@@ -632,26 +270,121 @@ mor-btn{
         }
     });
 
-    &.co-wh{
-        background-color: @colorWhite;
-        color: @colorNeutral10;
-
-        .mo-loader{
-            .mo-loader-path{
-                stroke: @colorNeutral10;
-            }
+    &.co-t{
+        &.plain{
+            background-color: lighten(@colorTheme, 35%);
         }
 
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorTheme, 25%);
+        }
+    }
+
+    &.co-lt{
+        &.plain{
+            background-color: lighten(@colorLightTheme, 25%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorLightTheme, 20%);
+        }
+    }
+
+    &.co-dt{
+        &.plain{
+            background-color: lighten(@colorDarkTheme, 35%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorDarkTheme, 25%);
+        }
+    }
+
+    &.co-s{
+        &.plain{
+            background-color: lighten(@colorSuccess, 38%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorSuccess, 35%);
+        }
+    }
+
+    &.co-w{
+        &.plain{
+            background-color: lighten(@colorWarning, 32%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorWarning, 35%);
+        }
+    }
+
+    &.co-d{
+        &.plain{
+            background-color: lighten(@colorDanger, 38%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorDanger, 35%);
+        }
+    }
+
+    &.co-p{
+        &.plain{
+            background-color: lighten(@colorPrimary, 42%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorPrimary, 35%);
+        }
+    }
+
+    &.co-m{
+        &.plain{
+            background-color: lighten(@colorMinor, 26%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorMinor, 25%);
+        }
+    }
+
+    &.co-i{
+        &.plain{
+            background-color: lighten(@colorInfo, 60%);
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorInfo, 20%);
+        }
+    }
+
+    &.co-bk{
+        &.plain{
+            background-color: lighten(@colorBlack, 55%);
+            border-color: @colorBlack;
+        }
+
+        &.st-disabled,
+        &.st-disabled.plain{
+            color: lighten(@colorBlack, 40%);
+        }
+    }
+
+    &.co-wh{
         &.plain{
             background-color: transparent;
             border-color: darken(@colorWhite, 3%);
-            color: @colorWhite;
-
-            .mo-loader{
-                .mo-loader-path{
-                    stroke: @colorWhite;
-                }
-            }
         }
 
         &:not(.st-disabled):hover,
@@ -670,8 +403,6 @@ mor-btn{
 
         &.st-disabled,
         &.st-disabled.plain{
-            border: none;
-            background-color: @colorWhite;
             color: darken(@colorWhite, 30%);
         }
     }
@@ -706,7 +437,6 @@ mor-btn{
 
     // default status
     &{
-        .si-m;
         .co-t;
         .st-normal;
     }
