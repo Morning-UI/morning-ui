@@ -28008,7 +28008,31 @@ exports.default = {
                     }
 
                     newMainRows = (0, _lodash2.default)(mainRows, function (item) {
-                        return item[colIndex];
+
+                        var val = item[colIndex];
+
+                        // 处理HTML标签
+                        if (/\<[a-zA-Z\-]+\>/.test(val)) {
+
+                            var divEle = document.createElement('div');
+
+                            divEle.innerHTML = val;
+                            val = divEle.innerText;
+                        }
+
+                        // 处理百分比的情况
+                        if (/^[\d\.]+\%$/.test(val)) {
+
+                            val = +val.replace(/%$/, '');
+                        }
+
+                        // 尝试转换成数字
+                        if (!isNaN(+val)) {
+
+                            val = Number(val);
+                        }
+
+                        return val;
                     });
 
                     if (sort.type === 'desc') {
@@ -39344,14 +39368,20 @@ exports.default = {
 
                 var searchMultiinput = this.data.$selectArea.querySelector('#ui-select-mi-' + this.uiid);
 
-                searchMultiinput = searchMultiinput._vm;
-                key = searchMultiinput.getInput();
+                if (searchMultiinput) {
+
+                    searchMultiinput = searchMultiinput._vm;
+                    key = searchMultiinput.getInput();
+                }
             } else {
 
                 var searchTextinput = this.data.$selectArea.querySelector('#ui-select-ti-' + this.uiid);
 
-                searchTextinput = searchTextinput._vm;
-                key = searchTextinput.get();
+                if (searchTextinput) {
+
+                    searchTextinput = searchTextinput._vm;
+                    key = searchTextinput.get();
+                }
             }
 
             if (this.data.searchKey === key) {
@@ -40093,6 +40123,7 @@ exports.default = {
 
             _this5._set(value, true);
             _this5._onValueChange();
+            _this5._searchKeyChange();
         });
 
         this.$watch('conf.max', function () {
@@ -51979,18 +52010,19 @@ exports.default = {
 
 
             var value = this.get() || {};
+            var hasKeys = Object.keys(value);
 
-            for (var key in value) {
+            for (var _key in value) {
 
-                var formVm = this.data.forms[key];
+                var formVm = this.data.forms[_key];
 
                 if (formVm) {
 
                     var formVal = formVm.get();
 
-                    if (JSON.stringify(formVal) !== JSON.stringify(value[key])) {
+                    if (JSON.stringify(formVal) !== JSON.stringify(value[_key])) {
 
-                        formVm.set(value[key]);
+                        formVm.set(value[_key]);
                     }
                 }
             }
@@ -52007,7 +52039,7 @@ exports.default = {
                     }
                 }
 
-                if (value[formKey] === undefined) {
+                if (value[formKey] === undefined && hasKeys.indexOf(key) !== -1) {
 
                     this.data.forms[formKey].set(undefined);
                 }
@@ -52026,9 +52058,9 @@ exports.default = {
 
             if (formKey === undefined) {
 
-                for (var key in this.data.forms) {
+                for (var _key2 in this.data.forms) {
 
-                    this.data.forms[key]._errorMessage = '';
+                    this.data.forms[_key2]._errorMessage = '';
                 }
 
                 value = this.get() || {};
