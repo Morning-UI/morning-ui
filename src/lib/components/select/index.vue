@@ -827,22 +827,30 @@ export default {
                 return;
 
             }
-        
+
             let key;
 
             if (this.conf.multiSelect) {
 
                 let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`);
 
-                searchMultiinput = searchMultiinput._vm;
-                key = searchMultiinput.getInput();
+                if (searchMultiinput) {
+
+                    searchMultiinput = searchMultiinput._vm;
+                    key = searchMultiinput.getInput();
+
+                }
 
             } else {
 
                 let searchTextinput = this.data.$selectArea.querySelector(`#ui-select-ti-${this.uiid}`);
 
-                searchTextinput = searchTextinput._vm;
-                key = searchTextinput.get();
+                if (searchTextinput) {
+
+                    searchTextinput = searchTextinput._vm;
+                    key = searchTextinput.get();
+
+                }
             
             }
 
@@ -1552,6 +1560,7 @@ export default {
 
             this._set(value, true);
             this._onValueChange();
+            this._searchKeyChange();
 
         });
 
@@ -1578,6 +1587,20 @@ export default {
         this.$watch('data.itemNomathMap', () => {
 
             this._refreshMatchList();
+
+        });
+
+        this.$watch('data.showlist', () => {
+
+            if (this.data.showlist) {
+
+                this.$emit('focus');
+
+            } else {
+
+                this.$emit('blur');
+
+            }
 
         });
 

@@ -18,6 +18,42 @@
     
     ### 更新记录
 
+    ### 0.12.56 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年8月10日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.56" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.56/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.56/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-select`新增`blur`、`focus`事件
+    - `ui-timepicker`新增`blur`、`focus`事件
+
+    #### 改进
+
+    - `ui-table`的表格排序现在支持部分非数字内容的排序 
+
+    #### 修复
+
+    - 修复`ui-select`组件动态切换`multi-select`配置时的报错
+    - 修复`ui-form`在同步子表单数值上的一个问题
+
+    #### 更多
+
+    - `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件现在不会实时校验/修正输入内容，而是在表单失焦后校验/修正输入内容
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 现在`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件不会实时校验/修正输入内容，这可能引起部分即时取值逻辑产生问题，若页面采用了即时性较强的取值逻辑请检查是否正常运行
+
+    ---
+
     ### 0.12.55 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">

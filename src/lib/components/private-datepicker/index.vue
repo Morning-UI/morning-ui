@@ -826,7 +826,8 @@ export default {
         this.$watch('data.inputFocus', this._toggleSelector, {
             immediate : true
         });
-        this.$watch('data.inputValue', this._syncInputValue);
+        // 不需要实时同步输入内容，改为失去焦点同步
+        // this.$watch('data.inputValue', this._syncInputValue);
 
     },
     beforeDestory : function () {

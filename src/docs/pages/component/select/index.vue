@@ -2058,6 +2058,84 @@
     }
     :::
 
+    :::vue
+    @name:blur
+    ---
+    #event
+    >event-desc
+    当下拉列表失去焦点时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            @blur="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('blur event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:focus
+    ---
+    #event
+    >event-desc
+    当下拉列表获取焦点时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            @focus="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('focus event!');
+            }
+        }
+    }
+    :::
+
     [[[表单值]]]
 
     #### 值类型
