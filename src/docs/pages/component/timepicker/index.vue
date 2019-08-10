@@ -754,6 +754,114 @@
     @wrapStyle:width:300px;
     :::
 
+    :::vue
+    @name:blur
+    ---
+    #event
+    >event-desc
+    当组件失去焦点时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="时间" @blur="echo"></ui-timepicker>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('blur event!');
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`is-range`配置。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="时间" is-range @blur="echo"></ui-timepicker>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('blur event!');
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`is-list`配置。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="时间" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" @blur="echo"></ui-timepicker>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('blur event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:focus
+    ---
+    #event
+    >event-desc
+    当组件获取焦点时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="时间" @focus="echo"></ui-timepicker>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('focus event!');
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`is-range`配置。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="时间" is-range @focus="echo"></ui-timepicker>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('focus event!');
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`is-list`配置。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="时间" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" @focus="echo"></ui-timepicker>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('focus event!');
+            }
+        }
+    }
+    :::
+
     [[[表单值]]]
 
     #### 值类型

@@ -841,7 +841,6 @@ export default {
 
                 }
 
-
             } else {
 
                 let searchTextinput = this.data.$selectArea.querySelector(`#ui-select-ti-${this.uiid}`);
@@ -1588,6 +1587,20 @@ export default {
         this.$watch('data.itemNomathMap', () => {
 
             this._refreshMatchList();
+
+        });
+
+        this.$watch('data.showlist', () => {
+
+            if (this.data.showlist) {
+
+                this.$emit('focus');
+
+            } else {
+
+                this.$emit('blur');
+
+            }
 
         });
 

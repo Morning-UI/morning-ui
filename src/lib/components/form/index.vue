@@ -212,7 +212,7 @@ export default {
 
                 }
 
-                if (value[formKey] === undefined && hasKeys.indexOf(key) !== -1) {
+                if (value[formKey] === undefined && hasKeys.indexOf(formKey) !== -1) {
 
                     this.data.forms[formKey].set(undefined);
 

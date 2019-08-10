@@ -534,7 +534,7 @@ export default {
                         let val = item[colIndex];
 
                         // 处理HTML标签
-                        if (/\<[a-zA-Z\-]+\>/.test(val)) {
+                        if (/<[a-zA-Z-]+>/.test(val)) {
 
                             let divEle = document.createElement('div');
 
@@ -544,7 +544,7 @@ export default {
                         }
 
                         // 处理百分比的情况
-                        if (/^[\d\.]+\%$/.test(val)) {
+                        if (/^[\d.]+%$/.test(val)) {
 
                             val = +val.replace(/%$/, '');
 
