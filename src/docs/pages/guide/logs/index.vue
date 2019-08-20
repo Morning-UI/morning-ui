@@ -18,6 +18,35 @@
     
     ### 更新记录
 
+    ### 0.12.57 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年8月20日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.57" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.57/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.57/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-btn`新增`ghost`(幽灵按钮)和`fade`(褪色按钮)样式
+    
+    #### 改进
+    
+    - 优化`ui-btn`的样式使其符合设计规范
+    - 优化`ui-dialog`的样式使其符合设计规范
+    - 优化`info`和`minor`色彩使其符合设计规范
+    - 所有表单组件统一了默认提示文案
+    
+    #### 修复
+    
+    - 修复`ui-datetimepicker`在区间选择时的一个数值清空的问题
+    
+    ---
+
     ### 0.12.56 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">

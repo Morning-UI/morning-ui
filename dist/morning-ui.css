@@ -1645,58 +1645,58 @@ textarea {
 }
 @keyframes formFocusAnimate {
   from {
-    box-shadow: 0 0 0 1px rgba(255, 73, 101, 0.4);
+    box-shadow: 0 0 0 1px rgba(243, 61, 93, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(255, 73, 101, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(243, 61, 93, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0.1);
+    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0);
+    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0);
   }
 }
 @keyframes formFocusAnimateTheme {
   from {
-    box-shadow: 0 0 0 1px rgba(255, 73, 101, 0.4);
+    box-shadow: 0 0 0 1px rgba(243, 61, 93, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(255, 73, 101, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(243, 61, 93, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0.1);
+    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0);
+    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0);
   }
 }
 @keyframes formFocusAnimateLightTheme {
   from {
-    box-shadow: 0 0 0 1px rgba(255, 109, 131, 0.4);
+    box-shadow: 0 0 0 1px rgba(248, 111, 136, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(255, 109, 131, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(248, 111, 136, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(255, 109, 131, 0.1);
+    box-shadow: 0 0 0 4px rgba(248, 111, 136, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(255, 109, 131, 0);
+    box-shadow: 0 0 0 4px rgba(248, 111, 136, 0);
   }
 }
 @keyframes formFocusAnimateDarkTheme {
   from {
-    box-shadow: 0 0 0 1px rgba(217, 62, 85, 0.4);
+    box-shadow: 0 0 0 1px rgba(210, 35, 67, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(217, 62, 85, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(210, 35, 67, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(217, 62, 85, 0.1);
+    box-shadow: 0 0 0 4px rgba(210, 35, 67, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(217, 62, 85, 0);
+    box-shadow: 0 0 0 4px rgba(210, 35, 67, 0);
   }
 }
 @keyframes formFocusAnimateSuccess {
@@ -1790,31 +1790,31 @@ textarea {
   position: absolute !important;
 }
 .mo-co-font-theme {
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mo-co-border-theme {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 .mo-co-bg-theme {
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 .mo-co-font-light-theme {
-  color: #FF6D83;
+  color: #F86F88;
 }
 .mo-co-border-light-theme {
-  border-color: #FF6D83;
+  border-color: #F86F88;
 }
 .mo-co-bg-light-theme {
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 .mo-co-font-dark-theme {
-  color: #D93E55;
+  color: #D22343;
 }
 .mo-co-border-dark-theme {
-  border-color: #D93E55;
+  border-color: #D22343;
 }
 .mo-co-bg-dark-theme {
-  background-color: #D93E55;
+  background-color: #D22343;
 }
 .mo-co-font-success {
   color: #1EB818;
@@ -2176,13 +2176,13 @@ mor-h.si-xxs {
   font-size: 16px;
 }
 mor-h.co-t {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-h.co-lt {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-h.co-dt {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-h.co-s {
   color: #1EB818;
@@ -2255,13 +2255,13 @@ mor-lead {
   color: #000000;
 }
 mor-lead.co-t {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-lead.co-lt {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-lead.co-dt {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-lead.co-s {
   color: #1EB818;
@@ -2328,16 +2328,16 @@ mor-lead.st-apparent {
 }
 mor-mark {
   display: inline;
-  background-color: #ffc8d1;
+  background-color: #fab5c1;
 }
 mor-mark.co-t {
-  background-color: #ffc8d1;
+  background-color: #fab5c1;
 }
 mor-mark.co-lt {
-  background-color: #ffedef;
+  background-color: #fee9ec;
 }
 mor-mark.co-dt {
-  background-color: #eea9b3;
+  background-color: #eb899b;
 }
 mor-mark.co-s {
   background-color: #6aeb65;
@@ -2454,13 +2454,13 @@ mor-quote {
   color: #B2B2B2;
 }
 mor-quote.co-t {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-quote.co-lt {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-quote.co-dt {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-quote.co-s {
   color: #1EB818;
@@ -3013,16 +3013,16 @@ mor-itemlist > mor-ul > li > mor-img + .body {
 }
 mor-textcolor {
   display: inline;
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-textcolor.co-t {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-textcolor.co-lt {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-textcolor.co-dt {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-textcolor.co-s {
   color: #1EB818;
@@ -27853,15 +27853,15 @@ mor-card > .card-body:hover::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
 }
 mor-card.co-t > .card-header {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-card.co-lt > .card-header {
-  background-color: #FF6D83;
+  background-color: #F86F88;
   color: #FFFFFF;
 }
 mor-card.co-dt > .card-header {
-  background-color: #D93E55;
+  background-color: #D22343;
   color: #FFFFFF;
 }
 mor-card.co-s > .card-header {
@@ -27958,7 +27958,7 @@ mor-card.inside-padding > .card-footer {
   border-top: none;
 }
 mor-card > .card-header {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-box {
@@ -27978,19 +27978,19 @@ mor-block {
   padding: 32px 24px;
   margin-top: 16px;
   margin-bottom: 16px;
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-block.co-t {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-block.co-lt {
-  background-color: #FF6D83;
+  background-color: #F86F88;
   color: #FFFFFF;
 }
 mor-block.co-dt {
-  background-color: #D93E55;
+  background-color: #D22343;
   color: #FFFFFF;
 }
 mor-block.co-s {
@@ -28194,40 +28194,40 @@ mor-header.si-xxs small {
   margin-left: 4px;
 }
 mor-header.co-t {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-header.co-t.mark {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-header.co-t.underline {
-  border-bottom-color: #FF4965;
+  border-bottom-color: #F33D5D;
 }
 mor-header.co-t small {
-  color: #ff96a6;
+  color: #f78599;
 }
 mor-header.co-lt {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-header.co-lt.mark {
-  border-left-color: #FF6D83;
+  border-left-color: #F86F88;
 }
 mor-header.co-lt.underline {
-  border-bottom-color: #FF6D83;
+  border-bottom-color: #F86F88;
 }
 mor-header.co-lt small {
-  color: #ffbac4;
+  color: #fcb8c4;
 }
 mor-header.co-dt {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-header.co-dt.mark {
-  border-left-color: #D93E55;
+  border-left-color: #D22343;
 }
 mor-header.co-dt.underline {
-  border-bottom-color: #D93E55;
+  border-bottom-color: #D22343;
 }
 mor-header.co-dt small {
-  color: #e67e8d;
+  color: #e45d76;
 }
 mor-header.co-s {
   color: #1EB818;
@@ -28488,7 +28488,7 @@ mor-label {
   font-size: 0;
   color: #FFFFFF;
   border-radius: 3px;
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-label.image,
 mor-label.icon {
@@ -28772,13 +28772,13 @@ mor-label.si-xxs.icon > span:first-child {
   padding: 0 0px 0 3.2px;
 }
 mor-label.co-t {
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-label.co-lt {
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-label.co-dt {
-  background-color: #D93E55;
+  background-color: #D22343;
 }
 mor-label.co-s {
   background-color: #1EB818;
@@ -29002,22 +29002,22 @@ mor-statistic.si-xxs .label {
   font-size: 12px;
 }
 mor-statistic.co-t .value {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-statistic.co-t .label {
-  color: #ff7c90;
+  color: #f66d85;
 }
 mor-statistic.co-lt .value {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-statistic.co-lt .label {
-  color: #ffa0ae;
+  color: #faa0b0;
 }
 mor-statistic.co-dt .value {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-statistic.co-dt .label {
-  color: #e1697b;
+  color: #e04864;
 }
 mor-statistic.co-s .value {
   color: #1EB818;
@@ -29267,13 +29267,13 @@ mor-action.si-xxs .title .note {
   font-size: 12px;
 }
 mor-action.co-t .title h5 {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-action.co-lt .title h5 {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-action.co-dt .title h5 {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-action.co-s .title h5 {
   color: #1EB818;
@@ -29728,7 +29728,7 @@ mor-btn {
   height: 36px;
   line-height: 36px;
   font-size: 13px;
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-btn > i,
@@ -29927,21 +29927,21 @@ mor-btn .mo-loader .mo-loader-path {
 }
 mor-btn.plain,
 mor-btn.ghost {
-  color: #FF4965;
-  border-color: #FF4965;
+  color: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-btn.plain .mo-loader .mo-loader-path,
 mor-btn.ghost .mo-loader .mo-loader-path {
-  stroke: #FF4965;
+  stroke: #F33D5D;
 }
 mor-btn:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.st-hover {
-  background-color: #ff6d83;
+  background-color: #f55f79;
 }
 mor-btn:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.st-hover.plain {
   color: #FFFFFF;
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-btn:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
 mor-btn.st-hover.plain .mo-loader .mo-loader-path {
@@ -29949,12 +29949,12 @@ mor-btn.st-hover.plain .mo-loader .mo-loader-path {
 }
 mor-btn:not(.st-disabled):not(.st-readonly):active,
 mor-btn.st-active {
-  background-color: #f4546d;
+  background-color: #e74965;
 }
 mor-btn:not(.st-disabled):not(.st-readonly):active.plain,
 mor-btn.st-active.plain {
-  background-color: #ff163a;
-  border-color: #ff163a;
+  background-color: #ee0f36;
+  border-color: #ee0f36;
 }
 mor-btn:not(.plain):not(.ghost).st-disabled,
 mor-btn:not(.plain):not(.ghost).st-readonly {
@@ -29965,7 +29965,7 @@ mor-btn.st-readonly {
   opacity: 0.5;
 }
 mor-btn.co-t {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-btn.co-t .mo-loader .mo-loader-path {
@@ -29973,21 +29973,21 @@ mor-btn.co-t .mo-loader .mo-loader-path {
 }
 mor-btn.co-t.plain,
 mor-btn.co-t.ghost {
-  color: #FF4965;
-  border-color: #FF4965;
+  color: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-btn.co-t.plain .mo-loader .mo-loader-path,
 mor-btn.co-t.ghost .mo-loader .mo-loader-path {
-  stroke: #FF4965;
+  stroke: #F33D5D;
 }
 mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-t.st-hover {
-  background-color: #ff6d83;
+  background-color: #f55f79;
 }
 mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-t.st-hover.plain {
   color: #FFFFFF;
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
 mor-btn.co-t.st-hover.plain .mo-loader .mo-loader-path {
@@ -29995,12 +29995,12 @@ mor-btn.co-t.st-hover.plain .mo-loader .mo-loader-path {
 }
 mor-btn.co-t:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-t.st-active {
-  background-color: #f4546d;
+  background-color: #e74965;
 }
 mor-btn.co-t:not(.st-disabled):not(.st-readonly):active.plain,
 mor-btn.co-t.st-active.plain {
-  background-color: #ff163a;
-  border-color: #ff163a;
+  background-color: #ee0f36;
+  border-color: #ee0f36;
 }
 mor-btn.co-t:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-t:not(.plain):not(.ghost).st-readonly {
@@ -30011,7 +30011,7 @@ mor-btn.co-t.st-readonly {
   opacity: 0.5;
 }
 mor-btn.co-lt {
-  background-color: #FF6D83;
+  background-color: #F86F88;
   color: #FFFFFF;
 }
 mor-btn.co-lt .mo-loader .mo-loader-path {
@@ -30019,21 +30019,21 @@ mor-btn.co-lt .mo-loader .mo-loader-path {
 }
 mor-btn.co-lt.plain,
 mor-btn.co-lt.ghost {
-  color: #FF6D83;
-  border-color: #FF6D83;
+  color: #F86F88;
+  border-color: #F86F88;
 }
 mor-btn.co-lt.plain .mo-loader .mo-loader-path,
 mor-btn.co-lt.ghost .mo-loader .mo-loader-path {
-  stroke: #FF6D83;
+  stroke: #F86F88;
 }
 mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-lt.st-hover {
-  background-color: #ff91a1;
+  background-color: #fa91a4;
 }
 mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-lt.st-hover.plain {
   color: #FFFFFF;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
 mor-btn.co-lt.st-hover.plain .mo-loader .mo-loader-path {
@@ -30041,12 +30041,12 @@ mor-btn.co-lt.st-hover.plain .mo-loader .mo-loader-path {
 }
 mor-btn.co-lt:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-lt.st-active {
-  background-color: #f67689;
+  background-color: #ef788e;
 }
 mor-btn.co-lt:not(.st-disabled):not(.st-readonly):active.plain,
 mor-btn.co-lt.st-active.plain {
-  background-color: #ff3a58;
-  border-color: #ff3a58;
+  background-color: #f63e60;
+  border-color: #f63e60;
 }
 mor-btn.co-lt:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-lt:not(.plain):not(.ghost).st-readonly {
@@ -30057,7 +30057,7 @@ mor-btn.co-lt.st-readonly {
   opacity: 0.5;
 }
 mor-btn.co-dt {
-  background-color: #D93E55;
+  background-color: #D22343;
   color: #FFFFFF;
 }
 mor-btn.co-dt .mo-loader .mo-loader-path {
@@ -30065,21 +30065,21 @@ mor-btn.co-dt .mo-loader .mo-loader-path {
 }
 mor-btn.co-dt.plain,
 mor-btn.co-dt.ghost {
-  color: #D93E55;
-  border-color: #D93E55;
+  color: #D22343;
+  border-color: #D22343;
 }
 mor-btn.co-dt.plain .mo-loader .mo-loader-path,
 mor-btn.co-dt.ghost .mo-loader .mo-loader-path {
-  stroke: #D93E55;
+  stroke: #D22343;
 }
 mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-dt.st-hover {
-  background-color: #df5c6f;
+  background-color: #de3a58;
 }
 mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-dt.st-hover.plain {
   color: #FFFFFF;
-  background-color: #D93E55;
+  background-color: #D22343;
 }
 mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
 mor-btn.co-dt.st-hover.plain .mo-loader .mo-loader-path {
@@ -30087,12 +30087,12 @@ mor-btn.co-dt.st-hover.plain .mo-loader .mo-loader-path {
 }
 mor-btn.co-dt:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-dt.st-active {
-  background-color: #cb4c5f;
+  background-color: #c3324c;
 }
 mor-btn.co-dt:not(.st-disabled):not(.st-readonly):active.plain,
 mor-btn.co-dt.st-active.plain {
-  background-color: #be263c;
-  border-color: #be263c;
+  background-color: #a61c35;
+  border-color: #a61c35;
 }
 mor-btn.co-dt:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-dt:not(.plain):not(.ghost).st-readonly {
@@ -31174,41 +31174,41 @@ mor-btn.co-n11:not(.plain):not(.ghost).st-readonly {
 mor-btn.co-t.plain,
 mor-btn.co-t.ghost:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-t.ghost.st-hover {
-  background-color: #ffecef;
+  background-color: #fdd7dd;
 }
 mor-btn.co-t.ghost:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-t.ghost.st-active {
-  background-color: #ffced5;
+  background-color: #fbbac5;
 }
 mor-btn.co-t:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-t:not(.plain):not(.ghost).st-readonly {
-  color: #ffc8d1;
+  color: #fab5c1;
 }
 mor-btn.co-lt.plain,
 mor-btn.co-lt.ghost:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-lt.ghost.st-hover {
-  background-color: #ffedef;
+  background-color: #fee9ec;
 }
 mor-btn.co-lt.ghost:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-lt.ghost.st-active {
-  background-color: #ffd3da;
+  background-color: #fdd0d8;
 }
 mor-btn.co-lt:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-lt:not(.plain):not(.ghost).st-readonly {
-  color: #ffd3da;
+  color: #fdd0d8;
 }
 mor-btn.co-dt.plain,
 mor-btn.co-dt.ghost:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-dt.ghost.st-hover {
-  background-color: #f6d3d8;
+  background-color: #f3b5c0;
 }
 mor-btn.co-dt.ghost:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-dt.ghost.st-active {
-  background-color: #f2bec6;
+  background-color: #ef9fae;
 }
 mor-btn.co-dt:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-dt:not(.plain):not(.ghost).st-readonly {
-  color: #eea9b3;
+  color: #eb899b;
 }
 mor-btn.co-s.plain,
 mor-btn.co-s.ghost:not(.st-disabled):not(.st-readonly):hover,
@@ -31390,15 +31390,15 @@ mor-btn.st-apparent:hover {
 mor-btn.plain,
 mor-btn.ghost:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.ghost.st-hover {
-  background-color: #ffecef;
+  background-color: #fdd7dd;
 }
 mor-btn.ghost:not(.st-disabled):not(.st-readonly):active,
 mor-btn.ghost.st-active {
-  background-color: #ffced5;
+  background-color: #fbbac5;
 }
 mor-btn:not(.plain):not(.ghost).st-disabled,
 mor-btn:not(.plain):not(.ghost).st-readonly {
-  color: #ffc8d1;
+  color: #fab5c1;
 }
 mor-link {
   display: inline-block;
@@ -31406,7 +31406,7 @@ mor-link {
   line-height: 1.4em;
   height: 1.4em;
   font-size: 13px;
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-link.margin {
   padding: 0 0.6em;
@@ -31446,55 +31446,55 @@ mor-link.si-xxs {
   font-size: 12px;
 }
 mor-link.co-t {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-link.co-t .mo-loader .mo-loader-path {
-  stroke: #FF4965;
+  stroke: #F33D5D;
 }
 mor-link.co-t:not(.st-disabled):hover,
 mor-link.co-t.st-hover {
-  color: #fb0027;
+  color: #d60d31;
 }
 mor-link.co-t:not(.st-disabled):active,
 mor-link.co-t.st-active {
-  color: #c8001f;
+  color: #a60a26;
 }
 mor-link.co-t.st-disabled {
-  color: #ffc8d1;
+  color: #fab5c1;
 }
 mor-link.co-lt {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-link.co-lt .mo-loader .mo-loader-path {
-  stroke: #FF6D83;
+  stroke: #F86F88;
 }
 mor-link.co-lt:not(.st-disabled):hover,
 mor-link.co-lt.st-hover {
-  color: #ed0024;
+  color: #dd0b31;
 }
 mor-link.co-lt:not(.st-disabled):active,
 mor-link.co-lt.st-active {
-  color: #ba001c;
+  color: #ac0826;
 }
 mor-link.co-lt.st-disabled {
-  color: #ffd3da;
+  color: #fdd0d8;
 }
 mor-link.co-dt {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-link.co-dt .mo-loader .mo-loader-path {
-  stroke: #D93E55;
+  stroke: #D22343;
 }
 mor-link.co-dt:not(.st-disabled):hover,
 mor-link.co-dt.st-hover {
-  color: #be263c;
+  color: #a61c35;
 }
 mor-link.co-dt:not(.st-disabled):active,
 mor-link.co-dt.st-active {
-  color: #941d2f;
+  color: #7b1427;
 }
 mor-link.co-dt.st-disabled {
-  color: #eea9b3;
+  color: #eb899b;
 }
 mor-link.co-s {
   color: #1EB818;
@@ -31835,18 +31835,18 @@ mor-link.st-apparent:hover {
   animation-name: none;
 }
 mor-link .mo-loader .mo-loader-path {
-  stroke: #FF4965;
+  stroke: #F33D5D;
 }
 mor-link:not(.st-disabled):hover,
 mor-link.st-hover {
-  color: #fb0027;
+  color: #d60d31;
 }
 mor-link:not(.st-disabled):active,
 mor-link.st-active {
-  color: #c8001f;
+  color: #a60a26;
 }
 mor-link.st-disabled {
-  color: #ffc8d1;
+  color: #fab5c1;
 }
 mor-link:hover {
   cursor: pointer;
@@ -31957,7 +31957,7 @@ mor-tab > ul > li:hover {
 }
 mor-tab > ul > li.current {
   background-color: #FFFFFF;
-  color: #FF4965;
+  color: #F33D5D;
   border-color: #dddddd;
   z-index: 5;
   cursor: default;
@@ -32061,7 +32061,7 @@ mor-tab.block > ul > li:hover {
 mor-tab.block > ul > li.current {
   border-color: #dddddd;
   background: #FFFFFF;
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-tab.block > ul > li.disabled {
   background-color: #E0E0E0;
@@ -32073,14 +32073,14 @@ mor-tab.block.position-bottom > ul > li:not(:last-child) {
   border-right-width: 0;
 }
 mor-tab.block.position-top > ul > li.current {
-  border-top: 1px #FF4965 solid;
+  border-top: 1px #F33D5D solid;
   border-bottom-width: 0;
-  box-shadow: inset 0 3px 0 #FF4965;
+  box-shadow: inset 0 3px 0 #F33D5D;
 }
 mor-tab.block.position-bottom > ul > li.current {
-  border-bottom: 1px #FF4965 solid;
+  border-bottom: 1px #F33D5D solid;
   border-top-width: 0;
-  box-shadow: inset 0 -3px 0 #FF4965;
+  box-shadow: inset 0 -3px 0 #F33D5D;
 }
 mor-tab.block.position-left ul,
 mor-tab.block.position-right ul {
@@ -32099,13 +32099,13 @@ mor-tab.block.position-right ul > li.current:last-child {
   border-bottom-width: 1px;
 }
 mor-tab.block.position-left ul > li.current {
-  border-left: 1px #FF4965 solid;
-  box-shadow: inset 3px 0 0 #FF4965;
+  border-left: 1px #F33D5D solid;
+  box-shadow: inset 3px 0 0 #F33D5D;
   border-right-width: 0;
 }
 mor-tab.block.position-right ul > li.current {
-  border-right: 1px #FF4965 solid;
-  box-shadow: inset -3px 0 0 #FF4965;
+  border-right: 1px #F33D5D solid;
+  box-shadow: inset -3px 0 0 #F33D5D;
   border-left-width: 0;
 }
 mor-tab.line > ul::before {
@@ -32124,7 +32124,7 @@ mor-tab.line > ul > li:hover {
   color: #666666;
 }
 mor-tab.line > ul > li.current {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-tab.line > ul > li.disabled {
   color: #666666;
@@ -32145,7 +32145,7 @@ mor-tab.line.position-top > ul > li:hover {
   border-bottom-color: #d1d1d1;
 }
 mor-tab.line.position-top > ul > li.current {
-  border-bottom-color: #FF4965;
+  border-bottom-color: #F33D5D;
 }
 mor-tab.line.position-top > ul > li.disabled {
   border-bottom-color: #adadad;
@@ -32163,7 +32163,7 @@ mor-tab.line.position-bottom > ul > li:hover {
   border-top-color: #d1d1d1;
 }
 mor-tab.line.position-bottom > ul > li.current {
-  border-top-color: #FF4965;
+  border-top-color: #F33D5D;
 }
 mor-tab.line.position-bottom > ul > li.disabled {
   border-top-color: #adadad;
@@ -32201,7 +32201,7 @@ mor-tab.line.position-left > ul > li:hover {
   border-right-color: #d1d1d1;
 }
 mor-tab.line.position-left > ul > li.current {
-  border-right-color: #FF4965;
+  border-right-color: #F33D5D;
 }
 mor-tab.line.position-left > .contents {
   border-left-width: 0;
@@ -32217,7 +32217,7 @@ mor-tab.line.position-right > ul > li:hover {
   border-left-color: #d1d1d1;
 }
 mor-tab.line.position-right > ul > li.current {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-tab.line.position-right > .contents {
   border-right-width: 0;
@@ -32235,9 +32235,9 @@ mor-tab.btn > ul > li:hover {
   color: #666666;
 }
 mor-tab.btn > ul > li.current {
-  color: #FF4965;
+  color: #F33D5D;
   background-color: #FFFFFF;
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-tab.btn > ul > li.disabled {
   color: #666666;
@@ -32263,7 +32263,7 @@ mor-tab.btn.position-bottom > ul > li:hover + li {
 }
 mor-tab.btn.position-top > ul > li:hover + li.current,
 mor-tab.btn.position-bottom > ul > li:hover + li.current {
-  border-left: 1px #FF4965 solid;
+  border-left: 1px #F33D5D solid;
 }
 mor-tab.btn.position-top > ul > li.current,
 mor-tab.btn.position-bottom > ul > li.current {
@@ -32309,11 +32309,11 @@ mor-tab.btn.position-right > ul > li:hover + li {
 }
 mor-tab.btn.position-left > ul > li:hover + li.current,
 mor-tab.btn.position-right > ul > li:hover + li.current {
-  border-top: 1px #FF4965 solid;
+  border-top: 1px #F33D5D solid;
 }
 mor-tab.btn.position-left > ul > li.current,
 mor-tab.btn.position-right > ul > li.current {
-  border-bottom: 1px #FF4965 solid;
+  border-bottom: 1px #F33D5D solid;
 }
 mor-tab.btn.position-left > ul > li.current + li,
 mor-tab.btn.position-right > ul > li.current + li {
@@ -32332,7 +32332,7 @@ mor-tab.btn.position-left > ul > li:hover + li {
   border-left-width: 1px;
 }
 mor-tab.btn.position-left > ul > li:hover + li.current {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
   border-left-width: 1px;
 }
 mor-tab.btn.position-left > ul > li.current + li {
@@ -32349,7 +32349,7 @@ mor-tab.btn.position-right > ul > li:hover + li {
   border-right-width: 1px;
 }
 mor-tab.btn.position-right > ul > li:hover + li.current {
-  border-right-color: #FF4965;
+  border-right-color: #F33D5D;
   border-right-width: 1px;
 }
 mor-tab.btn.position-right > ul > li.current + li {
@@ -32528,7 +32528,7 @@ mor-tree.can-click mor-private-tree ul.tree-body .tree-node > span > a:hover {
   text-decoration: none;
 }
 mor-tree.can-click mor-private-tree ul.tree-body .tree-node > span .node-name:hover {
-  background: #fff2f4;
+  background: #feedf0;
 }
 mor-table {
   width: 100%;
@@ -32877,14 +32877,14 @@ mor-table.si-xs .table > tbody > tr > td {
   padding: 3px !important;
 }
 mor-table.co-t {
-  border-color: #e20023 !important;
+  border-color: #be0c2b !important;
 }
 mor-table.co-t header {
-  background-color: #e20023;
+  background-color: #be0c2b;
   color: #FFFFFF;
 }
 mor-table.co-t .co-style {
-  border-color: #e20023 !important;
+  border-color: #be0c2b !important;
 }
 mor-table.co-t .co-style th,
 mor-table.co-t .co-style td {
@@ -32895,13 +32895,13 @@ mor-table.co-t .co-style td,
 mor-table.co-t .co-style tr,
 mor-table.co-t .co-style .expand-row-col-wrap,
 mor-table.co-t .co-style {
-  border-color: #e20023 !important;
+  border-color: #be0c2b !important;
 }
 mor-table.co-t .co-style tr {
-  background-color: #fb0027;
+  background-color: #d60d31;
 }
 mor-table.co-t.ts-zp .co-style tr.even-row td {
-  background-color: #ff163a;
+  background-color: #ee0f36;
 }
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32909,8 +32909,8 @@ mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #e20023;
-  border-color: #e20023 !important;
+  background-color: #be0c2b;
+  border-color: #be0c2b !important;
 }
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32918,7 +32918,7 @@ mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #e20023 !important;
+  border-top-color: #be0c2b !important;
 }
 mor-table.co-t mor-empty .empty-image i,
 mor-table.co-t mor-empty .empty-image i.iconfont,
@@ -32931,14 +32931,14 @@ mor-table.co-t mor-empty .empty-note {
   opacity: 0.6;
 }
 mor-table.co-lt {
-  border-color: #ed0024 !important;
+  border-color: #dd0b31 !important;
 }
 mor-table.co-lt header {
-  background-color: #ed0024;
+  background-color: #dd0b31;
   color: #FFFFFF;
 }
 mor-table.co-lt .co-style {
-  border-color: #ed0024 !important;
+  border-color: #dd0b31 !important;
 }
 mor-table.co-lt .co-style th,
 mor-table.co-lt .co-style td {
@@ -32949,13 +32949,13 @@ mor-table.co-lt .co-style td,
 mor-table.co-lt .co-style tr,
 mor-table.co-lt .co-style .expand-row-col-wrap,
 mor-table.co-lt .co-style {
-  border-color: #ed0024 !important;
+  border-color: #dd0b31 !important;
 }
 mor-table.co-lt .co-style tr {
-  background-color: #ff2142;
+  background-color: #f4264c;
 }
 mor-table.co-lt.ts-zp .co-style tr.even-row td {
-  background-color: #ff3a58;
+  background-color: #f63e60;
 }
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32963,8 +32963,8 @@ mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #ed0024;
-  border-color: #ed0024 !important;
+  background-color: #dd0b31;
+  border-color: #dd0b31 !important;
 }
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32972,7 +32972,7 @@ mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #ed0024 !important;
+  border-top-color: #dd0b31 !important;
 }
 mor-table.co-lt mor-empty .empty-image i,
 mor-table.co-lt mor-empty .empty-image i.iconfont,
@@ -32985,14 +32985,14 @@ mor-table.co-lt mor-empty .empty-note {
   opacity: 0.6;
 }
 mor-table.co-dt {
-  border-color: #941d2f !important;
+  border-color: #7b1427 !important;
 }
 mor-table.co-dt header {
-  background-color: #941d2f;
+  background-color: #7b1427;
   color: #FFFFFF;
 }
 mor-table.co-dt .co-style {
-  border-color: #941d2f !important;
+  border-color: #7b1427 !important;
 }
 mor-table.co-dt .co-style th,
 mor-table.co-dt .co-style td {
@@ -33003,13 +33003,13 @@ mor-table.co-dt .co-style td,
 mor-table.co-dt .co-style tr,
 mor-table.co-dt .co-style .expand-row-col-wrap,
 mor-table.co-dt .co-style {
-  border-color: #941d2f !important;
+  border-color: #7b1427 !important;
 }
 mor-table.co-dt .co-style tr {
-  background-color: #a92135;
+  background-color: #90182e;
 }
 mor-table.co-dt.ts-zp .co-style tr.even-row td {
-  background-color: #be263c;
+  background-color: #a61c35;
 }
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -33017,8 +33017,8 @@ mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #941d2f;
-  border-color: #941d2f !important;
+  background-color: #7b1427;
+  border-color: #7b1427 !important;
 }
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -33026,7 +33026,7 @@ mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #941d2f !important;
+  border-top-color: #7b1427 !important;
 }
 mor-table.co-dt mor-empty .empty-image i,
 mor-table.co-dt mor-empty .empty-image i.iconfont,
@@ -34056,17 +34056,17 @@ mor-table.co-wh:not(.no-hover-effect) .table tr.last-click + tr > td {
 }
 mor-table .table th.cco-t,
 mor-table .table td.cco-t {
-  background: #ff2f4f !important;
+  background: #f22549 !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-lt,
 mor-table .table td.cco-lt {
-  background: #ff546d !important;
+  background: #f75774 !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-dt,
 mor-table .table td.cco-dt {
-  background: #d42a43 !important;
+  background: #bc1f3c !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-s,
@@ -34172,15 +34172,15 @@ mor-table .table td.cell-disabled {
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-t,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-t {
-  background: #fb0027 !important;
+  background: #d60d31 !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-lt,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-lt {
-  background: #ff2142 !important;
+  background: #f4264c !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-dt,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-dt {
-  background: #b22338 !important;
+  background: #991a31 !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-s,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-s {
@@ -34376,27 +34376,27 @@ mor-menu.line .pos-top .root-menu > li > a {
 }
 mor-menu.line .pos-top .root-menu > li > a:hover {
   color: #4C4C4C;
-  border-bottom-color: #FF4965;
+  border-bottom-color: #F33D5D;
 }
 mor-menu.line .pos-top .root-menu > li > a.current {
   color: #000000;
   font-weight: 400;
-  border-bottom-color: #FF4965;
+  border-bottom-color: #F33D5D;
   border-bottom-width: 2px;
 }
 mor-menu.line .pos-top .root-menu > li.current > a {
   color: #000000;
   font-weight: 400;
   border-bottom-width: 2px;
-  border-bottom-color: #FF4965;
+  border-bottom-color: #F33D5D;
 }
 mor-menu.line .pos-top .sub-menu > li > a.current {
   color: #000000;
-  background-color: #ffffff;
+  background-color: #feeff1;
 }
 mor-menu.line .pos-top .sub-menu > li.current > a {
   color: #000000;
-  background-color: #ffffff;
+  background-color: #feeff1;
 }
 mor-menu.line .pos-side .root-menu {
   border-right: 1px #E5E5E5 solid;
@@ -34406,7 +34406,7 @@ mor-menu.line .pos-side .root-menu.last-current > a {
   padding-right: calc(1.5em - 4px);
 }
 mor-menu.line .pos-side .sub-menu > li > a.current {
-  border-bottom-color: #FF4965;
+  border-bottom-color: #F33D5D;
   border-bottom-width: 2px;
 }
 mor-menu.line .pos-side .sub-menu.current > a,
@@ -34417,15 +34417,15 @@ mor-menu.line .pos-side .root-menu > li.current > a,
 mor-menu.line .pos-side .sub-menu > li.current > a {
   color: #000000;
   font-weight: 400;
-  background-color: #ffffff;
-  border-right: 4px #ffafbb solid;
+  background-color: #feeff1;
+  border-right: 4px #f99dad solid;
 }
 mor-menu.line .pos-side .root-menu > li.last-current > a,
 mor-menu.line .pos-side .sub-menu > li.last-current > a {
   color: #000000;
   font-weight: 400;
-  background-color: #ffffff;
-  border-right: 4px #FF4965 solid;
+  background-color: #feeff1;
+  border-right: 4px #F33D5D solid;
 }
 mor-menu.block .pos-top .root-menu > li > a:hover {
   background-color: #E5E5E5;
@@ -34433,20 +34433,20 @@ mor-menu.block .pos-top .root-menu > li > a:hover {
 mor-menu.block .pos-top .root-menu > li > a.current {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-menu.block .pos-top .root-menu > li.current > a {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-menu.block .pos-top .sub-menu > li > a.current {
   color: #FFFFFF;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-menu.block .pos-top .sub-menu > li.current > a {
   color: #FFFFFF;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-menu.block .pos-top .sub-menu > li.current > .has-child-menu-icon {
   color: #FFFFFF;
@@ -34455,18 +34455,18 @@ mor-menu.block .pos-side .root-menu > li > a.current,
 mor-menu.block .pos-side .sub-menu > li > a.current {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-menu.block .pos-side .root-menu > li.current > a,
 mor-menu.block .pos-side .sub-menu > li.current > a {
-  color: #FF4965;
+  color: #F33D5D;
   font-weight: 400;
 }
 mor-menu.block .pos-side .root-menu > li.last-current > a,
 mor-menu.block .pos-side .sub-menu > li.last-current > a {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-menu.block .pos-side .root-menu > li.last-current > .has-child-menu-icon,
 mor-menu.block .pos-side .sub-menu > li.last-current > .has-child-menu-icon {
@@ -34827,7 +34827,7 @@ mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
 mor-menu.co-bk.expand.line .pos-side .root-menu > li.last-current > a,
 mor-menu.co-bk.expand.line .pos-side .sub-menu > li.last-current > a {
   background: #333333;
-  border-right: 4px #ff163a solid;
+  border-right: 4px #ee0f36 solid;
 }
 mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
   background: #0d0d0d;
@@ -34854,13 +34854,13 @@ mor-menu.co-wh .pos-top .root-menu > li > a.current,
 mor-menu.co-wh .pos-side .root-menu > li > a.current,
 mor-menu.co-wh .pos-top .sub-menu > li > a.current,
 mor-menu.co-wh .pos-side .sub-menu > li > a.current {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-menu.co-wh .pos-top .root-menu > li.current > a,
 mor-menu.co-wh .pos-side .root-menu > li.current > a,
 mor-menu.co-wh .pos-top .sub-menu > li.current > a,
 mor-menu.co-wh .pos-side .sub-menu > li.current > a {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-menu.co-wh .pos-top .root-menu > li.is-disable > a,
 mor-menu.co-wh .pos-side .root-menu > li.is-disable > a,
@@ -34880,11 +34880,11 @@ mor-menu.co-wh .pos-side .root-menu > li.is-disable > a:hover {
 }
 mor-menu.co-wh.expand .pos-side .root-menu > li.last-current > a,
 mor-menu.co-wh.expand .pos-side .sub-menu > li.last-current > a {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-menu.co-wh.expand.line .pos-side .root-menu > li.last-current > a,
 mor-menu.co-wh.expand.line .pos-side .sub-menu > li.last-current > a {
-  border-right: 4px #FF4965 solid;
+  border-right: 4px #F33D5D solid;
 }
 mor-menu.co-wh.collapse .pos-side .root-menu > li > a:hover {
   background: #E5E5E5;
@@ -34910,8 +34910,8 @@ mor-menu.expand .pos-side .sub-menu > li.current > a {
 }
 mor-menu.expand .pos-side .root-menu > li.last-current > a,
 mor-menu.expand .pos-side .sub-menu > li.last-current > a {
-  background-color: #ffffff;
-  border-right: 4px #FF4965 solid;
+  background-color: #feeff1;
+  border-right: 4px #F33D5D solid;
 }
 mor-menu.expand .pos-side .sub-menu-wrap {
   display: block;
@@ -35028,13 +35028,13 @@ mor-menu .pos-top .root-menu > li > a.current,
 mor-menu .pos-side .root-menu > li > a.current,
 mor-menu .pos-top .sub-menu > li > a.current,
 mor-menu .pos-side .sub-menu > li > a.current {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-menu .pos-top .root-menu > li.current > a,
 mor-menu .pos-side .root-menu > li.current > a,
 mor-menu .pos-top .sub-menu > li.current > a,
 mor-menu .pos-side .sub-menu > li.current > a {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-menu .pos-top .root-menu > li.is-disable > a,
 mor-menu .pos-side .root-menu > li.is-disable > a,
@@ -35054,11 +35054,11 @@ mor-menu .pos-side .root-menu > li.is-disable > a:hover {
 }
 mor-menu.expand .pos-side .root-menu > li.last-current > a,
 mor-menu.expand .pos-side .sub-menu > li.last-current > a {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-menu.expand.line .pos-side .root-menu > li.last-current > a,
 mor-menu.expand.line .pos-side .sub-menu > li.last-current > a {
-  border-right: 4px #FF4965 solid;
+  border-right: 4px #F33D5D solid;
 }
 mor-menu.collapse .pos-side .root-menu > li > a:hover {
   background: #E5E5E5;
@@ -35088,7 +35088,7 @@ mor-anchor .anchor-nav .current-point {
   width: 10px;
   height: 10px;
   left: 0;
-  border: 3px solid #FF4965;
+  border: 3px solid #F33D5D;
   background: #FFFFFF;
   transition: top 0.16s;
 }
@@ -35108,7 +35108,7 @@ mor-anchor .anchor-nav ul.menu > li:hover {
   color: #666666;
 }
 mor-anchor .anchor-nav ul.menu > li.current {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-pagination {
   display: inline-block;
@@ -35353,22 +35353,22 @@ mor-pagination.si-xxs .list .page-jump .mo-icon {
   font-size: 12px;
 }
 mor-pagination.co-t .list > a.current {
-  background-color: #FF4965 !important;
+  background-color: #F33D5D !important;
 }
 mor-pagination.co-t .page-jump .mo-icon:hover {
-  color: #FF4965 !important;
+  color: #F33D5D !important;
 }
 mor-pagination.co-lt .list > a.current {
-  background-color: #FF6D83 !important;
+  background-color: #F86F88 !important;
 }
 mor-pagination.co-lt .page-jump .mo-icon:hover {
-  color: #FF6D83 !important;
+  color: #F86F88 !important;
 }
 mor-pagination.co-dt .list > a.current {
-  background-color: #D93E55 !important;
+  background-color: #D22343 !important;
 }
 mor-pagination.co-dt .page-jump .mo-icon:hover {
-  color: #D93E55 !important;
+  color: #D22343 !important;
 }
 mor-pagination.co-s .list > a.current {
   background-color: #1EB818 !important;
@@ -35508,10 +35508,10 @@ mor-pagination .list .page-jump .mo-icon {
   font-size: 15px;
 }
 mor-pagination .list > a.current {
-  background-color: #FF4965 !important;
+  background-color: #F33D5D !important;
 }
 mor-pagination .page-jump .mo-icon:hover {
-  color: #FF4965 !important;
+  color: #F33D5D !important;
 }
 mor-dialog {
   width: 100%;
@@ -35671,15 +35671,15 @@ mor-dialog.show > .mask {
   opacity: 1;
 }
 mor-dialog.co-t > .content > header {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-dialog.co-lt > .content > header {
-  background-color: #FF6D83;
+  background-color: #F86F88;
   color: #FFFFFF;
 }
 mor-dialog.co-dt > .content > header {
-  background-color: #D93E55;
+  background-color: #D22343;
   color: #FFFFFF;
 }
 mor-dialog.co-s > .content > header {
@@ -35759,7 +35759,7 @@ mor-dialog.co-wh > .content > header {
   color: #333333;
 }
 mor-dialog > .content > header {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-drawer {
@@ -36043,13 +36043,13 @@ mor-avatar.si-xxl .wrap > i.mo-icon {
   font-size: 32px;
 }
 mor-avatar.co-t > .wrap {
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-avatar.co-lt > .wrap {
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-avatar.co-dt > .wrap {
-  background-color: #D93E55;
+  background-color: #D22343;
 }
 mor-avatar.co-s > .wrap {
   background-color: #1EB818;
@@ -36145,7 +36145,7 @@ mor-avatar .wrap > i.mo-icon {
   font-size: 14px;
 }
 mor-avatar > .wrap {
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-badge {
   display: inline-block;
@@ -36160,8 +36160,8 @@ mor-badge {
   font-weight: 400;
   font-size: 13px;
   padding: 0 10.4px;
-  background-color: #FF4965;
-  border-color: #FF4965;
+  background-color: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-badge:empty {
   display: none;
@@ -36316,25 +36316,25 @@ mor-badge.si-xxs.badge-point > span {
   height: 4.5px;
 }
 mor-badge.co-t {
-  background-color: #FF4965;
-  border-color: #FF4965;
+  background-color: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-badge.co-t.plain {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-badge.co-lt {
-  background-color: #FF6D83;
-  border-color: #FF6D83;
+  background-color: #F86F88;
+  border-color: #F86F88;
 }
 mor-badge.co-lt.plain {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-badge.co-dt {
-  background-color: #D93E55;
-  border-color: #D93E55;
+  background-color: #D22343;
+  border-color: #D22343;
 }
 mor-badge.co-dt.plain {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-badge.co-s {
   background-color: #1EB818;
@@ -36578,7 +36578,7 @@ mor-badge.badge-point > span {
   height: 10px;
 }
 mor-badge.plain {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-time {
   display: inline-block;
@@ -36785,8 +36785,8 @@ mor-calendar .day.now {
   margin-bottom: 0;
 }
 mor-calendar .day.now .inner-layer {
-  color: #D93E55;
-  border: 1px #D93E55 solid;
+  color: #D22343;
+  border: 1px #D22343 solid;
   line-height: calc(16px*1.5 - 2px);
   box-sizing: border-box;
 }
@@ -36796,8 +36796,8 @@ mor-calendar .pick-year .year.now {
 }
 mor-calendar .pick-month .month.now .inner-layer,
 mor-calendar .pick-year .year.now .inner-layer {
-  color: #D93E55;
-  border: 1px #D93E55 solid;
+  color: #D22343;
+  border: 1px #D22343 solid;
   line-height: calc(16px*1.5 - 2px);
   box-sizing: border-box;
 }
@@ -36809,13 +36809,13 @@ mor-calendar .pick-year .year.highlight {
 mor-calendar .day.highlight .inner-layer,
 mor-calendar .pick-month .month.highlight .inner-layer,
 mor-calendar .pick-year .year.highlight .inner-layer {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .day.middle .select-layer,
 mor-calendar .pick-month .month.middle .select-layer,
 mor-calendar .pick-year .year.middle .select-layer {
-  background-color: #ffedef;
+  background-color: #fee9ec;
 }
 mor-calendar .day.middle.bg-mark-disabled .select-layer,
 mor-calendar .pick-month .month.middle.bg-mark-disabled .select-layer,
@@ -36830,7 +36830,7 @@ mor-calendar .pick-year .year.start {
 mor-calendar .day.start .inner-layer,
 mor-calendar .pick-month .month.start .inner-layer,
 mor-calendar .pick-year .year.start .inner-layer {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .day.start .select-layer,
@@ -36838,7 +36838,7 @@ mor-calendar .pick-month .month.start .select-layer,
 mor-calendar .pick-year .year.start .select-layer {
   text-align: center;
   padding-right: calc(50% - 13px);
-  background-color: #ffedef;
+  background-color: #fee9ec;
   border-radius: 3px 0 0 3px;
   width: auto;
 }
@@ -36850,7 +36850,7 @@ mor-calendar .pick-year .year.end {
 mor-calendar .day.end .inner-layer,
 mor-calendar .pick-month .month.end .inner-layer,
 mor-calendar .pick-year .year.end .inner-layer {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .day.end .select-layer,
@@ -36858,7 +36858,7 @@ mor-calendar .pick-month .month.end .select-layer,
 mor-calendar .pick-year .year.end .select-layer {
   text-align: center;
   padding-left: calc(50% - 13px);
-  background-color: #ffedef;
+  background-color: #fee9ec;
   border-radius: 0 3px 3px 0;
   width: auto;
 }
@@ -37158,7 +37158,7 @@ mor-calendar .pick-year .year.end {
 }
 mor-calendar .pick-month .month.end .inner-layer,
 mor-calendar .pick-year .year.end .inner-layer {
-  background-color: #FF4965;
+  background-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-calendar .pick-month .month.end .select-layer,
@@ -37172,7 +37172,7 @@ mor-calendar.mode-month .pick-month .month:hover {
   cursor: default;
 }
 mor-calendar.mode-month.highlight-hover .month:hover {
-  color: #D93E55;
+  color: #D22343;
   font-weight: 700;
 }
 mor-calendar.mode-month.highlight-hover .month.bg-mark-disabled:hover {
@@ -37184,7 +37184,7 @@ mor-calendar.mode-year .pick-year .year:hover {
   cursor: default;
 }
 mor-calendar.mode-year.highlight-hover .year:hover {
-  color: #D93E55;
+  color: #D22343;
   font-weight: 700;
 }
 mor-calendar.mode-year.highlight-hover .year.bg-mark-disabled:hover {
@@ -37210,7 +37210,7 @@ mor-calendar.mode-year .year .inner-layer {
   width: inherit !important;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day:hover {
-  color: #D93E55;
+  color: #D22343;
   font-weight: 700;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day.bg-mark-disabled:hover {
@@ -37430,22 +37430,22 @@ mor-progress.type-ring .note .mo-icon {
   display: block;
 }
 mor-progress.co-t .progress-wrap .main {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-progress.co-t .progress-wrap .ring-track svg .main {
-  stroke: #FF4965;
+  stroke: #F33D5D;
 }
 mor-progress.co-lt .progress-wrap .main {
-  background: #FF6D83;
+  background: #F86F88;
 }
 mor-progress.co-lt .progress-wrap .ring-track svg .main {
-  stroke: #FF6D83;
+  stroke: #F86F88;
 }
 mor-progress.co-dt .progress-wrap .main {
-  background: #D93E55;
+  background: #D22343;
 }
 mor-progress.co-dt .progress-wrap .ring-track svg .main {
-  stroke: #D93E55;
+  stroke: #D22343;
 }
 mor-progress.co-s .progress-wrap .main {
   background: #1EB818;
@@ -37632,10 +37632,10 @@ mor-progress.co-wh .progress-wrap .note {
   color: #FFFFFF;
 }
 mor-progress .progress-wrap .main {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-progress .progress-wrap .ring-track svg .main {
-  stroke: #FF4965;
+  stroke: #F33D5D;
 }
 mor-empty .empty-image {
   width: 100%;
@@ -37766,21 +37766,21 @@ mor-steps .step.last .bg {
 }
 mor-steps .step.done .mark,
 mor-steps .step.done + .link {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-steps .step.done + .link + .step .bg {
-  background: linear-gradient(to left, #e5e5e5 0%, #e5e5e5 50%, #FF4965 51%, #FF4965 100%);
+  background: linear-gradient(to left, #e5e5e5 0%, #e5e5e5 50%, #F33D5D 51%, #F33D5D 100%);
 }
 mor-steps .step.done + .link + .step.last .bg {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-steps .step.done .bg {
-  background: #FF4965 !important;
+  background: #F33D5D !important;
 }
 mor-steps .step.done .mark {
   background: #FFFFFF;
-  border: 2px #FF4965 solid;
-  color: #FF4965;
+  border: 2px #F33D5D solid;
+  color: #F33D5D;
   box-sizing: border-box;
   line-height: 22px;
 }
@@ -37792,8 +37792,8 @@ mor-steps .step.current .desc {
   color: #666666;
 }
 mor-steps .step.current.highlight .mark {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
   color: #FFFFFF;
 }
 mor-steps .step.current.progress .mark {
@@ -37806,7 +37806,7 @@ mor-steps .step.current.progress .mark mor-load {
   position: relative;
 }
 mor-steps .step.current.progress .mark mor-load .mo-loader .mo-loader-path {
-  stroke: #FF4965;
+  stroke: #F33D5D;
   animation: loaderDash 1.5s ease-in-out infinite;
 }
 mor-steps .step.failed .mark {
@@ -37853,7 +37853,7 @@ mor-steps.align-right .step.last .bg {
   width: 100%;
 }
 mor-steps.align-right .step.done + .link + .step .bg {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-breadcrumbs {
   display: block;
@@ -37872,7 +37872,7 @@ mor-breadcrumbs ul li {
   vertical-align: middle;
 }
 mor-breadcrumbs ul li:hover {
-  color: #FF4965;
+  color: #F33D5D;
   cursor: pointer;
 }
 mor-breadcrumbs ul li.root:not(.choose) {
@@ -38060,74 +38060,74 @@ mor-tip.only-has-text .con {
 }
 mor-tip.co-t .con {
   color: #FFFFFF;
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-tip.co-t.tip-placement-top .arrow {
-  border-right-color: #FF4965;
-  border-bottom-color: #FF4965;
+  border-right-color: #F33D5D;
+  border-bottom-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.co-t.tip-placement-bottom .arrow {
-  border-left-color: #FF4965;
-  border-top-color: #FF4965;
+  border-left-color: #F33D5D;
+  border-top-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.co-t.tip-placement-right .arrow {
-  border-bottom-color: #FF4965;
-  border-left-color: #FF4965;
+  border-bottom-color: #F33D5D;
+  border-left-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.co-t.tip-placement-left .arrow {
-  border-top-color: #FF4965;
-  border-right-color: #FF4965;
+  border-top-color: #F33D5D;
+  border-right-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.co-lt .con {
   color: #FFFFFF;
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-tip.co-lt.tip-placement-top .arrow {
-  border-right-color: #FF6D83;
-  border-bottom-color: #FF6D83;
+  border-right-color: #F86F88;
+  border-bottom-color: #F86F88;
   box-shadow: none;
 }
 mor-tip.co-lt.tip-placement-bottom .arrow {
-  border-left-color: #FF6D83;
-  border-top-color: #FF6D83;
+  border-left-color: #F86F88;
+  border-top-color: #F86F88;
   box-shadow: none;
 }
 mor-tip.co-lt.tip-placement-right .arrow {
-  border-bottom-color: #FF6D83;
-  border-left-color: #FF6D83;
+  border-bottom-color: #F86F88;
+  border-left-color: #F86F88;
   box-shadow: none;
 }
 mor-tip.co-lt.tip-placement-left .arrow {
-  border-top-color: #FF6D83;
-  border-right-color: #FF6D83;
+  border-top-color: #F86F88;
+  border-right-color: #F86F88;
   box-shadow: none;
 }
 mor-tip.co-dt .con {
   color: #FFFFFF;
-  background-color: #D93E55;
+  background-color: #D22343;
 }
 mor-tip.co-dt.tip-placement-top .arrow {
-  border-right-color: #D93E55;
-  border-bottom-color: #D93E55;
+  border-right-color: #D22343;
+  border-bottom-color: #D22343;
   box-shadow: none;
 }
 mor-tip.co-dt.tip-placement-bottom .arrow {
-  border-left-color: #D93E55;
-  border-top-color: #D93E55;
+  border-left-color: #D22343;
+  border-top-color: #D22343;
   box-shadow: none;
 }
 mor-tip.co-dt.tip-placement-right .arrow {
-  border-bottom-color: #D93E55;
-  border-left-color: #D93E55;
+  border-bottom-color: #D22343;
+  border-left-color: #D22343;
   box-shadow: none;
 }
 mor-tip.co-dt.tip-placement-left .arrow {
-  border-top-color: #D93E55;
-  border-right-color: #D93E55;
+  border-top-color: #D22343;
+  border-right-color: #D22343;
   box-shadow: none;
 }
 mor-tip.co-s .con {
@@ -38588,26 +38588,26 @@ mor-tip.co-wh.tip-placement-left .arrow {
 }
 mor-tip .con {
   color: #FFFFFF;
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-tip.tip-placement-top .arrow {
-  border-right-color: #FF4965;
-  border-bottom-color: #FF4965;
+  border-right-color: #F33D5D;
+  border-bottom-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.tip-placement-bottom .arrow {
-  border-left-color: #FF4965;
-  border-top-color: #FF4965;
+  border-left-color: #F33D5D;
+  border-top-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.tip-placement-right .arrow {
-  border-bottom-color: #FF4965;
-  border-left-color: #FF4965;
+  border-bottom-color: #F33D5D;
+  border-left-color: #F33D5D;
   box-shadow: none;
 }
 mor-tip.tip-placement-left .arrow {
-  border-top-color: #FF4965;
-  border-right-color: #FF4965;
+  border-top-color: #F33D5D;
+  border-right-color: #F33D5D;
   box-shadow: none;
 }
 mor-popover {
@@ -38865,19 +38865,19 @@ mor-message .body {
   text-overflow: ellipsis;
 }
 mor-message .msg-co-t {
-  background-color: #FF4965;
+  background-color: #F33D5D;
 }
 mor-message .msg-co-t .bo-ti {
   color: #FFFFFF;
 }
 mor-message .msg-co-lt {
-  background-color: #FF6D83;
+  background-color: #F86F88;
 }
 mor-message .msg-co-lt .bo-ti {
   color: #FFFFFF;
 }
 mor-message .msg-co-dt {
-  background-color: #D93E55;
+  background-color: #D22343;
 }
 mor-message .msg-co-dt .bo-ti {
   color: #FFFFFF;
@@ -39345,7 +39345,7 @@ mor-carousel.indicator-type-dot .control .indicator li > i {
 mor-carousel.indicator-type-dot .control .indicator li.current > i {
   width: 20px;
   height: 10px;
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-carousel.indicator-type-dot.direction-vertical .control .indicator li {
   height: 10px;
@@ -39359,7 +39359,7 @@ mor-carousel.indicator-type-dot.direction-vertical .control .indicator li.curren
 mor-carousel.indicator-type-dot.direction-vertical .control .indicator li.current > i {
   width: 10px;
   height: 20px;
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-carousel.indicator-type-line .control .indicator li {
   height: 4px;
@@ -39376,7 +39376,7 @@ mor-carousel.indicator-type-line .control .indicator li i {
 }
 mor-carousel.indicator-type-line .control .indicator li.current > i {
   width: 20px;
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-carousel.toggle-type-none .carousel-list > div {
   display: none;
@@ -39623,8 +39623,8 @@ mor-textinput input:hover::placeholder {
 }
 mor-textinput input:focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
   color: #000000 !important;
 }
 mor-textinput .form-body {
@@ -39697,7 +39697,7 @@ mor-textinput.input-group.input-group-prepend-inline .input-group-addon + .input
   border-left: 0;
 }
 mor-textinput.input-group.input-group-prepend-inline.input-focus .input-group-addon:first-child {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-textinput.input-group.input-group-append-inline .input-group-addon:nth-child(3) {
   background: #FFFFFF;
@@ -39707,7 +39707,7 @@ mor-textinput.input-group.input-group-append-inline input.has-append {
   border-right: 0;
 }
 mor-textinput.input-group.input-group-append-inline.input-focus .input-group-addon:nth-child(3) {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-textinput.si-xs > .form-name {
   font-size: 13px;
@@ -39912,8 +39912,8 @@ mor-textarea textarea:hover::placeholder {
 }
 mor-textarea textarea:focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
   color: #000000 !important;
 }
 mor-textarea textarea::-webkit-scrollbar {
@@ -40054,8 +40054,8 @@ mor-texteditor .editor-wrap {
 }
 mor-texteditor .editor-wrap.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-texteditor > .form-name:empty + .editor-wrap {
   height: 100%;
@@ -40787,61 +40787,61 @@ mor-switch.co-t .open-note {
   color: #999999;
 }
 mor-switch.co-t .close-note {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-switch.co-t.open .open-note {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-switch.co-t.open .close-note {
   color: #999999;
 }
 mor-switch.co-t.open .track {
-  background: #FF4965;
-  box-shadow: 0 0 3px #e20023 inset;
-  border: 1px #fb0027 solid;
+  background: #F33D5D;
+  box-shadow: 0 0 3px #be0c2b inset;
+  border: 1px #d60d31 solid;
 }
 mor-switch.co-t.open .track .point {
-  box-shadow: 0 0 4px #c8001f;
+  box-shadow: 0 0 4px #a60a26;
 }
 mor-switch.co-lt .open-note {
   color: #999999;
 }
 mor-switch.co-lt .close-note {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-switch.co-lt.open .open-note {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-switch.co-lt.open .close-note {
   color: #999999;
 }
 mor-switch.co-lt.open .track {
-  background: #FF6D83;
-  box-shadow: 0 0 3px #ff4460 inset;
-  border: 1px #ff4e69 solid;
+  background: #F86F88;
+  box-shadow: 0 0 3px #f64868 inset;
+  border: 1px #f75270 solid;
 }
 mor-switch.co-lt.open .track .point {
-  box-shadow: 0 0 4px #ff2142;
+  box-shadow: 0 0 4px #f4264c;
 }
 mor-switch.co-dt .open-note {
   color: #999999;
 }
 mor-switch.co-dt .close-note {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-switch.co-dt.open .open-note {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-switch.co-dt.open .close-note {
   color: #999999;
 }
 mor-switch.co-dt.open .track {
-  background: #D93E55;
-  box-shadow: 0 0 3px #b22338 inset;
-  border: 1px #be263c solid;
+  background: #D22343;
+  box-shadow: 0 0 3px #991a31 inset;
+  border: 1px #a61c35 solid;
 }
 mor-switch.co-dt.open .track .point {
-  box-shadow: 0 0 4px #941d2f;
+  box-shadow: 0 0 4px #7b1427;
 }
 mor-switch.co-s .open-note {
   color: #999999;
@@ -41400,21 +41400,21 @@ mor-switch .open-note {
   color: #999999;
 }
 mor-switch .close-note {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-switch.open .open-note {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-switch.open .close-note {
   color: #999999;
 }
 mor-switch.open .track {
-  background: #FF4965;
-  box-shadow: 0 0 3px #e20023 inset;
-  border: 1px #fb0027 solid;
+  background: #F33D5D;
+  box-shadow: 0 0 3px #be0c2b inset;
+  border: 1px #d60d31 solid;
 }
 mor-switch.open .track .point {
-  box-shadow: 0 0 4px #c8001f;
+  box-shadow: 0 0 4px #a60a26;
 }
 mor-rate {
   display: inline-block;
@@ -41508,12 +41508,12 @@ mor-rate .rate-list > li > span {
 }
 mor-rate .rate-list > li.current > i,
 mor-rate .rate-list > li.current > span {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-rate .rate-list > li.half-current > i,
 mor-rate .rate-list > li.half-current > span {
   /* stylelint-disable max-line-length */
-  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #FF4965 ), color-stop(0.5,  #e1e1e1 ), to( #e1e1e1 ));
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F33D5D ), color-stop(0.5,  #e1e1e1 ), to( #e1e1e1 ));
   /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -41536,7 +41536,7 @@ mor-rate .rate-list.in-hover > li.half-current > span {
 mor-rate .rate-list.in-hover > li.half-hover > i,
 mor-rate .rate-list.in-hover > li.half-hover > span {
   /* stylelint-disable max-line-length */
-  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #FF6D83 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F86F88 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
   /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -41546,7 +41546,7 @@ mor-rate .rate-list.in-hover > li.hover {
 }
 mor-rate .rate-list.in-hover > li.hover > i,
 mor-rate .rate-list.in-hover > li.hover > span {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-rate .rate-list.in-hover + .note {
   color: #999999;
@@ -41596,14 +41596,14 @@ mor-rate.st-disabled .rate-list > li.current > i,
 mor-rate.st-readonly .rate-list > li.current > i,
 mor-rate.st-disabled .rate-list > li.current > span,
 mor-rate.st-readonly .rate-list > li.current > span {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-rate.st-disabled .rate-list > li.half-current > i,
 mor-rate.st-readonly .rate-list > li.half-current > i,
 mor-rate.st-disabled .rate-list > li.half-current > span,
 mor-rate.st-readonly .rate-list > li.half-current > span {
   /* stylelint-disable max-line-length */
-  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #D93E55 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #D22343 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
   /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -41754,8 +41754,8 @@ mor-counter input:hover::placeholder {
 }
 mor-counter input:focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
   color: #000000 !important;
 }
 mor-counter.controls-on-both input {
@@ -42246,8 +42246,8 @@ mor-select.input-group .input-group-addon {
 }
 mor-select .wrap.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-select.separate {
   height: 0;
@@ -42340,14 +42340,14 @@ mor-select.input-group .select-area {
   top: 50%;
   transform: translateY(-50%);
   box-sizing: border-box;
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mor-select-wrap li.selected {
   background: #f8f8f8;
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mor-select-wrap li.selected.hover {
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mor-select-wrap li.hide {
   display: none;
@@ -42994,120 +42994,120 @@ mor-checkbox.co-t > .il label .box.focus-once {
 }
 mor-checkbox.co-t > .il label.checked .box,
 mor-checkbox.co-t > .il label.part-checked .box {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-checkbox.co-t.border > .il label.checked,
 mor-checkbox.co-t.border > .il label.part-checked {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-checkbox.co-t.type-button > .il label:not(.checked):hover {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-checkbox.co-t.type-button > .il label:not(.checked):hover span {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-checkbox.co-t.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-checkbox.co-t.type-button > .il label.checked {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-checkbox.co-t.type-button > .il label.checked + label {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-checkbox.co-t.st-disabled > .il label.checked .box,
 mor-checkbox.co-t.st-readonly > .il label.checked .box,
 mor-checkbox.co-t.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-t.st-readonly > .il label.part-checked .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-checkbox.co-t > .il label.checked.disabled .box,
 mor-checkbox.co-t > .il label.part-checked.disabled .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-checkbox.co-lt > .il label .box.focus-once {
   animation: formFocusAnimateLightTheme 0.42s ease-out;
 }
 mor-checkbox.co-lt > .il label.checked .box,
 mor-checkbox.co-lt > .il label.part-checked .box {
-  background: #FF6D83;
-  border-color: #FF6D83;
+  background: #F86F88;
+  border-color: #F86F88;
 }
 mor-checkbox.co-lt.border > .il label.checked,
 mor-checkbox.co-lt.border > .il label.part-checked {
-  border-color: #FF6D83;
+  border-color: #F86F88;
 }
 mor-checkbox.co-lt.type-button > .il label:not(.checked):hover {
-  border-color: #FF6D83;
+  border-color: #F86F88;
 }
 mor-checkbox.co-lt.type-button > .il label:not(.checked):hover span {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-checkbox.co-lt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #FF6D83;
+  border-left-color: #F86F88;
 }
 mor-checkbox.co-lt.type-button > .il label.checked {
-  background: #FF6D83;
-  border-color: #FF6D83;
+  background: #F86F88;
+  border-color: #F86F88;
 }
 mor-checkbox.co-lt.type-button > .il label.checked + label {
-  border-left-color: #FF6D83;
+  border-left-color: #F86F88;
 }
 mor-checkbox.co-lt.st-disabled > .il label.checked .box,
 mor-checkbox.co-lt.st-readonly > .il label.checked .box,
 mor-checkbox.co-lt.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-lt.st-readonly > .il label.part-checked .box {
-  background: #f07c8d;
-  border-color: #f07c8d;
+  background: #e97e92;
+  border-color: #e97e92;
 }
 mor-checkbox.co-lt > .il label.checked.disabled .box,
 mor-checkbox.co-lt > .il label.part-checked.disabled .box {
-  background: #f07c8d;
-  border-color: #f07c8d;
+  background: #e97e92;
+  border-color: #e97e92;
 }
 mor-checkbox.co-dt > .il label .box.focus-once {
   animation: formFocusAnimateDarkTheme 0.42s ease-out;
 }
 mor-checkbox.co-dt > .il label.checked .box,
 mor-checkbox.co-dt > .il label.part-checked .box {
-  background: #D93E55;
-  border-color: #D93E55;
+  background: #D22343;
+  border-color: #D22343;
 }
 mor-checkbox.co-dt.border > .il label.checked,
 mor-checkbox.co-dt.border > .il label.part-checked {
-  border-color: #D93E55;
+  border-color: #D22343;
 }
 mor-checkbox.co-dt.type-button > .il label:not(.checked):hover {
-  border-color: #D93E55;
+  border-color: #D22343;
 }
 mor-checkbox.co-dt.type-button > .il label:not(.checked):hover span {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-checkbox.co-dt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #D93E55;
+  border-left-color: #D22343;
 }
 mor-checkbox.co-dt.type-button > .il label.checked {
-  background: #D93E55;
-  border-color: #D93E55;
+  background: #D22343;
+  border-color: #D22343;
 }
 mor-checkbox.co-dt.type-button > .il label.checked + label {
-  border-left-color: #D93E55;
+  border-left-color: #D22343;
 }
 mor-checkbox.co-dt.st-disabled > .il label.checked .box,
 mor-checkbox.co-dt.st-readonly > .il label.checked .box,
 mor-checkbox.co-dt.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-dt.st-readonly > .il label.part-checked .box {
-  background: #c25565;
-  border-color: #c25565;
+  background: #b93c53;
+  border-color: #b93c53;
 }
 mor-checkbox.co-dt > .il label.checked.disabled .box,
 mor-checkbox.co-dt > .il label.part-checked.disabled .box {
-  background: #c25565;
-  border-color: #c25565;
+  background: #b93c53;
+  border-color: #b93c53;
 }
 mor-checkbox.co-s > .il label .box.focus-once {
   animation: formFocusAnimateSuccess 0.42s ease-out;
@@ -43983,40 +43983,40 @@ mor-checkbox > .il label .box.focus-once {
 }
 mor-checkbox > .il label.checked .box,
 mor-checkbox > .il label.part-checked .box {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-checkbox.border > .il label.checked,
 mor-checkbox.border > .il label.part-checked {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-checkbox.type-button > .il label:not(.checked):hover {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-checkbox.type-button > .il label:not(.checked):hover span {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-checkbox.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-checkbox.type-button > .il label.checked {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-checkbox.type-button > .il label.checked + label {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-checkbox.st-disabled > .il label.checked .box,
 mor-checkbox.st-readonly > .il label.checked .box,
 mor-checkbox.st-disabled > .il label.part-checked .box,
 mor-checkbox.st-readonly > .il label.part-checked .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-checkbox > .il label.checked.disabled .box,
 mor-checkbox > .il label.part-checked.disabled .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-radio {
   width: 100%;
@@ -44316,115 +44316,115 @@ mor-radio.co-t > .il label .box.focus-once {
   animation: formFocusAnimateTheme 0.42s ease-out;
 }
 mor-radio.co-t > .il label.checked .box {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-radio.co-t.border > .il label.checked {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-radio.co-t.type-point .radio-point {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-radio.co-t.type-button > .il label:not(.checked):hover {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-radio.co-t.type-button > .il label:not(.checked):hover span {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-radio.co-t.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-radio.co-t.type-button > .il label.checked {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-radio.co-t.type-button > .il label.checked + label {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-radio.co-t.st-disabled > .il label.checked .box,
 mor-radio.co-t.st-readonly > .il label.checked .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-radio.co-t > .il label.checked.disabled .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-radio.co-lt > .il label .box.focus-once {
   animation: formFocusAnimateLightTheme 0.42s ease-out;
 }
 mor-radio.co-lt > .il label.checked .box {
-  background: #FF6D83;
-  border-color: #FF6D83;
+  background: #F86F88;
+  border-color: #F86F88;
 }
 mor-radio.co-lt.border > .il label.checked {
-  border-color: #FF6D83;
+  border-color: #F86F88;
 }
 mor-radio.co-lt.type-point .radio-point {
-  background: #FF6D83;
+  background: #F86F88;
 }
 mor-radio.co-lt.type-button > .il label:not(.checked):hover {
-  border-color: #FF6D83;
+  border-color: #F86F88;
 }
 mor-radio.co-lt.type-button > .il label:not(.checked):hover span {
-  color: #FF6D83;
+  color: #F86F88;
 }
 mor-radio.co-lt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #FF6D83;
+  border-left-color: #F86F88;
 }
 mor-radio.co-lt.type-button > .il label.checked {
-  background: #FF6D83;
-  border-color: #FF6D83;
+  background: #F86F88;
+  border-color: #F86F88;
 }
 mor-radio.co-lt.type-button > .il label.checked + label {
-  border-left-color: #FF6D83;
+  border-left-color: #F86F88;
 }
 mor-radio.co-lt.st-disabled > .il label.checked .box,
 mor-radio.co-lt.st-readonly > .il label.checked .box {
-  background: #f07c8d;
-  border-color: #f07c8d;
+  background: #e97e92;
+  border-color: #e97e92;
 }
 mor-radio.co-lt > .il label.checked.disabled .box {
-  background: #f07c8d;
-  border-color: #f07c8d;
+  background: #e97e92;
+  border-color: #e97e92;
 }
 mor-radio.co-dt > .il label .box.focus-once {
   animation: formFocusAnimateDarkTheme 0.42s ease-out;
 }
 mor-radio.co-dt > .il label.checked .box {
-  background: #D93E55;
-  border-color: #D93E55;
+  background: #D22343;
+  border-color: #D22343;
 }
 mor-radio.co-dt.border > .il label.checked {
-  border-color: #D93E55;
+  border-color: #D22343;
 }
 mor-radio.co-dt.type-point .radio-point {
-  background: #D93E55;
+  background: #D22343;
 }
 mor-radio.co-dt.type-button > .il label:not(.checked):hover {
-  border-color: #D93E55;
+  border-color: #D22343;
 }
 mor-radio.co-dt.type-button > .il label:not(.checked):hover span {
-  color: #D93E55;
+  color: #D22343;
 }
 mor-radio.co-dt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #D93E55;
+  border-left-color: #D22343;
 }
 mor-radio.co-dt.type-button > .il label.checked {
-  background: #D93E55;
-  border-color: #D93E55;
+  background: #D22343;
+  border-color: #D22343;
 }
 mor-radio.co-dt.type-button > .il label.checked + label {
-  border-left-color: #D93E55;
+  border-left-color: #D22343;
 }
 mor-radio.co-dt.st-disabled > .il label.checked .box,
 mor-radio.co-dt.st-readonly > .il label.checked .box {
-  background: #c25565;
-  border-color: #c25565;
+  background: #b93c53;
+  border-color: #b93c53;
 }
 mor-radio.co-dt > .il label.checked.disabled .box {
-  background: #c25565;
-  border-color: #c25565;
+  background: #b93c53;
+  border-color: #b93c53;
 }
 mor-radio.co-s > .il label .box.focus-once {
   animation: formFocusAnimateSuccess 0.42s ease-out;
@@ -45253,39 +45253,39 @@ mor-radio > .il label .box.focus-once {
   animation: formFocusAnimateTheme 0.42s ease-out;
 }
 mor-radio > .il label.checked .box {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-radio.border > .il label.checked {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-radio.type-point .radio-point {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-radio.type-button > .il label:not(.checked):hover {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-radio.type-button > .il label:not(.checked):hover span {
-  color: #FF4965;
+  color: #F33D5D;
 }
 mor-radio.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-radio.type-button > .il label.checked {
-  background: #FF4965;
-  border-color: #FF4965;
+  background: #F33D5D;
+  border-color: #F33D5D;
 }
 mor-radio.type-button > .il label.checked + label {
-  border-left-color: #FF4965;
+  border-left-color: #F33D5D;
 }
 mor-radio.st-disabled > .il label.checked .box,
 mor-radio.st-readonly > .il label.checked .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-radio > .il label.checked.disabled .box {
-  background: #ed5b72;
-  border-color: #ed5b72;
+  background: #de526a;
+  border-color: #de526a;
 }
 mor-transfer {
   position: relative;
@@ -45865,8 +45865,8 @@ mor-cascader .cascader-wrap .cascader-input:hover {
 }
 mor-cascader .cascader-wrap .cascader-input.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-cascader .cascader-wrap .cascader-input > .mo-icon {
   position: absolute;
@@ -46031,7 +46031,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.current {
   background: #FFFFFF;
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.last-current {
   background: #f3f3f3;
@@ -46080,11 +46080,11 @@ mor-cascader .cascader-wrap .cascader-input > .note {
 }
 .mor-cascader-search-result ul li.selected {
   background: #f8f8f8;
-  color: #FF4965;
+  color: #F33D5D;
   cursor: default;
 }
 .mor-cascader-search-result ul li.selected:hover {
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mor-cascader-search-result ul li.selected .mo-cascader-selected-icon {
   font-size: 12px;
@@ -46095,7 +46095,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
   top: 50%;
   transform: translateY(-50%);
   box-sizing: border-box;
-  color: #FF4965;
+  color: #F33D5D;
 }
 .mor-cascader-search-result ul li:not(.nomatch):hover {
   cursor: pointer;
@@ -46267,8 +46267,8 @@ mor-multiinput .form-body {
 }
 mor-multiinput .form-body.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-multiinput .form-body .cleanicon {
   position: absolute;
@@ -46928,11 +46928,11 @@ mor-slider .wrap.droping .track {
 }
 mor-slider .wrap:hover .selected-line,
 mor-slider .wrap.droping .selected-line {
-  background: #FF4965;
+  background: #F33D5D;
 }
 mor-slider .wrap:hover .main-slider,
 mor-slider .wrap.droping .main-slider {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-slider .points {
   padding: 0;
@@ -46987,7 +46987,7 @@ mor-slider .selected-line {
   position: absolute;
   left: 0;
   top: 0;
-  background: #FF6D83;
+  background: #F86F88;
   border-radius: 10em;
   pointer-events: none;
 }
@@ -46995,7 +46995,7 @@ mor-slider .main-slider {
   position: absolute;
   left: 0;
   background: #FFFFFF;
-  border: 2px #FF6D83 solid;
+  border: 2px #F86F88 solid;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -48546,7 +48546,7 @@ mor-upload:hover > .upload-wrap {
   border-color: #d6d6d6;
 }
 mor-upload.focus > .upload-wrap {
-  border-color: #FF4965;
+  border-color: #F33D5D;
 }
 mor-upload.st-disabled .upload-wrap,
 mor-upload.st-readonly .upload-wrap {
@@ -48667,8 +48667,8 @@ mor-colorpicker .preview-wrap {
 }
 mor-colorpicker .preview-wrap.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #FF4965;
-  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
+  border-color: #F33D5D;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
 }
 mor-colorpicker .preview {
   box-sizing: border-box;
@@ -50113,7 +50113,7 @@ mor-private-tree ul.tree-body .tree-node > span .node-name {
   border-radius: 3px;
 }
 mor-private-tree ul.tree-body .tree-node > span .node-name.current {
-  background: #ffd3da;
+  background: #fdd0d8;
 }
 mor-private-tree ul.tree-body .tree-node > span .leafnode-icon {
   display: inline-block;

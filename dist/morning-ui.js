@@ -28008,7 +28008,31 @@ exports.default = {
                     }
 
                     newMainRows = (0, _lodash2.default)(mainRows, function (item) {
-                        return item[colIndex];
+
+                        var val = item[colIndex];
+
+                        // 处理HTML标签
+                        if (/<[a-zA-Z-]+>/.test(val)) {
+
+                            var divEle = document.createElement('div');
+
+                            divEle.innerHTML = val;
+                            val = divEle.innerText;
+                        }
+
+                        // 处理百分比的情况
+                        if (/^[\d.]+%$/.test(val)) {
+
+                            val = +val.replace(/%$/, '');
+                        }
+
+                        // 尝试转换成数字
+                        if (!isNaN(+val)) {
+
+                            val = Number(val);
+                        }
+
+                        return val;
                     });
 
                     if (sort.type === 'desc') {
@@ -81027,9 +81051,9 @@ var morning = {
         black: 'bk',
         white: 'wh'
     },
-    _devVersion: '0.12.56-0',
+    _devVersion: '0.12.57-0',
     isMorning: true,
-    version: '0.12.56',
+    version: '0.12.57',
     map: {}
 };
 
