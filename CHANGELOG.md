@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.12.56
+
+`2019年8月10日`
+
+#### 新特性
+
+- `ui-select`新增`blur`、`focus`事件
+- `ui-timepicker`新增`blur`、`focus`事件
+
+#### 改进
+
+- `ui-table`的表格排序现在支持部分非数字内容的排序 
+
+#### 修复
+
+- 修复`ui-select`组件动态切换`multi-select`配置时的报错
+- 修复`ui-form`在同步子表单数值上的一个问题
+
+#### 更多
+
+- `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件现在不会实时校验/修正输入内容，而是在表单失焦后校验/修正输入内容
+
+__升级注意事项__
+
+- 现在`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件不会实时校验/修正输入内容，这可能引起部分即时取值逻辑产生问题，若页面采用了即时性较强的取值逻辑请检查是否正常运行
+
 ## 0.12.55
 
 `2019年7月18日`

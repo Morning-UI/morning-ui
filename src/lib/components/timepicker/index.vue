@@ -49,6 +49,8 @@
                     :list="timeList"
 
                     @value-change="_syncValueFromSelectToRoot"
+                    @blur="_blur(0)"
+                    @focus="_focus(0)"
                 >
                 </morning-select>
 
@@ -66,6 +68,8 @@
                     :list="timeList"
 
                     @value-change="_syncValueFromSelectToRoot"
+                    @blur="_blur(1)"
+                    @focus="_focus(1)"
                 >
                 </morning-select>
             </template>
@@ -83,6 +87,8 @@
                     :list="timeList"
 
                     @value-change="_syncValueFromSelectToRoot"
+                    @blur="_blur"
+                    @focus="_focus"
                 >
                 </morning-select>
             </template>
@@ -103,6 +109,8 @@
                     :relative="conf.relative"
 
                     @value-change="_syncValueFromInputToRoot"
+                    @blur="_blur(0)"
+                    @focus="_focus(0)"
                 >
                 </morning-private-timepicker>
 
@@ -121,6 +129,8 @@
                     :relative="conf.relative"
 
                     @value-change="_syncValueFromInputToRoot"
+                    @blur="_blur(1)"
+                    @focus="_focus(1)"
                 >
                 </morning-private-timepicker>
             </template>
@@ -139,6 +149,8 @@
                     :relative="conf.relative"
 
                     @value-change="_syncValueFromInputToRoot"
+                    @blur="_blur"
+                    @focus="_focus"
                 >
                 </morning-private-timepicker>
             </template>
@@ -327,7 +339,9 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                focusState : [false, false]
+            }
         };
 
     },
@@ -383,6 +397,59 @@ export default {
             }
 
             return value;
+
+        },
+        _blur : function (index) {
+
+            let input0 = this.$refs[`ui-timepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-timepicker-input-1-${this.uiid}`];
+
+            if (!this.conf.isRange) {
+
+                this.$emit('blur');
+
+            } else {
+
+                this.Vue.nextTick(() => {
+
+                    if (index === 0 && input1.data.inputFocus === false) {
+
+                        this.$emit('blur');
+
+                    } else if (index === 1 && input0.data.inputFocus === false) {
+
+                        this.$emit('blur');
+
+                    }
+
+                    this.data.focusState[index] = false;
+
+                });
+
+            }
+
+        },
+        _focus : function (index) {
+
+            if (!this.conf.isRange) {
+
+                this.$emit('focus');
+
+            } else {
+                
+                if (index === 0 && this.data.focusState[1] === false) {
+
+                    this.$emit('focus');
+
+                } else if (index === 1 && this.data.focusState[0] === false) {
+
+                    this.$emit('focus');
+
+                }
+               
+                this.data.focusState[index] = true;
+
+            }
 
         },
         _filterDateString : function (value) {
