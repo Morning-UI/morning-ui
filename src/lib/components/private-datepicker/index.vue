@@ -88,7 +88,7 @@
 
     </morning-popover>
 
-    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
+    <morning-link v-if="conf.clearable" color="minor" @emit="_cleanDatepicker" class="cleanbtn">清空</morning-link>
 
     </mor-private-datepicker>
 </template>
@@ -378,6 +378,12 @@ export default {
 
             this._syncInputValue();
             this.$emit('input-blur');
+
+        },
+        _cleanDatepicker : function () {
+
+            this._clean();
+            this._syncInputValue();
 
         },
         _syncInputValue : function () {
@@ -826,8 +832,16 @@ export default {
         this.$watch('data.inputFocus', this._toggleSelector, {
             immediate : true
         });
-        // 不需要实时同步输入内容，改为失去焦点同步
-        // this.$watch('data.inputValue', this._syncInputValue);
+        this.$watch('data.inputValue', value => {
+
+            // 不需要实时同步输入内容，仅在失焦或数值为空时同步
+            if (value === undefined || value === '') {
+            
+                this._syncInputValue();
+
+            }
+
+        });
 
     },
     beforeDestory : function () {

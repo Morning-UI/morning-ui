@@ -1645,58 +1645,58 @@ textarea {
 }
 @keyframes formFocusAnimate {
   from {
-    box-shadow: 0 0 0 1px rgba(243, 61, 93, 0.4);
+    box-shadow: 0 0 0 1px rgba(255, 73, 101, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(243, 61, 93, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(255, 73, 101, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0);
+    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0);
   }
 }
 @keyframes formFocusAnimateTheme {
   from {
-    box-shadow: 0 0 0 1px rgba(243, 61, 93, 0.4);
+    box-shadow: 0 0 0 1px rgba(255, 73, 101, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(243, 61, 93, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(255, 73, 101, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(243, 61, 93, 0);
+    box-shadow: 0 0 0 4px rgba(255, 73, 101, 0);
   }
 }
 @keyframes formFocusAnimateLightTheme {
   from {
-    box-shadow: 0 0 0 1px rgba(248, 111, 136, 0.4);
+    box-shadow: 0 0 0 1px rgba(255, 109, 131, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(248, 111, 136, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(255, 109, 131, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(248, 111, 136, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 109, 131, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(248, 111, 136, 0);
+    box-shadow: 0 0 0 4px rgba(255, 109, 131, 0);
   }
 }
 @keyframes formFocusAnimateDarkTheme {
   from {
-    box-shadow: 0 0 0 1px rgba(210, 35, 67, 0.4);
+    box-shadow: 0 0 0 1px rgba(217, 62, 85, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(210, 35, 67, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(217, 62, 85, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(210, 35, 67, 0.1);
+    box-shadow: 0 0 0 4px rgba(217, 62, 85, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(210, 35, 67, 0);
+    box-shadow: 0 0 0 4px rgba(217, 62, 85, 0);
   }
 }
 @keyframes formFocusAnimateSuccess {
@@ -1757,30 +1757,30 @@ textarea {
 }
 @keyframes formFocusAnimateMinor {
   from {
-    box-shadow: 0 0 0 1px rgba(169, 169, 169, 0.4);
+    box-shadow: 0 0 0 1px rgba(178, 178, 178, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(169, 169, 169, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(178, 178, 178, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(169, 169, 169, 0.1);
+    box-shadow: 0 0 0 4px rgba(178, 178, 178, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(169, 169, 169, 0);
+    box-shadow: 0 0 0 4px rgba(178, 178, 178, 0);
   }
 }
 @keyframes formFocusAnimateInfo {
   from {
-    box-shadow: 0 0 0 1px rgba(55, 184, 180, 0.4);
+    box-shadow: 0 0 0 1px rgba(24, 184, 182, 0.4);
   }
   45% {
-    box-shadow: 0 0 0 2.5px rgba(55, 184, 180, 0.25);
+    box-shadow: 0 0 0 2.5px rgba(24, 184, 182, 0.25);
   }
   90% {
-    box-shadow: 0 0 0 4px rgba(55, 184, 180, 0.1);
+    box-shadow: 0 0 0 4px rgba(24, 184, 182, 0.1);
   }
   to {
-    box-shadow: 0 0 0 4px rgba(55, 184, 180, 0);
+    box-shadow: 0 0 0 4px rgba(24, 184, 182, 0);
   }
 }
 .move-drag-item.fixed {
@@ -1790,31 +1790,31 @@ textarea {
   position: absolute !important;
 }
 .mo-co-font-theme {
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mo-co-border-theme {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 .mo-co-bg-theme {
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 .mo-co-font-light-theme {
-  color: #F86F88;
+  color: #FF6D83;
 }
 .mo-co-border-light-theme {
-  border-color: #F86F88;
+  border-color: #FF6D83;
 }
 .mo-co-bg-light-theme {
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 .mo-co-font-dark-theme {
-  color: #D22343;
+  color: #D93E55;
 }
 .mo-co-border-dark-theme {
-  border-color: #D22343;
+  border-color: #D93E55;
 }
 .mo-co-bg-dark-theme {
-  background-color: #D22343;
+  background-color: #D93E55;
 }
 .mo-co-font-success {
   color: #1EB818;
@@ -1853,22 +1853,22 @@ textarea {
   background-color: #2879FA;
 }
 .mo-co-font-minor {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 .mo-co-border-minor {
-  border-color: #A9A9A9;
+  border-color: #B2B2B2;
 }
 .mo-co-bg-minor {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
 }
 .mo-co-font-info {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 .mo-co-border-info {
-  border-color: #37B8B4;
+  border-color: #18B8B6;
 }
 .mo-co-bg-info {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
 }
 .mo-co-font-neutral-11 {
   color: #333333;
@@ -2176,13 +2176,13 @@ mor-h.si-xxs {
   font-size: 16px;
 }
 mor-h.co-t {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-h.co-lt {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-h.co-dt {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-h.co-s {
   color: #1EB818;
@@ -2197,10 +2197,10 @@ mor-h.co-p {
   color: #2879FA;
 }
 mor-h.co-m {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-h.co-i {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-h.co-bk {
   color: #000000;
@@ -2255,13 +2255,13 @@ mor-lead {
   color: #000000;
 }
 mor-lead.co-t {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-lead.co-lt {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-lead.co-dt {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-lead.co-s {
   color: #1EB818;
@@ -2276,10 +2276,10 @@ mor-lead.co-p {
   color: #2879FA;
 }
 mor-lead.co-m {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-lead.co-i {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-lead.co-bk {
   color: #000000;
@@ -2328,16 +2328,16 @@ mor-lead.st-apparent {
 }
 mor-mark {
   display: inline;
-  background-color: #fab5c1;
+  background-color: #ffc8d1;
 }
 mor-mark.co-t {
-  background-color: #fab5c1;
+  background-color: #ffc8d1;
 }
 mor-mark.co-lt {
-  background-color: #fee9ec;
+  background-color: #ffedef;
 }
 mor-mark.co-dt {
-  background-color: #eb899b;
+  background-color: #eea9b3;
 }
 mor-mark.co-s {
   background-color: #6aeb65;
@@ -2352,10 +2352,10 @@ mor-mark.co-p {
   background-color: #a5c7fd;
 }
 mor-mark.co-m {
-  background-color: #e9e9e9;
+  background-color: #f2f2f2;
 }
 mor-mark.co-i {
-  background-color: #91dedc;
+  background-color: #65ebe9;
 }
 mor-mark.co-bk {
   background-color: #000000;
@@ -2454,13 +2454,13 @@ mor-quote {
   color: #B2B2B2;
 }
 mor-quote.co-t {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-quote.co-lt {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-quote.co-dt {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-quote.co-s {
   color: #1EB818;
@@ -2475,10 +2475,10 @@ mor-quote.co-p {
   color: #2879FA;
 }
 mor-quote.co-m {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-quote.co-i {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-quote.co-bk {
   color: #000000;
@@ -3013,16 +3013,16 @@ mor-itemlist > mor-ul > li > mor-img + .body {
 }
 mor-textcolor {
   display: inline;
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-textcolor.co-t {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-textcolor.co-lt {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-textcolor.co-dt {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-textcolor.co-s {
   color: #1EB818;
@@ -3037,10 +3037,10 @@ mor-textcolor.co-p {
   color: #2879FA;
 }
 mor-textcolor.co-m {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-textcolor.co-i {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-textcolor.co-bk {
   color: #000000;
@@ -27853,15 +27853,15 @@ mor-card > .card-body:hover::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
 }
 mor-card.co-t > .card-header {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-card.co-lt > .card-header {
-  background-color: #F86F88;
+  background-color: #FF6D83;
   color: #FFFFFF;
 }
 mor-card.co-dt > .card-header {
-  background-color: #D22343;
+  background-color: #D93E55;
   color: #FFFFFF;
 }
 mor-card.co-s > .card-header {
@@ -27880,11 +27880,11 @@ mor-card.co-p > .card-header {
   color: #FFFFFF;
 }
 mor-card.co-m > .card-header {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
   color: #FFFFFF;
 }
 mor-card.co-i > .card-header {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
   color: #FFFFFF;
 }
 mor-card.co-bk > .card-header {
@@ -27958,7 +27958,7 @@ mor-card.inside-padding > .card-footer {
   border-top: none;
 }
 mor-card > .card-header {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-box {
@@ -27978,19 +27978,19 @@ mor-block {
   padding: 32px 24px;
   margin-top: 16px;
   margin-bottom: 16px;
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-block.co-t {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-block.co-lt {
-  background-color: #F86F88;
+  background-color: #FF6D83;
   color: #FFFFFF;
 }
 mor-block.co-dt {
-  background-color: #D22343;
+  background-color: #D93E55;
   color: #FFFFFF;
 }
 mor-block.co-s {
@@ -28009,11 +28009,11 @@ mor-block.co-p {
   color: #FFFFFF;
 }
 mor-block.co-m {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
   color: #FFFFFF;
 }
 mor-block.co-i {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
   color: #FFFFFF;
 }
 mor-block.co-bk {
@@ -28194,40 +28194,40 @@ mor-header.si-xxs small {
   margin-left: 4px;
 }
 mor-header.co-t {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-header.co-t.mark {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-header.co-t.underline {
-  border-bottom-color: #F33D5D;
+  border-bottom-color: #FF4965;
 }
 mor-header.co-t small {
-  color: #f78599;
+  color: #ff96a6;
 }
 mor-header.co-lt {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-header.co-lt.mark {
-  border-left-color: #F86F88;
+  border-left-color: #FF6D83;
 }
 mor-header.co-lt.underline {
-  border-bottom-color: #F86F88;
+  border-bottom-color: #FF6D83;
 }
 mor-header.co-lt small {
-  color: #fcb8c4;
+  color: #ffbac4;
 }
 mor-header.co-dt {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-header.co-dt.mark {
-  border-left-color: #D22343;
+  border-left-color: #D93E55;
 }
 mor-header.co-dt.underline {
-  border-bottom-color: #D22343;
+  border-bottom-color: #D93E55;
 }
 mor-header.co-dt small {
-  color: #e45d76;
+  color: #e67e8d;
 }
 mor-header.co-s {
   color: #1EB818;
@@ -28278,28 +28278,28 @@ mor-header.co-p small {
   color: #0f69f9;
 }
 mor-header.co-m {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-header.co-m.mark {
-  border-left-color: #A9A9A9;
+  border-left-color: #B2B2B2;
 }
 mor-header.co-m.underline {
-  border-bottom-color: #A9A9A9;
+  border-bottom-color: #B2B2B2;
 }
 mor-header.co-m small {
-  color: #cfcfcf;
+  color: #d8d8d8;
 }
 mor-header.co-i {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-header.co-i.mark {
-  border-left-color: #37B8B4;
+  border-left-color: #18B8B6;
 }
 mor-header.co-i.underline {
-  border-bottom-color: #37B8B4;
+  border-bottom-color: #18B8B6;
 }
 mor-header.co-i small {
-  color: #31a4a1;
+  color: #15a1a0;
 }
 mor-header.co-bk {
   color: #000000;
@@ -28488,7 +28488,7 @@ mor-label {
   font-size: 0;
   color: #FFFFFF;
   border-radius: 3px;
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-label.image,
 mor-label.icon {
@@ -28772,13 +28772,13 @@ mor-label.si-xxs.icon > span:first-child {
   padding: 0 0px 0 3.2px;
 }
 mor-label.co-t {
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-label.co-lt {
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-label.co-dt {
-  background-color: #D22343;
+  background-color: #D93E55;
 }
 mor-label.co-s {
   background-color: #1EB818;
@@ -28793,10 +28793,10 @@ mor-label.co-p {
   background-color: #2879FA;
 }
 mor-label.co-m {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
 }
 mor-label.co-i {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
 }
 mor-label.co-bk {
   background-color: #000000;
@@ -29002,22 +29002,22 @@ mor-statistic.si-xxs .label {
   font-size: 12px;
 }
 mor-statistic.co-t .value {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-statistic.co-t .label {
-  color: #f66d85;
+  color: #ff7c90;
 }
 mor-statistic.co-lt .value {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-statistic.co-lt .label {
-  color: #faa0b0;
+  color: #ffa0ae;
 }
 mor-statistic.co-dt .value {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-statistic.co-dt .label {
-  color: #e04864;
+  color: #e1697b;
 }
 mor-statistic.co-s .value {
   color: #1EB818;
@@ -29044,16 +29044,16 @@ mor-statistic.co-p .label {
   color: #0a66f9;
 }
 mor-statistic.co-m .value {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-statistic.co-m .label {
-  color: #9a9a9a;
+  color: #a3a3a3;
 }
 mor-statistic.co-i .value {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-statistic.co-i .label {
-  color: #30a09d;
+  color: #149d9b;
 }
 mor-statistic.co-bk .value {
   color: #000000;
@@ -29267,13 +29267,13 @@ mor-action.si-xxs .title .note {
   font-size: 12px;
 }
 mor-action.co-t .title h5 {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-action.co-lt .title h5 {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-action.co-dt .title h5 {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-action.co-s .title h5 {
   color: #1EB818;
@@ -29288,10 +29288,10 @@ mor-action.co-p .title h5 {
   color: #2879FA;
 }
 mor-action.co-m .title h5 {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-action.co-i .title h5 {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-action.co-bk .title h5 {
   color: #000000;
@@ -29725,14 +29725,22 @@ mor-btn {
   height: 2.8em;
   line-height: calc(2.8em + 2px);
   box-sizing: border-box;
+  height: 36px;
+  line-height: 36px;
   font-size: 13px;
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
+}
+mor-btn > i,
+mor-btn > .mo-icon,
+mor-btn > .iconfont {
+  vertical-align: middle;
 }
 mor-btn:hover {
   cursor: pointer;
 }
-mor-btn.plain {
+mor-btn.plain,
+mor-btn.ghost {
   border: 1px #FFF solid;
 }
 mor-btn.round {
@@ -29763,7 +29771,7 @@ mor-btn.circle > mor-img > img {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-mor-btn.circle:not(.st-disabled):hover > mor-img::after,
+mor-btn.circle:not(.st-disabled):not(.st-readonly):hover > mor-img::after,
 mor-btn.circle.st-hover > mor-img::after {
   content: ' ';
   width: 100%;
@@ -29773,7 +29781,7 @@ mor-btn.circle.st-hover > mor-img::after {
   left: 0;
   top: 0;
 }
-mor-btn.circle:not(.st-disabled):active > mor-img::after,
+mor-btn.circle:not(.st-disabled):not(.st-readonly):active > mor-img::after,
 mor-btn.circle.st-active > mor-img::after {
   content: ' ';
   width: 100%;
@@ -29790,7 +29798,6 @@ mor-btn.loading .mo-loader {
   transform: translate(-50%, -50%);
 }
 mor-btn.loading .mo-loader .mo-loader-path {
-  stroke: #FFFFFF;
   opacity: 0.85;
 }
 mor-btn.loading span {
@@ -29800,7 +29807,12 @@ mor-btn.loading:hover {
   cursor: default;
 }
 mor-btn.si-xxl {
+  height: 58px;
+  line-height: 58px;
   font-size: 20.8px;
+}
+mor-btn.si-xxl.circle {
+  width: 58px;
 }
 mor-btn.si-xxl > i {
   font-size: 35.2px;
@@ -29809,7 +29821,12 @@ mor-btn.si-xxl .mo-loader {
   width: 1.6em;
 }
 mor-btn.si-xl {
+  height: 50px;
+  line-height: 50px;
   font-size: 17.6px;
+}
+mor-btn.si-xl.circle {
+  width: 50px;
 }
 mor-btn.si-xl > i {
   font-size: 28.8px;
@@ -29818,7 +29835,12 @@ mor-btn.si-xl .mo-loader {
   width: 1.4em;
 }
 mor-btn.si-l {
+  height: 42px;
+  line-height: 42px;
   font-size: 16px;
+}
+mor-btn.si-l.circle {
+  width: 42px;
 }
 mor-btn.si-l > i {
   font-size: 25.6px;
@@ -29826,8 +29848,22 @@ mor-btn.si-l > i {
 mor-btn.si-l .mo-loader {
   width: 1.3em;
 }
+mor-btn.circle {
+  width: 36px;
+}
+mor-btn > i {
+  font-size: 22.4px;
+}
+mor-btn .mo-loader {
+  width: 1.2em;
+}
 mor-btn.si-m {
+  height: 36px;
+  line-height: 36px;
   font-size: 13px;
+}
+mor-btn.si-m.circle {
+  width: 36px;
 }
 mor-btn.si-m > i {
   font-size: 22.4px;
@@ -29836,351 +29872,611 @@ mor-btn.si-m .mo-loader {
   width: 1.2em;
 }
 mor-btn.si-s {
+  height: 32px;
+  line-height: 32px;
   font-size: 12px;
-  height: 2.6em;
-  line-height: 2.6em;
-  padding: 0 0.8em;
+}
+mor-btn.si-s.circle {
+  width: 32px;
 }
 mor-btn.si-s > i {
   font-size: 19.2px;
-}
-mor-btn.si-s.circle {
-  width: 2.6em;
 }
 mor-btn.si-s .mo-loader {
   width: 1.2em;
 }
 mor-btn.si-xs {
+  height: 24px;
+  line-height: 24px;
   font-size: 12px;
-  height: 2.2em;
-  line-height: 2.2em;
-  padding: 0 0.6em;
+}
+mor-btn.si-xs.circle {
+  width: 24px;
 }
 mor-btn.si-xs > i {
   font-size: 16px;
-}
-mor-btn.si-xs.circle {
-  width: 2.2em;
 }
 mor-btn.si-xs .mo-loader {
   width: 1.2em;
 }
 mor-btn.si-xxs {
+  height: 20px;
+  line-height: 20px;
   font-size: 12px;
-  height: 1.8em;
-  line-height: 1.8em;
-  padding: 0 0.4em;
+}
+mor-btn.si-xxs.circle {
+  width: 20px;
 }
 mor-btn.si-xxs > i {
   font-size: 12px;
 }
-mor-btn.si-xxs.circle {
-  width: 1.8em;
-}
 mor-btn.si-xxs .mo-loader {
   width: 1em;
 }
+mor-btn.si-s {
+  padding: 0 0.8em;
+}
+mor-btn.si-xs {
+  padding: 0 0.6em;
+}
+mor-btn.si-xxs {
+  padding: 0 0.4em;
+}
+mor-btn .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.plain,
+mor-btn.ghost {
+  color: #FF4965;
+  border-color: #FF4965;
+}
+mor-btn.plain .mo-loader .mo-loader-path,
+mor-btn.ghost .mo-loader .mo-loader-path {
+  stroke: #FF4965;
+}
+mor-btn:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.st-hover {
+  background-color: #ff6d83;
+}
+mor-btn:not(.st-disabled):not(.st-readonly):hover.plain,
+mor-btn.st-hover.plain {
+  color: #FFFFFF;
+  background-color: #FF4965;
+}
+mor-btn:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn:not(.st-disabled):not(.st-readonly):active,
+mor-btn.st-active {
+  background-color: #f4546d;
+}
+mor-btn:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.st-active.plain {
+  background-color: #ff163a;
+  border-color: #ff163a;
+}
+mor-btn:not(.plain):not(.ghost).st-disabled,
+mor-btn:not(.plain):not(.ghost).st-readonly {
+  border: none;
+}
+mor-btn.st-disabled,
+mor-btn.st-readonly {
+  opacity: 0.5;
+}
 mor-btn.co-t {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
-mor-btn.co-t.plain {
-  background-color: #fde5e9;
-  border-color: #f22549;
-  color: #F33D5D;
+mor-btn.co-t .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-t.plain .mo-loader .mo-loader-path {
-  stroke: #F33D5D;
+mor-btn.co-t.plain,
+mor-btn.co-t.ghost {
+  color: #FF4965;
+  border-color: #FF4965;
 }
-mor-btn.co-t:not(.st-disabled):hover,
+mor-btn.co-t.plain .mo-loader .mo-loader-path,
+mor-btn.co-t.ghost .mo-loader .mo-loader-path {
+  stroke: #FF4965;
+}
+mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-t.st-hover {
-  background-color: #f22549;
+  background-color: #ff6d83;
 }
-mor-btn.co-t:not(.st-disabled):hover.plain,
+mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-t.st-hover.plain {
   color: #FFFFFF;
+  background-color: #FF4965;
 }
-mor-btn.co-t:not(.st-disabled):active,
+mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-t.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-t:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-t.st-active {
-  background-color: #ee0f36;
+  background-color: #f4546d;
+}
+mor-btn.co-t:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-t.st-active.plain {
+  background-color: #ff163a;
+  border-color: #ff163a;
+}
+mor-btn.co-t:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-t:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-t.st-disabled,
-mor-btn.co-t.st-disabled.plain {
-  border: none;
-  background-color: #F33D5D;
-  color: #fab5c1;
+mor-btn.co-t.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-lt {
-  background-color: #F86F88;
+  background-color: #FF6D83;
   color: #FFFFFF;
 }
-mor-btn.co-lt.plain {
-  background-color: #fee9ec;
-  border-color: #f75774;
-  color: #F86F88;
+mor-btn.co-lt .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-lt.plain .mo-loader .mo-loader-path {
-  stroke: #F86F88;
+mor-btn.co-lt.plain,
+mor-btn.co-lt.ghost {
+  color: #FF6D83;
+  border-color: #FF6D83;
 }
-mor-btn.co-lt:not(.st-disabled):hover,
+mor-btn.co-lt.plain .mo-loader .mo-loader-path,
+mor-btn.co-lt.ghost .mo-loader .mo-loader-path {
+  stroke: #FF6D83;
+}
+mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-lt.st-hover {
-  background-color: #f75774;
+  background-color: #ff91a1;
 }
-mor-btn.co-lt:not(.st-disabled):hover.plain,
+mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-lt.st-hover.plain {
   color: #FFFFFF;
+  background-color: #FF6D83;
 }
-mor-btn.co-lt:not(.st-disabled):active,
+mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-lt.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-lt:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-lt.st-active {
-  background-color: #f63e60;
+  background-color: #f67689;
+}
+mor-btn.co-lt:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-lt.st-active.plain {
+  background-color: #ff3a58;
+  border-color: #ff3a58;
+}
+mor-btn.co-lt:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-lt:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-lt.st-disabled,
-mor-btn.co-lt.st-disabled.plain {
-  border: none;
-  background-color: #F86F88;
-  color: #fdd0d8;
+mor-btn.co-lt.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-dt {
-  background-color: #D22343;
+  background-color: #D93E55;
   color: #FFFFFF;
 }
-mor-btn.co-dt.plain {
-  background-color: #f3b5c0;
-  border-color: #bc1f3c;
-  color: #D22343;
+mor-btn.co-dt .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-dt.plain .mo-loader .mo-loader-path {
-  stroke: #D22343;
+mor-btn.co-dt.plain,
+mor-btn.co-dt.ghost {
+  color: #D93E55;
+  border-color: #D93E55;
 }
-mor-btn.co-dt:not(.st-disabled):hover,
+mor-btn.co-dt.plain .mo-loader .mo-loader-path,
+mor-btn.co-dt.ghost .mo-loader .mo-loader-path {
+  stroke: #D93E55;
+}
+mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-dt.st-hover {
-  background-color: #bc1f3c;
+  background-color: #df5c6f;
 }
-mor-btn.co-dt:not(.st-disabled):hover.plain,
+mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-dt.st-hover.plain {
   color: #FFFFFF;
+  background-color: #D93E55;
 }
-mor-btn.co-dt:not(.st-disabled):active,
+mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-dt.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-dt:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-dt.st-active {
-  background-color: #a61c35;
+  background-color: #cb4c5f;
+}
+mor-btn.co-dt:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-dt.st-active.plain {
+  background-color: #be263c;
+  border-color: #be263c;
+}
+mor-btn.co-dt:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-dt:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-dt.st-disabled,
-mor-btn.co-dt.st-disabled.plain {
-  border: none;
-  background-color: #D22343;
-  color: #eb899b;
+mor-btn.co-dt.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-s {
   background-color: #1EB818;
   color: #FFFFFF;
 }
-mor-btn.co-s.plain {
-  background-color: #a2f39f;
-  border-color: #1aa115;
-  color: #1EB818;
+mor-btn.co-s .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-s.plain .mo-loader .mo-loader-path {
+mor-btn.co-s.plain,
+mor-btn.co-s.ghost {
+  color: #1EB818;
+  border-color: #1EB818;
+}
+mor-btn.co-s.plain .mo-loader .mo-loader-path,
+mor-btn.co-s.ghost .mo-loader .mo-loader-path {
   stroke: #1EB818;
 }
-mor-btn.co-s:not(.st-disabled):hover,
+mor-btn.co-s:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-s.st-hover {
-  background-color: #1aa115;
+  background-color: #23d81c;
 }
-mor-btn.co-s:not(.st-disabled):hover.plain,
+mor-btn.co-s:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-s.st-hover.plain {
   color: #FFFFFF;
+  background-color: #1EB818;
 }
-mor-btn.co-s:not(.st-disabled):active,
+mor-btn.co-s:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-s.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-s:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-s.st-active {
+  background-color: #2aac24;
+}
+mor-btn.co-s:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-s.st-active.plain {
   background-color: #178b12;
+  border-color: #178b12;
+}
+mor-btn.co-s:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-s:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-s.st-disabled,
-mor-btn.co-s.st-disabled.plain {
-  border: none;
-  background-color: #1EB818;
-  color: #95f192;
+mor-btn.co-s.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-w {
   background-color: #FA9428;
   color: #FFFFFF;
 }
-mor-btn.co-w.plain {
-  background-color: #fee3c7;
-  border-color: #f9880f;
-  color: #FA9428;
+mor-btn.co-w .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-w.plain .mo-loader .mo-loader-path {
+mor-btn.co-w.plain,
+mor-btn.co-w.ghost {
+  color: #FA9428;
+  border-color: #FA9428;
+}
+mor-btn.co-w.plain .mo-loader .mo-loader-path,
+mor-btn.co-w.ghost .mo-loader .mo-loader-path {
   stroke: #FA9428;
 }
-mor-btn.co-w:not(.st-disabled):hover,
+mor-btn.co-w:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-w.st-hover {
-  background-color: #f9880f;
+  background-color: #fba54b;
 }
-mor-btn.co-w:not(.st-disabled):hover.plain,
+mor-btn.co-w:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-w.st-hover.plain {
   color: #FFFFFF;
+  background-color: #FA9428;
 }
-mor-btn.co-w:not(.st-disabled):active,
+mor-btn.co-w:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-w.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-w:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-w.st-active {
+  background-color: #ed9435;
+}
+mor-btn.co-w:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-w.st-active.plain {
   background-color: #ea7b05;
+  border-color: #ea7b05;
+}
+mor-btn.co-w:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-w:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-w.st-disabled,
-mor-btn.co-w.st-disabled.plain {
-  border: none;
-  background-color: #FA9428;
-  color: #feebd6;
+mor-btn.co-w.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-d {
   background-color: #FA2833;
   color: #FFFFFF;
 }
-mor-btn.co-d.plain {
-  background-color: #fee5e7;
-  border-color: #f90f1b;
-  color: #FA2833;
+mor-btn.co-d .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-d.plain .mo-loader .mo-loader-path {
+mor-btn.co-d.plain,
+mor-btn.co-d.ghost {
+  color: #FA2833;
+  border-color: #FA2833;
+}
+mor-btn.co-d.plain .mo-loader .mo-loader-path,
+mor-btn.co-d.ghost .mo-loader .mo-loader-path {
   stroke: #FA2833;
 }
-mor-btn.co-d:not(.st-disabled):hover,
+mor-btn.co-d:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-d.st-hover {
-  background-color: #f90f1b;
+  background-color: #fb4b54;
 }
-mor-btn.co-d:not(.st-disabled):hover.plain,
+mor-btn.co-d:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-d.st-hover.plain {
   color: #FFFFFF;
+  background-color: #FA2833;
 }
-mor-btn.co-d:not(.st-disabled):active,
+mor-btn.co-d:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-d.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-d:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-d.st-active {
+  background-color: #ed353f;
+}
+mor-btn.co-d:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-d.st-active.plain {
   background-color: #ea0511;
+  border-color: #ea0511;
+}
+mor-btn.co-d:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-d:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-d.st-disabled,
-mor-btn.co-d.st-disabled.plain {
-  border: none;
-  background-color: #FA2833;
-  color: #fed6d9;
+mor-btn.co-d.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-p {
   background-color: #2879FA;
   color: #FFFFFF;
 }
-mor-btn.co-p.plain {
-  background-color: #f9fbff;
-  border-color: #0f69f9;
-  color: #2879FA;
+mor-btn.co-p .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-p.plain .mo-loader .mo-loader-path {
+mor-btn.co-p.plain,
+mor-btn.co-p.ghost {
+  color: #2879FA;
+  border-color: #2879FA;
+}
+mor-btn.co-p.plain .mo-loader .mo-loader-path,
+mor-btn.co-p.ghost .mo-loader .mo-loader-path {
   stroke: #2879FA;
 }
-mor-btn.co-p:not(.st-disabled):hover,
+mor-btn.co-p:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-p.st-hover {
-  background-color: #0f69f9;
+  background-color: #4b8ffb;
 }
-mor-btn.co-p:not(.st-disabled):hover.plain,
+mor-btn.co-p:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-p.st-hover.plain {
   color: #FFFFFF;
+  background-color: #2879FA;
 }
-mor-btn.co-p:not(.st-disabled):active,
+mor-btn.co-p:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-p.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-p:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-p.st-active {
+  background-color: #357ced;
+}
+mor-btn.co-p:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-p.st-active.plain {
   background-color: #055dea;
+  border-color: #055dea;
+}
+mor-btn.co-p:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-p:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-p.st-disabled,
-mor-btn.co-p.st-disabled.plain {
-  border: none;
-  background-color: #2879FA;
-  color: #d6e6fe;
+mor-btn.co-p.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-m {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
   color: #FFFFFF;
 }
-mor-btn.co-m.plain {
-  background-color: #ebebeb;
-  border-color: #9c9c9c;
-  color: #A9A9A9;
+mor-btn.co-m .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-m.plain .mo-loader .mo-loader-path {
-  stroke: #A9A9A9;
+mor-btn.co-m.plain,
+mor-btn.co-m.ghost {
+  color: #B2B2B2;
+  border-color: #B2B2B2;
 }
-mor-btn.co-m:not(.st-disabled):hover,
+mor-btn.co-m.plain .mo-loader .mo-loader-path,
+mor-btn.co-m.ghost .mo-loader .mo-loader-path {
+  stroke: #B2B2B2;
+}
+mor-btn.co-m:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-m.st-hover {
-  background-color: #9c9c9c;
+  background-color: #c4c4c4;
 }
-mor-btn.co-m:not(.st-disabled):hover.plain,
+mor-btn.co-m:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-m.st-hover.plain {
   color: #FFFFFF;
+  background-color: #B2B2B2;
 }
-mor-btn.co-m:not(.st-disabled):active,
+mor-btn.co-m:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-m.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-m:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-m.st-active {
-  background-color: #909090;
+  background-color: #b2b2b2;
+}
+mor-btn.co-m:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-m.st-active.plain {
+  background-color: #999999;
+  border-color: #999999;
+}
+mor-btn.co-m:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-m:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-m.st-disabled,
-mor-btn.co-m.st-disabled.plain {
-  border: none;
-  background-color: #A9A9A9;
-  color: #e9e9e9;
+mor-btn.co-m.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-i {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
   color: #FFFFFF;
 }
-mor-btn.co-i.plain {
-  background-color: #ffffff;
-  border-color: #31a4a1;
-  color: #37B8B4;
+mor-btn.co-i .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-i.plain .mo-loader .mo-loader-path {
-  stroke: #37B8B4;
+mor-btn.co-i.plain,
+mor-btn.co-i.ghost {
+  color: #18B8B6;
+  border-color: #18B8B6;
 }
-mor-btn.co-i:not(.st-disabled):hover,
+mor-btn.co-i.plain .mo-loader .mo-loader-path,
+mor-btn.co-i.ghost .mo-loader .mo-loader-path {
+  stroke: #18B8B6;
+}
+mor-btn.co-i:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-i.st-hover {
-  background-color: #31a4a1;
+  background-color: #1cd8d5;
 }
-mor-btn.co-i:not(.st-disabled):hover.plain,
+mor-btn.co-i:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-i.st-hover.plain {
   color: #FFFFFF;
+  background-color: #18B8B6;
 }
-mor-btn.co-i:not(.st-disabled):active,
-mor-btn.co-i.st-active,
-mor-btn.co-i.st-disabled.plain {
-  background-color: #2b918e;
+mor-btn.co-i:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-i.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-i:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-i.st-active {
+  background-color: #24acaa;
+}
+mor-btn.co-i:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-i.st-active.plain {
+  background-color: #128b89;
+  border-color: #128b89;
+}
+mor-btn.co-i:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-i:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-i.st-disabled,
-mor-btn.co-i.st-disabled.plain {
-  border: none;
-  background-color: #37B8B4;
-  color: #7dd8d5;
+mor-btn.co-i.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-bk {
   background-color: #000000;
   color: #FFFFFF;
 }
-mor-btn.co-bk.plain {
-  background-color: #8c8c8c;
-  border-color: #000000;
-  color: #000000;
+mor-btn.co-bk .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-bk.plain .mo-loader .mo-loader-path {
+mor-btn.co-bk.plain,
+mor-btn.co-bk.ghost {
+  color: #000000;
+  border-color: #000000;
+}
+mor-btn.co-bk.plain .mo-loader .mo-loader-path,
+mor-btn.co-bk.ghost .mo-loader .mo-loader-path {
   stroke: #000000;
 }
-mor-btn.co-bk:not(.st-disabled):hover,
-mor-btn.co-bk.st-hover {
-  background-color: #0d0d0d;
+mor-btn.co-bk.plain,
+mor-btn.co-bk.ghost {
+  color: #000000;
 }
-mor-btn.co-bk:not(.st-disabled):hover.plain,
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-bk.st-hover {
+  background-color: #121212;
+}
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-bk.st-hover.plain {
   color: #FFFFFF;
+  background-color: #000000;
 }
-mor-btn.co-bk:not(.st-disabled):active,
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-bk.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-bk.st-active {
-  background-color: #1a1a1a;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  background-color: #000000;
+}
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-bk.st-active.plain {
+  background-color: #000000;
+  border-color: #000000;
+}
+mor-btn.co-bk:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-bk:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-bk.st-disabled,
-mor-btn.co-bk.st-disabled.plain {
+mor-btn.co-bk.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-wh {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+mor-btn.co-wh .mo-loader .mo-loader-path {
+  stroke: #4C4C4C;
+}
+mor-btn.co-wh.plain,
+mor-btn.co-wh.ghost {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+mor-btn.co-wh.plain .mo-loader .mo-loader-path,
+mor-btn.co-wh.ghost .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-wh.plain,
+mor-btn.co-wh.ghost {
+  color: #FFFFFF;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-wh.st-hover {
+  background-color: #ededed;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover.plain,
+mor-btn.co-wh.st-hover.plain {
+  color: #000000;
+  background-color: #FFFFFF;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-wh.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #000000;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-wh.st-active {
+  background-color: #e0e0e0;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-wh.st-active.plain {
+  background-color: #e6e6e6;
+  border-color: #e6e6e6;
+}
+mor-btn.co-wh:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-wh:not(.plain):not(.ghost).st-readonly {
   border: none;
-  background-color: #000000;
-  color: #666666;
+}
+mor-btn.co-wh.st-disabled,
+mor-btn.co-wh.st-readonly {
+  opacity: 0.5;
 }
 mor-btn.co-n1 {
   background-color: #F0F0F0;
@@ -30189,31 +30485,60 @@ mor-btn.co-n1 {
 mor-btn.co-n1 .mo-loader .mo-loader-path {
   stroke: #4C4C4C;
 }
-mor-btn.co-n1.plain {
-  background-color: transparent;
-  border-color: #F0F0F0;
+mor-btn.co-n1.plain,
+mor-btn.co-n1.ghost {
   color: #F0F0F0;
+  border-color: #F0F0F0;
 }
-mor-btn.co-n1.plain .mo-loader .mo-loader-path {
+mor-btn.co-n1.plain .mo-loader .mo-loader-path,
+mor-btn.co-n1.ghost .mo-loader .mo-loader-path {
   stroke: #F0F0F0;
 }
-mor-btn.co-n1:not(.st-disabled):hover,
-mor-btn.co-n1.st-hover {
-  background-color: #e3e3e3;
+mor-btn.co-n1.plain,
+mor-btn.co-n1.ghost {
+  color: #FFFFFF;
 }
-mor-btn.co-n1:not(.st-disabled):hover.plain,
+mor-btn.co-n1:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n1.st-hover {
+  background-color: #dedede;
+}
+mor-btn.co-n1:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n1.st-hover.plain {
   color: #000000;
+  background-color: #F0F0F0;
 }
-mor-btn.co-n1:not(.st-disabled):active,
+mor-btn.co-n1:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n1.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #000000;
+}
+mor-btn.co-n1:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n1.st-active {
+  background-color: #d1d1d1;
+}
+mor-btn.co-n1:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n1.st-active.plain {
   background-color: #d7d7d7;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  border-color: #d7d7d7;
+}
+mor-btn.co-n1:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n1:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n1.st-disabled,
-mor-btn.co-n1.st-disabled.plain {
-  border: none;
-  background-color: #F0F0F0;
+mor-btn.co-n1.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n1.plain,
+mor-btn.co-n1.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n1.ghost.st-hover {
+  background-color: #979797;
+}
+mor-btn.co-n1.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n1.ghost.st-active {
+  background-color: #a3a3a3;
+}
+mor-btn.co-n1:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n1:not(.plain):not(.ghost).st-readonly {
   color: #a3a3a3;
 }
 mor-btn.co-n2 {
@@ -30223,31 +30548,60 @@ mor-btn.co-n2 {
 mor-btn.co-n2 .mo-loader .mo-loader-path {
   stroke: #4C4C4C;
 }
-mor-btn.co-n2.plain {
-  background-color: transparent;
-  border-color: #E5E5E5;
+mor-btn.co-n2.plain,
+mor-btn.co-n2.ghost {
   color: #E5E5E5;
+  border-color: #E5E5E5;
 }
-mor-btn.co-n2.plain .mo-loader .mo-loader-path {
+mor-btn.co-n2.plain .mo-loader .mo-loader-path,
+mor-btn.co-n2.ghost .mo-loader .mo-loader-path {
   stroke: #E5E5E5;
 }
-mor-btn.co-n2:not(.st-disabled):hover,
-mor-btn.co-n2.st-hover {
-  background-color: #d8d8d8;
+mor-btn.co-n2.plain,
+mor-btn.co-n2.ghost {
+  color: #FFFFFF;
 }
-mor-btn.co-n2:not(.st-disabled):hover.plain,
+mor-btn.co-n2:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n2.st-hover {
+  background-color: #d3d3d3;
+}
+mor-btn.co-n2:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n2.st-hover.plain {
   color: #000000;
+  background-color: #E5E5E5;
 }
-mor-btn.co-n2:not(.st-disabled):active,
+mor-btn.co-n2:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n2.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #000000;
+}
+mor-btn.co-n2:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n2.st-active {
+  background-color: #c6c6c6;
+}
+mor-btn.co-n2:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n2.st-active.plain {
   background-color: #cccccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  border-color: #cccccc;
+}
+mor-btn.co-n2:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n2:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n2.st-disabled,
-mor-btn.co-n2.st-disabled.plain {
-  border: none;
-  background-color: #E5E5E5;
+mor-btn.co-n2.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n2.plain,
+mor-btn.co-n2.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n2.ghost.st-hover {
+  background-color: #8c8c8c;
+}
+mor-btn.co-n2.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n2.ghost.st-active {
+  background-color: #999999;
+}
+mor-btn.co-n2:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n2:not(.plain):not(.ghost).st-readonly {
   color: #999999;
 }
 mor-btn.co-n3 {
@@ -30257,31 +30611,60 @@ mor-btn.co-n3 {
 mor-btn.co-n3 .mo-loader .mo-loader-path {
   stroke: #4C4C4C;
 }
-mor-btn.co-n3.plain {
-  background-color: transparent;
-  border-color: #E0E0E0;
+mor-btn.co-n3.plain,
+mor-btn.co-n3.ghost {
   color: #E0E0E0;
+  border-color: #E0E0E0;
 }
-mor-btn.co-n3.plain .mo-loader .mo-loader-path {
+mor-btn.co-n3.plain .mo-loader .mo-loader-path,
+mor-btn.co-n3.ghost .mo-loader .mo-loader-path {
   stroke: #E0E0E0;
 }
-mor-btn.co-n3:not(.st-disabled):hover,
-mor-btn.co-n3.st-hover {
-  background-color: #d3d3d3;
+mor-btn.co-n3.plain,
+mor-btn.co-n3.ghost {
+  color: #FFFFFF;
 }
-mor-btn.co-n3:not(.st-disabled):hover.plain,
+mor-btn.co-n3:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n3.st-hover {
+  background-color: #cecece;
+}
+mor-btn.co-n3:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n3.st-hover.plain {
   color: #000000;
+  background-color: #E0E0E0;
 }
-mor-btn.co-n3:not(.st-disabled):active,
+mor-btn.co-n3:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n3.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #000000;
+}
+mor-btn.co-n3:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n3.st-active {
+  background-color: #c1c1c1;
+}
+mor-btn.co-n3:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n3.st-active.plain {
   background-color: #c7c7c7;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  border-color: #c7c7c7;
+}
+mor-btn.co-n3:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n3:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n3.st-disabled,
-mor-btn.co-n3.st-disabled.plain {
-  border: none;
-  background-color: #E0E0E0;
+mor-btn.co-n3.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n3.plain,
+mor-btn.co-n3.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n3.ghost.st-hover {
+  background-color: #878787;
+}
+mor-btn.co-n3.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n3.ghost.st-active {
+  background-color: #939393;
+}
+mor-btn.co-n3:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n3:not(.plain):not(.ghost).st-readonly {
   color: #939393;
 }
 mor-btn.co-n4 {
@@ -30291,31 +30674,60 @@ mor-btn.co-n4 {
 mor-btn.co-n4 .mo-loader .mo-loader-path {
   stroke: #4C4C4C;
 }
-mor-btn.co-n4.plain {
-  background-color: transparent;
-  border-color: #D9D9D9;
+mor-btn.co-n4.plain,
+mor-btn.co-n4.ghost {
   color: #D9D9D9;
+  border-color: #D9D9D9;
 }
-mor-btn.co-n4.plain .mo-loader .mo-loader-path {
+mor-btn.co-n4.plain .mo-loader .mo-loader-path,
+mor-btn.co-n4.ghost .mo-loader .mo-loader-path {
   stroke: #D9D9D9;
 }
-mor-btn.co-n4:not(.st-disabled):hover,
-mor-btn.co-n4.st-hover {
-  background-color: #cccccc;
+mor-btn.co-n4.plain,
+mor-btn.co-n4.ghost {
+  color: #FFFFFF;
 }
-mor-btn.co-n4:not(.st-disabled):hover.plain,
+mor-btn.co-n4:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n4.st-hover {
+  background-color: #c7c7c7;
+}
+mor-btn.co-n4:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n4.st-hover.plain {
   color: #000000;
+  background-color: #D9D9D9;
 }
-mor-btn.co-n4:not(.st-disabled):active,
+mor-btn.co-n4:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n4.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #000000;
+}
+mor-btn.co-n4:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n4.st-active {
+  background-color: #bababa;
+}
+mor-btn.co-n4:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n4.st-active.plain {
   background-color: #c0c0c0;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  border-color: #c0c0c0;
+}
+mor-btn.co-n4:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n4:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n4.st-disabled,
-mor-btn.co-n4.st-disabled.plain {
-  border: none;
-  background-color: #D9D9D9;
+mor-btn.co-n4.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n4.plain,
+mor-btn.co-n4.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n4.ghost.st-hover {
+  background-color: #808080;
+}
+mor-btn.co-n4.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n4.ghost.st-active {
+  background-color: #8d8d8d;
+}
+mor-btn.co-n4:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n4:not(.plain):not(.ghost).st-readonly {
   color: #8d8d8d;
 }
 mor-btn.co-n5 {
@@ -30325,260 +30737,645 @@ mor-btn.co-n5 {
 mor-btn.co-n5 .mo-loader .mo-loader-path {
   stroke: #4C4C4C;
 }
-mor-btn.co-n5.plain {
-  background-color: transparent;
-  border-color: #CCCCCC;
+mor-btn.co-n5.plain,
+mor-btn.co-n5.ghost {
   color: #CCCCCC;
+  border-color: #CCCCCC;
 }
-mor-btn.co-n5.plain .mo-loader .mo-loader-path {
+mor-btn.co-n5.plain .mo-loader .mo-loader-path,
+mor-btn.co-n5.ghost .mo-loader .mo-loader-path {
   stroke: #CCCCCC;
 }
-mor-btn.co-n5:not(.st-disabled):hover,
-mor-btn.co-n5.st-hover {
-  background-color: #bfbfbf;
+mor-btn.co-n5.plain,
+mor-btn.co-n5.ghost {
+  color: #FFFFFF;
 }
-mor-btn.co-n5:not(.st-disabled):hover.plain,
+mor-btn.co-n5:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n5.st-hover {
+  background-color: #bababa;
+}
+mor-btn.co-n5:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n5.st-hover.plain {
   color: #000000;
+  background-color: #CCCCCC;
 }
-mor-btn.co-n5:not(.st-disabled):active,
+mor-btn.co-n5:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n5.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #000000;
+}
+mor-btn.co-n5:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n5.st-active {
+  background-color: #adadad;
+}
+mor-btn.co-n5:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n5.st-active.plain {
   background-color: #b3b3b3;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  border-color: #b3b3b3;
+}
+mor-btn.co-n5:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n5:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n5.st-disabled,
-mor-btn.co-n5.st-disabled.plain {
-  border: none;
-  background-color: #CCCCCC;
+mor-btn.co-n5.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n5.plain,
+mor-btn.co-n5.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n5.ghost.st-hover {
+  background-color: #737373;
+}
+mor-btn.co-n5.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n5.ghost.st-active {
+  background-color: #808080;
+}
+mor-btn.co-n5:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n5:not(.plain):not(.ghost).st-readonly {
   color: #808080;
 }
 mor-btn.co-n6 {
   background-color: #B2B2B2;
   color: #FFFFFF;
 }
-mor-btn.co-n6.plain {
-  background-color: transparent;
-  border-color: #B2B2B2;
-  color: #B2B2B2;
+mor-btn.co-n6 .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-n6.plain .mo-loader .mo-loader-path {
+mor-btn.co-n6.plain,
+mor-btn.co-n6.ghost {
+  color: #B2B2B2;
+  border-color: #B2B2B2;
+}
+mor-btn.co-n6.plain .mo-loader .mo-loader-path,
+mor-btn.co-n6.ghost .mo-loader .mo-loader-path {
   stroke: #B2B2B2;
 }
-mor-btn.co-n6:not(.st-disabled):hover,
-mor-btn.co-n6.st-hover {
-  background-color: #bfbfbf;
+mor-btn.co-n6.plain,
+mor-btn.co-n6.ghost {
+  color: #000000;
 }
-mor-btn.co-n6:not(.st-disabled):hover.plain,
+mor-btn.co-n6:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n6.st-hover {
+  background-color: #c4c4c4;
+}
+mor-btn.co-n6:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n6.st-hover.plain {
   color: #FFFFFF;
+  background-color: #B2B2B2;
 }
-mor-btn.co-n6:not(.st-disabled):active,
+mor-btn.co-n6:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n6.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-n6:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n6.st-active {
-  background-color: #cbcbcb;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  background-color: #b2b2b2;
+}
+mor-btn.co-n6:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n6.st-active.plain {
+  background-color: #999999;
+  border-color: #999999;
+}
+mor-btn.co-n6:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n6:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n6.st-disabled,
-mor-btn.co-n6.st-disabled.plain {
-  border: none;
-  background-color: #B2B2B2;
+mor-btn.co-n6.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n6.plain,
+mor-btn.co-n6.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n6.ghost.st-hover {
+  background-color: #f2f2f2;
+}
+mor-btn.co-n6.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n6.ghost.st-active {
+  background-color: #e5e5e5;
+}
+mor-btn.co-n6:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n6:not(.plain):not(.ghost).st-readonly {
   color: #ffffff;
 }
 mor-btn.co-n7 {
   background-color: #999999;
   color: #FFFFFF;
 }
-mor-btn.co-n7.plain {
-  background-color: transparent;
-  border-color: #999999;
-  color: #999999;
+mor-btn.co-n7 .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-n7.plain .mo-loader .mo-loader-path {
+mor-btn.co-n7.plain,
+mor-btn.co-n7.ghost {
+  color: #999999;
+  border-color: #999999;
+}
+mor-btn.co-n7.plain .mo-loader .mo-loader-path,
+mor-btn.co-n7.ghost .mo-loader .mo-loader-path {
   stroke: #999999;
 }
-mor-btn.co-n7:not(.st-disabled):hover,
-mor-btn.co-n7.st-hover {
-  background-color: #a6a6a6;
+mor-btn.co-n7.plain,
+mor-btn.co-n7.ghost {
+  color: #000000;
 }
-mor-btn.co-n7:not(.st-disabled):hover.plain,
+mor-btn.co-n7:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n7.st-hover {
+  background-color: #ababab;
+}
+mor-btn.co-n7:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n7.st-hover.plain {
   color: #FFFFFF;
+  background-color: #999999;
 }
-mor-btn.co-n7:not(.st-disabled):active,
+mor-btn.co-n7:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n7.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-n7:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n7.st-active {
-  background-color: #b3b3b3;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  background-color: #999999;
+}
+mor-btn.co-n7:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n7.st-active.plain {
+  background-color: #808080;
+  border-color: #808080;
+}
+mor-btn.co-n7:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n7:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n7.st-disabled,
-mor-btn.co-n7.st-disabled.plain {
-  border: none;
-  background-color: #999999;
+mor-btn.co-n7.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n7.plain,
+mor-btn.co-n7.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n7.ghost.st-hover {
+  background-color: #d9d9d9;
+}
+mor-btn.co-n7.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n7.ghost.st-active {
+  background-color: #cccccc;
+}
+mor-btn.co-n7:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n7:not(.plain):not(.ghost).st-readonly {
   color: #ffffff;
 }
 mor-btn.co-n8 {
   background-color: #7F7F7F;
   color: #FFFFFF;
 }
-mor-btn.co-n8.plain {
-  background-color: transparent;
-  border-color: #7F7F7F;
-  color: #7F7F7F;
+mor-btn.co-n8 .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-n8.plain .mo-loader .mo-loader-path {
+mor-btn.co-n8.plain,
+mor-btn.co-n8.ghost {
+  color: #7F7F7F;
+  border-color: #7F7F7F;
+}
+mor-btn.co-n8.plain .mo-loader .mo-loader-path,
+mor-btn.co-n8.ghost .mo-loader .mo-loader-path {
   stroke: #7F7F7F;
 }
-mor-btn.co-n8:not(.st-disabled):hover,
-mor-btn.co-n8.st-hover {
-  background-color: #8c8c8c;
+mor-btn.co-n8.plain,
+mor-btn.co-n8.ghost {
+  color: #000000;
 }
-mor-btn.co-n8:not(.st-disabled):hover.plain,
+mor-btn.co-n8:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n8.st-hover {
+  background-color: #919191;
+}
+mor-btn.co-n8:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n8.st-hover.plain {
   color: #FFFFFF;
+  background-color: #7F7F7F;
 }
-mor-btn.co-n8:not(.st-disabled):active,
+mor-btn.co-n8:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n8.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-n8:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n8.st-active {
-  background-color: #999999;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  background-color: #7f7f7f;
+}
+mor-btn.co-n8:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n8.st-active.plain {
+  background-color: #666666;
+  border-color: #666666;
+}
+mor-btn.co-n8:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n8:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n8.st-disabled,
-mor-btn.co-n8.st-disabled.plain {
-  border: none;
-  background-color: #7F7F7F;
+mor-btn.co-n8.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n8.plain,
+mor-btn.co-n8.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n8.ghost.st-hover {
+  background-color: #bfbfbf;
+}
+mor-btn.co-n8.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n8.ghost.st-active {
+  background-color: #b2b2b2;
+}
+mor-btn.co-n8:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n8:not(.plain):not(.ghost).st-readonly {
   color: #e5e5e5;
 }
 mor-btn.co-n9 {
   background-color: #666666;
   color: #FFFFFF;
 }
-mor-btn.co-n9.plain {
-  background-color: transparent;
-  border-color: #666666;
-  color: #666666;
+mor-btn.co-n9 .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-n9.plain .mo-loader .mo-loader-path {
+mor-btn.co-n9.plain,
+mor-btn.co-n9.ghost {
+  color: #666666;
+  border-color: #666666;
+}
+mor-btn.co-n9.plain .mo-loader .mo-loader-path,
+mor-btn.co-n9.ghost .mo-loader .mo-loader-path {
   stroke: #666666;
 }
-mor-btn.co-n9:not(.st-disabled):hover,
-mor-btn.co-n9.st-hover {
-  background-color: #737373;
+mor-btn.co-n9.plain,
+mor-btn.co-n9.ghost {
+  color: #000000;
 }
-mor-btn.co-n9:not(.st-disabled):hover.plain,
+mor-btn.co-n9:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n9.st-hover {
+  background-color: #787878;
+}
+mor-btn.co-n9:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n9.st-hover.plain {
   color: #FFFFFF;
+  background-color: #666666;
 }
-mor-btn.co-n9:not(.st-disabled):active,
+mor-btn.co-n9:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n9.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-n9:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n9.st-active {
-  background-color: #808080;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  background-color: #666666;
+}
+mor-btn.co-n9:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n9.st-active.plain {
+  background-color: #4d4d4d;
+  border-color: #4d4d4d;
+}
+mor-btn.co-n9:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n9:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n9.st-disabled,
-mor-btn.co-n9.st-disabled.plain {
-  border: none;
-  background-color: #666666;
+mor-btn.co-n9.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n9.plain,
+mor-btn.co-n9.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n9.ghost.st-hover {
+  background-color: #a6a6a6;
+}
+mor-btn.co-n9.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n9.ghost.st-active {
+  background-color: #999999;
+}
+mor-btn.co-n9:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n9:not(.plain):not(.ghost).st-readonly {
   color: #cccccc;
 }
 mor-btn.co-n10 {
   background-color: #4C4C4C;
   color: #FFFFFF;
 }
-mor-btn.co-n10.plain {
-  background-color: transparent;
-  border-color: #4C4C4C;
-  color: #4C4C4C;
+mor-btn.co-n10 .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
 }
-mor-btn.co-n10.plain .mo-loader .mo-loader-path {
+mor-btn.co-n10.plain,
+mor-btn.co-n10.ghost {
+  color: #4C4C4C;
+  border-color: #4C4C4C;
+}
+mor-btn.co-n10.plain .mo-loader .mo-loader-path,
+mor-btn.co-n10.ghost .mo-loader .mo-loader-path {
   stroke: #4C4C4C;
 }
-mor-btn.co-n10:not(.st-disabled):hover,
-mor-btn.co-n10.st-hover {
-  background-color: #595959;
+mor-btn.co-n10.plain,
+mor-btn.co-n10.ghost {
+  color: #000000;
 }
-mor-btn.co-n10:not(.st-disabled):hover.plain,
+mor-btn.co-n10:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n10.st-hover {
+  background-color: #5e5e5e;
+}
+mor-btn.co-n10:not(.st-disabled):not(.st-readonly):hover.plain,
 mor-btn.co-n10.st-hover.plain {
   color: #FFFFFF;
+  background-color: #4C4C4C;
 }
-mor-btn.co-n10:not(.st-disabled):active,
+mor-btn.co-n10:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n10.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-n10:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-n10.st-active {
-  background-color: #666666;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
+  background-color: #4c4c4c;
+}
+mor-btn.co-n10:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n10.st-active.plain {
+  background-color: #333333;
+  border-color: #333333;
+}
+mor-btn.co-n10:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n10:not(.plain):not(.ghost).st-readonly {
+  border: none;
 }
 mor-btn.co-n10.st-disabled,
-mor-btn.co-n10.st-disabled.plain {
-  border: none;
-  background-color: #4C4C4C;
+mor-btn.co-n10.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n10.plain,
+mor-btn.co-n10.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n10.ghost.st-hover {
+  background-color: #8c8c8c;
+}
+mor-btn.co-n10.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n10.ghost.st-active {
+  background-color: #7f7f7f;
+}
+mor-btn.co-n10:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n10:not(.plain):not(.ghost).st-readonly {
   color: #b2b2b2;
 }
 mor-btn.co-n11 {
   background-color: #333333;
   color: #FFFFFF;
 }
-mor-btn.co-n11.plain {
-  background-color: transparent;
-  border-color: #333333;
-  color: #333333;
-}
-mor-btn.co-n11.plain .mo-loader .mo-loader-path {
-  stroke: #333333;
-}
-mor-btn.co-n11:not(.st-disabled):hover,
-mor-btn.co-n11.st-hover {
-  background-color: #404040;
-}
-mor-btn.co-n11:not(.st-disabled):hover.plain,
-mor-btn.co-n11.st-hover.plain {
-  color: #FFFFFF;
-}
-mor-btn.co-n11:not(.st-disabled):active,
-mor-btn.co-n11.st-active {
-  background-color: #4d4d4d;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
-}
-mor-btn.co-n11.st-disabled,
-mor-btn.co-n11.st-disabled.plain {
-  border: none;
-  background-color: #333333;
-  color: #999999;
-}
-mor-btn.co-wh {
-  background-color: #FFFFFF;
-  color: #4C4C4C;
-}
-mor-btn.co-wh .mo-loader .mo-loader-path {
-  stroke: #4C4C4C;
-}
-mor-btn.co-wh.plain {
-  background-color: transparent;
-  border-color: #f7f7f7;
-  color: #FFFFFF;
-}
-mor-btn.co-wh.plain .mo-loader .mo-loader-path {
+mor-btn.co-n11 .mo-loader .mo-loader-path {
   stroke: #FFFFFF;
 }
-mor-btn.co-wh:not(.st-disabled):hover,
-mor-btn.co-wh.st-hover {
+mor-btn.co-n11.plain,
+mor-btn.co-n11.ghost {
+  color: #333333;
+  border-color: #333333;
+}
+mor-btn.co-n11.plain .mo-loader .mo-loader-path,
+mor-btn.co-n11.ghost .mo-loader .mo-loader-path {
+  stroke: #333333;
+}
+mor-btn.co-n11.plain,
+mor-btn.co-n11.ghost {
+  color: #000000;
+}
+mor-btn.co-n11:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n11.st-hover {
+  background-color: #454545;
+}
+mor-btn.co-n11:not(.st-disabled):not(.st-readonly):hover.plain,
+mor-btn.co-n11.st-hover.plain {
+  color: #FFFFFF;
+  background-color: #333333;
+}
+mor-btn.co-n11:not(.st-disabled):not(.st-readonly):hover.plain .mo-loader .mo-loader-path,
+mor-btn.co-n11.st-hover.plain .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-btn.co-n11:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n11.st-active {
+  background-color: #333333;
+}
+mor-btn.co-n11:not(.st-disabled):not(.st-readonly):active.plain,
+mor-btn.co-n11.st-active.plain {
+  background-color: #1a1a1a;
+  border-color: #1a1a1a;
+}
+mor-btn.co-n11:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n11:not(.plain):not(.ghost).st-readonly {
+  border: none;
+}
+mor-btn.co-n11.st-disabled,
+mor-btn.co-n11.st-readonly {
+  opacity: 0.5;
+}
+mor-btn.co-n11.plain,
+mor-btn.co-n11.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-n11.ghost.st-hover {
+  background-color: #737373;
+}
+mor-btn.co-n11.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-n11.ghost.st-active {
+  background-color: #666666;
+}
+mor-btn.co-n11:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-n11:not(.plain):not(.ghost).st-readonly {
+  color: #999999;
+}
+mor-btn.co-t.plain,
+mor-btn.co-t.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-t.ghost.st-hover {
+  background-color: #ffecef;
+}
+mor-btn.co-t.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-t.ghost.st-active {
+  background-color: #ffced5;
+}
+mor-btn.co-t:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-t:not(.plain):not(.ghost).st-readonly {
+  color: #ffc8d1;
+}
+mor-btn.co-lt.plain,
+mor-btn.co-lt.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-lt.ghost.st-hover {
+  background-color: #ffedef;
+}
+mor-btn.co-lt.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-lt.ghost.st-active {
+  background-color: #ffd3da;
+}
+mor-btn.co-lt:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-lt:not(.plain):not(.ghost).st-readonly {
+  color: #ffd3da;
+}
+mor-btn.co-dt.plain,
+mor-btn.co-dt.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-dt.ghost.st-hover {
+  background-color: #f6d3d8;
+}
+mor-btn.co-dt.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-dt.ghost.st-active {
+  background-color: #f2bec6;
+}
+mor-btn.co-dt:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-dt:not(.plain):not(.ghost).st-readonly {
+  color: #eea9b3;
+}
+mor-btn.co-s.plain,
+mor-btn.co-s.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-s.ghost.st-hover {
+  background-color: #f1fdf0;
+}
+mor-btn.co-s.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-s.ghost.st-active {
+  background-color: #d7fad5;
+}
+mor-btn.co-s:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-s:not(.plain):not(.ghost).st-readonly {
+  color: #95f192;
+}
+mor-btn.co-w.plain,
+mor-btn.co-w.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-w.ghost.st-hover {
+  background-color: #fffaf4;
+}
+mor-btn.co-w.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-w.ghost.st-active {
+  background-color: #feeddb;
+}
+mor-btn.co-w:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-w:not(.plain):not(.ghost).st-readonly {
+  color: #feebd6;
+}
+mor-btn.co-d.plain,
+mor-btn.co-d.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-d.ghost.st-hover {
+  background-color: #ffeff0;
+}
+mor-btn.co-d.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-d.ghost.st-active {
+  background-color: #fed6d9;
+}
+mor-btn.co-d:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-d:not(.plain):not(.ghost).st-readonly {
+  color: #fed6d9;
+}
+mor-btn.co-p.plain,
+mor-btn.co-p.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-p.ghost.st-hover {
+  background-color: #e5effe;
+}
+mor-btn.co-p.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-p.ghost.st-active {
+  background-color: #cce0fe;
+}
+mor-btn.co-p:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-p:not(.plain):not(.ghost).st-readonly {
+  color: #bed6fd;
+}
+mor-btn.co-m.ghost,
+mor-btn.co-m.plain {
+  color: #4C4C4C;
+  border-color: #dadada;
+}
+mor-btn.co-m.plain {
   background-color: #f7f7f7;
 }
-mor-btn.co-wh:not(.st-disabled):hover.plain,
-mor-btn.co-wh.st-hover.plain {
+mor-btn.co-m.plain:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-m.plain.st-hover {
+  background-color: #B2B2B2;
+  border-color: #B2B2B2;
+}
+mor-btn.co-m.plain:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-m.plain.st-active {
+  background-color: #a5a5a5;
+}
+mor-btn.co-m.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-m.ghost.st-hover {
+  background-color: #f7f7f7;
+}
+mor-btn.co-m.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-m.ghost.st-active {
+  background-color: #f2f2f2;
   color: #4C4C4C;
 }
-mor-btn.co-wh:not(.st-disabled):active,
-mor-btn.co-wh.st-active {
+mor-btn.co-m:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-m:not(.plain):not(.ghost).st-readonly {
+  color: #e5e5e5;
+}
+mor-btn.co-m.plain.st-disabled,
+mor-btn.co-m.plain.st-readonly,
+mor-btn.co-m.ghost.st-disabled,
+mor-btn.co-m.ghost.st-readonly {
+  color: #cbcbcb;
+  opacity: 0.9;
+}
+mor-btn.co-i.plain,
+mor-btn.co-i.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-i.ghost.st-hover {
+  background-color: #ccf8f8;
+}
+mor-btn.co-i.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-i.ghost.st-active {
+  background-color: #b6f5f5;
+}
+mor-btn.co-i:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-i:not(.plain):not(.ghost).st-readonly {
+  color: #7beeec;
+}
+mor-btn.co-bk.plain,
+mor-btn.co-bk.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-bk.ghost.st-hover {
+  background-color: #8c8c8c;
+  border-color: #000000;
+}
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-bk.st-hover {
+  background-color: #404040;
+}
+mor-btn.co-bk:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-bk.st-active {
+  background-color: #262626;
+}
+mor-btn.co-bk.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-bk.ghost.st-active {
+  background-color: #808080;
+}
+mor-btn.co-bk:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-bk:not(.plain):not(.ghost).st-readonly {
+  color: #666666;
+}
+mor-btn.co-wh.plain,
+mor-btn.co-wh.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-wh.ghost.st-hover {
+  background-color: #b3b3b3;
+  border-color: #f7f7f7;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-wh.st-hover {
   background-color: #f0f0f0;
 }
-mor-btn.co-wh.st-disabled,
-mor-btn.co-wh.st-disabled.plain {
-  border: none;
-  background-color: #FFFFFF;
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover.plain,
+mor-btn.co-wh.st-hover.plain,
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover.ghost,
+mor-btn.co-wh.st-hover.ghost {
+  color: #4C4C4C;
+}
+mor-btn.co-wh:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-wh.st-active {
+  background-color: #d9d9d9;
+}
+mor-btn.co-wh.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-wh.ghost.st-active {
+  background-color: #bfbfbf;
+}
+mor-btn.co-wh:not(.plain):not(.ghost).st-disabled,
+mor-btn.co-wh:not(.plain):not(.ghost).st-readonly {
   color: #b3b3b3;
 }
-mor-btn.st-active {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
+mor-btn.ghost {
+  background-color: transparent;
 }
-mor-btn:not(.st-disabled):active {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
+mor-btn.fade {
+  filter: grayscale(1);
 }
-mor-btn.st-disabled {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset;
+mor-btn.fade:hover,
+mor-btn.fade:active,
+mor-btn.fade.st-hover,
+mor-btn.fade.st-active {
+  filter: grayscale(0);
+}
+mor-btn.st-disabled,
+mor-btn.st-readonly {
   cursor: not-allowed;
 }
 mor-btn.st-apparent {
@@ -30590,37 +31387,18 @@ mor-btn.st-apparent {
 mor-btn.st-apparent:hover {
   animation-name: none;
 }
-mor-btn > i {
-  font-size: 22.4px;
+mor-btn.plain,
+mor-btn.ghost:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.ghost.st-hover {
+  background-color: #ffecef;
 }
-mor-btn .mo-loader {
-  width: 1.2em;
+mor-btn.ghost:not(.st-disabled):not(.st-readonly):active,
+mor-btn.ghost.st-active {
+  background-color: #ffced5;
 }
-mor-btn.plain {
-  background-color: #fde5e9;
-  border-color: #f22549;
-  color: #F33D5D;
-}
-mor-btn.plain .mo-loader .mo-loader-path {
-  stroke: #F33D5D;
-}
-mor-btn:not(.st-disabled):hover,
-mor-btn.st-hover {
-  background-color: #f22549;
-}
-mor-btn:not(.st-disabled):hover.plain,
-mor-btn.st-hover.plain {
-  color: #FFFFFF;
-}
-mor-btn:not(.st-disabled):active,
-mor-btn.st-active {
-  background-color: #ee0f36;
-}
-mor-btn.st-disabled,
-mor-btn.st-disabled.plain {
-  border: none;
-  background-color: #F33D5D;
-  color: #fab5c1;
+mor-btn:not(.plain):not(.ghost).st-disabled,
+mor-btn:not(.plain):not(.ghost).st-readonly {
+  color: #ffc8d1;
 }
 mor-link {
   display: inline-block;
@@ -30628,7 +31406,7 @@ mor-link {
   line-height: 1.4em;
   height: 1.4em;
   font-size: 13px;
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-link.margin {
   padding: 0 0.6em;
@@ -30668,55 +31446,55 @@ mor-link.si-xxs {
   font-size: 12px;
 }
 mor-link.co-t {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-link.co-t .mo-loader .mo-loader-path {
-  stroke: #F33D5D;
+  stroke: #FF4965;
 }
 mor-link.co-t:not(.st-disabled):hover,
 mor-link.co-t.st-hover {
-  color: #d60d31;
+  color: #fb0027;
 }
 mor-link.co-t:not(.st-disabled):active,
 mor-link.co-t.st-active {
-  color: #a60a26;
+  color: #c8001f;
 }
 mor-link.co-t.st-disabled {
-  color: #fab5c1;
+  color: #ffc8d1;
 }
 mor-link.co-lt {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-link.co-lt .mo-loader .mo-loader-path {
-  stroke: #F86F88;
+  stroke: #FF6D83;
 }
 mor-link.co-lt:not(.st-disabled):hover,
 mor-link.co-lt.st-hover {
-  color: #dd0b31;
+  color: #ed0024;
 }
 mor-link.co-lt:not(.st-disabled):active,
 mor-link.co-lt.st-active {
-  color: #ac0826;
+  color: #ba001c;
 }
 mor-link.co-lt.st-disabled {
-  color: #fdd0d8;
+  color: #ffd3da;
 }
 mor-link.co-dt {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-link.co-dt .mo-loader .mo-loader-path {
-  stroke: #D22343;
+  stroke: #D93E55;
 }
 mor-link.co-dt:not(.st-disabled):hover,
 mor-link.co-dt.st-hover {
-  color: #a61c35;
+  color: #be263c;
 }
 mor-link.co-dt:not(.st-disabled):active,
 mor-link.co-dt.st-active {
-  color: #7b1427;
+  color: #941d2f;
 }
 mor-link.co-dt.st-disabled {
-  color: #eb899b;
+  color: #eea9b3;
 }
 mor-link.co-s {
   color: #1EB818;
@@ -30787,38 +31565,38 @@ mor-link.co-p.st-disabled {
   color: #a5c7fd;
 }
 mor-link.co-m {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-link.co-m .mo-loader .mo-loader-path {
-  stroke: #A9A9A9;
+  stroke: #B2B2B2;
 }
 mor-link.co-m:not(.st-disabled):hover,
 mor-link.co-m.st-hover {
-  color: #909090;
+  color: #999999;
 }
 mor-link.co-m:not(.st-disabled):active,
 mor-link.co-m.st-active {
-  color: #838383;
+  color: #8c8c8c;
 }
 mor-link.co-m.st-disabled {
-  color: #cfcfcf;
+  color: #d8d8d8;
 }
 mor-link.co-i {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-link.co-i .mo-loader .mo-loader-path {
-  stroke: #37B8B4;
+  stroke: #18B8B6;
 }
 mor-link.co-i:not(.st-disabled):hover,
 mor-link.co-i.st-hover {
-  color: #2b918e;
+  color: #128b89;
 }
 mor-link.co-i:not(.st-disabled):active,
 mor-link.co-i.st-active {
-  color: #257d7a;
+  color: #0f7473;
 }
 mor-link.co-i.st-disabled {
-  color: #1a5654;
+  color: #094746;
 }
 mor-link.co-bk {
   color: #000000;
@@ -31057,18 +31835,18 @@ mor-link.st-apparent:hover {
   animation-name: none;
 }
 mor-link .mo-loader .mo-loader-path {
-  stroke: #F33D5D;
+  stroke: #FF4965;
 }
 mor-link:not(.st-disabled):hover,
 mor-link.st-hover {
-  color: #d60d31;
+  color: #fb0027;
 }
 mor-link:not(.st-disabled):active,
 mor-link.st-active {
-  color: #a60a26;
+  color: #c8001f;
 }
 mor-link.st-disabled {
-  color: #fab5c1;
+  color: #ffc8d1;
 }
 mor-link:hover {
   cursor: pointer;
@@ -31179,7 +31957,7 @@ mor-tab > ul > li:hover {
 }
 mor-tab > ul > li.current {
   background-color: #FFFFFF;
-  color: #F33D5D;
+  color: #FF4965;
   border-color: #dddddd;
   z-index: 5;
   cursor: default;
@@ -31283,7 +32061,7 @@ mor-tab.block > ul > li:hover {
 mor-tab.block > ul > li.current {
   border-color: #dddddd;
   background: #FFFFFF;
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-tab.block > ul > li.disabled {
   background-color: #E0E0E0;
@@ -31295,14 +32073,14 @@ mor-tab.block.position-bottom > ul > li:not(:last-child) {
   border-right-width: 0;
 }
 mor-tab.block.position-top > ul > li.current {
-  border-top: 1px #F33D5D solid;
+  border-top: 1px #FF4965 solid;
   border-bottom-width: 0;
-  box-shadow: inset 0 3px 0 #F33D5D;
+  box-shadow: inset 0 3px 0 #FF4965;
 }
 mor-tab.block.position-bottom > ul > li.current {
-  border-bottom: 1px #F33D5D solid;
+  border-bottom: 1px #FF4965 solid;
   border-top-width: 0;
-  box-shadow: inset 0 -3px 0 #F33D5D;
+  box-shadow: inset 0 -3px 0 #FF4965;
 }
 mor-tab.block.position-left ul,
 mor-tab.block.position-right ul {
@@ -31321,13 +32099,13 @@ mor-tab.block.position-right ul > li.current:last-child {
   border-bottom-width: 1px;
 }
 mor-tab.block.position-left ul > li.current {
-  border-left: 1px #F33D5D solid;
-  box-shadow: inset 3px 0 0 #F33D5D;
+  border-left: 1px #FF4965 solid;
+  box-shadow: inset 3px 0 0 #FF4965;
   border-right-width: 0;
 }
 mor-tab.block.position-right ul > li.current {
-  border-right: 1px #F33D5D solid;
-  box-shadow: inset -3px 0 0 #F33D5D;
+  border-right: 1px #FF4965 solid;
+  box-shadow: inset -3px 0 0 #FF4965;
   border-left-width: 0;
 }
 mor-tab.line > ul::before {
@@ -31346,7 +32124,7 @@ mor-tab.line > ul > li:hover {
   color: #666666;
 }
 mor-tab.line > ul > li.current {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-tab.line > ul > li.disabled {
   color: #666666;
@@ -31367,7 +32145,7 @@ mor-tab.line.position-top > ul > li:hover {
   border-bottom-color: #d1d1d1;
 }
 mor-tab.line.position-top > ul > li.current {
-  border-bottom-color: #F33D5D;
+  border-bottom-color: #FF4965;
 }
 mor-tab.line.position-top > ul > li.disabled {
   border-bottom-color: #adadad;
@@ -31385,7 +32163,7 @@ mor-tab.line.position-bottom > ul > li:hover {
   border-top-color: #d1d1d1;
 }
 mor-tab.line.position-bottom > ul > li.current {
-  border-top-color: #F33D5D;
+  border-top-color: #FF4965;
 }
 mor-tab.line.position-bottom > ul > li.disabled {
   border-top-color: #adadad;
@@ -31423,7 +32201,7 @@ mor-tab.line.position-left > ul > li:hover {
   border-right-color: #d1d1d1;
 }
 mor-tab.line.position-left > ul > li.current {
-  border-right-color: #F33D5D;
+  border-right-color: #FF4965;
 }
 mor-tab.line.position-left > .contents {
   border-left-width: 0;
@@ -31439,7 +32217,7 @@ mor-tab.line.position-right > ul > li:hover {
   border-left-color: #d1d1d1;
 }
 mor-tab.line.position-right > ul > li.current {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-tab.line.position-right > .contents {
   border-right-width: 0;
@@ -31457,9 +32235,9 @@ mor-tab.btn > ul > li:hover {
   color: #666666;
 }
 mor-tab.btn > ul > li.current {
-  color: #F33D5D;
+  color: #FF4965;
   background-color: #FFFFFF;
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-tab.btn > ul > li.disabled {
   color: #666666;
@@ -31485,7 +32263,7 @@ mor-tab.btn.position-bottom > ul > li:hover + li {
 }
 mor-tab.btn.position-top > ul > li:hover + li.current,
 mor-tab.btn.position-bottom > ul > li:hover + li.current {
-  border-left: 1px #F33D5D solid;
+  border-left: 1px #FF4965 solid;
 }
 mor-tab.btn.position-top > ul > li.current,
 mor-tab.btn.position-bottom > ul > li.current {
@@ -31531,11 +32309,11 @@ mor-tab.btn.position-right > ul > li:hover + li {
 }
 mor-tab.btn.position-left > ul > li:hover + li.current,
 mor-tab.btn.position-right > ul > li:hover + li.current {
-  border-top: 1px #F33D5D solid;
+  border-top: 1px #FF4965 solid;
 }
 mor-tab.btn.position-left > ul > li.current,
 mor-tab.btn.position-right > ul > li.current {
-  border-bottom: 1px #F33D5D solid;
+  border-bottom: 1px #FF4965 solid;
 }
 mor-tab.btn.position-left > ul > li.current + li,
 mor-tab.btn.position-right > ul > li.current + li {
@@ -31554,7 +32332,7 @@ mor-tab.btn.position-left > ul > li:hover + li {
   border-left-width: 1px;
 }
 mor-tab.btn.position-left > ul > li:hover + li.current {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
   border-left-width: 1px;
 }
 mor-tab.btn.position-left > ul > li.current + li {
@@ -31571,7 +32349,7 @@ mor-tab.btn.position-right > ul > li:hover + li {
   border-right-width: 1px;
 }
 mor-tab.btn.position-right > ul > li:hover + li.current {
-  border-right-color: #F33D5D;
+  border-right-color: #FF4965;
   border-right-width: 1px;
 }
 mor-tab.btn.position-right > ul > li.current + li {
@@ -31750,7 +32528,7 @@ mor-tree.can-click mor-private-tree ul.tree-body .tree-node > span > a:hover {
   text-decoration: none;
 }
 mor-tree.can-click mor-private-tree ul.tree-body .tree-node > span .node-name:hover {
-  background: #feedf0;
+  background: #fff2f4;
 }
 mor-table {
   width: 100%;
@@ -32099,14 +32877,14 @@ mor-table.si-xs .table > tbody > tr > td {
   padding: 3px !important;
 }
 mor-table.co-t {
-  border-color: #be0c2b !important;
+  border-color: #e20023 !important;
 }
 mor-table.co-t header {
-  background-color: #be0c2b;
+  background-color: #e20023;
   color: #FFFFFF;
 }
 mor-table.co-t .co-style {
-  border-color: #be0c2b !important;
+  border-color: #e20023 !important;
 }
 mor-table.co-t .co-style th,
 mor-table.co-t .co-style td {
@@ -32117,13 +32895,13 @@ mor-table.co-t .co-style td,
 mor-table.co-t .co-style tr,
 mor-table.co-t .co-style .expand-row-col-wrap,
 mor-table.co-t .co-style {
-  border-color: #be0c2b !important;
+  border-color: #e20023 !important;
 }
 mor-table.co-t .co-style tr {
-  background-color: #d60d31;
+  background-color: #fb0027;
 }
 mor-table.co-t.ts-zp .co-style tr.even-row td {
-  background-color: #ee0f36;
+  background-color: #ff163a;
 }
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32131,8 +32909,8 @@ mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #be0c2b;
-  border-color: #be0c2b !important;
+  background-color: #e20023;
+  border-color: #e20023 !important;
 }
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32140,7 +32918,7 @@ mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-t.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-t:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #be0c2b !important;
+  border-top-color: #e20023 !important;
 }
 mor-table.co-t mor-empty .empty-image i,
 mor-table.co-t mor-empty .empty-image i.iconfont,
@@ -32153,14 +32931,14 @@ mor-table.co-t mor-empty .empty-note {
   opacity: 0.6;
 }
 mor-table.co-lt {
-  border-color: #dd0b31 !important;
+  border-color: #ed0024 !important;
 }
 mor-table.co-lt header {
-  background-color: #dd0b31;
+  background-color: #ed0024;
   color: #FFFFFF;
 }
 mor-table.co-lt .co-style {
-  border-color: #dd0b31 !important;
+  border-color: #ed0024 !important;
 }
 mor-table.co-lt .co-style th,
 mor-table.co-lt .co-style td {
@@ -32171,13 +32949,13 @@ mor-table.co-lt .co-style td,
 mor-table.co-lt .co-style tr,
 mor-table.co-lt .co-style .expand-row-col-wrap,
 mor-table.co-lt .co-style {
-  border-color: #dd0b31 !important;
+  border-color: #ed0024 !important;
 }
 mor-table.co-lt .co-style tr {
-  background-color: #f4264c;
+  background-color: #ff2142;
 }
 mor-table.co-lt.ts-zp .co-style tr.even-row td {
-  background-color: #f63e60;
+  background-color: #ff3a58;
 }
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32185,8 +32963,8 @@ mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #dd0b31;
-  border-color: #dd0b31 !important;
+  background-color: #ed0024;
+  border-color: #ed0024 !important;
 }
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32194,7 +32972,7 @@ mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-lt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-lt:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #dd0b31 !important;
+  border-top-color: #ed0024 !important;
 }
 mor-table.co-lt mor-empty .empty-image i,
 mor-table.co-lt mor-empty .empty-image i.iconfont,
@@ -32207,14 +32985,14 @@ mor-table.co-lt mor-empty .empty-note {
   opacity: 0.6;
 }
 mor-table.co-dt {
-  border-color: #7b1427 !important;
+  border-color: #941d2f !important;
 }
 mor-table.co-dt header {
-  background-color: #7b1427;
+  background-color: #941d2f;
   color: #FFFFFF;
 }
 mor-table.co-dt .co-style {
-  border-color: #7b1427 !important;
+  border-color: #941d2f !important;
 }
 mor-table.co-dt .co-style th,
 mor-table.co-dt .co-style td {
@@ -32225,13 +33003,13 @@ mor-table.co-dt .co-style td,
 mor-table.co-dt .co-style tr,
 mor-table.co-dt .co-style .expand-row-col-wrap,
 mor-table.co-dt .co-style {
-  border-color: #7b1427 !important;
+  border-color: #941d2f !important;
 }
 mor-table.co-dt .co-style tr {
-  background-color: #90182e;
+  background-color: #a92135;
 }
 mor-table.co-dt.ts-zp .co-style tr.even-row td {
-  background-color: #a61c35;
+  background-color: #be263c;
 }
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32239,8 +33017,8 @@ mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #7b1427;
-  border-color: #7b1427 !important;
+  background-color: #941d2f;
+  border-color: #941d2f !important;
 }
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32248,7 +33026,7 @@ mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-dt.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-dt:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #7b1427 !important;
+  border-top-color: #941d2f !important;
 }
 mor-table.co-dt mor-empty .empty-image i,
 mor-table.co-dt mor-empty .empty-image i.iconfont,
@@ -32477,14 +33255,14 @@ mor-table.co-p mor-empty .empty-note {
   opacity: 0.6;
 }
 mor-table.co-m {
-  border-color: #696969 !important;
+  border-color: #727272 !important;
 }
 mor-table.co-m header {
-  background-color: #696969;
+  background-color: #727272;
   color: #FFFFFF;
 }
 mor-table.co-m .co-style {
-  border-color: #696969 !important;
+  border-color: #727272 !important;
 }
 mor-table.co-m .co-style th,
 mor-table.co-m .co-style td {
@@ -32495,13 +33273,13 @@ mor-table.co-m .co-style td,
 mor-table.co-m .co-style tr,
 mor-table.co-m .co-style .expand-row-col-wrap,
 mor-table.co-m .co-style {
-  border-color: #696969 !important;
+  border-color: #727272 !important;
 }
 mor-table.co-m .co-style tr {
-  background-color: #838383;
+  background-color: #8c8c8c;
 }
 mor-table.co-m.ts-zp .co-style tr.even-row td {
-  background-color: #909090;
+  background-color: #999999;
 }
 mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-m:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32509,8 +33287,8 @@ mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #696969;
-  border-color: #696969 !important;
+  background-color: #727272;
+  border-color: #727272 !important;
 }
 mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-m:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32518,7 +33296,7 @@ mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-m.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-m:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #696969 !important;
+  border-top-color: #727272 !important;
 }
 mor-table.co-m mor-empty .empty-image i,
 mor-table.co-m mor-empty .empty-image i.iconfont,
@@ -32531,14 +33309,14 @@ mor-table.co-m mor-empty .empty-note {
   opacity: 0.6;
 }
 mor-table.co-i {
-  border-color: #1a5654 !important;
+  border-color: #094746 !important;
 }
 mor-table.co-i header {
-  background-color: #1a5654;
+  background-color: #094746;
   color: #FFFFFF;
 }
 mor-table.co-i .co-style {
-  border-color: #1a5654 !important;
+  border-color: #094746 !important;
 }
 mor-table.co-i .co-style th,
 mor-table.co-i .co-style td {
@@ -32549,13 +33327,13 @@ mor-table.co-i .co-style td,
 mor-table.co-i .co-style tr,
 mor-table.co-i .co-style .expand-row-col-wrap,
 mor-table.co-i .co-style {
-  border-color: #1a5654 !important;
+  border-color: #094746 !important;
 }
 mor-table.co-i .co-style tr {
-  background-color: #257d7a;
+  background-color: #0f7473;
 }
 mor-table.co-i.ts-zp .co-style tr.even-row td {
-  background-color: #2b918e;
+  background-color: #128b89;
 }
 mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
 mor-table.co-i:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover td,
@@ -32563,8 +33341,8 @@ mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.hover td,
 mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click td,
 mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.last-click td {
-  background-color: #1a5654;
-  border-color: #1a5654 !important;
+  background-color: #094746;
+  border-color: #094746 !important;
 }
 mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
 mor-table.co-i:not(.no-hover-effect) .table > tbody > tr:not(.expand-row):hover + tr > td,
@@ -32572,7 +33350,7 @@ mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.hover + tr > td,
 mor-table.co-i.ts-zp:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td,
 mor-table.co-i:not(.no-hover-effect) .table > tbody > tr.last-click + tr > td {
-  border-top-color: #1a5654 !important;
+  border-top-color: #094746 !important;
 }
 mor-table.co-i mor-empty .empty-image i,
 mor-table.co-i mor-empty .empty-image i.iconfont,
@@ -33278,17 +34056,17 @@ mor-table.co-wh:not(.no-hover-effect) .table tr.last-click + tr > td {
 }
 mor-table .table th.cco-t,
 mor-table .table td.cco-t {
-  background: #f22549 !important;
+  background: #ff2f4f !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-lt,
 mor-table .table td.cco-lt {
-  background: #f75774 !important;
+  background: #ff546d !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-dt,
 mor-table .table td.cco-dt {
-  background: #bc1f3c !important;
+  background: #d42a43 !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-s,
@@ -33313,12 +34091,12 @@ mor-table .table td.cco-p {
 }
 mor-table .table th.cco-m,
 mor-table .table td.cco-m {
-  background: #9c9c9c !important;
+  background: #a5a5a5 !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-i,
 mor-table .table td.cco-i {
-  background: #31a4a1 !important;
+  background: #15a1a0 !important;
   color: #FFFFFF !important;
 }
 mor-table .table th.cco-bk,
@@ -33394,15 +34172,15 @@ mor-table .table td.cell-disabled {
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-t,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-t {
-  background: #d60d31 !important;
+  background: #fb0027 !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-lt,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-lt {
-  background: #f4264c !important;
+  background: #ff2142 !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-dt,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-dt {
-  background: #991a31 !important;
+  background: #b22338 !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-s,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-s {
@@ -33422,11 +34200,11 @@ mor-table:not(.no-hover-effect) .table tr.hover td.cco-p {
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-m,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-m {
-  background: #838383 !important;
+  background: #8c8c8c !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-i,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-i {
-  background: #2b918e !important;
+  background: #128b89 !important;
 }
 mor-table:not(.no-hover-effect) .table tr.hover th.cco-bk,
 mor-table:not(.no-hover-effect) .table tr.hover td.cco-bk {
@@ -33598,27 +34376,27 @@ mor-menu.line .pos-top .root-menu > li > a {
 }
 mor-menu.line .pos-top .root-menu > li > a:hover {
   color: #4C4C4C;
-  border-bottom-color: #F33D5D;
+  border-bottom-color: #FF4965;
 }
 mor-menu.line .pos-top .root-menu > li > a.current {
   color: #000000;
   font-weight: 400;
-  border-bottom-color: #F33D5D;
+  border-bottom-color: #FF4965;
   border-bottom-width: 2px;
 }
 mor-menu.line .pos-top .root-menu > li.current > a {
   color: #000000;
   font-weight: 400;
   border-bottom-width: 2px;
-  border-bottom-color: #F33D5D;
+  border-bottom-color: #FF4965;
 }
 mor-menu.line .pos-top .sub-menu > li > a.current {
   color: #000000;
-  background-color: #feeff1;
+  background-color: #ffffff;
 }
 mor-menu.line .pos-top .sub-menu > li.current > a {
   color: #000000;
-  background-color: #feeff1;
+  background-color: #ffffff;
 }
 mor-menu.line .pos-side .root-menu {
   border-right: 1px #E5E5E5 solid;
@@ -33628,7 +34406,7 @@ mor-menu.line .pos-side .root-menu.last-current > a {
   padding-right: calc(1.5em - 4px);
 }
 mor-menu.line .pos-side .sub-menu > li > a.current {
-  border-bottom-color: #F33D5D;
+  border-bottom-color: #FF4965;
   border-bottom-width: 2px;
 }
 mor-menu.line .pos-side .sub-menu.current > a,
@@ -33639,15 +34417,15 @@ mor-menu.line .pos-side .root-menu > li.current > a,
 mor-menu.line .pos-side .sub-menu > li.current > a {
   color: #000000;
   font-weight: 400;
-  background-color: #feeff1;
-  border-right: 4px #f99dad solid;
+  background-color: #ffffff;
+  border-right: 4px #ffafbb solid;
 }
 mor-menu.line .pos-side .root-menu > li.last-current > a,
 mor-menu.line .pos-side .sub-menu > li.last-current > a {
   color: #000000;
   font-weight: 400;
-  background-color: #feeff1;
-  border-right: 4px #F33D5D solid;
+  background-color: #ffffff;
+  border-right: 4px #FF4965 solid;
 }
 mor-menu.block .pos-top .root-menu > li > a:hover {
   background-color: #E5E5E5;
@@ -33655,20 +34433,20 @@ mor-menu.block .pos-top .root-menu > li > a:hover {
 mor-menu.block .pos-top .root-menu > li > a.current {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-menu.block .pos-top .root-menu > li.current > a {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-menu.block .pos-top .sub-menu > li > a.current {
   color: #FFFFFF;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-menu.block .pos-top .sub-menu > li.current > a {
   color: #FFFFFF;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-menu.block .pos-top .sub-menu > li.current > .has-child-menu-icon {
   color: #FFFFFF;
@@ -33677,18 +34455,18 @@ mor-menu.block .pos-side .root-menu > li > a.current,
 mor-menu.block .pos-side .sub-menu > li > a.current {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-menu.block .pos-side .root-menu > li.current > a,
 mor-menu.block .pos-side .sub-menu > li.current > a {
-  color: #F33D5D;
+  color: #FF4965;
   font-weight: 400;
 }
 mor-menu.block .pos-side .root-menu > li.last-current > a,
 mor-menu.block .pos-side .sub-menu > li.last-current > a {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-menu.block .pos-side .root-menu > li.last-current > .has-child-menu-icon,
 mor-menu.block .pos-side .sub-menu > li.last-current > .has-child-menu-icon {
@@ -34049,7 +34827,7 @@ mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
 mor-menu.co-bk.expand.line .pos-side .root-menu > li.last-current > a,
 mor-menu.co-bk.expand.line .pos-side .sub-menu > li.last-current > a {
   background: #333333;
-  border-right: 4px #ee0f36 solid;
+  border-right: 4px #ff163a solid;
 }
 mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
   background: #0d0d0d;
@@ -34076,13 +34854,13 @@ mor-menu.co-wh .pos-top .root-menu > li > a.current,
 mor-menu.co-wh .pos-side .root-menu > li > a.current,
 mor-menu.co-wh .pos-top .sub-menu > li > a.current,
 mor-menu.co-wh .pos-side .sub-menu > li > a.current {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-menu.co-wh .pos-top .root-menu > li.current > a,
 mor-menu.co-wh .pos-side .root-menu > li.current > a,
 mor-menu.co-wh .pos-top .sub-menu > li.current > a,
 mor-menu.co-wh .pos-side .sub-menu > li.current > a {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-menu.co-wh .pos-top .root-menu > li.is-disable > a,
 mor-menu.co-wh .pos-side .root-menu > li.is-disable > a,
@@ -34102,11 +34880,11 @@ mor-menu.co-wh .pos-side .root-menu > li.is-disable > a:hover {
 }
 mor-menu.co-wh.expand .pos-side .root-menu > li.last-current > a,
 mor-menu.co-wh.expand .pos-side .sub-menu > li.last-current > a {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-menu.co-wh.expand.line .pos-side .root-menu > li.last-current > a,
 mor-menu.co-wh.expand.line .pos-side .sub-menu > li.last-current > a {
-  border-right: 4px #F33D5D solid;
+  border-right: 4px #FF4965 solid;
 }
 mor-menu.co-wh.collapse .pos-side .root-menu > li > a:hover {
   background: #E5E5E5;
@@ -34132,8 +34910,8 @@ mor-menu.expand .pos-side .sub-menu > li.current > a {
 }
 mor-menu.expand .pos-side .root-menu > li.last-current > a,
 mor-menu.expand .pos-side .sub-menu > li.last-current > a {
-  background-color: #feeff1;
-  border-right: 4px #F33D5D solid;
+  background-color: #ffffff;
+  border-right: 4px #FF4965 solid;
 }
 mor-menu.expand .pos-side .sub-menu-wrap {
   display: block;
@@ -34250,13 +35028,13 @@ mor-menu .pos-top .root-menu > li > a.current,
 mor-menu .pos-side .root-menu > li > a.current,
 mor-menu .pos-top .sub-menu > li > a.current,
 mor-menu .pos-side .sub-menu > li > a.current {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-menu .pos-top .root-menu > li.current > a,
 mor-menu .pos-side .root-menu > li.current > a,
 mor-menu .pos-top .sub-menu > li.current > a,
 mor-menu .pos-side .sub-menu > li.current > a {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-menu .pos-top .root-menu > li.is-disable > a,
 mor-menu .pos-side .root-menu > li.is-disable > a,
@@ -34276,11 +35054,11 @@ mor-menu .pos-side .root-menu > li.is-disable > a:hover {
 }
 mor-menu.expand .pos-side .root-menu > li.last-current > a,
 mor-menu.expand .pos-side .sub-menu > li.last-current > a {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-menu.expand.line .pos-side .root-menu > li.last-current > a,
 mor-menu.expand.line .pos-side .sub-menu > li.last-current > a {
-  border-right: 4px #F33D5D solid;
+  border-right: 4px #FF4965 solid;
 }
 mor-menu.collapse .pos-side .root-menu > li > a:hover {
   background: #E5E5E5;
@@ -34310,7 +35088,7 @@ mor-anchor .anchor-nav .current-point {
   width: 10px;
   height: 10px;
   left: 0;
-  border: 3px solid #F33D5D;
+  border: 3px solid #FF4965;
   background: #FFFFFF;
   transition: top 0.16s;
 }
@@ -34330,7 +35108,7 @@ mor-anchor .anchor-nav ul.menu > li:hover {
   color: #666666;
 }
 mor-anchor .anchor-nav ul.menu > li.current {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-pagination {
   display: inline-block;
@@ -34575,22 +35353,22 @@ mor-pagination.si-xxs .list .page-jump .mo-icon {
   font-size: 12px;
 }
 mor-pagination.co-t .list > a.current {
-  background-color: #F33D5D !important;
+  background-color: #FF4965 !important;
 }
 mor-pagination.co-t .page-jump .mo-icon:hover {
-  color: #F33D5D !important;
+  color: #FF4965 !important;
 }
 mor-pagination.co-lt .list > a.current {
-  background-color: #F86F88 !important;
+  background-color: #FF6D83 !important;
 }
 mor-pagination.co-lt .page-jump .mo-icon:hover {
-  color: #F86F88 !important;
+  color: #FF6D83 !important;
 }
 mor-pagination.co-dt .list > a.current {
-  background-color: #D22343 !important;
+  background-color: #D93E55 !important;
 }
 mor-pagination.co-dt .page-jump .mo-icon:hover {
-  color: #D22343 !important;
+  color: #D93E55 !important;
 }
 mor-pagination.co-s .list > a.current {
   background-color: #1EB818 !important;
@@ -34617,16 +35395,16 @@ mor-pagination.co-p .page-jump .mo-icon:hover {
   color: #2879FA !important;
 }
 mor-pagination.co-m .list > a.current {
-  background-color: #A9A9A9 !important;
+  background-color: #B2B2B2 !important;
 }
 mor-pagination.co-m .page-jump .mo-icon:hover {
-  color: #A9A9A9 !important;
+  color: #B2B2B2 !important;
 }
 mor-pagination.co-i .list > a.current {
-  background-color: #37B8B4 !important;
+  background-color: #18B8B6 !important;
 }
 mor-pagination.co-i .page-jump .mo-icon:hover {
-  color: #37B8B4 !important;
+  color: #18B8B6 !important;
 }
 mor-pagination.co-bk .list > a.current {
   background-color: #000000 !important;
@@ -34730,10 +35508,10 @@ mor-pagination .list .page-jump .mo-icon {
   font-size: 15px;
 }
 mor-pagination .list > a.current {
-  background-color: #F33D5D !important;
+  background-color: #FF4965 !important;
 }
 mor-pagination .page-jump .mo-icon:hover {
-  color: #F33D5D !important;
+  color: #FF4965 !important;
 }
 mor-dialog {
   width: 100%;
@@ -34843,8 +35621,8 @@ mor-dialog > .content > footer .operate > * {
 }
 mor-dialog.white-footer > .content > footer {
   background: #FFFFFF;
-  border-top-color: #FFFFFF;
-  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+  border-top-color: #E5E5E5;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.06);
 }
 mor-dialog.has-footer > .content > .body {
   bottom: 50px;
@@ -34893,15 +35671,15 @@ mor-dialog.show > .mask {
   opacity: 1;
 }
 mor-dialog.co-t > .content > header {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-dialog.co-lt > .content > header {
-  background-color: #F86F88;
+  background-color: #FF6D83;
   color: #FFFFFF;
 }
 mor-dialog.co-dt > .content > header {
-  background-color: #D22343;
+  background-color: #D93E55;
   color: #FFFFFF;
 }
 mor-dialog.co-s > .content > header {
@@ -34921,11 +35699,11 @@ mor-dialog.co-p > .content > header {
   color: #FFFFFF;
 }
 mor-dialog.co-m > .content > header {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
   color: #FFFFFF;
 }
 mor-dialog.co-i > .content > header {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
   color: #FFFFFF;
 }
 mor-dialog.co-bk > .content > header {
@@ -34981,7 +35759,7 @@ mor-dialog.co-wh > .content > header {
   color: #333333;
 }
 mor-dialog > .content > header {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-drawer {
@@ -35265,13 +36043,13 @@ mor-avatar.si-xxl .wrap > i.mo-icon {
   font-size: 32px;
 }
 mor-avatar.co-t > .wrap {
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-avatar.co-lt > .wrap {
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-avatar.co-dt > .wrap {
-  background-color: #D22343;
+  background-color: #D93E55;
 }
 mor-avatar.co-s > .wrap {
   background-color: #1EB818;
@@ -35286,10 +36064,10 @@ mor-avatar.co-p > .wrap {
   background-color: #2879FA;
 }
 mor-avatar.co-m > .wrap {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
 }
 mor-avatar.co-i > .wrap {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
 }
 mor-avatar.co-bk > .wrap {
   background-color: #000000;
@@ -35367,7 +36145,7 @@ mor-avatar .wrap > i.mo-icon {
   font-size: 14px;
 }
 mor-avatar > .wrap {
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-badge {
   display: inline-block;
@@ -35382,8 +36160,8 @@ mor-badge {
   font-weight: 400;
   font-size: 13px;
   padding: 0 10.4px;
-  background-color: #F33D5D;
-  border-color: #F33D5D;
+  background-color: #FF4965;
+  border-color: #FF4965;
 }
 mor-badge:empty {
   display: none;
@@ -35538,25 +36316,25 @@ mor-badge.si-xxs.badge-point > span {
   height: 4.5px;
 }
 mor-badge.co-t {
-  background-color: #F33D5D;
-  border-color: #F33D5D;
+  background-color: #FF4965;
+  border-color: #FF4965;
 }
 mor-badge.co-t.plain {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-badge.co-lt {
-  background-color: #F86F88;
-  border-color: #F86F88;
+  background-color: #FF6D83;
+  border-color: #FF6D83;
 }
 mor-badge.co-lt.plain {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-badge.co-dt {
-  background-color: #D22343;
-  border-color: #D22343;
+  background-color: #D93E55;
+  border-color: #D93E55;
 }
 mor-badge.co-dt.plain {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-badge.co-s {
   background-color: #1EB818;
@@ -35587,18 +36365,18 @@ mor-badge.co-p.plain {
   color: #2879FA;
 }
 mor-badge.co-m {
-  background-color: #A9A9A9;
-  border-color: #A9A9A9;
+  background-color: #B2B2B2;
+  border-color: #B2B2B2;
 }
 mor-badge.co-m.plain {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-badge.co-i {
-  background-color: #37B8B4;
-  border-color: #37B8B4;
+  background-color: #18B8B6;
+  border-color: #18B8B6;
 }
 mor-badge.co-i.plain {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-badge.co-bk {
   background-color: #000000;
@@ -35800,7 +36578,7 @@ mor-badge.badge-point > span {
   height: 10px;
 }
 mor-badge.plain {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-time {
   display: inline-block;
@@ -35927,10 +36705,10 @@ mor-calendar .p-mark-p::after {
   background: #2879FA;
 }
 mor-calendar .p-mark-m::after {
-  background: #A9A9A9;
+  background: #B2B2B2;
 }
 mor-calendar .p-mark-i::after {
-  background: #37B8B4;
+  background: #18B8B6;
 }
 mor-calendar .p-mark-bk::after {
   background: #000000;
@@ -36007,8 +36785,8 @@ mor-calendar .day.now {
   margin-bottom: 0;
 }
 mor-calendar .day.now .inner-layer {
-  color: #D22343;
-  border: 1px #D22343 solid;
+  color: #D93E55;
+  border: 1px #D93E55 solid;
   line-height: calc(16px*1.5 - 2px);
   box-sizing: border-box;
 }
@@ -36018,8 +36796,8 @@ mor-calendar .pick-year .year.now {
 }
 mor-calendar .pick-month .month.now .inner-layer,
 mor-calendar .pick-year .year.now .inner-layer {
-  color: #D22343;
-  border: 1px #D22343 solid;
+  color: #D93E55;
+  border: 1px #D93E55 solid;
   line-height: calc(16px*1.5 - 2px);
   box-sizing: border-box;
 }
@@ -36031,13 +36809,13 @@ mor-calendar .pick-year .year.highlight {
 mor-calendar .day.highlight .inner-layer,
 mor-calendar .pick-month .month.highlight .inner-layer,
 mor-calendar .pick-year .year.highlight .inner-layer {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-calendar .day.middle .select-layer,
 mor-calendar .pick-month .month.middle .select-layer,
 mor-calendar .pick-year .year.middle .select-layer {
-  background-color: #fee9ec;
+  background-color: #ffedef;
 }
 mor-calendar .day.middle.bg-mark-disabled .select-layer,
 mor-calendar .pick-month .month.middle.bg-mark-disabled .select-layer,
@@ -36052,7 +36830,7 @@ mor-calendar .pick-year .year.start {
 mor-calendar .day.start .inner-layer,
 mor-calendar .pick-month .month.start .inner-layer,
 mor-calendar .pick-year .year.start .inner-layer {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-calendar .day.start .select-layer,
@@ -36060,7 +36838,7 @@ mor-calendar .pick-month .month.start .select-layer,
 mor-calendar .pick-year .year.start .select-layer {
   text-align: center;
   padding-right: calc(50% - 13px);
-  background-color: #fee9ec;
+  background-color: #ffedef;
   border-radius: 3px 0 0 3px;
   width: auto;
 }
@@ -36072,7 +36850,7 @@ mor-calendar .pick-year .year.end {
 mor-calendar .day.end .inner-layer,
 mor-calendar .pick-month .month.end .inner-layer,
 mor-calendar .pick-year .year.end .inner-layer {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-calendar .day.end .select-layer,
@@ -36080,7 +36858,7 @@ mor-calendar .pick-month .month.end .select-layer,
 mor-calendar .pick-year .year.end .select-layer {
   text-align: center;
   padding-left: calc(50% - 13px);
-  background-color: #fee9ec;
+  background-color: #ffedef;
   border-radius: 0 3px 3px 0;
   width: auto;
 }
@@ -36169,25 +36947,25 @@ mor-calendar .pick-year .year.bg-mark-p.no-curt-m {
 mor-calendar .day.bg-mark-m,
 mor-calendar .pick-month .month.bg-mark-m,
 mor-calendar .pick-year .year.bg-mark-m {
-  background: #A9A9A9 !important;
+  background: #B2B2B2 !important;
   color: #FFFFFF !important;
 }
 mor-calendar .day.bg-mark-m.no-curt-m,
 mor-calendar .pick-month .month.bg-mark-m.no-curt-m,
 mor-calendar .pick-year .year.bg-mark-m.no-curt-m {
-  background: #959595;
+  background: #9e9e9e;
   color: rgba(255, 255, 255, 0.5);
 }
 mor-calendar .day.bg-mark-i,
 mor-calendar .pick-month .month.bg-mark-i,
 mor-calendar .pick-year .year.bg-mark-i {
-  background: #37B8B4 !important;
+  background: #18B8B6 !important;
   color: #FFFFFF !important;
 }
 mor-calendar .day.bg-mark-i.no-curt-m,
 mor-calendar .pick-month .month.bg-mark-i.no-curt-m,
 mor-calendar .pick-year .year.bg-mark-i.no-curt-m {
-  background: #2e9995;
+  background: #139492;
   color: rgba(255, 255, 255, 0.5);
 }
 mor-calendar .day.bg-mark-bk,
@@ -36380,7 +37158,7 @@ mor-calendar .pick-year .year.end {
 }
 mor-calendar .pick-month .month.end .inner-layer,
 mor-calendar .pick-year .year.end .inner-layer {
-  background-color: #F33D5D;
+  background-color: #FF4965;
   color: #FFFFFF;
 }
 mor-calendar .pick-month .month.end .select-layer,
@@ -36394,7 +37172,7 @@ mor-calendar.mode-month .pick-month .month:hover {
   cursor: default;
 }
 mor-calendar.mode-month.highlight-hover .month:hover {
-  color: #D22343;
+  color: #D93E55;
   font-weight: 700;
 }
 mor-calendar.mode-month.highlight-hover .month.bg-mark-disabled:hover {
@@ -36406,7 +37184,7 @@ mor-calendar.mode-year .pick-year .year:hover {
   cursor: default;
 }
 mor-calendar.mode-year.highlight-hover .year:hover {
-  color: #D22343;
+  color: #D93E55;
   font-weight: 700;
 }
 mor-calendar.mode-year.highlight-hover .year.bg-mark-disabled:hover {
@@ -36432,7 +37210,7 @@ mor-calendar.mode-year .year .inner-layer {
   width: inherit !important;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day:hover {
-  color: #D22343;
+  color: #D93E55;
   font-weight: 700;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day.bg-mark-disabled:hover {
@@ -36652,22 +37430,22 @@ mor-progress.type-ring .note .mo-icon {
   display: block;
 }
 mor-progress.co-t .progress-wrap .main {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-progress.co-t .progress-wrap .ring-track svg .main {
-  stroke: #F33D5D;
+  stroke: #FF4965;
 }
 mor-progress.co-lt .progress-wrap .main {
-  background: #F86F88;
+  background: #FF6D83;
 }
 mor-progress.co-lt .progress-wrap .ring-track svg .main {
-  stroke: #F86F88;
+  stroke: #FF6D83;
 }
 mor-progress.co-dt .progress-wrap .main {
-  background: #D22343;
+  background: #D93E55;
 }
 mor-progress.co-dt .progress-wrap .ring-track svg .main {
-  stroke: #D22343;
+  stroke: #D93E55;
 }
 mor-progress.co-s .progress-wrap .main {
   background: #1EB818;
@@ -36694,16 +37472,16 @@ mor-progress.co-p .progress-wrap .ring-track svg .main {
   stroke: #2879FA;
 }
 mor-progress.co-m .progress-wrap .main {
-  background: #A9A9A9;
+  background: #B2B2B2;
 }
 mor-progress.co-m .progress-wrap .ring-track svg .main {
-  stroke: #A9A9A9;
+  stroke: #B2B2B2;
 }
 mor-progress.co-i .progress-wrap .main {
-  background: #37B8B4;
+  background: #18B8B6;
 }
 mor-progress.co-i .progress-wrap .ring-track svg .main {
-  stroke: #37B8B4;
+  stroke: #18B8B6;
 }
 mor-progress.co-bk .progress-wrap .main {
   background: #000000;
@@ -36854,10 +37632,10 @@ mor-progress.co-wh .progress-wrap .note {
   color: #FFFFFF;
 }
 mor-progress .progress-wrap .main {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-progress .progress-wrap .ring-track svg .main {
-  stroke: #F33D5D;
+  stroke: #FF4965;
 }
 mor-empty .empty-image {
   width: 100%;
@@ -36988,21 +37766,21 @@ mor-steps .step.last .bg {
 }
 mor-steps .step.done .mark,
 mor-steps .step.done + .link {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-steps .step.done + .link + .step .bg {
-  background: linear-gradient(to left, #e5e5e5 0%, #e5e5e5 50%, #F33D5D 51%, #F33D5D 100%);
+  background: linear-gradient(to left, #e5e5e5 0%, #e5e5e5 50%, #FF4965 51%, #FF4965 100%);
 }
 mor-steps .step.done + .link + .step.last .bg {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-steps .step.done .bg {
-  background: #F33D5D !important;
+  background: #FF4965 !important;
 }
 mor-steps .step.done .mark {
   background: #FFFFFF;
-  border: 2px #F33D5D solid;
-  color: #F33D5D;
+  border: 2px #FF4965 solid;
+  color: #FF4965;
   box-sizing: border-box;
   line-height: 22px;
 }
@@ -37014,8 +37792,8 @@ mor-steps .step.current .desc {
   color: #666666;
 }
 mor-steps .step.current.highlight .mark {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
   color: #FFFFFF;
 }
 mor-steps .step.current.progress .mark {
@@ -37028,7 +37806,7 @@ mor-steps .step.current.progress .mark mor-load {
   position: relative;
 }
 mor-steps .step.current.progress .mark mor-load .mo-loader .mo-loader-path {
-  stroke: #F33D5D;
+  stroke: #FF4965;
   animation: loaderDash 1.5s ease-in-out infinite;
 }
 mor-steps .step.failed .mark {
@@ -37075,7 +37853,7 @@ mor-steps.align-right .step.last .bg {
   width: 100%;
 }
 mor-steps.align-right .step.done + .link + .step .bg {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-breadcrumbs {
   display: block;
@@ -37094,7 +37872,7 @@ mor-breadcrumbs ul li {
   vertical-align: middle;
 }
 mor-breadcrumbs ul li:hover {
-  color: #F33D5D;
+  color: #FF4965;
   cursor: pointer;
 }
 mor-breadcrumbs ul li.root:not(.choose) {
@@ -37282,74 +38060,74 @@ mor-tip.only-has-text .con {
 }
 mor-tip.co-t .con {
   color: #FFFFFF;
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-tip.co-t.tip-placement-top .arrow {
-  border-right-color: #F33D5D;
-  border-bottom-color: #F33D5D;
+  border-right-color: #FF4965;
+  border-bottom-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.co-t.tip-placement-bottom .arrow {
-  border-left-color: #F33D5D;
-  border-top-color: #F33D5D;
+  border-left-color: #FF4965;
+  border-top-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.co-t.tip-placement-right .arrow {
-  border-bottom-color: #F33D5D;
-  border-left-color: #F33D5D;
+  border-bottom-color: #FF4965;
+  border-left-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.co-t.tip-placement-left .arrow {
-  border-top-color: #F33D5D;
-  border-right-color: #F33D5D;
+  border-top-color: #FF4965;
+  border-right-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.co-lt .con {
   color: #FFFFFF;
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-tip.co-lt.tip-placement-top .arrow {
-  border-right-color: #F86F88;
-  border-bottom-color: #F86F88;
+  border-right-color: #FF6D83;
+  border-bottom-color: #FF6D83;
   box-shadow: none;
 }
 mor-tip.co-lt.tip-placement-bottom .arrow {
-  border-left-color: #F86F88;
-  border-top-color: #F86F88;
+  border-left-color: #FF6D83;
+  border-top-color: #FF6D83;
   box-shadow: none;
 }
 mor-tip.co-lt.tip-placement-right .arrow {
-  border-bottom-color: #F86F88;
-  border-left-color: #F86F88;
+  border-bottom-color: #FF6D83;
+  border-left-color: #FF6D83;
   box-shadow: none;
 }
 mor-tip.co-lt.tip-placement-left .arrow {
-  border-top-color: #F86F88;
-  border-right-color: #F86F88;
+  border-top-color: #FF6D83;
+  border-right-color: #FF6D83;
   box-shadow: none;
 }
 mor-tip.co-dt .con {
   color: #FFFFFF;
-  background-color: #D22343;
+  background-color: #D93E55;
 }
 mor-tip.co-dt.tip-placement-top .arrow {
-  border-right-color: #D22343;
-  border-bottom-color: #D22343;
+  border-right-color: #D93E55;
+  border-bottom-color: #D93E55;
   box-shadow: none;
 }
 mor-tip.co-dt.tip-placement-bottom .arrow {
-  border-left-color: #D22343;
-  border-top-color: #D22343;
+  border-left-color: #D93E55;
+  border-top-color: #D93E55;
   box-shadow: none;
 }
 mor-tip.co-dt.tip-placement-right .arrow {
-  border-bottom-color: #D22343;
-  border-left-color: #D22343;
+  border-bottom-color: #D93E55;
+  border-left-color: #D93E55;
   box-shadow: none;
 }
 mor-tip.co-dt.tip-placement-left .arrow {
-  border-top-color: #D22343;
-  border-right-color: #D22343;
+  border-top-color: #D93E55;
+  border-right-color: #D93E55;
   box-shadow: none;
 }
 mor-tip.co-s .con {
@@ -37450,50 +38228,50 @@ mor-tip.co-p.tip-placement-left .arrow {
 }
 mor-tip.co-m .con {
   color: #FFFFFF;
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
 }
 mor-tip.co-m.tip-placement-top .arrow {
-  border-right-color: #A9A9A9;
-  border-bottom-color: #A9A9A9;
+  border-right-color: #B2B2B2;
+  border-bottom-color: #B2B2B2;
   box-shadow: none;
 }
 mor-tip.co-m.tip-placement-bottom .arrow {
-  border-left-color: #A9A9A9;
-  border-top-color: #A9A9A9;
+  border-left-color: #B2B2B2;
+  border-top-color: #B2B2B2;
   box-shadow: none;
 }
 mor-tip.co-m.tip-placement-right .arrow {
-  border-bottom-color: #A9A9A9;
-  border-left-color: #A9A9A9;
+  border-bottom-color: #B2B2B2;
+  border-left-color: #B2B2B2;
   box-shadow: none;
 }
 mor-tip.co-m.tip-placement-left .arrow {
-  border-top-color: #A9A9A9;
-  border-right-color: #A9A9A9;
+  border-top-color: #B2B2B2;
+  border-right-color: #B2B2B2;
   box-shadow: none;
 }
 mor-tip.co-i .con {
   color: #FFFFFF;
-  background-color: #37B8B4;
+  background-color: #18B8B6;
 }
 mor-tip.co-i.tip-placement-top .arrow {
-  border-right-color: #37B8B4;
-  border-bottom-color: #37B8B4;
+  border-right-color: #18B8B6;
+  border-bottom-color: #18B8B6;
   box-shadow: none;
 }
 mor-tip.co-i.tip-placement-bottom .arrow {
-  border-left-color: #37B8B4;
-  border-top-color: #37B8B4;
+  border-left-color: #18B8B6;
+  border-top-color: #18B8B6;
   box-shadow: none;
 }
 mor-tip.co-i.tip-placement-right .arrow {
-  border-bottom-color: #37B8B4;
-  border-left-color: #37B8B4;
+  border-bottom-color: #18B8B6;
+  border-left-color: #18B8B6;
   box-shadow: none;
 }
 mor-tip.co-i.tip-placement-left .arrow {
-  border-top-color: #37B8B4;
-  border-right-color: #37B8B4;
+  border-top-color: #18B8B6;
+  border-right-color: #18B8B6;
   box-shadow: none;
 }
 mor-tip.co-bk .con {
@@ -37810,26 +38588,26 @@ mor-tip.co-wh.tip-placement-left .arrow {
 }
 mor-tip .con {
   color: #FFFFFF;
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-tip.tip-placement-top .arrow {
-  border-right-color: #F33D5D;
-  border-bottom-color: #F33D5D;
+  border-right-color: #FF4965;
+  border-bottom-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.tip-placement-bottom .arrow {
-  border-left-color: #F33D5D;
-  border-top-color: #F33D5D;
+  border-left-color: #FF4965;
+  border-top-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.tip-placement-right .arrow {
-  border-bottom-color: #F33D5D;
-  border-left-color: #F33D5D;
+  border-bottom-color: #FF4965;
+  border-left-color: #FF4965;
   box-shadow: none;
 }
 mor-tip.tip-placement-left .arrow {
-  border-top-color: #F33D5D;
-  border-right-color: #F33D5D;
+  border-top-color: #FF4965;
+  border-right-color: #FF4965;
   box-shadow: none;
 }
 mor-popover {
@@ -38087,19 +38865,19 @@ mor-message .body {
   text-overflow: ellipsis;
 }
 mor-message .msg-co-t {
-  background-color: #F33D5D;
+  background-color: #FF4965;
 }
 mor-message .msg-co-t .bo-ti {
   color: #FFFFFF;
 }
 mor-message .msg-co-lt {
-  background-color: #F86F88;
+  background-color: #FF6D83;
 }
 mor-message .msg-co-lt .bo-ti {
   color: #FFFFFF;
 }
 mor-message .msg-co-dt {
-  background-color: #D22343;
+  background-color: #D93E55;
 }
 mor-message .msg-co-dt .bo-ti {
   color: #FFFFFF;
@@ -38129,13 +38907,13 @@ mor-message .msg-co-p .bo-ti {
   color: #FFFFFF;
 }
 mor-message .msg-co-m {
-  background-color: #A9A9A9;
+  background-color: #B2B2B2;
 }
 mor-message .msg-co-m .bo-ti {
   color: #FFFFFF;
 }
 mor-message .msg-co-i {
-  background-color: #37B8B4;
+  background-color: #18B8B6;
 }
 mor-message .msg-co-i .bo-ti {
   color: #FFFFFF;
@@ -38342,18 +39120,18 @@ mor-alert.type-primary .alert-icon {
   color: #0663f9;
 }
 mor-alert.type-minor {
-  background: #e9e9e9;
-  border-color: #cfcfcf;
+  background: #f2f2f2;
+  border-color: #d8d8d8;
 }
 mor-alert.type-minor .alert-icon {
-  color: #5d5d5d;
+  color: #666666;
 }
 mor-alert.type-info {
-  background: #96bfbe;
-  border-color: #37B8B4;
+  background: #6ccac9;
+  border-color: #18B8B6;
 }
 mor-alert.type-info .alert-icon {
-  color: #206967;
+  color: #0c5e5d;
 }
 @keyframes move-right-in {
   from {
@@ -38567,7 +39345,7 @@ mor-carousel.indicator-type-dot .control .indicator li > i {
 mor-carousel.indicator-type-dot .control .indicator li.current > i {
   width: 20px;
   height: 10px;
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-carousel.indicator-type-dot.direction-vertical .control .indicator li {
   height: 10px;
@@ -38581,7 +39359,7 @@ mor-carousel.indicator-type-dot.direction-vertical .control .indicator li.curren
 mor-carousel.indicator-type-dot.direction-vertical .control .indicator li.current > i {
   width: 10px;
   height: 20px;
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-carousel.indicator-type-line .control .indicator li {
   height: 4px;
@@ -38598,7 +39376,7 @@ mor-carousel.indicator-type-line .control .indicator li i {
 }
 mor-carousel.indicator-type-line .control .indicator li.current > i {
   width: 20px;
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-carousel.toggle-type-none .carousel-list > div {
   display: none;
@@ -38845,8 +39623,8 @@ mor-textinput input:hover::placeholder {
 }
 mor-textinput input:focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
   color: #000000 !important;
 }
 mor-textinput .form-body {
@@ -38919,7 +39697,7 @@ mor-textinput.input-group.input-group-prepend-inline .input-group-addon + .input
   border-left: 0;
 }
 mor-textinput.input-group.input-group-prepend-inline.input-focus .input-group-addon:first-child {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-textinput.input-group.input-group-append-inline .input-group-addon:nth-child(3) {
   background: #FFFFFF;
@@ -38929,7 +39707,7 @@ mor-textinput.input-group.input-group-append-inline input.has-append {
   border-right: 0;
 }
 mor-textinput.input-group.input-group-append-inline.input-focus .input-group-addon:nth-child(3) {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-textinput.si-xs > .form-name {
   font-size: 13px;
@@ -39134,8 +39912,8 @@ mor-textarea textarea:hover::placeholder {
 }
 mor-textarea textarea:focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
   color: #000000 !important;
 }
 mor-textarea textarea::-webkit-scrollbar {
@@ -39276,8 +40054,8 @@ mor-texteditor .editor-wrap {
 }
 mor-texteditor .editor-wrap.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
 }
 mor-texteditor > .form-name:empty + .editor-wrap {
   height: 100%;
@@ -40009,61 +40787,61 @@ mor-switch.co-t .open-note {
   color: #999999;
 }
 mor-switch.co-t .close-note {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-switch.co-t.open .open-note {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-switch.co-t.open .close-note {
   color: #999999;
 }
 mor-switch.co-t.open .track {
-  background: #F33D5D;
-  box-shadow: 0 0 3px #be0c2b inset;
-  border: 1px #d60d31 solid;
+  background: #FF4965;
+  box-shadow: 0 0 3px #e20023 inset;
+  border: 1px #fb0027 solid;
 }
 mor-switch.co-t.open .track .point {
-  box-shadow: 0 0 4px #a60a26;
+  box-shadow: 0 0 4px #c8001f;
 }
 mor-switch.co-lt .open-note {
   color: #999999;
 }
 mor-switch.co-lt .close-note {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-switch.co-lt.open .open-note {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-switch.co-lt.open .close-note {
   color: #999999;
 }
 mor-switch.co-lt.open .track {
-  background: #F86F88;
-  box-shadow: 0 0 3px #f64868 inset;
-  border: 1px #f75270 solid;
+  background: #FF6D83;
+  box-shadow: 0 0 3px #ff4460 inset;
+  border: 1px #ff4e69 solid;
 }
 mor-switch.co-lt.open .track .point {
-  box-shadow: 0 0 4px #f4264c;
+  box-shadow: 0 0 4px #ff2142;
 }
 mor-switch.co-dt .open-note {
   color: #999999;
 }
 mor-switch.co-dt .close-note {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-switch.co-dt.open .open-note {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-switch.co-dt.open .close-note {
   color: #999999;
 }
 mor-switch.co-dt.open .track {
-  background: #D22343;
-  box-shadow: 0 0 3px #991a31 inset;
-  border: 1px #a61c35 solid;
+  background: #D93E55;
+  box-shadow: 0 0 3px #b22338 inset;
+  border: 1px #be263c solid;
 }
 mor-switch.co-dt.open .track .point {
-  box-shadow: 0 0 4px #7b1427;
+  box-shadow: 0 0 4px #941d2f;
 }
 mor-switch.co-s .open-note {
   color: #999999;
@@ -40149,41 +40927,41 @@ mor-switch.co-m .open-note {
   color: #999999;
 }
 mor-switch.co-m .close-note {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-switch.co-m.open .open-note {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-switch.co-m.open .close-note {
   color: #999999;
 }
 mor-switch.co-m.open .track {
-  background: #A9A9A9;
-  box-shadow: 0 0 3px #888888 inset;
-  border: 1px #909090 solid;
+  background: #B2B2B2;
+  box-shadow: 0 0 3px #919191 inset;
+  border: 1px #999999 solid;
 }
 mor-switch.co-m.open .track .point {
-  box-shadow: 0 0 4px #696969;
+  box-shadow: 0 0 4px #727272;
 }
 mor-switch.co-i .open-note {
   color: #999999;
 }
 mor-switch.co-i .close-note {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-switch.co-i.open .open-note {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-switch.co-i.open .close-note {
   color: #999999;
 }
 mor-switch.co-i.open .track {
-  background: #37B8B4;
-  box-shadow: 0 0 3px #288582 inset;
-  border: 1px #2b918e solid;
+  background: #18B8B6;
+  box-shadow: 0 0 3px #107d7c inset;
+  border: 1px #128b89 solid;
 }
 mor-switch.co-i.open .track .point {
-  box-shadow: 0 0 4px #1a5654;
+  box-shadow: 0 0 4px #094746;
 }
 mor-switch.co-bk .open-note {
   color: #999999;
@@ -40622,21 +41400,21 @@ mor-switch .open-note {
   color: #999999;
 }
 mor-switch .close-note {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-switch.open .open-note {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-switch.open .close-note {
   color: #999999;
 }
 mor-switch.open .track {
-  background: #F33D5D;
-  box-shadow: 0 0 3px #be0c2b inset;
-  border: 1px #d60d31 solid;
+  background: #FF4965;
+  box-shadow: 0 0 3px #e20023 inset;
+  border: 1px #fb0027 solid;
 }
 mor-switch.open .track .point {
-  box-shadow: 0 0 4px #a60a26;
+  box-shadow: 0 0 4px #c8001f;
 }
 mor-rate {
   display: inline-block;
@@ -40730,12 +41508,12 @@ mor-rate .rate-list > li > span {
 }
 mor-rate .rate-list > li.current > i,
 mor-rate .rate-list > li.current > span {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-rate .rate-list > li.half-current > i,
 mor-rate .rate-list > li.half-current > span {
   /* stylelint-disable max-line-length */
-  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F33D5D ), color-stop(0.5,  #e1e1e1 ), to( #e1e1e1 ));
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #FF4965 ), color-stop(0.5,  #e1e1e1 ), to( #e1e1e1 ));
   /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40758,7 +41536,7 @@ mor-rate .rate-list.in-hover > li.half-current > span {
 mor-rate .rate-list.in-hover > li.half-hover > i,
 mor-rate .rate-list.in-hover > li.half-hover > span {
   /* stylelint-disable max-line-length */
-  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F86F88 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #FF6D83 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
   /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40768,7 +41546,7 @@ mor-rate .rate-list.in-hover > li.hover {
 }
 mor-rate .rate-list.in-hover > li.hover > i,
 mor-rate .rate-list.in-hover > li.hover > span {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-rate .rate-list.in-hover + .note {
   color: #999999;
@@ -40818,14 +41596,14 @@ mor-rate.st-disabled .rate-list > li.current > i,
 mor-rate.st-readonly .rate-list > li.current > i,
 mor-rate.st-disabled .rate-list > li.current > span,
 mor-rate.st-readonly .rate-list > li.current > span {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-rate.st-disabled .rate-list > li.half-current > i,
 mor-rate.st-readonly .rate-list > li.half-current > i,
 mor-rate.st-disabled .rate-list > li.half-current > span,
 mor-rate.st-readonly .rate-list > li.half-current > span {
   /* stylelint-disable max-line-length */
-  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #D22343 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #D93E55 ), color-stop(0.5,  #dcdcdc ), to( #dcdcdc ));
   /* stylelint-enable max-line-length */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40976,8 +41754,8 @@ mor-counter input:hover::placeholder {
 }
 mor-counter input:focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
   color: #000000 !important;
 }
 mor-counter.controls-on-both input {
@@ -41468,8 +42246,8 @@ mor-select.input-group .input-group-addon {
 }
 mor-select .wrap.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
 }
 mor-select.separate {
   height: 0;
@@ -41562,14 +42340,14 @@ mor-select.input-group .select-area {
   top: 50%;
   transform: translateY(-50%);
   box-sizing: border-box;
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mor-select-wrap li.selected {
   background: #f8f8f8;
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mor-select-wrap li.selected.hover {
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mor-select-wrap li.hide {
   display: none;
@@ -42216,120 +42994,120 @@ mor-checkbox.co-t > .il label .box.focus-once {
 }
 mor-checkbox.co-t > .il label.checked .box,
 mor-checkbox.co-t > .il label.part-checked .box {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-checkbox.co-t.border > .il label.checked,
 mor-checkbox.co-t.border > .il label.part-checked {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-checkbox.co-t.type-button > .il label:not(.checked):hover {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-checkbox.co-t.type-button > .il label:not(.checked):hover span {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-checkbox.co-t.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-checkbox.co-t.type-button > .il label.checked {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-checkbox.co-t.type-button > .il label.checked + label {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-checkbox.co-t.st-disabled > .il label.checked .box,
 mor-checkbox.co-t.st-readonly > .il label.checked .box,
 mor-checkbox.co-t.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-t.st-readonly > .il label.part-checked .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-checkbox.co-t > .il label.checked.disabled .box,
 mor-checkbox.co-t > .il label.part-checked.disabled .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-checkbox.co-lt > .il label .box.focus-once {
   animation: formFocusAnimateLightTheme 0.42s ease-out;
 }
 mor-checkbox.co-lt > .il label.checked .box,
 mor-checkbox.co-lt > .il label.part-checked .box {
-  background: #F86F88;
-  border-color: #F86F88;
+  background: #FF6D83;
+  border-color: #FF6D83;
 }
 mor-checkbox.co-lt.border > .il label.checked,
 mor-checkbox.co-lt.border > .il label.part-checked {
-  border-color: #F86F88;
+  border-color: #FF6D83;
 }
 mor-checkbox.co-lt.type-button > .il label:not(.checked):hover {
-  border-color: #F86F88;
+  border-color: #FF6D83;
 }
 mor-checkbox.co-lt.type-button > .il label:not(.checked):hover span {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-checkbox.co-lt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #F86F88;
+  border-left-color: #FF6D83;
 }
 mor-checkbox.co-lt.type-button > .il label.checked {
-  background: #F86F88;
-  border-color: #F86F88;
+  background: #FF6D83;
+  border-color: #FF6D83;
 }
 mor-checkbox.co-lt.type-button > .il label.checked + label {
-  border-left-color: #F86F88;
+  border-left-color: #FF6D83;
 }
 mor-checkbox.co-lt.st-disabled > .il label.checked .box,
 mor-checkbox.co-lt.st-readonly > .il label.checked .box,
 mor-checkbox.co-lt.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-lt.st-readonly > .il label.part-checked .box {
-  background: #e97e92;
-  border-color: #e97e92;
+  background: #f07c8d;
+  border-color: #f07c8d;
 }
 mor-checkbox.co-lt > .il label.checked.disabled .box,
 mor-checkbox.co-lt > .il label.part-checked.disabled .box {
-  background: #e97e92;
-  border-color: #e97e92;
+  background: #f07c8d;
+  border-color: #f07c8d;
 }
 mor-checkbox.co-dt > .il label .box.focus-once {
   animation: formFocusAnimateDarkTheme 0.42s ease-out;
 }
 mor-checkbox.co-dt > .il label.checked .box,
 mor-checkbox.co-dt > .il label.part-checked .box {
-  background: #D22343;
-  border-color: #D22343;
+  background: #D93E55;
+  border-color: #D93E55;
 }
 mor-checkbox.co-dt.border > .il label.checked,
 mor-checkbox.co-dt.border > .il label.part-checked {
-  border-color: #D22343;
+  border-color: #D93E55;
 }
 mor-checkbox.co-dt.type-button > .il label:not(.checked):hover {
-  border-color: #D22343;
+  border-color: #D93E55;
 }
 mor-checkbox.co-dt.type-button > .il label:not(.checked):hover span {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-checkbox.co-dt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #D22343;
+  border-left-color: #D93E55;
 }
 mor-checkbox.co-dt.type-button > .il label.checked {
-  background: #D22343;
-  border-color: #D22343;
+  background: #D93E55;
+  border-color: #D93E55;
 }
 mor-checkbox.co-dt.type-button > .il label.checked + label {
-  border-left-color: #D22343;
+  border-left-color: #D93E55;
 }
 mor-checkbox.co-dt.st-disabled > .il label.checked .box,
 mor-checkbox.co-dt.st-readonly > .il label.checked .box,
 mor-checkbox.co-dt.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-dt.st-readonly > .il label.part-checked .box {
-  background: #b93c53;
-  border-color: #b93c53;
+  background: #c25565;
+  border-color: #c25565;
 }
 mor-checkbox.co-dt > .il label.checked.disabled .box,
 mor-checkbox.co-dt > .il label.part-checked.disabled .box {
-  background: #b93c53;
-  border-color: #b93c53;
+  background: #c25565;
+  border-color: #c25565;
 }
 mor-checkbox.co-s > .il label .box.focus-once {
   animation: formFocusAnimateSuccess 0.42s ease-out;
@@ -42496,80 +43274,80 @@ mor-checkbox.co-m > .il label .box.focus-once {
 }
 mor-checkbox.co-m > .il label.checked .box,
 mor-checkbox.co-m > .il label.part-checked .box {
-  background: #A9A9A9;
-  border-color: #A9A9A9;
+  background: #B2B2B2;
+  border-color: #B2B2B2;
 }
 mor-checkbox.co-m.border > .il label.checked,
 mor-checkbox.co-m.border > .il label.part-checked {
-  border-color: #A9A9A9;
+  border-color: #B2B2B2;
 }
 mor-checkbox.co-m.type-button > .il label:not(.checked):hover {
-  border-color: #A9A9A9;
+  border-color: #B2B2B2;
 }
 mor-checkbox.co-m.type-button > .il label:not(.checked):hover span {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-checkbox.co-m.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #A9A9A9;
+  border-left-color: #B2B2B2;
 }
 mor-checkbox.co-m.type-button > .il label.checked {
-  background: #A9A9A9;
-  border-color: #A9A9A9;
+  background: #B2B2B2;
+  border-color: #B2B2B2;
 }
 mor-checkbox.co-m.type-button > .il label.checked + label {
-  border-left-color: #A9A9A9;
+  border-left-color: #B2B2B2;
 }
 mor-checkbox.co-m.st-disabled > .il label.checked .box,
 mor-checkbox.co-m.st-readonly > .il label.checked .box,
 mor-checkbox.co-m.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-m.st-readonly > .il label.part-checked .box {
-  background: #a9a9a9;
-  border-color: #a9a9a9;
+  background: #b2b2b2;
+  border-color: #b2b2b2;
 }
 mor-checkbox.co-m > .il label.checked.disabled .box,
 mor-checkbox.co-m > .il label.part-checked.disabled .box {
-  background: #a9a9a9;
-  border-color: #a9a9a9;
+  background: #b2b2b2;
+  border-color: #b2b2b2;
 }
 mor-checkbox.co-i > .il label .box.focus-once {
   animation: formFocusAnimateInfo 0.42s ease-out;
 }
 mor-checkbox.co-i > .il label.checked .box,
 mor-checkbox.co-i > .il label.part-checked .box {
-  background: #37B8B4;
-  border-color: #37B8B4;
+  background: #18B8B6;
+  border-color: #18B8B6;
 }
 mor-checkbox.co-i.border > .il label.checked,
 mor-checkbox.co-i.border > .il label.part-checked {
-  border-color: #37B8B4;
+  border-color: #18B8B6;
 }
 mor-checkbox.co-i.type-button > .il label:not(.checked):hover {
-  border-color: #37B8B4;
+  border-color: #18B8B6;
 }
 mor-checkbox.co-i.type-button > .il label:not(.checked):hover span {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-checkbox.co-i.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #37B8B4;
+  border-left-color: #18B8B6;
 }
 mor-checkbox.co-i.type-button > .il label.checked {
-  background: #37B8B4;
-  border-color: #37B8B4;
+  background: #18B8B6;
+  border-color: #18B8B6;
 }
 mor-checkbox.co-i.type-button > .il label.checked + label {
-  border-left-color: #37B8B4;
+  border-left-color: #18B8B6;
 }
 mor-checkbox.co-i.st-disabled > .il label.checked .box,
 mor-checkbox.co-i.st-readonly > .il label.checked .box,
 mor-checkbox.co-i.st-disabled > .il label.part-checked .box,
 mor-checkbox.co-i.st-readonly > .il label.part-checked .box {
-  background: #4fa09e;
-  border-color: #4fa09e;
+  background: #2da3a2;
+  border-color: #2da3a2;
 }
 mor-checkbox.co-i > .il label.checked.disabled .box,
 mor-checkbox.co-i > .il label.part-checked.disabled .box {
-  background: #4fa09e;
-  border-color: #4fa09e;
+  background: #2da3a2;
+  border-color: #2da3a2;
 }
 mor-checkbox.co-bk > .il label.checked .box,
 mor-checkbox.co-bk > .il label.part-checked .box {
@@ -43205,40 +43983,40 @@ mor-checkbox > .il label .box.focus-once {
 }
 mor-checkbox > .il label.checked .box,
 mor-checkbox > .il label.part-checked .box {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-checkbox.border > .il label.checked,
 mor-checkbox.border > .il label.part-checked {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-checkbox.type-button > .il label:not(.checked):hover {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-checkbox.type-button > .il label:not(.checked):hover span {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-checkbox.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-checkbox.type-button > .il label.checked {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-checkbox.type-button > .il label.checked + label {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-checkbox.st-disabled > .il label.checked .box,
 mor-checkbox.st-readonly > .il label.checked .box,
 mor-checkbox.st-disabled > .il label.part-checked .box,
 mor-checkbox.st-readonly > .il label.part-checked .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-checkbox > .il label.checked.disabled .box,
 mor-checkbox > .il label.part-checked.disabled .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-radio {
   width: 100%;
@@ -43538,115 +44316,115 @@ mor-radio.co-t > .il label .box.focus-once {
   animation: formFocusAnimateTheme 0.42s ease-out;
 }
 mor-radio.co-t > .il label.checked .box {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-radio.co-t.border > .il label.checked {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-radio.co-t.type-point .radio-point {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-radio.co-t.type-button > .il label:not(.checked):hover {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-radio.co-t.type-button > .il label:not(.checked):hover span {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-radio.co-t.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-radio.co-t.type-button > .il label.checked {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-radio.co-t.type-button > .il label.checked + label {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-radio.co-t.st-disabled > .il label.checked .box,
 mor-radio.co-t.st-readonly > .il label.checked .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-radio.co-t > .il label.checked.disabled .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-radio.co-lt > .il label .box.focus-once {
   animation: formFocusAnimateLightTheme 0.42s ease-out;
 }
 mor-radio.co-lt > .il label.checked .box {
-  background: #F86F88;
-  border-color: #F86F88;
+  background: #FF6D83;
+  border-color: #FF6D83;
 }
 mor-radio.co-lt.border > .il label.checked {
-  border-color: #F86F88;
+  border-color: #FF6D83;
 }
 mor-radio.co-lt.type-point .radio-point {
-  background: #F86F88;
+  background: #FF6D83;
 }
 mor-radio.co-lt.type-button > .il label:not(.checked):hover {
-  border-color: #F86F88;
+  border-color: #FF6D83;
 }
 mor-radio.co-lt.type-button > .il label:not(.checked):hover span {
-  color: #F86F88;
+  color: #FF6D83;
 }
 mor-radio.co-lt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #F86F88;
+  border-left-color: #FF6D83;
 }
 mor-radio.co-lt.type-button > .il label.checked {
-  background: #F86F88;
-  border-color: #F86F88;
+  background: #FF6D83;
+  border-color: #FF6D83;
 }
 mor-radio.co-lt.type-button > .il label.checked + label {
-  border-left-color: #F86F88;
+  border-left-color: #FF6D83;
 }
 mor-radio.co-lt.st-disabled > .il label.checked .box,
 mor-radio.co-lt.st-readonly > .il label.checked .box {
-  background: #e97e92;
-  border-color: #e97e92;
+  background: #f07c8d;
+  border-color: #f07c8d;
 }
 mor-radio.co-lt > .il label.checked.disabled .box {
-  background: #e97e92;
-  border-color: #e97e92;
+  background: #f07c8d;
+  border-color: #f07c8d;
 }
 mor-radio.co-dt > .il label .box.focus-once {
   animation: formFocusAnimateDarkTheme 0.42s ease-out;
 }
 mor-radio.co-dt > .il label.checked .box {
-  background: #D22343;
-  border-color: #D22343;
+  background: #D93E55;
+  border-color: #D93E55;
 }
 mor-radio.co-dt.border > .il label.checked {
-  border-color: #D22343;
+  border-color: #D93E55;
 }
 mor-radio.co-dt.type-point .radio-point {
-  background: #D22343;
+  background: #D93E55;
 }
 mor-radio.co-dt.type-button > .il label:not(.checked):hover {
-  border-color: #D22343;
+  border-color: #D93E55;
 }
 mor-radio.co-dt.type-button > .il label:not(.checked):hover span {
-  color: #D22343;
+  color: #D93E55;
 }
 mor-radio.co-dt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #D22343;
+  border-left-color: #D93E55;
 }
 mor-radio.co-dt.type-button > .il label.checked {
-  background: #D22343;
-  border-color: #D22343;
+  background: #D93E55;
+  border-color: #D93E55;
 }
 mor-radio.co-dt.type-button > .il label.checked + label {
-  border-left-color: #D22343;
+  border-left-color: #D93E55;
 }
 mor-radio.co-dt.st-disabled > .il label.checked .box,
 mor-radio.co-dt.st-readonly > .il label.checked .box {
-  background: #b93c53;
-  border-color: #b93c53;
+  background: #c25565;
+  border-color: #c25565;
 }
 mor-radio.co-dt > .il label.checked.disabled .box {
-  background: #b93c53;
-  border-color: #b93c53;
+  background: #c25565;
+  border-color: #c25565;
 }
 mor-radio.co-s > .il label .box.focus-once {
   animation: formFocusAnimateSuccess 0.42s ease-out;
@@ -43804,77 +44582,77 @@ mor-radio.co-m > .il label .box.focus-once {
   animation: formFocusAnimateMinor 0.42s ease-out;
 }
 mor-radio.co-m > .il label.checked .box {
-  background: #A9A9A9;
-  border-color: #A9A9A9;
+  background: #B2B2B2;
+  border-color: #B2B2B2;
 }
 mor-radio.co-m.border > .il label.checked {
-  border-color: #A9A9A9;
+  border-color: #B2B2B2;
 }
 mor-radio.co-m.type-point .radio-point {
-  background: #A9A9A9;
+  background: #B2B2B2;
 }
 mor-radio.co-m.type-button > .il label:not(.checked):hover {
-  border-color: #A9A9A9;
+  border-color: #B2B2B2;
 }
 mor-radio.co-m.type-button > .il label:not(.checked):hover span {
-  color: #A9A9A9;
+  color: #B2B2B2;
 }
 mor-radio.co-m.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #A9A9A9;
+  border-left-color: #B2B2B2;
 }
 mor-radio.co-m.type-button > .il label.checked {
-  background: #A9A9A9;
-  border-color: #A9A9A9;
+  background: #B2B2B2;
+  border-color: #B2B2B2;
 }
 mor-radio.co-m.type-button > .il label.checked + label {
-  border-left-color: #A9A9A9;
+  border-left-color: #B2B2B2;
 }
 mor-radio.co-m.st-disabled > .il label.checked .box,
 mor-radio.co-m.st-readonly > .il label.checked .box {
-  background: #a9a9a9;
-  border-color: #a9a9a9;
+  background: #b2b2b2;
+  border-color: #b2b2b2;
 }
 mor-radio.co-m > .il label.checked.disabled .box {
-  background: #a9a9a9;
-  border-color: #a9a9a9;
+  background: #b2b2b2;
+  border-color: #b2b2b2;
 }
 mor-radio.co-i > .il label .box.focus-once {
   animation: formFocusAnimateInfo 0.42s ease-out;
 }
 mor-radio.co-i > .il label.checked .box {
-  background: #37B8B4;
-  border-color: #37B8B4;
+  background: #18B8B6;
+  border-color: #18B8B6;
 }
 mor-radio.co-i.border > .il label.checked {
-  border-color: #37B8B4;
+  border-color: #18B8B6;
 }
 mor-radio.co-i.type-point .radio-point {
-  background: #37B8B4;
+  background: #18B8B6;
 }
 mor-radio.co-i.type-button > .il label:not(.checked):hover {
-  border-color: #37B8B4;
+  border-color: #18B8B6;
 }
 mor-radio.co-i.type-button > .il label:not(.checked):hover span {
-  color: #37B8B4;
+  color: #18B8B6;
 }
 mor-radio.co-i.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #37B8B4;
+  border-left-color: #18B8B6;
 }
 mor-radio.co-i.type-button > .il label.checked {
-  background: #37B8B4;
-  border-color: #37B8B4;
+  background: #18B8B6;
+  border-color: #18B8B6;
 }
 mor-radio.co-i.type-button > .il label.checked + label {
-  border-left-color: #37B8B4;
+  border-left-color: #18B8B6;
 }
 mor-radio.co-i.st-disabled > .il label.checked .box,
 mor-radio.co-i.st-readonly > .il label.checked .box {
-  background: #4fa09e;
-  border-color: #4fa09e;
+  background: #2da3a2;
+  border-color: #2da3a2;
 }
 mor-radio.co-i > .il label.checked.disabled .box {
-  background: #4fa09e;
-  border-color: #4fa09e;
+  background: #2da3a2;
+  border-color: #2da3a2;
 }
 mor-radio.co-bk > .il label.checked .box {
   background: #000000;
@@ -44475,39 +45253,39 @@ mor-radio > .il label .box.focus-once {
   animation: formFocusAnimateTheme 0.42s ease-out;
 }
 mor-radio > .il label.checked .box {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-radio.border > .il label.checked {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-radio.type-point .radio-point {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-radio.type-button > .il label:not(.checked):hover {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-radio.type-button > .il label:not(.checked):hover span {
-  color: #F33D5D;
+  color: #FF4965;
 }
 mor-radio.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-radio.type-button > .il label.checked {
-  background: #F33D5D;
-  border-color: #F33D5D;
+  background: #FF4965;
+  border-color: #FF4965;
 }
 mor-radio.type-button > .il label.checked + label {
-  border-left-color: #F33D5D;
+  border-left-color: #FF4965;
 }
 mor-radio.st-disabled > .il label.checked .box,
 mor-radio.st-readonly > .il label.checked .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-radio > .il label.checked.disabled .box {
-  background: #de526a;
-  border-color: #de526a;
+  background: #ed5b72;
+  border-color: #ed5b72;
 }
 mor-transfer {
   position: relative;
@@ -45087,8 +45865,8 @@ mor-cascader .cascader-wrap .cascader-input:hover {
 }
 mor-cascader .cascader-wrap .cascader-input.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
 }
 mor-cascader .cascader-wrap .cascader-input > .mo-icon {
   position: absolute;
@@ -45253,7 +46031,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.current {
   background: #FFFFFF;
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.last-current {
   background: #f3f3f3;
@@ -45302,11 +46080,11 @@ mor-cascader .cascader-wrap .cascader-input > .note {
 }
 .mor-cascader-search-result ul li.selected {
   background: #f8f8f8;
-  color: #F33D5D;
+  color: #FF4965;
   cursor: default;
 }
 .mor-cascader-search-result ul li.selected:hover {
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mor-cascader-search-result ul li.selected .mo-cascader-selected-icon {
   font-size: 12px;
@@ -45317,7 +46095,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
   top: 50%;
   transform: translateY(-50%);
   box-sizing: border-box;
-  color: #F33D5D;
+  color: #FF4965;
 }
 .mor-cascader-search-result ul li:not(.nomatch):hover {
   cursor: pointer;
@@ -45489,8 +46267,8 @@ mor-multiinput .form-body {
 }
 mor-multiinput .form-body.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
 }
 mor-multiinput .form-body .cleanicon {
   position: absolute;
@@ -46150,11 +46928,11 @@ mor-slider .wrap.droping .track {
 }
 mor-slider .wrap:hover .selected-line,
 mor-slider .wrap.droping .selected-line {
-  background: #F33D5D;
+  background: #FF4965;
 }
 mor-slider .wrap:hover .main-slider,
 mor-slider .wrap.droping .main-slider {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-slider .points {
   padding: 0;
@@ -46209,7 +46987,7 @@ mor-slider .selected-line {
   position: absolute;
   left: 0;
   top: 0;
-  background: #F86F88;
+  background: #FF6D83;
   border-radius: 10em;
   pointer-events: none;
 }
@@ -46217,7 +46995,7 @@ mor-slider .main-slider {
   position: absolute;
   left: 0;
   background: #FFFFFF;
-  border: 2px #F86F88 solid;
+  border: 2px #FF6D83 solid;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -47768,7 +48546,7 @@ mor-upload:hover > .upload-wrap {
   border-color: #d6d6d6;
 }
 mor-upload.focus > .upload-wrap {
-  border-color: #F33D5D;
+  border-color: #FF4965;
 }
 mor-upload.st-disabled .upload-wrap,
 mor-upload.st-readonly .upload-wrap {
@@ -47889,8 +48667,8 @@ mor-colorpicker .preview-wrap {
 }
 mor-colorpicker .preview-wrap.focus {
   transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-color: #FF4965;
+  box-shadow: 0 0 0 2px rgba(255, 73, 101, 0.15);
 }
 mor-colorpicker .preview {
   box-sizing: border-box;
@@ -49335,7 +50113,7 @@ mor-private-tree ul.tree-body .tree-node > span .node-name {
   border-radius: 3px;
 }
 mor-private-tree ul.tree-body .tree-node > span .node-name.current {
-  background: #fdd0d8;
+  background: #ffd3da;
 }
 mor-private-tree ul.tree-body .tree-node > span .leafnode-icon {
   display: inline-block;

@@ -21,18 +21,34 @@
     :::
 
     :::vue
+    @name:按钮图标
+    ---
+    #demo
+    >desc
+    可以通过`<i>`标签在按钮中使用图标
+    >tpl
+    <ui-btn><i class="mo-icon mo-icon-love-o"></i> 按钮</ui-btn>
+    :::
+
+    :::vue
     @name:按钮的多种样式
     ---
     #demo
     >desc
     按钮支持以下样式类：
     <br><br>
-    - `plain` : 朴素的按钮
+    - `plain` : 朴素按钮
+    - `ghost` : 幽灵按钮
+    - `fade` : 褪色按钮
     - `round` : 圆角按钮
     - `circle` : 圆形按钮
     >tpl
     <div>
-        <ui-btn class="plain">朴素的按钮</ui-btn>
+        <ui-btn class="plain">朴素按钮</ui-btn>
+        <br><br>
+        <ui-btn class="ghost">幽灵按钮</ui-btn>
+        <br><br>
+        <ui-btn class="fade">褪色按钮</ui-btn>
         <br><br>
         <ui-btn class="round">圆角按钮</ui-btn>
         <br><br>
@@ -51,6 +67,14 @@
         <ui-btn class="circle plain">
             <i class="mo-icon mo-icon-star-f"></i>
         </ui-btn>
+    </div>
+    ---
+    #demo
+    >desc
+    其中`fade`和`ghost`进行组合。
+    >tpl
+    <div>
+        <ui-btn class="ghost fade" color="light-theme">按钮</ui-btn>
     </div>
     :::
 
@@ -127,8 +151,10 @@
     ---
     <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
     <ui-btn color="{$colorKey}" class="plain">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" class="ghost">{$&colorName}</ui-btn>
     <ui-btn color="{$colorKey}" locked>{$&colorName}</ui-btn>
     <ui-btn color="{$colorKey}" locked class="plain">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" locked class="ghost">{$&colorName}</ui-btn>
     <br><br>
     :::
 

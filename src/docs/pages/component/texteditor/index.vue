@@ -127,7 +127,7 @@
     >conf-type
     String
     >conf-default
-    `''`
+    `'请输入'`
     ---
     #demo
     >tpl

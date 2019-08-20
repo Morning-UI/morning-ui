@@ -667,7 +667,7 @@ export default {
     props : {
         insideName : {
             type : String,
-            default : ''
+            default : '请输入'
         },
         tools : {
             type : Array,
