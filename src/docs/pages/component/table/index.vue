@@ -1226,9 +1226,9 @@
     >title
     sortmode
     >desc
-    通过`sortmode`字段可以设置仅支持正序。
+    通过`sortmode`字段可以设置仅支持正序，必须配合`multi-sort`配置。
     >tpl
-    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    <ui-table :list="list" :col-set="colset" multi-sort :show-col-name="true" export-csv></ui-table>
     >script
     {
         data : {
