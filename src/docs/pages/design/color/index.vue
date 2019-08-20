@@ -62,15 +62,15 @@
             <p class="name">主要/关键</p>
             <p class="color">#2879FA</p>
         </div>
-        <div class="item w3" style="background:#a9a9a9;">
+        <div class="item w3" style="background:#B2B2B2;">
             <p class="key">minor</p>
             <p class="name">次要/不醒目</p>
-            <p class="color">#a9a9a9</p>
+            <p class="color">#B2B2B2</p>
         </div>
-        <div class="item w3" style="background:#37B8B4;">
+        <div class="item w3" style="background:#18B8B6;">
             <p class="key">info</p>
             <p class="name">信息/额外</p>
-            <p class="color">#37B8B4</p>
+            <p class="color">#18B8B6</p>
         </div>
     </div>
 

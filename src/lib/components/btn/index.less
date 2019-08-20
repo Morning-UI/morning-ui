@@ -9,33 +9,11 @@
 .setup-color(@selector, @colorHex, @name) {
     @{selector} {
         background-color: @colorHex;
-        color: if(
-            (
-                @name = wh or
-                @name = n1 or
-                @name = n2 or
-                @name = n3 or
-                @name = n4 or
-                @name = n5
-            ),
-            @colorBlack,
-            @colorWhite
-        );
+        color: if((@name = wh or @name = n1 or @name = n2 or @name = n3 or @name = n4 or @name = n5), @colorBlack, @colorWhite);
 
         .mo-loader{
             .mo-loader-path{
-                stroke: if(
-                    (
-                        @name = wh or
-                        @name = n1 or
-                        @name = n2 or
-                        @name = n3 or
-                        @name = n4 or
-                        @name = n5
-                    ),
-                    @colorNeutral10,
-                    @colorWhite
-                );
+                stroke: if((@name = wh or @name = n1 or @name = n2 or @name = n3 or @name = n4 or @name = n5), @colorNeutral10, @colorWhite);
             }
         }
 
@@ -55,7 +33,7 @@
             &.plain,
             &.ghost {
                 color: @colorWhite;
-            } 
+            }
         }
 
         & when (@name = bk), (@name = n6), (@name = n7), (@name = n8), (@name = n9), (@name = n10), (@name = n11) {
@@ -67,49 +45,15 @@
 
         &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
-            background-color: if(
-                (
-                    @name = wh or
-                    @name = n1 or
-                    @name = n2 or
-                    @name = n3 or
-                    @name = n4 or
-                    @name = n5
-                ),
-                darken(@colorHex, 7%),
-                lighten(@colorHex, 7%)
-            );
+            background-color: if((@name = wh or @name = n1 or @name = n2 or @name = n3 or @name = n4 or @name = n5), darken(@colorHex, 7%), lighten(@colorHex, 7%));
 
             &.plain{
-                color: if(
-                    (
-                        @name = wh or
-                        @name = n1 or
-                        @name = n2 or
-                        @name = n3 or
-                        @name = n4 or
-                        @name = n5
-                    ),
-                    @colorBlack,
-                    @colorWhite
-                );
-
+                color: if((@name = wh or @name = n1 or @name = n2 or @name = n3 or @name = n4 or @name = n5), @colorBlack, @colorWhite);
                 background-color: @colorHex;
 
                 .mo-loader{
                     .mo-loader-path{
-                        stroke: if(
-                            (
-                                @name = wh or
-                                @name = n1 or
-                                @name = n2 or
-                                @name = n3 or
-                                @name = n4 or
-                                @name = n5
-                            ),
-                            @colorBlack,
-                            @colorWhite
-                        );
+                        stroke: if((@name = wh or @name = n1 or @name = n2 or @name = n3 or @name = n4 or @name = n5), @colorBlack, @colorWhite);
                     }
                 }
             }
@@ -117,18 +61,7 @@
 
         &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
-            background-color: if(
-                (
-                    @name = wh or
-                    @name = n1 or
-                    @name = n2 or
-                    @name = n3 or
-                    @name = n4 or
-                    @name = n5
-                ),
-                darken(@colorHex, 12%),
-                desaturate(@colorHex, 12%)
-            );
+            background-color: if((@name = wh or @name = n1 or @name = n2 or @name = n3 or @name = n4 or @name = n5), darken(@colorHex, 12%), desaturate(@colorHex, 12%));
 
             &.plain{
                 background-color: darken(@colorHex, 10%);
@@ -261,7 +194,7 @@ mor-btn{
             &.circle{
                 width: extract(@sizeBtnHeight, @index);
             }
-            
+
             > i{
                 font-size: @fontSize*extract(@sizeIFontSize, @index);
             }
@@ -279,7 +212,7 @@ mor-btn{
             &.circle{
                 width: extract(@sizeBtnHeight, @index);
             }
-            
+
             > i{
                 font-size: @fontSize*extract(@sizeIFontSize, @index);
             }
@@ -312,7 +245,7 @@ mor-btn{
 
     each(range(11), {
         @colorName : 'colorNeutral@{value}';
-        
+
         .setup-color(e(%('&.co-n%S', @value)), @@colorName, e(%('n%S', @value)));
 
         &.co-n@{value}{
@@ -464,11 +397,11 @@ mor-btn{
         &.ghost,
         &.plain{
             color: @colorNeutral10;
-            border-color: lighten(@colorMinor, 18%);
+            border-color: lighten(@colorMinor, 15.5%);
         }
 
         &.plain{
-            background-color: lighten(@colorMinor, 30.5%);
+            background-color: lighten(@colorMinor, 27%);
         }
 
         &.plain{
@@ -487,7 +420,7 @@ mor-btn{
         &.ghost{
             &:not(.st-disabled):not(.st-readonly):hover,
             &.st-hover{
-                background-color: lighten(@colorMinor, 30.5%);
+                background-color: lighten(@colorMinor, 27%);
             }
 
             &:not(.st-disabled):not(.st-readonly):active,
