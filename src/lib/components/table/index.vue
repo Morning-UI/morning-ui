@@ -528,37 +528,37 @@ export default {
                         mainRows[index]._sub = this.data[`${subType}Rows`][index];
 
                     }
-        
+                    
                     newMainRows = sortBy(mainRows, item => {
-
+                    
                         let val = item[colIndex];
-
+                    
                         // 处理HTML标签
                         if (/<[a-zA-Z-]+>/.test(val)) {
-
+                    
                             let divEle = document.createElement('div');
-
+                    
                             divEle.innerHTML = val;
                             val = divEle.innerText;
-
+                    
                         }
-
+                    
                         // 处理百分比的情况
                         if (/^[\d.]+%$/.test(val)) {
-
+                    
                             val = +val.replace(/%$/, '');
-
+                    
                         }
-
+                    
                         // 尝试转换成数字
                         if (!isNaN(+val)) {
-
+                    
                             val = Number(val);
-
+                    
                         }
-
+                    
                         return val;
-
+                    
                     });
 
                     if (sort.type === 'desc') {
