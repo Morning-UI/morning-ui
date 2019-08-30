@@ -25,6 +25,7 @@
         :end-name="endName"
         :done-hidden="doneHidden"
         :relative="relative"
+        :hidden-icon="hiddenIcon"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -51,6 +52,7 @@
             :show-timepicker-box="true"
             :done-hidden="conf.doneHidden"
             :relative="conf.relative"
+            :hidden-icon="conf.hiddenIcon"
             :_relative-time="conf.relative"
 
             @value-change="_syncFromInputToRoot(0)"
@@ -190,6 +192,10 @@ export default {
         relative : {
             type : Boolean,
             default : false
+        },
+        hiddenIcon : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -210,7 +216,8 @@ export default {
                 startName : this.startName,
                 endName : this.endName,
                 doneHidden : this.doneHidden,
-                relative : this.relative
+                relative : this.relative,
+                hiddenIcon : this.hiddenIcon
             };
 
         },

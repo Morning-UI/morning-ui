@@ -21,6 +21,7 @@
         :has-quick-pick="hasQuickPick"
         :relative="relative"
         :month-pick="monthPick"
+        :hiddenIcon="hiddenIcon"
         :_date-popover-add-class="_datePopoverAddClass"
         :_relative-time="_relativeTime"
         :_range-input-direction="_rangeInputDirection"
@@ -33,7 +34,7 @@
         :align="conf.align"
         :state="conf.state"
         :size="conf.size"
-        prepend="<i class='mo-icon mo-icon-date'></i>"
+        :prepend="!conf.hiddenIcon && '<i class=\'mo-icon mo-icon-date\'></i>'"
 
         @focus="_inputFocus"
         @blur="_inputBlur"
@@ -58,7 +59,7 @@
     >
 
         <div class="date-select">
-            
+
             <div class="timepicker" v-if="conf.showTimepickerBox">
                 <slot name="timepicker"></slot>
             </div>
@@ -171,6 +172,10 @@ export default {
             type : Boolean,
             default : false
         },
+        hiddenIcon : {
+            type : Boolean,
+            default : false
+        },
         _datePopoverAddClass : {
             type : String,
             default : ''
@@ -201,6 +206,7 @@ export default {
                 hasQuickPick : this.hasQuickPick,
                 relative : this.relative,
                 monthPick : this.monthPick,
+                hiddenIcon : this.hiddenIcon,
                 _datePopoverAddClass : this._datePopoverAddClass,
                 _relativeTime : this._relativeTime,
                 _rangeInputDirection : this._rangeInputDirection

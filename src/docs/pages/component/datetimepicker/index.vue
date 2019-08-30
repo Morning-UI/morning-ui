@@ -928,6 +928,34 @@
     </div>
     :::
 
+    :::vue
+    @name:hidden-icon
+    ---
+    #config
+    >conf-desc
+    隐藏日期时间选择器的图标。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" :hidden-icon="true"></ui-datetimepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`is-range`一起使用。
+    >tpl
+    <div style="width:420px;">
+        <ui-datetimepicker form-name="日期时间" is-range :hidden-icon="true"></ui-datetimepicker>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

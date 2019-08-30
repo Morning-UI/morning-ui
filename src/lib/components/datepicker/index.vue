@@ -26,6 +26,7 @@
         :done-hidden="doneHidden"
         :relative="relative"
         :month-pick="monthPick"
+        :hidden-icon="hiddenIcon"
         :_quick-pick-unit="_quickPickUnit"
         :_relative-time="_relativeTime"
     >
@@ -34,7 +35,7 @@
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
     <div class="wrap form-body">
-        <div class="input-group-addon" v-if="conf.isRange">
+        <div class="input-group-addon" v-if="conf.isRange && !conf.hiddenIcon">
             <i class='mo-icon mo-icon-date'></i>
         </div>
 
@@ -57,6 +58,7 @@
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
                     :month-pick="conf.monthPick"
+                    :hidden-icon="conf.hiddenIcon"
                     :_date-popover-add-class="'date-select-0'"
                     :_relative-time="conf._relativeTime"
                     :_range-input-direction="conf.rangeInputDirection === 'vertical'"
@@ -233,6 +235,7 @@
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
                     :month-pick="conf.monthPick"
+                    :hidden-icon="conf.hiddenIcon"
                     :_relative-time="conf._relativeTime"
 
                     @value-change="_syncValueFromInputToRoot"
@@ -469,6 +472,10 @@ export default {
             type : Boolean,
             default : false
         },
+        hiddenIcon : {
+            type : Boolean,
+            default : false
+        },
         _relativeTime : {
             type : Boolean,
             default : false
@@ -494,6 +501,7 @@ export default {
                 doneHidden : this.doneHidden,
                 relative : this.relative,
                 monthPick : this.monthPick,
+                hiddenIcon : this.hiddenIcon,
                 _quickPickUnit : this._quickPickUnit,
                 _relativeTime : this._relativeTime
             };
@@ -521,7 +529,9 @@ export default {
             return {
                 'has-quick-pick' : (this.conf.quickPick.length > 0),
                 'inline-separator' : (this.conf.separatorType === 'inline'),
-                'range-input-vertical' : (this.conf.rangeInputDirection === 'vertical')
+                'range-input-vertical' : (this.conf.rangeInputDirection === 'vertical'),
+                'component-focus' : this.data.lastComponentFocusStatus,
+                'hidden-icon' : this.conf.hiddenIcon
             };
 
         }

@@ -46175,6 +46175,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
 
 var _dateFns = __webpack_require__(10);
 
@@ -46282,6 +46285,10 @@ exports.default = {
             type: Boolean,
             default: false
         },
+        hiddenIcon: {
+            type: Boolean,
+            default: false
+        },
         _relativeTime: {
             type: Boolean,
             default: false
@@ -46307,6 +46314,7 @@ exports.default = {
                 doneHidden: this.doneHidden,
                 relative: this.relative,
                 monthPick: this.monthPick,
+                hiddenIcon: this.hiddenIcon,
                 _quickPickUnit: this._quickPickUnit,
                 _relativeTime: this._relativeTime
             };
@@ -46330,7 +46338,9 @@ exports.default = {
             return {
                 'has-quick-pick': this.conf.quickPick.length > 0,
                 'inline-separator': this.conf.separatorType === 'inline',
-                'range-input-vertical': this.conf.rangeInputDirection === 'vertical'
+                'range-input-vertical': this.conf.rangeInputDirection === 'vertical',
+                'component-focus': this.data.lastComponentFocusStatus,
+                'hidden-icon': this.conf.hiddenIcon
             };
         }
     },
@@ -47701,6 +47711,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _dateFns = __webpack_require__(10);
 
@@ -47797,6 +47809,10 @@ exports.default = {
         relative: {
             type: Boolean,
             default: false
+        },
+        hiddenIcon: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -47817,7 +47833,8 @@ exports.default = {
                 startName: this.startName,
                 endName: this.endName,
                 doneHidden: this.doneHidden,
-                relative: this.relative
+                relative: this.relative,
+                hiddenIcon: this.hiddenIcon
             };
         },
         timeSelectableRangeAll: function timeSelectableRangeAll() {
@@ -53102,6 +53119,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
     origin: 'Form',
@@ -53171,6 +53189,10 @@ exports.default = {
             type: Boolean,
             default: false
         },
+        hiddenIcon: {
+            type: Boolean,
+            default: false
+        },
         _datePopoverAddClass: {
             type: String,
             default: ''
@@ -53201,6 +53223,7 @@ exports.default = {
                 hasQuickPick: this.hasQuickPick,
                 relative: this.relative,
                 monthPick: this.monthPick,
+                hiddenIcon: this.hiddenIcon,
                 _datePopoverAddClass: this._datePopoverAddClass,
                 _relativeTime: this._relativeTime,
                 _rangeInputDirection: this._rangeInputDirection
@@ -62018,6 +62041,7 @@ var render = function() {
         "has-quick-pick": _vm.hasQuickPick,
         relative: _vm.relative,
         "month-pick": _vm.monthPick,
+        hiddenIcon: _vm.hiddenIcon,
         "_date-popover-add-class": _vm._datePopoverAddClass,
         "_relative-time": _vm._relativeTime,
         "_range-input-direction": _vm._rangeInputDirection
@@ -62032,7 +62056,8 @@ var render = function() {
           align: _vm.conf.align,
           state: _vm.conf.state,
           size: _vm.conf.size,
-          prepend: "<i class='mo-icon mo-icon-date'></i>"
+          prepend:
+            !_vm.conf.hiddenIcon && "<i class='mo-icon mo-icon-date'></i>"
         },
         on: { focus: _vm._inputFocus, blur: _vm._inputBlur },
         model: {
@@ -65156,7 +65181,8 @@ var render = function() {
         "start-name": _vm.startName,
         "end-name": _vm.endName,
         "done-hidden": _vm.doneHidden,
-        relative: _vm.relative
+        relative: _vm.relative,
+        "hidden-icon": _vm.hiddenIcon
       }
     },
     [
@@ -65199,6 +65225,7 @@ var render = function() {
                 "show-timepicker-box": true,
                 "done-hidden": _vm.conf.doneHidden,
                 relative: _vm.conf.relative,
+                "hidden-icon": _vm.conf.hiddenIcon,
                 "_relative-time": _vm.conf.relative
               },
               on: {
@@ -65343,6 +65370,7 @@ var render = function() {
         "done-hidden": _vm.doneHidden,
         relative: _vm.relative,
         "month-pick": _vm.monthPick,
+        "hidden-icon": _vm.hiddenIcon,
         "_quick-pick-unit": _vm._quickPickUnit,
         "_relative-time": _vm._relativeTime
       }
@@ -65361,7 +65389,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "wrap form-body" }, [
-        _vm.conf.isRange
+        _vm.conf.isRange && !_vm.conf.hiddenIcon
           ? _c("div", { staticClass: "input-group-addon" }, [
               _c("i", { staticClass: "mo-icon mo-icon-date" })
             ])
@@ -65395,6 +65423,7 @@ var render = function() {
                         "has-quick-pick": this.conf.quickPick.length > 0,
                         relative: _vm.conf.relative,
                         "month-pick": _vm.conf.monthPick,
+                        "hidden-icon": _vm.conf.hiddenIcon,
                         "_date-popover-add-class": "date-select-0",
                         "_relative-time": _vm.conf._relativeTime,
                         "_range-input-direction":
@@ -65947,6 +65976,7 @@ var render = function() {
                         "has-quick-pick": this.conf.quickPick.length > 0,
                         relative: _vm.conf.relative,
                         "month-pick": _vm.conf.monthPick,
+                        "hidden-icon": _vm.conf.hiddenIcon,
                         "_relative-time": _vm.conf._relativeTime
                       },
                       on: {
@@ -77152,9 +77182,15 @@ var MediaControl = {
         _mcSyncCurrentTime: function _mcSyncCurrentTime() {
             var _this = this;
 
+            var mediaSlider = this.$refs['mor-media-slider-' + this.uiid];
+
             this.data.mcDontSyncCurrentTime = true;
             this.data.mcCurrentTime = Math.floor(this.data.mc$media.currentTime || 0);
-            this.$refs['mor-media-slider-' + this.uiid].set(this.data.mcCurrentTime);
+
+            if (mediaSlider) {
+
+                mediaSlider.set(this.data.mcCurrentTime);
+            }
 
             this.Vue.nextTick(function () {
 
@@ -81036,7 +81072,6 @@ var morning = {
         primary: 'p',
         minor: 'm',
         info: 'i',
-
         'neutral-1': 'n1',
         'neutral-2': 'n2',
         'neutral-3': 'n3',
@@ -81051,7 +81086,7 @@ var morning = {
         black: 'bk',
         white: 'wh'
     },
-    _devVersion: '0.12.57-0',
+    _devVersion: '0.12.57-1',
     isMorning: true,
     version: '0.12.57',
     map: {}

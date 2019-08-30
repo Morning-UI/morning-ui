@@ -899,6 +899,34 @@
     </div>
     :::
 
+    :::vue
+    @name:hidden-icon
+    ---
+    #config
+    >conf-desc
+    隐藏日期选择器的图标。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :hidden-icon="true" format="yyyy-MM"></ui-datepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`is-range`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" is-range :hidden-icon="true" format="yyyy-MM"></ui-datepicker>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset
