@@ -27,6 +27,7 @@
         :relative="relative"
         :month-pick="monthPick"
         :hidden-icon="hiddenIcon"
+        :confirm-area="confirmArea"
         :_quick-pick-unit="_quickPickUnit"
         :_relative-time="_relativeTime"
     >

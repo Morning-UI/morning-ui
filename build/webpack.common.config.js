@@ -270,7 +270,7 @@ prodVerConfig = extend(
                     })
                 },
                 {
-                    test : /\.woff$/,
+                    test : /\.(woff|png)$/,
                     exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'

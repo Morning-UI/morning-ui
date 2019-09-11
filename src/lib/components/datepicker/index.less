@@ -335,6 +335,11 @@ mor-datepicker{
             border-top-right-radius: 0;
             border-right: none;
         }
+
+        .popover-con{
+            box-shadow: -2px 0 3px rgba(0, 0, 0, 0.1);
+            border-radius: @borderRadius @borderRadius 0 @borderRadius;
+        }
     }
 
     &.date-select-1{
@@ -348,6 +353,18 @@ mor-datepicker{
         .date-select{
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
+        }
+
+        .popover-con{
+            box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
+            border-radius: @borderRadius @borderRadius @borderRadius 0;
+        }
+
+        mor-calendar{
+            header,
+            .calendar{
+                border-left: 1px @colorNeutral2 solid;
+            }
         }
     }
 
@@ -400,5 +417,9 @@ mor-datepicker{
             box-sizing: border-box;
             margin-left: @quickPickWidth;
         }
+    }
+
+    mor-calendar .pick-day{
+        padding: 0 8px 8px 8px;
     }
 }

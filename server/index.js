@@ -41,6 +41,14 @@ router
         next();
 
     })
+    .get('/texteditor-style.less', async (ctx, next) => {
+        
+        ctx.set('Content-Type', 'application/json');
+        ctx.body = fs.readFileSync('./src/lib/components/texteditor/texteditor-style.less');
+
+        next();
+
+    })
     .get('/favicon.ico', async (ctx, next) => {
         
         ctx.body = fs.readFileSync('./favicon.ico');
