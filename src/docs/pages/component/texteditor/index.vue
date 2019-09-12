@@ -14,6 +14,8 @@
 
     富文本编辑器基于[quilljs](https://quilljs.com/)(版本1.3.6)打造，Morning UI深度定制并扩展了[quilljs](https://quilljs.com/)。
 
+    富文本编辑器支持`emoji`表情，使用时可以通过顶部的工具栏选择，或输入`:`加字符会出现表情提示。
+
     :::vue
     @name:使用
     ---
@@ -164,6 +166,7 @@
     |code-block|代码片段|无|
     |link|链接|无|
     |image|图片|无|
+    |emoji|emoji表情|无|
     |clean|清除样式|无|
     >conf-accept
     数组
@@ -334,6 +337,30 @@
     </div>
     :::
 
+    :::vue
+    @name:inline-style
+    ---
+    #config
+    >conf-desc
+    在输出富文本内容时，将部分格式化输出至`style`中，而不是通过`class`。
+    <br>
+    当内容较少时`style`的形式可以输出更小的文本，当内容较多时`class`的形式可以输出更小的文本。
+    <br>
+    目前仅对：`缩进(indent)`有效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:100%;height:240px;padding-bottom:70px;">
+        <ui-texteditor :inline-style="true"></ui-texteditor>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset
@@ -342,6 +369,46 @@
     @value:'<p>编辑你的文章...</p>'
     @defaultValue:'<p>编辑你的文章...</p>'
     @wrapStyle:width:100%;height:260px;padding-bottom:80px;
+    :::
+
+    :::vue
+    @name:getHtml()
+    ---
+    #method
+    >method-desc
+    获取富文本内容。
+    >method-return
+    富文本内容。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:100%;height:240px;padding-bottom:70px;">
+            <ui-texteditor ref="demo3"></ui-texteditor>
+        </div>
+        <br>
+        <ui-link js="console.log(morning.findVM('demo3').getHtml());">获取内容</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:getHtmlWithoutStyle()
+    ---
+    #method
+    >method-desc
+    获取富文本内容（不包含样式）。<br>由于样式大小较大，可以通过此方法获取不包含样式的Html，然后在展示的位置通过外链样式来达到效果（[获取样式文件](/texteditor-style.less)）。
+    >method-return
+    富文本内容。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:100%;height:240px;padding-bottom:70px;">
+            <ui-texteditor ref="demo4"></ui-texteditor>
+        </div>
+        <br>
+        <ui-link js="console.log(morning.findVM('demo4').getHtmlWithoutStyle());">获取内容</ui-link>
+    </div>
     :::
 
     [[[事件]]]

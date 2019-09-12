@@ -47,7 +47,8 @@ mor-datepicker{
         .datepicker-input-0{
             mor-textinput{
                 input{
-                    border-radius: 0;
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
                 }
             }
         }
@@ -65,6 +66,17 @@ mor-datepicker{
 
             &.inline{
                 padding: 0;
+            }
+        }
+    }
+
+    &:not(.hidden-icon).wrap{
+        .datepicker-input-0{
+            mor-textinput{
+                input{
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
             }
         }
     }
@@ -137,6 +149,56 @@ mor-datepicker{
 
                 mor-textinput.input-focus{
                     z-index: 3;
+                }
+            }
+        }
+
+        &.hidden-icon{
+            .wrap{
+                .datepicker-input-0{
+                    mor-textinput input{
+                        border-radius: @borderRadius @borderRadius 0 0;
+                    }
+                }
+
+                .datepicker-input-1{
+                    mor-textinput input{
+                        border-radius: 0 0 @borderRadius @borderRadius;
+                    }
+                }
+            }
+        }
+    }
+
+    &.inline-separator{
+        .datepicker-input-1,
+        .datepicker-input-0{
+            > mor-textinput input:focus{
+                border-color: @colorFormBorder;
+                box-shadow: unset;
+            }
+        }
+
+        &.component-focus{
+            .datepicker-input-0{
+                > mor-textinput input{
+                }
+            }
+
+            .separator{
+                transition: border-color 0.2s, box-shadow 0.2s;
+                border-color: @colorFormBorderFocus;
+                box-shadow: 0 -2px 0 0 rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.15), 0 2px 0 0 rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.15);
+                z-index: 9;
+                background-color: @colorWhite;
+            }
+
+            .datepicker-input-1,
+            .datepicker-input-0{
+                > mor-textinput input{
+                    transition: border-color 0.2s, box-shadow 0.2s;
+                    border-color: @colorFormBorderFocus;
+                    box-shadow: 0 0 0 2px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.15);
                 }
             }
         }
@@ -273,6 +335,11 @@ mor-datepicker{
             border-top-right-radius: 0;
             border-right: none;
         }
+
+        .popover-con{
+            box-shadow: -2px 0 3px rgba(0, 0, 0, 0.1);
+            border-radius: @borderRadius @borderRadius 0 @borderRadius;
+        }
     }
 
     &.date-select-1{
@@ -286,6 +353,18 @@ mor-datepicker{
         .date-select{
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
+        }
+
+        .popover-con{
+            box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
+            border-radius: @borderRadius @borderRadius @borderRadius 0;
+        }
+
+        mor-calendar{
+            header,
+            .calendar{
+                border-left: 1px @colorNeutral2 solid;
+            }
         }
     }
 
@@ -338,5 +417,9 @@ mor-datepicker{
             box-sizing: border-box;
             margin-left: @quickPickWidth;
         }
+    }
+
+    mor-calendar .pick-day{
+        padding: 0 8px 8px;
     }
 }

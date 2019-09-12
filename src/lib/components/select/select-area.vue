@@ -126,6 +126,7 @@
                 :showItemList="showItemList"
                 :uiid="uiid"
                 :_itemHover="_itemHover"
+                :_multiSelect="_multiSelect"
             ></select-list>
 
         </morning-popover>
@@ -140,6 +141,7 @@
             :showItemList="showItemList"
             :uiid="uiid"
             :_itemHover="_itemHover"
+            :_multiSelect="_multiSelect"
         ></select-list>
     </div>
 </template>
@@ -168,6 +170,7 @@ export default {
         '_textinputBlur',
         '_listClick',
         '_itemHover',
+        '_multiSelect',
         'showItemList',
         'set'
     ]

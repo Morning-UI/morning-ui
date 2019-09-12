@@ -21,11 +21,11 @@ mor-calendar{
             .prev-year,
             .next-year{
                 font-size: @fontSize*0.875;
-                color: @colorComponentItemFont;
+                color: @colorNeutral8;
 
                 &:hover{
                     cursor: pointer;
-                    color: @colorComponentItemFontHover;
+                    color: @colorNeutral10;
                 }
             }
 
@@ -42,12 +42,12 @@ mor-calendar{
 
                 .year,
                 .month{
-                    color: @colorComponentItemFont;
+                    color: @colorNeutral8;
                     display: inline-block;
 
                     &:hover{
                         cursor: pointer;
-                        color: @colorComponentItemFontHover;
+                        color: @colorNeutral10;
                     }
                 }
 
@@ -62,7 +62,7 @@ mor-calendar{
             .title{
                 border-top: 1px @colorComponentItemBorder solid;
                 // border-bottom: 1px @colorComponentItemBorder solid;
-                padding: @fontSize 0;
+                padding: @fontSize @fontSize*0.5;
             }
 
             .weekday{
@@ -75,14 +75,14 @@ mor-calendar{
                     display: inline-block;
                     font-size: @fontSize*0.75;
                     margin: 0;
-                    color: @colorNeutral9;
+                    color: @colorNeutral8;
                 }
             }
 
             .title{
                 text-align: center;
                 font-size: @fontSize*0.75;
-                color: @colorComponentItemFont;
+                color: @colorNeutral8;
             }
         }
     }
@@ -96,7 +96,7 @@ mor-calendar{
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        padding-bottom: @fontSize*0.5;
+        padding: 0 @fontSize*0.5 @fontSize*0.5 @fontSize*0.5;
     }
 
     .select-layer{
@@ -179,13 +179,26 @@ mor-calendar{
         flex-wrap: wrap;
     }
 
+    .pick-month .month,
+    .pick-year .year{
+        display: flex;
+        align-items: center;
+
+        .inner-layer{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
     .pick-month .month{
         width: calc(100% / 3);
         padding: 0;
         height: @fontSize*2.625;
         line-height: @fontSize*2.625;
         text-align: center;
-        color: @colorComponentItemFontHover;
+        color: @colorNeutral10;
 
         &:hover{
             color: @colorBlack;
@@ -200,7 +213,7 @@ mor-calendar{
         height: @fontSize*2.125;
         line-height: @fontSize*2.125;
         text-align: center;
-        color: @colorComponentItemFontHover;
+        color: @colorNeutral10;
 
         &:hover{
             color: @colorBlack;
@@ -297,7 +310,7 @@ mor-calendar{
         &.start.bg-mark-disabled,
         &.end.bg-mark-disabled{
             .inner-layer{
-                background-color: @colorNeutral9;
+                background-color: @colorNeutral8;
             }
 
             .select-layer{
@@ -463,7 +476,7 @@ mor-calendar{
     &.mode-month{
         .pick-month .month{
             &:hover{
-                color: @colorComponentItemFontHover;
+                color: @colorNeutral10;
                 background-color: inherit;
                 cursor: default;
             }
@@ -486,7 +499,7 @@ mor-calendar{
     &.mode-year{
         .pick-year .year{
             &:hover{
-                color: @colorComponentItemFontHover;
+                color: @colorNeutral10;
                 background-color: inherit;
                 cursor: default;
             }
