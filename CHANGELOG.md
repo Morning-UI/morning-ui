@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.12.58
+
+`2019年9月12日`
+    
+#### 新特性
+
+- `ui-texteditor`支持`emoji`表情
+- `ui-datepicker`和`ui-datetimepicker`新增`hidden-icon`配置
+- `ui-texteditor`新增`inline-style`配置
+- `ui-texteditor`新增`getHtml()`和`getHtmlWithoutStyle()`方法
+- `ui-select`支持`select-btn`配置
+
+#### 改进
+
+- 优化`ui-datepicker`、`ui-datetimepicker`、`ui-timepicker`样式，使其符合设计规范
+- 优化`ui-popover`阴影样式
+
+#### 修复
+
+- 修复`ui-anchor`中的一处问题
+- 修复`ui-calendar`月份和年份选择时样式问题
+
 ## 0.12.57
 
 `2019年8月20日`

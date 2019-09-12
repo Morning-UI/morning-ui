@@ -18,6 +18,38 @@
     
     ### 更新记录
 
+    ### 0.12.58 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年9月12日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.58" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.58/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.58/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-texteditor`支持`emoji`表情
+    - `ui-datepicker`和`ui-datetimepicker`新增`hidden-icon`配置
+    - `ui-texteditor`新增`inline-style`配置
+    - `ui-texteditor`新增`getHtml()`和`getHtmlWithoutStyle()`方法
+    - `ui-select`支持`select-btn`配置
+    
+    #### 改进
+    
+    - 优化`ui-datepicker`、`ui-datetimepicker`、`ui-timepicker`样式，使其符合设计规范
+    - 优化`ui-popover`阴影样式
+    
+    #### 修复
+    
+    - 修复`ui-anchor`中的一处问题
+    - 修复`ui-calendar`月份和年份选择时样式问题
+    
+    ---
+
     ### 0.12.57 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
