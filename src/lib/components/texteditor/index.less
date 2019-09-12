@@ -69,6 +69,8 @@ mor-texteditor{
         overflow-x: visible;
         width: 100%;
         border: none !important;
+
+        .setup-scrollbar();
     }
 
     .ql-formats{
@@ -106,8 +108,11 @@ mor-texteditor{
         content: '移除';
     }
 
-    // 编辑器内样式
+    .emoji-palette #tab-panel{
+        .setup-scrollbar();
+    }
 
+    // 编辑器内样式
     .ql-editor p,
     .ql-editor ol,
     .ql-editor ul,
@@ -121,7 +126,7 @@ mor-texteditor{
     .ql-editor h6 {
         margin: 0;
         padding: 0;
-        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+        counter-reset: l-1 l-2 l-3 l-4 l-5 l-6 l-7 l-8 l-9;
     }
 
     .ql-editor ol,
@@ -132,6 +137,10 @@ mor-texteditor{
     .ql-editor ol > li,
     .ql-editor ul > li {
         list-style-type: none;
+    }
+
+    .ql-editor ul > li::before {
+        content: '\2022';
     }
 
     .ql-editor li::before {
@@ -152,116 +161,116 @@ mor-texteditor{
     }
 
     .ql-editor ol li {
-        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
-        counter-increment: list-0;
+        counter-reset: l-1 l-2 l-3 l-4 l-5 l-6 l-7 l-8 l-9;
+        counter-increment: l-0;
     }
 
     .ql-editor ol li::before {
-        content: counter(list-0, decimal) '. ';
+        content: counter(l-0, decimal) '. ';
     }
 
-    .ql-editor ol li.ql-indent-1 {
-        counter-increment: list-1;
+    .ql-editor ol li.ql-i-1 {
+        counter-increment: l-1;
     }
 
-    .ql-editor ol li.ql-indent-1::before {
-        content: counter(list-1, lower-alpha) '. ';
+    .ql-editor ol li.ql-i-1::before {
+        content: counter(l-1, lower-alpha) '. ';
     }
 
-    .ql-editor ol li.ql-indent-1 {
-        counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+    .ql-editor ol li.ql-i-1 {
+        counter-reset: l-2 l-3 l-4 l-5 l-6 l-7 l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-2 {
-        counter-increment: list-2;
+    .ql-editor ol li.ql-i-2 {
+        counter-increment: l-2;
     }
 
-    .ql-editor ol li.ql-indent-2::before {
-        content: counter(list-2, lower-roman) '. ';
+    .ql-editor ol li.ql-i-2::before {
+        content: counter(l-2, lower-roman) '. ';
     }
 
-    .ql-editor ol li.ql-indent-2 {
-        counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+    .ql-editor ol li.ql-i-2 {
+        counter-reset: l-3 l-4 l-5 l-6 l-7 l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-3 {
-        counter-increment: list-3;
+    .ql-editor ol li.ql-i-3 {
+        counter-increment: l-3;
     }
 
-    .ql-editor ol li.ql-indent-3::before {
-        content: counter(list-3, decimal) '. ';
+    .ql-editor ol li.ql-i-3::before {
+        content: counter(l-3, decimal) '. ';
     }
 
-    .ql-editor ol li.ql-indent-3 {
-        counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
+    .ql-editor ol li.ql-i-3 {
+        counter-reset: l-4 l-5 l-6 l-7 l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-4 {
-        counter-increment: list-4;
+    .ql-editor ol li.ql-i-4 {
+        counter-increment: l-4;
     }
 
-    .ql-editor ol li.ql-indent-4::before {
-        content: counter(list-4, lower-alpha) '. ';
+    .ql-editor ol li.ql-i-4::before {
+        content: counter(l-4, lower-alpha) '. ';
     }
 
-    .ql-editor ol li.ql-indent-4 {
-        counter-reset: list-5 list-6 list-7 list-8 list-9;
+    .ql-editor ol li.ql-i-4 {
+        counter-reset: l-5 l-6 l-7 l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-5 {
-        counter-increment: list-5;
+    .ql-editor ol li.ql-i-5 {
+        counter-increment: l-5;
     }
 
-    .ql-editor ol li.ql-indent-5::before {
-        content: counter(list-5, lower-roman) '. ';
+    .ql-editor ol li.ql-i-5::before {
+        content: counter(l-5, lower-roman) '. ';
     }
 
-    .ql-editor ol li.ql-indent-5 {
-        counter-reset: list-6 list-7 list-8 list-9;
+    .ql-editor ol li.ql-i-5 {
+        counter-reset: l-6 l-7 l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-6 {
-        counter-increment: list-6;
+    .ql-editor ol li.ql-i-6 {
+        counter-increment: l-6;
     }
 
-    .ql-editor ol li.ql-indent-6::before {
-        content: counter(list-6, decimal) '. ';
+    .ql-editor ol li.ql-i-6::before {
+        content: counter(l-6, decimal) '. ';
     }
 
-    .ql-editor ol li.ql-indent-6 {
-        counter-reset: list-7 list-8 list-9;
+    .ql-editor ol li.ql-i-6 {
+        counter-reset: l-7 l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-7 {
-        counter-increment: list-7;
+    .ql-editor ol li.ql-i-7 {
+        counter-increment: l-7;
     }
 
-    .ql-editor ol li.ql-indent-7::before {
-        content: counter(list-7, lower-alpha) '. ';
+    .ql-editor ol li.ql-i-7::before {
+        content: counter(l-7, lower-alpha) '. ';
     }
 
-    .ql-editor ol li.ql-indent-7 {
-        counter-reset: list-8 list-9;
+    .ql-editor ol li.ql-i-7 {
+        counter-reset: l-8 l-9;
     }
 
-    .ql-editor ol li.ql-indent-8 {
-        counter-increment: list-8;
+    .ql-editor ol li.ql-i-8 {
+        counter-increment: l-8;
     }
 
-    .ql-editor ol li.ql-indent-8::before {
-        content: counter(list-8, lower-roman) '. ';
+    .ql-editor ol li.ql-i-8::before {
+        content: counter(l-8, lower-roman) '. ';
     }
 
-    .ql-editor ol li.ql-indent-8 {
-        counter-reset: list-9;
+    .ql-editor ol li.ql-i-8 {
+        counter-reset: l-9;
     }
 
-    .ql-editor ol li.ql-indent-9 {
-        counter-increment: list-9;
+    .ql-editor ol li.ql-i-9 {
+        counter-increment: l-9;
     }
 
-    .ql-editor ol li.ql-indent-9::before {
-        content: counter(list-9, decimal) '. ';
+    .ql-editor ol li.ql-i-9::before {
+        content: counter(l-9, decimal) '. ';
     }
 
     .ql-editor .ql-indent-1 {

@@ -39,9 +39,16 @@ let MediaControl = {
         },
         _mcSyncCurrentTime : function () {
 
+            let mediaSlider = this.$refs[`mor-media-slider-${this.uiid}`];
+
             this.data.mcDontSyncCurrentTime = true;
             this.data.mcCurrentTime = Math.floor(this.data.mc$media.currentTime || 0);
-            this.$refs[`mor-media-slider-${this.uiid}`].set(this.data.mcCurrentTime);
+
+            if (mediaSlider) {
+    
+                mediaSlider.set(this.data.mcCurrentTime);
+
+            }
 
             this.Vue.nextTick(() => {
             

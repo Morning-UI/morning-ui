@@ -34,7 +34,6 @@ let morning = {
         primary : 'p',
         minor : 'm',
         info : 'i',
-
         'neutral-1' : 'n1',
         'neutral-2' : 'n2',
         'neutral-3' : 'n3',
@@ -49,7 +48,7 @@ let morning = {
         black : 'bk',
         white : 'wh'
     },
-    _devVersion : '0.12.57-0',
+    _devVersion : '0.12.57-2',
     isMorning : true,
     version : '0.12.57',
     map : {}
