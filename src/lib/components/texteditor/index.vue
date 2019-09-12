@@ -207,7 +207,6 @@
 
                     @value-change="_insertImage"
                 >
-                    
                 </ui-upload>
             </div>
         </morning-dialog>
@@ -220,7 +219,6 @@
  
 <script>
 import Quill                        from 'quill/core';
-import Delta                        from 'quill-delta';
 import Toolbar                      from 'quill/modules/toolbar';
 import Syntax                       from 'quill/modules/syntax';
 import Clipboard                    from 'quill/modules/clipboard';
@@ -240,8 +238,14 @@ import Link                         from 'quill/formats/link';
 import Script                       from 'quill/formats/script';
 import Strike                       from 'quill/formats/strike';
 import Underline                    from 'quill/formats/underline';
-import ImageResize                  from 'quill-image-resize-module';
-import Parchment                    from 'parchment';
+
+window.Quill = Quill;
+
+// 因为ImageResize使用了`window.Quill`，所以必须使用require
+const ImageResize = require('quill-image-resize-module').default;
+const Emoji = require('quill-emoji').default;
+const Delta = Quill.imports.delta;
+const Parchment = Quill.imports.parchment;
 
 Icons.undo = require('quill/assets/icons/undo.svg');
 Icons.redo = require('quill/assets/icons/redo.svg');
@@ -258,7 +262,7 @@ const quillImgAttributes = [
 // untils :
 const removeClass = (node, matcher) => {
 
-    node.classList.forEach((val) => {
+    node.classList.forEach(val => {
 
         if (matcher.test(val)) {
 
@@ -280,7 +284,8 @@ Divider.tagName = 'HR';
 
 // modify tools : indent(class version)
 class IdentAttributorForClass extends Parchment.Attributor.Class {
-    add(node, value) {
+
+    add (node, value) {
 
         if (value === '+1' || value === '-1') {
             
@@ -298,19 +303,17 @@ class IdentAttributorForClass extends Parchment.Attributor.Class {
             
             return true;
             
-        } else {
-
-            let result = super.add(node, value);
-
-            node.classList.add(`ql-i-${value}`);
-
-            return result;
-
         }
+
+        let result = super.add(node, value);
+
+        node.classList.add(`ql-i-${value}`);
+
+        return result;
 
     }
 
-    remove(node) {
+    remove (node) {
 
         removeClass(node, /^ql-i-/);
 
@@ -318,30 +321,33 @@ class IdentAttributorForClass extends Parchment.Attributor.Class {
 
     }
 
-    canAdd(node, value) {
+    canAdd (node, value) {
         
         return super.canAdd(node, value) || super.canAdd(node, parseInt(value));
     
     }
 
-    value(node) {
-    
-        return parseInt(super.value(node)) || undefined;  // Don't return NaN
-    
+    value (node) {
+
+        // Don't return NaN
+        return parseInt(super.value(node)) || undefined;
+
     }
 
 }
 
 let IndentClass = new IdentAttributorForClass('indent', 'ql-indent', {
-    scope: Parchment.Scope.BLOCK,
-    whitelist: [1, 2, 3, 4, 5, 6, 7, 8]
+    scope : Parchment.Scope.BLOCK,
+    whitelist : [1, 2, 3, 4, 5, 6, 7, 8]
 });
 
 // extend tools : indent(style version)
 const levels = [1, 2, 3, 4, 5, 6, 7, 8];
 const multiplier = 3;
+
 class IndentAttributorForStyle extends Parchment.Attributor.Style {
-    add(node, value) {
+
+    add (node, value) {
 
         removeClass(node, /^ql-i-/);
 
@@ -352,9 +358,10 @@ class IndentAttributorForStyle extends Parchment.Attributor.Style {
         }
 
         return super.add(node, `${value * multiplier}em`);
+
     }
 
-    remove(node) {
+    remove (node) {
 
         removeClass(node, /^ql-i-/);
 
@@ -362,19 +369,23 @@ class IndentAttributorForStyle extends Parchment.Attributor.Style {
 
     }
 
-    value(node) {
-        return parseFloat(super.value(node)) / multiplier || undefined; // Don't return NaN
+    value (node) {
+
+        // Don't return NaN
+        return parseFloat(super.value(node)) / multiplier || undefined;
+
     }
+
 }
 
 let IndentStyle = new IndentAttributorForStyle('indent', 'margin-left', {
-    scope: Parchment.Scope.BLOCK,
-    whitelist: levels.map(value => `${value * multiplier}em`)
+    scope : Parchment.Scope.BLOCK,
+    whitelist : levels.map(value => `${value * multiplier}em`)
 });
 
 // extend tools : image
 class Image extends BlockEmbed {
-    
+
     static create (value) {
 
         let node = super.create();
@@ -474,6 +485,7 @@ Quill.register({
     'formats/divider' : Divider,
 
     'formats/image' : Image,
+    'formats/emoji' : Emoji.EmojiBlot,
     // 'formats/video': Video,
     'formats/list/item' : ListItem,
 
@@ -482,6 +494,9 @@ Quill.register({
     'modules/toolbar' : Toolbar,
     'modules/syntax' : Syntax,
     'modules/imageResize' : ImageResize,
+    'modules/emoji-shortname' : Emoji.ShortNameEmoji,
+    'modules/emoji-toolbar' : Emoji.ToolbarEmoji,
+    // 'modules/emoji-textarea': Emoji.TextAreaEmoji,
     // 'modules/clipboard' : PlainClipboard,
 
     // 'themes/bubble': BubbleTheme,
@@ -968,7 +983,7 @@ export default {
         _initQuill : function () {
 
             Quill.register({
-                'formats/indent' : (this.conf.inlineStyle ? IndentStyle : IndentClass )
+                'formats/indent' : (this.conf.inlineStyle ? IndentStyle : IndentClass)
             }, true);
 
             let toolbar = {
@@ -1001,10 +1016,11 @@ export default {
 
                     },
                     emoji : () => {}
-                },
+                }
+            };
+            let modules = {
                 imageResize : {}
             };
-
             let enableEmoji = false;
 
             for (let group of this.conf.tools) {
@@ -1020,18 +1036,18 @@ export default {
 
             if (enableEmoji) {
 
-                toolbar['emoji-toolbar'] = true;
-                toolbar['emoji-textarea'] = true;
-                toolbar['emoji-shortname'] = true;
+                modules['emoji-toolbar'] = true;
+                // modules['emoji-textarea'] = true;
+                modules['emoji-shortname'] = true;
 
             }
+
+            modules.toolbar = toolbar;
 
             this.data.quill = new Quill(this.$el.querySelector('.quill'), {
                 theme : 'snow',
                 placeholder : this.conf.insideName,
-                modules : {
-                    toolbar : toolbar
-                }
+                modules : modules
             });
 
             this.data.quill.on('text-change', () => {
@@ -1085,12 +1101,9 @@ export default {
     
                     return `<style class="mo-te-style">${inlineStyleBase.replace(/(\n|[ ]{2})/g, '')}${inlineStyleForIndent.replace(/(\n|[ ]{2})/g, '')}</style><div class="mo-te">${this.getHtmlWithoutStyle()}</div>`;
 
-                } else {
-    
-                    return `<style class="mo-te-style">${inlineStyleBase.replace(/(\n|[ ]{2})/g, '')}</style><div class="mo-te">${this.getHtmlWithoutStyle()}</div>`;
-
                 }
-                
+
+                return `<style class="mo-te-style">${inlineStyleBase.replace(/(\n|[ ]{2})/g, '')}</style><div class="mo-te">${this.getHtmlWithoutStyle()}</div>`;
 
             }
 

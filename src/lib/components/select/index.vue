@@ -33,6 +33,7 @@
         :item-tip-direct="itemTipDirect"
         :list-width="listWidth"
         :collapse-limit="collapseLimit"
+        :select-btn="selectBtn"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName && !conf.separateEmit">{{conf.formName}}</div>
@@ -61,6 +62,7 @@
             :_textinputBlur="_textinputBlur"
             :_listClick="_listClick"
             :_itemHover="_itemHover"
+            :_multiSelect="_multiSelect"
             :showItemList="showItemList"
             :set="set"
         ></select-area>
@@ -99,6 +101,7 @@
                 :_textinputBlur="_textinputBlur"
                 :_listClick="_listClick"
                 :_itemHover="_itemHover"
+                :_multiSelect="_multiSelect"
                 :showItemList="showItemList"
                 :set="set"
             ></select-area>
@@ -133,6 +136,8 @@ v-else
  
 <script>
 import map                          from 'lodash.map';
+import difference                   from 'lodash.difference';
+import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import selectArea                   from './select-area.vue';
 
@@ -234,6 +239,10 @@ export default {
         collapseLimit : {
             type : Number,
             default : Infinity
+        },
+        selectBtn : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -261,7 +270,8 @@ export default {
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect,
                 listWidth : this.listWidth,
-                collapseLimit : this.collapseLimit
+                collapseLimit : this.collapseLimit,
+                selectBtn : this.selectBtn
             };
 
         },
@@ -1318,6 +1328,34 @@ export default {
             
                 evt.preventDefault();
                 evt.stopPropagation();
+
+            }
+
+        },
+        _multiSelect : function (selectAll = true) {
+
+            let currentValue = this.get();
+            let value = [];
+
+            if (selectAll) {
+
+                for (let i of this.showItemList) {
+
+                    value.push(this.data.itemValMap[i]);
+
+                }
+    
+                this._set(arrayUniq(currentValue.concat(value)));
+
+            } else {
+
+                for (let i of this.showItemList) {
+
+                    value.push(this.data.itemValMap[i]);
+
+                }
+
+                this._set(difference(currentValue, value));
 
             }
 

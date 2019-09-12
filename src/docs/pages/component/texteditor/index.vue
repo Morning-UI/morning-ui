@@ -14,6 +14,8 @@
 
     富文本编辑器基于[quilljs](https://quilljs.com/)(版本1.3.6)打造，Morning UI深度定制并扩展了[quilljs](https://quilljs.com/)。
 
+    富文本编辑器支持`emoji`表情，使用时可以通过顶部的工具栏选择，或输入`:`加字符会出现表情提示。
+
     :::vue
     @name:使用
     ---
@@ -164,6 +166,7 @@
     |code-block|代码片段|无|
     |link|链接|无|
     |image|图片|无|
+    |emoji|emoji表情|无|
     |clean|清除样式|无|
     >conf-accept
     数组

@@ -83,7 +83,8 @@ commonConfig = {
         alias : {
             Common : pathLibCommon,
             Utils : pathLibUtils,
-            Npm : pathNpm
+            Npm : pathNpm,
+            quill$ : path.resolve(pathNpm, 'quill/core')
         }
     },
     externals : {
@@ -107,9 +108,6 @@ devVerConfig = extend(
             }),
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
-            }),
-            new webpack.ProvidePlugin({
-                'window.Quill' : 'quill/core'
             }),
             extractDevCss,
             new VueLoaderPlugin()
@@ -155,6 +153,17 @@ devVerConfig = extend(
                             }
                         }]
                     })
+                },
+                {
+                    test : /\.png$/,
+                    use : [
+                        {
+                            loader : 'file-loader',
+                            options : {
+                                name : '/morning-ui.emoji.png'
+                            }
+                        }
+                    ]
                 },
                 {
                     test : /\.woff$/,
@@ -214,9 +223,6 @@ prodVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
-            new webpack.ProvidePlugin({
-                'window.Quill' : 'quill/core'
-            }),
             extractProdCss,
             new VueLoaderPlugin()
         ],
@@ -270,7 +276,18 @@ prodVerConfig = extend(
                     })
                 },
                 {
-                    test : /\.(woff|png)$/,
+                    test : /\.png$/,
+                    use : [
+                        {
+                            loader : 'file-loader',
+                            options : {
+                                name : '/morning-ui.emoji.png'
+                            }
+                        }
+                    ]
+                },
+                {
+                    test : /\.woff$/,
                     exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'

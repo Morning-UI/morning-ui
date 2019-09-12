@@ -69,6 +69,8 @@ mor-texteditor{
         overflow-x: visible;
         width: 100%;
         border: none !important;
+
+        .setup-scrollbar();
     }
 
     .ql-formats{
@@ -106,6 +108,10 @@ mor-texteditor{
         content: '移除';
     }
 
+    .emoji-palette #tab-panel{
+        .setup-scrollbar();
+    }
+
     // 编辑器内样式
     .ql-editor p,
     .ql-editor ol,
@@ -132,7 +138,7 @@ mor-texteditor{
     .ql-editor ul > li {
         list-style-type: none;
     }
-    
+
     .ql-editor ul > li::before {
         content: '\2022';
     }

@@ -13,17 +13,21 @@
     padding: 0;
     counter-reset: l-1 l-2 l-3 l-4 l-5 l-6 l-7 l-8 l-9;
 }
+
 .mo-te ol,
 .mo-te ul {
     padding-left: 1.5em;
 }
+
 .mo-te ol > li,
 .mo-te ul > li {
     list-style-type: none;
 }
+
 .mo-te ul > li::before {
-        content: '\2022';
+    content: '\2022';
 }
+
 .mo-te li::before {
     display: inline-block;
     white-space: nowrap;
@@ -32,97 +36,127 @@
     margin-right: 0.3em;
     text-align: right;
 }
+
 .mo-te ol li,
 .mo-te ul li {
     padding-left: 1.5em;
 }
+
 .mo-te ol li {
     counter-reset: l-1 l-2 l-3 l-4 l-5 l-6 l-7 l-8 l-9;
     counter-increment: l-0;
 }
-.mo-te ol li:before {
+
+.mo-te ol li::before {
     content: counter(l-0, decimal) '. ';
 }
+
 .mo-te ol li.ql-i-1 {
     counter-increment: l-1;
 }
-.mo-te ol li.ql-i-1:before {
+
+.mo-te ol li.ql-i-1::before {
     content: counter(l-1, lower-alpha) '. ';
 }
+
 .mo-te ol li.ql-i-1 {
     counter-reset: l-2 l-3 l-4 l-5 l-6 l-7 l-8 l-9;
 }
+
 .mo-te ol li.ql-i-2 {
     counter-increment: l-2;
 }
-.mo-te ol li.ql-i-2:before {
+
+.mo-te ol li.ql-i-2::before {
     content: counter(l-2, lower-roman) '. ';
 }
+
 .mo-te ol li.ql-i-2 {
     counter-reset: l-3 l-4 l-5 l-6 l-7 l-8 l-9;
 }
+
 .mo-te ol li.ql-i-3 {
     counter-increment: l-3;
 }
-.mo-te ol li.ql-i-3:before {
+
+.mo-te ol li.ql-i-3::before {
     content: counter(l-3, decimal) '. ';
 }
+
 .mo-te ol li.ql-i-3 {
     counter-reset: l-4 l-5 l-6 l-7 l-8 l-9;
 }
+
 .mo-te ol li.ql-i-4 {
     counter-increment: l-4;
 }
-.mo-te ol li.ql-i-4:before {
+
+.mo-te ol li.ql-i-4::before {
     content: counter(l-4, lower-alpha) '. ';
 }
+
 .mo-te ol li.ql-i-4 {
     counter-reset: l-5 l-6 l-7 l-8 l-9;
 }
+
 .mo-te ol li.ql-i-5 {
     counter-increment: l-5;
 }
-.mo-te ol li.ql-i-5:before {
+
+.mo-te ol li.ql-i-5::before {
     content: counter(l-5, lower-roman) '. ';
 }
+
 .mo-te ol li.ql-i-5 {
     counter-reset: l-6 l-7 l-8 l-9;
 }
+
 .mo-te ol li.ql-i-6 {
     counter-increment: l-6;
 }
-.mo-te ol li.ql-i-6:before {
+
+.mo-te ol li.ql-i-6::before {
     content: counter(l-6, decimal) '. ';
 }
+
 .mo-te ol li.ql-i-6 {
     counter-reset: l-7 l-8 l-9;
 }
+
 .mo-te ol li.ql-i-7 {
     counter-increment: l-7;
 }
-.mo-te ol li.ql-i-7:before {
+
+.mo-te ol li.ql-i-7::before {
     content: counter(l-7, lower-alpha) '. ';
 }
+
 .mo-te ol li.ql-i-7 {
     counter-reset: l-8 l-9;
 }
+
 .mo-te ol li.ql-i-8 {
     counter-increment: l-8;
 }
-.mo-te ol li.ql-i-8:before {
+
+.mo-te ol li.ql-i-8::before {
     content: counter(l-8, lower-roman) '. ';
 }
+
 .mo-te ol li.ql-i-8 {
     counter-reset: l-9;
 }
+
 .mo-te ol li.ql-i-9 {
     counter-increment: l-9;
 }
-.mo-te ol li.ql-i-9:before {
+
+.mo-te ol li.ql-i-9::before {
     content: counter(l-9, decimal) '. ';
 }
+
 .mo-te.ql-blank::before {
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     content: attr(data-placeholder);
     font-style: italic;
     left: 15px;
@@ -130,12 +164,15 @@
     position: absolute;
     right: 15px;
 }
+
 .mo-te {
     box-sizing: border-box;
 }
+
 .mo-te * {
     box-sizing: border-box;
 }
+
 .mo-te .ql-stroke {
     fill: none;
     stroke: #444;
@@ -143,137 +180,175 @@
     stroke-linejoin: round;
     stroke-width: 2;
 }
+
 .mo-te .ql-stroke-miter {
     fill: none;
     stroke: #444;
     stroke-miterlimit: 10;
     stroke-width: 2;
 }
+
 .mo-te .ql-fill,
 .mo-te .ql-stroke.ql-fill {
     fill: #444;
 }
+
 .mo-te .ql-empty {
     fill: none;
 }
+
 .mo-te .ql-even {
     fill-rule: evenodd;
 }
+
 .mo-te.ql-thin,
 .mo-te.ql-stroke.ql-thin {
     stroke-width: 1;
 }
+
 .mo-te .ql-transparent {
     opacity: 0.4;
 }
+
 .mo-te h1 {
     font-size: 2em;
     border-bottom: none;
 }
+
 .mo-te h2 {
     font-size: 1.5em;
 }
+
 .mo-te h3 {
     font-size: 1.17em;
 }
+
 .mo-te h4 {
     font-size: 1em;
 }
+
 .mo-te h5 {
     font-size: 0.83em;
 }
+
 .mo-te h6 {
     font-size: 0.67em;
 }
+
 .mo-te a {
     text-decoration: underline;
 }
+
 .mo-te blockquote {
-    border-left: 4px solid #ccc;
+    border-left: 4px solid #CCC;
     margin-bottom: 5px;
     margin-top: 5px;
     padding-left: 16px;
 }
+
 .mo-te code,
 .mo-te pre {
-    background-color: #f0f0f0;
+    background-color: #F0F0F0;
     border-radius: 3px;
 }
+
 .mo-te pre {
     white-space: pre-wrap;
     margin-bottom: 5px;
     margin-top: 5px;
     padding: 5px 10px;
 }
+
 .mo-te code {
     font-size: 85%;
     padding: 2px 4px;
 }
+
 .mo-te pre.ql-syntax {
-    background-color: #23241f;
-    color: #f8f8f2;
+    background-color: #23241F;
+    color: #F8F8F2;
     overflow: visible;
 }
+
 .mo-te img {
     max-width: 100%;
     margin: 0;
     padding: 0;
     border: none;
 }
+
 .mo-te a {
-    color: #06c;
+    color: #06C;
 }
+
 .mo-te .ql-indent-1 {
     padding-left: 3em;
 }
+
 .mo-te li.ql-indent-1 {
     padding-left: 4.5em;
 }
+
 .mo-te .ql-indent-2 {
     padding-left: 6em;
 }
+
 .mo-te li.ql-indent-2 {
     padding-left: 7.5em;
 }
+
 .mo-te .ql-indent-3 {
     padding-left: 9em;
 }
+
 .mo-te li.ql-indent-3 {
     padding-left: 10.5em;
 }
+
 .mo-te .ql-indent-4 {
     padding-left: 12em;
 }
+
 .mo-te li.ql-indent-4 {
     padding-left: 13.5em;
 }
+
 .mo-te .ql-indent-5 {
     padding-left: 15em;
 }
+
 .mo-te li.ql-indent-5 {
     padding-left: 16.5em;
 }
+
 .mo-te .ql-indent-6 {
     padding-left: 18em;
 }
+
 .mo-te li.ql-indent-6 {
     padding-left: 19.5em;
 }
+
 .mo-te .ql-indent-7 {
     padding-left: 21em;
 }
+
 .mo-te li.ql-indent-7 {
     padding-left: 22.5em;
 }
+
 .mo-te .ql-indent-8 {
     padding-left: 24em;
 }
+
 .mo-te li.ql-indent-8 {
     padding-left: 25.5em;
 }
+
 .mo-te .ql-indent-9 {
     padding-left: 27em;
 }
+
 .mo-te li.ql-indent-9 {
     padding-left: 28.5em;
 }

@@ -1872,6 +1872,45 @@
     </div>
     :::
 
+    :::vue
+    @name:select-btn
+    ---
+    #config
+    >conf-desc
+    辅助多选按钮(必须配合`multi-select`一起使用，可以针对显示选项进行批量操作)。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            can-search
+            select-btn
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

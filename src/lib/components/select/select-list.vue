@@ -7,6 +7,10 @@
             'mor-select-wrap' : !conf.separateEmit
         }, sizeClass, stateClass]"
     >
+        <div class="select-btn" v-if="conf.multiSelect && conf.selectBtn">
+            <morning-btn size="xs" color="neutral-1" @emit="_multiSelect(true)">全中全部</morning-btn>
+            <morning-btn size="xs" color="neutral-1" @emit="_multiSelect(false)">取消选中</morning-btn>
+        </div>
         <ul
             class="list"
             :style="listStyle"
@@ -84,7 +88,8 @@ export default {
         '_listClick',
         'showItemList',
         'uiid',
-        '_itemHover'
+        '_itemHover',
+        '_multiSelect'
     ]
 };
 </script>

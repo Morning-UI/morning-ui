@@ -1538,6 +1538,7 @@ button.ql-table[value=append-col]:after {
   vertical-align: text-top;
 }
 .ap {
+  background-image: url(/dist/morning-ui.emoji.png);
   background-repeat: no-repeat;
   background-size: 820px;
   box-sizing: border-box;
@@ -44282,6 +44283,17 @@ mor-texteditor .ql-container {
   width: 100%;
   border: none !important;
 }
+mor-texteditor .ql-container::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+mor-texteditor .ql-container::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
 mor-texteditor .ql-formats > button {
   outline: none;
 }
@@ -44306,6 +44318,17 @@ mor-texteditor .ql-snow .ql-tooltip a.ql-action::after {
 }
 mor-texteditor .ql-snow .ql-tooltip a.ql-remove::before {
   content: '移除';
+}
+mor-texteditor .emoji-palette #tab-panel::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+mor-texteditor .emoji-palette #tab-panel::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 mor-texteditor .ql-editor p,
 mor-texteditor .ql-editor ol,
@@ -46475,6 +46498,15 @@ mor-select.input-group .input-group-addon,
 mor-select.input-group .select-area {
   vertical-align: middle;
   margin: 0;
+}
+.mor-select-wrap .select-btn {
+  padding: 8px 0;
+  border-bottom: 1px #f2f2f2 solid;
+  display: flex;
+  justify-content: flex-end;
+}
+.mor-select-wrap .select-btn mor-btn {
+  margin-right: 8px;
 }
 .mor-select-wrap .list {
   margin: 0;
@@ -52003,7 +52035,7 @@ mor-datepicker.range-input-vertical .datepicker-input-1 {
   margin-left: 100px;
 }
 .mor-private-datepicker-popover mor-calendar .pick-day {
-  padding: 0 8px 8px 8px;
+  padding: 0 8px 8px;
 }
 mor-datetimepicker {
   display: block;
