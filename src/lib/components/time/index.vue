@@ -34,6 +34,7 @@ import {
     format as formatDate
 }                                   from 'date-fns';
 import locale                       from 'date-fns/locale/zh-CN';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 const num10 = 10;
 const oneSecond = 1000;
@@ -204,7 +205,7 @@ export default {
 
             }
 
-            return formatDate(date, this.conf.format);
+            return formatDate(date, this.conf.format, formatOptions);
 
         }
     },
