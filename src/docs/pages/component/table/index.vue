@@ -1696,6 +1696,54 @@
     :::
 
     :::vue
+    @name:highlight-row-background
+    ---
+    #config
+    >conf-desc
+    当启用`highlight-row`配置后，高亮行的背景颜色。默认背景色(`default`)将匹配组件本身设置的色彩(`color`配置)。
+    >conf-accept
+    `'default'`<br>任意合法的`background-color`(CSS)的数值
+    >conf-type
+    String
+    >conf-default
+    `'default'`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" highlight-row highlight-row-background="#A5C7FF"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:highlight-row-color
+    ---
+    #config
+    >conf-desc
+    当启用`highlight-row`配置后，高亮行的文字颜色。默认文字颜色(`default`)将匹配组件本身设置的色彩(`color`配置)。
+    >conf-accept
+    `'default'`<br>任意合法的`color`(CSS)的数值
+    >conf-type
+    String
+    >conf-default
+    `'default'`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" highlight-row highlight-row-background="#2879FA" highlight-row-color="#FFF"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
     @name:multi-select
     ---
     #config
