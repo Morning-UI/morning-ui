@@ -39,7 +39,7 @@
             <div class="custom-header">
                 <slot name="header"></slot>
                 <div class="action">
-                    <morning-btn v-if="conf.exportCsv" color="success" :size="conf.size" @emit="_exportCsv">导出</morning-btn>
+                    <morning-btn v-if="conf.exportCsv" color="success" :size="conf.size" @emit="exportToCsv">导出</morning-btn>
                 </div>
             </div>
 
@@ -1174,7 +1174,7 @@ export default {
             return csv;
             
         },
-        _exportCsv : function () {
+        exportToCsv : function () {
 
             let csv = [];
             let downloadLink = document.createElement('a');
@@ -1225,6 +1225,8 @@ export default {
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);
+
+            return this;
 
         },
         _importList : function (list) {

@@ -177,6 +177,11 @@
                                 <button :key="sindex" class="ql-emoji" :id="'mor-te-tool-emoji-'+uiid"></button>
                                 <morning-tip :key="sindex" :target="'#mor-te-tool-emoji-'+uiid" color="neutral-10">表情</morning-tip>
                             </template>
+
+                            <template v-if="tool === 'table'">
+                                <button :key="sindex" class="ql-table" :id="'mor-te-tool-table-'+uiid"></button>
+                                <morning-tip :key="sindex" :target="'#mor-te-tool-table-'+uiid" color="neutral-10">表格</morning-tip>
+                            </template>
                         </template>
                     </div>
                 </template>
@@ -222,6 +227,7 @@ import Quill                        from 'quill/core';
 import Toolbar                      from 'quill/modules/toolbar';
 import Syntax                       from 'quill/modules/syntax';
 import Clipboard                    from 'quill/modules/clipboard';
+import Table                        from 'quill/modules/Table';
 import SnowTheme                    from 'quill/themes/snow';
 import Icons                        from 'quill/ui/icons';
 import {AlignStyle}                 from 'quill/formats/align';
@@ -231,7 +237,7 @@ import {SizeStyle}                  from 'quill/formats/size';
 import Blockquote                   from 'quill/formats/blockquote';
 import CodeBlock, {Code}            from 'quill/formats/code';
 import Header                       from 'quill/formats/header';
-import List, {ListItem}             from 'quill/formats/list';
+import List                         from 'quill/formats/list';
 import Bold                         from 'quill/formats/bold';
 import Italic                       from 'quill/formats/italic';
 import Link                         from 'quill/formats/link';
@@ -242,8 +248,9 @@ import Underline                    from 'quill/formats/underline';
 window.Quill = Quill;
 
 // 因为ImageResize使用了`window.Quill`，所以必须使用require
-const ImageResize = require('quill-image-resize-module').default;
-const Emoji = require('quill-emoji').default;
+const ImageResize = require('./quill-image-resize-module/ImageResize');
+const Emoji = require('./quill-emoji/quill-emoji');
+const QuillBetterTable = require('./quill-better-table/quill-better-table');
 const Delta = Quill.imports.delta;
 const Parchment = Quill.imports.parchment;
 
@@ -283,7 +290,7 @@ Divider.blotName = 'divider';
 Divider.tagName = 'HR';
 
 // modify tools : indent(class version)
-class IdentAttributorForClass extends Parchment.Attributor.Class {
+class IdentAttributorForClass extends Parchment.ClassAttributor {
 
     add (node, value) {
 
@@ -345,7 +352,7 @@ let IndentClass = new IdentAttributorForClass('indent', 'ql-indent', {
 const levels = [1, 2, 3, 4, 5, 6, 7, 8];
 const multiplier = 3;
 
-class IndentAttributorForStyle extends Parchment.Attributor.Style {
+class IndentAttributorForStyle extends Parchment.StyleAttributor {
 
     add (node, value) {
 
@@ -449,13 +456,13 @@ class PlainClipboard extends Clipboard {
     
         if (typeof html === 'string') {
             
-            this.container.innerHTML = html;
+            this.quill.container.innerHTML = html;
         
         }
         
-        let text = this.container.innerText;
+        let text = this.quill.container.innerText;
         
-        this.container.innerHTML = '';
+        this.quill.container.innerHTML = '';
         
         return new Delta().insert(text);
   
@@ -487,7 +494,6 @@ Quill.register({
     'formats/image' : Image,
     'formats/emoji' : Emoji.EmojiBlot,
     // 'formats/video': Video,
-    'formats/list/item' : ListItem,
 
     // 'modules/formula': Formula,
     // 'modules/history': History,
@@ -496,6 +502,8 @@ Quill.register({
     'modules/imageResize' : ImageResize,
     'modules/emoji-shortname' : Emoji.ShortNameEmoji,
     'modules/emoji-toolbar' : Emoji.ToolbarEmoji,
+    'modules/table' : Table,
+    'modules/better-table' : QuillBetterTable,
     // 'modules/emoji-textarea': Emoji.TextAreaEmoji,
     // 'modules/clipboard' : PlainClipboard,
 
@@ -857,7 +865,7 @@ export default {
                     'blockquote',
                     'code-block'
                 ],
-                ['link', 'image', 'emoji'],
+                ['link', 'image', 'emoji', 'table'],
                 ['clean']
             ])
         },
@@ -957,7 +965,8 @@ export default {
             let $quill = this.$el.querySelector('.quill');
             let $toolbar = this.$el.querySelector('.toolbar');
 
-            $quill.style.maxHeight = `calc(100% - ${$toolbar.clientHeight}px)`;
+            // 1px for bottom border
+            $quill.style.maxHeight = `calc(100% - ${$toolbar.clientHeight}px - 1px)`;
 
         },
         _insertImage : function () {
@@ -1015,7 +1024,14 @@ export default {
                         return false;
 
                     },
-                    emoji : () => {}
+                    emoji : () => {},
+                    table : () => {
+
+                        let betterTable = this.data.quill.getModule('better-table');
+
+                        betterTable.insertTable(3, 3);
+
+                    }
                 }
             };
             let modules = {
@@ -1043,6 +1059,43 @@ export default {
             }
 
             modules.toolbar = toolbar;
+            modules.table = false;
+            modules['better-table'] = {
+                operationMenu : {
+                    items : {
+                        insertColumnRight : {
+                            text : '在后面添加列'
+                        },
+                        insertColumnLeft : {
+                            text : '在前面添加列'
+                        },
+                        insertRowUp : {
+                            text : '在前面添加行'
+                        },
+                        insertRowDown : {
+                            text : '在后面添加行'
+                        },
+                        mergeCells : {
+                            text : '合并单元格'
+                        },
+                        unmergeCells : {
+                            text : '取消合并单元格'
+                        },
+                        deleteColumn : {
+                            text : '删除列'
+                        },
+                        deleteRow : {
+                            text : '删除行'
+                        },
+                        deleteTable : {
+                            text : '删除表格'
+                        }
+                    }
+                }
+            };
+            modules.keyboard = {
+                bindings : QuillBetterTable.keyboardBindings
+            };
 
             this.data.quill = new Quill(this.$el.querySelector('.quill'), {
                 theme : 'snow',
@@ -1052,13 +1105,25 @@ export default {
 
             this.data.quill.on('text-change', () => {
 
-                this.data.dontSetHtml = true;
-                this._set(this.getHtml(), true);
+                setTimeout(() => {
 
-                this.Vue.nextTick(() => {
+                    let betterTableModule = this.data.quill.getModule('better-table');
 
-                    this.data.dontSetHtml = false;
-        
+                    this.data.dontSetHtml = true;
+                    this._set(this.getHtml(), true);
+
+                    if (betterTableModule.tableSelection) {
+                        
+                        betterTableModule.tableSelection.refreshHelpLinesPosition();
+
+                    }
+
+                    this.Vue.nextTick(() => {
+
+                        this.data.dontSetHtml = false;
+
+                    });
+
                 });
 
             });
@@ -1208,6 +1273,20 @@ export default {
             immediate : true
         });
 
+        this.$watch('data.quillFocus', () => {
+
+            if (this.data.quillFocus) {
+
+                this.$emit('focus');
+
+            } else {
+
+                this.$emit('blur');
+
+            }
+
+        });
+
         this.$on('value-change', () => {
 
             this.setHtml(this.get());
@@ -1227,4 +1306,9 @@ export default {
 
     }
 };
+
+// export default {
+//     origin : 'Form',
+//     name : 'texteditor'
+// };
 </script>

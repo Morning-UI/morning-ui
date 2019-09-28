@@ -2052,6 +2052,30 @@
     }
     :::
 
+    :::vue
+    @name:exportToCsv()
+    ---
+    #method
+    >method-desc
+    导出表格内容至`csv`文件并下载。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo14" :list="list"></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo14').exportToCsv();">导出数据</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
     [[[事件]]]
 
     :::vue
