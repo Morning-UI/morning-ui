@@ -33588,12 +33588,6 @@ exports.default = {
         this._refreshQuillHeight();
     }
 };
-
-// export default {
-//     origin : 'Form',
-//     name : 'texteditor'
-// };
-
 module.exports = exports['default'];
 
 /***/ }),

@@ -1306,9 +1306,4 @@ export default {
 
     }
 };
-
-// export default {
-//     origin : 'Form',
-//     name : 'texteditor'
-// };
 </script>
