@@ -338,6 +338,7 @@ export default {
                 itemValMapInit : false,
                 matchList : [],
                 selectedAll : false,
+                selectedAllInShowItemList : false,
                 hoverIndex : 0,
                 mouseenterHoverLock : false,
                 popoverVm : null
@@ -1013,6 +1014,7 @@ export default {
             let values = this.get();
             let itemSelectedMap = [];
             let valMapVals = Object.values(this.data.itemValMap);
+            let selectedItemInSILCount = 0;
 
             for (let index in valMapVals) {
 
@@ -1029,7 +1031,24 @@ export default {
             }
 
             this.data.itemSelectedMap = itemSelectedMap;
+            this.data.selectedAllInShowItemList = false;
             this.data.selectedAll = true;
+
+            for (let index of this.showItemList) {
+
+                if (itemSelectedMap[index] === 1) {
+
+                    selectedItemInSILCount++;
+
+                }
+
+            }
+
+            if (selectedItemInSILCount === this.showItemList.length) {
+                
+                this.data.selectedAllInShowItemList = true;
+
+            }
 
             for (let selected of itemSelectedMap) {
 
