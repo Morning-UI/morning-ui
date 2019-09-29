@@ -12,7 +12,7 @@
     >
 
         <template v-if="conf.position === 'left' || conf.position === 'top'">
-            <ul>
+            <ul class="tab-nav">
                 <li
                     v-for="item in data.namelist"
                     :name="item.name"
@@ -41,7 +41,7 @@
         </div>
 
         <template v-if="conf.position === 'right' || conf.position === 'bottom'">
-            <ul>
+            <ul class="tab-nav">
                 <li
                     v-for="item in data.namelist"
                     :name="item.name"
@@ -219,7 +219,7 @@ export default {
             this.Vue.nextTick(() => {
 
                 // clean old status
-                let $currentTabEl = this.$el.querySelector('ul').children;
+                let $currentTabEl = this.$el.querySelector('.tab-nav').children;
                 let $currentConEl = this.$el.querySelector('.contents').children;
 
                 if ($currentTabEl) {
@@ -301,11 +301,11 @@ export default {
 
             } else {
 
-                this.data.contentWidth = `calc(100% - ${this.$el.querySelector('ul').clientWidth}px)`;
+                this.data.contentWidth = `calc(100% - ${this.$el.querySelector('.tab-nav').clientWidth}px)`;
 
                 if (this.$el.classList.value.split(' ').indexOf('btn') !== -1) {
 
-                    this.data.contentWidth = `calc(100% - ${this.$el.querySelector('ul').clientWidth + 8}px)`;
+                    this.data.contentWidth = `calc(100% - ${this.$el.querySelector('.tab-nav').clientWidth + 8}px)`;
 
                 }
 
@@ -321,7 +321,7 @@ export default {
 
             } else {
 
-                this.data.contentMinHeight = `${this.$el.querySelector('ul').clientHeight}px`;
+                this.data.contentMinHeight = `${this.$el.querySelector('.tab-nav').clientHeight}px`;
 
             }
 
@@ -376,7 +376,7 @@ export default {
             if (old !== -1) {
 
                 let conEl = this.$el.querySelector('.contents').children[old];
-                let tabEl = this.$el.querySelector('ul').children[old];
+                let tabEl = this.$el.querySelector('.tab-nav').children[old];
 
                 conEl.classList.remove('current');
                 tabEl.classList.remove('current');
@@ -391,7 +391,7 @@ export default {
             if (current !== -1) {
 
                 let conEl = this.$el.querySelector('.contents').children[current];
-                let tabEl = this.$el.querySelector('ul').children[current];
+                let tabEl = this.$el.querySelector('.tab-nav').children[current];
 
                 conEl.classList.add('current');
                 tabEl.classList.add('current');

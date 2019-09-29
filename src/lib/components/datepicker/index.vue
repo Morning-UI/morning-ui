@@ -388,10 +388,10 @@ import {
     addSeconds,
     addMilliseconds
 }                                   from 'date-fns';
-
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 const NUM_60 = 60;
 const NUM_1K = 1000;
@@ -1051,7 +1051,7 @@ export default {
 
             if (!this._dateStringIsValid(value, this.conf.format)) {
 
-                value = formatDate(this._dateGetStandardDate(), this.conf.format);
+                value = formatDate(this._dateGetStandardDate(), this.conf.format, formatOptions);
 
             }
 
@@ -1417,13 +1417,13 @@ export default {
 
             if (val[0]) {
     
-                val[0] = formatDate(val[0], this.conf.format);
+                val[0] = formatDate(val[0], this.conf.format, formatOptions);
 
             }
 
             if (val[1]) {
     
-                val[1] = formatDate(val[1], this.conf.format);
+                val[1] = formatDate(val[1], this.conf.format, formatOptions);
 
             }
 
@@ -1494,7 +1494,7 @@ export default {
 
                     } else {
                         
-                        val = [formatDate(input1Val, this.conf.format)];
+                        val = [formatDate(input1Val, this.conf.format, formatOptions)];
 
                     }
 
@@ -1506,7 +1506,7 @@ export default {
 
                     } else {
 
-                        val = [formatDate(input0Val, this.conf.format)];
+                        val = [formatDate(input0Val, this.conf.format, formatOptions)];
 
                     }
 
@@ -1520,7 +1520,7 @@ export default {
 
                     } else {
 
-                        val[0] = formatDate(input0Val, this.conf.format);
+                        val[0] = formatDate(input0Val, this.conf.format, formatOptions);
 
                     }
 
@@ -1530,7 +1530,7 @@ export default {
 
                     } else {
 
-                        val[1] = formatDate(input1Val, this.conf.format);
+                        val[1] = formatDate(input1Val, this.conf.format, formatOptions);
 
                     }
 
@@ -1693,11 +1693,11 @@ export default {
 
                         let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
 
-                        $timepicker._set(formatDate(date, $timepicker.conf.format));
+                        $timepicker._set(formatDate(date, $timepicker.conf.format, formatOptions));
 
                     }
 
-                    this._set(formatDate(date, this.conf.format));
+                    this._set(formatDate(date, this.conf.format, formatOptions));
 
                 }
 
@@ -1724,7 +1724,7 @@ export default {
 
                     if (date[0] instanceof Date) {
 
-                        value[0] = formatDate(date[0], this.conf.format);
+                        value[0] = formatDate(date[0], this.conf.format, formatOptions);
 
                     }
 
@@ -1747,7 +1747,7 @@ export default {
 
                     if (date[1] instanceof Date) {
 
-                        value[1] = formatDate(date[1], this.conf.format);
+                        value[1] = formatDate(date[1], this.conf.format, formatOptions);
 
                     }
 
@@ -1763,7 +1763,7 @@ export default {
 
                     let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
 
-                    $timepicker._set(formatDate(date[0], $timepicker.conf.format));
+                    $timepicker._set(formatDate(date[0], $timepicker.conf.format, formatOptions));
 
                 }
 
@@ -1775,7 +1775,7 @@ export default {
 
                     let $timepicker = this.$slots.timepicker2[0].children[0].componentInstance;
 
-                    $timepicker._set(formatDate(date[1], $timepicker.conf.format));
+                    $timepicker._set(formatDate(date[1], $timepicker.conf.format, formatOptions));
 
                 }
 
