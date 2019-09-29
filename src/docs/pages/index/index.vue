@@ -17,9 +17,9 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="neutral-5" size="xs">0.12.58</ui-label>
+                <ui-label color="neutral-5" size="xs">0.12.59</ui-label>
             </a>
-            <p>发布于2019年9月12日</p>
+            <p>发布于2019年9月29日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">

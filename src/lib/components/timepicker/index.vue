@@ -174,6 +174,7 @@ import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
 import sortBy                       from 'lodash.sortby';
 import Time                         from 'Utils/Time';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 export default {
     origin : 'Form',
@@ -299,7 +300,7 @@ export default {
 
                 while (+start <= +end) {
 
-                    list.push(formatDate(start, this.conf.format));
+                    list.push(formatDate(start, this.conf.format, formatOptions));
 
                     start = addHours(start, addHour);
                     start = addMinutes(start, addMinute);
@@ -315,7 +316,7 @@ export default {
 
                     let date = this._timeStringToDate(list[i], this.conf.format);
 
-                    list[i] = formatDate(date, this.conf.format);
+                    list[i] = formatDate(date, this.conf.format, formatOptions);
 
                 }
 
@@ -462,7 +463,7 @@ export default {
 
             if (!this._timeStringIsValid(value, this.conf.format)) {
 
-                value = formatDate(this._timeGetStandardDate(), this.conf.format);
+                value = formatDate(this._timeGetStandardDate(), this.conf.format, formatOptions);
 
             }
 

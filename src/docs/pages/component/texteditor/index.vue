@@ -167,6 +167,7 @@
     |link|链接|无|
     |image|图片|无|
     |emoji|emoji表情|无|
+    |table|表格|无|
     |clean|清除样式|无|
     >conf-accept
     数组
@@ -288,7 +289,7 @@
                     'blockquote',
                     'code-block'
                 ],
-                ['link', 'image'],
+                ['link', 'image', 'emoji', 'table'],
                 ['clean']
             ]"
         ></ui-texteditor>
@@ -438,6 +439,50 @@
         methods : {
             echo : function () {
                 console.log('demo2.console1', 'selection-change event!');
+            }
+        }
+    }
+    :::
+    
+    :::vue
+    @name:focus
+    ---
+    #event
+    >event-desc
+    当表单聚焦后触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:100%;height:240px;">
+        <ui-texteditor @focus="echo" ref="demo3"></ui-texteditor>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo3.console1', 'focus event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:blur
+    ---
+    #event
+    >event-desc
+    当表单失焦后触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:100%;height:240px;">
+        <ui-texteditor @blur="echo" ref="demo4"></ui-texteditor>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo4.console1', 'blur event!');
             }
         }
     }

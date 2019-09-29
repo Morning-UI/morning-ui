@@ -111,6 +111,7 @@ import {
 import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 export default {
     origin : 'Form',
@@ -302,13 +303,13 @@ export default {
 
             let date = this._dateStringToDate(value, this.conf.format);
 
-            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+            if (!this._checkSelectable(formatDate(date, this.conf.format, formatOptions))) {
 
                 date = this._getClosestDate(date);
 
             }
 
-            return formatDate(date, this.conf.format);
+            return formatDate(date, this.conf.format, formatOptions);
 
         },
         _isRelativeDate : function (value) {
@@ -425,7 +426,7 @@ export default {
 
                     } else {
 
-                        this._set(formatDate(date, this.conf.format), true);
+                        this._set(formatDate(date, this.conf.format, formatOptions), true);
 
                     }
 
@@ -499,7 +500,7 @@ export default {
         },
         _clickDate : function (date) {
 
-            let value = formatDate(date, this.conf.format);
+            let value = formatDate(date, this.conf.format, formatOptions);
             let selectable = this._checkSelectable(value);
 
             if (!selectable) {
@@ -530,7 +531,7 @@ export default {
 
                 } else {
 
-                    dateString = formatDate(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
+                    dateString = formatDate(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format, formatOptions);
 
                 }
 

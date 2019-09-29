@@ -60,8 +60,10 @@
                 :class="{
                     show :
                         data.noMatch ||
+                        (conf.canSearch && (conf.dynamicList || showItemList.length === 0)) ||
                         (conf.hideSelected === true && (showItemList.length === 0 || data.selectedAll)) ||
-                        (conf.hideSelected === false && (conf.list === undefined || Object.keys(conf.list).length === 0))
+                        (conf.hideSelected === false && (conf.list === undefined || Object.keys(conf.list).length === 0)) ||
+                        (conf.canSearch && (conf.hideSelected === true) && data.selectedAllInShowItemList)
                 }"
             >
                 <morning-empty v-if="conf.canSearch && (conf.dynamicList || showItemList.length === 0)" note="无匹配项目"></morning-empty>
@@ -69,6 +71,7 @@
                 <morning-empty v-else-if="(conf.hideSelected === true && (showItemList.length === 0 || data.selectedAll))" note="无项目"></morning-empty>
                 <!-- 选中不隐藏的情况下 -->
                 <morning-empty v-else-if="(conf.hideSelected === false && (conf.list === undefined || Object.keys(conf.list).length === 0))" note="无项目"></morning-empty>
+                <morning-empty v-else-if="conf.canSearch && (conf.hideSelected === true) && data.selectedAllInShowItemList" note="无匹配项目"></morning-empty>
             </li>
             <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
                 <span>请搜索以显示更多</span>

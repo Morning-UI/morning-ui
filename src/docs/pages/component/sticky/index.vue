@@ -161,7 +161,7 @@
     >tpl
     <div>
         <ui-sticky :top="70" style="margin-left: 400px;">
-            <ui-btn color="neutral-4">吸附在距离视窗底部70px的位置</ui-btn>
+            <ui-btn color="neutral-4">吸附在距离视窗顶部70px的位置</ui-btn>
         </ui-sticky>
     </div>
     :::

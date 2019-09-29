@@ -112,6 +112,25 @@ mor-texteditor{
         .setup-scrollbar();
     }
 
+    // for quill-better-table
+    button.ql-table::after {
+        content: '';
+    }
+
+    .ql-table {
+        margin-right: 0;
+    }
+
+    .qlbt-col-tool .qlbt-col-tool-cell:first-child{
+        border-left: 1px solid @colorNeutral4;
+    }
+
+    .qlbt-col-tool .qlbt-col-tool-cell{
+        border-top: 1px solid @colorNeutral4;
+        border-right: 1px solid @colorNeutral4;
+        border-bottom: 1px solid @colorNeutral4;
+    }
+
     // 编辑器内样式
     .ql-editor p,
     .ql-editor ol,

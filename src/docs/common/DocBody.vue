@@ -3167,7 +3167,7 @@ export default {
             let fieldData = document.createElement("input");
 
             fieldData.setAttribute('name', 'data');
-            fieldData.setAttribute('value', JSON.stringify(codeData));
+            fieldData.setAttribute('value', JSON.stringify(codeData).replace(/"/g, "&quot;").replace(/'/g, "&apos;"));
 
             // let fieldWrap = document.createElement("textarea");
             // fieldWrap.setAttribute('name', 'wrap');

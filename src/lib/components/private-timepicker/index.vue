@@ -124,6 +124,7 @@ import {
     areIntervalsOverlapping
 }                                   from 'date-fns';
 import Time                         from 'Utils/Time';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 export default {
     origin : 'Form',
@@ -225,7 +226,7 @@ export default {
 
             }
 
-            return formatDate(date, this.conf.format);
+            return formatDate(date, this.conf.format, formatOptions);
 
         },
         _noop : function () {},
@@ -296,7 +297,7 @@ export default {
 
                 } else {
 
-                    this._set(formatDate(date, this.conf.format), true);
+                    this._set(formatDate(date, this.conf.format, formatOptions), true);
 
                 }
 
@@ -321,8 +322,8 @@ export default {
                 second : '(ss|s)'
             };
             let result = this.conf.format.match(map[type]);
-            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index) || ' '}`);
-            let selfString = formatDate(date, `${this.conf.format.slice(result.index, result.index + result[0].length)}`);
+            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index) || ' '}`, formatOptions);
+            let selfString = formatDate(date, `${this.conf.format.slice(result.index, result.index + result[0].length)}`, formatOptions);
 
             if (leftString === ' ' && result.index === 0) {
 
@@ -389,7 +390,7 @@ export default {
 
             let time = this._timeSet(type, i, this._timeStringToDate(this.data.value, this.conf.format));
 
-            this._set(formatDate(time, this.conf.format), true);
+            this._set(formatDate(time, this.conf.format, formatOptions), true);
 
             this.Vue.nextTick(() => {
 
@@ -457,7 +458,7 @@ export default {
 
                 } else {
 
-                    timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+                    timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format, formatOptions);
 
                 }
 
@@ -564,7 +565,7 @@ export default {
 
             let time = this._timeSet(type, +value, this._timeStringToDate(this.data.value, this.conf.format));
 
-            this._set(formatDate(time, this.conf.format), true);
+            this._set(formatDate(time, this.conf.format, formatOptions), true);
 
             return this;
 

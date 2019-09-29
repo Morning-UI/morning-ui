@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.12.59
+
+#### 新特性
+
+- `ui-table`新增`highlight-row-background`和`highlight-row-color`配置，可以用来自定义高亮行的样式
+- `ui-table`新增`exportToCsv()`方法
+- `ui-texteditor`支持表格
+- `ui-texteditor`支持`blur`和`focus`事件
+
+#### 修复
+
+- 修复`ui-sticky`文档中的一处错误
+- 修复`ui-select`组件在开启`can-search`后，未搜索到项目时提示没有显示的问题
+- 修复`ui-tab`组件使用`position="bottom”`配置后，配合部分组件使用时显示异常的问题
+- 修复文档无法打开`codepen`示例的问题(更新至`codepen`最新API)
+
+#### 更多
+
+- Morning UI Roadmap更新
+- 依赖库`date-fns`从`2.0.0-alpha.27`升级至`2.2.1`
+
+__升级注意事项__
+
+- Morning UI依赖的`date-fns`从`2.0.0-alpha.27`升级至`2.2.1`，其中存在不兼容升级，Morning UI内已做兼容处理。若在组件库之外使用了`date-fns`请注意安装版本的变化，主要变化为`format`和`parse`方法。(see：`https://date-fns.org`)
+
 ## 0.12.58
 
 `2019年9月12日`
