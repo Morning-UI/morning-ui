@@ -325,17 +325,6 @@ prodVerConfig = extend(
                     })
                 },
                 {
-                    test : /\.png$/,
-                    use : [
-                        {
-                            loader : 'file-loader',
-                            options : {
-                                name : '/morning-ui.emoji.png'
-                            }
-                        }
-                    ]
-                },
-                {
                     test : /\.woff$/,
                     exclude : /node_modules/,
                     use : [{
