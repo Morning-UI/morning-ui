@@ -34657,6 +34657,7 @@ exports.default = {
                 itemValMapInit: false,
                 matchList: [],
                 selectedAll: false,
+                selectedAllInShowItemList: false,
                 hoverIndex: 0,
                 mouseenterHoverLock: false,
                 popoverVm: null
@@ -35335,6 +35336,7 @@ exports.default = {
             var values = this.get();
             var itemSelectedMap = [];
             var valMapVals = Object.values(this.data.itemValMap);
+            var selectedItemInSILCount = 0;
 
             for (var index in valMapVals) {
 
@@ -35348,6 +35350,7 @@ exports.default = {
             }
 
             this.data.itemSelectedMap = itemSelectedMap;
+            this.data.selectedAllInShowItemList = false;
             this.data.selectedAll = true;
 
             var _iteratorNormalCompletion7 = true;
@@ -35355,15 +35358,13 @@ exports.default = {
             var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator7 = itemSelectedMap[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var selected = _step7.value;
+                for (var _iterator7 = this.showItemList[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var _index = _step7.value;
 
 
-                    if (!selected) {
+                    if (itemSelectedMap[_index] === 1) {
 
-                        this.data.selectedAll = false;
-
-                        break;
+                        selectedItemInSILCount++;
                     }
                 }
             } catch (err) {
@@ -35377,6 +35378,42 @@ exports.default = {
                 } finally {
                     if (_didIteratorError7) {
                         throw _iteratorError7;
+                    }
+                }
+            }
+
+            if (selectedItemInSILCount === this.showItemList.length) {
+
+                this.data.selectedAllInShowItemList = true;
+            }
+
+            var _iteratorNormalCompletion8 = true;
+            var _didIteratorError8 = false;
+            var _iteratorError8 = undefined;
+
+            try {
+                for (var _iterator8 = itemSelectedMap[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                    var selected = _step8.value;
+
+
+                    if (!selected) {
+
+                        this.data.selectedAll = false;
+
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                        _iterator8.return();
+                    }
+                } finally {
+                    if (_didIteratorError8) {
+                        throw _iteratorError8;
                     }
                 }
             }
@@ -35410,29 +35447,29 @@ exports.default = {
 
             var $inlineImgs = this.data.$list.querySelectorAll('li mor-img,li img');
 
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            var _iteratorNormalCompletion9 = true;
+            var _didIteratorError9 = false;
+            var _iteratorError9 = undefined;
 
             try {
-                for (var _iterator8 = $inlineImgs.values()[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var $img = _step8.value;
+                for (var _iterator9 = $inlineImgs.values()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                    var $img = _step9.value;
 
 
                     $img.style.width = this.conf.inlineImgSize;
                     $img.style.height = this.conf.inlineImgSize;
                 }
             } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
+                _didIteratorError9 = true;
+                _iteratorError9 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
+                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                        _iterator9.return();
                     }
                 } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
+                    if (_didIteratorError9) {
+                        throw _iteratorError9;
                     }
                 }
             }
@@ -35516,42 +35553,16 @@ exports.default = {
                 var value = this.get() || [];
                 var showValueList = [];
 
-                var _iteratorNormalCompletion9 = true;
-                var _didIteratorError9 = false;
-                var _iteratorError9 = undefined;
-
-                try {
-                    for (var _iterator9 = this.showItemList[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                        var i = _step9.value;
-
-
-                        showValueList.push(this.data.itemValMap[i]);
-                    }
-                } catch (err) {
-                    _didIteratorError9 = true;
-                    _iteratorError9 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                            _iterator9.return();
-                        }
-                    } finally {
-                        if (_didIteratorError9) {
-                            throw _iteratorError9;
-                        }
-                    }
-                }
-
                 var _iteratorNormalCompletion10 = true;
                 var _didIteratorError10 = false;
                 var _iteratorError10 = undefined;
 
                 try {
-                    for (var _iterator10 = value[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                        var val = _step10.value;
+                    for (var _iterator10 = this.showItemList[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                        var i = _step10.value;
 
 
-                        valIndexs.push(showValueList.indexOf(val));
+                        showValueList.push(this.data.itemValMap[i]);
                     }
                 } catch (err) {
                     _didIteratorError10 = true;
@@ -35564,6 +35575,32 @@ exports.default = {
                     } finally {
                         if (_didIteratorError10) {
                             throw _iteratorError10;
+                        }
+                    }
+                }
+
+                var _iteratorNormalCompletion11 = true;
+                var _didIteratorError11 = false;
+                var _iteratorError11 = undefined;
+
+                try {
+                    for (var _iterator11 = value[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                        var val = _step11.value;
+
+
+                        valIndexs.push(showValueList.indexOf(val));
+                    }
+                } catch (err) {
+                    _didIteratorError11 = true;
+                    _iteratorError11 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion11 && _iterator11.return) {
+                            _iterator11.return();
+                        }
+                    } finally {
+                        if (_didIteratorError11) {
+                            throw _iteratorError11;
                         }
                     }
                 }
@@ -35689,35 +35726,6 @@ exports.default = {
             var value = [];
 
             if (selectAll) {
-                var _iteratorNormalCompletion11 = true;
-                var _didIteratorError11 = false;
-                var _iteratorError11 = undefined;
-
-                try {
-
-                    for (var _iterator11 = this.showItemList[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                        var i = _step11.value;
-
-
-                        value.push(this.data.itemValMap[i]);
-                    }
-                } catch (err) {
-                    _didIteratorError11 = true;
-                    _iteratorError11 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                            _iterator11.return();
-                        }
-                    } finally {
-                        if (_didIteratorError11) {
-                            throw _iteratorError11;
-                        }
-                    }
-                }
-
-                this._set((0, _arrayUniq2.default)(currentValue.concat(value)));
-            } else {
                 var _iteratorNormalCompletion12 = true;
                 var _didIteratorError12 = false;
                 var _iteratorError12 = undefined;
@@ -35725,10 +35733,10 @@ exports.default = {
                 try {
 
                     for (var _iterator12 = this.showItemList[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                        var _i = _step12.value;
+                        var i = _step12.value;
 
 
-                        value.push(this.data.itemValMap[_i]);
+                        value.push(this.data.itemValMap[i]);
                     }
                 } catch (err) {
                     _didIteratorError12 = true;
@@ -35741,6 +35749,35 @@ exports.default = {
                     } finally {
                         if (_didIteratorError12) {
                             throw _iteratorError12;
+                        }
+                    }
+                }
+
+                this._set((0, _arrayUniq2.default)(currentValue.concat(value)));
+            } else {
+                var _iteratorNormalCompletion13 = true;
+                var _didIteratorError13 = false;
+                var _iteratorError13 = undefined;
+
+                try {
+
+                    for (var _iterator13 = this.showItemList[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                        var _i = _step13.value;
+
+
+                        value.push(this.data.itemValMap[_i]);
+                    }
+                } catch (err) {
+                    _didIteratorError13 = true;
+                    _iteratorError13 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion13 && _iterator13.return) {
+                            _iterator13.return();
+                        }
+                    } finally {
+                        if (_didIteratorError13) {
+                            throw _iteratorError13;
                         }
                     }
                 }
@@ -35897,14 +35934,14 @@ exports.default = {
 
                     _this5._refreshShowItems();
                 } else if ($selectedItem) {
-                    var _iteratorNormalCompletion13 = true;
-                    var _didIteratorError13 = false;
-                    var _iteratorError13 = undefined;
+                    var _iteratorNormalCompletion14 = true;
+                    var _didIteratorError14 = false;
+                    var _iteratorError14 = undefined;
 
                     try {
 
-                        for (var _iterator13 = $items.keys()[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                            var index = _step13.value;
+                        for (var _iterator14 = $items.keys()[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                            var index = _step14.value;
 
 
                             if ($items[index] === $selectedItem) {
@@ -35915,16 +35952,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError13 = true;
-                        _iteratorError13 = err;
+                        _didIteratorError14 = true;
+                        _iteratorError14 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                                _iterator13.return();
+                            if (!_iteratorNormalCompletion14 && _iterator14.return) {
+                                _iterator14.return();
                             }
                         } finally {
-                            if (_didIteratorError13) {
-                                throw _iteratorError13;
+                            if (_didIteratorError14) {
+                                throw _iteratorError14;
                             }
                         }
                     }
@@ -35939,13 +35976,13 @@ exports.default = {
 
                 _this5.data.showlist = false;
 
-                var _iteratorNormalCompletion14 = true;
-                var _didIteratorError14 = false;
-                var _iteratorError14 = undefined;
+                var _iteratorNormalCompletion15 = true;
+                var _didIteratorError15 = false;
+                var _iteratorError15 = undefined;
 
                 try {
-                    for (var _iterator14 = $tips.values()[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                        var $tip = _step14.value;
+                    for (var _iterator15 = $tips.values()[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                        var $tip = _step15.value;
 
 
                         if ($tip._vm) {
@@ -35957,16 +35994,16 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError14 = true;
-                    _iteratorError14 = err;
+                    _didIteratorError15 = true;
+                    _iteratorError15 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion14 && _iterator14.return) {
-                            _iterator14.return();
+                        if (!_iteratorNormalCompletion15 && _iterator15.return) {
+                            _iterator15.return();
                         }
                     } finally {
-                        if (_didIteratorError14) {
-                            throw _iteratorError14;
+                        if (_didIteratorError15) {
+                            throw _iteratorError15;
                         }
                     }
                 }
@@ -36270,6 +36307,9 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
 //
 //
 //
@@ -78677,11 +78717,16 @@ var render = function() {
               class: {
                 show:
                   _vm.data.noMatch ||
+                  (_vm.conf.canSearch &&
+                    (_vm.conf.dynamicList || _vm.showItemList.length === 0)) ||
                   (_vm.conf.hideSelected === true &&
                     (_vm.showItemList.length === 0 || _vm.data.selectedAll)) ||
                   (_vm.conf.hideSelected === false &&
                     (_vm.conf.list === undefined ||
-                      Object.keys(_vm.conf.list).length === 0))
+                      Object.keys(_vm.conf.list).length === 0)) ||
+                  (_vm.conf.canSearch &&
+                    _vm.conf.hideSelected === true &&
+                    _vm.data.selectedAllInShowItemList)
               }
             },
             [
@@ -78695,6 +78740,10 @@ var render = function() {
                   (_vm.conf.list === undefined ||
                     Object.keys(_vm.conf.list).length === 0)
                 ? _c("morning-empty", { attrs: { note: "无项目" } })
+                : _vm.conf.canSearch &&
+                  _vm.conf.hideSelected === true &&
+                  _vm.data.selectedAllInShowItemList
+                ? _c("morning-empty", { attrs: { note: "无匹配项目" } })
                 : _vm._e()
             ],
             1
@@ -88117,9 +88166,9 @@ var morning = {
         black: 'bk',
         white: 'wh'
     },
-    _devVersion: '0.12.58',
+    _devVersion: '0.12.59',
     isMorning: true,
-    version: '0.12.58',
+    version: '0.12.59',
     map: {}
 };
 
