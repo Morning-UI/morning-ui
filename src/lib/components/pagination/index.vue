@@ -173,7 +173,7 @@ export default {
         type : {
             type : String,
             default : 'normal',
-            validator : (value => ['normal', 'simple', 'mini'].indexOf(value) !== -1)
+            validator : (value => ['strip', 'normal', 'mini', 'simple', 'unlimited'].indexOf(value) !== -1)
         },
         alwaysShowNavArrow : {
             type : Boolean,
@@ -197,10 +197,11 @@ export default {
         },
         moreClass : function () {
 
-            return {
-                'type-simple' : this.conf.type === 'simple',
-                'type-mini' : this.conf.type === 'mini'
-            };
+            let classes = {};
+
+            classes[`type-${this.conf.type}`] = true;
+
+            return classes;
 
         }
     },

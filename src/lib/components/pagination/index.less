@@ -11,13 +11,13 @@ mor-pagination{
         text-align: center;
 
         > a{
+            box-sizing: border-box;
             display: inline-block;
             vertical-align: middle;
             padding: 0 0.8em;
             cursor: pointer;
             line-height: 2.4em;
             height: 2.4em;
-            background-color: @colorComponentItemBg !important;
             color: darken(@colorComponentItemFont, 3%) !important;
             text-decoration: none !important;
 
@@ -104,7 +104,7 @@ mor-pagination{
             display: inline-block;
             position: relative;
             vertical-align: top !important;
-            margin-left: 2px;
+            box-sizing: border-box;
 
             mor-textinput.page-num {
                 position: relative;
@@ -114,13 +114,14 @@ mor-pagination{
                 border-top-right-radius: @borderRadius;
                 border-bottom-right-radius: @borderRadius;
 
-                .textinput-wrap > .input-wrap > input{
+                .textinput-wrap input{
                     vertical-align: top !important;
-                    border: 1px solid @colorFormBorder;
+                    // border: 1px solid @colorFormBorder;
                     padding: 0 1.5em 0 0.8em;
-                    line-height: 2.8em;
-                    height: 2.8em;
+                    line-height: 2.4em;
+                    height: 2.4em;
                     width: 6em;
+                    box-sizing: border-box;
                     border-top-left-radius: 0;
                     border-bottom-left-radius: 0;
                 }
@@ -142,6 +143,61 @@ mor-pagination{
         }
     }
 
+    &.type-strip{
+        > .list{
+            > a{
+                background-color: @colorComponentItemBg !important;
+
+                &.prev,
+                &.next{
+                    // background-color: @colorWhite !important;
+
+                    &.cant-click{
+                        background-color: @colorComponentItemBgDisabled !important;
+                        color: darken(@colorComponentItemFontDisabled, 3%) !important;
+                    }
+                }
+            }
+
+            > .page-jump{
+                margin-left: 2px;
+            }
+        }
+    }
+
+    &.type-normal{
+        > .list{
+            > a{
+                background-color: @colorWhite !important;
+                border: 1px solid @colorFormBorder;
+                border-radius: @borderRadius;
+
+                &:first-child{
+                    margin-left: 0;
+                }
+
+                &.ignore{
+                    border: none;
+                }
+
+                &.prev,
+                &.next{
+                    background-color: @colorWhite !important;
+
+                    &.cant-click{
+                        background-color: @colorComponentItemBgDisabled !important;
+                        border-color: @colorComponentItemBgDisabled !important;
+                        color: darken(@colorComponentItemFontDisabled, 3%) !important;
+                    }
+                }
+            }
+
+            > .page-jump{
+                margin-left: @fontSize*0.5;
+            }
+        }
+    }
+
     &.type-simple{
         a.next{
             border-top-right-radius: @borderRadius;
@@ -152,7 +208,7 @@ mor-pagination{
             mor-textinput.page-num{
                 border-radius: @borderRadius;
 
-                .textinput-wrap > input{
+                .textinput-wrap input{
                     border-radius: @borderRadius;
                 }
             }
@@ -170,12 +226,14 @@ mor-pagination{
             mor-textinput.page-num{
                 border-radius: @borderRadius;
 
-                .textinput-wrap > input{
+                .textinput-wrap input{
                     border-radius: @borderRadius;
                 }
             }
         }
     }
+
+    &.type-unlimited{}
 
     &.si-xxl{
         .list{
@@ -185,7 +243,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*1.3;
                 }
 
@@ -193,6 +251,12 @@ mor-pagination{
                     line-height: @fontSize*3.125;
                     font-size: @fontSize*1.0625;
                 }
+            }
+        }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.5;
             }
         }
     }
@@ -205,7 +269,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*1.2;
                 }
 
@@ -213,6 +277,12 @@ mor-pagination{
                     line-height: @fontSize*2.875;
                     font-size: @fontSize*1;
                 }
+            }
+        }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.4375;
             }
         }
     }
@@ -225,7 +295,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*1.1;
                 }
 
@@ -233,6 +303,12 @@ mor-pagination{
                     line-height: @fontSize*2.5;
                     font-size: @fontSize*1;
                 }
+            }
+        }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.375;
             }
         }
     }
@@ -245,7 +321,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*1;
                 }
 
@@ -253,6 +329,12 @@ mor-pagination{
                     line-height: @fontSize*2.5;
                     font-size: @fontSize*0.9375;
                 }
+            }
+        }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.3125;
             }
         }
     }
@@ -265,7 +347,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*0.875;
                 }
 
@@ -273,6 +355,12 @@ mor-pagination{
                     line-height: @fontSize*2.125;
                     font-size: @fontSize*0.8125;
                 }
+            }
+        }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.25;
             }
         }
     }
@@ -293,7 +381,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*0.75;
                     padding: 0 1.8em 0 0.6em;
                     line-height: 2.2em;
@@ -304,6 +392,12 @@ mor-pagination{
                     line-height: @fontSize*1.5625;
                     font-size: @fontSize*0.75;
                 }
+            }
+        }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.1875;
             }
         }
     }
@@ -324,7 +418,7 @@ mor-pagination{
             }
 
             .page-jump{
-                .page-num > .textinput-wrap > input{
+                .page-num > .textinput-wrap input{
                     font-size: @fontSize*0.75;
                     padding: 0 1.7em 0 0.4em;
                     line-height: 2em;
@@ -337,12 +431,19 @@ mor-pagination{
                 }
             }
         }
+
+        &.type-normal{
+            > .list > a{
+                margin-left: @fontSize*0.125;
+            }
+        }
     }
 
     &.co-t{
         .list > a{
             &.current{
                 background-color: @colorTheme !important;
+                border-color: @colorTheme !important;
             }
         }
 
@@ -355,6 +456,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorLightTheme !important;
+                border-color: @colorLightTheme !important;
             }
         }
 
@@ -367,6 +469,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorDarkTheme !important;
+                border-color: @colorDarkTheme !important;
             }
         }
 
@@ -379,6 +482,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorSuccess !important;
+                border-color: @colorSuccess !important;
             }
         }
 
@@ -391,6 +495,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorWarning !important;
+                border-color: @colorWarning !important;
             }
         }
 
@@ -403,6 +508,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorDanger !important;
+                border-color: @colorDanger !important;
             }
         }
 
@@ -415,6 +521,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorPrimary !important;
+                border-color: @colorPrimary !important;
             }
         }
 
@@ -427,6 +534,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorMinor !important;
+                border-color: @colorMinor !important;
             }
         }
 
@@ -439,6 +547,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorInfo !important;
+                border-color: @colorInfo !important;
             }
         }
 
@@ -451,6 +560,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorBlack !important;
+                border-color: @colorBlack !important;
             }
         }
 
@@ -466,6 +576,7 @@ mor-pagination{
             .list > a{
                 &.current{
                     background-color: @@colorName !important;
+                border-color: @@colorName !important;
                     color: if((@value > 5), @colorWhite, @colorBlack) !important;
                 }
             }
@@ -480,6 +591,7 @@ mor-pagination{
         .list > a{
             &.current{
                 background-color: @colorWhite !important;
+                border-color: @colorWhite !important;
                 color: @colorBlack !important;
             }
         }
