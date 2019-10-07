@@ -83,7 +83,8 @@ commonConfig = {
         alias : {
             Common : pathLibCommon,
             Utils : pathLibUtils,
-            Npm : pathNpm
+            Npm : pathNpm,
+            quill$ : path.resolve(pathNpm, 'quill/core')
         }
     },
     externals : {
@@ -108,9 +109,6 @@ devVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
-            new webpack.ProvidePlugin({
-                'window.Quill' : 'quill/core'
-            }),
             extractDevCss,
             new VueLoaderPlugin()
         ],
@@ -126,7 +124,10 @@ devVerConfig = extend(
                                 importLoaders : 2
                             }
                         }, {
-                            loader : 'less-loader'
+                            loader : 'less-loader',
+                            options : {
+                                // strictMath : true
+                            }
                         }, {
                             loader : 'postcss-loader',
                             options : {
@@ -137,6 +138,36 @@ devVerConfig = extend(
                         }]
                     })
                 },
+                // for quill-emoji start
+                {
+                    test : /\.scss$/,
+                    use : extractDevCss.extract({
+                        fallback : 'vue-style-loader',
+                        use : [{
+                            loader : 'css-loader',
+                        }, {
+                            loader : 'resolve-url-loader'
+                        }, {
+                            loader : 'sass-loader',
+                            options : {
+                                sourceMap : true,
+                                sourceMapContents : false
+                            }
+                        }]
+                    })
+                },
+                {
+                    test : /\.png$/,
+                    use : [
+                        {
+                            loader : 'file-loader',
+                            options : {
+                                name : '/morning-ui.emoji.png'
+                            }
+                        }
+                    ]
+                },
+                // for quill-emoji end
                 {
                     test : /\.css$/,
                     use : extractDevCss.extract({
@@ -174,7 +205,7 @@ devVerConfig = extend(
                 {
                     test : /\.js$/,
                     exclude : file => (
-                        /node_modules\/(?!(quill|quill-image-resize-module))/.test(file) &&
+                        /node_modules\/(?!(quill))/.test(file) &&
                         !/\.vue\.js/.test(file)
                     ),
                     use : [
@@ -214,9 +245,6 @@ prodVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
-            new webpack.ProvidePlugin({
-                'window.Quill' : 'quill/core'
-            }),
             extractProdCss,
             new VueLoaderPlugin()
         ],
@@ -237,7 +265,10 @@ prodVerConfig = extend(
                                 inline : false
                             }
                         }, {
-                            loader : 'less-loader'
+                            loader : 'less-loader',
+                            options : {
+                                // strictMath : true
+                            }
                         }, {
                             loader : 'postcss-loader',
                             options : {
@@ -248,6 +279,36 @@ prodVerConfig = extend(
                         }]
                     })
                 },
+                // for quill-emoji start
+                {
+                    test : /\.scss$/,
+                    use : extractDevCss.extract({
+                        fallback : 'vue-style-loader',
+                        use : [{
+                            loader : 'css-loader',
+                        }, {
+                            loader : 'resolve-url-loader'
+                        }, {
+                            loader : 'sass-loader',
+                            options : {
+                                sourceMap : true,
+                                sourceMapContents : false
+                            }
+                        }]
+                    })
+                },
+                {
+                    test : /\.png$/,
+                    use : [
+                        {
+                            loader : 'file-loader',
+                            options : {
+                                name : '/morning-ui.emoji.png'
+                            }
+                        }
+                    ]
+                },
+                // for quill-emoji end
                 {
                     test : /\.css$/,
                     use : extractProdCss.extract({
@@ -287,7 +348,7 @@ prodVerConfig = extend(
                 {
                     test : /\.js$/,
                     exclude : file => (
-                        /node_modules\/(?!(quill|quill-image-resize-module))/.test(file) &&
+                        /node_modules\/(?!(quill))/.test(file) &&
                         !/\.vue\.js/.test(file)
                     ),
                     use : [
@@ -359,7 +420,10 @@ docsConfig = {
                     use : [{
                         loader : 'css-loader',
                     }, {
-                        loader : 'less-loader'
+                        loader : 'less-loader',
+                        options : {
+                            // strictMath : true
+                        }
                     }]
                 })
             },

@@ -59,6 +59,8 @@ import row                          from './row/index.vue';
 import col                          from './col/index.vue';
 import formitem                     from './formitem/index.vue';
 import formdivider                  from './formdivider/index.vue';
+import numeral                      from './numeral/index.vue';
+import timeline                     from './timeline/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
@@ -152,6 +154,8 @@ export default {
     col,
     formitem,
     formdivider,
+    numeral,
+    timeline,
     textinput,
     textarea,
     texteditor,

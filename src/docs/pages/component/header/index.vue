@@ -10,51 +10,80 @@
 
     [[[开始]]]
 
-    定义一个页头，常用在容器内部，这是一个块级元素。
+    定义一个页头，常用在某个区块的头部使用，用于导航、显示标题等作用，这是一个块级元素。
+
+    可通过`slot`来定义主标题部分，`slot="sub-title"`来定义子标题部分。
 
     :::vue
     @name:使用
     ---
     #demo
     >tpl
-    <ui-header>
-        页头标题
-    </ui-header>
-    :::
-
-    :::vue
-    @name:子标题
-    ---
-    #demo
-    >desc
-    你可以使用`<small>`标记子标题。
-    >tpl
-    <ui-header>
-        页头标题<small>页头子标题</small>
-    </ui-header>
-    :::
-
-    :::vue
-    @name:带标记的页头
-    ---
-    #demo
-    >desc
-    使用`mark`类可显示带标记的页头。
-    >tpl
-    <ui-header class="mark">
-        页头标题<small>页头子标题</small>
-    </ui-header>
+    <ui-header>页头标题</ui-header>
     :::
 
     :::vue
     @name:带下划线的页头
     ---
     #demo
-    >desc
-    使用`underline`类可显示带下划线的页头。
     >tpl
-    <ui-header class="underline">
-        页头标题<small>页头子标题</small>
+    <ui-header underline>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    :::
+
+    :::vue
+    @name:带返回操作的页头
+    ---
+    #demo
+    >tpl
+    <ui-header show-back>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    :::
+
+    :::vue
+    @name:带面包屑导航的页头
+    ---
+    #demo
+    >desc
+    使用`slot="breadcrumbs"`来定义面包屑导航部分
+    >tpl
+    <ui-header>
+        当前页面
+        <span slot="sub-title">这里是说明</span>
+        <ui-breadcrumbs
+            slot="breadcrumbs"
+            root-name="首页"
+            :list="[
+                {'level1' : '第一级'},
+                {'level2' : '第二级'},
+                {'current' : '当前页面'}
+            ]"
+        ></ui-breadcrumbs>
+    </ui-header>
+    :::
+
+    :::vue
+    @name:配合标签和头像一起使用
+    ---
+    #demo
+    >tpl
+    <ui-header>
+        <ui-avatar class="circle"><ui-img src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img></ui-avatar>
+        当前页面
+        <span slot="sub-title">这里是说明 <ui-label size="xs">标签</ui-label></span>
+        <ui-breadcrumbs
+            slot="breadcrumbs"
+            root-name="首页"
+            :list="[
+                {'level1' : '第一级'},
+                {'level2' : '第二级'},
+                {'current' : '当前页面'}
+            ]"
+        ></ui-breadcrumbs>
     </ui-header>
     :::
 
@@ -73,13 +102,134 @@
     :::vue
     @layout:size
     ---
-    <ui-header class="mark" size="{$sizeKey}">{$&sizeName}<small>页头子标题</small></ui-header>
+    <ui-header size="{$sizeKey}">{$&sizeName}<span slot="sub-title">页头子标题</span></ui-header>
     :::
 
     :::vue
     @layout:color
     ---
-    <ui-header color="{$colorKey}">{$&colorName}<small>页头子标题</small></ui-header>
+    <ui-header color="{$colorKey}">{$&colorName}<span slot="sub-title">页头子标题</span></ui-header>
+    :::
+
+    [[[配置]]]
+
+    :::vue
+    @name:mark
+    ---
+    #config
+    >conf-desc
+    显示页头标记。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-header mark>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    :::
+
+    :::vue
+    @name:underline
+    ---
+    #config
+    >conf-desc
+    显示页头的下划线。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-header underline>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    :::
+
+    :::vue
+    @name:show-back
+    ---
+    #config
+    >conf-desc
+    显示返回按钮，可以通过`back`事件来监听，此按钮被点击。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-header show-back>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    ---
+    #demo
+    >desc
+    配合`mark`一起使用。
+    >tpl
+    <ui-header show-back mark>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    ---
+    #demo
+    >desc
+    配合`underline`一起使用。
+    >tpl
+    <ui-header show-back underline>
+        页头标题
+        <span slot="sub-title">页头子标题</span>
+    </ui-header>
+    :::
+
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @name:back
+    ---
+    #event
+    >event-desc
+    开启`show-back`配置后，当返回按钮被点击时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-header show-back @back="echo">
+            页头标题
+            <span slot="sub-title">页头子标题</span>
+        </ui-header>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'back event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    header
+    页头
     :::
 
     [[[源码]]]

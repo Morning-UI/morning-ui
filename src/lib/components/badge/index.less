@@ -1,11 +1,16 @@
+@badgeSizeBorderRadius: 2, 1.66, 1.33, 1, 1, 1, 1;
+@badgeSizeMargin: 0.5, 0.4375, 0.25, 0.1875, 0.125, 0.125, 0.125;
+@badgeSizeFontSize: 1.3, 1.2, 1, 0.8, 0.75, 0.625, 0.5;
+@badgeSizePointWidth: 1.1875, 1, 0.8125, 0.625, 0.5, 0.375, 0.28125;
+
 mor-badge{
     display: inline-block;
     color: @colorWhite;
-    margin: @fontSize*0.125;
+    // margin: @fontSize*0.125;
     text-align: center;
     vertical-align: middle;
     height: auto;
-    line-height: 1.6em;
+    line-height: 1.8em;
     min-width: 1.6em;
     box-sizing: border-box;
     font-weight: 400;
@@ -19,199 +24,110 @@ mor-badge{
         border-style: solid;
     }
 
-    &.si-xxl{
-        font-size: @fontSize*1.4;
-        padding: 0 @fontSize*1;
-        margin: @fontSize*0.5;
+    each(@sizeNameMap, {
+        @sizeBorderRadius: @borderRadius*extract(@badgeSizeBorderRadius, @index);
+        @sizeFontSize: @fontSize*extract(@badgeSizeFontSize, @index);
 
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*1.4;
-        }
+        & when (@value = m) {
+            font-size: @sizeFontSize;
+            margin: 0 @fontSize*extract(@badgeSizeMargin, @index);
+            padding: 0 @fontSize*extract(@badgeSizeFontSize, @index);
 
-        &:not(.badge-point),
-        &.flat:not(.badge-point){
-            border-radius: @borderRadius*1.6;
-        }
+            & when (@value = xxl), (@value = l) {
+                &,
+                & > span{
+                    line-height: 1.9em;
+                }
+            }
 
-        &.circle:not(.badge-point){
-            border-radius: @fontSize*1.6;
-        }
+            & when (@value = s), (@value = xs), (@value = xxs) {
+                &,
+                & > span{
+                    line-height: 1.84em;
+                }
+            }
 
-        &.badge-point{
-            > span{
-                width: @fontSize*1.1875;
-                height: @fontSize*1.1875;
+            & when (@value = xs) {
+                transform: scale(0.85);
+            }
+
+            & when (@value = xxs) {
+                transform: scale(0.75);
+            }
+
+            > i,
+            > i.iconfont,
+            > i.mo-icon{
+                font-size: @sizeFontSize;
+            }
+
+            &:not(.badge-point),
+            &.flat:not(.badge-point){
+                border-radius: @sizeBorderRadius;
+            }
+
+            &.circle:not(.badge-point){
+                border-radius: @sizeBorderRadius;
+            }
+
+            &.badge-point{
+                > span{
+                    width: @fontSize*extract(@badgeSizePointWidth, @index);
+                    height: @fontSize*extract(@badgeSizePointWidth, @index);
+                }
             }
         }
-    }
 
-    &.si-xl{
-        font-size: @fontSize*1.2;
-        padding: 0 @fontSize*0.8;
-        margin: @fontSize*0.3;
+        &.si-@{value}{
+            font-size: @sizeFontSize;
+            margin: 0 @fontSize*extract(@badgeSizeMargin, @index);
+            padding: 0 @fontSize*extract(@badgeSizeFontSize, @index);
 
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*1.2;
-        }
+            & when (@value = xxl), (@value = l) {
+                &,
+                & > span{
+                    line-height: 1.9em;
+                }
+            }
 
-        &,
-        &.flat{
-            border-radius: @borderRadius*1.4;
-        }
+            & when (@value = s), (@value = xs), (@value = xxs) {
+                &,
+                & > span{
+                    line-height: 1.84em;
+                }
+            }
 
-        &.circle:not(.badge-point){
-            border-radius: @fontSize*1.4;
-        }
+            & when (@value = xs) {
+                transform: scale(0.85);
+            }
 
-        &.badge-point{
-            > span{
-                width: @fontSize;
-                height: @fontSize;
+            & when (@value = xxs) {
+                transform: scale(0.75);
+            }
+
+            > i,
+            > i.iconfont,
+            > i.mo-icon{
+                font-size: @sizeFontSize;
+            }
+
+            &:not(.badge-point),
+            &.flat:not(.badge-point){
+                border-radius: @sizeBorderRadius;
+            }
+
+            &.circle:not(.badge-point){
+                border-radius: @sizeBorderRadius;
+            }
+
+            &.badge-point{
+                > span{
+                    width: @fontSize*extract(@badgeSizePointWidth, @index);
+                    height: @fontSize*extract(@badgeSizePointWidth, @index);
+                }
             }
         }
-    }
-
-    &.si-l{
-        font-size: @fontSize*1;
-        padding: 0 @fontSize*0.75;
-        margin: @fontSize*0.1;
-
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*1;
-        }
-
-        &,
-        &.flat{
-            border-radius: @borderRadius*1.2;
-        }
-
-        &.circle:not(.badge-point){
-            border-radius: @fontSize*1.2;
-        }
-
-        &.badge-point{
-            > span{
-                width: @fontSize*0.8125;
-                height: @fontSize*0.8125;
-            }
-        }
-    }
-
-    &.si-m{
-        font-size: @fontSize*0.8125;
-        padding: 0 @fontSize*0.65;
-
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*0.8125;
-        }
-
-        &,
-        &.flat{
-            border-radius: @borderRadius*1;
-        }
-
-        &.circle:not(.badge-point){
-            border-radius: @fontSize;
-        }
-
-        &.badge-point{
-            > span{
-                width: @fontSize*0.625;
-                height: @fontSize*0.625;
-            }
-        }
-    }
-
-    &.si-s{
-        font-size: @fontSize*0.75;
-        padding: 0 @fontSize*0.55;
-
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*0.75;
-        }
-
-        &,
-        &.flat{
-            border-radius: @borderRadius*0.8;
-        }
-
-        &.circle:not(.badge-point){
-            border-radius: @fontSize*0.8;
-        }
-
-        &.badge-point{
-            > span{
-                width: @fontSize*0.5;
-                height: @fontSize*0.5;
-            }
-        }
-    }
-
-    &.si-xs{
-        font-size: @fontSize*0.75;
-        padding: 0 @fontSize*0.3;
-        transform: scale(0.9);
-
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*0.75;
-        }
-
-        &,
-        &.flat{
-            border-radius: @borderRadius*0.75;
-        }
-
-        &.circle:not(.badge-point){
-            border-radius: @fontSize*0.75;
-        }
-
-        &.badge-point{
-            > span{
-                width: @fontSize*0.375;
-                height: @fontSize*0.375;
-            }
-        }
-    }
-
-    &.si-xxs{
-        font-size: @fontSize*0.75;
-        padding: 0 @fontSize*0.3125;
-        transform: scale(0.8);
-
-        > i,
-        > i.iconfont,
-        > i.mo-icon{
-            font-size: @fontSize*0.75;
-        }
-
-        &,
-        &.flat{
-            border-radius: @borderRadius*0.625;
-        }
-
-        &.circle:not(.badge-point){
-            border-radius: @fontSize*0.625;
-        }
-
-        &.badge-point{
-            > span{
-                width: @fontSize*0.28125;
-                height: @fontSize*0.28125;
-            }
-        }
-    }
+    });
 
     &.co-t{
         background-color: @colorTheme;
@@ -431,7 +347,7 @@ mor-badge{
 
     // default status
     &{
-        .si-m;
+        // .si-m;
         .co-t;
         .st-normal;
     }

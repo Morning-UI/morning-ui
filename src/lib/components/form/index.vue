@@ -178,6 +178,7 @@ export default {
         _syncValue : function (first = false) {
 
             let value = this.get() || {};
+            let hasKeys = Object.keys(value);
 
             for (let key in value) {
 
@@ -211,7 +212,7 @@ export default {
 
                 }
 
-                if (value[formKey] === undefined) {
+                if (value[formKey] === undefined && hasKeys.indexOf(formKey) !== -1) {
 
                     this.data.forms[formKey].set(undefined);
 

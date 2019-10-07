@@ -241,8 +241,6 @@
     #method
     >method-desc
     获取当前所在锚点的索引。
-    >method-args
-    无参数
     >method-return
     当前所在锚点的索引。
     ---
@@ -277,8 +275,6 @@
     #method
     >method-desc
     获取当前所在锚点的`id`。
-    >method-args
-    无参数
     >method-return
     当前所在锚点的`id`。
     ---
@@ -313,8 +309,6 @@
     #method
     >method-desc
     获取当前所在锚点的标题。
-    >method-args
-    无参数
     >method-return
     当前所在锚点的标题。
     ---

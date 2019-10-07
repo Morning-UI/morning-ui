@@ -8,6 +8,10 @@ import {
 }                                   from 'date-fns';
 import standardDate                 from './standardDate';
 import DateTimeCore                 from './DateTimeCore';
+import {
+    formatOptions,
+    parseOptions
+}                                   from './DateFnsOptions';
 
 let Time = {
     mixins : [DateTimeCore],
@@ -35,7 +39,8 @@ let Time = {
             return parseDate(
                 `${standardDate} ${str}`,
                 `yyyy-MM-dd ${format}`,
-                this._timeGetStandardDate()
+                this._timeGetStandardDate(),
+                parseOptions
             );
 
         },
@@ -100,7 +105,7 @@ let Time = {
         },
         _timeGetRelativeTimeString : function (relativeTime, format) {
 
-            return formatDate(this._timeGetRelativeTime(relativeTime), format);
+            return formatDate(this._timeGetRelativeTime(relativeTime), format, formatOptions);
 
         }
     }

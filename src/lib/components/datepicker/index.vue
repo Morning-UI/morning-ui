@@ -26,6 +26,8 @@
         :done-hidden="doneHidden"
         :relative="relative"
         :month-pick="monthPick"
+        :hidden-icon="hiddenIcon"
+        :confirm-area="confirmArea"
         :_quick-pick-unit="_quickPickUnit"
         :_relative-time="_relativeTime"
     >
@@ -34,7 +36,7 @@
     <div class="form-note" v-if="!!conf.formNote">{{conf.formNote}}</div>
 
     <div class="wrap form-body">
-        <div class="input-group-addon" v-if="conf.isRange">
+        <div class="input-group-addon" v-if="conf.isRange && !conf.hiddenIcon">
             <i class='mo-icon mo-icon-date'></i>
         </div>
 
@@ -57,6 +59,7 @@
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
                     :month-pick="conf.monthPick"
+                    :hidden-icon="conf.hiddenIcon"
                     :_date-popover-add-class="'date-select-0'"
                     :_relative-time="conf._relativeTime"
                     :_range-input-direction="conf.rangeInputDirection === 'vertical'"
@@ -233,6 +236,7 @@
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
                     :month-pick="conf.monthPick"
+                    :hidden-icon="conf.hiddenIcon"
                     :_relative-time="conf._relativeTime"
 
                     @value-change="_syncValueFromInputToRoot"
@@ -384,10 +388,10 @@ import {
     addSeconds,
     addMilliseconds
 }                                   from 'date-fns';
-
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 const NUM_60 = 60;
 const NUM_1K = 1000;
@@ -469,6 +473,10 @@ export default {
             type : Boolean,
             default : false
         },
+        hiddenIcon : {
+            type : Boolean,
+            default : false
+        },
         _relativeTime : {
             type : Boolean,
             default : false
@@ -494,6 +502,7 @@ export default {
                 doneHidden : this.doneHidden,
                 relative : this.relative,
                 monthPick : this.monthPick,
+                hiddenIcon : this.hiddenIcon,
                 _quickPickUnit : this._quickPickUnit,
                 _relativeTime : this._relativeTime
             };
@@ -521,7 +530,9 @@ export default {
             return {
                 'has-quick-pick' : (this.conf.quickPick.length > 0),
                 'inline-separator' : (this.conf.separatorType === 'inline'),
-                'range-input-vertical' : (this.conf.rangeInputDirection === 'vertical')
+                'range-input-vertical' : (this.conf.rangeInputDirection === 'vertical'),
+                'component-focus' : this.data.lastComponentFocusStatus,
+                'hidden-icon' : this.conf.hiddenIcon
             };
 
         }
@@ -1040,7 +1051,7 @@ export default {
 
             if (!this._dateStringIsValid(value, this.conf.format)) {
 
-                value = formatDate(this._dateGetStandardDate(), this.conf.format);
+                value = formatDate(this._dateGetStandardDate(), this.conf.format, formatOptions);
 
             }
 
@@ -1406,13 +1417,13 @@ export default {
 
             if (val[0]) {
     
-                val[0] = formatDate(val[0], this.conf.format);
+                val[0] = formatDate(val[0], this.conf.format, formatOptions);
 
             }
 
             if (val[1]) {
     
-                val[1] = formatDate(val[1], this.conf.format);
+                val[1] = formatDate(val[1], this.conf.format, formatOptions);
 
             }
 
@@ -1483,7 +1494,7 @@ export default {
 
                     } else {
                         
-                        val = [formatDate(input1Val, this.conf.format)];
+                        val = [formatDate(input1Val, this.conf.format, formatOptions)];
 
                     }
 
@@ -1495,7 +1506,7 @@ export default {
 
                     } else {
 
-                        val = [formatDate(input0Val, this.conf.format)];
+                        val = [formatDate(input0Val, this.conf.format, formatOptions)];
 
                     }
 
@@ -1509,7 +1520,7 @@ export default {
 
                     } else {
 
-                        val[0] = formatDate(input0Val, this.conf.format);
+                        val[0] = formatDate(input0Val, this.conf.format, formatOptions);
 
                     }
 
@@ -1519,7 +1530,7 @@ export default {
 
                     } else {
 
-                        val[1] = formatDate(input1Val, this.conf.format);
+                        val[1] = formatDate(input1Val, this.conf.format, formatOptions);
 
                     }
 
@@ -1682,11 +1693,11 @@ export default {
 
                         let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
 
-                        $timepicker._set(formatDate(date, $timepicker.conf.format));
+                        $timepicker._set(formatDate(date, $timepicker.conf.format, formatOptions));
 
                     }
 
-                    this._set(formatDate(date, this.conf.format));
+                    this._set(formatDate(date, this.conf.format, formatOptions));
 
                 }
 
@@ -1713,7 +1724,7 @@ export default {
 
                     if (date[0] instanceof Date) {
 
-                        value[0] = formatDate(date[0], this.conf.format);
+                        value[0] = formatDate(date[0], this.conf.format, formatOptions);
 
                     }
 
@@ -1736,7 +1747,7 @@ export default {
 
                     if (date[1] instanceof Date) {
 
-                        value[1] = formatDate(date[1], this.conf.format);
+                        value[1] = formatDate(date[1], this.conf.format, formatOptions);
 
                     }
 
@@ -1752,7 +1763,7 @@ export default {
 
                     let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
 
-                    $timepicker._set(formatDate(date[0], $timepicker.conf.format));
+                    $timepicker._set(formatDate(date[0], $timepicker.conf.format, formatOptions));
 
                 }
 
@@ -1764,7 +1775,7 @@ export default {
 
                     let $timepicker = this.$slots.timepicker2[0].children[0].componentInstance;
 
-                    $timepicker._set(formatDate(date[1], $timepicker.conf.format));
+                    $timepicker._set(formatDate(date[1], $timepicker.conf.format, formatOptions));
 
                 }
 

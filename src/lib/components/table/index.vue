@@ -22,6 +22,8 @@
         :custom-sort="customSort"
         :multi-sort="multiSort"
         :highlight-row="highlightRow"
+        :highlight-row-background="highlightRowBackground"
+        :highlight-row-color="highlightRowColor"
         :multi-select="multiSelect"
         :hover-effect="hoverEffect"
         :loading="loading"
@@ -37,7 +39,7 @@
             <div class="custom-header">
                 <slot name="header"></slot>
                 <div class="action">
-                    <morning-btn v-if="conf.exportCsv" color="success" :size="conf.size" @emit="_exportCsv">导出</morning-btn>
+                    <morning-btn v-if="conf.exportCsv" color="success" :size="conf.size" @emit="exportToCsv">导出</morning-btn>
                 </div>
             </div>
 
@@ -230,6 +232,14 @@ export default {
             type : Boolean,
             default : false
         },
+        highlightRowBackground : {
+            type : String,
+            default : 'default'
+        },
+        highlightRowColor : {
+            type : String,
+            default : 'default'
+        },
         multiSelect : {
             type : Boolean,
             default : false
@@ -270,6 +280,8 @@ export default {
                 customSort : this.customSort,
                 multiSort : this.multiSort,
                 highlightRow : this.highlightRow,
+                highlightRowBackground : this.highlightRowBackground,
+                highlightRowColor : this.highlightRowColor,
                 multiSelect : this.multiSelect,
                 hoverEffect : this.hoverEffect,
                 loading : this.loading,
@@ -372,9 +384,10 @@ export default {
                     this.conf.multiSort
                 ) {
 
-                    this.data.sort[col] = {
+                    this.Vue.set(this.data.sort, col, {
+                        type : 'no',
                         origin : {}
-                    };
+                    });
 
                     // 这里用反向的，因为后续逻辑会做一次切换
                     if (colSetMap.sortmode === 'desc asc') {
@@ -389,10 +402,10 @@ export default {
 
                 } else {
 
-                    this.data.sort[col] = {
+                    this.Vue.set(this.data.sort, col, {
                         type : 'no',
                         origin : {}
-                    };
+                    });
 
                 }
 
@@ -483,11 +496,11 @@ export default {
 
             this.data.sort[col].type = type;
 
-            // if (this.conf.customSort) {
+            if (!this.conf.customSort) {
 
-            this._sort();
+                this._sort();
 
-            // }
+            }
     
             this.$emit('col-sort', col, this.data.sort[col].type);
 
@@ -527,8 +540,38 @@ export default {
                         mainRows[index]._sub = this.data[`${subType}Rows`][index];
 
                     }
-        
-                    newMainRows = sortBy(mainRows, item => item[colIndex]);
+                    
+                    newMainRows = sortBy(mainRows, item => {
+                    
+                        let val = item[colIndex];
+                    
+                        // 处理HTML标签
+                        if (/<[a-zA-Z-]+>/.test(val)) {
+                    
+                            let divEle = document.createElement('div');
+                    
+                            divEle.innerHTML = val;
+                            val = divEle.innerText;
+                    
+                        }
+                    
+                        // 处理百分比的情况
+                        if (/^[\d.]+%$/.test(val)) {
+                    
+                            val = +val.replace(/%$/, '');
+                    
+                        }
+                    
+                        // 尝试转换成数字
+                        if (!isNaN(+val)) {
+                    
+                            val = Number(val);
+                    
+                        }
+                    
+                        return val;
+                    
+                    });
 
                     if (sort.type === 'desc') {
 
@@ -895,6 +938,12 @@ export default {
         },
         _syncRowHeight : function () {
 
+            if (this.data.titleKeys.length === 0) {
+
+                return;
+
+            }
+
             let $normalRows = this.$el.querySelectorAll('.normal-table tbody > tr:not(.expand-row)');
             let $titleRows = this.$el.querySelectorAll('.title-table tbody > tr:not(.expand-row)');
 
@@ -1125,7 +1174,7 @@ export default {
             return csv;
             
         },
-        _exportCsv : function () {
+        exportToCsv : function () {
 
             let csv = [];
             let downloadLink = document.createElement('a');
@@ -1176,6 +1225,8 @@ export default {
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);
+
+            return this;
 
         },
         _importList : function (list) {
@@ -1384,6 +1435,56 @@ export default {
             this.$emit('cell-leave', Number(line), key);
 
         },
+        _setCustomHighlightRow : function ($tr) {
+
+            if (this.conf.highlightRowBackground !== 'default') {
+
+                let $nextTr = $tr.nextElementSibling;
+
+                for (let $td of $tr.children.valueOf()) {
+
+                    $td.style.setProperty('background-color', this.conf.highlightRowBackground);
+                    $td.style.setProperty('border-color', this.conf.highlightRowBackground, 'important');
+                    $td.style.setProperty('color', this.conf.highlightRowColor);
+
+                }
+
+                if ($nextTr) {
+
+                    for (let $td of $nextTr.children.valueOf()) {
+
+                        $td.style.setProperty('border-top-color', this.conf.highlightRowBackground, 'important');
+
+                    }
+
+                }
+
+            }
+
+        },
+        _cleanCustomHighlightRow : function ($tr) {
+
+            let $nextTr = $tr.nextElementSibling;
+
+            for (let $td of $tr.children.valueOf()) {
+
+                $td.style.removeProperty('background-color');
+                $td.style.removeProperty('border-color');
+                $td.style.removeProperty('color');
+
+            }
+
+            if ($nextTr) {
+
+                for (let $td of $nextTr.children.valueOf()) {
+
+                    $td.style.removeProperty('border-top-color');
+
+                }
+
+            }
+
+        },
         getHighlightRow : function () {
 
             if (!this.conf.highlightRow) {
@@ -1416,12 +1517,14 @@ export default {
             if ($titleTr) {
 
                 $titleTr.classList.add('last-click');
+                this._setCustomHighlightRow($titleTr);
 
             }
 
             if ($normalTr) {
 
                 $normalTr.classList.add('last-click');
+                this._setCustomHighlightRow($normalTr);
 
             }
 
@@ -1442,12 +1545,14 @@ export default {
             if ($lastClickTitleTr) {
                 
                 $lastClickTitleTr.classList.remove('last-click');
+                this._cleanCustomHighlightRow($lastClickTitleTr);
 
             }
 
             if ($lastClickNormalTr) {
                 
                 $lastClickNormalTr.classList.remove('last-click');
+                this._cleanCustomHighlightRow($lastClickNormalTr);
 
             }
 

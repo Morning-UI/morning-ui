@@ -21,6 +21,7 @@
         :has-quick-pick="hasQuickPick"
         :relative="relative"
         :month-pick="monthPick"
+        :hiddenIcon="hiddenIcon"
         :_date-popover-add-class="_datePopoverAddClass"
         :_relative-time="_relativeTime"
         :_range-input-direction="_rangeInputDirection"
@@ -33,7 +34,7 @@
         :align="conf.align"
         :state="conf.state"
         :size="conf.size"
-        prepend="<i class='mo-icon mo-icon-date'></i>"
+        :prepend="!conf.hiddenIcon && '<i class=\'mo-icon mo-icon-date\'></i>'"
 
         @focus="_inputFocus"
         @blur="_inputBlur"
@@ -58,7 +59,7 @@
     >
 
         <div class="date-select">
-            
+
             <div class="timepicker" v-if="conf.showTimepickerBox">
                 <slot name="timepicker"></slot>
             </div>
@@ -88,7 +89,7 @@
 
     </morning-popover>
 
-    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
+    <morning-link v-if="conf.clearable" color="minor" @emit="_cleanDatepicker" class="cleanbtn">清空</morning-link>
 
     </mor-private-datepicker>
 </template>
@@ -110,6 +111,7 @@ import {
 import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 export default {
     origin : 'Form',
@@ -171,6 +173,10 @@ export default {
             type : Boolean,
             default : false
         },
+        hiddenIcon : {
+            type : Boolean,
+            default : false
+        },
         _datePopoverAddClass : {
             type : String,
             default : ''
@@ -201,6 +207,7 @@ export default {
                 hasQuickPick : this.hasQuickPick,
                 relative : this.relative,
                 monthPick : this.monthPick,
+                hiddenIcon : this.hiddenIcon,
                 _datePopoverAddClass : this._datePopoverAddClass,
                 _relativeTime : this._relativeTime,
                 _rangeInputDirection : this._rangeInputDirection
@@ -296,13 +303,13 @@ export default {
 
             let date = this._dateStringToDate(value, this.conf.format);
 
-            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+            if (!this._checkSelectable(formatDate(date, this.conf.format, formatOptions))) {
 
                 date = this._getClosestDate(date);
 
             }
 
-            return formatDate(date, this.conf.format);
+            return formatDate(date, this.conf.format, formatOptions);
 
         },
         _isRelativeDate : function (value) {
@@ -380,6 +387,12 @@ export default {
             this.$emit('input-blur');
 
         },
+        _cleanDatepicker : function () {
+
+            this._clean();
+            this._syncInputValue();
+
+        },
         _syncInputValue : function () {
 
             if (this.data.inputValue === undefined ||
@@ -413,7 +426,7 @@ export default {
 
                     } else {
 
-                        this._set(formatDate(date, this.conf.format), true);
+                        this._set(formatDate(date, this.conf.format, formatOptions), true);
 
                     }
 
@@ -487,7 +500,7 @@ export default {
         },
         _clickDate : function (date) {
 
-            let value = formatDate(date, this.conf.format);
+            let value = formatDate(date, this.conf.format, formatOptions);
             let selectable = this._checkSelectable(value);
 
             if (!selectable) {
@@ -518,7 +531,7 @@ export default {
 
                 } else {
 
-                    dateString = formatDate(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
+                    dateString = formatDate(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format, formatOptions);
 
                 }
 
@@ -826,7 +839,16 @@ export default {
         this.$watch('data.inputFocus', this._toggleSelector, {
             immediate : true
         });
-        this.$watch('data.inputValue', this._syncInputValue);
+        this.$watch('data.inputValue', value => {
+
+            // 不需要实时同步输入内容，仅在失焦或数值为空时同步
+            if (value === undefined || value === '') {
+            
+                this._syncInputValue();
+
+            }
+
+        });
 
     },
     beforeDestory : function () {

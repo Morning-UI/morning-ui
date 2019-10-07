@@ -116,6 +116,77 @@
     <ui-label state="{$stateKey}">{$&stateName}</ui-label>
     :::
 
+    [[[配置]]]
+
+    :::vue
+    @name:closable
+    ---
+    #config
+    >conf-desc
+    标签是否可以被关闭。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-label closable>标签</ui-label>
+    :::
+
+    [[[方法]]]
+    
+    :::vue
+    @name:close()
+    ---
+    #method
+    >method-desc
+    关闭标签（当标签关闭后会被立即销毁）。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-label ref="demo1" closable>标签</ui-label>
+        <br><br>
+        <ui-link js="window.morning.findVM('demo1').close();">关闭标签</ui-link>
+    </div>
+    :::
+
+    [[[事件]]]
+
+    :::vue
+    @name:closed
+    ---
+    #event
+    >event-desc
+    标签被关闭时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-label closable @closed="echo">标签</ui-label>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'closed event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    label
+    标签
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/label/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

@@ -142,7 +142,7 @@
             编辑热区
         </div>
 
-        <morning-tab class="block">
+        <morning-tab type="block">
             <div slot="数据" v-if="$scopedSlots.default || $slots.default">
                 <slot :group="'ui-imagemap-data-'+uiid"></slot>
             </div>

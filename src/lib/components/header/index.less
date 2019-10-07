@@ -1,248 +1,153 @@
+@headerSizeFontSizeMap: 3, 2.5, 2.125, 1.75, 1.375, 1.25, 1;
+@headerSizePaddingLeftMap: 2.25, 1.875, 1.5, 1.25, 1.125, 1, 0.75;
+@headerSizeBorderLeftWidthMap: 0.625, 0.625, 0.5, 0.375, 0.3125, 0.1875, 0.125;
+@headerSizeSubTitleFontSizeMap: 1.75, 1.5, 1.25, 1.125, 1, 0.875, 0.75;
+@headerSizeSubTitleMarginLeftMap: 1.25, 1, 0.875, 0.75, 0.625, 0.4375, 0.375;
+@headerSizeBackBtnFontSizeMap: 1.5, 1.25, 1.0625, 0.875, 0.6875, 0.625, 0.5;
+
 mor-header{
     display: block;
     margin: 0.6em 0;
-    vertical-align: middle;
-
-    small{
-        vertical-align: baseline !important;
+    line-height: 1em;
+    
+    .header-main,
+    .main-title,
+    .sub-title,
+    .back-link{
+        display: flex;
+        align-items: center;
     }
 
-    &.si-xxl{
-        font-size: @fontSize*3.2;
-        padding-left: @fontSize*1.6;
-        border-left-width: @fontSize*0.7;
-
-        small{
-            font-size: @fontSize*1.8;
-            margin-left: @fontSize*1.1;
-        }
+    .header-main mor-avatar{
+        margin-right: 1em; 
     }
 
-    &.si-xl{
-        font-size: @fontSize*2.88;
-        padding-left: @fontSize*1.4;
-        border-left-width: @fontSize*0.7;
+    .sub-title{
+        margin-left: @fontSize*0.5;
 
-        small{
-            font-size: @fontSize*1.44;
-            margin-left: @fontSize*0.9;
+        mor-label,
+        mor-badge{
+            vertical-align: -5px;
         }
     }
 
-    &.si-l{
-        font-size: @fontSize*2.16;
-        padding-left: @fontSize*1.2;
-        border-left-width: @fontSize*0.6;
+    .back-link{
+        border-right: 1px @colorComponentItemBorder solid;
 
-        small{
-            font-size: @fontSize*1.08;
-            margin-left: @fontSize*0.7;
+        .mo-icon{
+            vertical-align: middle;
         }
     }
 
-    &.si-m{
-        font-size: @fontSize*1.8;
-        padding-left: @fontSize*1;
-        border-left-width: @fontSize*0.5;
-
-        small{
-            font-size: @fontSize*0.9;
-            margin-left: @fontSize*0.5;
-        }
+    .header-breadcrumbs:not(:empty){
+        margin-bottom: 16px;
     }
 
-    &.si-s{
-        font-size: @fontSize*1.44;
-        padding-left: @fontSize*0.8;
-        border-left-width: @fontSize*0.3;
+    each(@sizeNameMap, {
+        & when(@value = m) {
+            font-size: @fontSize*extract(@headerSizeFontSizeMap, @key);
 
-        small{
-            font-size: @fontSize*0.72;
-            margin-left: @fontSize*0.4;
-        }
-    }
+            &.mark{
+                .main-title{
+                    padding-left: @fontSize*extract(@headerSizePaddingLeftMap, @index);
+                    border-left-width: @fontSize*extract(@headerSizeBorderLeftWidthMap, @index);
+                }
+            }
 
-    &.si-xs{
-        font-size: @fontSize*1.26;
-        padding-left: @fontSize*0.6;
-        border-left-width: @fontSize*0.2;
+            .sub-title{
+                font-size: @fontSize*extract(@headerSizeSubTitleFontSizeMap, @index);
+                margin-left: @fontSize*extract(@headerSizeSubTitleMarginLeftMap, @index);
+            }
 
-        small{
-            font-size: @fontSize*0.63;
-            margin-left: @fontSize*0.3;
-        }
-    }
-
-    &.si-xxs{
-        font-size: @fontSize*1;
-        padding-left: @fontSize*0.4;
-        border-left-width: @fontSize*0.15;
-
-        small{
-            font-size: @fontSize*0.5;
-            margin-left: @fontSize*0.25;
-        }
-    }
-
-    &.co-t{
-        color: @colorTheme;
-
-        &.mark{
-            border-left-color: @colorTheme;
+            .back-link{
+                padding: 0 0.75em;
+                margin-right: 0.5em;
+            }
         }
 
-        &.underline{
-            border-bottom-color: @colorTheme;
+        &.si-@{value}{
+            font-size: @fontSize*extract(@headerSizeFontSizeMap, @index);
+
+            &.mark{
+                .main-title{
+                    padding-left: @fontSize*extract(@headerSizePaddingLeftMap, @index);
+                    border-left-width: @fontSize*extract(@headerSizeBorderLeftWidthMap, @index);
+                }
+            }
+
+            .sub-title{
+                font-size: @fontSize*extract(@headerSizeSubTitleFontSizeMap, @index);
+                margin-left: @fontSize*extract(@headerSizeSubTitleMarginLeftMap, @index);
+            }
+
+            .back-link{
+                padding: 0 0.75em;
+                margin-right: 0.5em;
+            }
+        }
+    });
+
+    each(@colorShortNameMap, {
+        & when(@value = bk) {
+            color: extract(@colorVarMap, @index);
+
+            &.mark{
+                .main-title{
+                    border-left-color: extract(@colorVarMap, @index);
+                }
+            }
+
+            &.underline{
+                border-bottom-color: extract(@colorVarMap, @index);
+            }
+
+            .sub-title when (@value = t), (@value = lt), (@value = dt), (@value = m){
+                color: lighten(extract(@colorVarMap, @index), 15%);
+            }
+
+            .sub-title when (@value = s), (@value = w), (@value = d), (@value = p), (@value = i){
+                color: darken(extract(@colorVarMap, @index), 5%);
+            }
+
+            .sub-title when (@value = bk){
+                color: lighten(extract(@colorVarMap, @index), 35%);
+            }
+
+            .sub-title when (@value = wh){
+                color: darken(extract(@colorVarMap, @index), 10%);
+            }
         }
 
-        small{
-            color: lighten(@colorTheme, 15%);
+        &.co-@{value}{
+            color: extract(@colorVarMap, @index);
+
+            &.mark{
+                .main-title{
+                    border-left-color: extract(@colorVarMap, @index);
+                }
+            }
+
+            &.underline{
+                border-bottom-color: extract(@colorVarMap, @index);
+            }
+
+            .sub-title when (@value = t), (@value = lt), (@value = dt){
+                color: lighten(extract(@colorVarMap, @index), 15%);
+            }
+
+            .sub-title when (@value = s), (@value = w), (@value = d), (@value = p), (@value = m), (@value = i){
+                color: lighten(extract(@colorVarMap, @index), 5%);
+            }
+
+            .sub-title when (@value = bk){
+                color: lighten(extract(@colorVarMap, @index), 35%);
+            }
+
+            .sub-title when (@value = wh){
+                color: darken(extract(@colorVarMap, @index), 10%);
+            }
         }
-    }
-
-    &.co-lt{
-        color: @colorLightTheme;
-
-        &.mark{
-            border-left-color: @colorLightTheme;
-        }
-
-        &.underline{
-            border-bottom-color: @colorLightTheme;
-        }
-
-        small{
-            color: lighten(@colorLightTheme, 15%);
-        }
-    }
-
-    &.co-dt{
-        color: @colorDarkTheme;
-
-        &.mark{
-            border-left-color: @colorDarkTheme;
-        }
-
-        &.underline{
-            border-bottom-color: @colorDarkTheme;
-        }
-
-        small{
-            color: lighten(@colorDarkTheme, 15%);
-        }
-    }
-
-    &.co-s{
-        color: @colorSuccess;
-
-        &.mark{
-            border-left-color: @colorSuccess;
-        }
-
-        &.underline{
-            border-bottom-color: @colorSuccess;
-        }
-
-        small{
-            color: darken(@colorSuccess, 5%);
-        }
-    }
-
-    &.co-w{
-        color: @colorWarning;
-
-        &.mark{
-            border-left-color: @colorWarning;
-        }
-
-        &.underline{
-            border-bottom-color: @colorWarning;
-        }
-
-        small{
-            color: darken(@colorWarning, 5%);
-        }
-    }
-
-    &.co-d{
-        color: @colorDanger;
-
-        &.mark{
-            border-left-color: @colorDanger;
-        }
-
-        &.underline{
-            border-bottom-color: @colorDanger;
-        }
-
-        small{
-            color: darken(@colorDanger, 5%);
-        }
-    }
-
-    &.co-p{
-        color: @colorPrimary;
-
-        &.mark{
-            border-left-color: @colorPrimary;
-        }
-
-        &.underline{
-            border-bottom-color: @colorPrimary;
-        }
-
-        small{
-            color: darken(@colorPrimary, 5%);
-        }
-    }
-
-    &.co-m{
-        color: @colorMinor;
-
-        &.mark{
-            border-left-color: @colorMinor;
-        }
-
-        &.underline{
-            border-bottom-color: @colorMinor;
-        }
-
-        small{
-            color: lighten(@colorMinor, 15%);
-        }
-    }
-
-    &.co-i{
-        color: @colorInfo;
-
-        &.mark{
-            border-left-color: @colorInfo;
-        }
-
-        &.underline{
-            border-bottom-color: @colorInfo;
-        }
-
-        small{
-            color: darken(@colorInfo, 5%);
-        }
-    }
-
-    &.co-bk{
-        color: @colorBlack;
-
-        &.mark{
-            border-left-color: @colorBlack;
-        }
-
-        &.underline{
-            border-bottom-color: @colorBlack;
-        }
-
-        small{
-            color: lighten(@colorBlack, 35%);
-        }
-    }
+    });
 
     each(range(11), {
         @colorName : 'colorNeutral@{value}';
@@ -251,41 +156,34 @@ mor-header{
             color: @@colorName;
 
             &.mark{
-                border-left-color: @@colorName;
+                .main-title{
+                    border-left-color: @@colorName;
+                }
             }
 
             &.underline{
                 border-bottom-color: @@colorName;
             }
 
-            small when (@value > 5) {
+            .sub-title when (@value > 5) {
                 color: lighten(@@colorName, @value * 2.5%);
             }
 
-            small when (@value <= 5) {
+            .sub-title when (@value <= 5) {
                 color: darken(@@colorName, @value * 3%);
             }
         }
     });
 
-    &.co-wh{
-        color: @colorWhite;
-
-        &.mark{
-            border-left-color: @colorWhite;
-        }
-
-        &.underline{
-            border-bottom-color: @colorWhite;
-        }
-
-        small{
-            color: darken(@colorWhite, 10%);
-        }
-    }
-
     &.mark{
-        border-left-style: solid;
+        .main-title{
+            border-left-style: solid;
+        }
+
+        .back-link{
+            border-right: none;
+            margin-right: 0;
+        }
     }
 
     &.underline{
@@ -295,8 +193,5 @@ mor-header{
     }
 
     // default status
-    &{
-        .si-m;
-        .co-bk;
-    }
+    // &{}
 }

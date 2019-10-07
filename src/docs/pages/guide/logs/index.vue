@@ -18,6 +18,168 @@
     
     ### 更新记录
 
+    ### 0.12.59 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年9月29日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.59" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.59/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.59/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-table`新增`highlight-row-background`和`highlight-row-color`配置，可以用来自定义高亮行的样式
+    - `ui-table`新增`exportToCsv()`方法
+    - `ui-texteditor`支持表格
+    - `ui-texteditor`支持`blur`和`focus`事件
+
+    #### 修复
+
+    - 修复`ui-sticky`文档中的一处错误
+    - 修复`ui-select`组件在开启`can-search`后，未搜索到项目时提示没有显示的问题
+    - 修复`ui-tab`组件使用`position="bottom”`配置后，配合部分组件使用时显示异常的问题
+    - 修复文档无法打开`codepen`示例的问题(更新至`codepen`最新API)
+
+    #### 更多
+
+    - Morning UI Roadmap更新
+    - 依赖库`date-fns`从`2.0.0-alpha.27`升级至`2.2.1`
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - Morning UI依赖的`date-fns`从`2.0.0-alpha.27`升级至`2.2.1`，其中存在不兼容升级，Morning UI内已做兼容处理。若在组件库之外使用了`date-fns`请注意安装版本的变化，主要变化为`format`和`parse`方法。(see：`https://date-fns.org`)
+
+    ---
+
+    ### 0.12.58 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年9月12日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.58" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.58/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.58/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-texteditor`支持`emoji`表情
+    - `ui-datepicker`和`ui-datetimepicker`新增`hidden-icon`配置
+    - `ui-texteditor`新增`inline-style`配置
+    - `ui-texteditor`新增`getHtml()`和`getHtmlWithoutStyle()`方法
+    - `ui-select`支持`select-btn`配置
+    
+    #### 改进
+    
+    - 优化`ui-datepicker`、`ui-datetimepicker`、`ui-timepicker`样式，使其符合设计规范
+    - 优化`ui-popover`阴影样式
+    
+    #### 修复
+    
+    - 修复`ui-anchor`中的一处问题
+    - 修复`ui-calendar`月份和年份选择时样式问题
+    
+    ---
+
+    ### 0.12.57 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年8月20日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.57" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.57/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.57/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-btn`新增`ghost`(幽灵按钮)和`fade`(褪色按钮)样式
+    
+    #### 改进
+    
+    - 优化`ui-btn`的样式使其符合设计规范
+    - 优化`ui-dialog`的样式使其符合设计规范
+    - 优化`info`和`minor`色彩使其符合设计规范
+    - 所有表单组件统一了默认提示文案
+    
+    #### 修复
+    
+    - 修复`ui-datetimepicker`在区间选择时的一个数值清空的问题
+    
+    ---
+
+    ### 0.12.56 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年8月10日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.56" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.56/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.56/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-select`新增`blur`、`focus`事件
+    - `ui-timepicker`新增`blur`、`focus`事件
+
+    #### 改进
+
+    - `ui-table`的表格排序现在支持部分非数字内容的排序 
+
+    #### 修复
+
+    - 修复`ui-select`组件动态切换`multi-select`配置时的报错
+    - 修复`ui-form`在同步子表单数值上的一个问题
+
+    #### 更多
+
+    - `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件现在不会实时校验/修正输入内容，而是在表单失焦后校验/修正输入内容
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 现在`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件不会实时校验/修正输入内容，这可能引起部分即时取值逻辑产生问题，若页面采用了即时性较强的取值逻辑请检查是否正常运行
+
+    ---
+
+    ### 0.12.55 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年7月18日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.55" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.55/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.55/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 新特性
+    
+    - `ui-drawer`新增`after-show`和`after-hide`两个事件
+    
+    #### 改进
+    
+    - 优化`ui-table`在未使用标题列时的性能
+    
+    #### 修复
+    
+    - 修复`ui-table`组件的`custom-sort`配置失效的问题
+    - 修复安全性漏洞(CVE-2019-10742) 
+    - 修复底层`TriggerManager`引起的一个报错
+    
+    ---
+
     ### 0.12.54 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">

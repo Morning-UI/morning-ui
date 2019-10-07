@@ -25,6 +25,7 @@
         :end-name="endName"
         :done-hidden="doneHidden"
         :relative="relative"
+        :hidden-icon="hiddenIcon"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -51,6 +52,7 @@
             :show-timepicker-box="true"
             :done-hidden="conf.doneHidden"
             :relative="conf.relative"
+            :hidden-icon="conf.hiddenIcon"
             :_relative-time="conf.relative"
 
             @value-change="_syncFromInputToRoot(0)"
@@ -122,6 +124,7 @@ import {
 import Dates                        from 'Utils/Dates';
 import Time                         from 'Utils/Time';
 import DateTime                     from 'Utils/DateTime';
+import {formatOptions}              from 'Utils/DateFnsOptions';
 
 export default {
     origin : 'Form',
@@ -190,6 +193,10 @@ export default {
         relative : {
             type : Boolean,
             default : false
+        },
+        hiddenIcon : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -210,7 +217,8 @@ export default {
                 startName : this.startName,
                 endName : this.endName,
                 doneHidden : this.doneHidden,
-                relative : this.relative
+                relative : this.relative,
+                hiddenIcon : this.hiddenIcon
             };
 
         },
@@ -396,7 +404,7 @@ export default {
  
             }
 
-            return formatDate(date, this.conf.format);
+            return formatDate(date, this.conf.format, formatOptions);
 
         },
         _syncFromRootToChild : function () {
@@ -435,7 +443,7 @@ export default {
                                 } else {
 
                                     timeDate = this._dateStringToDate(value[0], $date.conf.format);
-                                    $time._set(formatDate(timeDate, $time.conf.format), true);
+                                    $time._set(formatDate(timeDate, $time.conf.format, formatOptions), true);
 
                                 }
 
@@ -450,7 +458,7 @@ export default {
                                 } else {
                                 
                                     timeDate2 = this._dateStringToDate(value[1], $date.conf.format);
-                                    $time2._set(formatDate(timeDate2, $time2.conf.format), true);
+                                    $time2._set(formatDate(timeDate2, $time2.conf.format, formatOptions), true);
 
                                 }
 
@@ -463,7 +471,7 @@ export default {
                         } else {
 
                             timeDate = this._dateStringToDate(value, $date.conf.format);
-                            $time._set(formatDate(timeDate, $time.conf.format), true);
+                            $time._set(formatDate(timeDate, $time.conf.format, formatOptions), true);
 
                         }
 
@@ -575,7 +583,7 @@ export default {
 
                     } else {
     
-                        this._set(formatDate(date, this.conf.format), true);
+                        this._set(formatDate(date, this.conf.format, formatOptions), true);
 
                     }
 
@@ -591,7 +599,7 @@ export default {
 
                             this._set(
                                 [
-                                    formatDate(date[0], this.conf.format)
+                                    formatDate(date[0], this.conf.format, formatOptions)
                                 ],
                                 true
                             );
@@ -608,7 +616,7 @@ export default {
 
                         } else {
 
-                            value[0] = formatDate(date[0], this.conf.format);
+                            value[0] = formatDate(date[0], this.conf.format, formatOptions);
 
                         }
 
@@ -618,7 +626,7 @@ export default {
 
                         } else {
 
-                            value[1] = formatDate(date[1], this.conf.format);
+                            value[1] = formatDate(date[1], this.conf.format, formatOptions);
 
                         }
 
@@ -851,8 +859,8 @@ export default {
 
             }
 
-            limitTimeRange[0] = formatDate(limitTimeRange[0], $time.conf.format);
-            limitTimeRange[1] = formatDate(limitTimeRange[1], $time.conf.format);
+            limitTimeRange[0] = formatDate(limitTimeRange[0], $time.conf.format, formatOptions);
+            limitTimeRange[1] = formatDate(limitTimeRange[1], $time.conf.format, formatOptions);
 
             this.data.timeSelectableRange = limitTimeRange;
             this.data.selectableDates = selectableDates;

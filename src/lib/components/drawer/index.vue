@@ -43,6 +43,7 @@ import PopupManager                 from 'Utils/PopupManager';
 
 const moveOffset = 30;
 const moveDelayTime = 150;
+const toggleTime = 300;
 
 export default {
     origin : 'UI',
@@ -219,7 +220,9 @@ export default {
         },
         _moveParentDrawer : function (move) {
 
-            if (this.$parent.uiname === 'drawer' && this.$parent.conf.position === this.conf.position) {
+            if (this.$parent &&
+                this.$parent.uiname === 'drawer' &&
+                this.$parent.conf.position === this.conf.position) {
 
                 this.$parent._moveDrawer(move);
 
@@ -239,10 +242,17 @@ export default {
         toggle : function (show) {
 
             let isShown = this._isShown();
+            let toggleTimeoutTime = toggleTime;
 
             if (show === undefined) {
 
                 show = !this.data.show;
+
+            }
+
+            if (this.conf.showType === 'no') {
+
+                toggleTimeoutTime = 0;
 
             }
 
@@ -266,6 +276,12 @@ export default {
 
                 this.$emit('show');
                 this.$emit('emit');
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(() => {
+
+                    this.$emit('after-show');
+
+                }, toggleTimeoutTime);
                 
             } else {
 
@@ -277,6 +293,13 @@ export default {
 
                 this.$emit('hide');
                 this.$emit('emit');
+
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(() => {
+
+                    this.$emit('after-hide');
+
+                }, toggleTimeoutTime);
             
             }
 

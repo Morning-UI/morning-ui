@@ -7,6 +7,10 @@
             'mor-select-wrap' : !conf.separateEmit
         }, sizeClass, stateClass]"
     >
+        <div class="select-btn" v-if="conf.multiSelect && conf.selectBtn">
+            <morning-btn size="xs" color="neutral-1" @emit="_multiSelect(true)">全中全部</morning-btn>
+            <morning-btn size="xs" color="neutral-1" @emit="_multiSelect(false)">取消选中</morning-btn>
+        </div>
         <ul
             class="list"
             :style="listStyle"
@@ -56,8 +60,10 @@
                 :class="{
                     show :
                         data.noMatch ||
+                        (conf.canSearch && (conf.dynamicList || showItemList.length === 0)) ||
                         (conf.hideSelected === true && (showItemList.length === 0 || data.selectedAll)) ||
-                        (conf.hideSelected === false && (conf.list === undefined || Object.keys(conf.list).length === 0))
+                        (conf.hideSelected === false && (conf.list === undefined || Object.keys(conf.list).length === 0)) ||
+                        (conf.canSearch && (conf.hideSelected === true) && data.selectedAllInShowItemList)
                 }"
             >
                 <morning-empty v-if="conf.canSearch && (conf.dynamicList || showItemList.length === 0)" note="无匹配项目"></morning-empty>
@@ -65,6 +71,7 @@
                 <morning-empty v-else-if="(conf.hideSelected === true && (showItemList.length === 0 || data.selectedAll))" note="无项目"></morning-empty>
                 <!-- 选中不隐藏的情况下 -->
                 <morning-empty v-else-if="(conf.hideSelected === false && (conf.list === undefined || Object.keys(conf.list).length === 0))" note="无项目"></morning-empty>
+                <morning-empty v-else-if="conf.canSearch && (conf.hideSelected === true) && data.selectedAllInShowItemList" note="无匹配项目"></morning-empty>
             </li>
             <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
                 <span>请搜索以显示更多</span>
@@ -84,7 +91,8 @@ export default {
         '_listClick',
         'showItemList',
         'uiid',
-        '_itemHover'
+        '_itemHover',
+        '_multiSelect'
     ]
 };
 </script>

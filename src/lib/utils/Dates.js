@@ -4,6 +4,10 @@ import {
     format as formatDate
 }                                   from 'date-fns';
 import DateTimeCore                 from './DateTimeCore';
+import {
+    formatOptions,
+    parseOptions
+}                                   from './DateFnsOptions';
 
 let Dates = {
     mixins : [DateTimeCore],
@@ -31,7 +35,8 @@ let Dates = {
             return parseDate(
                 str,
                 format,
-                this._dateGetStandardDate()
+                this._dateGetStandardDate(),
+                parseOptions
             );
 
         },
@@ -70,7 +75,7 @@ let Dates = {
         },
         _dateGetRelativeDateString : function (relativeDate, format) {
 
-            return formatDate(this._dateGetRelativeDate(relativeDate), format);
+            return formatDate(this._dateGetRelativeDate(relativeDate), format, formatOptions);
 
         }
     }

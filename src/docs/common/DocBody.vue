@@ -2879,7 +2879,7 @@ window.Vue.directive('docmd', {
             
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
-            md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder no-padding" anchor-target>$1');
+            md = md.replace(/(\[\[\[)/, '<ui-tab type="block" no-padding no-border anchor-target>$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><morning-anchor><div class="content-title" title="开始" id="开始" is-anchor>开始</div>$1</morning-anchor></div>$3');
             md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><morning-anchor><div class="content-title" title="配置" id="配置" is-anchor>配置</div>$1</morning-anchor></div>$3');
@@ -3167,7 +3167,7 @@ export default {
             let fieldData = document.createElement("input");
 
             fieldData.setAttribute('name', 'data');
-            fieldData.setAttribute('value', JSON.stringify(codeData));
+            fieldData.setAttribute('value', JSON.stringify(codeData).replace(/"/g, "&quot;").replace(/'/g, "&apos;"));
 
             // let fieldWrap = document.createElement("textarea");
             // fieldWrap.setAttribute('name', 'wrap');
@@ -3193,7 +3193,7 @@ export default {
 a{ }
 
 .body {
-    width: 1150px;
+    width: 1200px;
     margin: 0 auto;
     font-size: 0;
 }
@@ -3219,6 +3219,23 @@ a{ }
     vertical-align: top;
     font-size: 14px;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb{
+        width: 5px;
+        height: 5px;
+        background: rgba(0, 0, 0, 0);
+        border-radius: 4px;
+    }
+
+    &:hover::-webkit-scrollbar-thumb{
+        background: rgba(0, 0, 0, 0.1);
+    }
 
     h2{
         border-bottom: none;

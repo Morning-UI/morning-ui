@@ -133,44 +133,17 @@ body > div > footer .tolab {
   opacity: 0.02;
   transform: translateX(-50%);
 }
-.submenu {
-  width: 160px;
-  display: inline-block;
-  vertical-align: top;
-  border-right: 1px #EEE solid;
-  box-sizing: border-box;
-  padding: 20px 10px;
-  margin: 0;
-  list-style: none;
+.submenu-item.has-en-name {
+  margin: 10px 0;
 }
-.submenu li a {
-  font-size: 14px;
-  color: #999;
-  text-decoration: none;
-  text-indent: 8px;
-  display: inline-block;
-  margin: 3px 0;
+.submenu-item.has-en-name .name {
+  font-size: 12px;
+  color: #818DA9;
 }
-.submenu li a:hover {
-  color: #666;
+.submenu-item .tag-zone {
+  display: block;
 }
-.submenu li a.current {
-  color: #333;
-  font-weight: 700;
-}
-.submenu li a.unavailable {
-  cursor: default;
-  color: #a0a0a0;
-}
-.submenu li a.unavailable:hover {
-  color: #a0a0a0;
-}
-.submenu li .title {
-  font-size: 15px;
-  color: #333;
-  margin: 20px 0 5px;
-}
-.submenu .tag {
+.submenu-item .tag-zone .tag {
   color: #FFF;
   padding: 2px 5px;
   border-radius: 15px;
@@ -179,53 +152,119 @@ body > div > footer .tolab {
   transform: scale(0.7);
   transform-origin: left center;
   display: inline-block;
-  margin: 0 0 0 3px;
+  margin: 0 0 0 -15px;
   text-indent: 0;
   vertical-align: 1px;
   text-align: center;
   text-transform: uppercase;
 }
-.submenu .tag.new {
+.submenu-item .tag-zone .tag:first-child {
+  margin: 0;
+}
+.submenu-item .tag-zone .tag.new {
   background: #F34562;
 }
-.submenu .tag.new:before {
+.submenu-item .tag-zone .tag.new:before {
   content: 'new';
 }
-.submenu .tag.update {
+.submenu-item .tag-zone .tag.update {
   background: #41B4D2;
 }
-.submenu .tag.update:before {
+.submenu-item .tag-zone .tag.update:before {
   content: 'update';
 }
-.submenu .tag.done {
+.submenu-item .tag-zone .tag.done {
   background: #46C235;
 }
-.submenu .tag.done:before {
+.submenu-item .tag-zone .tag.done:before {
   content: 'done';
 }
-.submenu .tag.coming {
+.submenu-item .tag-zone .tag.coming {
   background: #666;
 }
-.submenu .tag.coming:before {
+.submenu-item .tag-zone .tag.coming:before {
   content: 'coming';
 }
-.submenu .tag.review {
+.submenu-item .tag-zone .tag.review {
   background: #119100;
 }
-.submenu .tag.review:before {
+.submenu-item .tag-zone .tag.review:before {
   content: 'CR PASS';
 }
-.submenu .tag.l1 {
+.submenu-item .tag-zone .tag.l1 {
   opacity: 1;
 }
-.submenu .tag.l2 {
+.submenu-item .tag-zone .tag.l2 {
   opacity: 0.85;
 }
-.submenu .tag.l3 {
+.submenu-item .tag-zone .tag.l3 {
   opacity: 0.75;
 }
-.submenu .tag.l4 {
+.submenu-item .tag-zone .tag.l4 {
   opacity: 0.6;
+}
+.submenu-item .en-name {
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 2px;
+  text-indent: 0;
+}
+.submenu {
+  width: 210px;
+  display: inline-block;
+  vertical-align: top;
+  border-right: 1px #EEE solid;
+  box-sizing: border-box;
+  padding: 20px 10px 20px 0;
+  margin: 0;
+  list-style: none;
+}
+.submenu::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.submenu::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+.submenu:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+.submenu li a {
+  font-size: 14px;
+  color: #4E596B;
+  text-decoration: none;
+  text-indent: 8px;
+  display: inline-block;
+  margin: 5px 0;
+}
+.submenu li a:hover {
+  color: #F24865;
+}
+.submenu li a:hover .name {
+  color: #F24865;
+}
+.submenu li a.current .name,
+.submenu li a.current .en-name {
+  font-weight: 700;
+  color: #F24865;
+}
+.submenu li a.unavailable {
+  cursor: default;
+  color: #A0A0A0;
+}
+.submenu li a.unavailable:hover {
+  color: #A0A0A0;
+}
+.submenu li .title {
+  font-size: 18px;
+  color: #21252D;
+  margin: 20px 0 10px;
 }
 .doc-status-bar {
   padding: 4px 0;
@@ -1401,7 +1440,7 @@ mor-dialog a:hover {
   content: 'Vue';
 }
 .body {
-  width: 1150px;
+  width: 1200px;
   margin: 0 auto;
   font-size: 0;
 }
@@ -1420,6 +1459,20 @@ mor-dialog a:hover {
   vertical-align: top;
   font-size: 14px;
   box-sizing: border-box;
+}
+.content::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.content::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+.content:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
 }
 .content h2 {
   border-bottom: none;

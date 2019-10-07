@@ -1696,6 +1696,54 @@
     :::
 
     :::vue
+    @name:highlight-row-background
+    ---
+    #config
+    >conf-desc
+    当启用`highlight-row`配置后，高亮行的背景颜色。默认背景色(`default`)将匹配组件本身设置的色彩(`color`配置)。
+    >conf-accept
+    `'default'`<br>任意合法的`background-color`(CSS)的数值
+    >conf-type
+    String
+    >conf-default
+    `'default'`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" highlight-row highlight-row-background="#A5C7FF"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:highlight-row-color
+    ---
+    #config
+    >conf-desc
+    当启用`highlight-row`配置后，高亮行的文字颜色。默认文字颜色(`default`)将匹配组件本身设置的色彩(`color`配置)。
+    >conf-accept
+    `'default'`<br>任意合法的`color`(CSS)的数值
+    >conf-type
+    String
+    >conf-default
+    `'default'`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" highlight-row highlight-row-background="#2879FA" highlight-row-color="#FFF"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
     @name:multi-select
     ---
     #config
@@ -1995,6 +2043,30 @@
         <ui-table ref="demo12" :list="list" multi-select></ui-table>
         <br><br> 
         <ui-link js="morning.findVM('demo12').uncheckAllRows();">取消选中所有行</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:exportToCsv()
+    ---
+    #method
+    >method-desc
+    导出表格内容至`csv`文件并下载。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo14" :list="list"></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo14').exportToCsv();">导出数据</ui-link>
     </div>
     >script
     {

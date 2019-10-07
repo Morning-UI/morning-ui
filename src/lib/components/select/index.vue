@@ -33,6 +33,7 @@
         :item-tip-direct="itemTipDirect"
         :list-width="listWidth"
         :collapse-limit="collapseLimit"
+        :select-btn="selectBtn"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName && !conf.separateEmit">{{conf.formName}}</div>
@@ -61,6 +62,7 @@
             :_textinputBlur="_textinputBlur"
             :_listClick="_listClick"
             :_itemHover="_itemHover"
+            :_multiSelect="_multiSelect"
             :showItemList="showItemList"
             :set="set"
         ></select-area>
@@ -99,6 +101,7 @@
                 :_textinputBlur="_textinputBlur"
                 :_listClick="_listClick"
                 :_itemHover="_itemHover"
+                :_multiSelect="_multiSelect"
                 :showItemList="showItemList"
                 :set="set"
             ></select-area>
@@ -133,6 +136,8 @@ v-else
  
 <script>
 import map                          from 'lodash.map';
+import difference                   from 'lodash.difference';
+import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import selectArea                   from './select-area.vue';
 
@@ -234,6 +239,10 @@ export default {
         collapseLimit : {
             type : Number,
             default : Infinity
+        },
+        selectBtn : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -261,7 +270,8 @@ export default {
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect,
                 listWidth : this.listWidth,
-                collapseLimit : this.collapseLimit
+                collapseLimit : this.collapseLimit,
+                selectBtn : this.selectBtn
             };
 
         },
@@ -328,6 +338,7 @@ export default {
                 itemValMapInit : false,
                 matchList : [],
                 selectedAll : false,
+                selectedAllInShowItemList : false,
                 hoverIndex : 0,
                 mouseenterHoverLock : false,
                 popoverVm : null
@@ -827,22 +838,30 @@ export default {
                 return;
 
             }
-        
+
             let key;
 
             if (this.conf.multiSelect) {
 
                 let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`);
 
-                searchMultiinput = searchMultiinput._vm;
-                key = searchMultiinput.getInput();
+                if (searchMultiinput) {
+
+                    searchMultiinput = searchMultiinput._vm;
+                    key = searchMultiinput.getInput();
+
+                }
 
             } else {
 
                 let searchTextinput = this.data.$selectArea.querySelector(`#ui-select-ti-${this.uiid}`);
 
-                searchTextinput = searchTextinput._vm;
-                key = searchTextinput.get();
+                if (searchTextinput) {
+
+                    searchTextinput = searchTextinput._vm;
+                    key = searchTextinput.get();
+
+                }
             
             }
 
@@ -995,6 +1014,7 @@ export default {
             let values = this.get();
             let itemSelectedMap = [];
             let valMapVals = Object.values(this.data.itemValMap);
+            let selectedItemInSILCount = 0;
 
             for (let index in valMapVals) {
 
@@ -1011,7 +1031,24 @@ export default {
             }
 
             this.data.itemSelectedMap = itemSelectedMap;
+            this.data.selectedAllInShowItemList = false;
             this.data.selectedAll = true;
+
+            for (let index of this.showItemList) {
+
+                if (itemSelectedMap[index] === 1) {
+
+                    selectedItemInSILCount++;
+
+                }
+
+            }
+
+            if (selectedItemInSILCount === this.showItemList.length) {
+                
+                this.data.selectedAllInShowItemList = true;
+
+            }
 
             for (let selected of itemSelectedMap) {
 
@@ -1314,6 +1351,34 @@ export default {
             }
 
         },
+        _multiSelect : function (selectAll = true) {
+
+            let currentValue = this.get();
+            let value = [];
+
+            if (selectAll) {
+
+                for (let i of this.showItemList) {
+
+                    value.push(this.data.itemValMap[i]);
+
+                }
+    
+                this._set(arrayUniq(currentValue.concat(value)));
+
+            } else {
+
+                for (let i of this.showItemList) {
+
+                    value.push(this.data.itemValMap[i]);
+
+                }
+
+                this._set(difference(currentValue, value));
+
+            }
+
+        },
         _itemHover : function (index) {
 
             if (this.data.mouseenterHoverLock) {
@@ -1552,6 +1617,7 @@ export default {
 
             this._set(value, true);
             this._onValueChange();
+            this._searchKeyChange();
 
         });
 
@@ -1578,6 +1644,20 @@ export default {
         this.$watch('data.itemNomathMap', () => {
 
             this._refreshMatchList();
+
+        });
+
+        this.$watch('data.showlist', () => {
+
+            if (this.data.showlist) {
+
+                this.$emit('focus');
+
+            } else {
+
+                this.$emit('blur');
+
+            }
 
         });
 
