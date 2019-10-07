@@ -7,7 +7,7 @@
             <div class="area">
                 <div style="width:1200px;display: flex;">
 
-                    <ui-menu :menu="menu" class="block" current-menu="index"
+                    <ui-menu :menu="menu" type="block" current-menu="index"
     position="side"
   :position-current="true"
   color="white"

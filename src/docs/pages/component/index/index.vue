@@ -25,6 +25,7 @@
                 <li><a href="/component/box.html">容器<p>&lt;box></p></a></li>
                 <li><a href="/component/block.html">区块<p>&lt;block></p></a></li>
                 <li><a href="/component/divider.html">分频器<p>&lt;divider></p></a></li>
+                <li><a href="/component/split.html">面板分割<p>&lt;split></p></a></li>
                 <li><a href="/component/center.html">居中容器<p>&lt;center></p></a></li>
                 <li><a href="/component/action.html">行动栏<p>&lt;action></p></a></li>
             </ul>
@@ -53,11 +54,14 @@
                 <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
                 <li><a href="/component/numeral.html">数字<p>&lt;numeral></p></a></li>
+                <li><a href="/component/trend.html">趋势标记<p>&lt;trend></p></a></li>
                 <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
                 <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
                 <li><a href="/component/avatar.html">头像<p>&lt;avatar></p></a></li>
                 <li><a href="/component/empty.html">空状态<p>&lt;empty></p></a></li>
+                <li><a href="/component/timeline.html">时间轴<p>&lt;timeline></p></a></li>
+                <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
                 <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>
             </ul>

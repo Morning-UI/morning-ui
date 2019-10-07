@@ -27,17 +27,17 @@
     ---
     #demo
     >desc
-    为`ui-label`加上`image`类，然后在标签内通过`<img>`标签插入图片，此时标签文本请使用`<span>`标签。
+    在标签内通过`<img>`标签插入图片，此时标签文本请使用`<span>`标签。
     <br><br>
     注意：使用时请确保`<span>`和`<img>`标签之间有空格。
     >tpl
     <div>
-        <ui-label class="image">
+        <ui-label>
             <img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/>
             <span>标签</span>
         </ui-label>
 
-        <ui-label class="image">
+        <ui-label>
             <span>标签</span>
             <img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/>
         </ui-label>
@@ -54,12 +54,12 @@
     注意：使用时请确保`<span>`和`<img>`标签之间有空格。
     >tpl
     <div>
-        <ui-label class="icon">
+        <ui-label>
             <i class="mo-icon mo-icon-star-f"></i>
             <span>标签</span>
         </ui-label>
 
-        <ui-label class="icon">
+        <ui-label>
             <span>标签</span>
             <i class="mo-icon mo-icon-star-f"></i>
         </ui-label>
@@ -93,7 +93,7 @@
     >desc
     不同尺寸带图标的标签。
     >tpl
-    <ui-label class="icon" size="{$sizeKey}"><i class="mo-icon mo-icon-star-f"></i> <span>{$&sizeName}</span></ui-label>
+    <ui-label size="{$sizeKey}"><i class="mo-icon mo-icon-star-f"></i> <span>{$&sizeName}</span></ui-label>
     ---
     #renderer
     >name
@@ -101,7 +101,7 @@
     >desc
     不同尺寸带图片的标签。
     >tpl
-    <ui-label class="image" size="{$sizeKey}"><img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
+    <ui-label size="{$sizeKey}"><img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
     :::
 
     :::vue

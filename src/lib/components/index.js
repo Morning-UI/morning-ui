@@ -60,7 +60,9 @@ import col                          from './col/index.vue';
 import formitem                     from './formitem/index.vue';
 import formdivider                  from './formdivider/index.vue';
 import numeral                      from './numeral/index.vue';
+import trend                        from './trend/index.vue';
 import timeline                     from './timeline/index.vue';
+import split                        from './split/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
@@ -155,7 +157,9 @@ export default {
     formitem,
     formdivider,
     numeral,
+    trend,
     timeline,
+    split,
     textinput,
     textarea,
     texteditor,

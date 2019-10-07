@@ -54,7 +54,9 @@ let Move = {
                 //     y : 0
                 // },
                 range : [false, false, false, false],
-                overRange : [0, 0, 0, 0]
+                overRange : [0, 0, 0, 0],
+                lockY : false,
+                lockX : false
             }
         };
 
@@ -86,7 +88,7 @@ let Move = {
 
                 this._moveStart(evt);
 
-            }, this.Move.delay);
+            }, this.Move.delay);    
 
         },
         _moveStart : function (evt) {
@@ -151,8 +153,17 @@ let Move = {
 
                 $container.append($moveDragItem);
 
-                $moveDragItem.style.top = `${y}px`;
-                $moveDragItem.style.left = `${x}px`;
+                if (!this.Move.lockY) {
+    
+                    $moveDragItem.style.top = `${y}px`;
+    
+                }
+
+                if (!this.Move.lockX) {
+    
+                    $moveDragItem.style.left = `${x}px`;
+    
+                }
 
                 this.Move.overRange = [0, 0, 0, 0];
                 this.Move.$moveDragItem = $moveDragItem;
@@ -186,11 +197,20 @@ let Move = {
             x = limit.x;
             y = limit.y;
 
-            this.Move.$moveDragItem.style.top = `${y}px`;
-            this.Move.$moveDragItem.style.left = `${x}px`;
+            if (!this.Move.lockY) {
+                
+                this.Move.$moveDragItem.style.top = `${y}px`;
+
+            }
+
+            if (!this.Move.lockX) {
+
+                this.Move.$moveDragItem.style.left = `${x}px`;
+
+            }
+
             this.Move.current.x = x;
             this.Move.current.y = y;
-
             this.$emit('_moveChange');
 
         },
@@ -235,6 +255,8 @@ let Move = {
 
         },
         _moveMouseup : function (evt) {
+
+            // return;
 
             // if has evt, must left button up
             if (evt && evt.button !== 0) {

@@ -16,6 +16,7 @@ export default {
         容器 : ['/component/box.html', 'Box'],
         区块 : ['/component/block.html', 'Block'],
         分频器 : ['/component/divider.html', 'Divider'],
+        面板分割 : ['/component/split.html', 'Split'],
         居中容器 : ['/component/center.html', 'Center'],
         行动栏 : ['/component/action.html', 'Action'],
 
@@ -38,6 +39,7 @@ export default {
         折叠面板 : ['/component/collapse.html', 'Collapse'],
         表格 : ['/component/table.html', 'Table'],
         数字 : ['/component/numeral.html', 'Numeral'],
+        趋势标记 : ['/component/trend.html', 'Trend'],
         时间 : ['/component/time.html', 'Time'],
         日历 : ['/component/calendar.html', 'Calendar'],
         轮播 : ['/component/carousel.html', 'Carousel'],

@@ -61,15 +61,27 @@ mor-label{
 
             & when (@value = xxl), (@value = l) {
                 &,
-                & > span{
+                & > span,
+                &.icon > .iconfont,
+                &.icon > .mo-icon{
                     line-height: 1.9em;
+                }
+
+                &.image img{
+                    height: 1.9em;
                 }
             }
 
             & when (@value = s), (@value = xs), (@value = xxs) {
                 &,
-                & > span{
+                & > span,
+                &.icon > .iconfont,
+                &.icon > .mo-icon{
                     line-height: 1.84em;
+                }
+
+                &.image img{
+                    height: 1.84em;
                 }
             }
 
@@ -134,15 +146,27 @@ mor-label{
 
             & when (@value = xxl), (@value = l) {
                 &,
-                & > span{
+                & > span,
+                &.icon > .iconfont,
+                &.icon > .mo-icon{
                     line-height: 1.9em;
+                }
+
+                &.image img{
+                    height: 1.9em;
                 }
             }
 
             & when (@value = s), (@value = xs), (@value = xxs) {
                 &,
-                & > span{
+                & > span,
+                &.icon > .iconfont,
+                &.icon > .mo-icon{
                     line-height: 1.84em;
+                }
+
+                &.image img{
+                    height: 1.84em;
                 }
             }
 
@@ -158,6 +182,10 @@ mor-label{
             & > span{
                 font-size: @sizeFontSize;
                 padding: 0 @fontSize*extract(@labelSizeSpanFontSize, @index);
+            }
+
+            .close-icon{
+                font-size: @sizeFontSize;
             }
 
             &.image > span:last-child{

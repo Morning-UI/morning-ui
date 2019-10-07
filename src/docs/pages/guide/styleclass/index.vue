@@ -22,7 +22,7 @@
     :::democode/html
     <!-- ui-label标签上的icon是样式类 -->
     <!-- span标签上的icon不是样式类 -->
-    <ui-label class="icon">
+    <ui-label>
         <i class="mo-icon mo-icon-star-f"></i>
         <span class="icon">标签</span>
     </ui-label>

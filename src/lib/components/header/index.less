@@ -9,7 +9,7 @@ mor-header{
     display: block;
     margin: 0.6em 0;
     line-height: 1em;
-    
+
     .header-main,
     .main-title,
     .sub-title,
@@ -19,7 +19,7 @@ mor-header{
     }
 
     .header-main mor-avatar{
-        margin-right: 1em; 
+        margin-right: 1em;
     }
 
     .sub-title{
@@ -44,8 +44,8 @@ mor-header{
     }
 
     each(@sizeNameMap, {
-        & when(@value = m) {
-            font-size: @fontSize*extract(@headerSizeFontSizeMap, @key);
+        & when (@value = m) {
+            font-size: @fontSize*extract(@headerSizeFontSizeMap, @index);
 
             &.mark{
                 .main-title{
@@ -88,7 +88,7 @@ mor-header{
     });
 
     each(@colorShortNameMap, {
-        & when(@value = bk) {
+        & when (@value = bk) {
             color: extract(@colorVarMap, @index);
 
             &.mark{

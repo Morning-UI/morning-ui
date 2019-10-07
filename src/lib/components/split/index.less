@@ -1,0 +1,45 @@
+mor-split{
+    display: block;
+    height: 100%;
+
+    .split-wrap{
+        display: flex;
+        position: relative;
+        height: 100%;
+
+        .split-placeholder{
+            width: 6px;
+        }
+
+        .split-bar{
+            width: 6px;
+            height: 100%;
+            border-left: 1px @colorComponentItemBorder solid;
+            border-right: 1px @colorComponentItemBorder solid;
+            background: @colorComponentItemBg;
+            cursor: col-resize;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            > span{
+                width: 100%;
+                height: 1px;
+                background: @colorComponentItemBorderCurrent;
+                margin: 1px 0;
+            }
+
+            &.move-moving{
+                display: none;
+            }
+        }
+    }
+
+    &.moving{
+        user-select: none;
+    }
+
+    // default status
+    &{}
+}
