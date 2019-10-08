@@ -295,15 +295,35 @@
     ---
     #config
     >conf-desc
-    分页组件的展现模式。
+    分页组件的展现风格。
     >conf-accept
-    `'normal'` : 正常<br>`'simple'` : 简洁<br>`'mini'` : 迷你
+    `'normal'` : 正常<br>`'compact'` : 紧凑<br>`'block'` : 区块<br>`'simple'` : 简洁<br>`'mini'` : 迷你
     >conf-type
     Boolean
     >conf-default
     `'normal'`
     ---
     #demo
+    >desc
+    正常风格的分页。
+    >tpl
+    <ui-pagination :total="10" type="normal"></ui-pagination>
+    ---
+    #demo
+    >desc
+    紧凑风格的分页。
+    >tpl
+    <ui-pagination :total="10" type="compact"></ui-pagination>
+    ---
+    #demo
+    >desc
+    区块风格的分页。
+    >tpl
+    <ui-pagination :total="10" type="block"></ui-pagination>
+    ---
+    #demo
+    >desc
+    简洁风格的分页。
     >tpl
     <ui-pagination :total="10" type="simple"></ui-pagination>
     ---
@@ -315,7 +335,7 @@
     ---
     #demo
     >desc
-    迷你模式的分页组件。
+    迷你风格的分页。
     >tpl
     <ui-pagination :total="10" type="mini"></ui-pagination>
     :::

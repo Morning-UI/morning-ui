@@ -39,7 +39,7 @@
                     :key="key"
                     @click="_itemClick(key, true)"
                 >
-                    <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key">
+                    <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+convertStringToClassIdName(key)">
                         <i class="mo-icon part-checked-icon" v-if="data.checkedState[key] === 0"></i>
                         <i class="mo-icon mo-icon-check" v-else></i>
                     </p>
@@ -65,7 +65,7 @@
                         :key="key"
                         @click="_itemClick(key)"
                     >
-                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key"><i class="mo-icon mo-icon-check"></i></p>
+                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+convertStringToClassIdName(key)"><i class="mo-icon mo-icon-check"></i></p>
                         <template v-if="conf.acceptHtml">
                             <span v-html="name"></span>
                         </template>
@@ -86,7 +86,7 @@
                         :key="key"
                         @click="_itemClick(key)"
                     >
-                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key"><i class="mo-icon part-checked-icon"></i></p>
+                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+convertStringToClassIdName(key)"><i class="mo-icon part-checked-icon"></i></p>
                         <template v-if="conf.acceptHtml">
                             <span v-html="name"></span>
                         </template>
@@ -106,7 +106,7 @@
                         :key="key"
                         @click="_itemClick(key)"
                     >
-                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+key"><i class="mo-icon mo-icon-check"></i></p>
+                        <p class="box" :id="'ui-checkbox-itembox-'+uiid+'-'+convertStringToClassIdName(key)"><i class="mo-icon mo-icon-check"></i></p>
                         <template v-if="conf.acceptHtml">
                             <span v-html="name"></span>
                         </template>
@@ -130,10 +130,12 @@
 <script>
 import extend                       from 'extend';
 import arrayUniq                    from 'array-uniq';
+import Utils                        from 'Utils/Utils';
 
 export default {
     origin : 'Form',
     name : 'checkbox',
+    mixins : [Utils],
     props : {
         acceptHtml : {
             type : Boolean,
@@ -434,7 +436,7 @@ export default {
 
             if (this.conf.state !== 'readonly') {
 
-                let $item = document.querySelector(`#ui-checkbox-itembox-${this.uiid}-${key}`);
+                let $item = document.querySelector(`#ui-checkbox-itembox-${this.uiid}-${this.convertStringToClassIdName(key)}`);
 
                 if (indeterminate) {
 

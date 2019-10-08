@@ -7,8 +7,11 @@
         :js="js"
         :locked="locked"
         :new-tab="newTab"
+        :min-width="minWidth"
 
         @click="_onClick"
+
+        :style="moreStyle"
     >
 
     <template v-if="data.lock">
@@ -47,6 +50,10 @@ export default {
         newTab : {
             type : Boolean,
             default : false
+        },
+        minWidth : {
+            type : [Boolean, String],
+            default : false
         }
     },
     computed : {
@@ -56,15 +63,34 @@ export default {
                 link : this.link,
                 js : this.js,
                 locked : this.locked,
-                newTab : this.newTab
+                newTab : this.newTab,
+                minWidth : this.minWidth
             };
 
         },
         moreClass : function () {
 
             return {
-                loading : this.data.lock
+                loading : this.data.lock,
+                'min-width' : (this.conf.minWidth === 'preset')
             };
+
+        },
+        moreStyle : function () {
+
+            let styles = {};
+
+            if (typeof this.conf.minWidth === 'string' && this.conf.minWidth !== 'preset') {
+
+                styles.minWidth = this.conf.minWidth;
+
+            } else {
+
+                styles.minWidth = false;
+
+            }
+
+            return styles;
 
         }
     },
