@@ -34,7 +34,7 @@
                     :key="key"
                     @click="_itemClick(key)"
                 >
-                    <p class="box" :id="'ui-radio-itembox-'+uiid+'-'+key">
+                    <p class="box" :id="'ui-radio-itembox-'+uiid+'-'+convertStringToClassIdName(key)">
                         <i class="mo-icon mo-icon-check" v-if="conf.type === 'check'"></i>
                         <i class="radio-point" v-else></i>
                     </p>
@@ -57,7 +57,7 @@
                     :key="key"
                     @click="_itemClick(key)"
                 >
-                    <p class="box" :id="'ui-radio-itembox-'+uiid+'-'+key">
+                    <p class="box" :id="'ui-radio-itembox-'+uiid+'-'+convertStringToClassIdName(key)">
                         <i class="mo-icon mo-icon-check" v-if="conf.type === 'check'"></i>
                         <i class="radio-point" v-else></i>
                     </p>
@@ -80,9 +80,12 @@
 </template>
  
 <script>
+import Utils                        from 'Utils/Utils';
+
 export default {
     origin : 'Form',
     name : 'radio',
+    mixins : [Utils],
     props : {
         acceptHtml : {
             type : Boolean,
@@ -174,7 +177,7 @@ export default {
 
             if (this.conf.state !== 'readonly') {
 
-                let $item = document.querySelector(`#ui-radio-itembox-${this.uiid}-${key}`);
+                let $item = document.querySelector(`#ui-radio-itembox-${this.uiid}-${convertStringToClassIdName(key)}`);
 
                 this.toggle(key);
                 $item.classList.add('focus-once');

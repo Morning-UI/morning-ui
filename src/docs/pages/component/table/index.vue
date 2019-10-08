@@ -912,6 +912,7 @@
     |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
     |sort|开启单列排序，必需启用`show-col-name`才有效。多列排序需要启用`multi-sort`配置|`true`<br>`false`|Boolean|`false`|
     |sortmode|排序的模式，注意当`sortmode`不为`normal`时，必须开启`multi-sort`才生效。|`'normal'`:标准排序<br>`'asc desc'`:仅正倒序排序(默认正序)<br>`'desc asc'`:仅正倒序排序(默认倒序)<br>`'no asc'`:仅正序排序<br>`'no desc'`:仅倒序排序|String|`'normal'`|
+    |filters|单列筛选项目，必需启用`show-col-name`才有效。<br><br>这是一个数组，数组中的每一项都是筛选项的对象，包含：<br>`name` : 选项名<br>`matcher` : 匹配值或匹配正则表达式|筛选项的数组|Array|`[]`|
     |pos|列的位置，这是一个数字，默认为0，表示按照数据输入的顺序。数值越大的列将会显示的越后面，数值也可以为负数。|位置数值|Number|`0`|
     <br>
     注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
@@ -1238,6 +1239,43 @@
                 {col : 'age', name : 'Age', sort : true, sortmode : 'no asc'},
                 {col : 'gender', name : 'Gender'},
                 {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    filters
+    >desc
+    对Job和Age设置筛选器。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {
+                    col : 'age',
+                    name : 'Age',
+                    filters : [
+                        {name : '10-19', matcher : /1[0-9]/},
+                        {name : '20-29', matcher : /2[0-9]/},
+                        {name : '40-49', matcher : /4[0-9]/},
+                    ]
+                },
+                {col : 'gender', name : 'Gender'},
+                {
+                    col : 'job',
+                    name : 'Job',
+                    filters : [
+                        {name : 'Driver', matcher : 'driver'},
+                        {name : 'Doctors', matcher : 'doctors'},
+                        {name : 'Gardener', matcher : /gardener/},
+                        {name : 'Teacher', matcher : /teacher/}
+                    ]
+                }
             ]
         }
     }
