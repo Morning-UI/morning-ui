@@ -161,6 +161,11 @@ export default {
 
             }
 
+        },
+        _cleanFilter : function (key) {
+
+            this.$refs[`mor-table-filter-${this.uiid}-${key}`][0].set(undefined);
+
         }
     },
     mounted : function () {
