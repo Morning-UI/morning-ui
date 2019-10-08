@@ -1,10 +1,11 @@
 @sizeName: xxl, xl, l, m, s, xs, xxs;
-@sizeFontSize: 1.3, 1.1, 1, 0.8125, 0.75, 0.75, 0.75;
+@sizeFontSize: 1.3, 1.1, 1, 0.9375, 0.875, 0.75, 0.75;
 @sizeIFontSize: 2.2, 1.8, 1.6, 1.4, 1.2, 1, 0.75;
 @sizeMloaderWidth: 1.6em, 1.4em, 1.3em, 1.2em, 1.2em, 1.2em, 1em;
 @sizeBtnHeight: 58px, 50px, 42px, 36px, 32px, 24px, 20px;
 @colorName: t, lt, dt, s, w, d, p, m, i, bk, wh;
 @colorMainColor: @colorTheme, @colorLightTheme, @colorDarkTheme, @colorSuccess, @colorWarning, @colorDanger, @colorPrimary, @colorMinor, @colorInfo, @colorBlack, @colorWhite;
+@btnSizeMinWidth: 160px, 140px, 120px, 100px, 80px, 60px, 50px;
 
 .setup-color(@selector, @colorHex, @name) {
     @{selector} {
@@ -89,6 +90,7 @@ mor-btn{
     height: 2.8em;
     line-height: calc(2.8em + 2px);
     box-sizing: border-box;
+    text-align: center;
 
     > i,
     > .mo-icon,
@@ -118,7 +120,6 @@ mor-btn{
         position: relative;
 
         > i{
-            line-height: calc(2.8em - 1px);
             position: absolute;
             left: 50%;
             top: 50%;
@@ -202,6 +203,10 @@ mor-btn{
             .mo-loader{
                 width: extract(@sizeMloaderWidth, @index);
             }
+
+            &.min-width{
+                min-width: extract(@btnSizeMinWidth, @index);
+            }
         }
 
         &.si-@{value}{
@@ -219,6 +224,10 @@ mor-btn{
 
             .mo-loader{
                 width: extract(@sizeMloaderWidth, @index);
+            }
+
+            &.min-width{
+                min-width: extract(@btnSizeMinWidth, @index);
             }
         }
     });

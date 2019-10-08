@@ -1276,27 +1276,32 @@ export default {
 
             for (let index in this.data[`${type}Rows`]) {
 
-                let csvIndex = Number(index) + 1;
-                let originRow = extend([], this.data[`${type}Rows`][index]);
-                let row = [];
+                if (this.data[`${type}Rows`][index]._matchFilter === true || this.data[`${type}Rows`][index]._matchFilter === undefined) {
 
-                for (let col in originRow) {
-
-                    if (ignoreColIndex.indexOf(col) === -1) {
-
-                        row.push(this._csvEncode(originRow[col]));
+                    let csvIndex = Number(index) + 1;
+                    let originRow = extend([], this.data[`${type}Rows`][index]);
+                    let row = [];
                     
+                    for (let col in originRow) {
+
+                        if (col !== '_matchFilter' &&
+                            ignoreColIndex.indexOf(col) === -1) {
+
+                            row.push(this._csvEncode(originRow[col]));
+
+                        }
+
                     }
 
+                    if (csv[csvIndex] === undefined) {
+
+                        csv[csvIndex] = [];
+
+                    }
+
+                    csv[csvIndex] = csv[csvIndex].concat(row);
+
                 }
-
-                if (csv[csvIndex] === undefined) {
-
-                    csv[csvIndex] = [];
-
-                }
-
-                csv[csvIndex] = csv[csvIndex].concat(row);
 
             }
 

@@ -35,7 +35,19 @@
                             <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                         </span>
                         <span class="th-filters" v-if="colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
-                            <i class="mo-icon mo-icon-filter-f"></i>
+                            <i class="mo-icon mo-icon-filter-f" :id="'mor-table-filter-'+uiid+'-'+key"></i>
+                            <ui-popover :target="'#mor-table-filter-'+uiid+'-'+key" class="mo-table-col-filter" trigger="click" placement="bottom">
+                                <ui-checkbox
+                                    :ref="'mor-table-filter-'+uiid+'-'+key"
+                                    :list="colSetMap[key].filters.reduce((map, { name, matcher }) => ({ ...map, [((matcher instanceof RegExp) ? `RegExp|${matcher.source}|${matcher.flags}` : matcher)]: name }), {})"
+
+                                    @value-change="updateColFilter(key, arguments[0])"
+                                ></ui-checkbox>
+                                <div class="filter-operate">
+                                    <morning-btn size="xs" @emit="filterCol">确认</morning-btn>
+                                    <morning-link color="minor" @emit="_cleanFilter(key)">重置</morning-link>
+                                </div>
+                            </ui-popover>
                         </span>
                     </th>
                     <th
@@ -49,7 +61,19 @@
                             <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                         </span>
                         <span class="th-filters" v-if="colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
-                            <i class="mo-icon mo-icon-filter-f"></i>
+                            <i class="mo-icon mo-icon-filter-f" :id="'mor-table-filter-'+uiid+'-'+key"></i>
+                            <ui-popover :target="'#mor-table-filter-'+uiid+'-'+key" class="mo-table-col-filter" trigger="click" placement="bottom">
+                                <ui-checkbox
+                                    :ref="'mor-table-filter-'+uiid+'-'+key"
+                                    :list="colSetMap[key].filters.reduce((map, { name, matcher }) => ({ ...map, [((matcher instanceof RegExp) ? `RegExp|${matcher.source}|${matcher.flags}` : matcher)]: name }), {})"
+
+                                    @value-change="updateColFilter(key, arguments[0])"
+                                ></ui-checkbox>
+                                <div class="filter-operate">
+                                    <morning-btn size="xs" @emit="filterCol">确认</morning-btn>
+                                    <morning-link color="minor" @emit="_cleanFilter(key)">重置</morning-link>
+                                </div>
+                            </ui-popover>
                         </span>
                     </th>
                 </template>

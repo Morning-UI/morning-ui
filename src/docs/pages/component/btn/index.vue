@@ -269,6 +269,32 @@
     <ui-btn new-tab :link="'https://www.google.com'">新窗口打开链接</ui-btn>
     :::
 
+    :::vue
+    @name:min-width
+    ---
+    #config
+    >conf-desc
+    为按钮设置最小宽度。
+    >conf-accept
+    `false`:不限制<br>`'preset'`:采用预设(会根据按钮尺寸，设置不同的最小宽度)<br>宽度数值（可以是`px`、`em`、`%`等任何css合法单位）
+    >conf-type
+    String<br>Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    采用预设。
+    >tpl
+    <ui-btn :link="'https://www.google.com'" min-width="preset">链接</ui-btn>
+    ---
+    #demo
+    >desc
+    设置具体数值。
+    >tpl
+    <ui-btn :link="'https://www.google.com'" min-width="120px">链接</ui-btn>
+    :::
+
     [[[方法]]]
 
     :::vue
