@@ -1,5 +1,5 @@
 <template>
-    <table class="title-table table co-style">
+    <table class="title-table table co-style" is-title-table>
         <thead v-if="conf.showColName">
             <tr>
                 <th
@@ -34,6 +34,9 @@
                             <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>
                             <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                         </span>
+                        <span class="th-filters" v-if="colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
+                            <i class="mo-icon mo-icon-filter-f"></i>
+                        </span>
                     </th>
                     <th
                         v-else
@@ -44,6 +47,9 @@
                             <i class="mo-icon mo-icon-sort no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')"></i>
                             <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>
                             <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
+                        </span>
+                        <span class="th-filters" v-if="colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
+                            <i class="mo-icon mo-icon-filter-f"></i>
                         </span>
                     </th>
                 </template>
@@ -59,6 +65,7 @@
             >
                 <td
                     v-if="conf.multiSelect && data.titleKeys.length > 0"
+                    v-show="(row._matchFilter === true || row._matchFilter === undefined)"
                     class="table-checked"
                 >
                     <morning-checkbox
@@ -71,7 +78,7 @@
                 </td>
                 <template v-for="(col, index) of row">
                     <td
-                        v-show="!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
+                        v-show="(!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide) && (row._matchFilter === true || row._matchFilter === undefined)"
                         :key="index"
                     
                         @click="$emit('cell-click', line, data.normalKeys[index])"
@@ -105,6 +112,8 @@ export default {
         'colSetMap',
         'rowSetMap',
         'sortCol',
+        'updateColFilter',
+        'filterCol',
         'uiid'
     ],
     methods : {

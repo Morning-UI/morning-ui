@@ -154,7 +154,8 @@ mor-table{
             }
         }
 
-        .th-sort{
+        .th-sort,
+        .th-filters{
             .mo-icon{
                 font-size: 12px;
                 opacity: 0.35;
@@ -1459,5 +1460,26 @@ mor-table{
     &{
         .co-n1;
         .si-m;
+    }
+}
+
+.mo-table-col-filter{
+    mor-checkbox{
+        .il{
+            flex-direction: column;
+            max-height: @fontSize*15;
+        }
+    }
+
+    .filter-operate{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px @colorComponentItemBorder solid;
+        padding-top: @fontSize*0.5;
+
+        mor-btn{
+            margin-right: 0.5em;
+        }
     }
 }

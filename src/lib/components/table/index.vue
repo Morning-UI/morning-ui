@@ -56,6 +56,8 @@
                         :col-set-map="colSetMap"
                         :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
+                        :update-col-filter="_updateColFilter"
+                        :filter-col="_filterCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
@@ -73,6 +75,8 @@
                         :col-set-map="colSetMap"
                         :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
+                        :update-col-filter="_updateColFilter"
+                        :filter-col="_filterCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
@@ -92,6 +96,8 @@
                         :col-set-map="colSetMap"
                         :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
+                        :update-col-filter="_updateColFilter"
+                        :filter-col="_filterCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
@@ -108,6 +114,8 @@
                         :col-set-map="colSetMap"
                         :row-set-map="rowSetMap"
                         :sort-col="_sortCol"
+                        :update-col-filter="_updateColFilter"
+                        :filter-col="_filterCol"
                         :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
@@ -120,7 +128,7 @@
                 </td>
             </tr>
 
-            <tr v-if="data.normalRows.length === 0 && data.titleRows.length === 0">
+            <tr v-if="(data.normalRows.length === 0 && data.titleRows.length === 0) || data.filterColIsEmpty">
                 <td class="no-data" colspan="2" v-if="data.titleKeys.length > 0">
                     <morning-empty></morning-empty>
                 </td>
@@ -349,7 +357,9 @@ export default {
                 rowChecked : {},
                 rowCheckedChangeCount : 0,
                 rowCheckedChangeLock : false,
-                initedSetCol : false
+                initedSetCol : false,
+                colFilters : {},
+                filterColIsEmpty : false
             }
         };
 
@@ -540,7 +550,7 @@ export default {
                         mainRows[index]._sub = this.data[`${subType}Rows`][index];
 
                     }
-                    
+
                     newMainRows = sortBy(mainRows, item => {
                     
                         let val = item[colIndex];
@@ -608,6 +618,124 @@ export default {
                 this.data.normalRows = this.data.sort[lastCol].origin.normal;
 
             }
+
+        },
+        _filter : function () {
+
+            let firstFilter = true;
+
+            for (let line in this.data.normalRows) {
+
+                this.data.normalRows[line]._matchFilter = null;
+                this.data.titleRows[line]._matchFilter = null;
+
+            }
+
+            for (let col in this.data.colFilters) {
+
+                let filters = this.data.colFilters[col];
+                let mainType = 'normal';
+                let subType = 'title';
+                let mainRows;
+                let subRows;
+                let colIndex;
+                let matchFilter = {};
+
+                if (this.data.titleKeys.indexOf(col) !== -1) {
+
+                    mainType = 'title';
+                    subType = 'normal';
+
+                }
+
+                mainRows = this.data[`${mainType}Rows`];
+                subRows = this.data[`${subType}Rows`];
+                colIndex = this.data[`${mainType}Keys`].indexOf(col);
+
+                for (let filter of filters) {
+
+                    for (let line in mainRows) {
+                        
+                        let val = mainRows[line][colIndex];
+
+                        if (
+                            (
+                                typeof filter === 'string' &&
+                                val.indexOf(filter) !== -1
+                            ) || (
+                                filter instanceof RegExp &&
+                                filter.test(val)
+                            )
+                        ) {
+
+                            matchFilter[line] = true;
+
+                        }
+
+                    }
+
+                }
+
+                if (filters.length === 0) {
+
+                    for (let line in mainRows) {
+
+                        matchFilter[line] = true;
+
+                    }
+
+                }
+
+                for (let line in mainRows) {
+
+                    if (firstFilter) {
+
+                        mainRows[line]._matchFilter = (matchFilter[line] || false);
+                        subRows[line]._matchFilter = (matchFilter[line] || false);
+
+                    } else {
+
+                        mainRows[line]._matchFilter = Boolean(mainRows[line]._matchFilter && matchFilter[line]);
+                        subRows[line]._matchFilter = Boolean(subRows[line]._matchFilter && matchFilter[line]);
+
+                    }
+
+                }
+
+                firstFilter = false;
+
+                // this.data[`${mainType}Rows`] = newMainRows;
+                // this.data[`${subType}Rows`] = newSubRows;
+
+            }
+
+            if (map(this.data.normalRows, '_matchFilter').indexOf(true) === -1) {
+
+                this.data.filterColIsEmpty = true;
+
+            } else {
+
+                this.data.filterColIsEmpty = false;
+
+            }
+
+            this._forceUpdateTable();
+
+        },
+        _forceUpdateTable : function () {
+
+            for (let $childTable of this.$children) {
+
+                if ($childTable.$el.getAttribute('is-title-table') !== null ||
+                    $childTable.$el.getAttribute('is-normal-table') !== null) {
+
+                    $childTable.$forceUpdate();
+
+                }
+
+            }
+
+            this.$forceUpdate();
 
         },
         _cleanupCell : function () {
@@ -755,6 +883,7 @@ export default {
                     export : true,
                     sort : false,
                     sortmode : 'normal',
+                    filters : [],
                     pos : 0
                 }, item));
 
@@ -1483,6 +1612,30 @@ export default {
                 }
 
             }
+
+        },
+        _updateColFilter : function (colKey, matchers) {
+
+            matchers = matchers.map(value => {
+
+                if (/^RegExp\|/.test(value)) {
+
+                    value = value.split('|');
+
+                    return new RegExp(value[1], value[2]);
+
+                }
+
+                return value;
+
+            });
+
+            this.data.colFilters[colKey] = matchers;
+
+        },
+        _filterCol : function () {
+
+            this._filter();
 
         },
         getHighlightRow : function () {

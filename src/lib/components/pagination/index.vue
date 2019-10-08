@@ -21,7 +21,7 @@
     </div>
 
     <div class="list">
-        <template v-if="conf.type === 'normal'">
+        <template v-if="(conf.type === 'normal' || conf.type === 'compact' || conf.type === 'block')">
             <template v-if="data.hideEnd > 1 || conf.alwaysShowNavArrow">
                 <a href="javascript:;" class="prev" :class="{'cant-click' : (data.currentPage === 1)}" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
             </template>
@@ -105,7 +105,7 @@
             ><i class="mo-icon mo-icon-right"></i></a>
         </template>
 
-        <template v-else>
+        <template v-else-if="conf.type === 'mini'">
             <a
                 href="javascript:;"
                 class="prev"
@@ -120,7 +120,7 @@
                 class="next"
                 :class="{
                     'disabled' : (data.currentPage >= data.total && !conf.alwaysShowNavArrow),
-                    'cant-click' : (data.currentPage <= 1 && conf.alwaysShowNavArrow)
+                    'cant-click' : (data.currentPage >= data.total && conf.alwaysShowNavArrow)
                 }"
                 @click="to(data.currentPage + 1)"
             ><i class="mo-icon mo-icon-right"></i></a>
@@ -173,7 +173,7 @@ export default {
         type : {
             type : String,
             default : 'normal',
-            validator : (value => ['strip', 'normal', 'mini', 'simple', 'unlimited'].indexOf(value) !== -1)
+            validator : (value => ['block', 'normal', 'compact', 'mini', 'simple'].indexOf(value) !== -1)
         },
         alwaysShowNavArrow : {
             type : Boolean,

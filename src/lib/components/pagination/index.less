@@ -9,6 +9,8 @@ mor-pagination{
         font-size: 0;
         vertical-align: top !important;
         text-align: center;
+        display: flex;
+        align-items: center;
 
         > a{
             box-sizing: border-box;
@@ -18,7 +20,7 @@ mor-pagination{
             cursor: pointer;
             line-height: 2.4em;
             height: 2.4em;
-            color: darken(@colorComponentItemFont, 3%) !important;
+            color: @colorNeutral9 !important;
             text-decoration: none !important;
 
             &.ignore{
@@ -34,6 +36,7 @@ mor-pagination{
             .mo-icon{
                 font-size: @fontSize*0.8125;
                 vertical-align: 1px !important;
+                color: @colorNeutral8;
             }
 
             &.prev,
@@ -97,7 +100,6 @@ mor-pagination{
             padding: 0 0.8em;
             line-height: 2.4em;
             height: 2.4em;
-            color: darken(@colorComponentItemFont, 3%) !important;
         }
 
         > .page-jump{
@@ -122,8 +124,6 @@ mor-pagination{
                     height: 2.4em;
                     width: 6em;
                     box-sizing: border-box;
-                    border-top-left-radius: 0;
-                    border-bottom-left-radius: 0;
                 }
             }
 
@@ -143,15 +143,13 @@ mor-pagination{
         }
     }
 
-    &.type-strip{
+    &.type-block{
         > .list{
             > a{
                 background-color: @colorComponentItemBg !important;
 
                 &.prev,
                 &.next{
-                    // background-color: @colorWhite !important;
-
                     &.cant-click{
                         background-color: @colorComponentItemBgDisabled !important;
                         color: darken(@colorComponentItemFontDisabled, 3%) !important;
@@ -161,11 +159,19 @@ mor-pagination{
 
             > .page-jump{
                 margin-left: 2px;
+
+                mor-textinput.page-num {
+                    .textinput-wrap input{
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                    }
+                }
             }
         }
     }
 
-    &.type-normal{
+    &.type-normal,
+    &.type-compact{
         > .list{
             > a{
                 background-color: @colorWhite !important;
@@ -198,6 +204,28 @@ mor-pagination{
         }
     }
 
+    &.type-compact{
+        > .list{
+            > a{
+                border: none;
+                padding: 0 0.4em;
+                line-height: 1.8em;
+                height: 1.8em;
+            }
+
+            > .page-jump{
+                mor-textinput.page-num {
+                    .textinput-wrap input{
+                        // padding: 0 1.2em 0 0.5em;
+                        line-height: 1.8em;
+                        height: 1.8em;
+                        width: 4.5em;
+                    }
+                }
+            }
+        }
+    }
+
     &.type-simple{
         a.next{
             border-top-right-radius: @borderRadius;
@@ -205,6 +233,8 @@ mor-pagination{
         }
 
         > .list > .page-jump{
+            margin-left: 2px;
+
             mor-textinput.page-num{
                 border-radius: @borderRadius;
 
@@ -212,6 +242,10 @@ mor-pagination{
                     border-radius: @borderRadius;
                 }
             }
+        }
+
+        > .page-nav{
+            color: @colorNeutral9 !important;
         }
     }
 
@@ -223,6 +257,8 @@ mor-pagination{
         }
 
         > .list > .page-jump{
+            margin-left: 2px;
+
             mor-textinput.page-num{
                 border-radius: @borderRadius;
 
@@ -231,9 +267,11 @@ mor-pagination{
                 }
             }
         }
-    }
 
-    &.type-unlimited{}
+        > .page-nav{
+            color: @colorNeutral9 !important;
+        }
+    }
 
     &.si-xxl{
         .list{
@@ -254,9 +292,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.5;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*1.1875;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*2.125;
+                }
             }
         }
     }
@@ -280,9 +331,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.4375;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*1.125;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*2;
+                }
             }
         }
     }
@@ -306,9 +370,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.375;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*1.0625;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*2;
+                }
             }
         }
     }
@@ -332,9 +409,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.3125;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*0.9375;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*1.75;
+                }
             }
         }
     }
@@ -358,9 +448,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.25;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*0.875;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*1.75;
+                }
             }
         }
     }
@@ -395,9 +498,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.1875;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*0.8125;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*1.5;
+                }
             }
         }
     }
@@ -432,9 +548,22 @@ mor-pagination{
             }
         }
 
-        &.type-normal{
+        &.type-normal,
+        &.type-compact{
             > .list > a{
                 margin-left: @fontSize*0.125;
+            }
+        }
+
+        &.type-compact{
+            .list > .page-jump{
+                .page-num > .textinput-wrap input{
+                    font-size: @fontSize*0.8125;
+                }
+
+                .mo-icon{
+                    line-height: @fontSize*1.5;
+                }
             }
         }
     }
@@ -576,7 +705,7 @@ mor-pagination{
             .list > a{
                 &.current{
                     background-color: @@colorName !important;
-                border-color: @@colorName !important;
+                    border-color: @@colorName !important;
                     color: if((@value > 5), @colorWhite, @colorBlack) !important;
                 }
             }
