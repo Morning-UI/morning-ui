@@ -2,6 +2,7 @@
 @btnSizeIFontSizeMap: 2.2, 1.8, 1.6, 1.4, 1.2, 1, 0.75;
 @btnSizeMloaderWidthMap: 1.6em, 1.4em, 1.3em, 1.2em, 1.2em, 1.2em, 1em;
 @btnSizeBtnHeightMap: 58px, 50px, 42px, 36px, 32px, 24px, 20px;
+@btnSizeMinWidth: 160px, 140px, 120px, 100px, 80px, 60px, 50px;
 
 .setup-color(@selector, @colorHex, @name) {
     @{selector} {
@@ -86,6 +87,7 @@ mor-btn{
     height: 2.8em;
     line-height: calc(2.8em + 2px);
     box-sizing: border-box;
+    text-align: center;
 
     > i,
     > .mo-icon,
@@ -115,7 +117,6 @@ mor-btn{
         position: relative;
 
         > i{
-            line-height: calc(2.8em - 1px);
             position: absolute;
             left: 50%;
             top: 50%;
@@ -199,6 +200,10 @@ mor-btn{
             .mo-loader{
                 width: extract(@btnSizeMloaderWidthMap, @index);
             }
+
+            &.min-width{
+                min-width: extract(@btnSizeMinWidth, @index);
+            }
         }
 
         &.si-@{value}{
@@ -216,6 +221,10 @@ mor-btn{
 
             .mo-loader{
                 width: extract(@btnSizeMloaderWidthMap, @index);
+            }
+
+            &.min-width{
+                min-width: extract(@btnSizeMinWidth, @index);
             }
         }
     });

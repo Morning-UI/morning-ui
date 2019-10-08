@@ -330,6 +330,10 @@
             <i class="mo-icon-doc-f"></i>
             <span>mo-icon-doc-f</span>
         </div>
+        <div>
+            <i class="mo-icon-filter-f"></i>
+            <span>mo-icon-filter-f</span>
+        </div>
     </div>
     
     ## 图标托管
