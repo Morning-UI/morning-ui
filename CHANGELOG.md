@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.12.60
+
+#### 新特性
+
+- `ui-pagination`的`type`新增`compact`和`block`选项
+- `ui-table`的`col-set`配置支持`filters`可以为列设置筛选项
+- `ui-btn`新增`min-width`配置
+
+#### 改进
+
+- 优化`ui-pagination`使其符合设计规范
+- 优化`ui-btn`的字体大小使其符合设计规范
+
+#### 修复
+
+- 修复`ui-pagination`使用尺寸后页面跳转器高度问题
+- 修复`ui-checkbox`和`ui-radio`的`list`配置的Key不能为特殊字符的问题
+
+#### 更多
+
+- 新增图标(`mo-icon-filter-f`)
+
 ## 0.12.59
 
 #### 新特性
