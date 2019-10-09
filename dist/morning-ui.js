@@ -52658,6 +52658,7 @@ class ColorAttributor extends _parchment.StyleAttributor {
 var ColorClass = new _parchment.ClassAttributor('color', 'ql-color', {
   scope: _parchment.Scope.INLINE
 });
+
 var ColorStyle = new ColorAttributor('color', 'color', {
   scope: _parchment.Scope.INLINE
 });
