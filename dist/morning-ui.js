@@ -32563,7 +32563,11 @@ var _Move2 = _interopRequireDefault(_Move);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var barWidth = 6; //
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } //
+//
+//
+//
+//
 //
 //
 //
@@ -32596,73 +32600,151 @@ var barWidth = 6; //
 //
 //
 
-var containerMinWidth = 20;
+var barSize = 6;
 
 exports.default = {
     origin: 'Form',
     name: 'split',
     mixins: [_Move2.default],
-    props: {},
+    props: {
+        direction: {
+            type: String,
+            default: 'horizontal',
+            validator: function validator(value) {
+                return ['horizontal', 'vertical'].indexOf(value) !== -1;
+            }
+        },
+        min: {
+            type: Number,
+            default: 20
+        }
+    },
     computed: {
         _conf: function _conf() {
 
-            return {};
+            return {
+                direction: this.direction,
+                min: this.min
+            };
         },
         moreClass: function moreClass() {
 
-            return {
+            return _defineProperty({
                 moving: this.Move.moving
-            };
+            }, this.conf.direction + '-split', true);
         }
     },
     data: function data() {
 
         return {
             data: {
-                splitX: 'calc(50% - ' + barWidth / 2 + 'px)',
+                $splitWrap: null,
+                $splitBar: null,
+                splitX: 0,
                 splitY: 0,
                 splitXNoUnit: 0,
                 splitYNoUnit: 0,
-                aContainerWidth: 0,
-                bContainerWidth: 0,
+                aContainerWidth: '100%',
+                bContainerWidth: '100%',
+                aContainerHeight: '100%',
+                bContainerHeight: '100%',
                 notMove: true
             }
         };
     },
     methods: {
-        _refreshContainerWidth: function _refreshContainerWidth() {
+        _initSplitXY: function _initSplitXY() {
+
+            if (this.conf.direction === 'horizontal') {
+
+                var halfWidth = (this.data.$splitWrap.getBoundingClientRect().width - barSize / 2) / 2;
+
+                this.data.splitX = halfWidth + 'px';
+                this.data.splitY = 0;
+                this.data.aContainerHeight = '100%';
+                this.data.bContainerHeight = '100%';
+            } else {
+
+                var halfHeight = (this.data.$splitWrap.getBoundingClientRect().height - barSize / 2) / 2;
+
+                this.data.splitX = 0;
+                this.data.splitY = halfHeight + 'px';
+                this.data.aContainerWidth = '100%';
+                this.data.bContainerWidth = '100%';
+            }
+        },
+        _refreshContainerWidthHeight: function _refreshContainerWidthHeight() {
 
             if (this.data.notMove) {
 
-                this.data.aContainerWidth = this.data.splitX;
-                this.data.bContainerWidth = this.data.splitX;
+                if (this.conf.direction === 'horizontal') {
+
+                    this.data.aContainerWidth = this.data.splitX;
+                    this.data.bContainerWidth = this.data.splitX;
+                } else {
+
+                    this.data.aContainerHeight = this.data.splitY;
+                    this.data.bContainerHeight = this.data.splitY;
+                }
 
                 return;
             }
 
-            var width = this.data.$splitWrap.getBoundingClientRect().width;
+            var wrapSize = void 0;
 
-            this.data.aContainerWidth = this.data.splitX;
-            this.data.bContainerWidth = width - this.data.splitXNoUnit - barWidth + 'px';
+            if (this.conf.direction === 'horizontal') {
+
+                wrapSize = this.data.$splitWrap.getBoundingClientRect().width;
+
+                this.data.aContainerWidth = this.data.splitX;
+                this.data.bContainerWidth = wrapSize - this.data.splitXNoUnit - barSize + 'px';
+            } else {
+
+                wrapSize = this.data.$splitWrap.getBoundingClientRect().height;
+
+                this.data.aContainerHeight = this.data.splitY;
+                this.data.bContainerHeight = wrapSize - this.data.splitYNoUnit - barSize + 'px';
+            }
+        },
+        _resetMoveOptions: function _resetMoveOptions() {
+
+            if (this.conf.direction === 'horizontal') {
+
+                this.Move.range = [this.conf.min, false, this.data.$splitWrap.getBoundingClientRect().width - this.data.$splitBar.getBoundingClientRect().width - this.conf.min, false];
+                this.Move.lockX = false;
+                this.Move.lockY = true;
+            } else {
+
+                this.Move.range = [false, this.conf.min, false, this.data.$splitWrap.getBoundingClientRect().height - this.data.$splitBar.getBoundingClientRect().height - this.conf.min];
+                this.Move.lockX = true;
+                this.Move.lockY = false;
+            }
         }
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.data.$splitWrap = this.$el.querySelector('.split-wrap');
-        this.data.$splitBar = this.$el.querySelector('.split-bar');
-        // this.data.$AContainer = this.$el.querySelector('.a-container');
-        // this.data.$BContainer = this.$el.querySelector('.b-container');
+        this.data.$splitWrap = this.$el.querySelector('#mor-split-wrap-' + this.uiid);
+        this.data.$splitBar = this.$el.querySelector('#mor-split-bar-' + this.uiid);
 
         this.Move.delay = 0;
-        this.Move.target = '.split-bar';
-        this.Move.container = '.split-wrap';
+        this.Move.target = '#mor-split-bar-' + this.uiid;
+        this.Move.container = '#mor-split-wrap-' + this.uiid;
         this.Move.type = 'absolute';
-        this.Move.range = [containerMinWidth, false, this.data.$splitWrap.getBoundingClientRect().width - this.data.$splitBar.getBoundingClientRect().width - containerMinWidth, false];
-        this.Move.lockY = true;
         this.Move.can = true;
 
-        this._refreshContainerWidth();
+        this.Vue.nextTick(function () {
+
+            _this._initSplitXY();
+            _this._refreshContainerWidthHeight();
+        });
+
+        this.$watch('conf.direction', function () {
+
+            _this._resetMoveOptions();
+        }, {
+            immediate: true
+        });
 
         this.$on('_moveStarted', function () {
 
@@ -32674,11 +32756,17 @@ exports.default = {
             var x = _this.Move.current.x;
             var y = _this.Move.current.y;
 
-            _this.data.splitX = x + 'px';
-            // this.data.splitY = `${y}px`;
-            _this.data.splitXNoUnit = x;
-            // this.data.splitYNoUnit = y;
-            _this._refreshContainerWidth();
+            if (_this.conf.direction === 'horizontal') {
+
+                _this.data.splitX = x + 'px';
+                _this.data.splitXNoUnit = x;
+            } else {
+
+                _this.data.splitY = y + 'px';
+                _this.data.splitYNoUnit = y;
+            }
+
+            _this._refreshContainerWidthHeight();
         });
     }
 };
@@ -52570,7 +52658,6 @@ class ColorAttributor extends _parchment.StyleAttributor {
 var ColorClass = new _parchment.ClassAttributor('color', 'ql-color', {
   scope: _parchment.Scope.INLINE
 });
-
 var ColorStyle = new ColorAttributor('color', 'color', {
   scope: _parchment.Scope.INLINE
 });
@@ -75569,48 +75656,65 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "mor-split",
-    { class: [_vm.moreClass], attrs: { _uiid: _vm.uiid } },
+    {
+      class: [_vm.moreClass],
+      attrs: { _uiid: _vm.uiid, direction: _vm.direction, min: _vm.min }
+    },
     [
-      _c("div", { staticClass: "split-wrap" }, [
-        _c(
-          "div",
-          {
-            staticClass: "a-container",
-            style: { width: _vm.data.aContainerWidth }
-          },
-          [_vm._t("a")],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "split-bar",
-            style: {
-              top: _vm.data.splitY,
-              left: _vm.data.splitX
-            },
-            on: {
-              mousedown: function($event) {
-                return _vm._moveItemRecord(0)
+      _c(
+        "div",
+        {
+          staticClass: "split-wrap",
+          attrs: { id: "mor-split-wrap-" + _vm.uiid }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "a-container",
+              style: {
+                width: _vm.data.aContainerWidth,
+                height: _vm.data.aContainerHeight
               }
-            }
-          },
-          [_c("span"), _vm._v(" "), _c("span"), _vm._v(" "), _c("span")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "split-placeholder" }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "b-container",
-            style: { width: _vm.data.bContainerWidth }
-          },
-          [_vm._t("b")],
-          2
-        )
-      ])
+            },
+            [_vm._t("a")],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "split-bar",
+              style: {
+                top: _vm.data.splitY,
+                left: _vm.data.splitX
+              },
+              attrs: { id: "mor-split-bar-" + _vm.uiid },
+              on: {
+                mousedown: function($event) {
+                  return _vm._moveItemRecord(0)
+                }
+              }
+            },
+            [_c("span"), _vm._v(" "), _c("span"), _vm._v(" "), _c("span")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "split-placeholder" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "b-container",
+              style: {
+                width: _vm.data.bContainerWidth,
+                height: _vm.data.bContainerHeight
+              }
+            },
+            [_vm._t("b")],
+            2
+          )
+        ]
+      )
     ]
   )
 }

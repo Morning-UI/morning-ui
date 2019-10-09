@@ -2,9 +2,12 @@
     <mor-split
         :_uiid="uiid"
         :class="[moreClass]"
+
+        :direction="direction"
+        :min="min"
     >
-        <div class="split-wrap">
-            <div class="a-container" :style="{'width': data.aContainerWidth}">
+        <div class="split-wrap" :id="'mor-split-wrap-'+uiid">
+            <div class="a-container" :style="{'width': data.aContainerWidth, 'height': data.aContainerHeight}">
                 <slot name="a"></slot>    
             </div>
             
@@ -14,6 +17,7 @@
                     top : data.splitY,
                     left : data.splitX
                 }"
+                :id="'mor-split-bar-'+uiid"
                 @mousedown="_moveItemRecord(0)"
             >
                 <span></span>
@@ -23,7 +27,7 @@
 
             <div class="split-placeholder"></div>
 
-            <div class="b-container" :style="{'width': data.bContainerWidth}">
+            <div class="b-container" :style="{'width': data.bContainerWidth, 'height': data.bContainerHeight}">
                 <slot name="b"></slot>    
             </div>
         </div>
@@ -33,24 +37,40 @@
 <script>
 import Move                         from 'Utils/Move';
 
-const barWidth = 6;
-const containerMinWidth = 20;
+const barSize = 6;
 
 export default {
     origin : 'Form',
     name : 'split',
     mixins : [Move],
-    props : {},
+    props : {
+        direction : {
+            type : String,
+            default : 'horizontal',
+            validator : (value => [
+                'horizontal',
+                'vertical'
+            ].indexOf(value) !== -1)
+        },
+        min : {
+            type : Number,
+            default : 20
+        }
+    },
     computed : {
         _conf : function () {
 
-            return {};
+            return {
+                direction : this.direction,
+                min : this.min
+            };
 
         },
         moreClass : function () {
 
             return {
-                moving : this.Move.moving
+                moving : this.Move.moving,
+                [`${this.conf.direction}-split`] : true
             }
 
         }
@@ -59,57 +79,137 @@ export default {
 
         return {
             data : {
-                splitX : `calc(50% - ${barWidth / 2}px)`,
+                $splitWrap : null,
+                $splitBar : null,
+                splitX : 0,
                 splitY : 0,
                 splitXNoUnit : 0,
                 splitYNoUnit : 0,
-                aContainerWidth : 0,
-                bContainerWidth : 0,
+                aContainerWidth : '100%',
+                bContainerWidth : '100%',
+                aContainerHeight : '100%',
+                bContainerHeight : '100%',
                 notMove : true
             }
         };
 
     },
     methods : {
-        _refreshContainerWidth : function () {
+        _initSplitXY : function () {
+          
+            if (this.conf.direction === 'horizontal') {
+
+                let halfWidth = (this.data.$splitWrap.getBoundingClientRect().width - barSize / 2) / 2;
+
+                this.data.splitX = `${halfWidth}px`;
+                this.data.splitY = 0;
+                this.data.aContainerHeight = '100%';
+                this.data.bContainerHeight = '100%';
+
+            } else {
+
+                let halfHeight = (this.data.$splitWrap.getBoundingClientRect().height - barSize / 2) / 2;
+
+                this.data.splitX = 0;
+                this.data.splitY = `${halfHeight}px`;
+                this.data.aContainerWidth = '100%';
+                this.data.bContainerWidth = '100%';
+
+            }
+
+        },
+        _refreshContainerWidthHeight : function () {
 
             if (this.data.notMove) {
 
-                this.data.aContainerWidth = this.data.splitX;
-                this.data.bContainerWidth = this.data.splitX;
+                if (this.conf.direction === 'horizontal') {
+
+                    this.data.aContainerWidth = this.data.splitX;
+                    this.data.bContainerWidth = this.data.splitX;
+
+                } else {
+
+                    this.data.aContainerHeight = this.data.splitY;
+                    this.data.bContainerHeight = this.data.splitY;
+
+                }
 
                 return;
 
             }
+
+            let wrapSize;
+
+            if (this.conf.direction === 'horizontal') {
             
-            let width = this.data.$splitWrap.getBoundingClientRect().width;
+                wrapSize = this.data.$splitWrap.getBoundingClientRect().width;
 
-            this.data.aContainerWidth = this.data.splitX;
-            this.data.bContainerWidth = `${width - this.data.splitXNoUnit - barWidth}px`;
+                this.data.aContainerWidth = this.data.splitX;
+                this.data.bContainerWidth = `${wrapSize - this.data.splitXNoUnit - barSize}px`;
 
-        }
+            } else {
+            
+                wrapSize = this.data.$splitWrap.getBoundingClientRect().height;
+
+                this.data.aContainerHeight = this.data.splitY;
+                this.data.bContainerHeight = `${wrapSize - this.data.splitYNoUnit - barSize}px`;
+
+            }
+
+        },
+        _resetMoveOptions : function () {
+
+            if (this.conf.direction === 'horizontal') {
+
+                this.Move.range = [
+                    this.conf.min,
+                    false,
+                    this.data.$splitWrap.getBoundingClientRect().width - this.data.$splitBar.getBoundingClientRect().width - this.conf.min,
+                    false
+                ];
+                this.Move.lockX = false;
+                this.Move.lockY = true;
+
+            } else {
+
+                this.Move.range = [
+                    false,
+                    this.conf.min,
+                    false,
+                    this.data.$splitWrap.getBoundingClientRect().height - this.data.$splitBar.getBoundingClientRect().height - this.conf.min
+                ];
+                this.Move.lockX = true;
+                this.Move.lockY = false;
+
+            }
+
+        } 
     },
     mounted : function () {
 
-        this.data.$splitWrap = this.$el.querySelector('.split-wrap');
-        this.data.$splitBar = this.$el.querySelector('.split-bar');
-        // this.data.$AContainer = this.$el.querySelector('.a-container');
-        // this.data.$BContainer = this.$el.querySelector('.b-container');
+        this.data.$splitWrap = this.$el.querySelector(`#mor-split-wrap-${this.uiid}`);
+        this.data.$splitBar = this.$el.querySelector(`#mor-split-bar-${this.uiid}`);
 
         this.Move.delay = 0;
-        this.Move.target = '.split-bar';
-        this.Move.container = '.split-wrap';
+        this.Move.target = `#mor-split-bar-${this.uiid}`;
+        this.Move.container = `#mor-split-wrap-${this.uiid}`;
         this.Move.type = 'absolute';
-        this.Move.range = [
-            containerMinWidth,
-            false,
-            this.data.$splitWrap.getBoundingClientRect().width - this.data.$splitBar.getBoundingClientRect().width - containerMinWidth,
-            false
-        ];
-        this.Move.lockY = true;
         this.Move.can = true;
 
-        this._refreshContainerWidth();
+        this.Vue.nextTick(() => {
+
+            this._initSplitXY();
+            this._refreshContainerWidthHeight();
+
+        });
+
+        this.$watch('conf.direction', () => {
+
+            this._resetMoveOptions();
+
+        }, {
+            immediate : true
+        });
 
         this.$on('_moveStarted', () => {
 
@@ -122,11 +222,19 @@ export default {
             let x = this.Move.current.x;
             let y = this.Move.current.y;
 
-            this.data.splitX = `${x}px`;
-            // this.data.splitY = `${y}px`;
-            this.data.splitXNoUnit = x;
-            // this.data.splitYNoUnit = y;
-            this._refreshContainerWidth();
+            if (this.conf.direction === 'horizontal') {
+
+                this.data.splitX = `${x}px`;
+                this.data.splitXNoUnit = x;
+
+            } else {
+
+                this.data.splitY = `${y}px`;
+                this.data.splitYNoUnit = y;
+
+            }
+        
+            this._refreshContainerWidthHeight();
 
         });
 
