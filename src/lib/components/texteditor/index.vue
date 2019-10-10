@@ -165,7 +165,7 @@
 
                             <template v-if="tool === 'link'">
                                 <button :key="sindex" class="ql-link" :id="'mor-te-tool-link-'+uiid"></button>
-                                <morning-tip :key="sindex" :target="'#mor-te-tool-link-'+uiid" color="neutral-10">链接</morning-tip>
+                                <morning-tip :key="sindex" :target="'#mor-te-tool-link-'+uiid" color="neutral-10">链接(请先选中文本)</morning-tip>
                             </template>
 
                             <template v-if="tool === 'image'">
