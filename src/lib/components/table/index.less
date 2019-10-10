@@ -1,3 +1,6 @@
+@tableThColor: @colorNeutral11;
+@tableTdColor: @colorNeutral9;
+
 mor-table{
     width: 100%;
     overflow: auto;
@@ -114,6 +117,7 @@ mor-table{
             white-space: nowrap;
             border-bottom-width: 2px;
             border-bottom-style: solid;
+            color: @tableThColor;
         }
 
         > tbody > tr{
@@ -134,6 +138,7 @@ mor-table{
                 overflow: hidden;
                 word-break: break-all;
                 text-overflow: ellipsis;
+                color: @tableTdColor;
 
                 &.expand-row-col{
                     width: 100%;

@@ -25432,6 +25432,18 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'updateColFilter', 'filterCol', 'uiid'],
@@ -25456,6 +25468,11 @@ exports.default = {
         _cleanFilter: function _cleanFilter(key) {
 
             this.$refs['mor-table-filter-' + this.uiid + '-' + key][0].set(undefined);
+        },
+        _confirmFilter: function _confirmFilter(key) {
+
+            this.filterCol();
+            this.$refs['mor-table-filter-popover-' + this.uiid + '-' + key][0].toggle(false);
         }
     },
     mounted: function mounted() {
@@ -25674,6 +25691,18 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'rowSetMap', 'sortCol', 'updateColFilter', 'filterCol', 'uiid'],
@@ -25698,6 +25727,11 @@ exports.default = {
         _cleanFilter: function _cleanFilter(key) {
 
             this.$refs['mor-table-filter-' + this.uiid + '-' + key][0].set(undefined);
+        },
+        _confirmFilter: function _confirmFilter(key) {
+
+            this.filterCol();
+            this.$refs['mor-table-filter-popover-' + this.uiid + '-' + key][0].toggle(false);
         }
     },
     mounted: function mounted() {
@@ -37474,7 +37508,7 @@ exports.default = {
 
             if (this.conf.state !== 'readonly') {
 
-                var $item = document.querySelector('#ui-radio-itembox-' + this.uiid + '-' + convertStringToClassIdName(key));
+                var $item = document.querySelector('#ui-radio-itembox-' + this.uiid + '-' + this.convertStringToClassIdName(key));
 
                 this.toggle(key);
                 $item.classList.add('focus-once');
@@ -38797,17 +38831,22 @@ exports.default = {
 
             var value = this._getCurrentList();
             var formCheckbox = false;
-            var $checkbox = this.$refs['mor-cascader-node-' + this.uiid + '-' + this._getNodePath(key, level, '-')][0];
+            var $checkbox = void 0;
 
-            if (evt.path.indexOf($checkbox.$el) !== -1) {
+            if (this.conf.multiSelect) {
 
-                var nodePath = this._getNodePath(key, level, '-');
-                var state = this.data.checkedState[nodePath].checked < 1 ? 1 : -1;
+                $checkbox = this.$refs['mor-cascader-node-' + this.uiid + '-' + this._getNodePath(key, level, '-')][0];
 
-                formCheckbox = true;
-                this._checkedStateChange({
-                    checked: state
-                }, nodePath);
+                if (evt.path.indexOf($checkbox.$el) !== -1) {
+
+                    var nodePath = this._getNodePath(key, level, '-');
+                    var state = this.data.checkedState[nodePath].checked < 1 ? 1 : -1;
+
+                    formCheckbox = true;
+                    this._checkedStateChange({
+                        checked: state
+                    }, nodePath);
+                }
             }
 
             value.splice(level, value.length - level);
@@ -39191,6 +39230,12 @@ exports.default = {
         this._globalEventRemove('click', '_checkArea');
     }
 }; //
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -72656,41 +72701,47 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _c("morning-checkbox", {
-                                      ref:
-                                        "mor-cascader-node-" +
-                                        _vm.uiid +
-                                        "-" +
-                                        _vm._getNodePath(key, level - 1, "-"),
-                                      refInFor: true,
-                                      attrs: {
-                                        size: "xs",
-                                        list: { checked: "" },
-                                        indeterminate: true,
-                                        "checked-state":
-                                          _vm.data.checkedState[
+                                    _vm.conf.multiSelect
+                                      ? _c("morning-checkbox", {
+                                          ref:
+                                            "mor-cascader-node-" +
+                                            _vm.uiid +
+                                            "-" +
                                             _vm._getNodePath(
                                               key,
                                               level - 1,
                                               "-"
-                                            )
-                                          ]
-                                      },
-                                      on: {
-                                        "checked-state-change": function(
-                                          $event
-                                        ) {
-                                          _vm._checkedStateChange(
-                                            arguments[0],
-                                            _vm._getNodePath(
-                                              key,
-                                              level - 1,
-                                              "-"
-                                            )
-                                          )
-                                        }
-                                      }
-                                    }),
+                                            ),
+                                          refInFor: true,
+                                          attrs: {
+                                            size: "xs",
+                                            list: { checked: "" },
+                                            indeterminate: true,
+                                            "checked-state":
+                                              _vm.data.checkedState[
+                                                _vm._getNodePath(
+                                                  key,
+                                                  level - 1,
+                                                  "-"
+                                                )
+                                              ]
+                                          },
+                                          on: {
+                                            "checked-state-change": function(
+                                              $event
+                                            ) {
+                                              _vm._checkedStateChange(
+                                                arguments[0],
+                                                _vm._getNodePath(
+                                                  key,
+                                                  level - 1,
+                                                  "-"
+                                                )
+                                              )
+                                            }
+                                          }
+                                        })
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c("span", [_vm._v(_vm._s(item))])
                                   ],
@@ -72728,41 +72779,47 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _c("morning-checkbox", {
-                                      ref:
-                                        "mor-cascader-node-" +
-                                        _vm.uiid +
-                                        "-" +
-                                        _vm._getNodePath(key, level - 1, "-"),
-                                      refInFor: true,
-                                      attrs: {
-                                        size: "xs",
-                                        list: { checked: "" },
-                                        indeterminate: true,
-                                        "checked-state":
-                                          _vm.data.checkedState[
+                                    _vm.conf.multiSelect
+                                      ? _c("morning-checkbox", {
+                                          ref:
+                                            "mor-cascader-node-" +
+                                            _vm.uiid +
+                                            "-" +
                                             _vm._getNodePath(
                                               key,
                                               level - 1,
                                               "-"
-                                            )
-                                          ]
-                                      },
-                                      on: {
-                                        "checked-state-change": function(
-                                          $event
-                                        ) {
-                                          _vm._checkedStateChange(
-                                            arguments[0],
-                                            _vm._getNodePath(
-                                              key,
-                                              level - 1,
-                                              "-"
-                                            )
-                                          )
-                                        }
-                                      }
-                                    }),
+                                            ),
+                                          refInFor: true,
+                                          attrs: {
+                                            size: "xs",
+                                            list: { checked: "" },
+                                            indeterminate: true,
+                                            "checked-state":
+                                              _vm.data.checkedState[
+                                                _vm._getNodePath(
+                                                  key,
+                                                  level - 1,
+                                                  "-"
+                                                )
+                                              ]
+                                          },
+                                          on: {
+                                            "checked-state-change": function(
+                                              $event
+                                            ) {
+                                              _vm._checkedStateChange(
+                                                arguments[0],
+                                                _vm._getNodePath(
+                                                  key,
+                                                  level - 1,
+                                                  "-"
+                                                )
+                                              )
+                                            }
+                                          }
+                                        })
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c("span", [_vm._v(_vm._s(item.name))])
                                   ],
@@ -72789,41 +72846,47 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _c("morning-checkbox", {
-                                      ref:
-                                        "mor-cascader-node-" +
-                                        _vm.uiid +
-                                        "-" +
-                                        _vm._getNodePath(key, level - 1, "-"),
-                                      refInFor: true,
-                                      attrs: {
-                                        size: "xs",
-                                        list: { checked: "" },
-                                        indeterminate: true,
-                                        "checked-state":
-                                          _vm.data.checkedState[
+                                    _vm.conf.multiSelect
+                                      ? _c("morning-checkbox", {
+                                          ref:
+                                            "mor-cascader-node-" +
+                                            _vm.uiid +
+                                            "-" +
                                             _vm._getNodePath(
                                               key,
                                               level - 1,
                                               "-"
-                                            )
-                                          ]
-                                      },
-                                      on: {
-                                        "checked-state-change": function(
-                                          $event
-                                        ) {
-                                          _vm._checkedStateChange(
-                                            arguments[0],
-                                            _vm._getNodePath(
-                                              key,
-                                              level - 1,
-                                              "-"
-                                            )
-                                          )
-                                        }
-                                      }
-                                    }),
+                                            ),
+                                          refInFor: true,
+                                          attrs: {
+                                            size: "xs",
+                                            list: { checked: "" },
+                                            indeterminate: true,
+                                            "checked-state":
+                                              _vm.data.checkedState[
+                                                _vm._getNodePath(
+                                                  key,
+                                                  level - 1,
+                                                  "-"
+                                                )
+                                              ]
+                                          },
+                                          on: {
+                                            "checked-state-change": function(
+                                              $event
+                                            ) {
+                                              _vm._checkedStateChange(
+                                                arguments[0],
+                                                _vm._getNodePath(
+                                                  key,
+                                                  level - 1,
+                                                  "-"
+                                                )
+                                              )
+                                            }
+                                          }
+                                        })
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c("span", [_vm._v(_vm._s(item.name))])
                                   ],
@@ -75084,7 +75147,7 @@ var render = function() {
                                       color: "neutral-10"
                                     }
                                   },
-                                  [_vm._v("链接")]
+                                  [_vm._v("链接(请先选中文本)")]
                                 )
                               ]
                             : _vm._e(),
@@ -78098,6 +78161,12 @@ var render = function() {
                                     _c(
                                       "ui-popover",
                                       {
+                                        ref:
+                                          "mor-table-filter-popover-" +
+                                          _vm.uiid +
+                                          "-" +
+                                          key,
+                                        refInFor: true,
                                         staticClass: "mo-table-col-filter",
                                         attrs: {
                                           target:
@@ -78163,7 +78232,13 @@ var render = function() {
                                               "morning-btn",
                                               {
                                                 attrs: { size: "xs" },
-                                                on: { emit: _vm.filterCol }
+                                                on: {
+                                                  emit: function($event) {
+                                                    return _vm._confirmFilter(
+                                                      key
+                                                    )
+                                                  }
+                                                }
                                               },
                                               [_vm._v("确认")]
                                             ),
@@ -78273,6 +78348,12 @@ var render = function() {
                                     _c(
                                       "ui-popover",
                                       {
+                                        ref:
+                                          "mor-table-filter-popover-" +
+                                          _vm.uiid +
+                                          "-" +
+                                          key,
+                                        refInFor: true,
                                         staticClass: "mo-table-col-filter",
                                         attrs: {
                                           target:
@@ -78338,7 +78419,13 @@ var render = function() {
                                               "morning-btn",
                                               {
                                                 attrs: { size: "xs" },
-                                                on: { emit: _vm.filterCol }
+                                                on: {
+                                                  emit: function($event) {
+                                                    return _vm._confirmFilter(
+                                                      key
+                                                    )
+                                                  }
+                                                }
                                               },
                                               [_vm._v("确认")]
                                             ),
@@ -78732,6 +78819,12 @@ var render = function() {
                                     _c(
                                       "ui-popover",
                                       {
+                                        ref:
+                                          "mor-table-filter-popover-" +
+                                          _vm.uiid +
+                                          "-" +
+                                          key,
+                                        refInFor: true,
                                         staticClass: "mo-table-col-filter",
                                         attrs: {
                                           target:
@@ -78797,7 +78890,13 @@ var render = function() {
                                               "morning-btn",
                                               {
                                                 attrs: { size: "xs" },
-                                                on: { emit: _vm.filterCol }
+                                                on: {
+                                                  emit: function($event) {
+                                                    return _vm._confirmFilter(
+                                                      key
+                                                    )
+                                                  }
+                                                }
                                               },
                                               [_vm._v("确认")]
                                             ),
@@ -78907,6 +79006,12 @@ var render = function() {
                                     _c(
                                       "ui-popover",
                                       {
+                                        ref:
+                                          "mor-table-filter-popover-" +
+                                          _vm.uiid +
+                                          "-" +
+                                          key,
+                                        refInFor: true,
                                         staticClass: "mo-table-col-filter",
                                         attrs: {
                                           target:
@@ -78972,7 +79077,13 @@ var render = function() {
                                               "morning-btn",
                                               {
                                                 attrs: { size: "xs" },
-                                                on: { emit: _vm.filterCol }
+                                                on: {
+                                                  emit: function($event) {
+                                                    return _vm._confirmFilter(
+                                                      key
+                                                    )
+                                                  }
+                                                }
                                               },
                                               [_vm._v("确认")]
                                             ),
@@ -89003,9 +89114,9 @@ var morning = {
         black: 'bk',
         white: 'wh'
     },
-    _devVersion: '0.12.60',
+    _devVersion: '0.12.61',
     isMorning: true,
-    version: '0.12.60',
+    version: '0.12.61',
     map: {}
 };
 
