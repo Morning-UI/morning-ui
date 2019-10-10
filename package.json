@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@csstools/normalize.css": "9.0.1",
-    "array-uniq": "1.0.3",
+    "array-uniq": "2.1.0",
     "async-validator": "1.11.0",
     "clipboard-copy": "3.1.0",
     "color": "3.1.2",
