@@ -159,6 +159,8 @@
                             >
                                 <morning-checkbox
                                     size="xs"
+                                    v-if="conf.multiSelect"
+
                                     :list="{checked:''}"
                                     :ref="'mor-cascader-node-'+uiid+'-'+_getNodePath(key, level - 1, '-')"
                                     :indeterminate="true"
@@ -180,6 +182,8 @@
                             >
                                 <morning-checkbox
                                     size="xs"
+                                    v-if="conf.multiSelect"
+
                                     :list="{checked:''}"
                                     :ref="'mor-cascader-node-'+uiid+'-'+_getNodePath(key, level - 1, '-')"
                                     :indeterminate="true"
@@ -200,6 +204,8 @@
                             >
                                 <morning-checkbox
                                     size="xs"
+                                    v-if="conf.multiSelect"
+
                                     :list="{checked:''}"
                                     :ref="'mor-cascader-node-'+uiid+'-'+_getNodePath(key, level - 1, '-')"
                                     :indeterminate="true"
@@ -874,17 +880,23 @@ export default {
 
             let value = this._getCurrentList();
             let formCheckbox = false;
-            let $checkbox = this.$refs[`mor-cascader-node-${this.uiid}-${this._getNodePath(key, level, '-')}`][0];
+            let $checkbox;
 
-            if (evt.path.indexOf($checkbox.$el) !== -1) {
+            if (this.conf.multiSelect) {
 
-                let nodePath = this._getNodePath(key, level, '-');
-                let state = (this.data.checkedState[nodePath].checked < 1) ? 1 : -1;
+                $checkbox = this.$refs[`mor-cascader-node-${this.uiid}-${this._getNodePath(key, level, '-')}`][0];
 
-                formCheckbox = true;
-                this._checkedStateChange({
-                    checked : state
-                }, nodePath);
+                if (evt.path.indexOf($checkbox.$el) !== -1) {
+
+                    let nodePath = this._getNodePath(key, level, '-');
+                    let state = (this.data.checkedState[nodePath].checked < 1) ? 1 : -1;
+
+                    formCheckbox = true;
+                    this._checkedStateChange({
+                        checked : state
+                    }, nodePath);
+
+                }
 
             }
 

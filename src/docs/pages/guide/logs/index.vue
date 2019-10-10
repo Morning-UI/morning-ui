@@ -18,6 +18,31 @@
     
     ### 更新记录
 
+    ### 0.12.61 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月10日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.61" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.61/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.61/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 改进
+    
+    - `ui-table`筛选点击确认按钮后，筛选菜单会收起
+    - 优化`ui-tab`未选中标签页的颜色，使其符合设计规范
+    - 优化`ui-table`表头和单元格文本颜色，使其符合设计规范
+    
+    #### 修复
+    
+    - 修复`ui-texteditor`插入链接时，输入框超出边界被遮挡问题
+    - 修复`ui-cascader`再未开启`multi-select`配置时，错误的实现了多选框的问题
+    
+    ---
+
     ### 0.12.60 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
