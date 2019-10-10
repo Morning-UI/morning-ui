@@ -177,7 +177,7 @@ export default {
 
             if (this.conf.state !== 'readonly') {
 
-                let $item = document.querySelector(`#ui-radio-itembox-${this.uiid}-${convertStringToClassIdName(key)}`);
+                let $item = document.querySelector(`#ui-radio-itembox-${this.uiid}-${this.convertStringToClassIdName(key)}`);
 
                 this.toggle(key);
                 $item.classList.add('focus-once');
