@@ -75,6 +75,7 @@
                 <li><a href="/component/drawer.html">抽屉<p>&lt;drawer></p></a></li>
                 <li><a href="/component/alert.html">警告提示<p>&lt;alert></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
+                <li><a href="/component/notice.html">通知<p>&lt;notice></p></a></li>
                 <li><a href="/component/load.html">加载<p>&lt;load></p></a></li>
                 <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li>
             </ul>

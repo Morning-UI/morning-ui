@@ -66,7 +66,7 @@
             <ui-formgroup slot-scope="{group}">
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">自定义数据1</ui-center>
+                        <ui-center height-fill>自定义数据1</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">自定义数据2</ui-center>
+                        <ui-center height-fill>自定义数据2</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">

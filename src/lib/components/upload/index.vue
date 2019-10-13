@@ -50,7 +50,7 @@
         <template v-if="conf.type === 'input'">
             <div class="upload-wrap upload-input">
                 <div class="inside-name" v-if="!!conf.insideName">
-                    <morning-center class="fill">{{conf.insideName}}</morning-center>
+                    <morning-center height-fill>{{conf.insideName}}</morning-center>
                 </div>
                 <div class="filelist">
                     <template v-for="(item, index) in data.showFiles">
@@ -99,7 +99,7 @@
                     </morning-popover>
                 </div>
                 <div class="ismax-note" v-if="ismax && !conf.hiddenMaxAlert">
-                    <morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center>
+                    <morning-center height-fill>最多只能上传{{conf.max}}个文件</morning-center>
                 </div>
 
                 <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
@@ -118,7 +118,7 @@
                             <i class="mo-icon mo-icon-upload"></i>
                             <span>上传{{conf.itemName}}</span>
                             <div class="upload-box-note">
-                                <morning-center class="fill">{{conf.insideName}}</morning-center>
+                                <morning-center height-fill>{{conf.insideName}}</morning-center>
                             </div>
                         </label>
 
@@ -170,7 +170,7 @@
                         <a href="javascript:;" title="删除文件" class="del" @click="_removeFile(data.currentPreview)">
                             <i class="mo-icon mo-icon-del"></i>
                         </a>
-                        <div class="ismax-note" v-if="ismax && !conf.hiddenMaxAlert"><morning-center class="fill">最多只能上传{{conf.max}}个文件</morning-center></div>
+                        <div class="ismax-note" v-if="ismax && !conf.hiddenMaxAlert"><morning-center height-fill>最多只能上传{{conf.max}}个文件</morning-center></div>
                     </div>
                 </template>
 

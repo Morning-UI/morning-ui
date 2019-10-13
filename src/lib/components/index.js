@@ -63,6 +63,7 @@ import numeral                      from './numeral/index.vue';
 import trend                        from './trend/index.vue';
 import timeline                     from './timeline/index.vue';
 import split                        from './split/index.vue';
+import notice                       from './notice/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
@@ -160,6 +161,7 @@ export default {
     trend,
     timeline,
     split,
+    notice,
     textinput,
     textarea,
     texteditor,

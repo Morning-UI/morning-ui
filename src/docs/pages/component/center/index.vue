@@ -33,7 +33,7 @@
     填满的居中容器高度为100%。
     >tpl
     <div style="width:400px; height:300px;background-color:#EDF1F5">
-        <ui-center class="fill">
+        <ui-center height-fill>
             <div style="background-color:#A8B3C2;">充满父容器</div>
             居中文字
         </ui-center>
@@ -52,9 +52,48 @@
 
     <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
 
+    [[[配置]]]
+
+    :::vue
+    @name:height-fill
+    ---
+    #config
+    >conf-desc
+    居中容器的高度与父容器高度保持一致。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:400px; height:300px;background-color:#EDF1F5">
+        <ui-center height-fill>
+            <div style="background-color:#A8B3C2;">充满父容器</div>
+            居中文字
+        </ui-center>
+    </div>
+    :::
+    
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    center
+    居中容器
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/center/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+
     </script>
     </doc-component>
 </template>

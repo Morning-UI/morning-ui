@@ -30,7 +30,7 @@
     <div class="form-body">
         <div class="itemlist">
             <p class="name" v-if="!!conf.insideName">
-                <morning-center class="fill">{{conf.insideName}}</morning-center>
+                <morning-center height-fill>{{conf.insideName}}</morning-center>
             </p>
 
             <div class="itemwrap" :class="{hidename:!conf.insideName}">

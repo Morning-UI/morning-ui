@@ -23,13 +23,13 @@
         <ui-grid class="fill">
             <div class="row">
                 <div class="col-11">
-                    <ui-center class="fill"><p>LEFT</p></ui-center>
+                    <ui-center height-fill><p>LEFT</p></ui-center>
                 </div>
                 <div class="col-2">
                     <ui-divider>OR</ui-divider>
                 </div>
                 <div class="col-11">
-                    <ui-center class="fill"><p>RIGHT</p></ui-center>
+                    <ui-center height-fill><p>RIGHT</p></ui-center>
                 </div>
             </div>
         </ui-grid>
@@ -45,13 +45,13 @@
     >tpl
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <div style="width:100%;height:140px;">
-            <ui-center class="fill"><p>TOP</p></ui-center>
+            <ui-center height-fill><p>TOP</p></ui-center>
         </div>
         <div style="width:100%;height:20px;">
             <ui-divider class="vertical">OR</ui-divider>
         </div>
         <div style="width:100%;height:140px;">
-            <ui-center class="fill"><p>BOTTOM</p></ui-center>
+            <ui-center height-fill><p>BOTTOM</p></ui-center>
         </div>
     </div>
     :::
@@ -65,13 +65,13 @@
         <ui-grid class="fill">
             <div class="row">
                 <div class="col-11">
-                    <ui-center class="fill"><p>LEFT</p></ui-center>
+                    <ui-center height-fill><p>LEFT</p></ui-center>
                 </div>
                 <div class="col-2">
                     <ui-divider></ui-divider>
                 </div>
                 <div class="col-11">
-                    <ui-center class="fill"><p>RIGHT</p></ui-center>
+                    <ui-center height-fill><p>RIGHT</p></ui-center>
                 </div>
             </div>
         </ui-grid>

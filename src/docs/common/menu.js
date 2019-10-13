@@ -56,6 +56,7 @@ export default {
         抽屉 : ['/component/drawer.html', 'Drawer'],
         警告提示 : ['/component/alert.html', 'Alert'],
         消息 : ['/component/message.html', 'Message'],
+        通知 : ['/component/notice.html', 'Notice'],
         加载 : ['/component/load.html', 'Load'],
         进度条 : ['/component/progress.html', 'Progress'],
 

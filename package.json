@@ -58,12 +58,12 @@
     "vue": "^2.5.22"
   },
   "dependencies": {
-    "@csstools/normalize.css": "9.0.1",
+    "@csstools/normalize.css": "10.1.0",
     "array-uniq": "1.0.3",
     "async-validator": "1.11.0",
     "clipboard-copy": "3.1.0",
     "color": "3.1.2",
-    "date-fns": "2.2.1",
+    "date-fns": "2.4.1",
     "extend": "3.0.1",
     "fuse.js": "3.4.3",
     "get-divisors": "1.0.0",

@@ -24,7 +24,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">名称</ui-center>
+                        <ui-center height-fill>名称</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">省份</ui-center>
+                        <ui-center height-fill>省份</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">备注</ui-center>
+                        <ui-center height-fill>备注</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -64,7 +64,7 @@
     @uikey:multiform
     @defaultValue:[{name:'Jim'}, {name:'Sam'}]
     @attrs: :item-filler="item => ({title: item.name})"
-    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center height-fill>名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
     [[[配置]]]
@@ -74,7 +74,7 @@
     @uikey:multiform
     @defaultValue:[{name:'Jim'}, {name:'Sam'}]
     @attrs: :item-filler="item => ({title: item.name})"
-    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center height-fill>名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
     :::vue
@@ -97,7 +97,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -132,7 +132,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -167,7 +167,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -177,7 +177,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">图片URL</ui-center>
+                        <ui-center height-fill>图片URL</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -204,7 +204,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -239,7 +239,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -276,7 +276,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -327,7 +327,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -368,7 +368,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -416,7 +416,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">城市</ui-center>
+                        <ui-center height-fill>城市</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -426,7 +426,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">省份</ui-center>
+                        <ui-center height-fill>省份</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -485,7 +485,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">城市</ui-center>
+                        <ui-center height-fill>城市</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -495,7 +495,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">省份</ui-center>
+                        <ui-center height-fill>省份</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -568,7 +568,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">城市</ui-center>
+                        <ui-center height-fill>城市</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -578,7 +578,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">省份</ui-center>
+                        <ui-center height-fill>省份</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -650,7 +650,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">城市</ui-center>
+                        <ui-center height-fill>城市</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -660,7 +660,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">省份</ui-center>
+                        <ui-center height-fill>省份</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -735,7 +735,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">城市</ui-center>
+                        <ui-center height-fill>城市</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -745,7 +745,7 @@
                 </div>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">省份</ui-center>
+                        <ui-center height-fill>省份</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -810,7 +810,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -831,7 +831,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -852,7 +852,7 @@
     @value:[{name:'Jim'}, {name:'Sam'}]
     @defaultValue:[{name:'Jim'}, {name:'Sam'}]
     @attrs: :item-filler="item => ({title: item.name})"
-    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center height-fill>名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
     :::vue
@@ -875,7 +875,7 @@
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">姓名</ui-center>
+                            <ui-center height-fill>姓名</ui-center>
                         </h5>
                         <div class="content">
                             <div class="form">
@@ -918,7 +918,7 @@
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">姓名</ui-center>
+                            <ui-center height-fill>姓名</ui-center>
                         </h5>
                         <div class="content">
                             <div class="form">
@@ -959,7 +959,7 @@
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">姓名</ui-center>
+                            <ui-center height-fill>姓名</ui-center>
                         </h5>
                         <div class="content">
                             <div class="form">
@@ -1001,7 +1001,7 @@
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">姓名</ui-center>
+                            <ui-center height-fill>姓名</ui-center>
                         </h5>
                         <div class="content">
                             <div class="form">
@@ -1032,7 +1032,7 @@
     @value:[{name:'Jim'}, {name:'Sam'}]
     @defaultValue:[{name:'Jim'}, {name:'Sam'}]
     @attrs: :item-filler="item => ({title: item.name})"
-    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center height-fill>名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     @wrapStyle:width:300px;
     :::
 
@@ -1050,7 +1050,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -1085,7 +1085,7 @@
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
-                        <ui-center class="fill">姓名</ui-center>
+                        <ui-center height-fill>姓名</ui-center>
                     </h5>
                     <div class="content">
                         <div class="form">
@@ -1131,7 +1131,7 @@
     @uiname:多项表单输入
     @valueType:multiform
     @attrs: :item-filler="item => ({title: item.name})"
-    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    @slot:<ui-formgroup><div class="item"><h5 class="title"><ui-center height-fill>名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     @wrapStyle:width:300px;
     :::
 

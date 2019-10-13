@@ -165,7 +165,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo9" width="400px">
-            <ui-box class="margin">
+            <ui-box margin>
                 <ui-header size="xs" color="neutral-10" class="underline">
                     个人资料
                 </ui-header>
@@ -182,7 +182,7 @@
                     <dd>杭州</dd>
                 </ui-dl>
             </ui-box>
-            <ui-box class="margin">
+            <ui-box margin>
                 <ui-header size="xs" color="neutral-10" class="underline">
                     支付信息
                 </ui-header>
@@ -210,7 +210,7 @@
     <div>
         <ui-drawer ref="demo10" width="560px">
             <div slot="header">填写个人资料</div>
-            <ui-box class="margin">
+            <ui-box margin>
                 <ui-formgroup class="inline">
                     <header>
                         <h5>基本信息</h5>
@@ -584,7 +584,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo34">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo34').hide();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -605,7 +605,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo35">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo35').hide();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -628,7 +628,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo30">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo30').toggle(false);">隐藏抽屉</ui-link> &nbsp;
                 <ui-link js="window.morning.findVM('demo30').toggle();">切换到反向状态</ui-link>
             </ui-center>
@@ -651,7 +651,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo31" @emit="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo31').toggle();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -678,7 +678,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo32" @show="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo32').toggle();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -705,7 +705,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo33" @hide="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo33').toggle();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -732,7 +732,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo36" @after-show="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo36').toggle();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -759,7 +759,7 @@
     >tpl
     <div>
         <ui-drawer ref="demo37" @after-hide="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo37').toggle();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>
         </ui-drawer>
@@ -796,7 +796,7 @@
             @before-destroy="echo('before-destroy')"
             @destroyed="echo('destroyed')"
         >
-            <ui-center class="fill">
+            <ui-center height-fill>
                 {*text*}
                 <ui-link js="window.morning.findVM('demoEventLifecycle').toggle();">隐藏抽屉</ui-link> &nbsp;
             </ui-center>

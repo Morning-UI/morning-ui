@@ -32,7 +32,7 @@
     #demo
     >tpl
     <div style="width:400px;height:200px;">
-        <ui-box class="margin" style="background-color:#e0e0e0">
+        <ui-box margin style="background-color:#e0e0e0">
             有边距的容器
         </ui-box>
     </div>
@@ -47,7 +47,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;">
-            <ui-box class="fill" style="background-color:#e0e0e0">
+            <ui-box height-fill style="background-color:#e0e0e0">
                 填满的容器
             </ui-box>
         </div>
@@ -55,7 +55,7 @@
         <br>
 
         <div style="width:400px;height:200px;">
-            <ui-box class="margin fill" style="background-color:#e0e0e0">
+            <ui-box margin height-fill style="background-color:#e0e0e0">
                 有边距填满的容器
             </ui-box>
         </div>
@@ -73,6 +73,66 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
+
+
+    [[[配置]]]
+
+    :::vue
+    @name:margin
+    ---
+    #config
+    >conf-desc
+    容器是否有边距。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:400px;height:200px;">
+        <ui-box margin style="background-color:#e0e0e0">
+            有边距的容器
+        </ui-box>
+    </div>
+    :::
+
+    :::vue
+    @name:height-fill
+    ---
+    #config
+    >conf-desc
+    容器的高度与父容器高度保持一致。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:400px;height:200px;">
+        <ui-box height-fill style="background-color:#e0e0e0">
+            填满的容器
+        </ui-box>
+    </div>
+    :::
+    
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    box
+    容器
+    :::
 
     [[[源码]]]
 
