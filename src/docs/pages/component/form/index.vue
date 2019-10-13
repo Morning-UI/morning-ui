@@ -7,7 +7,7 @@
     # 表单 `<ui-form>`
     
     <doc-component-status page="form"></doc-component-status>
-    <doc-component-experimental></doc-component-not-recommended>
+    <!-- <doc-component-experimental></doc-component-not-experimental> -->
     
     [[[开始]]]
 

@@ -32285,7 +32285,7 @@ mor-tab > ul > li {
   font-size: 14px;
   padding: 0.5em 1em;
   margin: 0 0.1em;
-  color: #B2B2B2;
+  color: #666666;
   position: relative;
   background-color: #f5f5f5;
   cursor: pointer;
@@ -32308,7 +32308,7 @@ mor-tab > ul > li:first-child {
 }
 mor-tab > ul > li:hover {
   background-color: #F0F0F0;
-  color: #666666;
+  color: #4C4C4C;
 }
 mor-tab > ul > li.current {
   background-color: #FFFFFF;
@@ -32411,7 +32411,7 @@ mor-tab.block > ul > li {
 }
 mor-tab.block > ul > li:hover {
   background-color: #F0F0F0;
-  color: #666666;
+  color: #4C4C4C;
 }
 mor-tab.block > ul > li.current {
   border-color: #dddddd;
@@ -32476,7 +32476,7 @@ mor-tab.line > ul > li {
   background: transparent;
 }
 mor-tab.line > ul > li:hover {
-  color: #666666;
+  color: #4C4C4C;
 }
 mor-tab.line > ul > li.current {
   color: #F33D5D;
@@ -32587,7 +32587,7 @@ mor-tab.btn > ul > li {
 }
 mor-tab.btn > ul > li:hover {
   border-color: #d1d1d1;
-  color: #666666;
+  color: #4C4C4C;
 }
 mor-tab.btn > ul > li.current {
   color: #F33D5D;
@@ -33002,6 +33002,7 @@ mor-table .table tr th {
   white-space: nowrap;
   border-bottom-width: 2px;
   border-bottom-style: solid;
+  color: #333333;
 }
 mor-table .table > tbody > tr {
   height: 40px;
@@ -33019,6 +33020,7 @@ mor-table .table > tbody > tr > td {
   overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
+  color: #666666;
 }
 mor-table .table > tbody > tr > td.expand-row-col {
   width: 100%;
@@ -40986,6 +40988,7 @@ mor-texteditor .ql-container {
   overflow-x: visible;
   width: 100%;
   border: none !important;
+  overflow: visible;
 }
 mor-texteditor .ql-container::-webkit-scrollbar {
   width: 5px;
