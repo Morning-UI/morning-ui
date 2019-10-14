@@ -1,6 +1,6 @@
 {
   "name": "morning-ui",
-  "version": "0.12.61",
+  "version": "0.12.62",
   "description": "modern efficient user interface, using human-friendly HTML",
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",

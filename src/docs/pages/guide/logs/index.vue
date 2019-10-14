@@ -18,6 +18,32 @@
     
     ### 更新记录
 
+    ### 0.12.62 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月14日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.62" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.62/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.62/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 修复
+    
+    - 修复`ui-uploader`上传失败后，失败信息不显示的问题
+    - 修复`ui-texteditor`的`uploader`配置无效的问题
+    - 修复`ui-texteditor`组件插入图片后，图片溢出的问题
+    
+    #### 更多
+    
+    - 移除依赖`quill-delta`
+    - 修复`定制化`文档中错误的部分
+
+    ---
+
+
     ### 0.12.61 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">
