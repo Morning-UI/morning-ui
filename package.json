@@ -75,6 +75,7 @@
     "lodash.map": "^4.6.0",
     "lodash.sortby": "^4.7.0",
     "lodash.without": "^4.4.0",
+    "parchment": "^2.0.0-dev.0",
     "popper.js": "^1.14.7",
     "quill": "^2.0.0-dev.3",
     "stickyfilljs": "^2.0.5",

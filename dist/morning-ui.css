@@ -40461,9 +40461,6 @@ mor-texteditor .toolbar .editor-logo {
 mor-texteditor .quill {
   width: 100%;
 }
-mor-texteditor .ql-editor {
-  overflow: visible;
-}
 mor-texteditor .ql-toolbar {
   border-radius: 3px 3px 0 0;
 }

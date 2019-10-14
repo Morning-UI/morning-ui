@@ -52231,7 +52231,6 @@ class ColorAttributor extends _parchment.StyleAttributor {
 var ColorClass = new _parchment.ClassAttributor('color', 'ql-color', {
   scope: _parchment.Scope.INLINE
 });
-
 var ColorStyle = new ColorAttributor('color', 'color', {
   scope: _parchment.Scope.INLINE
 });
@@ -75276,14 +75275,14 @@ var render = function() {
           _c(
             "div",
             [
-              _c("ui-upload", {
+              _c("morning-upload", {
                 ref: "ui-select-uploader-" + this.uiid,
                 attrs: {
-                  "inside-name": "图片",
+                  "inside-name": "",
                   "accept-type": "image/*",
                   "allow-url": "",
                   "allow-drag": "",
-                  uploader: "conf.uploader"
+                  uploader: _vm.conf.uploader
                 },
                 on: { "value-change": _vm._insertImage }
               })
