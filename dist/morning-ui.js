@@ -69938,7 +69938,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "error-message" }, [
-        _vm._v(_vm._s(_vm.conf._errorMessage))
+        _vm._v(
+          _vm._s(
+            _vm.conf._errorMessage ? _vm.conf._errorMessage : _vm.data.failNote
+          )
+        )
       ]),
       _vm._v(" "),
       _vm.conf.clearable
@@ -74392,10 +74396,10 @@ var render = function() {
         _errorMessage: _vm._errorMessage,
         "inside-name": _vm.insideName,
         tools: _vm.tools,
-        uploader: _vm.uploader,
         markdown: _vm.markdown,
         "plain-clipboard": _vm.plainClipboard,
-        "inline-style": _vm.inlineStyle
+        "inline-style": _vm.inlineStyle,
+        uploader: _vm.uploader
       }
     },
     [
@@ -75271,14 +75275,14 @@ var render = function() {
           _c(
             "div",
             [
-              _c("ui-upload", {
+              _c("morning-upload", {
                 ref: "ui-select-uploader-" + this.uiid,
                 attrs: {
-                  "inside-name": "图片",
+                  "inside-name": "",
                   "accept-type": "image/*",
                   "allow-url": "",
                   "allow-drag": "",
-                  uploader: "conf.uploader"
+                  uploader: _vm.conf.uploader
                 },
                 on: { "value-change": _vm._insertImage }
               })
