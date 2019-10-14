@@ -1,6 +1,6 @@
 {
   "name": "morning-ui",
-  "version": "0.12.61",
+  "version": "0.12.62",
   "description": "modern efficient user interface, using human-friendly HTML",
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",
@@ -75,9 +75,9 @@
     "lodash.map": "^4.6.0",
     "lodash.sortby": "^4.7.0",
     "lodash.without": "^4.4.0",
+    "parchment": "^2.0.0-dev.0",
     "popper.js": "^1.14.7",
     "quill": "^2.0.0-dev.3",
-    "quill-delta": "^3.6.2",
     "stickyfilljs": "^2.0.5",
     "trim": "0.0.1"
   },
