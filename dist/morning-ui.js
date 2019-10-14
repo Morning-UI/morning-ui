@@ -52231,6 +52231,7 @@ class ColorAttributor extends _parchment.StyleAttributor {
 var ColorClass = new _parchment.ClassAttributor('color', 'ql-color', {
   scope: _parchment.Scope.INLINE
 });
+
 var ColorStyle = new ColorAttributor('color', 'color', {
   scope: _parchment.Scope.INLINE
 });
@@ -69938,7 +69939,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "error-message" }, [
-        _vm._v(_vm._s(_vm.conf._errorMessage))
+        _vm._v(
+          _vm._s(
+            _vm.conf._errorMessage ? _vm.conf._errorMessage : _vm.data.failNote
+          )
+        )
       ]),
       _vm._v(" "),
       _vm.conf.clearable
@@ -74392,10 +74397,10 @@ var render = function() {
         _errorMessage: _vm._errorMessage,
         "inside-name": _vm.insideName,
         tools: _vm.tools,
-        uploader: _vm.uploader,
         markdown: _vm.markdown,
         "plain-clipboard": _vm.plainClipboard,
-        "inline-style": _vm.inlineStyle
+        "inline-style": _vm.inlineStyle,
+        uploader: _vm.uploader
       }
     },
     [

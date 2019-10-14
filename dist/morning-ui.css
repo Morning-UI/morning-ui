@@ -48596,7 +48596,7 @@ mor-upload .filelist.type-box .file-item.thumbnail .preview-file > .mo-icon-file
 }
 mor-upload .filelist.type-button .file-item.thumbnail.fail .preview-file,
 mor-upload .filelist.type-box .file-item.thumbnail.fail .preview-file {
-  background: #fff9fa;
+  background: #fee0e2;
 }
 mor-upload .filelist.type-button.thumbnail-list,
 mor-upload .filelist.type-box.thumbnail-list {
@@ -48777,7 +48777,7 @@ mor-upload .filelist .file-item.fail,
 mor-upload .upload-input .upload-box-preview.fail,
 mor-upload .upload-box .upload-box-preview.fail,
 mor-upload .filelist .upload-box-preview.fail {
-  background: #fff9fa;
+  background: #fee0e2;
 }
 mor-upload .upload-input .file-item.fail > .progress,
 mor-upload .upload-box .file-item.fail > .progress,
@@ -48794,7 +48794,7 @@ mor-upload .filelist .file-item.fail:hover,
 mor-upload .upload-input .upload-box-preview.fail:hover,
 mor-upload .upload-box .upload-box-preview.fail:hover,
 mor-upload .filelist .upload-box-preview.fail:hover {
-  background: #fff9fa;
+  background: #fee0e2;
 }
 mor-upload .upload-input {
   min-height: 42px;

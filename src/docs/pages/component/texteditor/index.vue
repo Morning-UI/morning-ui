@@ -362,6 +362,43 @@
     </div>
     :::
 
+    :::vue
+    @name:uploader
+    ---
+    #config
+    >conf-desc
+    当使用`image`工具时图片上传适配器，默认采用全局设置。详见：[文件上传 / `uploader`配置](upload.html#uploader)
+    >conf-accept
+    文件上传适配器函数
+    >conf-type
+    Function
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >desc
+    下面的示例的通过指定适配器演示了文件上传失败的情况。
+    >tpl
+    <div style="width:100%;height:240px;padding-bottom:70px;">
+        <ui-texteditor :uploader="uploader"></ui-texteditor>
+    </div>
+    >script
+    {
+        methods : {
+            uploader : function (file) {
+
+                console.log(55, file);
+
+                return {
+                    status : false,
+                    message : '文件上传失败，请重试'
+                };
+
+            }
+        }
+    }
+    :::
+
     [[[方法]]]
 
     :::preset

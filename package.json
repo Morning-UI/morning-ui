@@ -77,7 +77,6 @@
     "lodash.without": "^4.4.0",
     "popper.js": "^1.14.7",
     "quill": "^2.0.0-dev.3",
-    "quill-delta": "^3.6.2",
     "stickyfilljs": "^2.0.5",
     "trim": "0.0.1"
   },

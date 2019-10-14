@@ -316,7 +316,7 @@
         />
     </morning-dialog>
 
-    <div class="error-message">{{conf._errorMessage}}</div>
+    <div class="error-message">{{conf._errorMessage ? conf._errorMessage : data.failNote}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-upload>
