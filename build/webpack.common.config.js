@@ -2,7 +2,7 @@ const path                          = require('path');
 const extend                        = require('extend');
 const webpack                       = require('webpack');
 const walk                          = require('walk');
-const CleanWebpackPlugin            = require('clean-webpack-plugin');
+const {CleanWebpackPlugin}          = require('clean-webpack-plugin');
 const CopyWebpackPlugin             = require('copy-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
@@ -103,8 +103,8 @@ devVerConfig = extend(
     commonConfig,
     {
         plugins : [
-            new CleanWebpackPlugin([pathDist], {
-                root : pathProjectRoot
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns : ['morning-ui.js', 'morning-ui.css', 'morning-ui.emoji.png']
             }),
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
@@ -239,8 +239,8 @@ prodVerConfig = extend(
     commonConfig,
     {
         plugins : [
-            new CleanWebpackPlugin([pathDist], {
-                root : pathProjectRoot
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns : ['morning-ui.min.js', 'morning-ui.min.css', 'morning-ui.emoji.png']
             }),
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
@@ -376,9 +376,7 @@ prodVerConfig = extend(
 docsConfig = {
     entry : {},
     plugins : [
-        new CleanWebpackPlugin([pathDocs], {
-            root : pathProjectRoot
-        }),
+        new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV' : process.env.NODE_ENV
         }),
