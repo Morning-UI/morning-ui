@@ -22,7 +22,7 @@
         - `message` : 消息内容(String，必需，支持HTML)
         - `color` : 消息的配色(String，可选，默认`theme`配色)，支持[形态/颜色](/guide/status.html#颜色)中的所有颜色。
 
-    > 使用时应注意，消息组件仅用于向用户传到信息，不应该包括可交互的行动元素。
+    > 需要注意通知(`ui-notice`)和消息(`ui-message`)组件的区别在于，通知(`ui-notice`)一般包含了可交互的行动元素，而消息(`ui-message`)一般仅用于向用户传递信息。查看[通知组件](notice.html)
     
     :::vue
     @name:使用

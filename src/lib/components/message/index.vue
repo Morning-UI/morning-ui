@@ -29,32 +29,16 @@
 </template>
 
 <script>
-import PopupManager                 from 'Utils/PopupManager';
-import IndexManager                 from 'Utils/IndexManager';
-
-const defaultDoneTime = 4000;
+import MessageManger                from 'Utils/MessageManger';
 
 export default {
     origin : 'UI',
     name : 'message',
-    mixins : [PopupManager, IndexManager],
+    mixins : [MessageManger],
     props : {
-        closeBtn : {
-            type : Boolean,
-            default : false
-        },
-        doneTime : {
-            type : [Number, Boolean],
-            default : defaultDoneTime
-        },
         showType : {
-            type : String,
             default : 'top',
             validator : (value => ['top', 'topleft', 'topright', 'bottom', 'bottomleft', 'bottomright'].indexOf(value) !== -1)
-        },
-        maxShow : {
-            type : [Number, Boolean],
-            default : 2
         }
     },
     computed : {
@@ -73,6 +57,7 @@ export default {
             let classes = {};
 
             classes[`pos-${this.data.shortType[this.conf.showType]}`] = true;
+            classes['has-close-btn'] = this.conf.closeBtn;
 
             return classes;
 
@@ -81,145 +66,16 @@ export default {
     data : function () {
 
         return {
-            data : {
-                messageId : 0,
-                list : [],
-                shortType : {
-                    top : 't',
-                    topleft : 'tl',
-                    topright : 'tr',
-                    bottom : 'b',
-                    bottomleft : 'bl',
-                    bottomright : 'br'
-                }
-            }
+            data : {}
         };
 
     },
-    methods : {
-        _resizeList : function () {
-
-            if (this.conf.maxShow &&
-                this.data.list.length > +this.conf.maxShow) {
-
-                let height = 0;
-                let $messages = this.$el.querySelectorAll('.list .msg');
-
-                const messageMarginBottom = 3.2;
-                const messageListOffset = 8;
-
-                $messages = Object.values($messages).slice(0, +this.conf.maxShow);
-
-                for (let $message of $messages) {
-
-                    height += $message.clientHeight + messageMarginBottom;
-
-                }
-
-                // 没有使用data绑定style因为会影响transition
-                this.$el.querySelector('.list').style.height = `${height + messageListOffset}px`;
-
-            }
-
-        },
-        push : function (options) {
-
-            let defaultOptions = {
-                id : this.data.messageId++,
-                title : undefined,
-                message : '',
-                color : 'theme'
-            };
-            let list = Object.assign([], this.data.list);
-
-            if (typeof options === 'string') {
-
-                options = Object.assign(defaultOptions, {
-                    message : options
-                });
-
-            } else {
-
-                options = Object.assign(defaultOptions, options);
-
-            }
-
-            if (this.conf.showType[0] === 'b') {
-
-                list.push(options);
-
-            } else {
-
-                list.unshift(options);
-
-            }
-
-            this.$el.style.zIndex = this._indexMax();
-            this.data.list = list;
-
-            if (this.conf.doneTime !== false) {
-
-                setTimeout(() => {
-
-                    this.close(options.id);
-
-                }, this.conf.doneTime);
-
-            }
-
-            this.$emit('push');
-
-            return options.id;
-
-        },
-        close : function (id) {
-
-            for (let index in this.data.list) {
-
-                if (id === this.data.list[index].id) {
-
-                    this.data.list.splice(index, 1);
-
-                    this.$emit('close');
-
-                }
-
-            }
-
-            return this;
-
-        }
-    },
+    methods : {},
     mounted : function () {
 
-        this._popupShow();
-
-        this.$watch('data.list', () => {
-
-            this._resizeList();
-
-        }, {
-            immediate : true,
-            deep : true
-        });
-
-        this.$watch('conf.maxShow', () => {
-
-            this._resizeList();
-
-        });
-
-        this.$watch('conf.showType', (newValue, oldValue) => {
-
-            if (newValue[0] !== oldValue[0]) {
-
-                this.data.list.reverse();
-
-            }
-
-            this._resizeList();
-
-        });
+        this.data.messageBoxMarginBottom = 3;
+        this.data.messageListOffset = 8;
+        this.data.messageDefaultStringKey = 'message';
 
     }
 };
