@@ -205,10 +205,49 @@
     [[[事件]]]
 
     :::vue
-    @layout:lifecycle-event
+    @name:生命周期事件
     ---
-    timeline
-    时间轴
+    #event
+    >event-desc
+    组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-timeline
+            ref="demoEventLifecycle"
+            v-show="show"
+            :list="[
+                '发布Alpha版本',
+                '发布Beta版本',
+                '发布1.0版本',
+                '发布2.0版本'
+            ]"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
+        >{*text*}</ui-timeline>
+        <br><br>
+        <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+               text : '时间轴',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    }
     :::
 
     [[[源码]]]

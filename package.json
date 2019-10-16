@@ -54,6 +54,9 @@
     "dist",
     "src/lib"
   ],
+  "engines": {
+    "node": ">=10.15.0 <12.12.0"
+  },
   "peerDependencies": {
     "vue": "^2.5.22"
   },
@@ -95,11 +98,11 @@
     "babel-register": "^6.26.0",
     "browser-env": "^3.2.5",
     "clean-css": "^4.2.1",
-    "clean-css-loader": "^1.1.0",
+    "clean-css-loader": "2.0.0",
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "^4.6.0",
-    "cross-env": "^5.0.5",
-    "css-loader": "^2.1.0",
+    "cross-env": "6.0.3",
+    "css-loader": "3.2.0",
     "eslint": "^4.5.0",
     "eslint-config-gaea": "^0.1.5",
     "eslint-plugin-vue": "^5.0.0-beta.3",

@@ -20683,7 +20683,7 @@ exports.default = {
     methods: {
         close: function close() {
 
-            this.$emit('closed');
+            this.$emit('close');
             this.$destroy();
 
             return this;

@@ -346,10 +346,46 @@
     :::
 
     :::vue
-    @layout:lifecycle-event
+    @name:生命周期事件
     ---
-    message
-    消息
+    #event
+    >event-desc
+    组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-message
+            ref="demoEventLifecycle"
+            v-show="show"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
+        >
+            {*text*}
+        </ui-message>
+        <ui-link js="window.morning.findVM('demoEventLifecycle').push('一条新消息('+new Date()+')');">推送一条新消息</ui-link>
+        <br><br>
+        <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+               text : '消息',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    }
     :::
 
     [[[源码]]]
