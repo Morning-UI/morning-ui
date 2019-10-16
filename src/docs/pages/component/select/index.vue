@@ -2055,6 +2055,86 @@
     :::
 
     :::vue
+    @name:list-after-show
+    ---
+    #event
+    >event-desc
+    当下拉列表完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            ref="demo16"
+            form-name="Select designer"
+            @list-after-show="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo16.console1', 'list-after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:list-after-hide
+    ---
+    #event
+    >event-desc
+    当下拉列表完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            ref="demo17"
+            form-name="Select designer"
+            @list-after-hide="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo17.console1', 'list-after-hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:search
     ---
     #event

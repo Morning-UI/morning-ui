@@ -571,7 +571,7 @@
     >tpl
     <div>
         <span id="demo23">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo23" @emit="echo">
+        <ui-popover target="#demo23" @show="echo">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -592,13 +592,13 @@
     ---
     #event
     >event-desc
-    当弹出框显示时触发。
+    当弹出框隐藏时触发。
     ---
     #demo
     >tpl
     <div>
         <span id="demo24">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo24" @emit="echo">
+        <ui-popover target="#demo24" @hide="echo">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -609,6 +609,60 @@
         methods : {
             echo : function () {
                 console.log('demo24.console1', 'hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当弹出框完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo29">鼠标悬浮显示弹出框</span>
+        <ui-popover target="#demo29" @after-show="echo">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo29.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当弹出框完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo30">鼠标悬浮显示弹出框</span>
+        <ui-popover target="#demo30" @after-hide="echo">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo30.console1', 'after-hide event!');
             }
         }
     }
