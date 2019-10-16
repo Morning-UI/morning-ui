@@ -21768,11 +21768,21 @@ exports.default = {
             _this2.$emit('show');
         });
 
+        this.$refs['ui-dropdown-popover-' + this.uiid].$on('after-show', function () {
+
+            _this2.$emit('after-show');
+        });
+
         this.$refs['ui-dropdown-popover-' + this.uiid].$on('hide', function () {
 
             _this2.data.show = false;
             _this2.$emit('emit');
             _this2.$emit('hide');
+        });
+
+        this.$refs['ui-dropdown-popover-' + this.uiid].$on('after-hide', function () {
+
+            _this2.$emit('after-hide');
         });
     }
 };
@@ -22619,6 +22629,7 @@ exports.default = {
             }
         },
         show: function show(key) {
+            var _this = this;
 
             if (this.conf.disabledOptions.indexOf(key) !== -1) {
 
@@ -22634,20 +22645,18 @@ exports.default = {
 
             this.data.showKeys.push(key);
             this._showHeightAnimate(key);
-
+            this.$emit('show', key);
             clearTimeout(this.data.keyTimeout[key]);
-
             this.data.keyTimeout[key] = setTimeout(function () {
 
                 $content.removeAttribute('style');
+                _this.$emit('after-show', key);
             }, animateTime);
-
-            this.$emit('show', key);
 
             return this;
         },
         hide: function hide(key) {
-            var _this = this;
+            var _this2 = this;
 
             if (this.data.showKeys.indexOf(key) === -1) {
 
@@ -22660,17 +22669,15 @@ exports.default = {
             this.data.showKeys.splice(showKeyIndex, 1);
             this.Vue.nextTick(function () {
 
-                _this._hideHeightAnimate(key);
+                _this2._hideHeightAnimate(key);
             });
-
+            this.$emit('hide', key);
             clearTimeout(this.data.keyTimeout[key]);
-
             this.data.keyTimeout[key] = setTimeout(function () {
 
                 $content.removeAttribute('style');
+                _this2.$emit('after-hide', key);
             }, animateTime);
-
-            this.$emit('hide', key);
 
             return this;
         },
@@ -22698,15 +22705,15 @@ exports.default = {
     },
     created: function created() {},
     mounted: function mounted() {
-        var _this2 = this;
+        var _this3 = this;
 
         this._refreshList();
 
         this.$watch(function () {
-            return JSON.stringify(_this2.conf.disabledOptions) + '||' + _this2.conf.shows;
+            return JSON.stringify(_this3.conf.disabledOptions) + '||' + _this3.conf.shows;
         }, function () {
 
-            _this2._refreshList();
+            _this3._refreshList();
         });
 
         this.$watch('data.showKeys', this._closeOverMax);
@@ -26859,6 +26866,42 @@ var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var toggleTopTime = 200; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var toggleCenterTime = 260;
+
 exports.default = {
     origin: 'UI',
     name: 'dialog',
@@ -26918,7 +26961,8 @@ exports.default = {
                 show: false,
                 hasHeader: false,
                 hasFooter: false,
-                showingTimeout: null
+                showingTimeout: null,
+                toggleTimeout: null
             }
         };
     },
@@ -26966,10 +27010,19 @@ exports.default = {
             var _this = this;
 
             var isShown = this._isShown();
+            var toggleTimeoutTime = 0;
 
             if (show === undefined) {
 
                 show = !this.data.show;
+            }
+
+            if (this.conf.showType === 'top') {
+
+                toggleTimeoutTime = toggleTopTime;
+            } else if (this.conf.showType === 'center') {
+
+                toggleTimeoutTime = toggleCenterTime;
             }
 
             clearTimeout(this.data.showingTimeout);
@@ -26993,6 +27046,12 @@ exports.default = {
 
                 this.$emit('show');
                 this.$emit('emit');
+
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(function () {
+
+                    _this.$emit('after-show');
+                }, toggleTimeoutTime);
             } else {
 
                 if (isShown) {
@@ -27002,6 +27061,12 @@ exports.default = {
 
                 this.$emit('hide');
                 this.$emit('emit');
+
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(function () {
+
+                    _this.$emit('after-hide');
+                }, toggleTimeoutTime);
             }
 
             return this;
@@ -27016,40 +27081,7 @@ exports.default = {
         this._checkHeaderAndFooter();
         this._popupShow();
     }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+};
 module.exports = exports['default'];
 
 /***/ }),
@@ -30340,12 +30372,22 @@ exports.default = {
             _this.$emit('emit');
         });
 
+        this.$on('_tipManagerAfterShow', function () {
+
+            _this.$emit('after-show');
+        });
+
         this.$on('_tipManagerHide', function () {
 
             _this.data.show = false;
 
             _this.$emit('hide');
             _this.$emit('emit');
+        });
+
+        this.$on('_tipManagerAfterHide', function () {
+
+            _this.$emit('after-hide');
         });
     }
 };
@@ -30554,12 +30596,22 @@ exports.default = {
             _this.$emit('emit');
         });
 
+        this.$on('_tipManagerAfterShow', function () {
+
+            _this.$emit('after-show');
+        });
+
         this.$on('_tipManagerHide', function () {
 
             _this.data.show = false;
 
             _this.$emit('hide');
             _this.$emit('emit');
+        });
+
+        this.$on('_tipManagerAfterHide', function () {
+
+            _this.$emit('after-hide');
         });
     }
 };
@@ -36815,6 +36867,11 @@ exports.default = {
                 _this5.$emit('list-show');
             });
 
+            _this5.popoverVm.$on('after-show', function () {
+
+                _this5.$emit('list-after-show');
+            });
+
             _this5.popoverVm.$on('hide', function () {
 
                 var $tips = _this5.data.$list.querySelectorAll('.tips');
@@ -36854,6 +36911,11 @@ exports.default = {
                 }
 
                 _this5.$emit('list-hide');
+            });
+
+            _this5.popoverVm.$on('after-hide', function () {
+
+                _this5.$emit('list-after-hide');
             });
         }, {
             immediate: true
@@ -40714,6 +40776,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _arrayUniq = __webpack_require__(12);
 
@@ -40842,6 +40906,14 @@ exports.default = {
         _showForm: function _showForm() {
 
             this.$emit('show');
+        },
+        _afterShowForm: function _afterShowForm() {
+
+            this.$emit('after-show');
+        },
+        _afterHideForm: function _afterHideForm() {
+
+            this.$emit('after-hide');
         },
         _resetForm: function _resetForm() {
 
@@ -72169,7 +72241,12 @@ var render = function() {
             color: "neutral-2",
             showType: _vm.conf.showType
           },
-          on: { show: _vm._showForm, hide: _vm._hideForm }
+          on: {
+            show: _vm._showForm,
+            hide: _vm._hideForm,
+            "after-show": _vm._afterShowForm,
+            "after-hide": _vm._afterHideForm
+          }
         },
         [
           _c("header", { attrs: { slot: "header" }, slot: "header" }, [
@@ -84654,6 +84731,8 @@ var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var toggleTime = 160;
+
 var TipManager = {
     mixins: [_PopupManager2.default, _IndexManager2.default, _TriggerManager2.default, _GlobalEvent2.default],
     data: function data() {
@@ -84674,7 +84753,8 @@ var TipManager = {
                 classNames: {
                     in: 'tip-target-hover'
                 },
-                timeout: null
+                timeout: null,
+                toggleTimeout: null
             }
         };
     },
@@ -84935,14 +85015,27 @@ var TipManager = {
             });
 
             this.$emit('_tipManagerShow');
+
+            clearTimeout(this.Tip.toggleTimeout);
+            this.Tip.toggleTimeout = setTimeout(function () {
+
+                _this4.$emit('_tipManagerAfterShow');
+            }, toggleTime);
         },
 
         _tipHideComplete: function _tipHideComplete() {
+            var _this5 = this;
 
             this._tipCleanAllActiveTrigger();
             this.Tip.hoverState = '';
             this._globalEventRemove('click', '_tipCheckArea');
             this.$emit('_tipManagerHide');
+
+            clearTimeout(this.Tip.toggleTimeout);
+            this.Tip.toggleTimeout = setTimeout(function () {
+
+                _this5.$emit('_tipManagerAfterHide');
+            }, 0);
         },
         _tipShow: function _tipShow() {
             var fromMethod = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
@@ -85015,7 +85108,7 @@ var TipManager = {
             this._tipToggle(false);
         },
         _tipEnter: function _tipEnter(evt) {
-            var _this5 = this;
+            var _this6 = this;
 
             if (this._tipIsEventObj(evt)) {
 
@@ -85041,14 +85134,14 @@ var TipManager = {
 
             this.Tip.timeout = setTimeout(function () {
 
-                if (_this5.Tip.hoverState === _this5.Tip.hoverStates.in) {
+                if (_this6.Tip.hoverState === _this6.Tip.hoverStates.in) {
 
-                    _this5._tipShow(false);
+                    _this6._tipShow(false);
                 }
             });
         },
         _tipLeave: function _tipLeave(evt) {
-            var _this6 = this;
+            var _this7 = this;
 
             if (this._tipIsEventObj(evt)) {
 
@@ -85070,15 +85163,15 @@ var TipManager = {
 
             this.Tip.timeout = setTimeout(function () {
 
-                if (_this6.Tip.hoverState === _this6.Tip.hoverStates.out) {
+                if (_this7.Tip.hoverState === _this7.Tip.hoverStates.out) {
 
-                    _this6._tipHide(false);
+                    _this7._tipHide(false);
                 }
             });
         }
     },
     mounted: function mounted() {
-        var _this7 = this;
+        var _this8 = this;
 
         this.Trigger.triggers = this.conf.trigger;
         this.$el.style.zIndex = -1;
@@ -85089,9 +85182,9 @@ var TipManager = {
 
             this.$watch('conf.placement', function () {
 
-                _this7._tipUpdateOptions({
+                _this8._tipUpdateOptions({
                     options: {
-                        placement: _this7.conf.placement
+                        placement: _this8.conf.placement
                     }
                 });
             });
@@ -85101,11 +85194,11 @@ var TipManager = {
 
             this.$watch('conf.autoReverse', function () {
 
-                _this7._tipUpdateOptions({
+                _this8._tipUpdateOptions({
                     options: {
                         modifiers: {
                             flip: {
-                                enabled: _this7.conf.autoReverse
+                                enabled: _this8.conf.autoReverse
                             }
                         }
                     }
@@ -85119,7 +85212,7 @@ var TipManager = {
 
             this.$watch('conf.align', function () {
 
-                _this7.Tip.align = _this7.conf.align;
+                _this8.Tip.align = _this8.conf.align;
             });
         }
 
@@ -85127,11 +85220,11 @@ var TipManager = {
 
             this.$watch('conf.offset', function () {
 
-                _this7._tipUpdateOptions({
+                _this8._tipUpdateOptions({
                     options: {
                         modifiers: {
                             offset: {
-                                offset: _this7.conf.offset
+                                offset: _this8.conf.offset
                             }
                         }
                     }
@@ -85143,19 +85236,19 @@ var TipManager = {
 
             this.$watch('conf.triggerInDelay', function () {
 
-                _this7.Trigger.handlerMap = {
-                    click: [_this7._tipClickToggle],
-                    rclick: [_this7._tipRclickToggle],
+                _this8.Trigger.handlerMap = {
+                    click: [_this8._tipClickToggle],
+                    rclick: [_this8._tipRclickToggle],
                     hover: {
                         in: [{
-                            fn: _this7._tipEnter,
-                            delay: _this7.conf.triggerInDelay
+                            fn: _this8._tipEnter,
+                            delay: _this8.conf.triggerInDelay
                         }],
-                        out: [_this7._tipLeave]
+                        out: [_this8._tipLeave]
                     },
                     focus: {
-                        in: [_this7._tipEnter],
-                        out: [_this7._tipLeave]
+                        in: [_this8._tipEnter],
+                        out: [_this8._tipLeave]
                     }
                 };
             }, {
@@ -85167,10 +85260,10 @@ var TipManager = {
 
             this.$watch('conf.trigger', function () {
 
-                _this7.Tip.activeTrigger = {};
-                _this7._triggerUnsetListeners();
-                _this7.Trigger.triggers = _this7.conf.trigger;
-                _this7._tipBindTarget();
+                _this8.Tip.activeTrigger = {};
+                _this8._triggerUnsetListeners();
+                _this8.Trigger.triggers = _this8.conf.trigger;
+                _this8._tipBindTarget();
             });
         }
 
@@ -85178,19 +85271,19 @@ var TipManager = {
 
             this.$watch('conf.target', function () {
 
-                _this7._tipBindTarget();
+                _this8._tipBindTarget();
 
-                if (_this7.Tip.popper) {
+                if (_this8.Tip.popper) {
 
-                    _this7._tipHide(false);
-                    _this7._tipShow(false);
+                    _this8._tipHide(false);
+                    _this8._tipShow(false);
                 }
             });
         }
 
         this.Vue.nextTick(function () {
 
-            _this7._tipBindTarget();
+            _this8._tipBindTarget();
         });
     },
     beforeDestroy: function beforeDestroy() {

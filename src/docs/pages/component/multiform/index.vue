@@ -1106,6 +1106,76 @@
     }
     :::
 
+    :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当表单填写框完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-multiform ref="demo8" form-name="名单" @after-show="echo">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center height-fill>姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo8.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当表单填写框完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-multiform ref="demo9" form-name="名单" @after-hide="echo">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center height-fill>姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo9.console1', 'after-hide event!');
+            }
+        }
+    }
+    :::
+
     [[[表单值]]]
 
     #### 值类型

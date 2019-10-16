@@ -134,11 +134,23 @@ export default {
 
         });
 
+        this.$refs[`ui-dropdown-popover-${this.uiid}`].$on('after-show', () => {
+
+            this.$emit('after-show');
+
+        });
+
         this.$refs[`ui-dropdown-popover-${this.uiid}`].$on('hide', () => {
 
             this.data.show = false;
             this.$emit('emit');
             this.$emit('hide');
+
+        });
+
+        this.$refs[`ui-dropdown-popover-${this.uiid}`].$on('after-hide', () => {
+
+            this.$emit('after-hide');
 
         });
 

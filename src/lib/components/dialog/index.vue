@@ -34,6 +34,9 @@
 <script>
 import PopupManager                 from 'Utils/PopupManager';
 
+const toggleTopTime = 200;
+const toggleCenterTime = 260;
+
 export default {
     origin : 'UI',
     name : 'dialog',
@@ -93,7 +96,8 @@ export default {
                 show : false,
                 hasHeader : false,
                 hasFooter : false,
-                showingTimeout : null
+                showingTimeout : null,
+                toggleTimeout : null
             }
         };
 
@@ -158,10 +162,21 @@ export default {
         toggle : function (show) {
 
             let isShown = this._isShown();
+            let toggleTimeoutTime = 0;
 
             if (show === undefined) {
 
                 show = !this.data.show;
+
+            }
+
+            if (this.conf.showType === 'top') {
+
+                toggleTimeoutTime = toggleTopTime;
+
+            } else if (this.conf.showType === 'center') {
+
+                toggleTimeoutTime = toggleCenterTime;
 
             }
 
@@ -189,6 +204,13 @@ export default {
 
                 this.$emit('show');
                 this.$emit('emit');
+
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(() => {
+
+                    this.$emit('after-show');
+
+                }, toggleTimeoutTime);
                 
             } else {
 
@@ -200,6 +222,13 @@ export default {
 
                 this.$emit('hide');
                 this.$emit('emit');
+
+                clearTimeout(this.data.toggleTimeout);
+                this.data.toggleTimeout = setTimeout(() => {
+
+                    this.$emit('after-hide');
+
+                }, toggleTimeoutTime);
             
             }
 

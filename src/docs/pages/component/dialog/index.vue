@@ -591,6 +591,60 @@
     :::
 
     :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当模拟盒完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dialog ref="demo30" @after-show="echo">
+            <ui-center height-fill>
+                <ui-link js="window.morning.findVM('demo30').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo30').toggle();">显示模拟盒</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo30.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当模拟盒完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dialog ref="demo31" @after-hide="echo">
+            <ui-center height-fill>
+                <ui-link js="window.morning.findVM('demo31').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo31').toggle();">显示模拟盒</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo31.console1', 'after-hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:生命周期事件
     ---
     #event

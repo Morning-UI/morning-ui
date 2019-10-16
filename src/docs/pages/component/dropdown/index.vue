@@ -320,7 +320,7 @@
     ---
     #event
     >event-desc
-    当按钮组显示时触发`show`事件。
+    当按钮组显示时触发。
     ---
     #demo
     >tpl
@@ -347,7 +347,7 @@
     ---
     #event
     >event-desc
-    当按钮组隐藏时触发`hide`事件。
+    当按钮组隐藏时触发。
     ---
     #demo
     >tpl
@@ -364,6 +364,60 @@
         methods : {
             echo : function () {
                 console.log('demo3.console1', 'hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当按钮组完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dropdown @after-show="echo">
+            <ui-btn slot="showbtn" emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <ui-btn color="white">收藏</ui-btn>
+            <ui-btn color="white">修改</ui-btn>
+            <ui-btn color="danger">删除</ui-btn>
+        </ui-dropdown>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo4.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当按钮组完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dropdown @after-hide="echo">
+            <ui-btn slot="showbtn" emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <ui-btn color="white">收藏</ui-btn>
+            <ui-btn color="white">修改</ui-btn>
+            <ui-btn color="danger">删除</ui-btn>
+        </ui-dropdown>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo5.console1', 'after-hide event!');
             }
         }
     }

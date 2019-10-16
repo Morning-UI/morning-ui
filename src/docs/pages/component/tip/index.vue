@@ -525,6 +525,52 @@
     :::
 
     :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当小提示完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo36">鼠标悬浮显示小提示</span>
+        <ui-tip target="#demo36" @after-show="echo">提示内容</ui-tip>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo36.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当小提示完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo37">鼠标悬浮显示小提示</span>
+        <ui-tip target="#demo37" @after-hide="echo">提示内容</ui-tip>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo37.console1', 'after-hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:生命周期事件
     ---
     #event
