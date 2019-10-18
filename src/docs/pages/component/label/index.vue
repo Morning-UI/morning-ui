@@ -159,7 +159,7 @@
     [[[事件]]]
 
     :::vue
-    @name:closed
+    @name:close
     ---
     #event
     >event-desc
@@ -168,13 +168,13 @@
     #demo
     >tpl
     <div>
-        <ui-label closable @closed="echo">标签</ui-label>
+        <ui-label closable @close="echo">标签</ui-label>
     </div>
     >script
     {
         methods : {
             echo : function () {
-                console.log('demo1.console1', 'closed event!');
+                console.log('demo1.console1', 'close event!');
             }
         }
     }

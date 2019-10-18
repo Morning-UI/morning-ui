@@ -5,8 +5,8 @@
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",
   "scripts": {
-    "build": "node --max-old-space-size=6144 ./node_modules/.bin/parallel-webpack --config ./build/webpack.prod.config.js --mode production",
-    "dev": "node --max-old-space-size=6144 ./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.config.js --mode development",
+    "build": "node --max-old-space-size=6144 ./node_modules/.bin/parallel-webpack --config ./build/webpack.prod.config.js",
+    "dev": "node --max-old-space-size=6144 ./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.config.js",
     "build-profile": "node --max-old-space-size=6144 ./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --mode production --profile --json > webpack-profile.json",
     "lint": "npm run js-lint && npm run css-lint",
     "js-lint": "node_modules/.bin/eslint --ext js,vue src/ build/ test/ bin/ server/",
@@ -54,6 +54,9 @@
     "dist",
     "src/lib"
   ],
+  "engines": {
+    "node": ">=10.15.0 <12.12.0"
+  },
   "peerDependencies": {
     "vue": "^2.5.22"
   },
@@ -95,15 +98,14 @@
     "babel-register": "^6.26.0",
     "browser-env": "^3.2.5",
     "clean-css": "^4.2.1",
-    "clean-css-loader": "^1.1.0",
+    "clean-css-loader": "2.0.0",
     "clean-webpack-plugin": "3.0.0",
-    "copy-webpack-plugin": "^4.6.0",
-    "cross-env": "^5.0.5",
-    "css-loader": "^2.1.0",
+    "copy-webpack-plugin": "5.0.4",
+    "cross-env": "6.0.3",
+    "css-loader": "3.2.0",
     "eslint": "^4.5.0",
     "eslint-config-gaea": "^0.1.5",
     "eslint-plugin-vue": "^5.0.0-beta.3",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "4.2.0",
     "fs-extra": "8.1.0",
     "github-markdown-css": "^3.0.1",
@@ -126,6 +128,7 @@
     "less-loader": "^5.0.0",
     "markdown-it": "^8.4.0",
     "markdown-it-anchor": "^4.0.0",
+    "mini-css-extract-plugin": "0.8.0",
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
     "nightmare": "^3.0.1",
@@ -149,8 +152,7 @@
     "url-loader": "^1.0.1",
     "vue": "^2.5.22",
     "vue-eslint-parser": "^5.0.0",
-    "vue-loader": "^15.6.2",
-    "vue-style-loader": "^4.1.2",
+    "vue-loader": "15.7.1",
     "vue-template-compiler": "^2.5.22",
     "walk": "2.3.14",
     "webpack": "4.41.1",

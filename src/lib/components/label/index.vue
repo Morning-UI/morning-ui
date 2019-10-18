@@ -56,7 +56,7 @@ export default {
     methods : {
         close : function () {
 
-            this.$emit('closed');
+            this.$emit('close');
             this.$destroy();
 
             return this;

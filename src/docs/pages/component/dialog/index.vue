@@ -657,7 +657,6 @@
         <ui-dialog
             ref="demoEventLifecycle"
             v-show="show"
-            :total="10"
             @created="echo('created')"
             @mounted="echo('mounted')"
             @before-update="echo('before-update')"

@@ -267,6 +267,47 @@
     }
     :::
 
+    :::vue
+    @name:生命周期事件
+    ---
+    #event
+    >event-desc
+    组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-img
+            ref="demoEventLifecycle"
+            v-show="show"
+            src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
+        >{*text*}</ui-img>
+        <br><br>
+        <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+               text : '图片',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    }
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/img/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

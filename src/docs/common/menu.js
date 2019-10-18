@@ -61,7 +61,7 @@ export default {
         进度条 : ['/component/progress.html', 'Progress'],
 
         '<i class="iconfont">&#xe7cc;</i> 表单' : null,
-        表单组 : ['/component/formgroup.html', 'FormGroup'],
+        表单 : ['/component/form.html', 'Form'],
         文本输入 : ['/component/textinput.html', 'TextInput'],
         段落输入 : ['/component/textarea.html', 'TextArea'],
         富文本编辑器 : ['/component/texteditor.html', 'TextEditor'],
@@ -71,7 +71,6 @@ export default {
         下拉选择 : ['/component/select.html', 'Select'],
         复选框组 : ['/component/checkbox.html', 'Checkbox'],
         单选框组 : ['/component/radio.html', 'Radio'],
-        表单 : ['/component/form.html', 'Form'],
         穿梭框 : ['/component/transfer.html', 'Transfer'],
         级联选择 : ['/component/cascader.html', 'Cascader'],
         多项输入 : ['/component/multiinput.html', 'MultiInput'],
@@ -83,6 +82,7 @@ export default {
         文件上传 : ['/component/upload.html', 'Upload'],
         颜色选择器 : ['/component/colorpicker.html', 'ColorPicker'],
         图片热区输入 : ['/component/imagemap.html', 'ImageMap'],
+        表单组 : ['/component/formgroup.html', 'FormGroup'],
 
         '<i class="iconfont" style="transform: scale(0.85);display: inline-block;">&#xe959;</i> 文本' : null,
         标题 : ['/component/h.html', 'H'],
@@ -104,12 +104,10 @@ export default {
         回到顶部 : ['/component/backtop.html', 'BackTop']
         // ----
         // TODO:
-        // 步骤<i class="tag new"></i> : 'b',
         // 工具条 : 'b',
         // 代码 : 'b',
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
-        // 消息提示 : 'b',
     },
     guide : {
         开始使用 : null,

@@ -378,7 +378,8 @@
     :::vue
     @layout:lifecycle-event
     ---
-    empty
+    badge
+    徽标
     :::
 
     [[[源码]]]

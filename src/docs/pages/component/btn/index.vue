@@ -35,46 +35,46 @@
     ---
     #demo
     >desc
-    按钮支持以下样式类：
+    通过按钮的`type`、`fade`、`shape`配置可以为按钮设置多种样式。
     <br><br>
-    - `plain` : 朴素按钮
-    - `ghost` : 幽灵按钮
-    - `fade` : 褪色按钮
-    - `round` : 圆角按钮
-    - `circle` : 圆形按钮
+    - `type="plain"` : 朴素按钮
+    - `type="ghost"` : 幽灵按钮
+    - `fade=true` : 褪色按钮
+    - `shape="round"` : 半圆角按钮
+    - `shape="circle"` : 圆形按钮
     >tpl
     <div>
-        <ui-btn class="plain">朴素按钮</ui-btn>
+        <ui-btn type="plain">朴素按钮</ui-btn>
         <br><br>
-        <ui-btn class="ghost">幽灵按钮</ui-btn>
+        <ui-btn type="ghost">幽灵按钮</ui-btn>
         <br><br>
-        <ui-btn class="fade">褪色按钮</ui-btn>
+        <ui-btn fade>褪色按钮</ui-btn>
         <br><br>
-        <ui-btn class="round">圆角按钮</ui-btn>
+        <ui-btn shape="round">半圆角按钮</ui-btn>
         <br><br>
-        <ui-btn class="circle">
+        <ui-btn shape="circle">
             <i class="mo-icon mo-icon-star-f"></i>
         </ui-btn>
     </div>
     ---
     #demo
     >desc
-    其中`plain`可以和`round`或`circle`进行组合。
+    其中`type="plain"`可以和`shape="round"`或`shape="circle"`进行组合。
     >tpl
     <div>
-        <ui-btn class="round plain">朴素的圆角按钮</ui-btn>
+        <ui-btn type="plain" shape="round">朴素的半圆角按钮</ui-btn>
         <br><br>
-        <ui-btn class="circle plain">
+        <ui-btn type="plain" shape="circle">
             <i class="mo-icon mo-icon-star-f"></i>
         </ui-btn>
     </div>
     ---
     #demo
     >desc
-    其中`fade`和`ghost`进行组合。
+    其中`fade`和`type="ghost"`进行组合。
     >tpl
     <div>
-        <ui-btn class="ghost fade" color="light-theme">按钮</ui-btn>
+        <ui-btn type="ghost" fade color="light-theme">按钮</ui-btn>
     </div>
     :::
 
@@ -83,17 +83,17 @@
     ---
     #demo
     >desc
-    `circle`配合`ui-img`一起使用可实现图片按钮的效果。
+    `shape="circle"`配合`ui-img`一起使用可实现图片按钮的效果。
     >tpl
-    <ui-btn class="circle">
+    <ui-btn shape="circle">
         <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     </ui-btn>
     ---
     #demo
     >desc
-    在上面的基础上增加`plain`可为图片按钮增加边框。
+    在上面的基础上增加`type="plain"`可为图片按钮增加边框。
     >tpl
-    <ui-btn class="circle plain" color="danger">
+    <ui-btn type="plain" shape="circle" color="danger">
         <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     </ui-btn>
     :::
@@ -131,9 +131,9 @@
     >name
     size-repeat
     >desc
-    尺寸配合`circle`样式类一起使用。
+    尺寸配合`shape="circle"`样式类一起使用。
     >tpl
-    <ui-btn size="{$sizeKey}" class="circle">
+    <ui-btn size="{$sizeKey}" shape="circle">
         <i class="mo-icon mo-icon-star-f"></i>
     </ui-btn>
     ---
@@ -141,20 +141,20 @@
     >name
     size-repeat
     >desc
-    尺寸配合`circle`样式类和`locked`配置一起使用。
+    尺寸配合`shape="circle"`和`locked`配置一起使用。
     >tpl
-    <ui-btn size="{$sizeKey}" class="circle" locked></ui-btn>
+    <ui-btn size="{$sizeKey}" shape="circle" locked></ui-btn>
     :::
 
     :::vue
     @layout:color
     ---
     <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
-    <ui-btn color="{$colorKey}" class="plain">{$&colorName}</ui-btn>
-    <ui-btn color="{$colorKey}" class="ghost">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" type="plain">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" type="ghost">{$&colorName}</ui-btn>
     <ui-btn color="{$colorKey}" locked>{$&colorName}</ui-btn>
-    <ui-btn color="{$colorKey}" locked class="plain">{$&colorName}</ui-btn>
-    <ui-btn color="{$colorKey}" locked class="ghost">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" locked type="plain">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" locked type="ghost">{$&colorName}</ui-btn>
     <br><br>
     :::
 
@@ -293,6 +293,86 @@
     设置具体数值。
     >tpl
     <ui-btn :link="'https://www.google.com'" min-width="120px">链接</ui-btn>
+    :::
+
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    按钮的风格类型。
+    >conf-accept
+    `'normal'`:正常<br>`'plain'`:朴素<br>`'ghost'`:幽灵
+    >conf-type
+    String
+    >conf-default
+    `'normal'`
+    ---
+    #demo
+    >desc
+    朴素按钮。
+    >tpl
+    <ui-btn type="plain">朴素按钮</ui-btn>
+    ---
+    #demo
+    >desc
+    幽灵按钮。
+    >tpl
+    <ui-btn type="ghost">幽灵按钮</ui-btn>
+    :::
+
+    :::vue
+    @name:fade
+    ---
+    #config
+    >conf-desc
+    按钮是否褪色。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    各种褪色按钮。
+    >tpl
+    <div>
+        <ui-btn fade>褪色按钮</ui-btn>
+        <br><br>
+        <ui-btn type="ghost" fade>幽灵褪色按钮</ui-btn>
+        <br><br>
+        <ui-btn shape="round" fade>半圆角褪色按钮</ui-btn>
+    </div>
+    :::
+
+    :::vue
+    @name:shape
+    ---
+    #config
+    >conf-desc
+    按钮的形状。
+    >conf-accept
+    `'radius'`:圆角<br>`'round'`:半圆角<br>`'circle'`:圆形
+    >conf-type
+    String
+    >conf-default
+    `'radius'`
+    ---
+    #demo
+    >desc
+    半圆角按钮。
+    >tpl
+    <ui-btn shape="round"半圆角按钮</ui-btn>
+    ---
+    #demo
+    >desc
+    圆形按钮。
+    >tpl
+    <ui-btn shape="circle">
+        <i class="mo-icon mo-icon-star-f"></i>
+    </ui-btn>
     :::
 
     [[[方法]]]
