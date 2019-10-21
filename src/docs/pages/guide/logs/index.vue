@@ -18,6 +18,24 @@
     
     ### 更新记录
 
+    ### 0.12.63 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.63" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.63/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.63/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 修复
+    
+    - 修复`ui-table`的`fixed-title-col`配置失效的问题
+    
+    ---
+
     ### 0.12.62 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">
