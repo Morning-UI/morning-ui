@@ -89118,9 +89118,9 @@ var morning = {
         black: 'bk',
         white: 'wh'
     },
-    _devVersion: '0.12.62',
+    _devVersion: '0.12.63',
     isMorning: true,
-    version: '0.12.62',
+    version: '0.12.63',
     map: {}
 };
 
