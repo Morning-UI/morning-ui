@@ -274,7 +274,7 @@
     >desc
     通过色彩设置标记的颜色。
     >tpl
-    <div style="width:300px;">
+    <div style="width:320px;">
         <ui-progress
             :percent="30"
             :mark-range="[{
@@ -293,10 +293,30 @@
     >desc
     通过HEX色值设置标记的颜色。
     >tpl
-    <div style="width:300px;">
+    <div style="width:320px;">
         <ui-progress
             :percent="30"
-                :mark-range="[{
+            :mark-range="[{
+                start : 0,
+                end : 40,
+                color : '#A151DA'
+            }, {
+                start : 70,
+                end : 90,
+                color : '#FFA5B6'
+            }]"
+        ></ui-slider>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`type`配置一起使用。
+    >tpl
+    <div style="width:160px;">
+        <ui-progress
+            type="ring"
+            :percent="30"
+            :mark-range="[{
                 start : 0,
                 end : 40,
                 color : '#A151DA'

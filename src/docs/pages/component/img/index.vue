@@ -17,8 +17,7 @@
     ---
     #demo
     >tpl
-    <!-- <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img> -->
-    <ui-img preview src="http://t8.baidu.com/it/u=736166437,3671351498&fm=191&app=48&wm=1,13,90,45,0,7&wmo=10,10&n=0&g=0n&f=JPEG?sec=1853310920&t=12f4b0e9d468c571f65bd81a808070f5"></ui-img>
+    <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     :::
 
     :::vue

@@ -57,6 +57,16 @@
                     ></path>
                     <path
                         d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
+                        v-for="(mark, index) in marks"
+                        :key="index"
+                        :style="[{
+                            'stroke-dasharray' : `${Math.PI * 90 * ((mark.end - mark.start) / 100)}, ${Math.PI * 90}`,
+                            'stroke-dashoffset' : -(Math.PI * 90 * mark.start / 100),
+                            'stroke-opacity' : 1
+                        }, _genMarkBackground(mark.color)]"
+                    ></path>
+                    <path
+                        d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
                         class="main"
                         :class="{
                             done : data.mainProgress === 1,
@@ -280,7 +290,8 @@ export default {
             } catch (e) {}
 
             return isVaild ? {
-                background : colorString
+                background : colorString,
+                stroke : colorString
             } : {};
         
         }
