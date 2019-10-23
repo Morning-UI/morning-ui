@@ -18,6 +18,46 @@
     
     ### 更新记录
 
+    ### 0.12.64 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.64" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.64/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.64/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-slider`的`mark-range`配置，现在支持配置颜色
+    - `ui-form`组件的表单项名称支持`Vue Template`
+    - `ui-progress`支持`format`配置，可以用来格式化进度文案
+    - `ui-progress`支持`status`配置，可以用来设置进度条的状态
+    - `ui-progress`支持`mark-range`配置
+
+    #### 改进
+
+    - `ui-dialog`弹窗增加圆角，和设计规范保持一致
+    - 改进`ui-checkbox`和`ui-radio`组件的边距，是其可以更容易布局
+
+    #### 修复
+
+    - 修复`ui-table`的`vertical-border`配置失效的问题
+    - 修复`ui-img`预览大图时溢出窗口的问题
+
+    #### 更多
+
+    - 暂时下线文档搜索功能
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-progress`当进度100%时，不再会显示成功状态，可以通过`status=’success’`配置来替代
+
+    ---
+
     ### 0.12.63 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">

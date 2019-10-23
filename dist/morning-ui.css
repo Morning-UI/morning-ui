@@ -37727,6 +37727,9 @@ mor-progress .progress-wrap {
   display: flex;
   font-size: 0;
 }
+mor-progress .progress-wrap .track {
+  position: relative;
+}
 mor-progress .progress-wrap .line-track {
   display: flex;
   height: 8px;
@@ -37743,6 +37746,8 @@ mor-progress .progress-wrap .main {
   height: 100%;
   background: #999999;
   transition: width 0.2s, color 0.2s;
+  position: relative;
+  z-index: 2;
 }
 mor-progress .progress-wrap .main.done {
   background: #1EB818 !important;
@@ -37770,7 +37775,6 @@ mor-progress .progress-wrap .main .progressing {
 mor-progress .progress-wrap .note {
   display: flex;
   padding-left: 10px;
-  max-width: 70px;
   font-size: 13px;
   vertical-align: top;
   position: relative;
@@ -37820,9 +37824,91 @@ mor-progress .progress-wrap .ring-track svg .progressing {
   transform-origin: center center;
   animation: 2.4s linear infinite ring-progressing;
 }
+mor-progress .progress-wrap .marks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  height: 100%;
+}
+mor-progress .progress-wrap .marks li {
+  display: inline-block;
+  left: 0;
+  top: 0;
+  height: 100%;
+  font-size: 16px;
+  border-radius: 10em;
+  background: #D9D9D9;
+  position: absolute;
+  margin: 0;
+}
+mor-progress .progress-wrap .marks li.co-t {
+  background: #F33D5D;
+}
+mor-progress .progress-wrap .marks li.co-lt {
+  background: #F86F88;
+}
+mor-progress .progress-wrap .marks li.co-dt {
+  background: #D22343;
+}
+mor-progress .progress-wrap .marks li.co-s {
+  background: #1EB818;
+}
+mor-progress .progress-wrap .marks li.co-w {
+  background: #FA9428;
+}
+mor-progress .progress-wrap .marks li.co-d {
+  background: #FA2833;
+}
+mor-progress .progress-wrap .marks li.co-p {
+  background: #2879FA;
+}
+mor-progress .progress-wrap .marks li.co-m {
+  background: #B2B2B2;
+}
+mor-progress .progress-wrap .marks li.co-i {
+  background: #18B8B6;
+}
+mor-progress .progress-wrap .marks li.co-n1 {
+  background: #F0F0F0;
+}
+mor-progress .progress-wrap .marks li.co-n2 {
+  background: #E5E5E5;
+}
+mor-progress .progress-wrap .marks li.co-n3 {
+  background: #E0E0E0;
+}
+mor-progress .progress-wrap .marks li.co-n4 {
+  background: #D9D9D9;
+}
+mor-progress .progress-wrap .marks li.co-n5 {
+  background: #CCCCCC;
+}
+mor-progress .progress-wrap .marks li.co-n6 {
+  background: #B2B2B2;
+}
+mor-progress .progress-wrap .marks li.co-n7 {
+  background: #999999;
+}
+mor-progress .progress-wrap .marks li.co-n8 {
+  background: #7F7F7F;
+}
+mor-progress .progress-wrap .marks li.co-n9 {
+  background: #666666;
+}
+mor-progress .progress-wrap .marks li.co-n10 {
+  background: #4C4C4C;
+}
+mor-progress .progress-wrap .marks li.co-n11 {
+  background: #333333;
+}
 mor-progress.type-ring .progress-wrap {
   position: relative;
-  display: inline-block;
+  display: block;
 }
 mor-progress.type-ring .note {
   padding: 0;
