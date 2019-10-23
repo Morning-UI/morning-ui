@@ -70,9 +70,53 @@ mor-slider{
             height: 100%;
             font-size: @fontSize;
             border-radius: 10em;
-            background: darken(@colorFromItemBackgroundCurrent, 9%);
+            background: @colorNeutral4;
             position: absolute;
             margin: 0;
+
+            &.co-t{
+                background: @colorTheme;
+            }
+
+            &.co-lt{
+                background: @colorLightTheme;
+            }
+
+            &.co-dt{
+                background: @colorDarkTheme;
+            }
+
+            &.co-s{
+                background: @colorSuccess;
+            }
+
+            &.co-w{
+                background: @colorWarning;
+            }
+
+            &.co-d{
+                background: @colorDanger;
+            }
+
+            &.co-p{
+                background: @colorPrimary;
+            }
+
+            &.co-m{
+                background: @colorMinor;
+            }
+
+            &.co-i{
+                background: @colorInfo;
+            }
+
+            each(range(11), {
+                @colorName : 'colorNeutral@{value}';
+
+                &.co-n@{value}{
+                    background: @@colorName;
+                }
+            });
         }
     }
 

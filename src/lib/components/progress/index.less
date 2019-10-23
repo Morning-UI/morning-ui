@@ -33,14 +33,18 @@ mor-progress{
     display: block;
 
     .progress-wrap{
-        display: block;
+        display: flex;
         font-size: 0;
 
+        .track{
+            position: relative;
+        }
+
         .line-track{
-            display: inline-block;
+            display: flex;
             height: @fontSize*0.5;
             border-radius: @fontSize;
-            width: calc(100% - 60px);
+            width: 100%;
             background: @colorNeutral1;
             margin: @fontSize*0.25 0;
             vertical-align: top;
@@ -53,6 +57,8 @@ mor-progress{
             height: 100%;
             background: @colorNeutral7;
             transition: width 0.2s, color 0.2s;
+            position: relative;
+            z-index: 2;
 
             &.done{
                 background: @colorSuccess !important;
@@ -60,6 +66,18 @@ mor-progress{
 
             &.fail{
                 background: @colorDanger !important;
+            }
+
+            &.status-failed{
+                background: @colorDanger !important;
+            }
+
+            &.status-success{
+                background: @colorSuccess !important;
+            }
+
+            &.status-warning{
+                background: @colorWarning !important;
             }
 
             .progressing{
@@ -73,15 +91,14 @@ mor-progress{
         }
 
         .note{
-            display: inline-block;
+            display: flex;
             padding-left: 10px;
-            width: 50px;
-            height: @fontSize;
             font-size: @fontSize*0.8125;
             vertical-align: top;
             position: relative;
             color: @colorBlack;
             line-height: @fontSize;
+            width: 20%;
 
             .mo-icon-error-cf{
                 color: @colorDanger;
@@ -89,6 +106,10 @@ mor-progress{
 
             .mo-icon-correct-cf{
                 color: @colorSuccess;
+            }
+
+            .mo-icon-warn-f{
+                color: @colorWarning;
             }
         }
 
@@ -115,6 +136,18 @@ mor-progress{
                     &.fail{
                         stroke: @colorDanger !important;
                     }
+
+                    &.status-failed{
+                        stroke: @colorDanger !important;
+                    }
+
+                    &.status-success{
+                        stroke: @colorSuccess !important;
+                    }
+
+                    &.status-warning{
+                        stroke: @colorWarning !important;
+                    }
                 }
 
                 .progressing{
@@ -125,11 +158,80 @@ mor-progress{
                 }
             }
         }
+
+        .marks{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            height: 100%;
+
+            li{
+                display: inline-block;
+                left: 0;
+                top: 0;
+                height: 100%;
+                font-size: @fontSize;
+                border-radius: 10em;
+                background: @colorNeutral4;
+                position: absolute;
+                margin: 0;
+
+                &.co-t{
+                    background: @colorTheme;
+                }
+
+                &.co-lt{
+                    background: @colorLightTheme;
+                }
+
+                &.co-dt{
+                    background: @colorDarkTheme;
+                }
+
+                &.co-s{
+                    background: @colorSuccess;
+                }
+
+                &.co-w{
+                    background: @colorWarning;
+                }
+
+                &.co-d{
+                    background: @colorDanger;
+                }
+
+                &.co-p{
+                    background: @colorPrimary;
+                }
+
+                &.co-m{
+                    background: @colorMinor;
+                }
+
+                &.co-i{
+                    background: @colorInfo;
+                }
+
+                each(range(11), {
+                    @colorName : 'colorNeutral@{value}';
+
+                    &.co-n@{value}{
+                        background: @@colorName;
+                    }
+                });
+            }
+        }
     }
 
     &.type-ring{
         .progress-wrap{
             position: relative;
+            display: block;
         }
 
         .note{
@@ -141,6 +243,7 @@ mor-progress{
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: @fontSize*1.5;
+            display: inline-block;
 
             .mo-icon{
                 transform: scale(2.4);

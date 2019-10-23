@@ -29870,6 +29870,8 @@ mor-img.thumbnail {
 .ui-dialog-preview > .content > .body > img {
   padding: 0;
   border-radius: 0;
+  max-width: calc(100vw - 8px*2);
+  max-height: calc(100vh - 8px*2);
 }
 mor-btn {
   display: inline-block;
@@ -32750,6 +32752,7 @@ mor-table table {
 }
 mor-table table td {
   padding: initial;
+  border: initial;
 }
 mor-table header {
   position: relative;
@@ -35913,6 +35916,8 @@ mor-dialog > .content {
   left: 50%;
   background-color: #FFFFFF;
   box-sizing: border-box;
+  border-radius: 3px;
+  overflow: hidden;
 }
 mor-dialog > .content > .body {
   position: absolute;
@@ -37719,14 +37724,17 @@ mor-progress {
   display: block;
 }
 mor-progress .progress-wrap {
-  display: block;
+  display: flex;
   font-size: 0;
 }
+mor-progress .progress-wrap .track {
+  position: relative;
+}
 mor-progress .progress-wrap .line-track {
-  display: inline-block;
+  display: flex;
   height: 8px;
   border-radius: 16px;
-  width: calc(100% - 60px);
+  width: 100%;
   background: #F0F0F0;
   margin: 4px 0;
   vertical-align: top;
@@ -37738,12 +37746,23 @@ mor-progress .progress-wrap .main {
   height: 100%;
   background: #999999;
   transition: width 0.2s, color 0.2s;
+  position: relative;
+  z-index: 2;
 }
 mor-progress .progress-wrap .main.done {
   background: #1EB818 !important;
 }
 mor-progress .progress-wrap .main.fail {
   background: #FA2833 !important;
+}
+mor-progress .progress-wrap .main.status-failed {
+  background: #FA2833 !important;
+}
+mor-progress .progress-wrap .main.status-success {
+  background: #1EB818 !important;
+}
+mor-progress .progress-wrap .main.status-warning {
+  background: #FA9428 !important;
 }
 mor-progress .progress-wrap .main .progressing {
   width: 0%;
@@ -37754,21 +37773,23 @@ mor-progress .progress-wrap .main .progressing {
   animation: 2.4s cubic-bezier(0.23, 0.48, 0.5, 1.04) infinite progressing;
 }
 mor-progress .progress-wrap .note {
-  display: inline-block;
+  display: flex;
   padding-left: 10px;
-  width: 50px;
-  height: 16px;
   font-size: 13px;
   vertical-align: top;
   position: relative;
   color: #000000;
   line-height: 16px;
+  width: 20%;
 }
 mor-progress .progress-wrap .note .mo-icon-error-cf {
   color: #FA2833;
 }
 mor-progress .progress-wrap .note .mo-icon-correct-cf {
   color: #1EB818;
+}
+mor-progress .progress-wrap .note .mo-icon-warn-f {
+  color: #FA9428;
 }
 mor-progress .progress-wrap .ring-track svg path {
   stroke-linecap: round;
@@ -37788,14 +37809,106 @@ mor-progress .progress-wrap .ring-track svg .main.done {
 mor-progress .progress-wrap .ring-track svg .main.fail {
   stroke: #FA2833 !important;
 }
+mor-progress .progress-wrap .ring-track svg .main.status-failed {
+  stroke: #FA2833 !important;
+}
+mor-progress .progress-wrap .ring-track svg .main.status-success {
+  stroke: #1EB818 !important;
+}
+mor-progress .progress-wrap .ring-track svg .main.status-warning {
+  stroke: #FA9428 !important;
+}
 mor-progress .progress-wrap .ring-track svg .progressing {
   opacity: 0.65;
   transform: rotate(0deg);
   transform-origin: center center;
   animation: 2.4s linear infinite ring-progressing;
 }
+mor-progress .progress-wrap .marks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  height: 100%;
+}
+mor-progress .progress-wrap .marks li {
+  display: inline-block;
+  left: 0;
+  top: 0;
+  height: 100%;
+  font-size: 16px;
+  border-radius: 10em;
+  background: #D9D9D9;
+  position: absolute;
+  margin: 0;
+}
+mor-progress .progress-wrap .marks li.co-t {
+  background: #F33D5D;
+}
+mor-progress .progress-wrap .marks li.co-lt {
+  background: #F86F88;
+}
+mor-progress .progress-wrap .marks li.co-dt {
+  background: #D22343;
+}
+mor-progress .progress-wrap .marks li.co-s {
+  background: #1EB818;
+}
+mor-progress .progress-wrap .marks li.co-w {
+  background: #FA9428;
+}
+mor-progress .progress-wrap .marks li.co-d {
+  background: #FA2833;
+}
+mor-progress .progress-wrap .marks li.co-p {
+  background: #2879FA;
+}
+mor-progress .progress-wrap .marks li.co-m {
+  background: #B2B2B2;
+}
+mor-progress .progress-wrap .marks li.co-i {
+  background: #18B8B6;
+}
+mor-progress .progress-wrap .marks li.co-n1 {
+  background: #F0F0F0;
+}
+mor-progress .progress-wrap .marks li.co-n2 {
+  background: #E5E5E5;
+}
+mor-progress .progress-wrap .marks li.co-n3 {
+  background: #E0E0E0;
+}
+mor-progress .progress-wrap .marks li.co-n4 {
+  background: #D9D9D9;
+}
+mor-progress .progress-wrap .marks li.co-n5 {
+  background: #CCCCCC;
+}
+mor-progress .progress-wrap .marks li.co-n6 {
+  background: #B2B2B2;
+}
+mor-progress .progress-wrap .marks li.co-n7 {
+  background: #999999;
+}
+mor-progress .progress-wrap .marks li.co-n8 {
+  background: #7F7F7F;
+}
+mor-progress .progress-wrap .marks li.co-n9 {
+  background: #666666;
+}
+mor-progress .progress-wrap .marks li.co-n10 {
+  background: #4C4C4C;
+}
+mor-progress .progress-wrap .marks li.co-n11 {
+  background: #333333;
+}
 mor-progress.type-ring .progress-wrap {
   position: relative;
+  display: block;
 }
 mor-progress.type-ring .note {
   padding: 0;
@@ -37806,6 +37919,7 @@ mor-progress.type-ring .note {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24px;
+  display: inline-block;
 }
 mor-progress.type-ring .note .mo-icon {
   transform: scale(2.4);
@@ -43325,7 +43439,7 @@ mor-checkbox.type-button > .il label.disabled:hover span {
   color: #999999;
 }
 mor-checkbox.si-m > .il label {
-  margin: 0 1em 0.5em 0;
+  margin: 0.25em 1em 0.25em 0;
 }
 mor-checkbox.si-m > .il label span {
   font-size: 14px;
@@ -43356,7 +43470,7 @@ mor-checkbox.si-m.type-button > .il label {
   margin: 0;
 }
 mor-checkbox.si-s > .il label {
-  margin: 0 0.75em 0.2em 0;
+  margin: 0.1em 0.75em 0.1em 0;
 }
 mor-checkbox.si-s > .il label span {
   font-size: 13px;
@@ -44376,7 +44490,7 @@ mor-checkbox.st-readonly > .il > label.checked .mo-icon {
   opacity: 0.6;
 }
 mor-checkbox > .il label {
-  margin: 0 1em 0.5em 0;
+  margin: 0.25em 1em 0.25em 0;
 }
 mor-checkbox > .il label span {
   font-size: 14px;
@@ -44645,7 +44759,7 @@ mor-radio.type-button > .il label.disabled:hover span {
   color: #999999;
 }
 mor-radio.si-m > .il label {
-  margin: 0 1em 0.5em 0;
+  margin: 0.25em 1em 0.25em 0;
 }
 mor-radio.si-m > .il label span {
   font-size: 14px;
@@ -44677,7 +44791,7 @@ mor-radio.si-m.type-button > .il label {
   margin: 0;
 }
 mor-radio.si-s > .il label {
-  margin: 0 0.75em 0.2em 0;
+  margin: 0.1em 0.75em 0.1em 0;
 }
 mor-radio.si-s > .il label span {
   font-size: 13px;
@@ -45646,7 +45760,7 @@ mor-radio.st-readonly > .il > label.checked .mo-icon {
   opacity: 0.6;
 }
 mor-radio > .il label {
-  margin: 0 1em 0.5em 0;
+  margin: 0.25em 1em 0.25em 0;
 }
 mor-radio > .il label span {
   font-size: 14px;
@@ -47397,9 +47511,69 @@ mor-slider .marks li {
   height: 100%;
   font-size: 16px;
   border-radius: 10em;
-  background: #d9d9d9;
+  background: #D9D9D9;
   position: absolute;
   margin: 0;
+}
+mor-slider .marks li.co-t {
+  background: #F33D5D;
+}
+mor-slider .marks li.co-lt {
+  background: #F86F88;
+}
+mor-slider .marks li.co-dt {
+  background: #D22343;
+}
+mor-slider .marks li.co-s {
+  background: #1EB818;
+}
+mor-slider .marks li.co-w {
+  background: #FA9428;
+}
+mor-slider .marks li.co-d {
+  background: #FA2833;
+}
+mor-slider .marks li.co-p {
+  background: #2879FA;
+}
+mor-slider .marks li.co-m {
+  background: #B2B2B2;
+}
+mor-slider .marks li.co-i {
+  background: #18B8B6;
+}
+mor-slider .marks li.co-n1 {
+  background: #F0F0F0;
+}
+mor-slider .marks li.co-n2 {
+  background: #E5E5E5;
+}
+mor-slider .marks li.co-n3 {
+  background: #E0E0E0;
+}
+mor-slider .marks li.co-n4 {
+  background: #D9D9D9;
+}
+mor-slider .marks li.co-n5 {
+  background: #CCCCCC;
+}
+mor-slider .marks li.co-n6 {
+  background: #B2B2B2;
+}
+mor-slider .marks li.co-n7 {
+  background: #999999;
+}
+mor-slider .marks li.co-n8 {
+  background: #7F7F7F;
+}
+mor-slider .marks li.co-n9 {
+  background: #666666;
+}
+mor-slider .marks li.co-n10 {
+  background: #4C4C4C;
+}
+mor-slider .marks li.co-n11 {
+  background: #333333;
 }
 mor-slider.hide-part-points .points li {
   background: #fdfdfd;

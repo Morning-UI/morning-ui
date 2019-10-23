@@ -6,16 +6,33 @@
         :progressing="progressing"
         :type="type"
         :failed="failed"
+        :status="status"
+        :format="format"
+        :mark-range="markRange"
     >
 
     <div class="progress-wrap">
         <template v-if="conf.type === 'line'">
-            <div class="line-track">
+            <div class="line-track track">
+                <ul class="marks">
+                    <li
+                        v-for="(mark, index) in marks"
+                        :key="index"
+                        :style="[{
+                            left : `${(mark.start) / 100 * data.$track.clientWidth}px`,
+                            width : `${(mark.end - mark.start) / 100 * data.$track.clientWidth}px`
+                        }, _genMarkBackground(mark.color)]"
+                        :class="{
+                            [`co-${morning._colorShortName[mark.color]}`] : true
+                        }"
+                    ></li>
+                </ul>
                 <div
                     class="main"
                     :class="{
                         done : data.mainProgress === 1,
-                        fail : conf.failed
+                        fail : conf.failed,
+                        [`status-${conf.status}`] : true
                     }"
                     :style="{
                         width : data.mainProgress*100 + '%'
@@ -31,7 +48,7 @@
 
         <template v-if="conf.type === 'ring'">
             <div
-                class="ring-track"
+                class="ring-track track"
             >
                 <svg viewBox="0 0 100 100">
                     <path
@@ -40,10 +57,21 @@
                     ></path>
                     <path
                         d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
+                        v-for="(mark, index) in marks"
+                        :key="index"
+                        :style="[{
+                            'stroke-dasharray' : `${Math.PI * 90 * ((mark.end - mark.start) / 100)}, ${Math.PI * 90}`,
+                            'stroke-dashoffset' : -(Math.PI * 90 * mark.start / 100),
+                            'stroke-opacity' : 1
+                        }, _genMarkBackground(mark.color)]"
+                    ></path>
+                    <path
+                        d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
                         class="main"
                         :class="{
                             done : data.mainProgress === 1,
-                            fail : conf.failed
+                            fail : conf.failed,
+                            [`status-${conf.status}`] : true
                         }"
                         :style="{
                             'stroke-dasharray' : ringPer,
@@ -84,6 +112,8 @@
 </template>
  
 <script>
+import color                        from 'color';
+
 const num100 = 100;
 const ringDiameter = 90;
 
@@ -107,6 +137,19 @@ export default {
         failed : {
             type : Boolean,
             default : false
+        },
+        status : {
+            type : String,
+            default : 'normal',
+            validator : (value => ['normal', 'success', 'failed', 'warning'].indexOf(value) !== -1)
+        },
+        format : {
+            type : Function,
+            default : (percent => (`${percent}%`))
+        },
+        markRange : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -116,7 +159,10 @@ export default {
                 percent : this.percent,
                 progressing : this.progressing,
                 type : this.type,
-                failed : this.failed
+                failed : this.failed,
+                status : this.status,
+                format : this.format,
+                markRange : this.markRange
             };
 
         },
@@ -134,18 +180,71 @@ export default {
 
                 return '<i class="mo-icon mo-icon-error-cf"></i>';
 
-            } else if (this.data.mainProgress === 1) {
+            } else if (this.conf.status === 'failed') {
+
+                return '<i class="mo-icon mo-icon-error-cf"></i>';
+
+            } else if (this.conf.status === 'success') {
 
                 return '<i class="mo-icon mo-icon-correct-cf"></i>';
 
+            } else if (this.conf.status === 'warning') {
+
+                return '<i class="mo-icon mo-icon-warn-f"></i>';
+
             }
 
-            return `${Math.floor(this.data.mainProgress * num100)}%`;
+            return this.conf.format(Math.floor(this.data.mainProgress * num100));
 
         },
         ringPer : function () {
 
             return `${Math.PI * ringDiameter * this.data.mainProgress}, ${Math.PI * ringDiameter}`;
+
+        },
+        marks : function () {
+
+            if (!this.data.$track) {
+
+                return [];
+
+            }
+
+            let marks = [];
+            let defaultMark = {
+                start : 0,
+                end : 0,
+                color : 'neutral-4'
+            };
+
+            for (let mark of this.conf.markRange) {
+
+                if (mark instanceof Array &&
+                    mark.length === 2 &&
+                    typeof mark[0] === 'number' &&
+                    typeof mark[1] === 'number' &&
+                    mark[1] > mark[0] &&
+                    mark[1] <= num100) {
+
+                    marks.push(Object.assign({}, defaultMark, {
+                        start : mark[0],
+                        end : mark[1]
+                    }));
+
+                } else if (typeof mark === 'object' &&
+                    typeof mark.start === 'number' &&
+                    typeof mark.end === 'number' &&
+                    mark.end > mark.start &&
+                    mark.end <= num100
+                ) {
+
+                    marks.push(Object.assign({}, defaultMark, mark));
+
+                }
+
+            }
+
+            return marks;
 
         }
     },
@@ -153,7 +252,8 @@ export default {
 
         return {
             data : {
-                mainProgress : 0
+                mainProgress : 0,
+                $track : null
             }
         };
 
@@ -177,9 +277,34 @@ export default {
 
             this.data.mainProgress = per;
 
+        },
+        _genMarkBackground : function (colorString) {
+
+            let isVaild = false;
+
+            try {
+
+                color(colorString);
+                isVaild = true;
+
+            } catch (e) {}
+
+            return isVaild ? {
+                background : colorString,
+                stroke : colorString
+            } : {};
+        
         }
     },
     mounted : function () {
+
+        this.$watch('type', () => {
+    
+            this.data.$track = this.$el.querySelector('.track');
+
+        }, {
+            immediate : true
+        });
 
         this.$watch('percent', () => {
 
