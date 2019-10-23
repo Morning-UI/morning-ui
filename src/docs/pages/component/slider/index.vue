@@ -265,7 +265,7 @@
     ---
     #config
     >conf-desc
-    标记滑动条的某部分。这是一个数组每项都是一个标记段，标记段是一个长度为2的数组，分别表示开始和结束。<br>比如：`[[10, 20], [30, 40]]`会标记两段，第一段从数值10开始到20结束，第二段从数值30开始到40结束。
+    标记滑动条的某部分。这是一个数组每项都是一个标记段，标记段是一个数组或对象：<br><br>如果是数组：长度为2，分别表示开始和结束。比如：`[[10, 20], [50, 70]]`会标记两段，第一段从数值10开始到20结束，第二段从数值50开始到70结束。<br><br>如果是对象，包含以下键值：<br>`start`：开始<br>`end`：结束<br>`color`：色彩，支持[设计/色彩](/design/color.html)中所有颜色，默认为`neutral-4`。也可采用HEX色值，比如`#333333`。
     >conf-accept
     数组
     >conf-type
@@ -277,6 +277,38 @@
     >tpl
     <div style="width:300px;">
         <ui-slider :mark-range="[[0, 20], [50, 70]]"></ui-slider>
+    </div>
+    ---
+    #demo
+    >desc
+    通过色彩设置标记的颜色。
+    >tpl
+    <div style="width:300px;">
+        <ui-slider :mark-range="[{
+            start : 0,
+            end : 30,
+            color : 'neutral-5'
+        }, {
+            start : 70,
+            end : 90,
+            color : 'light-theme'
+        }]"></ui-slider>
+    </div>
+    ---
+    #demo
+    >desc
+    通过HEX色值设置标记的颜色。
+    >tpl
+    <div style="width:300px;">
+        <ui-slider :mark-range="[{
+            start : 0,
+            end : 30,
+            color : '#A0D06E'
+        }, {
+            start : 70,
+            end : 90,
+            color : '#FFA5B6'
+        }]"></ui-slider>
     </div>
     :::
 

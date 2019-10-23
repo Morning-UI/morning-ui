@@ -45,10 +45,6 @@
                 :src="conf.src"
                 :alt="conf.alt"
                 :title="conf.title"
-                :style="{
-                    maxWidth : '100%',
-                    maxHeight : '100%'
-                }"
             />
 
         </morning-dialog>
