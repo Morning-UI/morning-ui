@@ -55,22 +55,6 @@ export default {
     created : function () {},
     mounted : function () {
 
-        // G6.registerShape('mind-node-base', {
-        //     options : {
-        //         anchorPoints : [[0, 0.5], [1, 0.5]],
-        //         styles : {
-        //             fill : '#72a1bf',
-        //             radius : 6,
-        //             cursor : 'move'
-        //         },
-        //         stateStyles : {
-        //             hover : {
-        //                 fill : 'red'
-        //             }
-        //         } 
-        //     }
-        // }, 'single-shape');
-
         G6.registerNode('mind-node-block', {
             drawShape : (cfg, group) => {
 
@@ -123,22 +107,7 @@ export default {
                 return rect;
 
             },
-            // update : (cfg, node) => {
-
-            //     console.log('update', node, node.getStates());
-            //     // node.update({
-            //     //     style : {
-            //     //         fillOpacity : 0.5
-            //     //     }
-            //     // });
-            //     node.getKeyShape().attr({
-            //         fillOpacity : 0.5
-            //     });
-
-            // },
             setState : (name, value, item) => {
-
-                console.log(name, value,item);
 
                 let states = item.getStates();
                 let shape = item.get('keyShape');
@@ -276,28 +245,6 @@ export default {
         // }, 'single-shape');
 
         G6.registerEdge('node-horizontal-edge', {
-            // drawShape : (cfg, group) => {
-                
-            //     let {
-            //         startPoint,
-            //         endPoint
-            //     } = cfg;
-
-            //     let edge = group.addShape('path', {
-            //         attrs : {
-            //             path : [
-            //                 ['M', startPoint.x, startPoint.y],
-            //                 ['L', endPoint.x, endPoint.y],
-            //             ],
-            //             cursor : 'move',
-            //             stroke : '#f6f6f6',
-            //             lineWidth : 5
-            //         }
-            //     });
-
-            //     return edge;
-
-            // },
             getShapeStyle : function (cfg) {
 
                 let startPoint = cfg.startPoint;
@@ -322,7 +269,6 @@ export default {
             }
         }, 'cubic-horizontal');
 
-        const DEFAULT_TRIGGER = 'shift';
         const ALLOW_EVENTS = [ 'drag', 'shift', 'ctrl', 'alt' ];
 
         G6.registerBehavior('mor-brush-select', {
@@ -337,7 +283,6 @@ export default {
                     onSelect () {},
                     onDeselect () {},
                     selectedState : 'selected',
-                    trigger: DEFAULT_TRIGGER,
                     includeEdges : true,
                     selectedEdges : [],
                     selectedNodes : []
@@ -345,79 +290,68 @@ export default {
             },
             getEvents () {
 
-                let trigger;
-                
-                // 检测输入是否合法
-                if (ALLOW_EVENTS.indexOf(this.trigger.toLowerCase()) > -1) {
-                    
-                    trigger = this.trigger;
-                
-                } else {
-                
-                    trigger = DEFAULT_TRIGGER;
-                    console.warn('Behavior brush-select的trigger参数不合法，请输入drag、shift、ctrl或alt');
-                
-                }
-                
-                if (trigger === 'drag') {
-                
-                    return {
-                        mousedown : 'onMouseDown',
-                        mousemove : 'onMouseMove',
-                        mouseup : 'onMouseUp',
-                        keyup : 'onKeyUp',
-                        'canvas:click' : 'clearStates'
-                    };
-                
-                }
-
                 return {
                     mousedown : 'onMouseDown',
                     mousemove : 'onMouseMove',
                     mouseup : 'onMouseUp',
-                    'canvas:click' : 'clearStates',
+                    'canvas:click' : '_clearStates',
                     keyup : 'onKeyUp',
                     keydown : 'onKeyDown'
                 };
 
             },
-            onMouseDown (e) {
-                // 按在node上面拖动时候不应该是框选
-                const { item } = e;
-                if (item) {
-                return;
-                }
+            onMouseDown (evt) {
 
-                if (this.trigger !== 'drag' && !this.keydown) {
-                return;
-                }
-
-                if (this.selectedNodes && this.selectedNodes.length !== 0) {
-                this.clearStates();
+                if (evt.item || !this.keydown) {
+                    
+                    return;
+                
                 }
 
                 let brush = this.brush;
+
+                this._clearStates();
+                
                 if (!brush) {
-                brush = this._createBrush();
+                    
+                    brush = this._createBrush();
+                
                 }
-                this.originPoint = { x: e.canvasX, y: e.canvasY };
-                brush.attr({ width: 0, height: 0 });
+
+                this.originPoint = {
+                    x : evt.canvasX,
+                    y : evt.canvasY
+                };
+                brush.attr({
+                    width: 0,
+                    height: 0
+                });
                 brush.show();
                 this.dragging = true;
+
+                setTimeout(() => {
+                    G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
+                        cursor : 'default'
+                    });
+                });
+
             },
-            onMouseMove (e) {
-                if (!this.dragging) {
-                return;
+            onMouseMove (evt) {
+
+                if (!this.dragging ||
+                    !this.keydown) {
+
+                    return;
+
                 }
 
-                if (this.trigger !== 'drag' && !this.keydown) {
-                return;
-                }
-
-                this._updateBrush(e);
+                this._clearStates();
+                this._getSelectedNodes(evt);
+                this._updateBrush(evt);
                 this.graph.paint();
+
             },
-            onMouseUp (e) {
+            onMouseUp (evt) {
 
                 if (!this.brush) {
 
@@ -425,137 +359,188 @@ export default {
 
                 }
 
-                if (this.trigger !== 'drag' && !this.keydown) {
-                    return;
-                }
-
-                const graph = this.graph;
-                const autoPaint = graph.get('autoPaint');
+                let graph = this.graph;
+                let autoPaint = graph.get('autoPaint');
                 
                 graph.setAutoPaint(false);
                 this.brush.hide();
-                this._getSelectedNodes(e);
+                // this._getSelectedNodes(evt);
                 this.dragging = false;
                 this.graph.paint();
                 graph.setAutoPaint(autoPaint);
             
             },
-            clearStates () {
-                const graph = this.graph;
-                const autoPaint = graph.get('autoPaint');
-                graph.setAutoPaint(false);
-                const selectedState = this.selectedState;
+            _clearStates () {
 
-                const nodes = graph.findAllByState('node', selectedState);
-                const edges = graph.findAllByState('edge', selectedState);
+                let graph = this.graph;
+                let autoPaint = graph.get('autoPaint');
+                let selectedState = this.selectedState;
+                let nodes = graph.findAllByState('node', selectedState);
+                let edges = graph.findAllByState('edge', selectedState);
+                
+                graph.setAutoPaint(false);
                 nodes.forEach(node => graph.setItemState(node, selectedState, false));
                 edges.forEach(edge => graph.setItemState(edge, selectedState, false));
-
                 this.selectedNodes = [];
-
                 this.selectedEdges = [];
-                this.onDeselect && this.onDeselect(this.selectedNodes, this.selectedEdges);
                 graph.paint();
                 graph.setAutoPaint(autoPaint);
+
             },
             _getSelectedNodes(e) {
-                const graph = this.graph;
-                const state = this.selectedState;
-                const originPoint = this.originPoint;
-                const p1 = { x: e.x, y: e.y };
-                const p2 = graph.getPointByCanvas(originPoint.x, originPoint.y);
-                const left = Math.min(p1.x, p2.x);
-                const right = Math.max(p1.x, p2.x);
-                const top = Math.min(p1.y, p2.y);
-                const bottom = Math.max(p1.y, p2.y);
-                const selectedNodes = [];
-                const shouldUpdate = this.shouldUpdate;
-                const selectedIds = [];
+
+                let graph = this.graph;
+                let selectedState = this.selectedState;
+                let originPoint = this.originPoint;
+                let p1 = {x : e.x, y : e.y};
+                let p2 = graph.getPointByCanvas(originPoint.x, originPoint.y);
+                let left = Math.min(p1.x, p2.x);
+                let right = Math.max(p1.x, p2.x);
+                let top = Math.min(p1.y, p2.y);
+                let bottom = Math.max(p1.y, p2.y);
+                let selectedNodes = [];
+                let selectedEdges = [];
+                let selectedIds = [];
+                let shouldUpdate = this.shouldUpdate;
+
                 graph.getNodes().forEach(node => {
-                const bbox = node.getBBox();
-                if (bbox.centerX >= left
-                    && bbox.centerX <= right
-                    && bbox.centerY >= top
-                    && bbox.centerY <= bottom
-                ) {
-                    if (shouldUpdate(node, 'select')) {
-                    selectedNodes.push(node);
-                    const model = node.getModel();
-                    selectedIds.push(model.id);
-                    graph.setItemState(node, state, true);
+
+                    let bbox = node.getBBox();
+                    let bboxLT = [bbox.x, bbox.y];
+                    let bboxLB = [bbox.x, bbox.y + bbox.height];
+                    let bboxRT = [bbox.x + bbox.width, bbox.y];
+                    let bboxRB = [bbox.x + bbox.width, bbox.y + bbox.height];
+
+                    // 四个角任意一个角
+                    if (
+                        (
+                            bboxLT[0] >= left &&
+                            bboxLT[0] <= right &&
+                            bboxLT[1] >= top &&
+                            bboxLT[1] <= bottom
+                        ) ||
+                        (
+                            bboxLB[0] >= left &&
+                            bboxLB[0] <= right &&
+                            bboxLB[1] >= top &&
+                            bboxLB[1] <= bottom
+                        ) ||
+                        (
+                            bboxRT[0] >= left &&
+                            bboxRT[0] <= right &&
+                            bboxRT[1] >= top &&
+                            bboxRT[1] <= bottom
+                        ) ||
+                        (
+                            bboxRB[0] >= left &&
+                            bboxRB[0] <= right &&
+                            bboxRB[1] >= top &&
+                            bboxRB[1] <= bottom
+                        )
+                    ) {
+
+                        if (shouldUpdate(node, 'select')) {
+                    
+                            selectedNodes.push(node);
+                    
+                            const model = node.getModel();
+                    
+                            selectedIds.push(model.id);
+                            graph.setItemState(node, selectedState, true);
+                    
+                        }
+
                     }
-                }
+
                 });
 
-                const selectedEdges = [];
-                if (this.includeEdges) {
-                // 选中边，边的source和target都在选中的节点中时才选中
-                selectedNodes.forEach(node => {
-                    const edges = node.getEdges();
-                    edges.forEach(edge => {
-                    const model = edge.getModel();
-                    const { source, target } = model;
-                    if (selectedIds.includes(source)
-                        && selectedIds.includes(target)
-                        && shouldUpdate(edge, 'select')) {
-                        selectedEdges.push(edge);
-                        graph.setItemState(edge, this.selectedState, true);
-                    }
-                    });
-                });
-                }
+                // if (this.includeEdges) {
+                    
+                //     // 选中边，边的source和target都在选中的节点中时才选中
+                //     selectedNodes.forEach(node => {
+                //         const edges = node.getEdges();
+                //         edges.forEach(edge => {
+                //         const model = edge.getModel();
+                //         const { source, target } = model;
+                //         if (selectedIds.includes(source)
+                //             && selectedIds.includes(target)
+                //             && shouldUpdate(edge, 'select')) {
+                //             selectedEdges.push(edge);
+                //             graph.setItemState(edge, selectedState, true);
+                //         }
+                //         });
+                //     });
+                
+                // }
 
-                this.selectedEdges = selectedEdges;
+                // this.selectedEdges = selectedEdges;
                 this.selectedNodes = selectedNodes;
-                this.onSelect && this.onSelect(selectedNodes, selectedEdges);
+
             },
             _createBrush() {
-                const self = this;
-                const brush = self.graph.get('canvas').addShape('rect', {
-                attrs: self.brushStyle,
-                capture: false
+
+                let brush = this.graph.get('canvas').addShape('rect', {
+                    attrs: this.brushStyle,
+                    capture: false
                 });
+
                 this.brush = brush;
+
                 return brush;
+
             },
-            _updateBrush(e) {
+            _updateBrush(evt) {
+
                 const originPoint = this.originPoint;
+                
                 this.brush.attr({
-                width: Math.abs(e.canvasX - originPoint.x),
-                height: Math.abs(e.canvasY - originPoint.y),
-                x: Math.min(e.canvasX, originPoint.x),
-                y: Math.min(e.canvasY, originPoint.y)
+                    width: Math.abs(evt.canvasX - originPoint.x),
+                    height: Math.abs(evt.canvasY - originPoint.y),
+                    x: Math.min(evt.canvasX, originPoint.x),
+                    y: Math.min(evt.canvasY, originPoint.y)
                 });
+
             },
-            onKeyDown(e) {
-                const code = e.key;
-                if (code && code.toLowerCase() === this.trigger.toLowerCase()) {
-                this.keydown = true;
+            onKeyDown(evt) {
+
+                const code = evt.key;
+
+                if (code && code.toLowerCase() === 'shift') {
+                
+                    this.keydown = true;
+                
                 } else {
-                this.keydown = false;
+                    
+                    this.keydown = false;
+                
                 }
+
+                setTimeout(() => {
+                    G6.Util.modifyCSS(this.graph._cfg.canvas._cfg.canvasDOM, {
+                        cursor : 'default'
+                    });
+                });
+
             },
             onKeyUp() {
+
                 if (this.brush) {
+
                     this.brush.hide();
                     this.dragging = false;
-                } else {
-                    // TODO : keyup的时候选择框消失逻辑
+
                 }
+
                 this.keydown = false;
+
             }
         });
-
-        window.G6 = G6;
 
         this.data.graph = new G6.TreeGraph({
             container : this.$el.querySelector('.canvas'),
             width : 700,
             height : 500,
             pixelRatio : 2,
-            attrs : {
-                cursor: 'pointer'
-            },
             modes : {
                 default: [
                     // {
@@ -614,8 +599,6 @@ export default {
 
         this.data.graph.node(function(node) {
 
-            console.log(129, node);
-
             if (node.id === 'Modeling Methods') {
                 centerX = node.x;
 
@@ -648,9 +631,25 @@ export default {
 
         this.data.graph.on('node:dragend', evt => {
             this.data.graph.setItemState(evt.item, 'drag', false);
-            // this.data.graph.fitView();
         });
 
+        this.data.graph.on('canvas:mousedown', evt => {
+            G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
+                cursor : 'grabbing'
+            });
+        });
+
+        this.data.graph.on('canvas:mouseenter', evt => {
+            G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
+                cursor : 'grab'
+            });
+        });
+
+        this.data.graph.on('canvas:mouseup', evt => {
+            G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
+                cursor : 'grab'
+            });
+        });
 
         this.data.graph.data(
             {
