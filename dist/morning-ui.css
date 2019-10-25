@@ -50790,6 +50790,9 @@ mor-private-tree ul.tree-body .tree-node.disabled > span .node-name {
 mor-private-tree ul.tree-body .tree-node.disabled > span .node-name:hover {
   background: #f7f7f7 !important;
 }
+mor-mindmap {
+  display: block;
+}
 /* stylelint-enable at-rule-empty-line-before */
 /* stylelint-enable at-rule-empty-line-before */
 #quill-editor {
