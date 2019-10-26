@@ -1,6 +1,30 @@
 mor-mindmap{
     display: block;
 
+    .mindmap-wrap{
+        position: relative;
+        overflow: hidden;
+
+        .edit-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left top;
+
+            textarea {
+                padding: 0;
+                height: 100%;
+                border: none;
+                background: transparent;
+                outline: none;
+                resize: none;
+                overflow: hidden;
+                // line-height: 1.15;
+                position: absolute;
+            }
+        }
+    }
+
     // default status
     &{}
 }

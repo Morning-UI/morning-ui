@@ -50793,6 +50793,26 @@ mor-private-tree ul.tree-body .tree-node.disabled > span .node-name:hover {
 mor-mindmap {
   display: block;
 }
+mor-mindmap .mindmap-wrap {
+  position: relative;
+  overflow: hidden;
+}
+mor-mindmap .mindmap-wrap .edit-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: left top;
+}
+mor-mindmap .mindmap-wrap .edit-content textarea {
+  padding: 0;
+  height: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  position: absolute;
+}
 /* stylelint-enable at-rule-empty-line-before */
 /* stylelint-enable at-rule-empty-line-before */
 #quill-editor {
