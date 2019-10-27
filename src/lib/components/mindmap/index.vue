@@ -37,6 +37,8 @@
  
 <script>
 import G6                           from '@antv/g6';
+import sortBy                       from 'lodash.sortby';
+import throttle                     from 'lodash.throttle';
 
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
 export default {
@@ -62,8 +64,11 @@ export default {
                 editGroupShapes : {},
                 editZoom : 1,
                 editNode : null,
+                dragging : false,
+                dragLastHolderParent : null,
+                dragLastHolderIndex : null,
                 rootNodeId : null,
-                globalId : 1
+                globalId : 1,
             }
         };
 
@@ -88,46 +93,23 @@ export default {
                 groupShapes.text.attr({
                     text : this.data.editContent
                 });
+
                 this.data.editNode.update({
                     text : this.data.editContent
                 });
+
                 // 临时修复问题：https://github.com/antvis/g/pull/121
                 if (this.data.editContent.indexOf('\n') === -1) {
 
                     groupShapes.text._attrs.lineCount = 1;
 
                 }
-                this.data.graph.paint();
 
+                this.data.graph.paint();
                 this._refreshNode(groupShapes);
                 this._refreshEditor(this.data.editNode);
 
             });
-            
-
-            // let textBbox = textNode.getBBox();
-
-            // keyNode.attr({
-            //     x : textBbox.minX - 24,
-            //     y : textBbox.minY - 12,
-            //     width : textBbox.width + 48,
-            //     height : textBbox.height + 24
-            // });
-
-            // let keyBbox = groupShapes.key.getBBox();
-
-            
-            // let {
-            //     x : keyNodeX,
-            //     y : keyNodeY
-            // } = this.data.graph.getCanvasByPoint(keyBbox.x, keyBbox.y);
-
-            // this.data.$editContent.style.left = `${keyNodeX}px`;
-            // this.data.$editContent.style.top = `${keyNodeY}px`;
-            // this.data.$editContent.style.width = `${keyBbox.width}px`;
-            // this.data.$editContent.style.height = `${keyBbox.height}px`;
-            // this.data.$editContentInput.style.width = `${textBbox.width}px`;
-            // this.data.$editContentInput.style.height = `${textBbox.height}px`;
 
         },
         _getGroupShapes : function (item) {
@@ -191,7 +173,6 @@ export default {
                 x : nodeX,
                 y : nodeY
             } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
-            console.log(123, groupShapes.text);
 
             // when text is empty use placeholder
             if (textBbox.width === 0) {
@@ -255,13 +236,6 @@ export default {
                 height : keyBbox.height + (outlinePadding * 2)
             });
 
-            // groupShapes.placeholder.attr({
-            //     x : textBbox.minX,
-            //     y : textBbox.minY,
-            //     width : textBbox.width,
-            //     height : textBbox.height
-            // });
-
         },
         _cancelEdit : function () {
 
@@ -287,6 +261,184 @@ export default {
             this.data.graph.refreshLayout();
 
         },
+        _fillChildBbox : function (bbox, node) {
+
+            let model = node.getModel();
+
+            bbox.conMaxX = bbox.maxX;
+            bbox.conMinX = bbox.minX;
+            bbox.conMaxY = bbox.maxY;
+            bbox.conMinY = bbox.minY;
+
+            if (!model.children || model.children.length === 0) {
+
+                return bbox;
+
+            }
+            
+            for (let child of model.children) {
+
+                let childNode = this.data.graph.findById(child.id);
+                let childBbox = childNode.getBBox();
+
+                if (childBbox.maxX > bbox.conMaxX) {
+
+                    bbox.conMaxX = childBbox.maxX;
+
+                }
+
+                if (childBbox.minX < bbox.conMinX) {
+
+                    bbox.conMinX = childBbox.minX;
+
+                }
+
+                if (childBbox.maxY > bbox.conMaxY) {
+
+                    bbox.conMaxY = childBbox.maxY;
+
+                }
+
+                if (childBbox.minY < bbox.conMinY) {
+
+                    bbox.conMinY = childBbox.minY;
+
+                }
+
+            }
+
+            return bbox;
+
+        },
+        _removeOldDragPlaceholder : function () {
+
+            if (this.data.dragLastHolderIndex > -1 && this.data.dragLastHolderParent) {
+
+                this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex, 1);
+
+            }
+            this.data.dragLastHolderParent = null;
+            this.data.dragLastHolderIndex = null;
+            this.data.graph.changeData();
+            // this.data.graph.refreshLayout();
+
+        },
+        _refreshDragPlaceholder : throttle(function (delegateShape, targetNode) {
+
+            let nodes = this.data.graph.getNodes();
+            let delegateBbox = delegateShape.getBBox();
+            let distance;
+            let distanceNodes = [];
+            let matchOptions = {};
+
+            delegateBbox.centerX = delegateBbox.x + (delegateBbox.width / 2);
+            delegateBbox.centerY = delegateBbox.y + (delegateBbox.height / 2);
+
+            // 按距离对节点排序
+            distanceNodes = sortBy(nodes, node => {
+
+                if (targetNode === node || node._cfg.model._isPlaceolder) {
+
+                    return Infinity;
+
+                }
+
+                let nodeBbox = node.getBBox();
+
+                distance = Math.sqrt(
+                    Math.pow(Math.abs(nodeBbox.centerX - delegateBbox.centerX), 2) +
+                    Math.pow(Math.abs(nodeBbox.centerY - delegateBbox.centerY), 2)
+                );
+
+                return distance;
+
+            });
+
+            // 选择最匹配的元素
+            // Child[n] : 作为子元素，centerX > Parent.centerX
+            for (let node of distanceNodes) {
+
+                let nodeBbox = node.getBBox();
+
+                this._fillChildBbox(nodeBbox, node);
+
+                if (
+                    nodeBbox.centerX < delegateBbox.x &&
+                    (
+                        (nodeBbox.conMaxY > delegateBbox.minY && delegateBbox.minY > nodeBbox.conMinY) ||
+                        (nodeBbox.conMaxY > delegateBbox.maxY && delegateBbox.maxY > nodeBbox.conMinY)
+                    )
+                ) {
+
+                    matchOptions.node = node;
+                    matchOptions.mode = 'childN';
+                    matchOptions.index = 0;
+                    matchOptions.hasPlaceholder = false;
+
+                    for (let index in node.getModel().children) {
+                        
+                        let childData = node.getModel().children[index];
+                        let childBbox = this.data.graph.findById(childData.id).getBBox();
+
+
+                        if (!childData._isPlaceolder && delegateBbox.centerY > childBbox.centerY) {
+
+                            matchOptions.index = +index + 1;
+
+                        }
+
+                        if (childData._isPlaceolder) {
+
+                            matchOptions.hasPlaceholder = index;
+
+                        }
+
+                    }
+                    
+                    break;
+
+                }
+
+            }
+
+            // 清除上一个placeholder
+            this._removeOldDragPlaceholder();
+
+            if (matchOptions.hasPlaceholder < matchOptions.index) {
+
+                matchOptions.index--;
+
+            }
+
+            if (matchOptions.node) {
+                
+                // 创建新的placeholder
+                let model = matchOptions.node.getModel();
+
+                if (model.children === undefined) {
+
+                    model.children = [];
+
+                }
+
+                this.data.dragLastHolderIndex = matchOptions.index;
+                model.children.splice(matchOptions.index, 0, {
+                    id : this.data.globalId++,
+                    shape : 'mor-node-placeholder',
+                    anchorPoints : [[0, 0.5], [1, 0.5]],
+                    _isPlaceolder : true
+                });
+                this.data.dragLastHolderParent = model.children;
+                this.data.graph.paint();
+                this.data.graph.changeData();
+                this.data.graph.refreshLayout();
+                this.data.graph.findById(this.data.globalId - 1).getInEdges()[0].update({
+                    shape : 'mor-edge-placeholder-line'
+                });
+
+            }
+
+        }, 160),
         _regNodeBlock : function () {
 
             G6.registerNode('mor-node-block', {
@@ -353,8 +505,6 @@ export default {
                 },
                 setState : (name, value, item) => {
 
-                    console.log(name, value. item);
-
                     let states = item.getStates();
                     let key = item.get('keyShape');
                     let group = key.getParent();
@@ -392,8 +542,13 @@ export default {
 
                     }
 
-                    if (states.indexOf('selected') !== -1 ||
-                        states.indexOf('editing') !== -1) {
+                    if (
+                        this.data.dragging === false &&
+                        (
+                            states.indexOf('selected') !== -1 ||
+                            states.indexOf('editing') !== -1
+                        )
+                    ) {
 
                         outline.attr({
                             stroke : '#27befc',
@@ -401,7 +556,7 @@ export default {
                         });
                         key.getParent().set('zIndex', 9);
 
-                    } else if (states.indexOf('hover') !== -1) {
+                    } else if (this.data.dragging === false && states.indexOf('hover') !== -1) {
 
                         outline.attr({
                             stroke : '#8cdcf5',
@@ -418,6 +573,29 @@ export default {
                         key.getParent().set('zIndex', 1);
 
                     }
+
+                }
+            }, 'single-shape');
+
+        },
+        _regNodePlaceholder : function () {
+
+            G6.registerNode('mor-node-placeholder', {
+                drawShape : (cfg, group) => {
+
+                    let key = group.addShape('rect', {
+                        attrs : {
+                            fill : '#adbec3',
+                            cursor : 'default',
+                            width : 80,
+                            height : 28,
+                            x : -24,
+                            y : -20,
+                            radius : 6,
+                        }
+                    });
+
+                    return key;
 
                 }
             }, 'single-shape');
@@ -444,6 +622,35 @@ export default {
                     return G6.Util.mix({}, G6.Global.defaultEdge.style, cfg.style, {
                         stroke : '#8693a4',
                         lineWidth : 3,
+                        path : this.getPath(points)
+                    });
+
+                }
+            }, 'cubic-horizontal');
+
+        },
+        _regEdgePlaceholderLine : function () {
+
+            G6.registerEdge('mor-edge-placeholder-line', {
+                getShapeStyle : function (cfg) {
+
+                    let startPoint = cfg.startPoint;
+                    let endPoint = cfg.endPoint;
+                    let controlPoints = this.getControlPoints(cfg);
+                    let points = [startPoint];
+
+                    if (controlPoints) {
+
+                        points = points.concat(controlPoints);
+
+                    }
+
+                    points.push(endPoint);
+
+                    return G6.Util.mix({}, G6.Global.defaultEdge.style, cfg.style, {
+                        stroke : '#adbec3',
+                        lineWidth : 3,
+                        // lineDash : [5, 5],
                         path : this.getPath(points)
                     });
 
@@ -721,12 +928,15 @@ export default {
         },
         _regBehaviorDragNode : function () {
 
+            let vm = this;
+
             G6.registerBehavior('mor-drag-node', {
                 getDefaultCfg () {
                     return {
-                        updateEdge: true,
-                        delegateStyle: {},
-                        enableDelegate: false,
+                        updateEdge : true,
+                        delegateStyle : {},
+                        // placeholderStyle : {},
+                        enableDelegate : false,
                         targets : []
                     };
                 },
@@ -750,6 +960,7 @@ export default {
 
                     let item = evt.item;
 
+                    // root节点不能被拖拽
                     if (item.get('model').isRoot) {
 
                         return;
@@ -844,6 +1055,8 @@ export default {
                     
                     }
 
+                    vm.data.dragging = true;
+
                 },
                 onDragEnd (evt) {
 
@@ -853,10 +1066,10 @@ export default {
                     
                     }
 
-                    if (this.shape) {
+                    if (this.delegateShape) {
 
-                        this.shape.remove();
-                        this.shape = null;
+                        this.delegateShape.remove();
+                        this.delegateShape = null;
                     
                     }
 
@@ -901,7 +1114,9 @@ export default {
                     }
 
                     // this.graph.paint();
+                    vm._removeOldDragPlaceholder();
                     this.graph.refreshLayout();
+                    vm.data.dragging = false;
 
                 },
                 // 若在拖拽时，鼠标移出画布区域，此时放开鼠标无法终止 drag 行为。在画布外监听 mouseup 事件，放开则终止
@@ -1006,17 +1221,20 @@ export default {
 
                     let bbox = evt.item.get('keyShape').getBBox();
 
-                    if (!this.shape) {
+                    if (!this.delegateShape) {
                         
                         // 拖动多个
                         let parent = this.graph.get('group');
-                        let attrs = G6.Util.deepMix({
+                        let delegateAttrs = G6.Util.deepMix({
                             fill : '#F3F9FF',
                             fillOpacity : 0.5,
                             stroke : '#1890FF',
                             strokeOpacity : 0.9,
                             lineDash : [5, 5]
                         }, this.delegateStyle);
+                        // let placeholderAttrs = G6.Util.deepMix({
+                        //     fill : '#8ec8fe'
+                        // }, this.placeholderStyle);
                         
                         if (this.targets.length > 0) {
 
@@ -1039,50 +1257,60 @@ export default {
                             };
                             
                             // model上的x, y是相对于图形中心的，delegateShape是g实例，x,y是绝对坐标
-                            this.shape = parent.addShape('rect', {
+                            this.delegateShape = parent.addShape('rect', {
                                 attrs : Object.assign({
                                     width,
                                     height,
                                     x,
                                     y,
-                                }, attrs)
+                                }, delegateAttrs)
                             });
 
                         } else if (this.target) {
+
+
                             
-                            this.shape = parent.addShape('rect', {
+                            // this.placeholderShape = parent.addShape('rect', {
+                            //     attrs : Object.assign({
+                            //         width : 60,
+                            //         heigth : 17
+                            //     }, placeholderAttrs);
+                            // });
+                            this.delegateShape = parent.addShape('rect', {
                                 attrs : Object.assign({
                                     width : bbox.width,
                                     height : bbox.height,
                                     x : x + bbox.x,
                                     y : y + bbox.y,
-                                }, attrs)
+                                }, delegateAttrs)
                             });
-                            this.target.set('delegateShape', this.shape);
+                            this.target.set('delegateShape', this.delegateShape);
                         
                         }
 
-                        this.shape.set('capture', false);
+                        this.delegateShape.set('capture', false);
 
                     } else if (this.targets.length > 0) {
                         
                         let clientX = evt.x - this.origin.x + this.originPoint.minX;
                         let clientY = evt.y - this.origin.y + this.originPoint.minY;
                         
-                        this.shape.attr({
+                        this.delegateShape.attr({
                             x : clientX,
                             y : clientY
                         });
 
                     } else if (this.target) {
 
-                        this.shape.attr({
+                        this.delegateShape.attr({
                             x : x + bbox.x,
                             y : y + bbox.y
                         });
         
                     }
 
+                        
+                    vm._refreshDragPlaceholder(this.delegateShape, evt.item);
                     this.graph.paint();
 
                 },
@@ -1256,7 +1484,9 @@ export default {
         _initRegister : function () {
 
             this._regNodeBlock();
+            this._regNodePlaceholder();
             this._regEdgeCubicHorizontal();
+            this._regEdgePlaceholderLine();
             this._regBehaviorBrushSelect();
             this._regBehaviorDragNode();
 
@@ -1276,33 +1506,6 @@ export default {
         this.data.$editContent = this.$el.querySelector('.edit-content');
         this.data.$editContentInput = this.data.$editContent.querySelector('textarea');
         this._initRegister();
-
-        // G6.registerLayout('testLayout', {
-        //     getDefaultCfg() {
-        //         return {};
-        //     },
-        //     init(data) {
-        //         console.log(2, data);
-        //         const self = this;
-        //         self.nodes = data.nodes;
-        //         self.edges = data.edges;
-        //     },
-
-        //     execute () {
-        //         console.log(3, this.rootNode);
-        //         console.log(4, this.options);
-        //     },
-        //     layout(data) {
-        //         const self = this;
-        //         self.init(data);
-        //         self.execute();
-        //     },
-        //     updateCfg(cfg) {
-        //         const self = this;
-        //         Util.mix(self, cfg);
-        //     },
-        // })
-
         this.data.graph = new G6.TreeGraph({
             container : this.$el.querySelector('.canvas'),
             width : 760,
@@ -1432,6 +1635,21 @@ export default {
             ]
         };
 
+
+        // let data = {
+        //     "text": "Classification",
+        //     "children": [
+        //         { "text": "Logistic regression" },
+        //         { "text": "Linear discriminant analysis" },
+        //         { "text": "Rules" },
+        //         { "text": "Decision trees" },
+        //         { "text": "Naive Bayes" },
+        //         { "text": "K nearest neighbor" },
+        //         { "text": "Probabilistic neural network" },
+        //         { "text": "Support vector machine" }
+        //     ]
+        // };
+
         G6.Util.traverseTree(data, item => {
 
             item.id = this.data.globalId++;
@@ -1446,8 +1664,7 @@ export default {
         
         });
 
-        this.data.graph.data(data);
-        this.data.graph.render();
+        this.data.graph.read(data);
 
         setTimeout(() => {
 
