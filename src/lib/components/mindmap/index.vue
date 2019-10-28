@@ -67,6 +67,7 @@ export default {
                 dragging : false,
                 dragLastHolderParent : null,
                 dragLastHolderIndex : null,
+                dragTarget : {},
                 rootNodeId : null,
                 globalId : 1,
             }
@@ -337,7 +338,7 @@ export default {
             // 按距离对节点排序
             distanceNodes = sortBy(nodes, node => {
 
-                if (targetNode === node || node._cfg.model._isPlaceolder) {
+                if (node._cfg.model._isPlaceolder) {
 
                     return Infinity;
 
@@ -357,6 +358,12 @@ export default {
             // 选择最匹配的元素
             // Child[n] : 作为子元素，centerX > Parent.centerX
             for (let node of distanceNodes) {
+
+                if (node === targetNode) {
+
+                    continue;
+
+                }
 
                 let nodeBbox = node.getBBox();
 
@@ -439,6 +446,30 @@ export default {
             }
 
         }, 160),
+        _updateDragTarget : function (startDrag = false) {
+
+            let dragTarget = this.data.dragTarget;
+            let targetNode = dragTarget.node;
+
+            if (startDrag === true && dragTarget.hidden === false) {
+
+                let parentChildren = targetNode.getInEdges()[0].getSource().getModel().children;
+                let index = parentChildren.indexOf(targetNode.getModel());
+
+                dragTarget.saveModel = targetNode.getModel();
+                parentChildren.splice(index, 1); 
+                // TODO
+                dragTarget.hidden = true;
+                this.data.graph.refreshLayout();
+
+            } else if (startDrag === false && dragTarget.hidden === true) {
+
+                dragTarget.hidden = false;
+                this.data.graph.refreshLayout();
+
+            }
+
+        },
         _regNodeBlock : function () {
 
             G6.registerNode('mor-node-block', {
@@ -475,7 +506,7 @@ export default {
                             y : 0,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : '#434b53',
+                            fill : 'rgba(67,75,83,1)',
                             fontSize : 16,
                             cursor
                         }
@@ -487,7 +518,7 @@ export default {
                             y : 0,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : '#434b53',
+                            fill : 'rgba(67,75,83,1)',
                             fontSize : 16,
                             cursor
                         }
@@ -509,17 +540,17 @@ export default {
                     let key = item.get('keyShape');
                     let group = key.getParent();
                     let outline = group.getChildByIndex(0);
-                    let text = group.getChildByIndex(1);
+                    let text = group.getChildByIndex(2);
 
                     if (states.indexOf('drag') !== -1) {
 
                         item.toFront();
                         key.attr({
-                            fillOpacity : 0.6,
-                            strokeOpacity : 0.6
+                            fillOpacity : 0.3,
+                            fill : '#959fa2'
                         });
                         text.attr({
-                            opacity : 0.6
+                            fill : 'rgba(67,75,83,0.4)'
                         });
                         outline.attr({
                             fillOpacity : 0,
@@ -530,10 +561,10 @@ export default {
 
                         key.attr({
                             fillOpacity : 1,
-                            strokeOpacity : 1
+                            fill : '#96d3e6'
                         });
                         text.attr({
-                            opacity : 1
+                            fill : 'rgba(67,75,83,1)'
                         });
                         outline.attr({
                             fillOpacity : 1,
@@ -556,7 +587,10 @@ export default {
                         });
                         key.getParent().set('zIndex', 9);
 
-                    } else if (this.data.dragging === false && states.indexOf('hover') !== -1) {
+                    } else if (
+                        this.data.dragging === false &&
+                        states.indexOf('hover') !== -1
+                    ) {
 
                         outline.attr({
                             stroke : '#8cdcf5',
@@ -585,7 +619,7 @@ export default {
 
                     let key = group.addShape('rect', {
                         attrs : {
-                            fill : '#adbec3',
+                            fill : '#f16d6d',
                             cursor : 'default',
                             width : 80,
                             height : 28,
@@ -648,7 +682,7 @@ export default {
                     points.push(endPoint);
 
                     return G6.Util.mix({}, G6.Global.defaultEdge.style, cfg.style, {
-                        stroke : '#adbec3',
+                        stroke : '#f16d6d',
                         lineWidth : 3,
                         // lineDash : [5, 5],
                         path : this.getPath(points)
@@ -932,13 +966,7 @@ export default {
 
             G6.registerBehavior('mor-drag-node', {
                 getDefaultCfg () {
-                    return {
-                        updateEdge : true,
-                        delegateStyle : {},
-                        // placeholderStyle : {},
-                        enableDelegate : false,
-                        targets : []
-                    };
+                    return {};
                 },
                 getEvents () {
 
@@ -946,7 +974,7 @@ export default {
                         'node:dragstart' : 'onDragStart',
                         'node:drag' : 'onDrag',
                         'node:dragend' : 'onDragEnd',
-                        'canvas:mouseleave' : 'onOutOfRange'
+                        // 'canvas:mouseleave' : 'onOutOfRange'
                     };
 
                 },
@@ -958,103 +986,66 @@ export default {
 
                     }
 
-                    let item = evt.item;
-
                     // root节点不能被拖拽
-                    if (item.get('model').isRoot) {
+                    // TODO : 等g6 3.1.4升级后启用hasLocked来判断
+                    if (evt.item.get('model').isRoot) {
 
                         return;
 
                     }
 
-                    // TODO : hasLocked是3.1.4新版本的功能，等g6 3.1.4升级后启用
-                    // let hasLocked = item.hasLocked();
-                    // if (hasLocked) {
-                    //     return;
-                    // }
-
                     // 获取所有选中的元素
                     let nodes = this.graph.findAllByState('node', 'selected');
-                    let currentNodeId = item.get('id');
+                    let targetNodeId = evt.item.get('id');
 
                     // 当前拖动的节点是否是选中的节点
                     let dragNodes = nodes.filter(node => {
 
                         let nodeId = node.get('id');
 
-                        return currentNodeId === nodeId;
+                        return targetNodeId === nodeId;
 
                     });
 
                     // 只拖动当前节点
                     if (dragNodes.length === 0) {
                         
-                        this.target = item;
+                        this.target = evt.item;
                     
-                    } else if (nodes.length > 1) {
-
-                        // 拖动多个节点
-                        nodes.forEach(node => {
-                            
-                            // TODO : hasLocked是3.1.4新版本的功能，等g6 3.1.4升级后启用
-                            // if (!node.hasLocked()) {}
-                            
-                            this.targets.push(node);
-                            
-                        });
-
-                    } else {
-
-                        this.targets.push(item);
-
                     }
 
                     this.origin = {
                         x : evt.x,
                         y : evt.y
                     };
-                    this.point = {};
-                    this.originPoint = {};
+                    this.dragOptions = {
+                        type : 'unselect-single',
+                        originX : evt.x,
+                        originY : evt.y,
+                        target : evt.item,
+                        model : evt.item.getModel(),
+                        nodeId : evt.item.get('id'),
+                        delegateShape : null
+                    };
+                    this.point = {
+                        [this.dragOptions.nodeId] : {
+                            x : this.dragOptions.model.x,
+                            y : this.dragOptions.model.y 
+                        }
+                    };
+                    // this.originPoint = {};
 
                 },
                 onDrag (evt) {
-                    
-                    if (!this.origin) {
-                        
-                        return;
-                    
-                    }
-                    
-                    if (!this.get('shouldUpdate').call(this, evt)) {
-                        
+
+                    if (!this.origin || !this.get('shouldUpdate').call(this, evt)) {
+                
                         return;
                     
                     }
 
-                    // 当targets中元素时，则说明拖动的是多个选中的元素
-                    if (this.targets.length > 0) {
-                        
-                        if (this.enableDelegate) {
-                        
-                            this._updateDelegate(evt);
-
-                        } else {
-                            
-                            this.targets.forEach(target => {
-                                
-                                this._update(target, evt, this.enableDelegate);
-                            
-                            });
-                        
-                        }
-
-                    } else {
-                        
-                        // 只拖动单个元素
-                        this._update(this.target, evt, this.enableDelegate);
-                    
-                    }
-
+                    // 只拖动单个元素
+                    this._update(evt);
                     vm.data.dragging = true;
 
                 },
@@ -1066,317 +1057,100 @@ export default {
                     
                     }
 
-                    if (this.delegateShape) {
-
-                        this.delegateShape.remove();
-                        this.delegateShape = null;
-                    
-                    }
-
-                    if (this.target) {
+                    if (this.dragOptions.delegateShape) {
                         
-                        let delegateShape = this.target.get('delegateShape');
+                        this.dragOptions.delegateShape.remove();
+                        this.dragOptions.delegateShape = null;
 
-                        if (delegateShape) {
-
-                            delegateShape.remove();
-                            this.target.set('delegateShape', null);
-                    
-                        }
-                    
                     }
 
-                    if (this.targets.length > 0) {
-    
-                        // 获取所有已经选中的节点
-                        this.targets.forEach(node => this._update(node, evt));
-
-                    } else if (this.target) {
+                    // if (this.dragOptions.target) {
                         
-                        this._update(this.target, evt);
-                    
-                    }
+                        // this._update(evt);
 
-                    this.point = {};
+                    // }
+
+                    this.dragOptions = {};
                     this.origin = null;
-                    this.originPoint = {};
-                    this.targets.length = 0;
-                    this.target = null;
+                    this.point = {};
+                    // this.originPoint = {};
+                    // this.targets.length = 0;
+                    // this.target = null;
 
                     // 终止时需要判断此时是否在监听画布外的 mouseup 事件，若有则解绑
                     let fn = this.fn;
 
                     if (fn) {
                         
-                        window.body.removeEventListener('mouseup', fn, false);
+                        window.document.body.removeEventListener('mouseup', fn, false);
                         this.fn = null;
                     
                     }
 
                     // this.graph.paint();
                     vm._removeOldDragPlaceholder();
+                    vm._updateDragTarget(false);
                     this.graph.refreshLayout();
                     vm.data.dragging = false;
 
                 },
-                // 若在拖拽时，鼠标移出画布区域，此时放开鼠标无法终止 drag 行为。在画布外监听 mouseup 事件，放开则终止
-                onOutOfRange (evt) {
-
-                    if (this.origin) {
-                        
-                        let canvasElement = this.graph.get('canvas').get('el');
-                        let fn = ev => {
-
-                            if (ev.target !== canvasElement) {
-
-                                this.onDragEnd(evt);
-
-                            }
-
-                        };
-
-                        this.fn = fn;
-                        window.body.addEventListener('mouseup', fn, false);
-                    
-                    }
-
-                },
-                _toggleChildren (item, method = 'hide') {
-                    
-                    let edges = item.getEdges();
-                    let edgeTarget;
-
-                    item[method]();
-                    edges.forEach(edge => {
-
-                        edge[method]();
-                        edgeTarget = edge.getTarget();
-
-                        if (edgeTarget && edgeTarget !== item) {
-                            
-                            this._toggleChildren(edgeTarget, method);
-                        
-                        }
-
-                    });
-                    
-                },
-                _update (item, evt, enableDelegate) {
+                _update (evt) {
 
                     let origin = this.origin;
-                    let model = item.get('model');
-                    let nodeId = item.get('id');
-
-                    if (!this.point[nodeId]) {
-                    
-                        this.point[nodeId] = {
-                            x : model.x,
-                            y : model.y
-                        };
-                    
-                    }
-
-                    let x = evt.x - origin.x + this.point[nodeId].x;
-                    let y = evt.y - origin.y + this.point[nodeId].y;
-
-                    // 拖动时隐藏节点和边
-                    if (evt.type === 'dragend') {
-
-                        this._toggleChildren(item, 'show');
-
-                    } else {
-
-                        this._toggleChildren(item, 'hide');
-                        
-                    }
+                    let x = evt.x - origin.x + this.point[this.dragOptions.nodeId].x;
+                    let y = evt.y - origin.y + this.point[this.dragOptions.nodeId].y;
 
                     // 拖动单个未选中元素
-                    if (enableDelegate) {
-                        
-                        this._updateDelegate(evt, x, y);
-
-                        return;
-                    
-                    }
-
-                    let pos = {
-                        x,
-                        y
-                    };
-
-                    if (this.get('updateEdge')) {
-                        
-                        this.graph.updateItem(item, pos);
-                    
-                    } else {
-                        
-                        item.updatePosition(pos);
-                        this.graph.paint();
-                    
-                    }
+                    this._updateDelegate(evt, x, y);
                 
                 },
-                // 更新拖动元素时的delegate
                 _updateDelegate (evt, x, y) {
 
-                    let bbox = evt.item.get('keyShape').getBBox();
+                    // 如果还没创建代理元素
+                    if (!this.dragOptions.delegateShape) {
 
-                    if (!this.delegateShape) {
-                        
-                        // 拖动多个
                         let parent = this.graph.get('group');
-                        let delegateAttrs = G6.Util.deepMix({
-                            fill : '#F3F9FF',
-                            fillOpacity : 0.5,
-                            stroke : '#1890FF',
-                            strokeOpacity : 0.9,
-                            lineDash : [5, 5]
-                        }, this.delegateStyle);
-                        // let placeholderAttrs = G6.Util.deepMix({
-                        //     fill : '#8ec8fe'
-                        // }, this.placeholderStyle);
-                        
-                        if (this.targets.length > 0) {
+                        let bbox = this.dragOptions.target.get('keyShape').getBBox();
 
-                            let {
-                                x,
-                                y,
-                                width,
-                                height,
-                                minX,
-                                minY
-                            } = this.calculationGroupPosition();
-                            
-                            this.originPoint = {
-                                x,
-                                y,
-                                width,
-                                height,
-                                minX,
-                                minY
-                            };
-                            
-                            // model上的x, y是相对于图形中心的，delegateShape是g实例，x,y是绝对坐标
-                            this.delegateShape = parent.addShape('rect', {
-                                attrs : Object.assign({
-                                    width,
-                                    height,
-                                    x,
-                                    y,
-                                }, delegateAttrs)
-                            });
-
-                        } else if (this.target) {
-
-
-                            
-                            // this.placeholderShape = parent.addShape('rect', {
-                            //     attrs : Object.assign({
-                            //         width : 60,
-                            //         heigth : 17
-                            //     }, placeholderAttrs);
-                            // });
-                            this.delegateShape = parent.addShape('rect', {
-                                attrs : Object.assign({
-                                    width : bbox.width,
-                                    height : bbox.height,
-                                    x : x + bbox.x,
-                                    y : y + bbox.y,
-                                }, delegateAttrs)
-                            });
-                            this.target.set('delegateShape', this.delegateShape);
-                        
-                        }
-
-                        this.delegateShape.set('capture', false);
-
-                    } else if (this.targets.length > 0) {
-                        
-                        let clientX = evt.x - this.origin.x + this.originPoint.minX;
-                        let clientY = evt.y - this.origin.y + this.originPoint.minY;
-                        
-                        this.delegateShape.attr({
-                            x : clientX,
-                            y : clientY
+                        this.dragOptions.delegateShape = parent.addShape('rect', {
+                            attrs : {
+                                fill : '#F3F9FF',
+                                fillOpacity : 0.5,
+                                stroke : '#1890FF',
+                                strokeOpacity : 0.9,
+                                lineDash : [5, 5],
+                                width : bbox.width,
+                                height : bbox.height,
+                                x : x + bbox.x,
+                                y : y + bbox.y,
+                            }
                         });
 
-                    } else if (this.target) {
+                        vm.data.dragTarget = {
+                            node : this.dragOptions.target,
+                            hidden : false
+                        };
+                        
+                        // this.target.set('delegateShape', this.delegateShape);
+                        vm._updateDragTarget(true);
+                        vm._refreshDragPlaceholder(this.dragOptions.delegateShape, evt.item);
+                        this.dragOptions.delegateShape.set('capture', false);
 
-                        this.delegateShape.attr({
+                    } else if (this.dragOptions.type === 'unselect-single') {
+
+                        let bbox = evt.item.get('keyShape').getBBox();
+
+                        this.dragOptions.delegateShape.attr({
                             x : x + bbox.x,
                             y : y + bbox.y
                         });
-        
+                        vm._refreshDragPlaceholder(this.dragOptions.delegateShape, null);
+
                     }
 
-                        
-                    vm._refreshDragPlaceholder(this.delegateShape, evt.item);
                     this.graph.paint();
 
                 },
-                // 计算delegate位置，包括左上角左边及宽度和高度
-                calculationGroupPosition () {
-                    
-                    let graph = this.graph;
-                    let nodes = graph.findAllByState('node', 'selected');
-                    let minx = Infinity;
-                    let maxx = -Infinity;
-                    let miny = Infinity;
-                    let maxy = -Infinity;
-
-                    // 获取已节点的所有最大最小x y值
-                    for (let id of nodes) {
-
-                        let element = typeof id === 'string' ? graph.findById(id) : id;
-                        let bbox = element.getBBox();
-                        let {
-                            minX,
-                            minY,
-                            maxX,
-                            maxY
-                        } = bbox;
-                        
-                        if (minX < minx) {
-                        
-                            minx = minX;
-                        
-                        }
-
-                        if (minY < miny) {
-                        
-                            miny = minY;
-                        
-                        }
-
-                        if (maxX > maxx) {
-                            
-                            maxx = maxX;
-                        
-                        }
-
-                        if (maxY > maxy) {
-                            
-                            maxy = maxY;
-                        
-                        }
-                    
-                    }
-                    
-                    let x = Math.floor(minx) - 20;
-                    let y = Math.floor(miny) + 10;
-                    let width = Math.ceil(maxx) - x;
-                    let height = Math.ceil(maxy) - y;
-
-                    return {
-                        x,
-                        y,
-                        width,
-                        height,
-                        minX : minx,
-                        minY : miny
-                    };
-
-                }
             });
 
         },
@@ -1394,7 +1168,13 @@ export default {
         _onNodeDrag : function () {
 
             this.data.graph.on('node:dragstart', evt => {
-                this.data.graph.setItemState(evt.item, 'drag', true);
+
+                if (!evt.item.getModel().isRoot) {
+                    
+                    this.data.graph.setItemState(evt.item, 'drag', true);
+
+                }
+
             });
 
             this.data.graph.on('node:dragend', evt => {
@@ -1574,81 +1354,82 @@ export default {
         let centerX = 0;
         // let rootNode = null;
 
-        let data = {
-            "text": "Modeling Methods",
-            "isRoot" : true,
-            "children": [
-                {
-                    "text": "Classification",
-                    "children": [
-                        { "text": "Logistic regression" },
-                        { "text": "Linear discriminant analysis" },
-                        { "text": "Rules" },
-                        { "text": "Decision trees" },
-                        { "text": "Naive Bayes" },
-                        { "text": "K nearest neighbor" },
-                        { "text": "Probabilistic neural network" },
-                        { "text": "Support vector machine" }
-                    ]
-                },
-                {
-                    "text": "Consensus",
-                    "children": [
-                        {
-                            "text": "Models diversity",
-                            "children": [
-                                { "text": "Different initializations" },
-                                { "text": "Different parameter choices" },
-                                { "text": "Different architectures" },
-                                { "text": "Different modeling methods" },
-                                { "text": "Different training sets" },
-                                { "text": "Different feature sets" }
-                            ]
-                            },
-                        {
-                            "text": "Methods",
-                            "children": [
-                                { "text": "Classifier selection" },
-                                { "text": "Classifier fusion" }
-                            ]
-                        },
-                        {
-                            "text": "Common",
-                            "children": [
-                                { "text": "Bagging" },
-                                { "text": "Boosting" },
-                                { "text": "AdaBoost" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "text": "Regression",
-                    "children": [
-                        { "text": "Multiple linear regression" },
-                        { "text": "Partial least squares" },
-                        { "text": "Multi-layer feedforward neural network" },
-                        { "text": "General regression neural network" },
-                        { "text": "Support vector regression" }
-                    ]
-                }
-            ]
-        };
-
-
         // let data = {
-        //     "text": "Classification",
+        //     "text": "Modeling Methods",
+        //     "isRoot" : true,
         //     "children": [
-        //         { "text": "Logistic regression" },
-        //         { "text": "Linear discriminant analysis" },
-        //         { "text": "Rules" },
-        //         { "text": "Decision trees" },
-        //         { "text": "Naive Bayes" },
-        //         { "text": "K nearest neighbor" },
-        //         { "text": "Probabilistic neural network" },
-        //         { "text": "Support vector machine" }
+        //         {
+        //             "text": "Classification",
+        //             "children": [
+        //                 { "text": "Logistic regression" },
+        //                 { "text": "Linear discriminant analysis" },
+        //                 { "text": "Rules" },
+        //                 { "text": "Decision trees" },
+        //                 { "text": "Naive Bayes" },
+        //                 { "text": "K nearest neighbor" },
+        //                 { "text": "Probabilistic neural network" },
+        //                 { "text": "Support vector machine" }
+        //             ]
+        //         },
+        //         {
+        //             "text": "Consensus",
+        //             "children": [
+        //                 {
+        //                     "text": "Models diversity",
+        //                     "children": [
+        //                         { "text": "Different initializations" },
+        //                         { "text": "Different parameter choices" },
+        //                         { "text": "Different architectures" },
+        //                         { "text": "Different modeling methods" },
+        //                         { "text": "Different training sets" },
+        //                         { "text": "Different feature sets" }
+        //                     ]
+        //                     },
+        //                 {
+        //                     "text": "Methods",
+        //                     "children": [
+        //                         { "text": "Classifier selection" },
+        //                         { "text": "Classifier fusion" }
+        //                     ]
+        //                 },
+        //                 {
+        //                     "text": "Common",
+        //                     "children": [
+        //                         { "text": "Bagging" },
+        //                         { "text": "Boosting" },
+        //                         { "text": "AdaBoost" }
+        //                     ]
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             "text": "Regression",
+        //             "children": [
+        //                 { "text": "Multiple linear regression" },
+        //                 { "text": "Partial least squares" },
+        //                 { "text": "Multi-layer feedforward neural network" },
+        //                 { "text": "General regression neural network" },
+        //                 { "text": "Support vector regression" }
+        //             ]
+        //         }
         //     ]
         // };
+
+
+        let data = {
+            "text": "Classification",
+            "isRoot" : true,
+            "children": [
+                { "text": "Logistic regression" },
+                { "text": "Linear discriminant analysis" },
+                { "text": "Rules" },
+                { "text": "Decision trees" },
+                { "text": "Naive Bayes" },
+                { "text": "K nearest neighbor" },
+                { "text": "Probabilistic neural network" },
+                { "text": "Support vector machine" }
+            ]
+        };
 
         G6.Util.traverseTree(data, item => {
 
