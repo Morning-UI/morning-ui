@@ -40,6 +40,16 @@ import G6                           from '@antv/g6';
 import sortBy                       from 'lodash.sortby';
 import throttle                     from 'lodash.throttle';
 
+const boxShapeIndex = 0;
+const outlineShapeIndex = 1;
+const conShapeIndex = 2;
+const textShapeIndex = 3;
+const placeholderShapeIndex = 4;
+
+const conPaddingX = 24;
+const conPaddingY = 12;
+const outlinePadding = 3;
+
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
 export default {
     origin : 'Form',
@@ -57,24 +67,162 @@ export default {
         return {
             data : {
                 graph : null,
-                $editContent : null,
-                $editContentInput : null,
-                editMode : false,
-                editContent : '',
+                $canvas : null,
+                globalId : 1,
+                dragging : false,
+                editting : false,
                 editGroupShapes : {},
-                editZoom : 1,
                 editNode : null,
+                editContent : '',
+                editZoom : 1,
+                dragOptions : {},
+                dragTarget : {},
                 dragging : false,
                 dragLastHolderParent : null,
-                dragLastHolderIndex : null,
-                dragTarget : {},
-                rootNodeId : null,
-                globalId : 1,
+                dragLastHolderIndex : null
             }
         };
 
     },
     methods : {
+        // _getIncomeNode : function (node) {
+
+        //     return node.getInEdges()[0].getSource();
+
+        // },
+        // _getOutcomeNodes : function (node) {
+
+        //     let nodes = [];
+
+        //     node.getOutEdges().forEach(edge => {
+
+        //         nodes.push(edge.getTarget());
+
+        //     });
+
+        //     return nodes;
+
+        // },
+        _clearSelectedNode : function (selectedState) {
+                    
+            let graph = this.data.graph;
+            let autoPaint = graph.get('autoPaint');
+            let nodes = graph.findAllByState('node', selectedState);
+            let edges = graph.findAllByState('edge', selectedState);
+            
+            graph.setAutoPaint(false);
+            nodes.forEach(node => graph.setItemState(node, selectedState, false));
+            edges.forEach(edge => graph.setItemState(edge, selectedState, false));
+            this.selectedNodes = [];
+            this.selectedEdges = [];
+            graph.paint();
+            graph.setAutoPaint(autoPaint);
+
+        },
+        _getGroupShapes : function (item) {
+
+            let box = item.getKeyShape();
+            let group = box.getParent();
+            let con = group.getChildByIndex(conShapeIndex);
+            let outline = group.getChildByIndex(outlineShapeIndex);
+            let text = group.getChildByIndex(textShapeIndex);
+            let placeholder = group.getChildByIndex(placeholderShapeIndex);
+
+            return {
+                con,
+                box,
+                text,
+                outline,
+                placeholder
+            };
+
+        },
+        _refreshNodeEdges : function (edges) {
+
+            for (let edge of edges) {
+
+                edge.refresh();
+
+            }
+
+        },
+        _refreshEditor : function (node) {
+
+            if (this.data.editNode) {
+                
+                let edges = this.data.editNode.getEdges();
+
+                this.data.editNode.refresh();
+                this._refreshNodeEdges(edges);
+
+            }
+
+            let groupShapes = this._getGroupShapes(node);
+            let textAttr = groupShapes.text.attr();
+            let nodeBbox = node.getBBox();
+            let textBbox = groupShapes.text.getBBox();
+            let conBbox = groupShapes.con.getBBox();
+            let zoom = this.data.graph.getZoom();
+            let {
+                x : nodeX,
+                y : nodeY
+            } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
+
+            // when text is empty use placeholder
+            if (textBbox.width === 0) {
+
+                textBbox = groupShapes.placeholder.getBBox();
+
+            }
+
+            let inputX = `${textBbox.x + 1}px`;
+            let inputY = `${textBbox.y}px`;
+
+            // inputX = (inputX < 0) ? `calc(50% - ${Math.abs(inputX)}px - ${textBbox.width / 2}px)` : `calc(50% + ${inputX}px - ${textBbox.width / 2}px)`;
+            // inputY = (inputY < 0) ? `calc(50% - ${Math.abs(inputY)}px)` : `calc(50% + ${inputY}px)`;
+
+            this.data.$editContent.style.display = 'block';
+            this.data.$editContent.style.left = `${nodeX}px`;
+            this.data.$editContent.style.top = `${nodeY}px`;
+            this.data.$editContent.style.width = `${conBbox.width}px`;
+            this.data.$editContent.style.height = `${conBbox.height}px`;
+            this.data.$editContentInput.style.width = `${textBbox.width}px`;
+            this.data.$editContentInput.style.height = `${textBbox.height}px`;
+            this.data.$editContentInput.style.left = inputX;
+            this.data.$editContentInput.style.top = inputY;
+            this.data.$editContentInput.style.color = textAttr.fill;
+            this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
+            this.data.$editContentInput.style.textAlign = textAttr.textAlign;
+            this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
+            this.data.$editContentInput.style.fontFamily = textAttr.fontFamily;
+            this.data.editContent = textAttr.text;
+            this.data.editZoom = zoom;
+
+        },
+        _cancelEdit : function () {
+
+            if (!this.data.editting) {
+
+                return;
+
+            }
+
+            let groupShapes = this._getGroupShapes(this.data.editNode);
+
+            groupShapes.text.attr({
+                opacity : 1
+            });
+            this.data.graph.paint();
+            this.data.$editContent.style.display = 'none';
+            this.data.editting = false;
+            this.data.editContent = '';
+            this.data.editGroupShapes = {};
+            this.data.editZoom = 1;
+            this.data.editNode.setState('editing', false);
+            this.data.editNode = null;
+            this.data.graph.refreshLayout();
+
+        },
         _manualPaint : function (paintCallback) {
     
             let autoPaint = this.data.graph.get('autoPaint');
@@ -107,159 +255,10 @@ export default {
                 }
 
                 this.data.graph.paint();
-                this._refreshNode(groupShapes);
+                this._refreshMindNode(groupShapes);
                 this._refreshEditor(this.data.editNode);
 
             });
-
-        },
-        _getGroupShapes : function (item) {
-
-            const textShapeIndex = 2;
-            const outlineShapeIndex = 0;
-            const placeholderShapeIndex = 3;
-
-            let key = item.getKeyShape();
-            let text = key.getParent().getChildByIndex(textShapeIndex);
-            let outline = key.getParent().getChildByIndex(outlineShapeIndex);
-            let placeholder = key.getParent().getChildByIndex(placeholderShapeIndex);
-
-            return {
-                key,
-                text,
-                outline,
-                placeholder
-            };
-
-        },
-        // _getNodeEdges : function (node) {
-
-        //     let edges = {
-        //         in : node.getInEdges(),
-        //         out : node.getOutEdges()
-        //     };
-
-        //     edges.all = edges.in.concat(edges.out);
-
-        //     return edges;
-
-        // },
-        _refreshNodeEdges : function (edges) {
-
-            for (let edge of edges) {
-
-                edge.refresh();
-
-            }
-
-        },
-        _refreshEditor : function (node) {
-
-            if (this.data.editNode) {
-                
-                let edges = this.data.editNode.getEdges();
-
-                this.data.editNode.refresh();
-                this._refreshNodeEdges(edges);
-
-            }
-
-            let groupShapes = this._getGroupShapes(node);
-            let textAttr = groupShapes.text.attr();
-            let nodeBbox = node.getBBox();
-            let textBbox = groupShapes.text.getBBox();
-            let keyBbox = groupShapes.key.getBBox();
-            let zoom = this.data.graph.getZoom();
-            let {
-                x : nodeX,
-                y : nodeY
-            } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
-
-            // when text is empty use placeholder
-            if (textBbox.width === 0) {
-
-                textBbox = groupShapes.placeholder.getBBox();
-
-            }
-
-            let inputX = textBbox.x;
-            let inputY = textBbox.y;
-
-            inputX = (inputX < 0) ? `calc(50% - ${Math.abs(inputX)}px - ${textBbox.width/2}px)` : `calc(50% + ${inputX}px - ${textBbox.width/2}px)`;
-            inputY = (inputY < 0) ? `calc(50% - ${Math.abs(inputY)}px)` : `calc(50% + ${inputY}px)`;
-
-            this.data.$editContent.style.display = 'block';
-            this.data.$editContent.style.left = `${nodeX}px`;
-            this.data.$editContent.style.top = `${nodeY}px`;
-            this.data.$editContent.style.width = `${keyBbox.width}px`;
-            this.data.$editContent.style.height = `${keyBbox.height}px`;
-            this.data.$editContentInput.style.width = `${textBbox.width}px`;
-            this.data.$editContentInput.style.height = `${textBbox.height}px`;
-            this.data.$editContentInput.style.left = inputX;
-            this.data.$editContentInput.style.top = inputY;
-            this.data.$editContentInput.style.color = textAttr.fill;
-            this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
-            this.data.$editContentInput.style.textAlign = textAttr.textAlign;
-            this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
-            this.data.$editContentInput.style.fontFamily = textAttr.fontFamily;
-            this.data.editContent = textAttr.text;
-            this.data.editZoom = zoom;
-
-        },
-        _refreshNode : function (groupShapes) {
-
-            const keyPaddingX = 24;
-            const keyPaddingY = 12;
-            const outlinePadding = 3;
-
-            let textBbox = groupShapes.text.getBBox();
-
-            // when text is empty use placeholder
-            if (textBbox.width === 0) {
-                
-                textBbox = groupShapes.placeholder.getBBox();
-
-            }
-
-            groupShapes.key.attr({
-                x : textBbox.minX - keyPaddingX,
-                y : textBbox.minY - keyPaddingY,
-                width : textBbox.width + (keyPaddingX * 2),
-                height : textBbox.height + (keyPaddingY * 2)
-            });
-
-            let keyBbox = groupShapes.key.getBBox();
-
-            groupShapes.outline.attr({
-                x : keyBbox.minX - outlinePadding,
-                y : keyBbox.minY - outlinePadding,
-                width : keyBbox.width + (outlinePadding * 2),
-                height : keyBbox.height + (outlinePadding * 2)
-            });
-
-        },
-        _cancelEdit : function () {
-
-            if (!this.data.editMode) {
-
-                return;
-
-            }
-
-            let groupShapes = this._getGroupShapes(this.data.editNode);
-
-            groupShapes.text.attr({
-                opacity : 1
-            });
-            this.data.graph.paint();
-            this.data.$editContent.style.display = 'none';
-            this.data.editMode = false;
-            this.data.editContent = '';
-            this.data.editGroupShapes = {};
-            this.data.editZoom = 1;
-            this.data.editNode.setState('editing', false);
-            this.data.editNode = null;
-            this.data.graph.refreshLayout();
 
         },
         _fillChildBbox : function (bbox, node) {
@@ -318,6 +317,7 @@ export default {
                 this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex, 1);
 
             }
+
             this.data.dragLastHolderParent = null;
             this.data.dragLastHolderIndex = null;
             this.data.graph.changeData();
@@ -431,7 +431,7 @@ export default {
                 this.data.dragLastHolderIndex = matchOptions.index;
                 model.children.splice(matchOptions.index, 0, {
                     id : this.data.globalId++,
-                    shape : 'mor-node-placeholder',
+                    shape : 'mor-placeholder-node',
                     anchorPoints : [[0, 0.5], [1, 0.5]],
                     _isPlaceolder : true
                 });
@@ -440,7 +440,7 @@ export default {
                 this.data.graph.changeData();
                 this.data.graph.refreshLayout();
                 this.data.graph.findById(this.data.globalId - 1).getInEdges()[0].update({
-                    shape : 'mor-edge-placeholder-line'
+                    shape : 'mor-placeholder-edge'
                 });
 
             }
@@ -453,36 +453,235 @@ export default {
 
             if (startDrag === true && dragTarget.hidden === false) {
 
-                let parentChildren = targetNode.getInEdges()[0].getSource().getModel().children;
-                let index = parentChildren.indexOf(targetNode.getModel());
-
+                dragTarget.originNodeStyle = {
+                    height : targetNode.getBBox().height
+                };
                 dragTarget.saveModel = targetNode.getModel();
-                parentChildren.splice(index, 1); 
-                // TODO
-                dragTarget.hidden = true;
+
+                targetNode.update({
+                    isDragging : true,
+                    style : {
+                        fillOpacity : 0,
+                        radius : 0
+                    }
+                });
+                targetNode.getInEdges()[0].hide();
+                targetNode.get('group').getChildByIndex(textShapeIndex).hide();
+                targetNode.get('group').getChildByIndex(conShapeIndex).hide();
                 this.data.graph.refreshLayout();
+                dragTarget.hidden = true;
 
             } else if (startDrag === false && dragTarget.hidden === true) {
 
-                dragTarget.hidden = false;
+                let parent = targetNode.getInEdges()[0].getSource().getModel().children;
+                let index = parent.indexOf(targetNode.getModel());
+
+                targetNode.getInEdges()[0].getSource().getModel().children.splice(index, 1);
+                targetNode.update({
+                    isDragging : false,
+                    style : {
+                        fillOpacity : 1,
+                        radius : 6
+                    }
+                });
+                targetNode.get('group').getChildByIndex(textShapeIndex).show();
+                targetNode.get('group').getChildByIndex(conShapeIndex).show();
+                targetNode.getInEdges()[0].show();
+
+                console.log(51, this.data.dragLastHolderParent, parent, this.data.dragLastHolderParent === parent);
+                if (this.data.dragLastHolderParent === parent && this.data.dragLastHolderIndex > index) {
+                    
+                    this.data.dragLastHolderIndex = this.data.dragLastHolderIndex - 1;
+
+                }
+
+                this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex + 1, 0, dragTarget.saveModel);
+                this.data.graph.paint();
+                this.data.graph.changeData();
                 this.data.graph.refreshLayout();
+                dragTarget.hidden = false;
 
             }
 
         },
-        _regNodeBlock : function () {
+        _refreshMindNode : function (groupShapes) {
 
-            G6.registerNode('mor-node-block', {
+            let {
+                box,
+                outline,
+                con,
+                text,
+                placeholder
+            } = groupShapes;
+            let textBbox = text.getBBox();
+
+            // when text is empty use placeholder
+            if (textBbox.width === 0) {
+                
+                textBbox = groupShapes.placeholder.getBBox();
+
+            }
+
+            con.attr({
+                width : textBbox.width + (conPaddingX * 2),
+                height : textBbox.height + (conPaddingY * 2)
+            });
+
+            let conBbox = con.getBBox();
+            
+            outline.attr({
+                width : conBbox.width + (outlinePadding * 2),
+                height : conBbox.height + (outlinePadding * 2)
+            });
+
+            box.attr({
+                width : conBbox.width,
+                height : conBbox.height
+            });
+
+            placeholder.attr({
+                y : textBbox.height / 2 + conPaddingY
+            });
+
+            text.attr({
+                y : textBbox.height / 2 + conPaddingY
+            })
+
+        },
+        _onNodeHover : function () {
+
+            this.data.graph.on('node:mouseenter', evt => {
+
+                if (evt.item.getModel().isMindNode) {
+                
+                    this.data.graph.setItemState(evt.item, 'hover', true);
+                
+                }
+            
+            });
+
+            this.data.graph.on('node:mouseleave', evt => {
+
+                if (evt.item.getModel().isMindNode) {
+
+                    this.data.graph.setItemState(evt.item, 'hover', false);
+                
+                }
+
+            });
+
+        },
+        _onNodeSelected : function () {
+
+            this.data.graph.on('node:click', evt => {
+
+                this._clearSelectedNode('selected');
+
+                if (evt.item.getModel().isMindNode) {
+                    
+                    this.data.graph.setItemState(evt.item, 'selected', true);
+                
+                }
+            
+            });
+
+        },
+        _onNodeEdit : function () {
+
+            this.data.graph.on('node:dblclick', evt => {
+
+                let groupShapes = this._getGroupShapes(evt.item);
+
+                this.data.editting = true;
+                this.data.editGroupShapes = groupShapes;
+                this.data.editNode = evt.item;
+                this._refreshEditor(evt.item);
+                groupShapes.text.attr({
+                    opacity : 0
+                });
+                this.data.editNode.setState('editing', true);
+                this.data.graph.paint();
+                this.data.$editContentInput.focus();
+
+            });
+
+            this.data.graph.on('wheelzoom', () => {
+
+                if (this.data.editting) {
+        
+                    this._refreshEditor(this.data.editNode);
+
+                }
+
+            });
+
+            this.data.graph.on('click', evt => {
+                
+                if (this.data.editting &&
+                    this.data.editNode !== evt.item) {
+
+                    this._cancelEdit();
+
+                }
+
+            });
+
+            this.data.graph.on('canvas:mousedown', evt => {
+                
+                if (this.data.editting &&
+                    this.data.editNode !== evt.item) {
+
+                    this._cancelEdit();
+
+                }
+
+            });
+
+            this.$watch('data.editZoom', () => {
+
+                this.data.$editContent.style.transform = `scale(${this.data.editZoom})`;
+
+            });
+
+        },
+        _onNodeDrag : function () {
+
+            this.data.graph.on('node:dragstart', evt => {
+
+                if (!evt.item.destroyed && !evt.item.getModel().isRoot && evt.item.getModel().isMindNode) {
+                    
+                    this.data.graph.setItemState(evt.item, 'drag', true);
+
+                }
+
+            });
+
+            this.data.graph.on('node:dragend', evt => {
+
+                if (!evt.item.destroyed && !evt.item.getModel().isRoot && evt.item.getModel().isMindNode) {
+
+                    this.data.graph.setItemState(evt.item, 'drag', false);
+
+                }
+
+            });
+            
+        },
+        _regMindNode : function () {
+
+            G6.registerNode('mor-mind-node', {
                 drawShape : (cfg, group) => {
 
-                    let cursor = 'move';
+                    let cursor = 'default';
 
-                    if (cfg.isRoot) {
-
-                        cursor = 'default';
-
-                    }
-
+                    let box = group.addShape('rect', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            fill : 'transparent',
+                            cursor
+                        }
+                    });
                     let outline = group.addShape('rect', {
                         attrs : {
                             fill : 'transparent',
@@ -492,7 +691,7 @@ export default {
                             lineWidth : 3
                         }
                     });
-                    let key = group.addShape('rect', {
+                    let con = group.addShape('rect', {
                         attrs : {
                             fill : '#96d3e6',
                             radius : 6,
@@ -501,9 +700,9 @@ export default {
                     });
                     let text = group.addShape('text', {
                         attrs : {
-                            text : cfg.text,
                             x : 0,
                             y : 0,
+                            text : cfg.text,
                             textAlign : 'left',
                             textBaseline : 'middle',
                             fill : 'rgba(67,75,83,1)',
@@ -524,34 +723,63 @@ export default {
                         }
                     });
 
-                    this._refreshNode({
-                        key,
-                        text,
-                        outline,
-                        placeholder
+                    let textBbox = text.getBBox();
+
+                    con.attr({
+                        x : 0,
+                        y : 0,
+                        width : textBbox.width + (conPaddingX * 2),
+                        height : textBbox.height + (conPaddingY * 2)
                     });
 
-                    return key;
+                    let conBbox = con.getBBox();
+
+                    box.attr({
+                        width : conBbox.width,
+                        height : conBbox.height
+                    });
+
+                    let boxBbox = con.getBBox();
+                    
+                    outline.attr({
+                        x : boxBbox.minX - outlinePadding,
+                        y : boxBbox.minY - outlinePadding,
+                        width : boxBbox.width + (outlinePadding * 2),
+                        height : boxBbox.height + (outlinePadding * 2)
+                    });
+
+                    text.attr({
+                        x : conPaddingX,
+                        y : textBbox.height / 2 + conPaddingY
+                    });
+
+                    placeholder.attr({
+                        x : conPaddingX,
+                        y : textBbox.height / 2 + conPaddingY
+                    });
+
+                    return box;
 
                 },
                 setState : (name, value, item) => {
 
                     let states = item.getStates();
-                    let key = item.get('keyShape');
-                    let group = key.getParent();
-                    let outline = group.getChildByIndex(0);
-                    let text = group.getChildByIndex(2);
+                    let box = item.get('keyShape');
+                    let group = box.getParent();
+                    let outline = group.getChildByIndex(outlineShapeIndex);
+                    let text = group.getChildByIndex(textShapeIndex);
+                    let con = group.getChildByIndex(conShapeIndex);
 
                     if (states.indexOf('drag') !== -1) {
 
-                        item.toFront();
-                        key.attr({
-                            fillOpacity : 0.3,
-                            fill : '#959fa2'
-                        });
-                        text.attr({
-                            fill : 'rgba(67,75,83,0.4)'
-                        });
+                        // item.toFront();
+                        // con.attr({
+                        //     fillOpacity : 0.3,
+                        //     fill : '#959fa2'
+                        // });
+                        // text.attr({
+                        //     fill : 'rgba(67,75,83,0.4)'
+                        // });
                         outline.attr({
                             fillOpacity : 0,
                             strokeOpacity : 0
@@ -559,13 +787,13 @@ export default {
 
                     } else {
 
-                        key.attr({
-                            fillOpacity : 1,
-                            fill : '#96d3e6'
-                        });
-                        text.attr({
-                            fill : 'rgba(67,75,83,1)'
-                        });
+                        // con.attr({
+                        //     fillOpacity : 1,
+                        //     fill : '#96d3e6'
+                        // });
+                        // text.attr({
+                        //     fill : 'rgba(67,75,83,1)'
+                        // });
                         outline.attr({
                             fillOpacity : 1,
                             strokeOpacity : 1
@@ -585,7 +813,7 @@ export default {
                             stroke : '#27befc',
                             lineWidth : 3
                         });
-                        key.getParent().set('zIndex', 9);
+                        group.set('zIndex', 9);
 
                     } else if (
                         this.data.dragging === false &&
@@ -596,7 +824,7 @@ export default {
                             stroke : '#8cdcf5',
                             lineWidth : 3
                         });
-                        key.getParent().set('zIndex', 3);
+                        group.set('zIndex', 3);
 
                     } else {
 
@@ -604,7 +832,7 @@ export default {
                             stroke : 'transparent',
                             lineWidth : 3
                         });
-                        key.getParent().set('zIndex', 1);
+                        group.set('zIndex', 1);
 
                     }
 
@@ -612,9 +840,9 @@ export default {
             }, 'single-shape');
 
         },
-        _regNodePlaceholder : function () {
+        _regPlaceholderNode : function () {
 
-            G6.registerNode('mor-node-placeholder', {
+            G6.registerNode('mor-placeholder-node', {
                 drawShape : (cfg, group) => {
 
                     let key = group.addShape('rect', {
@@ -623,8 +851,8 @@ export default {
                             cursor : 'default',
                             width : 80,
                             height : 28,
-                            x : -24,
-                            y : -20,
+                            x : 0,
+                            y : 0,
                             radius : 6,
                         }
                     });
@@ -635,9 +863,9 @@ export default {
             }, 'single-shape');
 
         },
-        _regEdgeCubicHorizontal : function () {
+        _regMindEdge : function () {
 
-            G6.registerEdge('mor-edge-cinoc-horizontal', {
+            G6.registerEdge('mor-mind-edge', {
                 getShapeStyle : function (cfg) {
 
                     let startPoint = cfg.startPoint;
@@ -663,9 +891,9 @@ export default {
             }, 'cubic-horizontal');
 
         },
-        _regEdgePlaceholderLine : function () {
+        _regPlaceholderEdge : function () {
 
-            G6.registerEdge('mor-edge-placeholder-line', {
+            G6.registerEdge('mor-placeholder-edge', {
                 getShapeStyle : function (cfg) {
 
                     let startPoint = cfg.startPoint;
@@ -693,6 +921,8 @@ export default {
 
         },
         _regBehaviorBrushSelect : function () {
+
+            let vm = this;
 
             G6.registerBehavior('mor-brush-select', {
                 getDefaultCfg () {
@@ -794,19 +1024,7 @@ export default {
                 },
                 _clearStates () {
 
-                    let graph = this.graph;
-                    let autoPaint = graph.get('autoPaint');
-                    let selectedState = this.selectedState;
-                    let nodes = graph.findAllByState('node', selectedState);
-                    let edges = graph.findAllByState('edge', selectedState);
-                    
-                    graph.setAutoPaint(false);
-                    nodes.forEach(node => graph.setItemState(node, selectedState, false));
-                    edges.forEach(edge => graph.setItemState(edge, selectedState, false));
-                    this.selectedNodes = [];
-                    this.selectedEdges = [];
-                    graph.paint();
-                    graph.setAutoPaint(autoPaint);
+                    vm._clearSelectedNode(this.selectedState);
 
                 },
                 _getSelectedNodes(evt) {
@@ -866,7 +1084,7 @@ export default {
                                 selectedNodes.push(node);
                         
                                 const model = node.getModel();
-                        
+
                                 selectedIds.push(model.id);
                                 graph.setItemState(node, selectedState, true);
                         
@@ -917,10 +1135,10 @@ export default {
                     const originPoint = this.originPoint;
                     
                     this.brush.attr({
-                        width: Math.abs(evt.canvasX - originPoint.x),
-                        height: Math.abs(evt.canvasY - originPoint.y),
-                        x: Math.min(evt.canvasX, originPoint.x),
-                        y: Math.min(evt.canvasY, originPoint.y)
+                        width : Math.abs(evt.canvasX - originPoint.x),
+                        height : Math.abs(evt.canvasY - originPoint.y),
+                        x : Math.min(evt.canvasX, originPoint.x),
+                        y : Math.min(evt.canvasY, originPoint.y)
                     });
 
                 },
@@ -979,7 +1197,7 @@ export default {
 
                 },
                 onDragStart (evt) {
-
+                    
                     if (!this.shouldBegin.call(this, evt)) {
 
                         return;
@@ -993,6 +1211,8 @@ export default {
                         return;
 
                     }
+
+                    console.log('onDragStart');
 
                     // 获取所有选中的元素
                     let nodes = this.graph.findAllByState('node', 'selected');
@@ -1064,12 +1284,6 @@ export default {
 
                     }
 
-                    // if (this.dragOptions.target) {
-                        
-                        // this._update(evt);
-
-                    // }
-
                     this.dragOptions = {};
                     this.origin = null;
                     this.point = {};
@@ -1088,8 +1302,8 @@ export default {
                     }
 
                     // this.graph.paint();
-                    vm._removeOldDragPlaceholder();
                     vm._updateDragTarget(false);
+                    vm._removeOldDragPlaceholder(1);
                     this.graph.refreshLayout();
                     vm.data.dragging = false;
 
@@ -1154,270 +1368,135 @@ export default {
             });
 
         },
-        _onNodeHover : function () {
+        _registrar : function () {
 
-            this.data.graph.on('node:mouseenter', evt => {
-                this.data.graph.setItemState(evt.item, 'hover', true);
-            });
+            this._regMindNode();
+            this._regPlaceholderNode();
+            this._regMindEdge();
+            this._regPlaceholderEdge();
 
-            this.data.graph.on('node:mouseleave', evt => {
-                this.data.graph.setItemState(evt.item, 'hover', false);
-            });
-
-        },
-        _onNodeDrag : function () {
-
-            this.data.graph.on('node:dragstart', evt => {
-
-                if (!evt.item.getModel().isRoot) {
-                    
-                    this.data.graph.setItemState(evt.item, 'drag', true);
-
-                }
-
-            });
-
-            this.data.graph.on('node:dragend', evt => {
-                this.data.graph.setItemState(evt.item, 'drag', false);
-            });
-            
-        },
-        _onCanvasGrab : function () {
-
-            this.data.graph.on('canvas:mousedown', evt => {
-                G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
-                    cursor : 'grabbing'
-                });
-            });
-
-            this.data.graph.on('canvas:mouseenter', evt => {
-                G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
-                    cursor : 'grab'
-                });
-            });
-
-            this.data.graph.on('canvas:mouseup', evt => {
-                G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
-                    cursor : 'grab'
-                });
-            });
-
-        },
-        _onNodeEdit : function () {
-
-            this.data.graph.on('node:dblclick', evt => {
-
-                let groupShapes = this._getGroupShapes(evt.item);
-
-                this.data.editMode = true;
-                this.data.editGroupShapes = groupShapes;
-                this.data.editNode = evt.item;
-                this._refreshEditor(evt.item);
-                groupShapes.text.attr({
-                    opacity : 0
-                });
-                this.data.editNode.setState('editing', true);
-                this.data.graph.paint();
-                this.data.$editContentInput.focus();
-
-            });
-
-            this.data.graph.on('wheelzoom', () => {
-
-                if (this.data.editMode) {
-        
-                    this._refreshEditor(this.data.editNode);
-
-                }
-
-            });
-
-            this.data.graph.on('click', evt => {
-                
-                if (this.data.editMode &&
-                    this.data.editNode !== evt.item) {
-
-                    this._cancelEdit();
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:mousedown', evt => {
-                
-                if (this.data.editMode &&
-                    this.data.editNode !== evt.item) {
-
-                    this._cancelEdit();
-
-                }
-
-            });
-
-            this.$watch('data.editZoom', () => {
-
-                this.data.$editContent.style.transform = `scale(${this.data.editZoom})`;
-
-            });
-
-        },
-        _initRegister : function () {
-
-            this._regNodeBlock();
-            this._regNodePlaceholder();
-            this._regEdgeCubicHorizontal();
-            this._regEdgePlaceholderLine();
             this._regBehaviorBrushSelect();
             this._regBehaviorDragNode();
 
         },
         _bindEvent : function () {
 
-            this._onCanvasGrab();
             this._onNodeHover();
-            this._onNodeDrag();
+            this._onNodeSelected();
             this._onNodeEdit();
+            this._onNodeDrag();
+
+        },
+        _createGraph : function () {
+
+            this.data.graph = new G6.TreeGraph({
+                container : this.data.$canvas,
+                width : 760,
+                height : 500,
+                pixelRatio : 2,
+                animate : false,
+                modes : {
+                    default : [
+                        'drag-canvas',
+                        'zoom-canvas',
+                        'mor-brush-select',
+                        'mor-drag-node'
+                    ]
+                },
+                defaultNode : {
+                    shape : 'mor-mind-node'
+                },
+                defaultEdge : {
+                    shape : 'mor-mind-edge'
+                },
+                layout : {
+                    type : 'compactBox',
+                    direction : 'LR',
+                    getHeight : data => {
+
+                        let node = this.data.graph.findById(data.id);
+
+                        if (
+                            !node ||
+                            (node && node.destroyed) ||
+                            (node && node.getModel().isDragging)
+                        ) {
+
+                            return 0;
+
+                        }
+                        
+                        return node.getBBox().height;
+
+                    },
+                    getWidth : data => {
+
+                        let node = this.data.graph.findById(data.id);
+
+                        if (
+                            !node ||
+                            (node && node.destroyed) ||
+                            (node && node.getModel().isDragging)
+                        ) {
+
+                            return 0;
+
+                        }
+
+                        return node.getBBox().width;
+
+                    },
+                    getVGap : data => {
+
+                        let node = this.data.graph.findById(data.id);
+
+                        if (node && node.getModel().isDragging) {
+
+                            return 0;
+
+                        }
+
+                        return 5;
+
+                    },
+                    getHGap : () => {
+
+                        return 30;
+
+                    }
+                }
+            });
+
+        },
+        _readData : function (data) {
+
+            G6.Util.traverseTree(data, item => {
+
+                item.id = this.data.globalId++;
+                item.shape = 'mor-mind-node';
+                item.anchorPoints = [[0, 0.5], [1, 0.5]];
+                item.isMindNode = true;
+            
+            });
+            this.data.graph.read(data);
+
+            setTimeout(() => {
+
+                this.data.graph.refreshLayout(true);
+
+            });
 
         }
     },
     created : function () {},
     mounted : function () {
 
+        this.data.$canvas = this.$el.querySelector('.canvas');
         this.data.$editContent = this.$el.querySelector('.edit-content');
         this.data.$editContentInput = this.data.$editContent.querySelector('textarea');
-        this._initRegister();
-        this.data.graph = new G6.TreeGraph({
-            container : this.$el.querySelector('.canvas'),
-            width : 760,
-            height : 500,
-            pixelRatio : 2,
-            animate : false,
-            modes : {
-                default : [
-                    'drag-canvas',
-                    'zoom-canvas',
-                    {
-                        type : 'click-select',
-                        multiple : true,
-                        keyCode : 17
-                    },
-                    {
-                        type : 'mor-drag-node',
-                        updateEdge : true,
-                        enableDelegate : true
-                    },
-                    'mor-brush-select'
-                ]
-            },
-            nodeStateStyles : {
-                active : {
-                    fillOpacity: 1
-                }
-            },
-            defaultNode : {
-                shape : 'mor-node-block'
-            },
-            defaultEdge : {
-                shape : 'mor-edge-cinoc-horizontal'
-                // shape : 'cubic-horizontal'
-            },
-            layout : {
-                type : 'compactBox',
-                direction: 'LR',
-                getId: function getId(d) {
-                    return d.id;
-                },
-                getHeight : d => {
-
-                    let node = this.data.graph.findById(d.id);
-
-                    return node ? node.getBBox().height : 0;
-
-                },
-                getWidth : d => {
-
-                    let node = this.data.graph.findById(d.id);
-
-                    return node ? node.getBBox().width : 0;
-
-                },
-                getVGap : () => {
-                    return 5;
-                },
-                getHGap : () => {
-                    return 20;
-                }
-            }
-        });
-        this._bindEvent();
-
-        let centerX = 0;
-        // let rootNode = null;
-
-        // let data = {
-        //     "text": "Modeling Methods",
-        //     "isRoot" : true,
-        //     "children": [
-        //         {
-        //             "text": "Classification",
-        //             "children": [
-        //                 { "text": "Logistic regression" },
-        //                 { "text": "Linear discriminant analysis" },
-        //                 { "text": "Rules" },
-        //                 { "text": "Decision trees" },
-        //                 { "text": "Naive Bayes" },
-        //                 { "text": "K nearest neighbor" },
-        //                 { "text": "Probabilistic neural network" },
-        //                 { "text": "Support vector machine" }
-        //             ]
-        //         },
-        //         {
-        //             "text": "Consensus",
-        //             "children": [
-        //                 {
-        //                     "text": "Models diversity",
-        //                     "children": [
-        //                         { "text": "Different initializations" },
-        //                         { "text": "Different parameter choices" },
-        //                         { "text": "Different architectures" },
-        //                         { "text": "Different modeling methods" },
-        //                         { "text": "Different training sets" },
-        //                         { "text": "Different feature sets" }
-        //                     ]
-        //                     },
-        //                 {
-        //                     "text": "Methods",
-        //                     "children": [
-        //                         { "text": "Classifier selection" },
-        //                         { "text": "Classifier fusion" }
-        //                     ]
-        //                 },
-        //                 {
-        //                     "text": "Common",
-        //                     "children": [
-        //                         { "text": "Bagging" },
-        //                         { "text": "Boosting" },
-        //                         { "text": "AdaBoost" }
-        //                     ]
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             "text": "Regression",
-        //             "children": [
-        //                 { "text": "Multiple linear regression" },
-        //                 { "text": "Partial least squares" },
-        //                 { "text": "Multi-layer feedforward neural network" },
-        //                 { "text": "General regression neural network" },
-        //                 { "text": "Support vector regression" }
-        //             ]
-        //         }
-        //     ]
-        // };
-
 
         let data = {
-            "text": "Classification",
+            "text": "ClassificationClassification",
             "isRoot" : true,
             "children": [
                 { "text": "Logistic regression" },
@@ -1431,107 +1510,99 @@ export default {
             ]
         };
 
-        G6.Util.traverseTree(data, item => {
+        let data2 = {
+            "text": "Modeling Methods",
+            "isRoot" : true,
+            "children": [
+                {
+                    "text": "ClassificationClassification",
+                    "children": [
+                        { "text": "Logistic regression" },
+                        { "text": "Linear discriminant analysis" },
+                        { "text": "Rules" },
+                        { "text": "Decision trees" },
+                        { "text": "Naive Bayes" },
+                        { "text": "K nearest neighbor" },
+                        { "text": "Probabilistic neural network" },
+                        { "text": "Support vector machine" }
+                    ]
+                },
+                {
+                    "text": "Consensus",
+                    "children": [
+                        {
+                            "text": "Models diversity",
+                            "children": [
+                                { "text": "Different initializations" },
+                                { "text": "Different parameter choices" },
+                                { "text": "Different architectures" },
+                                { "text": "Different modeling methods" },
+                                { "text": "Different training sets" },
+                                { "text": "Different feature sets" }
+                            ]
+                            },
+                        {
+                            "text": "Methods",
+                            "children": [
+                                { "text": "Classifier selection" },
+                                { "text": "Classifier fusion" }
+                            ]
+                        },
+                        {
+                            "text": "Common",
+                            "children": [
+                                { "text": "Bagging" },
+                                { "text": "Boosting" },
+                                { "text": "AdaBoost" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "text": "Regression",
+                    "children": [
+                        { "text": "Multiple linear regression" },
+                        { "text": "Partial least squares" },
+                        { "text": "Multi-layer feedforward neural network" },
+                        { "text": "General regression neural network" },
+                        { "text": "Support vector regression" }
+                    ]
+                }
+            ]
+        };
 
-            item.id = this.data.globalId++;
-            item.shape = 'mor-node-block';
-            item.anchorPoints = [[0, 0.5], [1, 0.5]];
+        let data3 = {
+            "text": "Modeling Methods",
+            "isRoot" : true,
+            "children": [
+                {
+                    "text": "ClassificationClassification",
+                    "children": [
+                        { "text": "Logistic regression" },
+                        { "text": "Linear discriminant analysis" }
+                    ]
+                },
+                {
+                    "text": "Regression",
+                    "children": [
+                        { "text": "Multiple linear regression" },
+                        { "text": "Partial least squares" },
+                        { "text": "Multi-layer feedforward neural network" },
+                        { "text": "General regression neural network" },
+                        { "text": "Support vector regression" }
+                    ]
+                }
+            ]
+        };
 
-            if (item.isRoot) {
-
-                this.data.rootNodeId = item.id;
-
-            }
-        
-        });
-
-        this.data.graph.read(data);
-
-        setTimeout(() => {
-
-            this.data.graph.refreshLayout(true);
-            // this.data.graph.set('animate', true);
-            
-        });
-
-        // this.data.graph.fitView();
-
+        this._registrar();
+        this._createGraph();
+        this._bindEvent();
+        this._readData(data3);
         window.G6 = G6;
 
     }
 };
-
-    // G6.registerNode('mind-node-underline', {
-        //     drawShape: (cfg, group) => {
-
-        //         let rect = group.addShape('rect', {
-        //             attrs : {
-        //                 fill : '#f0f0f0',
-        //                 cursor : 'move'
-        //             }
-        //         });
-        //         let underline = group.addShape('rect', {
-        //             attrs : {
-        //                 fill : '#587ef7',
-        //                 cursor : 'move',
-        //                 height : 4
-        //             }
-        //         });
-        //         let text = group.addShape('text', {
-        //             attrs : {
-        //                 text : cfg.id,
-        //                 x : 0,
-        //                 y : 0,
-        //                 textAlign : 'center',
-        //                 textBaseline : 'middle',
-        //                 fill : '#000000',
-        //                 fontSize : 16,
-        //                 cursor : 'move'
-        //             }
-        //         });
-
-        //         let textBbox = text.getBBox();
-
-        //         rect.attr({
-        //             x : textBbox.minX - 24,
-        //             y : textBbox.minY - 12,
-        //             width : textBbox.width + 48,
-        //             height : textBbox.height + 24
-        //         });
-
-        //         let rectBbox = rect.getBBox();
-
-        //         underline.attr({
-        //             x : rectBbox.minX,
-        //             y : rectBbox.maxY - 4,
-        //             width : rectBbox.width
-        //         });
-
-        //         return rect;
-
-        //     },
-        //     setState : (name, value, item) => {
-
-        //         let shape = item.get('keyShape');
-
-        //         if (name === 'hover' && value === true) {
-
-        //             shape.attr({
-        //                 stroke : '#31cdf1',
-        //                 strokeWidth : 6
-        //             });
-
-        //         } else if (name === 'hover' && value === false) {
-
-        //             shape.attr({
-        //                 stroke : '#ffffff',
-        //                 strokeWidth : 6
-        //             });
-
-        //         }
-
-        //     }
-        // }, 'single-shape');
 </script>
 
 
