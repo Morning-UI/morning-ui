@@ -76,7 +76,10 @@ export default {
                 editContent : '',
                 editZoom : 1,
                 dragOptions : {},
-                dragTarget : {},
+                dragTarget : {
+                    originNodeStyle : {},
+                    saveModel : {}
+                },
                 dragging : false,
                 dragLastHolderParent : null,
                 dragLastHolderIndex : null
@@ -326,6 +329,12 @@ export default {
         },
         _refreshDragPlaceholder : throttle(function (delegateShape, targetNode) {
 
+            // if (!delegateShape) {
+
+            //     return;
+
+            // }
+
             let nodes = this.data.graph.getNodes();
             let delegateBbox = delegateShape.getBBox();
             let distance;
@@ -337,12 +346,6 @@ export default {
 
             // 按距离对节点排序
             distanceNodes = sortBy(nodes, node => {
-
-                if (node._cfg.model._isPlaceolder) {
-
-                    return Infinity;
-
-                }
 
                 let nodeBbox = node.getBBox();
 
@@ -359,7 +362,9 @@ export default {
             // Child[n] : 作为子元素，centerX > Parent.centerX
             for (let node of distanceNodes) {
 
-                if (node === targetNode) {
+                if (node === targetNode ||
+                    node.getModel()._isPlaceolder ||
+                    node.getModel().isDragging === true) {
 
                     continue;
 
@@ -386,7 +391,6 @@ export default {
                         
                         let childData = node.getModel().children[index];
                         let childBbox = this.data.graph.findById(childData.id).getBBox();
-
 
                         if (!childData._isPlaceolder && delegateBbox.centerY > childBbox.centerY) {
 
@@ -446,60 +450,125 @@ export default {
             }
 
         }, 160),
-        _updateDragTarget : function (startDrag = false) {
+        _toggleAllChildren : function (node, type) {
 
-            let dragTarget = this.data.dragTarget;
-            let targetNode = dragTarget.node;
+            let outEdges = node.getOutEdges();
 
-            if (startDrag === true && dragTarget.hidden === false) {
+            for (let edge of outEdges) {
 
-                dragTarget.originNodeStyle = {
-                    height : targetNode.getBBox().height
-                };
-                dragTarget.saveModel = targetNode.getModel();
+                let child = edge.getTarget();
+                let model = child.getModel();
+                
+                edge[type]();
+                child[type]();
 
-                targetNode.update({
-                    isDragging : true,
-                    style : {
-                        fillOpacity : 0,
-                        radius : 0
-                    }
-                });
-                targetNode.getInEdges()[0].hide();
-                targetNode.get('group').getChildByIndex(textShapeIndex).hide();
-                targetNode.get('group').getChildByIndex(conShapeIndex).hide();
-                this.data.graph.refreshLayout();
-                dragTarget.hidden = true;
+                if (type === 'hide') {
 
-            } else if (startDrag === false && dragTarget.hidden === true) {
+                    model.isDragging = true;
 
-                let parent = targetNode.getInEdges()[0].getSource().getModel().children;
-                let index = parent.indexOf(targetNode.getModel());
+                } else {
 
-                targetNode.getInEdges()[0].getSource().getModel().children.splice(index, 1);
-                targetNode.update({
-                    isDragging : false,
-                    style : {
-                        fillOpacity : 1,
-                        radius : 6
-                    }
-                });
-                targetNode.get('group').getChildByIndex(textShapeIndex).show();
-                targetNode.get('group').getChildByIndex(conShapeIndex).show();
-                targetNode.getInEdges()[0].show();
-
-                console.log(51, this.data.dragLastHolderParent, parent, this.data.dragLastHolderParent === parent);
-                if (this.data.dragLastHolderParent === parent && this.data.dragLastHolderIndex > index) {
-                    
-                    this.data.dragLastHolderIndex = this.data.dragLastHolderIndex - 1;
+                    model.isDragging = false;
 
                 }
 
-                this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex + 1, 0, dragTarget.saveModel);
+                if (child.getOutEdges().length > 0) {
+
+                    this._toggleAllChildren(child, type);
+
+                }
+
+            }
+
+        },
+        _updateDragTarget : function (startDrag = false) {
+
+            let dragTarget = this.data.dragTarget;
+            let targetNodes = dragTarget.nodes;
+            let updateDragLastHolderIndex = false;
+
+            if (startDrag === true && dragTarget.hidden === false) {
+
+                for (let index in targetNodes) {
+
+                    let node = targetNodes[index];
+
+                    dragTarget.originNodeStyle[index] = {
+                        height : node.getBBox().height
+                    };
+                    dragTarget.saveModel[index] = node.getModel();
+
+                    node.update({
+                        isDragging : true,
+                        style : {
+                            fillOpacity : 0,
+                            radius : 0
+                        }
+                    });
+                    node.getInEdges()[0].hide();
+                    node
+                        .get('group')
+                        .getChildByIndex(textShapeIndex)
+                        .hide();
+                    node
+                        .get('group')
+                        .getChildByIndex(conShapeIndex)
+                        .hide();
+                    this._toggleAllChildren(node, 'hide');
+
+                }
+
+                dragTarget.hidden = true;
+                this.data.graph.refreshLayout();
+                
+            } else if (startDrag === false && dragTarget.hidden === true) {
+
+                // TODO 获取顶级父元素target进行移动
+                for (let index in targetNodes) {
+
+                    let node = targetNodes[index];
+
+                    let parent = node.getInEdges()[0].getSource().getModel().children;
+                    let indexOfParent = parent.indexOf(node.getModel());
+
+                    node.getInEdges()[0].getSource().getModel().children.splice(indexOfParent, 1);
+                    node.update({
+                        isDragging : false,
+                        style : {
+                            fillOpacity : 1,
+                            radius : 6
+                        }
+                    });
+                    node
+                        .get('group')
+                        .getChildByIndex(textShapeIndex)
+                        .show();
+                    node
+                        .get('group')
+                        .getChildByIndex(conShapeIndex)
+                        .show();
+                    this._toggleAllChildren(node, 'show');
+                    node.getInEdges()[0].show();
+
+                    if (this.data.dragLastHolderParent === parent && this.data.dragLastHolderIndex > indexOfParent) {
+
+                        if (!updateDragLastHolderIndex) {
+                        
+                            this.data.dragLastHolderIndex = this.data.dragLastHolderIndex - 1;
+                            updateDragLastHolderIndex = true;
+
+                        }
+
+                        this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex + 1, 0, dragTarget.saveModel[index]);
+
+                    }
+
+                }
+
+                dragTarget.hidden = false;
                 this.data.graph.paint();
                 this.data.graph.changeData();
                 this.data.graph.refreshLayout();
-                dragTarget.hidden = false;
 
             }
 
@@ -1184,7 +1253,9 @@ export default {
 
             G6.registerBehavior('mor-drag-node', {
                 getDefaultCfg () {
-                    return {};
+                    return {
+                        targets : []
+                    };
                 },
                 getEvents () {
 
@@ -1212,6 +1283,12 @@ export default {
 
                     }
 
+                    this.dragOptions = {
+                        originX : evt.x,
+                        originY : evt.y,
+                        delegateShape : null
+                    };
+
                     console.log('onDragStart');
 
                     // 获取所有选中的元素
@@ -1219,39 +1296,47 @@ export default {
                     let targetNodeId = evt.item.get('id');
 
                     // 当前拖动的节点是否是选中的节点
-                    let dragNodes = nodes.filter(node => {
-
-                        let nodeId = node.get('id');
-
-                        return targetNodeId === nodeId;
-
-                    });
+                    let dragNodes = nodes.filter(node => (targetNodeId === node.get('id')));
 
                     // 只拖动当前节点
                     if (dragNodes.length === 0) {
+
+                        let model = evt.item.getModel();
                         
                         this.target = evt.item;
+                        this.dragOptions.type = 'unselect-single';
+                        this.point = {
+                            x : model.x,
+                            y : model.y 
+                        };
                     
+                    // 拖动选中节点
+                    } else if (nodes.length === 1) {
+    
+                        this.targets.push(evt.item);
+                        this.dragOptions.type = 'select';
+                        // this.dragOptions.model = evt.item.getModel();
+                        // this.dragOptions.nodeId = evt.item.get('id');
+
+                    // 拖动多个节点
+                    } else {
+                        
+                        nodes.forEach(node => {
+
+                            // const hasLocked = node.hasLocked();
+                            // if (!hasLocked) {
+                            // }
+
+                            this.targets.push(node);
+
+                        });
+                        this.dragOptions.type = 'select';
+
                     }
 
                     this.origin = {
                         x : evt.x,
                         y : evt.y
-                    };
-                    this.dragOptions = {
-                        type : 'unselect-single',
-                        originX : evt.x,
-                        originY : evt.y,
-                        target : evt.item,
-                        model : evt.item.getModel(),
-                        nodeId : evt.item.get('id'),
-                        delegateShape : null
-                    };
-                    this.point = {
-                        [this.dragOptions.nodeId] : {
-                            x : this.dragOptions.model.x,
-                            y : this.dragOptions.model.y 
-                        }
                     };
                     // this.originPoint = {};
 
@@ -1264,8 +1349,22 @@ export default {
                     
                     }
 
-                    // 只拖动单个元素
-                    this._update(evt);
+                    if (this.targets.length > 0) {
+
+                        // 只拖动单个元素
+                        this._updateDelegate(evt);
+
+                        // this.targets.forEach(target => {
+                        //     this._update(target, e, this.enableDelegate);
+                        // });
+
+                    } else {
+
+                        // 只拖动单个元素
+                        this._update(evt);
+
+                    }
+
                     vm.data.dragging = true;
 
                 },
@@ -1287,7 +1386,7 @@ export default {
                     this.dragOptions = {};
                     this.origin = null;
                     this.point = {};
-                    // this.originPoint = {};
+                    this.originPoint = {};
                     // this.targets.length = 0;
                     // this.target = null;
 
@@ -1303,7 +1402,7 @@ export default {
 
                     // this.graph.paint();
                     vm._updateDragTarget(false);
-                    vm._removeOldDragPlaceholder(1);
+                    vm._removeOldDragPlaceholder();
                     this.graph.refreshLayout();
                     vm.data.dragging = false;
 
@@ -1311,8 +1410,8 @@ export default {
                 _update (evt) {
 
                     let origin = this.origin;
-                    let x = evt.x - origin.x + this.point[this.dragOptions.nodeId].x;
-                    let y = evt.y - origin.y + this.point[this.dragOptions.nodeId].y;
+                    let x = evt.x - origin.x + this.point.x;
+                    let y = evt.y - origin.y + this.point.y;
 
                     // 拖动单个未选中元素
                     this._updateDelegate(evt, x, y);
@@ -1324,31 +1423,77 @@ export default {
                     if (!this.dragOptions.delegateShape) {
 
                         let parent = this.graph.get('group');
-                        let bbox = this.dragOptions.target.get('keyShape').getBBox();
 
-                        this.dragOptions.delegateShape = parent.addShape('rect', {
-                            attrs : {
-                                fill : '#F3F9FF',
-                                fillOpacity : 0.5,
-                                stroke : '#1890FF',
-                                strokeOpacity : 0.9,
-                                lineDash : [5, 5],
-                                width : bbox.width,
-                                height : bbox.height,
-                                x : x + bbox.x,
-                                y : y + bbox.y,
-                            }
-                        });
+                        if (this.targets.length > 0) {
 
-                        vm.data.dragTarget = {
-                            node : this.dragOptions.target,
-                            hidden : false
-                        };
+                            const {
+                                x,
+                                y,
+                                width,
+                                height,
+                                minX,
+                                minY
+                            } = this._calculationGroupPosition();
+
+                            this.originPoint = {
+                                x,
+                                y,
+                                width,
+                                height,
+                                minX,
+                                minY
+                            };
+
+                            this.dragOptions.delegateShape = parent.addShape('rect', {
+                                attrs : {
+                                    fill : '#F3F9FF',
+                                    fillOpacity : 0.5,
+                                    stroke : '#1890FF',
+                                    strokeOpacity : 0.9,
+                                    lineDash : [5, 5],
+                                    width,
+                                    height,
+                                    x,
+                                    y
+                                }
+                            });
+                            vm.data.dragTarget = {
+                                nodes : this.targets,
+                                hidden : false,
+                                originNodeStyle : {},
+                                saveModel : {}
+                            };
+
+                        } else {
+
+                            let bbox = this.target.get('keyShape').getBBox();
+                            
+                            this.dragOptions.delegateShape = parent.addShape('rect', {
+                                attrs : {
+                                    fill : '#F3F9FF',
+                                    fillOpacity : 0.5,
+                                    stroke : '#1890FF',
+                                    strokeOpacity : 0.9,
+                                    lineDash : [5, 5],
+                                    width : bbox.width,
+                                    height : bbox.height,
+                                    x : x + bbox.x,
+                                    y : y + bbox.y,
+                                }
+                            });
+                            vm.data.dragTarget = {
+                                nodes : [this.target],
+                                hidden : false,
+                                originNodeStyle : {},
+                                saveModel : {}
+                            };
+
+                        }
                         
-                        // this.target.set('delegateShape', this.delegateShape);
                         vm._updateDragTarget(true);
                         vm._refreshDragPlaceholder(this.dragOptions.delegateShape, evt.item);
-                        this.dragOptions.delegateShape.set('capture', false);
+                        // this.target.set('delegateShape', this.delegateShape);
+                        // this.dragOptions.delegateShape.set('capture', false);
 
                     } else if (this.dragOptions.type === 'unselect-single') {
 
@@ -1360,11 +1505,84 @@ export default {
                         });
                         vm._refreshDragPlaceholder(this.dragOptions.delegateShape, null);
 
+                    } else if (this.dragOptions.type === 'select') {
+        
+                        let clientX = evt.x - this.origin.x + this.originPoint.minX;
+                        let clientY = evt.y - this.origin.y + this.originPoint.minY;
+
+                        this.dragOptions.delegateShape.attr({
+                            x : clientX,
+                            y : clientY
+                        });
+                        vm._refreshDragPlaceholder(this.dragOptions.delegateShape, null);
+
                     }
 
                     this.graph.paint();
 
                 },
+                _calculationGroupPosition() {
+
+                    let graph = this.graph;
+                    let nodes = graph.findAllByState('node', 'selected');
+                    let minx = Infinity;
+                    let maxx = -Infinity;
+                    let miny = Infinity;
+                    let maxy = -Infinity;
+
+                    // 获取已节点的所有最大最小x y值
+                    for (let id of nodes) {
+
+                        let element = (typeof id === 'string') ? graph.findById(id) : id;
+                        let bbox = element.getBBox();
+                        let {
+                            minX,
+                            minY,
+                            maxX,
+                            maxY
+                        } = bbox;
+
+                        if (minX < minx) {
+
+                            minx = minX;
+
+                        }
+
+                        if (minY < miny) {
+                            
+                            miny = minY;
+                        
+                        }
+
+                        if (maxX > maxx) {
+                            
+                            maxx = maxX;
+                        
+                        }
+
+                        if (maxY > maxy) {
+                            
+                            maxy = maxY;
+                        
+                        }
+
+                    }
+
+                    let x = Math.floor(minx) - 20;
+                    let y = Math.floor(miny) + 10;
+                    let width = Math.ceil(maxx) - x;
+                    let height = Math.ceil(maxy) - y;
+
+                    return {
+                        x,
+                        y,
+                        width,
+                        height,
+                        minX : minx,
+                        minY : miny
+                    };
+
+                }
             });
 
         },
