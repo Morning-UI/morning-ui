@@ -18,7 +18,7 @@
     #demo
     >tpl
     <div>
-        <ui-mindmap></ui-mindmap>
+        <ui-mindmap layout="LR"></ui-mindmap>
     </div>
     :::
 

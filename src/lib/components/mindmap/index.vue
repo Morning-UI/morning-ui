@@ -12,6 +12,7 @@
         :clearable="clearable"
         :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
+        :layout="layout"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -37,28 +38,129 @@
  
 <script>
 import G6                           from '@antv/g6';
+let PolylineUtil                  = require('@antv/g6/lib/shape/edges/polyline-util');
+import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
 import sortBy                       from 'lodash.sortby';
 import throttle                     from 'lodash.throttle';
+import filter                       from 'lodash.filter';
+import jszip                        from 'jszip';
 
 const boxShapeIndex = 0;
 const outlineShapeIndex = 1;
 const conShapeIndex = 2;
 const textShapeIndex = 3;
 const placeholderShapeIndex = 4;
-
-const conPaddingX = 24;
-const conPaddingY = 12;
+const bottomlineShapeIndex = 5;
 const outlinePadding = 3;
+
+const lineColor = 'rgba(51, 51, 51, 1)';
+const lineWidth = 2;
+const placeholderColor = 'rgba(147, 233, 245, 1)';
+
+const mindNodeStyle = {
+    bgColor : '#e8e8e8',
+    fontColor : 'rgba(0, 0, 0, 1)',
+    fontSize : 16,
+    borderWidth : 1,
+    borderColor : lineColor,
+    outlineColor : '#8cdcf5',
+    outlineActiveColor : '#27befc',
+    outlineRadius : 6,
+    _shapePresets : {
+        'round-rect' : {
+            radius : 6
+        },
+        rect : {
+            radius : 0
+        },
+        'half-round-rect' : {
+            // 动态计算
+            computedRadius : 0.5,
+            radius : 0
+        },
+        line : {
+            bgColor : 'transparent',
+            borderColor : 'transparent',
+            borderWidth : 0,
+            bottomlineBg : lineColor,
+            bottomlineHeight : 2
+        }
+    }
+};
+const rootMindNodeStyle = {
+    bgColor : 'rgba(35, 123, 191, 1)',
+    fontColor : 'rgba(255, 255, 255, 1)',
+    fontSize : 24,
+    borderWidth : 0,
+    borderColor : lineColor,
+    outlineColor : '#8cdcf5',
+    outlineActiveColor : '#27befc',
+    outlineRadius : 6,
+    _shapePresets : {
+        'round-rect' : {
+            radius : 6
+        },
+        rect : {
+            radius : 0
+        },
+        'half-round-rect' : {
+            // 动态计算
+            computedRadius : 0.5,
+            radius : 0
+        },
+        line : {
+            fontColor : 'rgba(0, 0, 0, 1)',
+            bgColor : 'transparent',
+            borderColor : 'transparent',
+            borderWidth : 0,
+            bottomlineBg : lineColor,
+            bottomlineHeight : 2
+        }
+    }
+};
+const placeholderNodeStyle = {
+    bgColor : placeholderColor,
+    fontColor : 'rgba(255, 255, 255, 0)',
+    fontSize : 24,
+    borderWidth : 0,
+    borderColor : lineColor,
+    outlineColor : '#8cdcf5',
+    outlineActiveColor : '#27befc',
+    radius : 6
+};
+const mindEdgeStyle = {
+    borderWidth : lineWidth,
+    borderColor : lineColor,
+    radius : 10
+};
+const placeholderEdgeStyle = {
+    borderWidth : lineWidth + 1,
+    borderColor : placeholderColor,
+    radius : 10
+};
+const delegateShapeStyle = {
+    bgColor : 'rgba(75, 201, 218, 0.3)',
+    borderColor : 'rgba(75, 201, 218, 1)',
+    borderWidth : 2
+};
 
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
 export default {
     origin : 'Form',
     name : 'mindmap',
-    props : {},
+    props : {
+        layout : {
+            type : String,
+            default : 'LR',
+            validator : (value => ['LR', 'RL'].indexOf(value) !== -1)
+        }
+    },
     computed : {
         _conf : function () {
 
-            return {};
+            return {
+                layout : this.layout
+            };
 
         }
     },
@@ -81,8 +183,8 @@ export default {
                     saveModel : {}
                 },
                 dragging : false,
-                dragLastHolderParent : null,
-                dragLastHolderIndex : null
+                dragHolderParentChilren : null,
+                dragHolderIndexOfParentChildren : null
             }
         };
 
@@ -130,13 +232,15 @@ export default {
             let outline = group.getChildByIndex(outlineShapeIndex);
             let text = group.getChildByIndex(textShapeIndex);
             let placeholder = group.getChildByIndex(placeholderShapeIndex);
+            let bottomline = group.getChildByIndex(bottomlineShapeIndex);
 
             return {
                 con,
                 box,
                 text,
                 outline,
-                placeholder
+                placeholder,
+                bottomline
             };
 
         },
@@ -315,19 +419,19 @@ export default {
         },
         _removeOldDragPlaceholder : function () {
 
-            if (this.data.dragLastHolderIndex > -1 && this.data.dragLastHolderParent) {
+            if (this.data.dragHolderIndexOfParentChildren > -1 && this.data.dragHolderParentChilren) {
 
-                this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex, 1);
+                this.data.dragHolderParentChilren.splice(this.data.dragHolderIndexOfParentChildren, 1);
 
             }
 
-            this.data.dragLastHolderParent = null;
-            this.data.dragLastHolderIndex = null;
+            this.data.dragHolderParentChilren = null;
+            this.data.dragHolderIndexOfParentChildren = null;
             this.data.graph.changeData();
             // this.data.graph.refreshLayout();
 
         },
-        _refreshDragPlaceholder : throttle(function (delegateShape, targetNode) {
+        _refreshDragHolder : throttle(function (delegateShape, targetNode) {
 
             // if (!delegateShape) {
 
@@ -363,7 +467,7 @@ export default {
             for (let node of distanceNodes) {
 
                 if (node === targetNode ||
-                    node.getModel()._isPlaceolder ||
+                    node.getModel()._isHolder ||
                     node.getModel().isDragging === true) {
 
                     continue;
@@ -375,10 +479,13 @@ export default {
                 this._fillChildBbox(nodeBbox, node);
 
                 if (
-                    nodeBbox.centerX < delegateBbox.x &&
                     (
-                        (nodeBbox.conMaxY > delegateBbox.minY && delegateBbox.minY > nodeBbox.conMinY) ||
-                        (nodeBbox.conMaxY > delegateBbox.maxY && delegateBbox.maxY > nodeBbox.conMinY)
+                        (this.conf.layout === 'LR' && nodeBbox.centerX < delegateBbox.x) ||
+                        (this.conf.layout === 'RL' && nodeBbox.centerX > delegateBbox.x)
+                    ) &&
+                    (
+                        (nodeBbox.conMaxY > delegateBbox.centerY && delegateBbox.centerY > nodeBbox.conMinY)
+                        // (nodeBbox.conMaxY > delegateBbox.maxY && delegateBbox.maxY > nodeBbox.conMinY)
                     )
                 ) {
 
@@ -387,18 +494,22 @@ export default {
                     matchOptions.index = 0;
                     matchOptions.hasPlaceholder = false;
 
-                    for (let index in node.getModel().children) {
+                    let children = node.getModel().children;
+
+                    // children = filter(children, child => (!child.isDragging));
+
+                    for (let index in children) {
                         
-                        let childData = node.getModel().children[index];
+                        let childData = children[index];
                         let childBbox = this.data.graph.findById(childData.id).getBBox();
 
-                        if (!childData._isPlaceolder && delegateBbox.centerY > childBbox.centerY) {
+                        if (!childData._isHolder && delegateBbox.centerY > childBbox.centerY) {
 
-                            matchOptions.index = +index + 1;
+                            matchOptions.index = +index + 1; 
 
                         }
 
-                        if (childData._isPlaceolder) {
+                        if (childData._isHolder) {
 
                             matchOptions.hasPlaceholder = index;
 
@@ -422,7 +533,7 @@ export default {
             }
 
             if (matchOptions.node) {
-                
+
                 // 创建新的placeholder
                 let model = matchOptions.node.getModel();
 
@@ -432,14 +543,14 @@ export default {
 
                 }
 
-                this.data.dragLastHolderIndex = matchOptions.index;
+                this.data.dragHolderIndexOfParentChildren = matchOptions.index;
                 model.children.splice(matchOptions.index, 0, {
                     id : this.data.globalId++,
                     shape : 'mor-placeholder-node',
                     anchorPoints : [[0, 0.5], [1, 0.5]],
-                    _isPlaceolder : true
+                    _isHolder : true
                 });
-                this.data.dragLastHolderParent = model.children;
+                this.data.dragHolderParentChilren = model.children;
                 this.data.graph.paint();
                 this.data.graph.changeData();
                 this.data.graph.refreshLayout();
@@ -481,91 +592,143 @@ export default {
             }
 
         },
-        _updateDragTarget : function (startDrag = false) {
+        _insertNode : function (nodeData, newParentChilren, insertIndex) {
+
+            newParentChilren.splice(insertIndex, 0, nodeData);
+
+        },
+        _removeNode : function (node) {
+
+            let parentNodeDataChildren = node.getInEdges()[0].getSource().getModel().children;
+            let nodeModel = node.getModel();
+            let index = parentNodeDataChildren.indexOf(nodeModel);
+
+            if (
+                parentNodeDataChildren === this.data.dragHolderParentChilren &&
+                index < this.data.dragHolderIndexOfParentChildren
+            ) {
+
+                this.data.dragHolderIndexOfParentChildren--;
+
+            }
+
+            parentNodeDataChildren.splice(index, 1);
+
+        },
+        _udpateOneDragTarget : function (index, dragTarget, dragging, dragHolderIndexOfParentChildren) {
+
+            let node = dragTarget.nodes[index];
+
+            if (dragging && !dragTarget.hidden) {
+
+                dragTarget.originNodeStyle[index] = {
+                    height : node.getBBox().height
+                };
+                dragTarget.saveModel[index] = node.getModel();
+                
+                node.setState('dragging', true);
+                node.update({
+                    isDragging : true,
+                    style : G6.Util.deepMix({}, {
+                        fillOpacity : 0
+                    }, node.getModel().style)
+                });
+
+                // 隐藏边
+                node.getInEdges()[0].hide();
+
+                // 隐藏文本和主容器
+                node
+                    .get('group')
+                    .getChildByIndex(textShapeIndex)
+                    .hide();
+                node
+                    .get('group')
+                    .getChildByIndex(conShapeIndex)
+                    .hide();
+
+                // 隐藏所有子项
+                this._toggleAllChildren(node, 'hide');
+
+            } else if (!dragging && dragTarget.hidden) {
+
+                let oldParentChilren = node.getInEdges()[0].getSource().getModel().children;
+                let nodeData = dragTarget.saveModel[index];
+
+                node.setState('dragging', false);
+                node.update({
+                    isDragging : false,
+                    style : G6.Util.deepMix({}, {
+                        fillOpacity : 1
+                    }, nodeData.style)
+                });
+
+                // 显示边
+                node.getInEdges()[0].show();
+
+                // 显示文本和主容器
+                node
+                    .get('group')
+                    .getChildByIndex(textShapeIndex)
+                    .show();
+                node
+                    .get('group')
+                    .getChildByIndex(conShapeIndex)
+                    .show();
+
+                // 显示所有子项
+                this._toggleAllChildren(node, 'show');
+
+                // 移动节点
+                this._insertNode(nodeData, this.data.dragHolderParentChilren, dragHolderIndexOfParentChildren);
+
+            }
+
+        },
+        _updateDragTarget : function (dragging = false) {
 
             let dragTarget = this.data.dragTarget;
             let targetNodes = dragTarget.nodes;
-            let updateDragLastHolderIndex = false;
+            let first = true;
 
-            if (startDrag === true && dragTarget.hidden === false) {
+            if (!dragging && dragTarget.hidden) {
 
-                for (let index in targetNodes) {
+                let dragNodes = this.data.graph.findAllByState('node', 'dragging');
+                
+                for (let node of dragNodes) {
 
-                    let node = targetNodes[index];
-
-                    dragTarget.originNodeStyle[index] = {
-                        height : node.getBBox().height
-                    };
-                    dragTarget.saveModel[index] = node.getModel();
-
-                    node.update({
-                        isDragging : true,
-                        style : {
-                            fillOpacity : 0,
-                            radius : 0
-                        }
-                    });
-                    node.getInEdges()[0].hide();
-                    node
-                        .get('group')
-                        .getChildByIndex(textShapeIndex)
-                        .hide();
-                    node
-                        .get('group')
-                        .getChildByIndex(conShapeIndex)
-                        .hide();
-                    this._toggleAllChildren(node, 'hide');
+                    this._removeNode(node);
 
                 }
+
+            }
+
+            for (let index in targetNodes) {
+
+                if (!first) {
+
+                    this._udpateOneDragTarget(index, this.data.dragTarget, dragging, this.data.dragHolderIndexOfParentChildren + 1);
+
+                } else {
+
+                    this._udpateOneDragTarget(index, this.data.dragTarget, dragging, this.data.dragHolderIndexOfParentChildren);
+
+                }
+
+                first = false;
+
+            }
+
+            if (dragging && !dragTarget.hidden) {
 
                 dragTarget.hidden = true;
                 this.data.graph.refreshLayout();
-                
-            } else if (startDrag === false && dragTarget.hidden === true) {
 
-                // TODO 获取顶级父元素target进行移动
-                for (let index in targetNodes) {
-
-                    let node = targetNodes[index];
-
-                    let parent = node.getInEdges()[0].getSource().getModel().children;
-                    let indexOfParent = parent.indexOf(node.getModel());
-
-                    node.getInEdges()[0].getSource().getModel().children.splice(indexOfParent, 1);
-                    node.update({
-                        isDragging : false,
-                        style : {
-                            fillOpacity : 1,
-                            radius : 6
-                        }
-                    });
-                    node
-                        .get('group')
-                        .getChildByIndex(textShapeIndex)
-                        .show();
-                    node
-                        .get('group')
-                        .getChildByIndex(conShapeIndex)
-                        .show();
-                    this._toggleAllChildren(node, 'show');
-                    node.getInEdges()[0].show();
-
-                    if (this.data.dragLastHolderParent === parent && this.data.dragLastHolderIndex > indexOfParent) {
-
-                        if (!updateDragLastHolderIndex) {
-                        
-                            this.data.dragLastHolderIndex = this.data.dragLastHolderIndex - 1;
-                            updateDragLastHolderIndex = true;
-
-                        }
-
-                        this.data.dragLastHolderParent.splice(this.data.dragLastHolderIndex + 1, 0, dragTarget.saveModel[index]);
-
-                    }
-
-                }
+            } else if (!dragging && dragTarget.hidden) {
 
                 dragTarget.hidden = false;
+
+                this.data.dragHolderIndexOfParentChildren = this.data.dragHolderIndexOfParentChildren + targetNodes.length;
                 this.data.graph.paint();
                 this.data.graph.changeData();
                 this.data.graph.refreshLayout();
@@ -580,9 +743,12 @@ export default {
                 outline,
                 con,
                 text,
-                placeholder
+                placeholder,
+                bottomline
             } = groupShapes;
             let textBbox = text.getBBox();
+            let conPaddingX = box.get('conPaddingX');
+            let conPaddingY = box.get('conPaddingY');
 
             // when text is empty use placeholder
             if (textBbox.width === 0) {
@@ -614,7 +780,15 @@ export default {
 
             text.attr({
                 y : textBbox.height / 2 + conPaddingY
-            })
+            });
+
+            let boxBbox = box.getBBox();
+
+            bottomline.attr({
+                x : boxBbox.minX - 1,
+                y : boxBbox.maxY - 0.5,
+                width : boxBbox.width + 2
+            });
 
         },
         _onNodeHover : function () {
@@ -736,13 +910,15 @@ export default {
             });
             
         },
-        _regMindNode : function () {
+        _regRootMindNode : function () {
 
-            G6.registerNode('mor-mind-node', {
+            G6.registerNode('mor-root-mind-node', {
                 drawShape : (cfg, group) => {
 
+                    let options = G6.Util.deepMix({}, cfg.style);
                     let cursor = 'default';
-
+                    let conPaddingX = options.fontSize*1.5;
+                    let conPaddingY = options.fontSize*0.75;
                     let box = group.addShape('rect', {
                         attrs : {
                             x : 0,
@@ -754,7 +930,7 @@ export default {
                     let outline = group.addShape('rect', {
                         attrs : {
                             fill : 'transparent',
-                            radius : 6,
+                            radius : options.outlineRadius,
                             cursor,
                             stroke : 'transparent',
                             lineWidth : 3
@@ -762,9 +938,11 @@ export default {
                     });
                     let con = group.addShape('rect', {
                         attrs : {
-                            fill : '#96d3e6',
-                            radius : 6,
-                            cursor
+                            fill : options.bgColor,
+                            radius : options.radius,
+                            cursor,
+                            lineWidth : options.borderWidth,
+                            stroke : options.borderColor
                         }
                     });
                     let text = group.addShape('text', {
@@ -774,8 +952,8 @@ export default {
                             text : cfg.text,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : 'rgba(67,75,83,1)',
-                            fontSize : 16,
+                            fill : options.fontColor,
+                            fontSize : options.fontSize,
                             cursor
                         }
                     });
@@ -786,9 +964,14 @@ export default {
                             y : 0,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : 'rgba(67,75,83,1)',
-                            fontSize : 16,
+                            fill : options.fontColor,
+                            fontSize : options.fontSize,
                             cursor
+                        }
+                    });
+                    let bottomline = group.addShape('rect', {
+                        attrs : {
+                            fill : options.bottomlineBg
                         }
                     });
 
@@ -807,6 +990,8 @@ export default {
                         width : conBbox.width,
                         height : conBbox.height
                     });
+                    box.set('conPaddingX', conPaddingX);
+                    box.set('conPaddingY', conPaddingY);
 
                     let boxBbox = con.getBBox();
                     
@@ -827,28 +1012,26 @@ export default {
                         y : textBbox.height / 2 + conPaddingY
                     });
 
+                    bottomline.attr({
+                        x : boxBbox.minX - 1,
+                        y : boxBbox.maxY - 0.5,
+                        height : options.bottomlineHeight,
+                        width : boxBbox.width + 2
+                    });
+
                     return box;
 
                 },
                 setState : (name, value, item) => {
 
+                    let options = G6.Util.deepMix({}, item.getModel().style);
                     let states = item.getStates();
                     let box = item.get('keyShape');
                     let group = box.getParent();
                     let outline = group.getChildByIndex(outlineShapeIndex);
-                    let text = group.getChildByIndex(textShapeIndex);
-                    let con = group.getChildByIndex(conShapeIndex);
 
                     if (states.indexOf('drag') !== -1) {
 
-                        // item.toFront();
-                        // con.attr({
-                        //     fillOpacity : 0.3,
-                        //     fill : '#959fa2'
-                        // });
-                        // text.attr({
-                        //     fill : 'rgba(67,75,83,0.4)'
-                        // });
                         outline.attr({
                             fillOpacity : 0,
                             strokeOpacity : 0
@@ -856,13 +1039,6 @@ export default {
 
                     } else {
 
-                        // con.attr({
-                        //     fillOpacity : 1,
-                        //     fill : '#96d3e6'
-                        // });
-                        // text.attr({
-                        //     fill : 'rgba(67,75,83,1)'
-                        // });
                         outline.attr({
                             fillOpacity : 1,
                             strokeOpacity : 1
@@ -879,7 +1055,7 @@ export default {
                     ) {
 
                         outline.attr({
-                            stroke : '#27befc',
+                            stroke : options.outlineActiveColor,
                             lineWidth : 3
                         });
                         group.set('zIndex', 9);
@@ -890,7 +1066,182 @@ export default {
                     ) {
 
                         outline.attr({
-                            stroke : '#8cdcf5',
+                            stroke : options.outlineColor,
+                            lineWidth : 3
+                        });
+                        group.set('zIndex', 3);
+
+                    } else {
+
+                        outline.attr({
+                            stroke : 'transparent',
+                            lineWidth : 3
+                        });
+                        group.set('zIndex', 1);
+
+                    }
+
+                }
+            }, 'single-shape');
+
+        },
+        _regMindNode : function () {
+
+            G6.registerNode('mor-mind-node', {
+                drawShape : (cfg, group) => {
+
+                    let options = G6.Util.deepMix({}, cfg.style);
+                    let cursor = 'default';
+                    let conPaddingX = options.fontSize*1.5;
+                    let conPaddingY = options.fontSize*0.75;
+                    let box = group.addShape('rect', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            fill : 'transparent',
+                            cursor
+                        }
+                    });
+                    let outline = group.addShape('rect', {
+                        attrs : {
+                            fill : 'transparent',
+                            radius : options.outlineRadius,
+                            cursor,
+                            stroke : 'transparent',
+                            lineWidth : 3
+                        }
+                    });
+                    let con = group.addShape('rect', {
+                        attrs : {
+                            fill : options.bgColor,
+                            radius : options.radius,
+                            cursor,
+                            lineWidth : options.borderWidth,
+                            stroke : options.borderColor
+                        }
+                    });
+                    let text = group.addShape('text', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            text : cfg.text,
+                            textAlign : 'left',
+                            textBaseline : 'middle',
+                            fill : options.fontColor,
+                            fontSize : options.fontSize,
+                            cursor
+                        }
+                    });
+                    let placeholder = group.addShape('text', {
+                        attrs : {
+                            text : ' ',
+                            x : 0,
+                            y : 0,
+                            textAlign : 'left',
+                            textBaseline : 'middle',
+                            fill : options.fontColor,
+                            fontSize : options.fontSize,
+                            cursor
+                        }
+                    });
+                    let bottomline = group.addShape('rect', {
+                        attrs : {
+                            fill : options.bottomlineBg
+                        }
+                    });
+
+                    let textBbox = text.getBBox();
+
+                    con.attr({
+                        x : 0,
+                        y : 0,
+                        width : textBbox.width + (conPaddingX * 2),
+                        height : textBbox.height + (conPaddingY * 2)
+                    });
+
+                    let conBbox = con.getBBox();
+
+                    box.attr({
+                        width : conBbox.width,
+                        height : conBbox.height
+                    });
+                    box.set('conPaddingX', conPaddingX);
+                    box.set('conPaddingY', conPaddingY);
+
+                    let boxBbox = con.getBBox();
+                    
+                    outline.attr({
+                        x : boxBbox.minX - outlinePadding,
+                        y : boxBbox.minY - outlinePadding,
+                        width : boxBbox.width + (outlinePadding * 2),
+                        height : boxBbox.height + (outlinePadding * 2)
+                    });
+
+                    text.attr({
+                        x : conPaddingX,
+                        y : textBbox.height / 2 + conPaddingY
+                    });
+
+                    placeholder.attr({
+                        x : conPaddingX,
+                        y : textBbox.height / 2 + conPaddingY
+                    });
+
+                    bottomline.attr({
+                        x : boxBbox.minX - 1,
+                        y : boxBbox.maxY - 0.5,
+                        height : options.bottomlineHeight,
+                        width : boxBbox.width + 2
+                    });
+
+                    return box;
+
+                },
+                setState : (name, value, item) => {
+
+                    let options = G6.Util.deepMix({}, item.getModel().style);
+                    let states = item.getStates();
+                    let box = item.get('keyShape');
+                    let group = box.getParent();
+                    let outline = group.getChildByIndex(outlineShapeIndex);
+
+                    if (states.indexOf('drag') !== -1) {
+
+                        outline.attr({
+                            fillOpacity : 0,
+                            strokeOpacity : 0
+                        });
+
+                    } else {
+
+                        outline.attr({
+                            fillOpacity : 1,
+                            strokeOpacity : 1
+                        });
+
+                    }
+
+                    if (
+                        this.data.dragging === false &&
+                        (
+                            states.indexOf('selected') !== -1 ||
+                            states.indexOf('editing') !== -1
+                        )
+                    ) {
+
+                        outline.attr({
+                            stroke : options.outlineActiveColor,
+                            lineWidth : 3
+                        });
+                        group.set('zIndex', 9);
+
+                    } else if (
+                        this.data.dragging === false &&
+                        states.indexOf('hover') !== -1
+                    ) {
+
+                        outline.attr({
+                            stroke : options.outlineColor,
                             lineWidth : 3
                         });
                         group.set('zIndex', 3);
@@ -914,15 +1265,16 @@ export default {
             G6.registerNode('mor-placeholder-node', {
                 drawShape : (cfg, group) => {
 
+                    let options = G6.Util.deepMix(placeholderNodeStyle, cfg.style);
                     let key = group.addShape('rect', {
                         attrs : {
-                            fill : '#f16d6d',
+                            fill : options.bgColor,
                             cursor : 'default',
                             width : 80,
                             height : 28,
                             x : 0,
                             y : 0,
-                            radius : 6,
+                            radius : options.radius,
                         }
                     });
 
@@ -932,61 +1284,166 @@ export default {
             }, 'single-shape');
 
         },
+        _getPathWithBorderRadiusByPolyline : function (points, borderRadius) {
+
+            let pathSegments = [];
+            let startPoint = points[0];
+
+            pathSegments.push(`M ${startPoint.x} ${startPoint.y}`);
+
+            points.forEach((point, i) => {
+
+                let p1 = points[i + 1];
+                let p2 = points[i + 2];
+
+                if (p1 && p2 && i === 1) {
+
+                    if (PolylineUtil.isBending(point, p1, p2)) {
+
+                        let _getBorderRadiusPoint = PolylineUtil.getBorderRadiusPoints(point, p1, p2, borderRadius);
+                        let ps = _getBorderRadiusPoint[0];
+                        let pt = _getBorderRadiusPoint[1];
+
+                        pathSegments.push(`L ${ps.x} ${ps.y}`);
+                        pathSegments.push(`Q ${p1.x} ${p1.y} ${pt.x} ${pt.y}`);
+                        pathSegments.push(`L ${pt.x} ${pt.y}`);
+                    
+                    } else {
+
+                        pathSegments.push(`L ${p1.x} ${p1.y}`);
+                    
+                    }
+
+                } else if (p1) {
+
+                    pathSegments.push(`L ${p1.x} ${p1.y}`);
+                
+                }
+
+            });
+
+            return pathSegments.join('');
+
+        },
         _regMindEdge : function () {
 
+            let vm = this;
+
             G6.registerEdge('mor-mind-edge', {
+                getPath : function (points, routeCfg) {
+                    
+                    return vm._getPathWithBorderRadiusByPolyline(points, routeCfg.radius);
+                
+                },
                 getShapeStyle : function (cfg) {
 
+                    cfg = this.getPathPoints(cfg);
+
+                    let offset = 5;
                     let startPoint = cfg.startPoint;
                     let endPoint = cfg.endPoint;
-                    let controlPoints = this.getControlPoints(cfg);
-                    let points = [startPoint];
+                    // let controlPoints = this.getControlPoints(cfg);
+                    let points = [startPoint]; 
+                    let sourceNode = cfg.source;
+                    let targetNode = cfg.target;
+                    let customOptions = this.getCustomConfig(cfg) || {};
+                    let controlPoints = [];
 
-                    if (controlPoints) {
+                    if (sourceNode.getModel()._shape === 'line') {
 
-                        points = points.concat(controlPoints);
+                        controlPoints.push({
+                            anchorIndex : 0,
+                            index : 0,
+                            x : (sourceNode.getBBox().maxX + targetNode.getBBox().minX) / 2,
+                            y : sourceNode.getBBox().maxY
+                        });
+
+                    } else {
+
+                        controlPoints.push({
+                            anchorIndex : 0,
+                            index : 0,
+                            x : (sourceNode.getBBox().maxX + targetNode.getBBox().minX) / 2,
+                            y : sourceNode.getBBox().centerY
+                        });
 
                     }
 
+                    if (targetNode.getModel()._shape === 'line') {
+
+                        controlPoints.push({
+                            anchorIndex : 0,
+                            index : 0,
+                            x : (sourceNode.getBBox().maxX + targetNode.getBBox().minX) / 2,
+                            y : targetNode.getBBox().maxY
+                        });
+
+                    } else {
+
+                        controlPoints.push({
+                            anchorIndex : 0,
+                            index : 0,
+                            x : (sourceNode.getBBox().maxX + targetNode.getBBox().minX) / 2,
+                            y : targetNode.getBBox().centerY
+                        });
+
+                    }
+
+                    // 添加控制点
+                    if (controlPoints) {
+                        
+                        points = points.concat(controlPoints);
+                    
+                    }
+                    
+                    // 添加结束点
                     points.push(endPoint);
 
-                    return G6.Util.mix({}, G6.Global.defaultEdge.style, cfg.style, {
-                        stroke : '#8693a4',
-                        lineWidth : 3,
-                        path : this.getPath(points)
+                    let source = cfg.sourceNode;
+                    let target = cfg.targetNode;
+                    
+                    let routeCfg = {
+                        radius : mindEdgeStyle.radius
+                    };
+                    
+                    if (!controlPoints) {
+                        
+                        routeCfg = {
+                            source,
+                            target,
+                            offset,
+                            radius : mindEdgeStyle.radius
+                        };
+                    
+                    }
+ 
+                    let path = this.getPath(points, routeCfg);
+
+                    return G6.Util.deepMix({}, G6.Global.defaultEdge.style, {
+                        lineWidth : mindEdgeStyle.borderWidth,
+                        stroke : mindEdgeStyle.borderColor,
+                        radius : mindEdgeStyle.radius
+                    }, customOptions.style, {
+                        path
                     });
 
                 }
-            }, 'cubic-horizontal');
+            }, 'polyline');
 
         },
         _regPlaceholderEdge : function () {
 
             G6.registerEdge('mor-placeholder-edge', {
-                getShapeStyle : function (cfg) {
-
-                    let startPoint = cfg.startPoint;
-                    let endPoint = cfg.endPoint;
-                    let controlPoints = this.getControlPoints(cfg);
-                    let points = [startPoint];
-
-                    if (controlPoints) {
-
-                        points = points.concat(controlPoints);
-
-                    }
-
-                    points.push(endPoint);
-
-                    return G6.Util.mix({}, G6.Global.defaultEdge.style, cfg.style, {
-                        stroke : '#f16d6d',
-                        lineWidth : 3,
-                        // lineDash : [5, 5],
-                        path : this.getPath(points)
-                    });
-
+                getCustomConfig : function () {
+                    return {
+                        style : {
+                            lineWidth : placeholderEdgeStyle.borderWidth,
+                            stroke : placeholderEdgeStyle.borderColor,
+                            radius : placeholderEdgeStyle.radius
+                        }
+                    };
                 }
-            }, 'cubic-horizontal');
+            }, 'mor-mind-edge');
 
         },
         _regBehaviorBrushSelect : function () {
@@ -1107,6 +1564,10 @@ export default {
                     let right = Math.max(p1.x, p2.x);
                     let top = Math.min(p1.y, p2.y);
                     let bottom = Math.max(p1.y, p2.y);
+                    let width = right - left;
+                    let height = bottom - top;
+                    let centerX = left + width / 2;
+                    let centerY = top + height / 2;
                     let selectedNodes = [];
                     let selectedEdges = [];
                     let selectedIds = [];
@@ -1115,37 +1576,39 @@ export default {
                     graph.getNodes().forEach(node => {
 
                         let bbox = node.getBBox();
-                        let bboxLT = [bbox.x, bbox.y];
-                        let bboxLB = [bbox.x, bbox.y + bbox.height];
-                        let bboxRT = [bbox.x + bbox.width, bbox.y];
-                        let bboxRB = [bbox.x + bbox.width, bbox.y + bbox.height];
+                        // let bboxLT = [bbox.x, bbox.y];
+                        // let bboxLB = [bbox.x, bbox.y + bbox.height];
+                        // let bboxRT = [bbox.x + bbox.width, bbox.y];
+                        // let bboxRB = [bbox.x + bbox.width, bbox.y + bbox.height];
 
-                        // 四个角任意一个角
+                        // 计算矩形相交
                         if (
-                            (
-                                bboxLT[0] >= left &&
-                                bboxLT[0] <= right &&
-                                bboxLT[1] >= top &&
-                                bboxLT[1] <= bottom
-                            ) ||
-                            (
-                                bboxLB[0] >= left &&
-                                bboxLB[0] <= right &&
-                                bboxLB[1] >= top &&
-                                bboxLB[1] <= bottom
-                            ) ||
-                            (
-                                bboxRT[0] >= left &&
-                                bboxRT[0] <= right &&
-                                bboxRT[1] >= top &&
-                                bboxRT[1] <= bottom
-                            ) ||
-                            (
-                                bboxRB[0] >= left &&
-                                bboxRB[0] <= right &&
-                                bboxRB[1] >= top &&
-                                bboxRB[1] <= bottom
-                            )
+                            Math.abs(centerX - bbox.centerX) < ((bbox.width + width) / 2) &&
+                            Math.abs(centerY - bbox.centerY) < ((bbox.height + height) / 2)
+                            // (
+                            //     bboxLT[0] >= left &&
+                            //     bboxLT[0] <= right &&
+                            //     bboxLT[1] >= top &&
+                            //     bboxLT[1] <= bottom
+                            // ) ||
+                            // (
+                            //     bboxLB[0] >= left &&
+                            //     bboxLB[0] <= right &&
+                            //     bboxLB[1] >= top &&
+                            //     bboxLB[1] <= bottom
+                            // ) ||
+                            // (
+                            //     bboxRT[0] >= left &&
+                            //     bboxRT[0] <= right &&
+                            //     bboxRT[1] >= top &&
+                            //     bboxRT[1] <= bottom
+                            // ) ||
+                            // (
+                            //     bboxRB[0] >= left &&
+                            //     bboxRB[0] <= right &&
+                            //     bboxRB[1] >= top &&
+                            //     bboxRB[1] <= bottom
+                            // )
                         ) {
 
                             if (shouldUpdate(node, 'select')) {
@@ -1289,8 +1752,6 @@ export default {
                         delegateShape : null
                     };
 
-                    console.log('onDragStart');
-
                     // 获取所有选中的元素
                     let nodes = this.graph.findAllByState('node', 'selected');
                     let targetNodeId = evt.item.get('id');
@@ -1298,70 +1759,78 @@ export default {
                     // 当前拖动的节点是否是选中的节点
                     let dragNodes = nodes.filter(node => (targetNodeId === node.get('id')));
 
-                    // 只拖动当前节点
                     if (dragNodes.length === 0) {
 
+                        // 只拖动当前节点
                         let model = evt.item.getModel();
                         
-                        this.target = evt.item;
+                        this.targets = [evt.item];
                         this.dragOptions.type = 'unselect-single';
                         this.point = {
                             x : model.x,
-                            y : model.y 
+                            y : model.y
                         };
                     
-                    // 拖动选中节点
                     } else if (nodes.length === 1) {
     
+                        // 拖动选中节点
                         this.targets.push(evt.item);
                         this.dragOptions.type = 'select';
-                        // this.dragOptions.model = evt.item.getModel();
-                        // this.dragOptions.nodeId = evt.item.get('id');
 
-                    // 拖动多个节点
                     } else {
+
+                        let models = [];
+                        let getTopSelectedNodeModel = node => {
+                            
+                            let model = node.getModel();
+                            let parentNode = this.graph.findById(model.id).getInEdges()[0].getSource();
+
+                            if (parentNode.getStates().indexOf('selected') !== -1) {
+
+                                model = getTopSelectedNodeModel(parentNode);
+
+                            }
+
+                            return model;
+
+                        };
                         
+                        // 拖动多个节点
                         nodes.forEach(node => {
 
-                            // const hasLocked = node.hasLocked();
-                            // if (!hasLocked) {
-                            // }
+                            let model = getTopSelectedNodeModel(node);
 
-                            this.targets.push(node);
+                            // 仅计算top节点
+                            if (models.indexOf(model) === -1) {
+
+                                models.push(model);
+                                this.targets.push(node);
+                            
+                            }
 
                         });
+
                         this.dragOptions.type = 'select';
 
                     }
 
-                    this.origin = {
-                        x : evt.x,
-                        y : evt.y
-                    };
-                    // this.originPoint = {};
-
                 },
                 onDrag (evt) {
 
-                    if (!this.origin || !this.get('shouldUpdate').call(this, evt)) {
+                    // !this.origin || 
+                    if (!this.get('shouldUpdate').call(this, evt)) {
                 
                         return;
                     
                     }
 
-                    if (this.targets.length > 0) {
-
-                        // 只拖动单个元素
+                    if (this.dragOptions.type === 'unselect-single') {
+                        
                         this._updateDelegate(evt);
-
-                        // this.targets.forEach(target => {
-                        //     this._update(target, e, this.enableDelegate);
-                        // });
-
+                        
                     } else {
-
-                        // 只拖动单个元素
-                        this._update(evt);
+                        
+                        this._updateDelegate(evt);
 
                     }
 
@@ -1369,8 +1838,9 @@ export default {
 
                 },
                 onDragEnd (evt) {
-
-                    if (!this.origin || !this.shouldEnd.call(this, evt)) {
+                    
+                    // !this.origin || 
+                    if (!this.shouldEnd.call(this, evt)) {
                         
                         return;
                     
@@ -1383,11 +1853,8 @@ export default {
 
                     }
 
-                    this.dragOptions = {};
-                    this.origin = null;
-                    this.point = {};
-                    this.originPoint = {};
-                    // this.targets.length = 0;
+                    // this.origin = null;
+                    // this.originPoint = {};
                     // this.target = null;
 
                     // 终止时需要判断此时是否在监听画布外的 mouseup 事件，若有则解绑
@@ -1404,27 +1871,26 @@ export default {
                     vm._updateDragTarget(false);
                     vm._removeOldDragPlaceholder();
                     this.graph.refreshLayout();
+                    this.dragOptions = {};
+                    this.point = {};
+                    this.targets.length = 0;
                     vm.data.dragging = false;
 
                 },
-                _update (evt) {
-
-                    let origin = this.origin;
-                    let x = evt.x - origin.x + this.point.x;
-                    let y = evt.y - origin.y + this.point.y;
-
-                    // 拖动单个未选中元素
-                    this._updateDelegate(evt, x, y);
-                
-                },
-                _updateDelegate (evt, x, y) {
+                _updateDelegate (evt) {
 
                     // 如果还没创建代理元素
                     if (!this.dragOptions.delegateShape) {
 
                         let parent = this.graph.get('group');
+                        let delegateShapeAttr = {
+                            fill : delegateShapeStyle.bgColor,
+                            stroke : delegateShapeStyle.borderColor,
+                            lineWidth : delegateShapeStyle.borderWidth,
+                            lineDash : [5, 5]
+                        };
 
-                        if (this.targets.length > 0) {
+                        if (this.dragOptions.type === 'select') {
 
                             const {
                                 x,
@@ -1445,17 +1911,12 @@ export default {
                             };
 
                             this.dragOptions.delegateShape = parent.addShape('rect', {
-                                attrs : {
-                                    fill : '#F3F9FF',
-                                    fillOpacity : 0.5,
-                                    stroke : '#1890FF',
-                                    strokeOpacity : 0.9,
-                                    lineDash : [5, 5],
+                                attrs : Object.assign({
                                     width,
                                     height,
                                     x,
                                     y
-                                }
+                                }, delegateShapeAttr)
                             });
                             vm.data.dragTarget = {
                                 nodes : this.targets,
@@ -1464,25 +1925,22 @@ export default {
                                 saveModel : {}
                             };
 
-                        } else {
+                        } else if (this.dragOptions.type === 'unselect-single') {
 
-                            let bbox = this.target.get('keyShape').getBBox();
-                            
+                            let bbox = this.targets[0].get('keyShape').getBBox();
+                            let x = evt.x - this.dragOptions.originX + this.point.x;
+                            let y = evt.y - this.dragOptions.originY + this.point.y;
+
                             this.dragOptions.delegateShape = parent.addShape('rect', {
-                                attrs : {
-                                    fill : '#F3F9FF',
-                                    fillOpacity : 0.5,
-                                    stroke : '#1890FF',
-                                    strokeOpacity : 0.9,
-                                    lineDash : [5, 5],
+                                attrs : Object.assign({
                                     width : bbox.width,
                                     height : bbox.height,
                                     x : x + bbox.x,
                                     y : y + bbox.y,
-                                }
+                                }, delegateShapeAttr)
                             });
                             vm.data.dragTarget = {
-                                nodes : [this.target],
+                                nodes : this.targets,
                                 hidden : false,
                                 originNodeStyle : {},
                                 saveModel : {}
@@ -1491,30 +1949,32 @@ export default {
                         }
                         
                         vm._updateDragTarget(true);
-                        vm._refreshDragPlaceholder(this.dragOptions.delegateShape, evt.item);
+                        vm._refreshDragHolder(this.dragOptions.delegateShape, evt.item);
                         // this.target.set('delegateShape', this.delegateShape);
                         // this.dragOptions.delegateShape.set('capture', false);
 
                     } else if (this.dragOptions.type === 'unselect-single') {
 
                         let bbox = evt.item.get('keyShape').getBBox();
+                        let x = evt.x - this.dragOptions.originX + this.point.x;
+                        let y = evt.y - this.dragOptions.originY + this.point.y;
 
                         this.dragOptions.delegateShape.attr({
                             x : x + bbox.x,
                             y : y + bbox.y
                         });
-                        vm._refreshDragPlaceholder(this.dragOptions.delegateShape, null);
+                        vm._refreshDragHolder(this.dragOptions.delegateShape, null);
 
                     } else if (this.dragOptions.type === 'select') {
         
-                        let clientX = evt.x - this.origin.x + this.originPoint.minX;
-                        let clientY = evt.y - this.origin.y + this.originPoint.minY;
+                        let clientX = evt.x - this.dragOptions.originX + this.originPoint.minX;
+                        let clientY = evt.y - this.dragOptions.originY + this.originPoint.minY;
 
                         this.dragOptions.delegateShape.attr({
                             x : clientX,
                             y : clientY
                         });
-                        vm._refreshDragPlaceholder(this.dragOptions.delegateShape, null);
+                        vm._refreshDragHolder(this.dragOptions.delegateShape, null);
 
                     }
 
@@ -1589,6 +2049,7 @@ export default {
         _registrar : function () {
 
             this._regMindNode();
+            this._regRootMindNode();
             this._regPlaceholderNode();
             this._regMindEdge();
             this._regPlaceholderEdge();
@@ -1607,7 +2068,7 @@ export default {
         },
         _createGraph : function () {
 
-            this.data.graph = new G6.TreeGraph({
+            let graphOtions = {
                 container : this.data.$canvas,
                 width : 760,
                 height : 500,
@@ -1628,8 +2089,6 @@ export default {
                     shape : 'mor-mind-edge'
                 },
                 layout : {
-                    type : 'compactBox',
-                    direction : 'LR',
                     getHeight : data => {
 
                         let node = this.data.graph.findById(data.id);
@@ -1641,6 +2100,17 @@ export default {
                         ) {
 
                             return 0;
+
+                        }
+
+                        let model = node.getModel();
+
+                        if (model.style && model.style.computedRadius) {
+
+                            node.get('group').getChildByIndex(conShapeIndex).attr({
+                                radius : node.getBBox().height * model.style.computedRadius
+                            });
+                            node.get('group').set('radius', node.getBBox().height * model.style.computedRadius);
 
                         }
                         
@@ -1683,7 +2153,26 @@ export default {
 
                     }
                 }
-            });
+            };
+
+            if (this.conf.layout === 'LR') {
+
+                graphOtions.layout.direction = 'LR';
+                graphOtions.layout.type = 'compactBox';
+
+            } else if (this.conf.layout === 'RL') {
+
+                graphOtions.layout.direction = 'RL';
+                graphOtions.layout.type = 'compactBox';
+
+            } else if (this.conf.layout === 'RL') {
+
+                graphOtions.layout.direction = 'LR';
+                graphOtions.layout.type = 'indented';
+
+            }
+
+            this.data.graph = new G6.TreeGraph(graphOtions);
 
         },
         _readData : function (data) {
@@ -1691,9 +2180,28 @@ export default {
             G6.Util.traverseTree(data, item => {
 
                 item.id = this.data.globalId++;
-                item.shape = 'mor-mind-node';
                 item.anchorPoints = [[0, 0.5], [1, 0.5]];
                 item.isMindNode = true;
+                item.style = {};
+                item._shape = item.shape || 'line';
+
+                if (item._shape === 'line') {
+                    
+                    item.anchorPoints = [[0, 1], [1, 1]];
+
+                }
+                
+                if (item.isRoot) {
+
+                    item.shape = 'mor-root-mind-node';
+                    item.style = Object.assign({}, rootMindNodeStyle, rootMindNodeStyle._shapePresets[item._shape]);
+
+                } else {
+                    
+                    item.shape = 'mor-mind-node';
+                    item.style = Object.assign({}, mindNodeStyle, mindNodeStyle._shapePresets[item._shape]);
+
+                }
             
             });
             this.data.graph.read(data);
@@ -1703,6 +2211,144 @@ export default {
                 this.data.graph.refreshLayout(true);
 
             });
+
+        },
+        _exportDataWalker : function (nodeCallback, customWalker) {
+
+            let dataWalker = (data, ...args) => {
+
+                for (let item of data) {
+
+                    nodeCallback(item, ...args);
+                    
+                    if (item.children && item.children.length > 0) {
+
+                        if (typeof customWalker === 'function') {
+
+                            customWalker(Object.assign([], item.children), dataWalker);
+
+                        } else {
+
+                            dataWalker(item.children);
+
+                        }
+
+                    }
+
+                }
+
+            };
+
+            dataWalker([this.data.graph.get('data')]);
+
+        },
+        _exrpotpng : function () {
+
+            let canvas = this.data.$canvas.querySelector('canvas');
+
+            this._downloadFile(canvas.toDataURL("image/png"), 'png');
+
+        },
+        _exrpotxmind : function () {
+
+            let zip = new jszip();
+            let {
+                Workbook,
+                Topic,
+                Dumper
+            } = window;
+            let topic;
+            let workbook = new Workbook();
+
+            this._exportDataWalker((item, cid) => {
+
+                console.log('cid', cid, item);
+
+                if (topic === undefined) {
+
+                    topic = new Topic({
+                        sheet : workbook.createSheet('sheet title', item.text)
+                    });
+
+                } else if (cid) {
+
+                    topic.on(cid).add({
+                        title : item.text
+                    });
+
+                }
+
+            }, (children, dataWalker) => {
+
+                if (children && children.length > 0) {
+
+                    children.unshift(children.pop());
+                    dataWalker(children, topic.cid());
+
+                }
+
+            });
+
+            let dumper = new Dumper({
+                workbook
+            });
+            let files = dumper.dumping();
+            
+            for (const file of files) {
+
+                if (file.filename === 'content.json') {
+
+                    file.value = JSON.parse(file.value);
+
+                    if (this.conf.layout === 'LR') {
+                    
+                        file.value[0].rootTopic.structureClass = 'org.xmind.ui.logic.right';
+
+                    } else if (this.conf.layout === 'RL') {
+                    
+                        file.value[0].rootTopic.structureClass = 'org.xmind.ui.logic.left';
+
+                    }
+                    
+                    // else if (this.conf.layout === 'TL') {
+                    
+                    //     file.value[0].rootTopic.structureClass = 'org.xmind.ui.tree.right';
+                        
+
+                    // }
+
+                    file.value = JSON.stringify(file.value)
+
+                }
+                
+                zip.file(file.filename, file.value);
+            }
+            
+            zip.generateAsync({
+                type : 'blob'
+            }).then(blob => {
+
+                this._downloadFile(URL.createObjectURL(blob), 'xmind');
+            
+            });
+
+        },
+        _downloadFile : function (dataUrl, suffix) {
+
+            let downloadLink = document.createElement('a');
+
+            downloadLink.style.display = 'none';
+            downloadLink.href = dataUrl;
+            downloadLink.download = `${+new Date()}.${suffix}`;
+            window.document.body.appendChild(downloadLink);
+            downloadLink.click();
+            window.document.body.removeChild(downloadLink);
+
+        },
+        export : function (type) {
+
+            // type is : xmind,png,json,markdown
+            this[`_export${type}`]();
 
         }
     },
@@ -1816,7 +2462,7 @@ export default {
         this._registrar();
         this._createGraph();
         this._bindEvent();
-        this._readData(data3);
+        this._readData(data2);
         window.G6 = G6;
 
     }

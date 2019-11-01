@@ -50802,6 +50802,7 @@ mor-mindmap .mindmap-wrap .edit-content {
   top: 0;
   left: 0;
   transform-origin: left top;
+  background: #FFFFFF;
 }
 mor-mindmap .mindmap-wrap .edit-content textarea {
   padding: 0;
