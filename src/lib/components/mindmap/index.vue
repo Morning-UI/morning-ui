@@ -52,6 +52,7 @@ const textShapeIndex = 3;
 const placeholderShapeIndex = 4;
 const bottomlineShapeIndex = 5;
 const outlinePadding = 3;
+const dragRefreshInterval = 160;
 
 const lineColor = 'rgba(51, 51, 51, 1)';
 const lineWidth = 2;
@@ -61,6 +62,8 @@ const mindNodeStyle = {
     bgColor : '#e8e8e8',
     fontColor : 'rgba(0, 0, 0, 1)',
     fontSize : 16,
+    fontWeight : 400,
+    fontStyle : 'normal',
     borderWidth : 1,
     borderColor : lineColor,
     outlineColor : '#8cdcf5',
@@ -91,6 +94,8 @@ const rootMindNodeStyle = {
     bgColor : 'rgba(35, 123, 191, 1)',
     fontColor : 'rgba(255, 255, 255, 1)',
     fontSize : 24,
+    fontWeight : 400,
+    fontStyle : 'normal',
     borderWidth : 0,
     borderColor : lineColor,
     outlineColor : '#8cdcf5',
@@ -184,30 +189,38 @@ export default {
                 },
                 dragging : false,
                 dragHolderParentChilren : null,
-                dragHolderIndexOfParentChildren : null
+                dragHolderIndexOfParentChildren : null,
+                dataMap : {}
             }
         };
 
     },
     methods : {
-        // _getIncomeNode : function (node) {
+        _getNodeStyles : function (nodeStyle, model) {
 
-        //     return node.getInEdges()[0].getSource();
+            if (model._shape === undefined) {
 
-        // },
-        // _getOutcomeNodes : function (node) {
+                if (model.depth < 2) {
 
-        //     let nodes = [];
+                    model._shape = 'round-rect';
 
-        //     node.getOutEdges().forEach(edge => {
+                } else {
 
-        //         nodes.push(edge.getTarget());
+                    model._shape = 'line';
 
-        //     });
+                }
 
-        //     return nodes;
+            }
 
-        // },
+            if (model._shape === 'line') {
+                
+                model.anchorPoints = [[0, 1], [1, 1]];
+
+            }
+
+            return G6.Util.deepMix({}, nodeStyle, nodeStyle._shapePresets[model._shape], model.style);
+
+        },
         _clearSelectedNode : function (selectedState) {
                     
             let graph = this.data.graph;
@@ -263,7 +276,7 @@ export default {
                 this._refreshNodeEdges(edges);
 
             }
-
+    
             let groupShapes = this._getGroupShapes(node);
             let textAttr = groupShapes.text.attr();
             let nodeBbox = node.getBBox();
@@ -282,25 +295,26 @@ export default {
 
             }
 
-            let inputX = `${textBbox.x + 1}px`;
-            let inputY = `${textBbox.y}px`;
+            const padding = 10;
 
-            // inputX = (inputX < 0) ? `calc(50% - ${Math.abs(inputX)}px - ${textBbox.width / 2}px)` : `calc(50% + ${inputX}px - ${textBbox.width / 2}px)`;
-            // inputY = (inputY < 0) ? `calc(50% - ${Math.abs(inputY)}px)` : `calc(50% + ${inputY}px)`;
+            let inputX = `${textBbox.x + 1 - padding}px`;
+            let inputY = `${textBbox.y - padding}px`;
 
             this.data.$editContent.style.display = 'block';
             this.data.$editContent.style.left = `${nodeX}px`;
             this.data.$editContent.style.top = `${nodeY}px`;
             this.data.$editContent.style.width = `${conBbox.width}px`;
             this.data.$editContent.style.height = `${conBbox.height}px`;
-            this.data.$editContentInput.style.width = `${textBbox.width}px`;
-            this.data.$editContentInput.style.height = `${textBbox.height}px`;
+            this.data.$editContentInput.style.width = `${textBbox.width + (padding * 2)}px`;
+            this.data.$editContentInput.style.height = `${textBbox.height + (padding * 2)}px`;
+            this.data.$editContentInput.style.padding = `${padding}px`;
             this.data.$editContentInput.style.left = inputX;
             this.data.$editContentInput.style.top = inputY;
             this.data.$editContentInput.style.color = textAttr.fill;
             this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
             this.data.$editContentInput.style.textAlign = textAttr.textAlign;
             this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
+            this.data.$editContentInput.style.fontStyle = textAttr.fontStyle;
             this.data.$editContentInput.style.fontFamily = textAttr.fontFamily;
             this.data.editContent = textAttr.text;
             this.data.editZoom = zoom;
@@ -477,14 +491,18 @@ export default {
                 let nodeBbox = node.getBBox();
 
                 this._fillChildBbox(nodeBbox, node);
+                console.log(123, node.getModel().isRoot);
 
+                // 如果是root节点无视区域
                 if (
                     (
                         (this.conf.layout === 'LR' && nodeBbox.centerX < delegateBbox.x) ||
-                        (this.conf.layout === 'RL' && nodeBbox.centerX > delegateBbox.x)
+                        (this.conf.layout === 'RL' && nodeBbox.centerX > delegateBbox.x) ||
+                        node.getModel().isRoot
                     ) &&
                     (
-                        (nodeBbox.conMaxY > delegateBbox.centerY && delegateBbox.centerY > nodeBbox.conMinY)
+                        (nodeBbox.conMaxY > delegateBbox.centerY && delegateBbox.centerY > nodeBbox.conMinY) ||
+                        node.getModel().isRoot
                         // (nodeBbox.conMaxY > delegateBbox.maxY && delegateBbox.maxY > nodeBbox.conMinY)
                     )
                 ) {
@@ -560,7 +578,7 @@ export default {
 
             }
 
-        }, 160),
+        }, dragRefreshInterval),
         _toggleAllChildren : function (node, type) {
 
             let outEdges = node.getOutEdges();
@@ -646,13 +664,17 @@ export default {
                     .get('group')
                     .getChildByIndex(conShapeIndex)
                     .hide();
+                node
+                    .get('group')
+                    .getChildByIndex(bottomlineShapeIndex)
+                    .hide();
 
                 // 隐藏所有子项
                 this._toggleAllChildren(node, 'hide');
 
             } else if (!dragging && dragTarget.hidden) {
 
-                let oldParentChilren = node.getInEdges()[0].getSource().getModel().children;
+                // let oldParentChilren = node.getInEdges()[0].getSource().getModel().children;
                 let nodeData = dragTarget.saveModel[index];
 
                 node.setState('dragging', false);
@@ -674,6 +696,10 @@ export default {
                 node
                     .get('group')
                     .getChildByIndex(conShapeIndex)
+                    .show();
+                node
+                    .get('group')
+                    .getChildByIndex(bottomlineShapeIndex)
                     .show();
 
                 // 显示所有子项
@@ -915,10 +941,10 @@ export default {
             G6.registerNode('mor-root-mind-node', {
                 drawShape : (cfg, group) => {
 
-                    let options = G6.Util.deepMix({}, cfg.style);
+                    let style = this._getNodeStyles(rootMindNodeStyle, cfg);
                     let cursor = 'default';
-                    let conPaddingX = options.fontSize*1.5;
-                    let conPaddingY = options.fontSize*0.75;
+                    let conPaddingX = style.fontSize * 1.5;
+                    let conPaddingY = style.fontSize * 0.75;
                     let box = group.addShape('rect', {
                         attrs : {
                             x : 0,
@@ -930,7 +956,7 @@ export default {
                     let outline = group.addShape('rect', {
                         attrs : {
                             fill : 'transparent',
-                            radius : options.outlineRadius,
+                            radius : style.outlineRadius,
                             cursor,
                             stroke : 'transparent',
                             lineWidth : 3
@@ -938,11 +964,11 @@ export default {
                     });
                     let con = group.addShape('rect', {
                         attrs : {
-                            fill : options.bgColor,
-                            radius : options.radius,
+                            fill : style.bgColor,
+                            radius : style.radius,
                             cursor,
-                            lineWidth : options.borderWidth,
-                            stroke : options.borderColor
+                            lineWidth : style.borderWidth,
+                            stroke : style.borderColor
                         }
                     });
                     let text = group.addShape('text', {
@@ -952,8 +978,10 @@ export default {
                             text : cfg.text,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : options.fontColor,
-                            fontSize : options.fontSize,
+                            fill : style.fontColor,
+                            fontSize : style.fontSize,
+                            fontWeight : style.fontWeight,
+                            fontStyle : style.fontStyle,
                             cursor
                         }
                     });
@@ -964,14 +992,14 @@ export default {
                             y : 0,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : options.fontColor,
-                            fontSize : options.fontSize,
+                            fill : style.fontColor,
+                            fontSize : style.fontSize,
                             cursor
                         }
                     });
                     let bottomline = group.addShape('rect', {
                         attrs : {
-                            fill : options.bottomlineBg
+                            fill : style.bottomlineBg
                         }
                     });
 
@@ -1015,7 +1043,7 @@ export default {
                     bottomline.attr({
                         x : boxBbox.minX - 1,
                         y : boxBbox.maxY - 0.5,
-                        height : options.bottomlineHeight,
+                        height : style.bottomlineHeight,
                         width : boxBbox.width + 2
                     });
 
@@ -1024,7 +1052,7 @@ export default {
                 },
                 setState : (name, value, item) => {
 
-                    let options = G6.Util.deepMix({}, item.getModel().style);
+                    let style = this._getNodeStyles(rootMindNodeStyle, item.getModel());
                     let states = item.getStates();
                     let box = item.get('keyShape');
                     let group = box.getParent();
@@ -1055,7 +1083,7 @@ export default {
                     ) {
 
                         outline.attr({
-                            stroke : options.outlineActiveColor,
+                            stroke : style.outlineActiveColor,
                             lineWidth : 3
                         });
                         group.set('zIndex', 9);
@@ -1066,7 +1094,7 @@ export default {
                     ) {
 
                         outline.attr({
-                            stroke : options.outlineColor,
+                            stroke : style.outlineColor,
                             lineWidth : 3
                         });
                         group.set('zIndex', 3);
@@ -1090,10 +1118,10 @@ export default {
             G6.registerNode('mor-mind-node', {
                 drawShape : (cfg, group) => {
 
-                    let options = G6.Util.deepMix({}, cfg.style);
+                    let style = this._getNodeStyles(mindNodeStyle, cfg);
                     let cursor = 'default';
-                    let conPaddingX = options.fontSize*1.5;
-                    let conPaddingY = options.fontSize*0.75;
+                    let conPaddingX = style.fontSize * 1.5;
+                    let conPaddingY = style.fontSize * 0.75;
                     let box = group.addShape('rect', {
                         attrs : {
                             x : 0,
@@ -1105,7 +1133,7 @@ export default {
                     let outline = group.addShape('rect', {
                         attrs : {
                             fill : 'transparent',
-                            radius : options.outlineRadius,
+                            radius : style.outlineRadius,
                             cursor,
                             stroke : 'transparent',
                             lineWidth : 3
@@ -1113,11 +1141,11 @@ export default {
                     });
                     let con = group.addShape('rect', {
                         attrs : {
-                            fill : options.bgColor,
-                            radius : options.radius,
+                            fill : style.bgColor,
+                            radius : style.radius,
                             cursor,
-                            lineWidth : options.borderWidth,
-                            stroke : options.borderColor
+                            lineWidth : style.borderWidth,
+                            stroke : style.borderColor
                         }
                     });
                     let text = group.addShape('text', {
@@ -1127,8 +1155,10 @@ export default {
                             text : cfg.text,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : options.fontColor,
-                            fontSize : options.fontSize,
+                            fill : style.fontColor,
+                            fontSize : style.fontSize,
+                            fontWeight : style.fontWeight,
+                            fontStyle : style.fontStyle,
                             cursor
                         }
                     });
@@ -1139,14 +1169,14 @@ export default {
                             y : 0,
                             textAlign : 'left',
                             textBaseline : 'middle',
-                            fill : options.fontColor,
-                            fontSize : options.fontSize,
+                            fill : style.fontColor,
+                            fontSize : style.fontSize,
                             cursor
                         }
                     });
                     let bottomline = group.addShape('rect', {
                         attrs : {
-                            fill : options.bottomlineBg
+                            fill : style.bottomlineBg
                         }
                     });
 
@@ -1190,7 +1220,7 @@ export default {
                     bottomline.attr({
                         x : boxBbox.minX - 1,
                         y : boxBbox.maxY - 0.5,
-                        height : options.bottomlineHeight,
+                        height : style.bottomlineHeight,
                         width : boxBbox.width + 2
                     });
 
@@ -1199,7 +1229,7 @@ export default {
                 },
                 setState : (name, value, item) => {
 
-                    let options = G6.Util.deepMix({}, item.getModel().style);
+                    let style = this._getNodeStyles(mindNodeStyle, item.getModel());
                     let states = item.getStates();
                     let box = item.get('keyShape');
                     let group = box.getParent();
@@ -1230,7 +1260,7 @@ export default {
                     ) {
 
                         outline.attr({
-                            stroke : options.outlineActiveColor,
+                            stroke : style.outlineActiveColor,
                             lineWidth : 3
                         });
                         group.set('zIndex', 9);
@@ -1241,7 +1271,7 @@ export default {
                     ) {
 
                         outline.attr({
-                            stroke : options.outlineColor,
+                            stroke : style.outlineColor,
                             lineWidth : 3
                         });
                         group.set('zIndex', 3);
@@ -2165,45 +2195,41 @@ export default {
                 graphOtions.layout.direction = 'RL';
                 graphOtions.layout.type = 'compactBox';
 
-            } else if (this.conf.layout === 'RL') {
+            } 
+            
+            // else if (this.conf.layout === 'RL') {
 
-                graphOtions.layout.direction = 'LR';
-                graphOtions.layout.type = 'indented';
+            //     graphOtions.layout.direction = 'LR';
+            //     graphOtions.layout.type = 'indented';
 
-            }
+            // }
 
             this.data.graph = new G6.TreeGraph(graphOtions);
 
         },
+        _traverseNode : function (item) {
+
+            item.id = this.data.globalId++;
+            item.anchorPoints = [[0, 0.5], [1, 0.5]];
+            item.isMindNode = true;
+            item.style = {};
+            item._shape = item.shape;
+            this.data.dataMap[item.id] = item;
+
+            if (item.isRoot) {
+
+                item.shape = 'mor-root-mind-node';
+
+            } else {
+                
+                item.shape = 'mor-mind-node';
+
+            }
+
+        },
         _readData : function (data) {
 
-            G6.Util.traverseTree(data, item => {
-
-                item.id = this.data.globalId++;
-                item.anchorPoints = [[0, 0.5], [1, 0.5]];
-                item.isMindNode = true;
-                item.style = {};
-                item._shape = item.shape || 'line';
-
-                if (item._shape === 'line') {
-                    
-                    item.anchorPoints = [[0, 1], [1, 1]];
-
-                }
-                
-                if (item.isRoot) {
-
-                    item.shape = 'mor-root-mind-node';
-                    item.style = Object.assign({}, rootMindNodeStyle, rootMindNodeStyle._shapePresets[item._shape]);
-
-                } else {
-                    
-                    item.shape = 'mor-mind-node';
-                    item.style = Object.assign({}, mindNodeStyle, mindNodeStyle._shapePresets[item._shape]);
-
-                }
-            
-            });
+            G6.Util.traverseTree(data, this._traverseNode);
             this.data.graph.read(data);
 
             setTimeout(() => {
@@ -2213,14 +2239,14 @@ export default {
             });
 
         },
-        _exportDataWalker : function (nodeCallback, customWalker) {
+        _exportDataWalker : function (data, nodeCallback, customWalker) {
 
             let dataWalker = (data, ...args) => {
 
                 for (let item of data) {
 
                     nodeCallback(item, ...args);
-                    
+
                     if (item.children && item.children.length > 0) {
 
                         if (typeof customWalker === 'function') {
@@ -2239,17 +2265,73 @@ export default {
 
             };
 
-            dataWalker([this.data.graph.get('data')]);
+            dataWalker(data);
 
         },
-        _exrpotpng : function () {
+        _swapArr : function (children, fromIndex, toIndex) {
+
+            children[toIndex] = children.splice(fromIndex, 1, children[toIndex])[0];
+        
+            return children;
+
+        },
+        _downloadFile : function (dataUrl, suffix) {
+
+            let downloadLink = document.createElement('a');
+
+            downloadLink.style.display = 'none';
+            downloadLink.href = dataUrl;
+            downloadLink.download = `${+new Date()}.${suffix}`;
+            window.document.body.appendChild(downloadLink);
+            downloadLink.click();
+            window.document.body.removeChild(downloadLink);
+
+        },
+        _exportPNG : function () {
 
             let canvas = this.data.$canvas.querySelector('canvas');
 
             this._downloadFile(canvas.toDataURL("image/png"), 'png');
 
         },
-        _exrpotxmind : function () {
+        _exportJSON : function (data) {
+
+            let json = [];
+            let current = null;
+
+            this._exportDataWalker(data, (item, parent) => {
+
+                current = {
+                    name : item.text,
+                    children : []
+                };
+
+                if (parent === undefined) {
+
+                    json.push(current);
+
+                } else {
+
+                    parent.push(current);
+
+                }
+
+            }, (children, dataWalker) => {
+
+                if (children && children.length > 0) {
+
+                    dataWalker(children, current.children);
+
+                }
+
+            });
+
+            let blob = new Blob([JSON.stringify(json, null, 4)]);
+
+            this._downloadFile(URL.createObjectURL(blob), 'json');
+            
+        },
+        _exportXMIND : function (data) {
 
             let zip = new jszip();
             let {
@@ -2260,9 +2342,9 @@ export default {
             let topic;
             let workbook = new Workbook();
 
-            this._exportDataWalker((item, cid) => {
+            this._exportDataWalker(data, (item, cid) => {
 
-                console.log('cid', cid, item);
+                console.log(item.text);
 
                 if (topic === undefined) {
 
@@ -2311,10 +2393,7 @@ export default {
                     }
                     
                     // else if (this.conf.layout === 'TL') {
-                    
                     //     file.value[0].rootTopic.structureClass = 'org.xmind.ui.tree.right';
-                        
-
                     // }
 
                     file.value = JSON.stringify(file.value)
@@ -2333,23 +2412,148 @@ export default {
             });
 
         },
-        _downloadFile : function (dataUrl, suffix) {
+        export : function (type, nodeId) {
 
-            let downloadLink = document.createElement('a');
+            let data = [this.data.graph.get('data')];
 
-            downloadLink.style.display = 'none';
-            downloadLink.href = dataUrl;
-            downloadLink.download = `${+new Date()}.${suffix}`;
-            window.document.body.appendChild(downloadLink);
-            downloadLink.click();
-            window.document.body.removeChild(downloadLink);
+            if (nodeId) {
 
-        },
-        export : function (type) {
+                data = [this.data.graph.findById(nodeId).getModel()];
+
+            }
 
             // type is : xmind,png,json,markdown
-            this[`_export${type}`]();
+            this[`_export${type.toUpperCase()}`](data);
 
+        },
+        insertBeforeNode : function (nodeId, data) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let parent = node.getInEdges()[0].getSource();
+            let parentModel = parent.getModel();
+            let indexOfParent = parentModel.children.indexOf(model);
+
+            return this.insertSubNode(parentModel.id, data, indexOfParent);
+
+        },
+        insertAfterNode : function (nodeId, data) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let parent = node.getInEdges()[0].getSource();
+            let parentModel = parent.getModel();
+            let indexOfParent = parentModel.children.indexOf(model);
+
+            return this.insertSubNode(parentModel.id, data, indexOfParent + 1);
+
+        },
+        insertNode : function (nodeId, data) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            if (model.isRoot) {
+
+                return null;
+
+            }
+
+            let parentModel = node.getInEdges()[0].getSource().getModel();
+
+            return this.insertSubNode(parentModel.id, data);
+
+        },
+        insertSubNode : function (nodeId, data, index = -1) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            if (model.isRoot) {
+
+                return null;
+
+            }
+
+            if (model.children === undefined) {
+
+                model.children = [];
+
+            }
+
+            this._traverseNode(data);
+
+            if (index > -1) {
+                
+                model.children.splice(index, 0, data);
+
+            } else {
+                
+                model.children.push(data);
+
+            }
+
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return data.id;
+
+        },
+        moveUp : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let parent = node.getInEdges()[0].getSource();
+            let parentModel = parent.getModel();
+            let indexOfParent = parentModel.children.indexOf(model);
+
+            if (indexOfParent === 0) {
+
+                return this;
+
+            }
+
+            this._swapArr(parentModel.children, indexOfParent, indexOfParent - 1);
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+        },
+        moveDown : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let parent = node.getInEdges()[0].getSource();
+            let parentModel = parent.getModel();
+            let indexOfParent = parentModel.children.indexOf(model);
+
+            if (indexOfParent === parentModel.children.length - 1) {
+
+                return this;
+
+            }
+
+            this._swapArr(parentModel.children, indexOfParent, indexOfParent + 1);
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return this;
+
+        },
+        stylingNode : function (nodeId, style) {
+
+            // style included : fontSize / fontWeight / fontColor / fontStyle
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            model.style = G6.Util.deepMix(model.style, style);
+            node.update(model);
+            node.draw();
+            this.data.graph.refreshLayout();
+
+        },
+        deleteNode : function (nodeId) {
+            // TODO
         }
     },
     created : function () {},

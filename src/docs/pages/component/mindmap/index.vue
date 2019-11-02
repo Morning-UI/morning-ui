@@ -7,6 +7,7 @@
     # 思维导图 `<ui-mindmap>`
     
     <doc-component-status page="mindmap"></doc-component-status>
+    <doc-component-experimental></doc-component-not-recommended>
     
     [[[开始]]]
 

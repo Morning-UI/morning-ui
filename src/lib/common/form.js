@@ -1,4 +1,4 @@
-import extend                       from 'extend';
+import cloneDeep                    from 'lodash.clonedeep';
 
 export default UI => UI.extend({
     model : {
@@ -341,17 +341,13 @@ export default UI => UI.extend({
 
             if (typeof this.data.value === 'object') {
 
-                if (this.data.value instanceof Array) {
-
-                    result = extend(true, [], this.data.value);
-
-                } else if (this.data.value === null) {
+                if (this.data.value === null) {
 
                     result = null;
 
                 } else {
-                
-                    result = extend(true, {}, this.data.value);
+
+                    result = cloneDeep(this.data.value);
 
                 }
 
@@ -408,7 +404,7 @@ export default UI => UI.extend({
         },
         getGroup : function () {
 
-            return extend(true, [], this.conf.group);
+            return cloneDeep(this.conf.group);
 
         },
         addGroup : function (group) {

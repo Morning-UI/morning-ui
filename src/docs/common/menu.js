@@ -68,6 +68,7 @@ export default {
         音频 : '/component/audio.html',
         视频 : '/component/video.html',
         回到顶部: '/component/backtop.html',
+        思维导图: '/component/mindmap.html',
         表单组件 : null,
         文本输入 : '/component/textinput.html',
         段落输入 : '/component/textarea.html',
@@ -89,8 +90,7 @@ export default {
         日期时间选择器 : '/component/datetimepicker.html',
         文件上传 : '/component/upload.html',
         颜色选择器 : '/component/colorpicker.html',
-        图片热区输入 : '/component/imagemap.html',
-        思维导图: '/component/mindmap.html'
+        图片热区输入 : '/component/imagemap.html'
     },
     guide : {
         开始使用 : null,

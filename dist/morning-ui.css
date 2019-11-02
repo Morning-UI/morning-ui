@@ -31354,11 +31354,11 @@ mor-btn.co-n11:not(.plain):not(.ghost).st-readonly {
 mor-btn.co-t.plain,
 mor-btn.co-t.ghost:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.co-t.ghost.st-hover {
-  background-color: #fdd7dd;
+  background-color: #fde5e9;
 }
 mor-btn.co-t.ghost:not(.st-disabled):not(.st-readonly):active,
 mor-btn.co-t.ghost.st-active {
-  background-color: #fbbac5;
+  background-color: #fdd7dd;
 }
 mor-btn.co-t:not(.plain):not(.ghost).st-disabled,
 mor-btn.co-t:not(.plain):not(.ghost).st-readonly {
@@ -31570,11 +31570,11 @@ mor-btn.st-apparent:hover {
 mor-btn.plain,
 mor-btn.ghost:not(.st-disabled):not(.st-readonly):hover,
 mor-btn.ghost.st-hover {
-  background-color: #fdd7dd;
+  background-color: #fde5e9;
 }
 mor-btn.ghost:not(.st-disabled):not(.st-readonly):active,
 mor-btn.ghost.st-active {
-  background-color: #fbbac5;
+  background-color: #fdd7dd;
 }
 mor-btn:not(.plain):not(.ghost).st-disabled,
 mor-btn:not(.plain):not(.ghost).st-readonly {
@@ -36326,6 +36326,9 @@ mor-avatar > .wrap {
 }
 mor-avatar > .wrap img {
   vertical-align: top;
+  max-width: 100%;
+  background-color: #FFFFFF;
+  box-sizing: content-box;
 }
 mor-avatar > .wrap .avatar-string {
   white-space: nowrap;
@@ -42885,7 +42888,7 @@ mor-select.input-group .select-area {
   color: #F33D5D;
 }
 .mor-select-wrap li.selected {
-  background: #f8f8f8;
+  background: #f4f4f4;
   color: #F33D5D;
 }
 .mor-select-wrap li.selected.hover {
@@ -42896,7 +42899,7 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap li.hover {
   color: #8c8c8c;
-  background: #f8f8f8;
+  background: #f4f4f4;
 }
 .mor-select-wrap li.infoitem {
   color: #bfbfbf;
@@ -46569,14 +46572,14 @@ mor-cascader .cascader-wrap .cascader-input > .note {
   display: flex;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li:hover {
-  background: #f3f3f3;
+  background: #ededed;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.current {
   background: #FFFFFF;
   color: #F33D5D;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.last-current {
-  background: #f3f3f3;
+  background: #ededed;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li.disabled {
   background: #e2e2e2;
@@ -46621,7 +46624,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
   position: relative;
 }
 .mor-cascader-search-result ul li.selected {
-  background: #f8f8f8;
+  background: #f4f4f4;
   color: #F33D5D;
   cursor: default;
 }
@@ -46641,7 +46644,7 @@ mor-cascader .cascader-wrap .cascader-input > .note {
 }
 .mor-cascader-search-result ul li:not(.nomatch):hover {
   cursor: pointer;
-  background: #f3f3f3;
+  background: #ededed;
 }
 mor-multiinput {
   position: relative;
@@ -46717,7 +46720,7 @@ mor-multiinput .form-body > .multiinput-itemlist {
 }
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item {
   color: #9e9e9e !important;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   display: inline-block;
   border-radius: 3px;
   vertical-align: top;
@@ -46726,7 +46729,7 @@ mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item {
   position: relative;
   cursor: default;
   box-sizing: border-box;
-  border: 1px solid #f8f8f8;
+  border: 1px solid #f4f4f4;
 }
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.will-delete {
   border: 1px solid #d6d6d6;
@@ -46747,7 +46750,7 @@ mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > span {
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item:hover {
   text-decoration: none;
   color: #7a7a7a !important;
-  background: #f3f3f3;
+  background: #ededed;
 }
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item > i.mo-icon {
   font-size: 12px;
@@ -46772,7 +46775,7 @@ mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.move-drag-it
 mor-multiinput .form-body > .multiinput-itemlist > .multiinput-item.move-drag-item:hover {
   cursor: move;
   color: #9e9e9e !important;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
 }
 mor-multiinput .form-body > .multiinput-itemlist > input {
   border: none;
@@ -47071,7 +47074,7 @@ mor-multiform .form-body > .itemlist > .itemwrap.hidename {
 }
 mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item {
   color: #9e9e9e !important;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   display: inline-block;
   border-radius: 100px;
   vertical-align: top;
@@ -47094,7 +47097,7 @@ mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item > span {
 mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item:hover {
   text-decoration: none;
   color: #7a7a7a !important;
-  background: #f3f3f3;
+  background: #ededed;
 }
 mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.move-moving {
   opacity: 0.2;
@@ -47122,7 +47125,7 @@ mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.move-drag-ite
 mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.move-drag-item:hover {
   cursor: move;
   color: #9e9e9e !important;
-  background-color: #f3f3f3;
+  background-color: #ededed;
 }
 mor-multiform .form-body > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-right: 0;
@@ -47466,7 +47469,7 @@ mor-slider .wrap {
 }
 mor-slider .wrap:hover .track,
 mor-slider .wrap.droping .track {
-  background: #e8e8e8;
+  background: #e3e3e3;
 }
 mor-slider .wrap:hover .selected-line,
 mor-slider .wrap.droping .selected-line {
@@ -47576,11 +47579,11 @@ mor-slider .marks li.co-n11 {
   background: #333333;
 }
 mor-slider.hide-part-points .points li {
-  background: #fdfdfd;
+  background: #f9f9f9;
 }
 mor-slider .track {
   width: 100%;
-  background: #ededed;
+  background: #eaeaea;
   border-radius: 10em;
   position: relative;
   cursor: pointer;
@@ -48688,7 +48691,7 @@ mor-upload .filelist.type-box .file-item.done i.mo-icon.reupload {
 }
 mor-upload .filelist.type-button .file-item.done.current,
 mor-upload .filelist.type-box .file-item.done.current {
-  background: #f0f0f0;
+  background: #ebebeb;
 }
 mor-upload .filelist.type-button .file-item.done.current i.remove,
 mor-upload .filelist.type-box .file-item.done.current i.remove,
@@ -48783,7 +48786,7 @@ mor-upload .upload-box .upload-box-preview.done:hover,
 mor-upload .filelist .upload-box-preview.done:hover {
   color: #000000;
   cursor: pointer;
-  background: #f3f3f3;
+  background: #ededed;
 }
 mor-upload .upload-input .file-item .progress,
 mor-upload .upload-box .file-item .progress,
@@ -48974,7 +48977,7 @@ mor-upload .upload-input {
 mor-upload .upload-input .upload-file,
 mor-upload .upload-input .file-item {
   color: #9e9e9e;
-  background-color: #ebebeb;
+  background-color: #e7e7e7;
   display: inline-block;
   padding: 0.4em 0.7em;
   border-radius: 100em;
@@ -49007,7 +49010,7 @@ mor-upload .upload-input .file-item:hover {
   cursor: pointer;
   text-decoration: none;
   color: #7a7a7a;
-  background: #f3f3f3;
+  background: #ededed;
 }
 mor-upload .upload-input .upload-file:hover i.mo-icon,
 mor-upload .upload-input .file-item:hover i.mo-icon {
@@ -49684,7 +49687,7 @@ mor-colorpicker .preview {
   border-top: 1px #E5E5E5 solid;
 }
 .mor-colorpicker-popover .palettes .palettes-picker .palette-item:hover {
-  background: #f8f8f8;
+  background: #f4f4f4;
   cursor: pointer;
 }
 .mor-colorpicker-popover .palettes .palettes-picker .palette-item .palette-name {
@@ -49716,7 +49719,7 @@ mor-colorpicker .preview {
 .mor-colorpicker-popover .toggle-type:hover,
 .mor-colorpicker-popover .toggle-palette:hover {
   color: #7a7a7a;
-  background: #f3f3f3;
+  background: #ededed;
 }
 .mor-colorpicker-popover .toggle-palette {
   position: absolute;
@@ -50352,7 +50355,7 @@ mor-private-timepicker.fw-xl .form-body {
   margin-bottom: 6.25em;
 }
 .mor-private-timepicker-popover .select .time-box > ul li:hover {
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   cursor: pointer;
 }
 .mor-private-timepicker-popover .select .time-box > ul li.current:hover {
@@ -50802,7 +50805,6 @@ mor-mindmap .mindmap-wrap .edit-content {
   top: 0;
   left: 0;
   transform-origin: left top;
-  background: #FFFFFF;
 }
 mor-mindmap .mindmap-wrap .edit-content textarea {
   padding: 0;
