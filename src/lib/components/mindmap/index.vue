@@ -28,6 +28,13 @@
                 @keydown.native="_editInput"
             ></textarea>
         </div>
+        <div class="node-note" :id="'mor-mindmap-note-'+uiid"></div>
+        <morning-popover
+            :target="'#mor-mindmap-note-'+uiid"
+            :ref="'mor-mindmap-note-'+uiid"
+            trigger="method"
+            placement="bottom"
+        >{{data.currentNodeNote}}</morning-popover>
     </div>
 
     <div class="error-message">{{conf._errorMessage}}</div>
@@ -38,25 +45,45 @@
  
 <script>
 import G6                           from '@antv/g6';
-let PolylineUtil                  = require('@antv/g6/lib/shape/edges/polyline-util');
-import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
 import sortBy                       from 'lodash.sortby';
 import throttle                     from 'lodash.throttle';
-import filter                       from 'lodash.filter';
-import jszip                        from 'jszip';
+import JSZip                        from 'jszip';
 
+// eslint-disable-next-line no-unused-vars
+import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
+
+const PolylineUtil = require('@antv/g6/lib/shape/edges/polyline-util');
+
+/* eslint-disable no-unused-vars, no-magic-numbers */
 const boxShapeIndex = 0;
 const outlineShapeIndex = 1;
 const conShapeIndex = 2;
 const textShapeIndex = 3;
 const placeholderShapeIndex = 4;
 const bottomlineShapeIndex = 5;
+const linkConShapeIndex = 6;
+const linkShapeIndex = 7;
+const noteConShapeIndex = 8;
+const noteShapeIndex = 9;
+
 const outlinePadding = 3;
+const annexPadding = 4;
 const dragRefreshInterval = 160;
 
 const lineColor = 'rgba(51, 51, 51, 1)';
 const lineWidth = 2;
 const placeholderColor = 'rgba(147, 233, 245, 1)';
+
+const annexList = {
+    link : {
+        index : linkConShapeIndex,
+        state : 'link-hover'
+    },
+    note : {
+        index : noteConShapeIndex,
+        state : 'note-hover'
+    }
+};
 
 const mindNodeStyle = {
     bgColor : '#e8e8e8',
@@ -148,6 +175,7 @@ const delegateShapeStyle = {
     borderColor : 'rgba(75, 201, 218, 1)',
     borderWidth : 2
 };
+/* eslint-enable no-unused-vars, no-magic-numbers */
 
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
 export default {
@@ -176,7 +204,6 @@ export default {
                 graph : null,
                 $canvas : null,
                 globalId : 1,
-                dragging : false,
                 editting : false,
                 editGroupShapes : {},
                 editNode : null,
@@ -190,7 +217,10 @@ export default {
                 dragging : false,
                 dragHolderParentChilren : null,
                 dragHolderIndexOfParentChildren : null,
-                dataMap : {}
+                dataMap : {},
+                currentNodeNote : '',
+                nodeNoteZoom : 1,
+                nodeNoteShow : false
             }
         };
 
@@ -232,7 +262,7 @@ export default {
             nodes.forEach(node => graph.setItemState(node, selectedState, false));
             edges.forEach(edge => graph.setItemState(edge, selectedState, false));
             this.selectedNodes = [];
-            this.selectedEdges = [];
+            // this.selectedEdges = [];
             graph.paint();
             graph.setAutoPaint(autoPaint);
 
@@ -246,6 +276,7 @@ export default {
             let text = group.getChildByIndex(textShapeIndex);
             let placeholder = group.getChildByIndex(placeholderShapeIndex);
             let bottomline = group.getChildByIndex(bottomlineShapeIndex);
+            let noteCon = group.getChildByIndex(noteConShapeIndex);
 
             return {
                 con,
@@ -253,7 +284,8 @@ export default {
                 text,
                 outline,
                 placeholder,
-                bottomline
+                bottomline,
+                noteCon
             };
 
         },
@@ -266,7 +298,26 @@ export default {
             }
 
         },
-        _refreshEditor : function (node) {
+        _refreshNodeNotePosition : function (node) {
+
+            let groupShapes = this._getGroupShapes(node);
+            let noteConBbox = groupShapes.noteCon.getBBox();
+            let nodeBbox = node.getBBox();
+            let zoom = this.data.graph.getZoom();
+            let {
+                x : nodeX,
+                y : nodeY
+            } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
+
+            this.data.$nodeNote.style.display = 'block';
+            this.data.$nodeNote.style.left = `${nodeX + (noteConBbox.x * zoom)}px`;
+            this.data.$nodeNote.style.top = `${nodeY + noteConBbox.y}px`;
+            this.data.$nodeNote.style.width = `${noteConBbox.width}px`;
+            this.data.$nodeNote.style.height = `${noteConBbox.height}px`;
+            this.data.nodeNoteZoom = zoom;
+
+        },
+        _refreshEditorPosition : function (node) {
 
             if (this.data.editNode) {
                 
@@ -377,7 +428,7 @@ export default {
 
                 this.data.graph.paint();
                 this._refreshMindNode(groupShapes);
-                this._refreshEditor(this.data.editNode);
+                this._refreshEditorPosition(this.data.editNode);
 
             });
 
@@ -484,6 +535,7 @@ export default {
                     node.getModel()._isHolder ||
                     node.getModel().isDragging === true) {
 
+                    // eslint-disable-next-line no-continue
                     continue;
 
                 }
@@ -491,7 +543,6 @@ export default {
                 let nodeBbox = node.getBBox();
 
                 this._fillChildBbox(nodeBbox, node);
-                console.log(123, node.getModel().isRoot);
 
                 // 如果是root节点无视区域
                 if (
@@ -514,8 +565,6 @@ export default {
 
                     let children = node.getModel().children;
 
-                    // children = filter(children, child => (!child.isDragging));
-
                     for (let index in children) {
                         
                         let childData = children[index];
@@ -523,7 +572,7 @@ export default {
 
                         if (!childData._isHolder && delegateBbox.centerY > childBbox.centerY) {
 
-                            matchOptions.index = +index + 1; 
+                            matchOptions.index = +index + 1;
 
                         }
 
@@ -565,6 +614,7 @@ export default {
                 model.children.splice(matchOptions.index, 0, {
                     id : this.data.globalId++,
                     shape : 'mor-placeholder-node',
+                    // eslint-disable-next-line no-magic-numbers
                     anchorPoints : [[0, 0.5], [1, 0.5]],
                     _isHolder : true
                 });
@@ -668,6 +718,22 @@ export default {
                     .get('group')
                     .getChildByIndex(bottomlineShapeIndex)
                     .hide();
+                node
+                    .get('group')
+                    .getChildByIndex(linkConShapeIndex)
+                    .hide();
+                node
+                    .get('group')
+                    .getChildByIndex(linkShapeIndex)
+                    .hide();
+                node
+                    .get('group')
+                    .getChildByIndex(noteConShapeIndex)
+                    .hide();
+                node
+                    .get('group')
+                    .getChildByIndex(noteShapeIndex)
+                    .hide();
 
                 // 隐藏所有子项
                 this._toggleAllChildren(node, 'hide');
@@ -700,6 +766,22 @@ export default {
                 node
                     .get('group')
                     .getChildByIndex(bottomlineShapeIndex)
+                    .show();
+                node
+                    .get('group')
+                    .getChildByIndex(linkConShapeIndex)
+                    .show();
+                node
+                    .get('group')
+                    .getChildByIndex(linkShapeIndex)
+                    .show();
+                node
+                    .get('group')
+                    .getChildByIndex(noteConShapeIndex)
+                    .show();
+                node
+                    .get('group')
+                    .getChildByIndex(noteShapeIndex)
                     .show();
 
                 // 显示所有子项
@@ -762,6 +844,7 @@ export default {
             }
 
         },
+        /* eslint-disable no-magic-numbers */
         _refreshMindNode : function (groupShapes) {
 
             let {
@@ -801,11 +884,11 @@ export default {
             });
 
             placeholder.attr({
-                y : textBbox.height / 2 + conPaddingY
+                y : (textBbox.height / 2) + conPaddingY
             });
 
             text.attr({
-                y : textBbox.height / 2 + conPaddingY
+                y : (textBbox.height / 2) + conPaddingY
             });
 
             let boxBbox = box.getBBox();
@@ -815,6 +898,29 @@ export default {
                 y : boxBbox.maxY - 0.5,
                 width : boxBbox.width + 2
             });
+
+        },
+        /* eslint-enable no-magic-numbers */
+        _inAnnex : function (evt, shapeIndex) {
+
+            let zoom = this.data.graph.getZoom();
+            let itemBbox = evt.item.getBBox();
+            let itemCanvasXY = this.data.graph.getCanvasByPoint(itemBbox.x, itemBbox.y);
+            let x = (evt.canvasX - itemCanvasXY.x) / zoom;
+            let y = (evt.canvasY - itemCanvasXY.y) / zoom;
+            let annexConShape = evt.item.get('group').getChildByIndex(shapeIndex);
+            let annexConShapeBbox = annexConShape.getBBox();
+
+            if (x > annexConShapeBbox.minX &&
+                x < annexConShapeBbox.maxX &&
+                y > annexConShapeBbox.minY &&
+                y < annexConShapeBbox.maxY) {
+
+                return true;
+
+            }
+
+            return false;
 
         },
         _onNodeHover : function () {
@@ -836,6 +942,126 @@ export default {
                     this.data.graph.setItemState(evt.item, 'hover', false);
                 
                 }
+
+            });
+
+        },
+        _onAnnexHover : function () {
+
+            this.data.graph.on('node:mousemove', evt => {
+
+                let model = evt.item.getModel();
+
+                if (!model.isMindNode) {
+
+                    return;
+
+                }
+
+                if (model.link) {
+
+                    if (this._inAnnex(evt, annexList.link.index)) {
+
+                        this.data.graph.setItemState(evt.item, annexList.link.state, true);
+
+                    } else {
+
+                        this.data.graph.setItemState(evt.item, annexList.link.state, false);
+
+                    }
+
+                }
+
+                if (model.note) {
+
+                    if (this._inAnnex(evt, annexList.note.index)) {
+
+                        this.data.graph.setItemState(evt.item, annexList.note.state, true);
+
+                    } else {
+
+                        this.data.graph.setItemState(evt.item, annexList.note.state, false);
+
+                    }
+
+                }
+
+            });
+
+        },
+        _onAnnexClick : function () {
+
+            this.data.graph.on('node:click', evt => {
+
+                let model = evt.item.getModel();
+
+                if (!model.isMindNode) {
+
+                    return;
+
+                }
+
+                if (model.link) {
+
+                    if (this._inAnnex(evt, annexList.link.index)) {
+
+                        window.open(model.link);
+
+                    }
+
+                }
+
+                if (model.note) {
+
+                    if (this._inAnnex(evt, annexList.note.index)) {
+
+                        this.data.currentNodeNote = model.note;
+                        this.data.nodeNoteShow = true;
+                        this._refreshNodeNotePosition(evt.item);
+                        this.data.$notePopover.toggle(true);
+
+                    } else {
+
+                        this.data.nodeNoteShow = false;
+                        this.data.$notePopover.toggle(false);
+
+                    }
+
+                }
+
+            });
+
+            this.data.graph.on('canvas:click', () => {
+
+                if (this.data.nodeNoteShow) {
+
+                    this.data.nodeNoteShow = false;
+                    this.data.$notePopover.toggle(false);
+
+                }
+
+            });
+
+            this.data.graph.on('wheelzoom', () => {
+
+                if (this.data.nodeNoteShow) {
+
+                    this.data.nodeNoteShow = false;
+                    this.data.$notePopover.toggle(false);
+
+                }
+
+            });
+
+            this.$watch('data.nodeNoteZoom', () => {
+
+                this.data.$nodeNote.style.transform = `scale(${this.data.nodeNoteZoom})`;
+
+            });
+
+            this.$watch('data.nodeNoteShow', () => {
+
+                this.data.$nodeNote.style.pointerEvents = (this.data.nodeNoteShow ? 'default' : 'none');
 
             });
 
@@ -864,7 +1090,7 @@ export default {
                 this.data.editting = true;
                 this.data.editGroupShapes = groupShapes;
                 this.data.editNode = evt.item;
-                this._refreshEditor(evt.item);
+                this._refreshEditorPosition(evt.item);
                 groupShapes.text.attr({
                     opacity : 0
                 });
@@ -878,7 +1104,7 @@ export default {
 
                 if (this.data.editting) {
         
-                    this._refreshEditor(this.data.editNode);
+                    this._refreshEditorPosition(this.data.editNode);
 
                 }
 
@@ -936,6 +1162,7 @@ export default {
             });
             
         },
+        /* eslint-disable no-magic-numbers */
         _regRootMindNode : function () {
 
             G6.registerNode('mor-root-mind-node', {
@@ -1002,17 +1229,78 @@ export default {
                             fill : style.bottomlineBg
                         }
                     });
+                    let linkCon = group.addShape('rect', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            radius : 3,
+                            fill : 'transparent',
+                            fillOpacity : 0.7,
+                            stroke : 'transparent'
+                        }
+                    });
+                    let link = group.addShape('text', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            fill : style.fontColor,
+                            fillOpacity : 0.6,
+                            fontFamily : 'morningicon',
+                            fontSize : style.fontSize,
+                            textAlign : 'center',
+                            textBaseline : 'middle'
+                        }
+                    });
 
                     let textBbox = text.getBBox();
+                    let linkBbox = link.getBBox();
+                    let linkConBbox = linkCon.getBBox();
+                    let conWidth = textBbox.width + (conPaddingX * 2);
+                    let conHeight = textBbox.height + (conPaddingY * 2);
+
+                    if (cfg.link) {
+
+                        link.attr({
+                            text : String.fromCharCode(parseInt('e704;', 16))
+                        });
+
+                        linkBbox = link.getBBox();
+
+                        linkCon.attr({
+                            width : linkBbox.width + (annexPadding * 2),
+                            height : linkBbox.height + (annexPadding * 2)
+                        });
+
+                        linkConBbox = linkCon.getBBox();
+
+                        conWidth = textBbox.width + (conPaddingX * 2) + (linkConBbox.width + (conPaddingX / 2));
+
+                    }
 
                     con.attr({
                         x : 0,
                         y : 0,
-                        width : textBbox.width + (conPaddingX * 2),
-                        height : textBbox.height + (conPaddingY * 2)
+                        width : conWidth,
+                        height : conHeight
                     });
 
                     let conBbox = con.getBBox();
+
+                    if (cfg.link) {
+
+                        linkCon.attr({
+                            x : conBbox.width - linkConBbox.width - conPaddingX - annexPadding,
+                            y : conPaddingY - annexPadding
+                        });
+
+                        linkConBbox = linkCon.getBBox();
+
+                        link.attr({
+                            x : linkConBbox.minX + (linkBbox.width / 2) + annexPadding + 1,
+                            y : linkConBbox.minY + (linkBbox.height / 2) + annexPadding + 1
+                        });
+
+                    }
 
                     box.attr({
                         width : conBbox.width,
@@ -1032,12 +1320,12 @@ export default {
 
                     text.attr({
                         x : conPaddingX,
-                        y : textBbox.height / 2 + conPaddingY
+                        y : (textBbox.height / 2) + conPaddingY
                     });
 
                     placeholder.attr({
                         x : conPaddingX,
-                        y : textBbox.height / 2 + conPaddingY
+                        y : (textBbox.height / 2) + conPaddingY
                     });
 
                     bottomline.attr({
@@ -1057,6 +1345,8 @@ export default {
                     let box = item.get('keyShape');
                     let group = box.getParent();
                     let outline = group.getChildByIndex(outlineShapeIndex);
+                    let linkCon = group.getChildByIndex(linkConShapeIndex);
+                    let link = group.getChildByIndex(linkShapeIndex);
 
                     if (states.indexOf('drag') !== -1) {
 
@@ -1070,6 +1360,32 @@ export default {
                         outline.attr({
                             fillOpacity : 1,
                             strokeOpacity : 1
+                        });
+
+                    }
+
+                    if (states.indexOf('link-hover') !== -1) {
+
+                        linkCon.attr({
+                            fill : style.outlineColor,
+                            stroke : style.outlineActiveColor,
+                            cursor : 'pointer'
+                        });
+                        link.attr({
+                            fillOpacity : 1,
+                            cursor : 'pointer'
+                        });
+
+                    } else {
+
+                        linkCon.attr({
+                            fill : 'transparent',
+                            stroke : 'transparent',
+                            cursor : 'default'
+                        });
+                        link.attr({
+                            fillOpacity : 0.6,
+                            cursor : 'default'
                         });
 
                     }
@@ -1179,17 +1495,139 @@ export default {
                             fill : style.bottomlineBg
                         }
                     });
+                    let linkCon = group.addShape('rect', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            radius : 3,
+                            fill : 'transparent',
+                            fillOpacity : 0.7,
+                            stroke : 'transparent'
+                        }
+                    });
+                    let link = group.addShape('text', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            fill : style.fontColor,
+                            fillOpacity : 0.6,
+                            fontFamily : 'morningicon',
+                            fontSize : style.fontSize,
+                            textAlign : 'center',
+                            textBaseline : 'middle'
+                        }
+                    });
+                    let noteCon = group.addShape('rect', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            radius : 3,
+                            fill : 'transparent',
+                            fillOpacity : 0.7,
+                            stroke : 'transparent'
+                        }
+                    });
+                    let note = group.addShape('text', {
+                        attrs : {
+                            x : 0,
+                            y : 0,
+                            fill : style.fontColor,
+                            fillOpacity : 0.6,
+                            fontFamily : 'morningicon',
+                            fontSize : style.fontSize,
+                            textAlign : 'center',
+                            textBaseline : 'middle'
+                        }
+                    });
 
                     let textBbox = text.getBBox();
+                    let linkBbox = link.getBBox();
+                    let linkConBbox = linkCon.getBBox();
+                    let noteBbox = note.getBBox();
+                    let noteConBbox = noteCon.getBBox();
+                    let conWidth = textBbox.width + (conPaddingX * 2);
+                    let conHeight = textBbox.height + (conPaddingY * 2);
+
+                    if (cfg.link) {
+
+                        link.attr({
+                            text : String.fromCharCode(parseInt('e704;', 16))
+                        });
+
+                        linkBbox = link.getBBox();
+                        linkCon.attr({
+                            width : linkBbox.width + (annexPadding * 2),
+                            height : linkBbox.height + (annexPadding * 2)
+                        });
+
+                        linkConBbox = linkCon.getBBox();
+                        conWidth += linkConBbox.width;
+
+                    }
+
+                    if (cfg.note) {
+
+                        note.attr({
+                            text : String.fromCharCode(parseInt('e605;', 16))
+                        });
+
+                        noteBbox = note.getBBox();
+                        noteCon.attr({
+                            width : noteBbox.width + (annexPadding * 2),
+                            height : noteBbox.height + (annexPadding * 2)
+                        });
+
+                        noteConBbox = noteCon.getBBox();
+                        conWidth += noteConBbox.width;
+
+                    }
+
+                    if (cfg.note || cfg.link) {
+
+                        conWidth += conPaddingX / 2;
+
+                    }
 
                     con.attr({
                         x : 0,
                         y : 0,
-                        width : textBbox.width + (conPaddingX * 2),
-                        height : textBbox.height + (conPaddingY * 2)
+                        width : conWidth,
+                        height : conHeight
                     });
 
                     let conBbox = con.getBBox();
+
+                    if (cfg.link) {
+
+                        linkCon.attr({
+                            x : conBbox.width - linkConBbox.width - conPaddingX - annexPadding,
+                            y : conPaddingY - annexPadding
+                        });
+
+                        linkConBbox = linkCon.getBBox();
+
+                        link.attr({
+                            x : linkConBbox.minX + (linkBbox.width / 2) + annexPadding + 1,
+                            y : linkConBbox.minY + (linkBbox.height / 2) + annexPadding + 1
+                        });
+
+                    }
+
+                    if (cfg.note) {
+
+                        noteCon.attr({
+                            x : conBbox.width - noteConBbox.width - conPaddingX - annexPadding,
+                            y : conPaddingY - annexPadding
+                        });
+
+                        noteConBbox = noteCon.getBBox();
+
+                        note.attr({
+                            x : noteConBbox.minX + (noteBbox.width / 2) + annexPadding + 1,
+                            y : noteConBbox.minY + (noteBbox.height / 2) + annexPadding + 1
+                        });
+
+                    }
 
                     box.attr({
                         width : conBbox.width,
@@ -1209,12 +1647,12 @@ export default {
 
                     text.attr({
                         x : conPaddingX,
-                        y : textBbox.height / 2 + conPaddingY
+                        y : (textBbox.height / 2) + conPaddingY
                     });
 
                     placeholder.attr({
                         x : conPaddingX,
-                        y : textBbox.height / 2 + conPaddingY
+                        y : (textBbox.height / 2) + conPaddingY
                     });
 
                     bottomline.attr({
@@ -1234,6 +1672,10 @@ export default {
                     let box = item.get('keyShape');
                     let group = box.getParent();
                     let outline = group.getChildByIndex(outlineShapeIndex);
+                    let linkCon = group.getChildByIndex(linkConShapeIndex);
+                    let link = group.getChildByIndex(linkShapeIndex);
+                    let noteCon = group.getChildByIndex(noteConShapeIndex);
+                    let note = group.getChildByIndex(noteShapeIndex);
 
                     if (states.indexOf('drag') !== -1) {
 
@@ -1247,6 +1689,58 @@ export default {
                         outline.attr({
                             fillOpacity : 1,
                             strokeOpacity : 1
+                        });
+
+                    }
+
+                    if (states.indexOf('link-hover') !== -1) {
+
+                        linkCon.attr({
+                            fill : style.outlineColor,
+                            stroke : style.outlineActiveColor,
+                            cursor : 'pointer'
+                        });
+                        link.attr({
+                            fillOpacity : 1,
+                            cursor : 'pointer'
+                        });
+
+                    } else {
+
+                        linkCon.attr({
+                            fill : 'transparent',
+                            stroke : 'transparent',
+                            cursor : 'default'
+                        });
+                        link.attr({
+                            fillOpacity : 0.6,
+                            cursor : 'default'
+                        });
+
+                    }
+
+                    if (states.indexOf('note-hover') !== -1) {
+
+                        noteCon.attr({
+                            fill : style.outlineColor,
+                            stroke : style.outlineActiveColor,
+                            cursor : 'pointer'
+                        });
+                        note.attr({
+                            fillOpacity : 1,
+                            cursor : 'pointer'
+                        });
+
+                    } else {
+
+                        noteCon.attr({
+                            fill : 'transparent',
+                            stroke : 'transparent',
+                            cursor : 'default'
+                        });
+                        note.attr({
+                            fillOpacity : 0.6,
+                            cursor : 'default'
                         });
 
                     }
@@ -1314,6 +1808,7 @@ export default {
             }, 'single-shape');
 
         },
+        /* eslint-enable no-magic-numbers */
         _getPathWithBorderRadiusByPolyline : function (points, borderRadius) {
 
             let pathSegments = [];
@@ -1373,7 +1868,7 @@ export default {
                     let startPoint = cfg.startPoint;
                     let endPoint = cfg.endPoint;
                     // let controlPoints = this.getControlPoints(cfg);
-                    let points = [startPoint]; 
+                    let points = [startPoint];
                     let sourceNode = cfg.source;
                     let targetNode = cfg.target;
                     let customOptions = this.getCustomConfig(cfg) || {};
@@ -1465,6 +1960,7 @@ export default {
 
             G6.registerEdge('mor-placeholder-edge', {
                 getCustomConfig : function () {
+
                     return {
                         style : {
                             lineWidth : placeholderEdgeStyle.borderWidth,
@@ -1472,16 +1968,19 @@ export default {
                             radius : placeholderEdgeStyle.radius
                         }
                     };
+                
                 }
             }, 'mor-mind-edge');
 
         },
+        /* eslint-disable no-magic-numbers */
         _regBehaviorBrushSelect : function () {
 
             let vm = this;
 
             G6.registerBehavior('mor-brush-select', {
                 getDefaultCfg () {
+
                     return {
                         brushStyle : {
                             fill : '#e0efff',
@@ -1493,9 +1992,10 @@ export default {
                         onDeselect () {},
                         selectedState : 'selected',
                         includeEdges : true,
-                        selectedEdges : [],
+                        // selectedEdges : [],
                         selectedNodes : []
                     };
+                
                 },
                 getEvents () {
 
@@ -1532,16 +2032,18 @@ export default {
                         y : evt.canvasY
                     };
                     brush.attr({
-                        width: 0,
-                        height: 0
+                        width : 0,
+                        height : 0
                     });
                     brush.show();
                     this.dragging = true;
 
                     setTimeout(() => {
+
                         G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
                             cursor : 'default'
                         });
+                    
                     });
 
                 },
@@ -1583,7 +2085,7 @@ export default {
                     vm._clearSelectedNode(this.selectedState);
 
                 },
-                _getSelectedNodes(evt) {
+                _getSelectedNodes (evt) {
 
                     let graph = this.graph;
                     let selectedState = this.selectedState;
@@ -1596,49 +2098,21 @@ export default {
                     let bottom = Math.max(p1.y, p2.y);
                     let width = right - left;
                     let height = bottom - top;
-                    let centerX = left + width / 2;
-                    let centerY = top + height / 2;
+                    let centerX = left + (width / 2);
+                    let centerY = top + (height / 2);
                     let selectedNodes = [];
-                    let selectedEdges = [];
+                    // let selectedEdges = [];
                     let selectedIds = [];
                     let shouldUpdate = this.shouldUpdate;
 
                     graph.getNodes().forEach(node => {
 
                         let bbox = node.getBBox();
-                        // let bboxLT = [bbox.x, bbox.y];
-                        // let bboxLB = [bbox.x, bbox.y + bbox.height];
-                        // let bboxRT = [bbox.x + bbox.width, bbox.y];
-                        // let bboxRB = [bbox.x + bbox.width, bbox.y + bbox.height];
 
                         // 计算矩形相交
                         if (
                             Math.abs(centerX - bbox.centerX) < ((bbox.width + width) / 2) &&
                             Math.abs(centerY - bbox.centerY) < ((bbox.height + height) / 2)
-                            // (
-                            //     bboxLT[0] >= left &&
-                            //     bboxLT[0] <= right &&
-                            //     bboxLT[1] >= top &&
-                            //     bboxLT[1] <= bottom
-                            // ) ||
-                            // (
-                            //     bboxLB[0] >= left &&
-                            //     bboxLB[0] <= right &&
-                            //     bboxLB[1] >= top &&
-                            //     bboxLB[1] <= bottom
-                            // ) ||
-                            // (
-                            //     bboxRT[0] >= left &&
-                            //     bboxRT[0] <= right &&
-                            //     bboxRT[1] >= top &&
-                            //     bboxRT[1] <= bottom
-                            // ) ||
-                            // (
-                            //     bboxRB[0] >= left &&
-                            //     bboxRB[0] <= right &&
-                            //     bboxRB[1] >= top &&
-                            //     bboxRB[1] <= bottom
-                            // )
                         ) {
 
                             if (shouldUpdate(node, 'select')) {
@@ -1656,6 +2130,7 @@ export default {
 
                     });
 
+                    // eslint-disable-next-line no-warning-comments
                     // TODO : select edge
                     // if (this.includeEdges) {
                         
@@ -1719,9 +2194,11 @@ export default {
                     }
 
                     setTimeout(() => {
+
                         G6.Util.modifyCSS(this.graph._cfg.canvas._cfg.canvasDOM, {
                             cursor : 'default'
                         });
+                    
                     });
 
                 },
@@ -1744,11 +2221,13 @@ export default {
 
             let vm = this;
 
-            G6.registerBehavior('mor-drag-node', {
+            G6.registerBehavior('mor-drag-2node', {
                 getDefaultCfg () {
+
                     return {
                         targets : []
                     };
+                
                 },
                 getEvents () {
 
@@ -1769,6 +2248,7 @@ export default {
                     }
 
                     // root节点不能被拖拽
+                    // eslint-disable-next-line no-warning-comments
                     // TODO : 等g6 3.1.4升级后启用hasLocked来判断
                     if (evt.item.get('model').isRoot) {
 
@@ -1847,7 +2327,7 @@ export default {
                 },
                 onDrag (evt) {
 
-                    // !this.origin || 
+                    // !this.origin ||
                     if (!this.get('shouldUpdate').call(this, evt)) {
                 
                         return;
@@ -1869,7 +2349,7 @@ export default {
                 },
                 onDragEnd (evt) {
                     
-                    // !this.origin || 
+                    // !this.origin ||
                     if (!this.shouldEnd.call(this, evt)) {
                         
                         return;
@@ -2011,7 +2491,7 @@ export default {
                     this.graph.paint();
 
                 },
-                _calculationGroupPosition() {
+                _calculationGroupPosition () {
 
                     let graph = this.graph;
                     let nodes = graph.findAllByState('node', 'selected');
@@ -2094,6 +2574,8 @@ export default {
             this._onNodeSelected();
             this._onNodeEdit();
             this._onNodeDrag();
+            this._onAnnexHover();
+            this._onAnnexClick();
 
         },
         _createGraph : function () {
@@ -2137,9 +2619,10 @@ export default {
 
                         if (model.style && model.style.computedRadius) {
 
-                            node.get('group').getChildByIndex(conShapeIndex).attr({
-                                radius : node.getBBox().height * model.style.computedRadius
-                            });
+                            node.get('group').getChildByIndex(conShapeIndex)
+                                .attr({
+                                    radius : node.getBBox().height * model.style.computedRadius
+                                });
                             node.get('group').set('radius', node.getBBox().height * model.style.computedRadius);
 
                         }
@@ -2177,11 +2660,7 @@ export default {
                         return 5;
 
                     },
-                    getHGap : () => {
-
-                        return 30;
-
-                    }
+                    getHGap : () => 30
                 }
             };
 
@@ -2195,7 +2674,7 @@ export default {
                 graphOtions.layout.direction = 'RL';
                 graphOtions.layout.type = 'compactBox';
 
-            } 
+            }
             
             // else if (this.conf.layout === 'RL') {
 
@@ -2227,6 +2706,7 @@ export default {
             }
 
         },
+        /* eslint-enable no-magic-numbers */
         _readData : function (data) {
 
             G6.Util.traverseTree(data, this._traverseNode);
@@ -2241,9 +2721,9 @@ export default {
         },
         _exportDataWalker : function (data, nodeCallback, customWalker) {
 
-            let dataWalker = (data, ...args) => {
+            let dataWalker = (currentData, ...args) => {
 
-                for (let item of data) {
+                for (let item of currentData) {
 
                     nodeCallback(item, ...args);
 
@@ -2291,7 +2771,7 @@ export default {
 
             let canvas = this.data.$canvas.querySelector('canvas');
 
-            this._downloadFile(canvas.toDataURL("image/png"), 'png');
+            this._downloadFile(canvas.toDataURL('image/png'), 'png');
 
         },
         _exportJSON : function (data) {
@@ -2305,6 +2785,12 @@ export default {
                     name : item.text,
                     children : []
                 };
+
+                if (item.link) {
+
+                    current.link = item.link;
+
+                }
 
                 if (parent === undefined) {
 
@@ -2333,7 +2819,7 @@ export default {
         },
         _exportXMIND : function (data) {
 
-            let zip = new jszip();
+            let zip = new JSZip();
             let {
                 Workbook,
                 Topic,
@@ -2341,22 +2827,29 @@ export default {
             } = window;
             let topic;
             let workbook = new Workbook();
+            let current = null;
 
             this._exportDataWalker(data, (item, cid) => {
 
-                console.log(item.text);
+                current = {
+                    title : item.text
+                };
 
+                if (item.link) {
+
+                    current.href = item.link;
+
+                }
+              
                 if (topic === undefined) {
 
                     topic = new Topic({
-                        sheet : workbook.createSheet('sheet title', item.text)
+                        sheet : workbook.createSheet('sheet title', current.text)
                     });
 
                 } else if (cid) {
 
-                    topic.on(cid).add({
-                        title : item.text
-                    });
+                    topic.on(cid).add(current);
 
                 }
 
@@ -2375,7 +2868,7 @@ export default {
                 workbook
             });
             let files = dumper.dumping();
-            
+
             for (const file of files) {
 
                 if (file.filename === 'content.json') {
@@ -2396,11 +2889,12 @@ export default {
                     //     file.value[0].rootTopic.structureClass = 'org.xmind.ui.tree.right';
                     // }
 
-                    file.value = JSON.stringify(file.value)
+                    file.value = JSON.stringify(file.value);
 
                 }
                 
                 zip.file(file.filename, file.value);
+
             }
             
             zip.generateAsync({
@@ -2547,13 +3041,59 @@ export default {
             let model = node.getModel();
 
             model.style = G6.Util.deepMix(model.style, style);
-            node.update(model);
             node.draw();
             this.data.graph.refreshLayout();
 
         },
-        deleteNode : function (nodeId) {
-            // TODO
+        deleteNode : function () {
+
+            // eslint-disable-next-line no-warning-comments
+            // TODO : 删除节点
+            // let node = this.data.graph.findById(nodeId);
+            // let model = node.getModel();
+            // let parent = node.getInEdges()[0].getSource();
+            // let parentModel = parent.getModel();
+            // let indexOfParent = parentModel.children.indexOf(model);
+
+            // return this.insertSubNode(nodeId, undefined, indexOfParent);
+
+        },
+        zoom : function (zoom) {
+
+            this.data.graph.zoom(zoom);
+
+            return this;
+
+        },
+        getZoom : function () {
+
+            return this.data.graph.getZoom();
+
+        },
+        fitView : function () {
+
+            this.data.graph.fitView();
+
+        },
+        link : function (nodeId, link) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            model.link = link;
+            node.draw();
+            this.data.graph.refreshLayout();
+
+        },
+        unlink : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            delete model.link;
+            node.draw();
+            this.data.graph.refreshLayout();
+
         }
     },
     created : function () {},
@@ -2562,106 +3102,188 @@ export default {
         this.data.$canvas = this.$el.querySelector('.canvas');
         this.data.$editContent = this.$el.querySelector('.edit-content');
         this.data.$editContentInput = this.data.$editContent.querySelector('textarea');
+        this.data.$nodeNote = this.$el.querySelector('.node-note');
+        this.data.$notePopover = this.$refs[`mor-mindmap-note-${this.uiid}`];
 
-        let data = {
-            "text": "ClassificationClassification",
-            "isRoot" : true,
-            "children": [
-                { "text": "Logistic regression" },
-                { "text": "Linear discriminant analysis" },
-                { "text": "Rules" },
-                { "text": "Decision trees" },
-                { "text": "Naive Bayes" },
-                { "text": "K nearest neighbor" },
-                { "text": "Probabilistic neural network" },
-                { "text": "Support vector machine" }
-            ]
-        };
+        // let data = {
+        //     text : 'ClassificationClassification',
+        //     isRoot : true,
+        //     children : [
+        //         {
+        //             text : 'Logistic regression'
+        //         },
+        //         {
+        //             text : 'Linear discriminant analysis'
+        //         },
+        //         {
+        //             text : 'Rules'
+        //         },
+        //         {
+        //             text : 'Decision trees'
+        //         },
+        //         {
+        //             text : 'Naive Bayes'
+        //         },
+        //         {
+        //             text : 'K nearest neighbor'
+        //         },
+        //         {
+        //             text : 'Probabilistic neural network'
+        //         },
+        //         {
+        //             text : 'Support vector machine'
+        //         }
+        //     ]
+        // };
 
         let data2 = {
-            "text": "Modeling Methods",
-            "isRoot" : true,
-            "children": [
+            text : 'Modeling Methods',
+            isRoot : true,
+            children : [
                 {
-                    "text": "ClassificationClassification",
-                    "children": [
-                        { "text": "Logistic regression" },
-                        { "text": "Linear discriminant analysis" },
-                        { "text": "Rules" },
-                        { "text": "Decision trees" },
-                        { "text": "Naive Bayes" },
-                        { "text": "K nearest neighbor" },
-                        { "text": "Probabilistic neural network" },
-                        { "text": "Support vector machine" }
+                    text : 'ClassificationClassification',
+                    children : [
+                        {
+                            text : 'Logistic regression',
+                            note : 'hello'
+                        },
+                        {
+                            text : 'Linear discriminant analysis'
+                        },
+                        {
+                            text : 'Rules'
+                        },
+                        {
+                            text : 'Decision trees'
+                        },
+                        {
+                            text : 'Naive Bayes'
+                        },
+                        {
+                            text : 'K nearest neighbor'
+                        },
+                        {
+                            text : 'Probabilistic neural network'
+                        },
+                        {
+                            text : 'Support vector machine'
+                        }
                     ]
                 },
                 {
-                    "text": "Consensus",
-                    "children": [
+                    text : 'Consensus',
+                    children : [
                         {
-                            "text": "Models diversity",
-                            "children": [
-                                { "text": "Different initializations" },
-                                { "text": "Different parameter choices" },
-                                { "text": "Different architectures" },
-                                { "text": "Different modeling methods" },
-                                { "text": "Different training sets" },
-                                { "text": "Different feature sets" }
-                            ]
-                            },
-                        {
-                            "text": "Methods",
-                            "children": [
-                                { "text": "Classifier selection" },
-                                { "text": "Classifier fusion" }
+                            text : 'Models diversity',
+                            children : [
+                                {
+                                    text : 'Different initializations',
+                                    link : 'http://baidu.com/'
+                                },
+                                {
+                                    text : 'Different parameter choices'
+                                },
+                                {
+                                    text : 'Different architectures'
+                                },
+                                {
+                                    text : 'Different modeling methods'
+                                },
+                                {
+                                    text : 'Different training sets'
+                                },
+                                {
+                                    text : 'Different feature sets'
+                                }
                             ]
                         },
                         {
-                            "text": "Common",
-                            "children": [
-                                { "text": "Bagging" },
-                                { "text": "Boosting" },
-                                { "text": "AdaBoost" }
+                            text : 'Methods',
+                            children : [
+                                {
+                                    text : 'Classifier selection'
+                                },
+                                {
+                                    text : 'Classifier fusion'
+                                }
+                            ]
+                        },
+                        {
+                            text : 'Common',
+                            children : [
+                                {
+                                    text : 'Bagging'
+                                },
+                                {
+                                    text : 'Boosting'
+                                },
+                                {
+                                    text : 'AdaBoost'
+                                }
                             ]
                         }
                     ]
                 },
                 {
-                    "text": "Regression",
-                    "children": [
-                        { "text": "Multiple linear regression" },
-                        { "text": "Partial least squares" },
-                        { "text": "Multi-layer feedforward neural network" },
-                        { "text": "General regression neural network" },
-                        { "text": "Support vector regression" }
+                    text : 'Regression',
+                    children : [
+                        {
+                            text : 'Multiple linear regression'
+                        },
+                        {
+                            text : 'Partial least squares'
+                        },
+                        {
+                            text : 'Multi-layer feedforward neural network'
+                        },
+                        {
+                            text : 'General regression neural network'
+                        },
+                        {
+                            text : 'Support vector regression'
+                        }
                     ]
                 }
             ]
         };
 
-        let data3 = {
-            "text": "Modeling Methods",
-            "isRoot" : true,
-            "children": [
-                {
-                    "text": "ClassificationClassification",
-                    "children": [
-                        { "text": "Logistic regression" },
-                        { "text": "Linear discriminant analysis" }
-                    ]
-                },
-                {
-                    "text": "Regression",
-                    "children": [
-                        { "text": "Multiple linear regression" },
-                        { "text": "Partial least squares" },
-                        { "text": "Multi-layer feedforward neural network" },
-                        { "text": "General regression neural network" },
-                        { "text": "Support vector regression" }
-                    ]
-                }
-            ]
-        };
+        // let data3 = {
+        //     text : 'Modeling Methods',
+        //     isRoot : true,
+        //     children : [
+        //         {
+        //             text : 'ClassificationClassification',
+        //             children : [
+        //                 {
+        //                     text : 'Logistic regression'
+        //                 },
+        //                 {
+        //                     text : 'Linear discriminant analysis'
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             text : 'Regression',
+        //             children : [
+        //                 {
+        //                     text : 'Multiple linear regression'
+        //                 },
+        //                 {
+        //                     text : 'Partial least squares'
+        //                 },
+        //                 {
+        //                     text : 'Multi-layer feedforward neural network'
+        //                 },
+        //                 {
+        //                     text : 'General regression neural network'
+        //                 },
+        //                 {
+        //                     text : 'Support vector regression'
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // };
 
         this._registrar();
         this._createGraph();
@@ -2672,6 +3294,4 @@ export default {
     }
 };
 </script>
-
-
 

@@ -50800,6 +50800,13 @@ mor-mindmap .mindmap-wrap {
   position: relative;
   overflow: hidden;
 }
+mor-mindmap .mindmap-wrap .node-note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: left top;
+  pointer-events: none;
+}
 mor-mindmap .mindmap-wrap .edit-content {
   position: absolute;
   top: 0;

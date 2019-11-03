@@ -73,7 +73,6 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.defaultsdeep": "^4.6.1",
     "lodash.difference": "^4.5.0",
-    "lodash.filter": "^4.6.0",
     "lodash.intersection": "^4.4.0",
     "lodash.isplainobject": "^4.0.6",
     "lodash.map": "^4.6.0",
