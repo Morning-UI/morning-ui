@@ -242,7 +242,14 @@ export default {
             return value;
 
         },
-        _focusInput : function () {
+        _focusInput : function (evt) {
+            
+            // 点击删除按钮不触发focus事件
+            if (evt && evt.type === 'click' && evt.path[0].classList.value.split(' ').indexOf('mo-icon-close') !== -1) {
+                
+                return;
+
+            }
 
             // this.data.moving === false
             if (this.data.focus === false) {

@@ -405,6 +405,23 @@
     ---
     #demo
     >desc
+    `list`为数组的用法。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :list="[
+                {key:'tim', name:'Tim Boelaars', tip:'This is Tim Boelaars'},
+                {key:'andrew', name:'Andrew Colin Beck', tip:'This is Andrew Colin Beck'},
+                {key:'gustavo', name:'Gustavo Zambelli', tip:'This is Gustavo Zambelli'},
+                {key:'victor', name:'Victor Erixon', tip:'This is Victor Erixon'},
+            ]"
+        >
+        </ui-select>
+    </div>
+    ---
+    #demo
+    >desc
     完整版配置。
     >tpl
     <div style="width:300px;">

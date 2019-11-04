@@ -124,6 +124,7 @@
             <ul>
                 <li><a href="/component/sticky.html">吸附<p>&lt;sticky></p></a></li>
                 <li><a href="/component/empty.html">空状态<p>&lt;empty></p></a></li>
+                <li><a href="/component/mindmap.html">思维导图<p>&lt;mindmap></p></a></li>
             </ul>
         </div>
     </div>

@@ -218,6 +218,13 @@ export default {
 
                 }
 
+                // 所有表单项都是空的
+                if (hasKeys.length === 0) {
+                    
+                    this.data.forms[formKey].set(undefined);
+
+                }
+
             }
 
             if (first) {
