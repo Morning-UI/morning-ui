@@ -1,0 +1,39 @@
+mor-mindmap{
+    display: block;
+
+    .mindmap-wrap{
+        position: relative;
+        overflow: hidden;
+
+        .node-note{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left top;
+            pointer-events: none;
+        }
+
+        .edit-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left top;
+            // background: @colorWhite;
+
+            textarea {
+                padding: 0;
+                height: 100%;
+                border: none;
+                background: transparent;
+                outline: none;
+                resize: none;
+                overflow: hidden;
+                // line-height: 1.15;
+                position: absolute;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

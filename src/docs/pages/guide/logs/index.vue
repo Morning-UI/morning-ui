@@ -18,6 +18,42 @@
     
     ### 更新记录
 
+    ### 0.12.65 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年11月4日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.65" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.65/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.65/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-mindmap`思维导图组件，支持思维导图编辑及导出`xmind`、`json`等格式文件
+
+    #### 改进
+
+    - 优化`ui-btn`的朴素和幽灵按钮样式，使其符合设计规范
+    - 现在`ui-multiinput`组件中通过点击删除项目时，不会触发`input-focus`事件
+    - 优化表单组件的背景色及表单项的背景色，使其在偏暖色的显示器中有更好的呈现
+
+    #### 修复
+
+    - 修复`ui-progress`文档中的一处错误
+    - 修复`ui-select`组件中开启`multi-select`配置后，点击删除选项时会弹出下拉框的问题
+    - 修复`ui-avatar`使用图片作为头像时的一个错位问题
+    - 修复`ui-form`组件无法通过`set()`方法清空数值的问题
+    - 修复`ui-form`组件无法通过`set()`方法清空单个表单组件数值的问题
+
+    #### 更多
+
+    - `ui-select`文档新增`list`为数组的用法示例
+
+    ---
+
     ### 0.12.64 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">

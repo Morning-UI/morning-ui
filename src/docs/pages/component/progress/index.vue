@@ -305,7 +305,7 @@
                 end : 90,
                 color : '#FFA5B6'
             }]"
-        ></ui-slider>
+        ></ui-progress>
     </div>
     ---
     #demo
@@ -325,7 +325,7 @@
                 end : 90,
                 color : '#FFA5B6'
             }]"
-        ></ui-slider>
+        ></ui-progress>
     </div>
     :::
 
