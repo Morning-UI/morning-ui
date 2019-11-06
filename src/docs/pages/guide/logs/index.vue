@@ -18,6 +18,39 @@
     
     ### 更新记录
 
+    ### 0.12.66 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年11月6日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.66" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.66/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.66/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-upload`组件新增`only-read-file`配置，允许上传组件仅仅读取文件不处理上传
+    - `ui-video`组件新增`fullscreen`方法
+
+    #### 改进
+
+    - 完善`ui-mindmap`组件
+
+    #### 修复
+
+    - 修复`ui-radio`和`ui-checkbox`的选项内容中包含图标时无法展示的问题
+    - 修复`ui-checkbox`和`ui-radio`在某些特殊的情况下`outline`显示不正确的问题
+    - 修复`ui-slider`的`mark-range`配置可能导致溢出的问题
+
+    #### 更多
+
+    - 新增若干图标
+
+    ---
+
     ### 0.12.65 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">

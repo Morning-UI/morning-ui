@@ -34,8 +34,86 @@
             :ref="'mor-mindmap-note-'+uiid"
             trigger="method"
             placement="bottom"
-        >{{data.currentNodeNote}}</morning-popover>
+        ><span v-html="data.currentNodeNote"></span></morning-popover>
+        <div class="context-menu" :style="data.contextMenu.style">
+            <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId);_hideContextMenu();">插入子级</morning-btn>
+            <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId);_hideContextMenu();">插入同级</morning-btn>
+            <!-- <ui-btn size="s" color="white" @emit="(data.contextMenu.nodeId);_hideContextMenu();">删除节点</ui-btn> -->
+            <morning-btn size="s" color="white" @emit="editLink(data.contextMenu.nodeId);_hideContextMenu();">设置链接</morning-btn>
+            <morning-btn size="s" color="white" @emit="editNote(data.contextMenu.nodeId);_hideContextMenu();">设置备注</morning-btn>
+            <morning-btn size="s" color="white" @emit="editMark(data.contextMenu.nodeId);_hideContextMenu();">设置标记</morning-btn>
+            <morning-btn size="s" color="white" @emit="exportTo('xmind', data.contextMenu.nodeId);_hideContextMenu();">导出节点</morning-btn>
+            <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'replace');_hideContextMenu();">导入数据并替换</morning-btn>
+            <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'append');_hideContextMenu();">导入数据在结尾插入</morning-btn>
+            <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'prepend');_hideContextMenu();">导入数据在开头插入</morning-btn>
+            <morning-btn size="s" color="danger" class="plain" @emit="deleteNode(data.contextMenu.nodeId);_hideContextMenu();">删除节点</morning-btn>
+        </div>
     </div>
+
+    <morning-dialog :ref="'mor-mindmap-edit-link-' + uiid" width="380px" height="240px" show-type="center">
+        <div slot="header">编辑链接</div>
+        <div class="mor-mindmap-dialog-body">
+            <morning-textarea v-model="data.currentEditLinkValue"></morning-textarea>
+            <div class="mor-mindmap-dialog-op">
+                <morning-btn color="success" @emit="link(data.currentEditLinkNodeId, data.currentEditLinkValue);cancelEditLink();">保存</morning-btn>
+                <morning-btn color="neutral-1" @emit="cancelEditLink">取消</morning-btn>
+            </div>
+        </div>
+    </morning-dialog>
+
+    <morning-dialog :ref="'mor-mindmap-edit-note-' + uiid" width="380px" height="240px" show-type="center">
+        <div slot="header">编辑备注</div>
+        <div class="mor-mindmap-dialog-body">
+            <morning-textarea v-model="data.currentEditNoteValue"></morning-textarea>
+            <div class="mor-mindmap-dialog-op">
+                <morning-btn color="success" @emit="note(data.currentEditNoteNodeId, data.currentEditNoteValue);cancelEditNote();">保存</morning-btn>
+                <morning-btn color="neutral-1" @emit="cancelEditNote">取消</morning-btn>
+            </div>
+        </div>
+    </morning-dialog>
+
+    <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="540px" height="490px" show-type="center">
+        <div slot="header">编辑标记</div>
+        <div class="mor-mindmap-dialog-body">
+            <morning-form
+                v-for="group in data.markGroups"
+                :key="group.key"
+                label-position="head-left"
+            >
+                <ui-formitem :label="group.name">
+                    <morning-radio
+                        :list="group.list"
+                        accept-html
+                        size="s"
+                        color="neutral-2"
+                        type="button"
+                        v-model="data.currentEditMarkValue[group.key]"
+                    >
+                    </morning-radio>
+                </ui-formitem>
+            </morning-form>
+            <div class="mor-mindmap-dialog-op">
+                <morning-btn color="success" @emit="_saveMarks(data.currentEditMarkNodeId, data.currentEditMarkValue);cancelEditMark();">保存</morning-btn>
+                <morning-btn color="neutral-1" @emit="cancelEditMark">取消</morning-btn>
+            </div>
+        </div>
+    </morning-dialog>
+
+    <morning-dialog :ref="'mor-mindmap-import-' + uiid" width="380px" height="300px" show-type="center" @hide="_resetImportStatus">
+        <div slot="header">导入数据</div>
+        <div class="mor-mindmap-dialog-body">
+            <morning-upload
+                :uploader="_importFile"
+                type="box"
+                only-read-file
+                item-name="JSON或XMind文件"
+                accept-type=".json, .xmind"
+            ></morning-upload>
+            <div class="mor-mindmap-dialog-op">
+                <morning-btn color="neutral-1" @emit="cancelImportFile">取消</morning-btn>
+            </div>
+        </div>
+    </morning-dialog>
 
     <div class="error-message">{{conf._errorMessage}}</div>
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -47,7 +125,9 @@
 import G6                           from '@antv/g6';
 import sortBy                       from 'lodash.sortby';
 import throttle                     from 'lodash.throttle';
+import map                          from 'lodash.map';
 import JSZip                        from 'jszip';
+import arrayUniq                    from 'array-uniq';
 
 // eslint-disable-next-line no-unused-vars
 import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
@@ -65,9 +145,11 @@ const linkConShapeIndex = 6;
 const linkShapeIndex = 7;
 const noteConShapeIndex = 8;
 const noteShapeIndex = 9;
+const markConGroupIndex = 10;
 
 const outlinePadding = 3;
 const annexPadding = 4;
+const markConPaddingRight = 10;
 const dragRefreshInterval = 160;
 
 const lineColor = 'rgba(51, 51, 51, 1)';
@@ -175,6 +257,224 @@ const delegateShapeStyle = {
     borderColor : 'rgba(75, 201, 218, 1)',
     borderWidth : 2
 };
+const marks = {
+    'priority:1' : {
+        iconfont : 'e641',
+        iconcls : 'mo-icon-num-1-cf',
+        color : 'rgb(230, 69, 70)',
+        markMethod : 'priority',
+        markValue : '1'
+    },
+    'priority:2' : {
+        iconfont : 'e644',
+        iconcls : 'mo-icon-num-2-cf',
+        color : 'rgb(255, 179, 50)',
+        markMethod : 'priority',
+        markValue : '2'
+    },
+    'priority:3' : {
+        iconfont : 'e647',
+        iconcls : 'mo-icon-num-3-cf',
+        color : 'rgb(79, 109, 250)',
+        markMethod : 'priority',
+        markValue : '3'
+    },
+    'priority:4' : {
+        iconfont : 'e645',
+        iconcls : 'mo-icon-num-4-cf',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'priority',
+        markValue : '4'
+    },
+    'priority:5' : {
+        iconfont : 'e64b',
+        iconcls : 'mo-icon-num-5-cf',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'priority',
+        markValue : '5'
+    },
+    'priority:6' : {
+        iconfont : 'e643',
+        iconcls : 'mo-icon-num-6-cf',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'priority',
+        markValue : '6'
+    },
+    'priority:7' : {
+        iconfont : 'e648',
+        iconcls : 'mo-icon-num-7-cf',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'priority',
+        markValue : '7'
+    },
+    'task:start' : {
+        iconfont : 'e649',
+        iconcls : 'mo-icon-progress-start-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : 'start'
+    },
+    'task:18' : {
+        iconfont : 'e677',
+        iconcls : 'mo-icon-progress-1-8-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : 'oct'
+    },
+    'task:14' : {
+        iconfont : 'e676',
+        iconcls : 'mo-icon-progress-1-4-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : 'quarter'
+    },
+    'task:38' : {
+        iconfont : 'e679',
+        iconcls : 'mo-icon-progress-3-8-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : '3oct'
+    },
+    'task:12' : {
+        iconfont : 'e67d',
+        iconcls : 'mo-icon-progress-1-2-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : 'half'
+    },
+    'task:58' : {
+        iconfont : 'e67e',
+        iconcls : 'mo-icon-progress-5-8-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : '5oct'
+    },
+    'task:34' : {
+        iconfont : 'e678',
+        iconcls : 'mo-icon-progress-3-4-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : '3quar'
+    },
+    'task:78' : {
+        iconfont : 'e67f',
+        iconcls : 'mo-icon-progress-7-8-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : '7oct'
+    },
+    'task:done' : {
+        iconfont : 'e621',
+        iconcls : 'mo-icon-progress-done-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'task',
+        markValue : 'done'
+    },
+    'flag:red' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(230, 69, 70)',
+        markMethod : 'flag',
+        markValue : 'red'
+    },
+    'flag:yellow' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(255, 179, 50)',
+        markMethod : 'flag',
+        markValue : 'orange'
+    },
+    'flag:darkblue' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(79, 109, 250)',
+        markMethod : 'flag',
+        markValue : 'dark-blue'
+    },
+    'flag:purple' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(189, 60, 174)',
+        markMethod : 'flag',
+        markValue : 'purple'
+    },
+    'flag:green' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'flag',
+        markValue : 'green'
+    },
+    'flag:skyblue' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(0, 188, 228)',
+        markMethod : 'flag',
+        markValue : 'blue'
+    },
+    'flag:gray' : {
+        iconfont : 'e8cd',
+        iconcls : 'mo-icon-flag-c',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'flag',
+        markValue : 'gray'
+    },
+    'star:red' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(230, 69, 70)',
+        markMethod : 'star',
+        markValue : 'red'
+    },
+    'star:yellow' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(255, 179, 50)',
+        markMethod : 'star',
+        markValue : 'orange'
+    },
+    'star:darkblue' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(79, 109, 250)',
+        markMethod : 'star',
+        markValue : 'dark-blue'
+    },
+    'star:purple' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(189, 60, 174)',
+        markMethod : 'star',
+        markValue : 'purple'
+    },
+    'star:green' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(54, 203, 102)',
+        markMethod : 'star',
+        markValue : 'green'
+    },
+    'star:skyblue' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(0, 188, 228)',
+        markMethod : 'star',
+        markValue : 'blue'
+    },
+    'star:gray' : {
+        iconfont : 'e85f',
+        iconcls : 'mo-icon-star-cf',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'star',
+        markValue : 'gray'
+    }
+};
+const markGourpsName = {
+    priority : '优先级',
+    task : '任务',
+    flag : '旗帜',
+    star : '星星'
+};
 /* eslint-enable no-unused-vars, no-magic-numbers */
 
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
@@ -201,8 +501,17 @@ export default {
 
         return {
             data : {
+                markGroups : {},
                 graph : null,
                 $canvas : null,
+                $editContent : null,
+                $editContentInput : null,
+                $nodeNote : null,
+                $notePopover : null,
+                $editLinkDialog : null,
+                $editNoteDialog : null,
+                $editMarkDialog : null,
+                $importDialog : null,
                 globalId : 1,
                 editting : false,
                 editGroupShapes : {},
@@ -220,7 +529,23 @@ export default {
                 dataMap : {},
                 currentNodeNote : '',
                 nodeNoteZoom : 1,
-                nodeNoteShow : false
+                nodeNoteShow : false,
+                contextMenu : {
+                    style : {}
+                },
+                currentEditLinkNodeId : 0,
+                currentEditNoteNodeId : 0,
+                currentEditMarkNodeId : 0,
+                currentEditLinkValue : '',
+                currentEditNoteValue : '',
+                currentEditMarkValue : {
+                    priority : '0',
+                    task : '0',
+                    flag : '0',
+                    star : '0'
+                },
+                currentImportNode : undefined,
+                currentImportMode : 'replace'
             }
         };
 
@@ -228,27 +553,27 @@ export default {
     methods : {
         _getNodeStyles : function (nodeStyle, model) {
 
-            if (model._shape === undefined) {
+            if (model.shapeStyle === undefined) {
 
                 if (model.depth < 2) {
 
-                    model._shape = 'round-rect';
+                    model.shapeStyle = 'round-rect';
 
                 } else {
 
-                    model._shape = 'line';
+                    model.shapeStyle = 'line';
 
                 }
 
             }
 
-            if (model._shape === 'line') {
+            if (model.shapeStyle === 'line') {
                 
                 model.anchorPoints = [[0, 1], [1, 1]];
 
             }
 
-            return G6.Util.deepMix({}, nodeStyle, nodeStyle._shapePresets[model._shape], model.style);
+            return G6.Util.deepMix({}, nodeStyle, nodeStyle._shapePresets[model.shapeStyle], model.style);
 
         },
         _clearSelectedNode : function (selectedState) {
@@ -276,7 +601,11 @@ export default {
             let text = group.getChildByIndex(textShapeIndex);
             let placeholder = group.getChildByIndex(placeholderShapeIndex);
             let bottomline = group.getChildByIndex(bottomlineShapeIndex);
+            let link = group.getChildByIndex(linkShapeIndex);
+            let linkCon = group.getChildByIndex(linkConShapeIndex);
+            let note = group.getChildByIndex(noteShapeIndex);
             let noteCon = group.getChildByIndex(noteConShapeIndex);
+            let markConGroup = group.getChildByIndex(markConGroupIndex);
 
             return {
                 con,
@@ -285,7 +614,11 @@ export default {
                 outline,
                 placeholder,
                 bottomline,
-                noteCon
+                link,
+                linkCon,
+                note,
+                noteCon,
+                markConGroup
             };
 
         },
@@ -346,7 +679,7 @@ export default {
 
             }
 
-            const padding = 10;
+            const padding = 0;
 
             let inputX = `${textBbox.x + 1 - padding}px`;
             let inputY = `${textBbox.y - padding}px`;
@@ -427,7 +760,7 @@ export default {
                 }
 
                 this.data.graph.paint();
-                this._refreshMindNode(groupShapes);
+                this._refreshMindNode(groupShapes, this.data.editNode.getModel());
                 this._refreshEditorPosition(this.data.editNode);
 
             });
@@ -683,6 +1016,57 @@ export default {
             parentNodeDataChildren.splice(index, 1);
 
         },
+        _toggleNodeBox : function (node, type = 'show') {
+        
+            // 隐藏边
+            node.getInEdges()[0][type]();
+
+            // 隐藏文本和主容器
+            node
+                .get('group')
+                .getChildByIndex(textShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(conShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(bottomlineShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(linkConShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(linkShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(noteConShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(noteShapeIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(markConGroupIndex)[
+                    type
+                ]();
+            
+            // 隐藏所有子项
+            this._toggleAllChildren(node, type);
+
+        },
         _udpateOneDragTarget : function (index, dragTarget, dragging, dragHolderIndexOfParentChildren) {
 
             let node = dragTarget.nodes[index];
@@ -702,41 +1086,7 @@ export default {
                     }, node.getModel().style)
                 });
 
-                // 隐藏边
-                node.getInEdges()[0].hide();
-
-                // 隐藏文本和主容器
-                node
-                    .get('group')
-                    .getChildByIndex(textShapeIndex)
-                    .hide();
-                node
-                    .get('group')
-                    .getChildByIndex(conShapeIndex)
-                    .hide();
-                node
-                    .get('group')
-                    .getChildByIndex(bottomlineShapeIndex)
-                    .hide();
-                node
-                    .get('group')
-                    .getChildByIndex(linkConShapeIndex)
-                    .hide();
-                node
-                    .get('group')
-                    .getChildByIndex(linkShapeIndex)
-                    .hide();
-                node
-                    .get('group')
-                    .getChildByIndex(noteConShapeIndex)
-                    .hide();
-                node
-                    .get('group')
-                    .getChildByIndex(noteShapeIndex)
-                    .hide();
-
-                // 隐藏所有子项
-                this._toggleAllChildren(node, 'hide');
+                this._toggleNodeBox(node, 'hide');
 
             } else if (!dragging && dragTarget.hidden) {
 
@@ -751,41 +1101,7 @@ export default {
                     }, nodeData.style)
                 });
 
-                // 显示边
-                node.getInEdges()[0].show();
-
-                // 显示文本和主容器
-                node
-                    .get('group')
-                    .getChildByIndex(textShapeIndex)
-                    .show();
-                node
-                    .get('group')
-                    .getChildByIndex(conShapeIndex)
-                    .show();
-                node
-                    .get('group')
-                    .getChildByIndex(bottomlineShapeIndex)
-                    .show();
-                node
-                    .get('group')
-                    .getChildByIndex(linkConShapeIndex)
-                    .show();
-                node
-                    .get('group')
-                    .getChildByIndex(linkShapeIndex)
-                    .show();
-                node
-                    .get('group')
-                    .getChildByIndex(noteConShapeIndex)
-                    .show();
-                node
-                    .get('group')
-                    .getChildByIndex(noteShapeIndex)
-                    .show();
-
-                // 显示所有子项
-                this._toggleAllChildren(node, 'show');
+                this._toggleNodeBox(node, 'show');
 
                 // 移动节点
                 this._insertNode(nodeData, this.data.dragHolderParentChilren, dragHolderIndexOfParentChildren);
@@ -845,7 +1161,7 @@ export default {
 
         },
         /* eslint-disable no-magic-numbers */
-        _refreshMindNode : function (groupShapes) {
+        _refreshMindNode : function (groupShapes, model) {
 
             let {
                 box,
@@ -853,7 +1169,12 @@ export default {
                 con,
                 text,
                 placeholder,
-                bottomline
+                bottomline,
+                linkCon,
+                link,
+                noteCon,
+                note,
+                markConGroup
             } = groupShapes;
             let textBbox = text.getBBox();
             let conPaddingX = box.get('conPaddingX');
@@ -866,9 +1187,40 @@ export default {
 
             }
 
+            let conWidth = textBbox.width + (conPaddingX * 2);
+            let conHeight = textBbox.height + (conPaddingY * 2);
+            let linkConBbox = linkCon.getBBox();
+            let noteConBbox = noteCon.getBBox();
+            let markConGroupBbox = markConGroup.getBBox();
+
+            if (model.link) {
+
+                conWidth += linkConBbox.width;
+
+            }
+
+            if (model.note) {
+
+                conWidth += noteConBbox.width;
+
+            }
+
+            if (model.note || model.link) {
+
+                conWidth += conPaddingX / 2;
+
+            }
+
+            if (model._mark && model._mark.length > 0) {
+
+                conWidth += markConGroupBbox.width;
+                // textX = markConGroupBbox.width;
+
+            }
+
             con.attr({
-                width : textBbox.width + (conPaddingX * 2),
-                height : textBbox.height + (conPaddingY * 2)
+                width : conWidth,
+                height : conHeight
             });
 
             let conBbox = con.getBBox();
@@ -899,28 +1251,89 @@ export default {
                 width : boxBbox.width + 2
             });
 
+            // for link annex
+            if (model.link) {
+                
+                let linkBbox = link.getBBox();
+
+                linkConBbox = linkCon.getBBox();
+                linkCon.attr({
+                    x : conBbox.width - linkConBbox.width - conPaddingX - annexPadding,
+                    y : conPaddingY - annexPadding
+                });
+                linkConBbox = linkCon.getBBox();
+                link.attr({
+                    x : linkConBbox.minX + (linkBbox.width / 2) + annexPadding + 1,
+                    y : linkConBbox.minY + (linkBbox.height / 2) + annexPadding + 1
+                });
+
+            }
+
+            // for note annex
+            if (model.note) {
+
+                let noteBbox = note.getBBox();
+
+                noteConBbox = noteCon.getBBox();
+                noteCon.attr({
+                    x : conBbox.width - noteConBbox.width - conPaddingX - annexPadding,
+                    y : conPaddingY - annexPadding
+                });
+                noteConBbox = noteCon.getBBox();
+                note.attr({
+                    x : noteConBbox.minX + (noteBbox.width / 2) + annexPadding + 1,
+                    y : noteConBbox.minY + (noteBbox.height / 2) + annexPadding + 1
+                });
+            
+            }
+
+        },
+        _showContextMenu : function (x, y, nodeId) {
+            
+            this.data.contextMenu = {
+                style : {
+                    left : `${x}px`,
+                    top : `${y}px`,
+                    display : 'flex',
+                },
+                nodeId
+            };
+
+        },
+        _hideContextMenu : function () {
+            
+            this.data.contextMenu = {
+                style : {
+                    display : 'none'
+                }
+            };
+
         },
         /* eslint-enable no-magic-numbers */
-        _inAnnex : function (evt, shapeIndex) {
+        _inNodeShape : function (evt, shape) {
 
             let zoom = this.data.graph.getZoom();
             let itemBbox = evt.item.getBBox();
             let itemCanvasXY = this.data.graph.getCanvasByPoint(itemBbox.x, itemBbox.y);
             let x = (evt.canvasX - itemCanvasXY.x) / zoom;
             let y = (evt.canvasY - itemCanvasXY.y) / zoom;
-            let annexConShape = evt.item.get('group').getChildByIndex(shapeIndex);
-            let annexConShapeBbox = annexConShape.getBBox();
+            let shapeBbox = shape.getBBox();
 
-            if (x > annexConShapeBbox.minX &&
-                x < annexConShapeBbox.maxX &&
-                y > annexConShapeBbox.minY &&
-                y < annexConShapeBbox.maxY) {
+            if (x > shapeBbox.minX &&
+                x < shapeBbox.maxX &&
+                y > shapeBbox.minY &&
+                y < shapeBbox.maxY) {
 
                 return true;
 
             }
 
             return false;
+
+        },
+        _inAnnex : function (evt, shapeIndex) {
+
+            return this._inNodeShape(evt, evt.item.get('group').getChildByIndex(shapeIndex));
 
         },
         _onNodeHover : function () {
@@ -941,6 +1354,44 @@ export default {
 
                     this.data.graph.setItemState(evt.item, 'hover', false);
                 
+                }
+
+            });
+
+        },
+        _onMarkHover : function () {
+
+            this.data.graph.on('node:mousemove', evt => {
+
+                let model = evt.item.getModel();
+                let hover = false;
+
+                if (!model.isMindNode) {
+
+                    return;
+
+                }
+
+                if (model._mark && model._mark.length > 0) {
+
+                    for (let index in model._mark) {
+
+                        let markConGroup = evt.item.get('group').getChildByIndex(markConGroupIndex);
+                        let markCon = markConGroup.getChildByIndex(index * 2);
+
+                        if (!hover && this._inNodeShape(evt, markCon)) {
+
+                            this.data.graph.setItemState(evt.item, `mark-${index}-hover`, true);
+                            hover = true;
+
+                        } else {
+
+                            this.data.graph.setItemState(evt.item, `mark-${index}-hover`, false);
+
+                        }
+
+                    }
+
                 }
 
             });
@@ -988,6 +1439,22 @@ export default {
 
             });
 
+            this.data.graph.on('canvas:mousemove', () => {
+
+                let hoverNotes = this.data.graph.findAllByState('node', 'note-hover');
+
+                if (hoverNotes && hoverNotes.length > 0) {
+
+                    for (let note of hoverNotes) {
+
+                        this.data.graph.setItemState(note, annexList.note.state, false);
+
+                    }
+                    
+                }
+
+            });
+
         },
         _onAnnexClick : function () {
 
@@ -1015,7 +1482,7 @@ export default {
 
                     if (this._inAnnex(evt, annexList.note.index)) {
 
-                        this.data.currentNodeNote = model.note;
+                        this.data.currentNodeNote = model.note.replace(/\n/g, '<br>');
                         this.data.nodeNoteShow = true;
                         this._refreshNodeNotePosition(evt.item);
                         this.data.$notePopover.toggle(true);
@@ -1161,6 +1628,36 @@ export default {
 
             });
             
+        },
+        _onContextMenu : function () {
+            
+            this.data.graph.on('node:contextmenu', evt => {
+
+                let {
+                    x : canvasX,
+                    y : canvasY
+                } = this.data.graph.getCanvasByPoint(evt.x, evt.y);
+
+                if (evt.item) {
+
+                    let model = evt.item.getModel();
+
+                    if (model.isMindNode) {
+
+                        this._showContextMenu(canvasX, canvasY, model.id);
+
+                    }
+
+                }
+
+            });
+
+            this.data.graph.on('node:mouseleave', () => {
+
+                this._hideContextMenu();
+
+            });
+
         },
         /* eslint-disable no-magic-numbers */
         _regRootMindNode : function () {
@@ -1539,14 +2036,72 @@ export default {
                             textBaseline : 'middle'
                         }
                     });
+                    let markConGroup = group.addGroup({
+                        id : `node-${cfg.id}-mark-box`,
+                        attrs : {
+                            x : 0,
+                            y : 0
+                        }
+                    });
+
+                    if (cfg._mark && cfg._mark.length > 0) {
+    
+                        for (let index in cfg._mark) {
+
+                            let markName = cfg._mark[index];
+                            let markCon = markConGroup.addShape('rect', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : 'transparent',
+                                    fillOpacity : 0.7,
+                                    stroke : 'transparent',
+                                    radius : 3
+                                },
+                                zIndex : 99
+                            });
+
+                            let mark = markConGroup.addShape('text', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fontFamily : 'morningicon',
+                                    fontSize : style.fontSize,
+                                    textAlign : 'center',
+                                    textBaseline : 'middle',
+                                    fill : marks[markName].color,
+                                    text : String.fromCharCode(parseInt(`${marks[markName].iconfont};`, 16))
+                                }
+                            });
+
+                            let markBbox = mark.getBBox();
+                            
+                            markCon.attr({
+                                x : (-markBbox.width / 2) - annexPadding + (markBbox.width * index),
+                                y : (-markBbox.height / 2) - annexPadding,
+                                width : markBbox.width,
+                                height : markBbox.height + (annexPadding * 2)
+                            });
+
+                        }
+
+                        // markConGroup.set('keyShape', markCons[0]);
+                        // markConGroup.attr({
+                        //     height : 23,
+                        //     width : cfg._mark.length * 20
+                        // });
+
+                    }
 
                     let textBbox = text.getBBox();
                     let linkBbox = link.getBBox();
                     let linkConBbox = linkCon.getBBox();
+                    let markConGroupBbox = markConGroup.getBBox();
                     let noteBbox = note.getBBox();
                     let noteConBbox = noteCon.getBBox();
                     let conWidth = textBbox.width + (conPaddingX * 2);
                     let conHeight = textBbox.height + (conPaddingY * 2);
+                    let textX = 0;
 
                     if (cfg.link) {
 
@@ -1582,9 +2137,16 @@ export default {
 
                     }
 
+                    if (cfg._mark && cfg._mark.length > 0) {
+
+                        conWidth += markConGroupBbox.width;
+                        textX = markConGroupBbox.width;
+
+                    }
+
                     if (cfg.note || cfg.link) {
 
-                        conWidth += conPaddingX / 2;
+                        conWidth += (conPaddingX / 2) + markConPaddingRight;
 
                     }
 
@@ -1629,6 +2191,30 @@ export default {
 
                     }
 
+                    if (cfg._mark && cfg._mark.length > 0) {
+
+                        markConGroupBbox = markConGroup.getBBox();
+
+                        for (let index in cfg._mark) {
+
+                            let markCon = markConGroup.getChildByIndex(index * 2);
+                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
+                            let markBbox = mark.getBBox();
+                            let markConBbox = markCon.getBBox();
+
+                            markCon.attr({
+                                x : (-markBbox.width / 2) + conPaddingX + (markConBbox.width * index),
+                                y : (-markBbox.height / 2) + conPaddingY + annexPadding
+                            });
+                            mark.attr({
+                                x : (markBbox.width / 4) + conPaddingX + (markConBbox.width * index),
+                                y : (markBbox.height / 2) + conPaddingY
+                            });
+
+                        }
+
+                    }
+
                     box.attr({
                         width : conBbox.width,
                         height : conBbox.height
@@ -1646,12 +2232,12 @@ export default {
                     });
 
                     text.attr({
-                        x : conPaddingX,
+                        x : textX + conPaddingX,
                         y : (textBbox.height / 2) + conPaddingY
                     });
 
                     placeholder.attr({
-                        x : conPaddingX,
+                        x : textX + conPaddingX,
                         y : (textBbox.height / 2) + conPaddingY
                     });
 
@@ -1667,7 +2253,8 @@ export default {
                 },
                 setState : (name, value, item) => {
 
-                    let style = this._getNodeStyles(mindNodeStyle, item.getModel());
+                    let model = item.getModel();
+                    let style = this._getNodeStyles(mindNodeStyle, model);
                     let states = item.getStates();
                     let box = item.get('keyShape');
                     let group = box.getParent();
@@ -1676,6 +2263,7 @@ export default {
                     let link = group.getChildByIndex(linkShapeIndex);
                     let noteCon = group.getChildByIndex(noteConShapeIndex);
                     let note = group.getChildByIndex(noteShapeIndex);
+                    let markConGroup = group.getChildByIndex(markConGroupIndex);
 
                     if (states.indexOf('drag') !== -1) {
 
@@ -1742,6 +2330,41 @@ export default {
                             fillOpacity : 0.6,
                             cursor : 'default'
                         });
+
+                    }
+
+                    if (model._mark && model._mark.length > 0) {
+
+                        for (let index in model._mark) {
+
+                            let markCon = markConGroup.getChildByIndex(index * 2);
+                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
+
+                            if (states.indexOf(`mark-${index}-hover`) !== -1) {
+
+                                markCon.attr({
+                                    // fill : style.outlineColor,
+                                    stroke : style.outlineActiveColor,
+                                    cursor : 'pointer'
+                                });
+                                mark.attr({
+                                    cursor : 'pointer'
+                                });
+
+                            } else {
+
+                                markCon.attr({
+                                    // fill : 'transparent',
+                                    stroke : 'transparent',
+                                    cursor : 'default'
+                                });
+                                mark.attr({
+                                    cursor : 'default'
+                                });
+
+                            }
+                            
+                        }
 
                     }
 
@@ -1874,7 +2497,7 @@ export default {
                     let customOptions = this.getCustomConfig(cfg) || {};
                     let controlPoints = [];
 
-                    if (sourceNode.getModel()._shape === 'line') {
+                    if (sourceNode.getModel().shapeStyle === 'line') {
 
                         controlPoints.push({
                             anchorIndex : 0,
@@ -1894,7 +2517,7 @@ export default {
 
                     }
 
-                    if (targetNode.getModel()._shape === 'line') {
+                    if (targetNode.getModel().shapeStyle === 'line') {
 
                         controlPoints.push({
                             anchorIndex : 0,
@@ -2221,7 +2844,7 @@ export default {
 
             let vm = this;
 
-            G6.registerBehavior('mor-drag-2node', {
+            G6.registerBehavior('mor-drag-node', {
                 getDefaultCfg () {
 
                     return {
@@ -2240,7 +2863,7 @@ export default {
 
                 },
                 onDragStart (evt) {
-                    
+
                     if (!this.shouldBegin.call(this, evt)) {
 
                         return;
@@ -2329,17 +2952,17 @@ export default {
 
                     // !this.origin ||
                     if (!this.get('shouldUpdate').call(this, evt)) {
-                
+
                         return;
-                    
+
                     }
 
                     if (this.dragOptions.type === 'unselect-single') {
-                        
+
                         this._updateDelegate(evt);
-                        
+
                     } else {
-                        
+
                         this._updateDelegate(evt);
 
                     }
@@ -2351,13 +2974,13 @@ export default {
                     
                     // !this.origin ||
                     if (!this.shouldEnd.call(this, evt)) {
-                        
+
                         return;
                     
                     }
 
                     if (this.dragOptions.delegateShape) {
-                        
+
                         this.dragOptions.delegateShape.remove();
                         this.dragOptions.delegateShape = null;
 
@@ -2576,6 +3199,11 @@ export default {
             this._onNodeDrag();
             this._onAnnexHover();
             this._onAnnexClick();
+            this._onContextMenu();
+            
+            // eslint-disable-next-line no-warning-comments
+            // TODO : mark hover is not work, cause zIndex
+            // this._onMarkHover();
 
         },
         _createGraph : function () {
@@ -2686,13 +3314,42 @@ export default {
             this.data.graph = new G6.TreeGraph(graphOtions);
 
         },
+        _traverseNodeUpdateMark : function (item) {
+
+            if (item.mark && item.mark.length > 0) {
+
+                let mark = {};
+
+                for (let index in item.mark) {
+
+                    let name = item.mark[index];
+                    let group = name.split(':')[0];
+
+                    if (marks[name]) {
+                        
+                        mark[group] = name;
+
+                    }
+
+                }
+
+                item._mark = Object.values(mark);
+
+            } else {
+
+                item._mark = [];
+
+            }
+    
+        },
         _traverseNode : function (item) {
 
             item.id = this.data.globalId++;
             item.anchorPoints = [[0, 0.5], [1, 0.5]];
             item.isMindNode = true;
             item.style = {};
-            item._shape = item.shape;
+            // item._shape = item.shape;
+            item.shapeStyle = item.shapeStyle;
             this.data.dataMap[item.id] = item;
 
             if (item.isRoot) {
@@ -2704,6 +3361,8 @@ export default {
                 item.shape = 'mor-mind-node';
 
             }
+
+            this._traverseNodeUpdateMark(item);
 
         },
         /* eslint-enable no-magic-numbers */
@@ -2732,6 +3391,35 @@ export default {
                         if (typeof customWalker === 'function') {
 
                             customWalker(Object.assign([], item.children), dataWalker);
+
+                        } else {
+
+                            dataWalker(item.children);
+
+                        }
+
+                    }
+
+                }
+
+            };
+
+            dataWalker(data);
+
+        },
+        _importDataWalker : function (data, nodeCallback, customWalker) {
+
+            let dataWalker = (currentData, ...args) => {
+
+                for (let item of currentData) {
+
+                    nodeCallback(item, ...args);
+
+                    if (item.children) {
+
+                        if (typeof customWalker === 'function') {
+
+                            customWalker(item.children, dataWalker);
 
                         } else {
 
@@ -2786,11 +3474,9 @@ export default {
                     children : []
                 };
 
-                if (item.link) {
-
-                    current.link = item.link;
-
-                }
+                current.link = item.link;
+                current.note = item.note;
+                current.mark = item.mark;
 
                 if (parent === undefined) {
 
@@ -2817,13 +3503,69 @@ export default {
             this._downloadFile(URL.createObjectURL(blob), 'json');
             
         },
+        _importJSON : function (data) {
+
+            let xmindData;
+            let current;
+
+            this._importDataWalker(data, (item, parent) => {
+
+                current = {
+                    text : item.name,
+                    children : []
+                };
+
+                if (item.link) {
+                    
+                    current.link = item.link;
+
+                }
+
+                if (item.note) {
+                    
+                    current.note = item.note;
+
+                }
+
+                if (item.mark) {
+                    
+                    current.mark = item.mark;
+
+                }
+
+                this._traverseNode(current);
+
+                if (parent === undefined) {
+
+                    xmindData = current;
+
+                } else {
+
+                    parent.push(current);
+
+                }
+
+            }, (children, dataWalker) => {
+
+                if (children && children.length > 0) {
+
+                    dataWalker(children, current.children);
+
+                }
+
+            });
+
+            return xmindData;
+
+        },
         _exportXMIND : function (data) {
 
             let zip = new JSZip();
             let {
                 Workbook,
                 Topic,
-                Dumper
+                Dumper,
+                Marker
             } = window;
             let topic;
             let workbook = new Workbook();
@@ -2840,7 +3582,7 @@ export default {
                     current.href = item.link;
 
                 }
-              
+
                 if (topic === undefined) {
 
                     topic = new Topic({
@@ -2850,6 +3592,24 @@ export default {
                 } else if (cid) {
 
                     topic.on(cid).add(current);
+
+                }
+
+                if (item.note) {
+
+                    topic.on(topic.cid()).note(item.note);
+
+                }
+
+                if (item._mark && item._mark.length > 0) {
+
+                    let marker = new Marker();
+
+                    for (let markName of item._mark) {
+
+                        topic.on(topic.cid()).marker(marker[marks[markName].markMethod](marks[markName].markValue));
+
+                    }
 
                 }
 
@@ -2906,7 +3666,136 @@ export default {
             });
 
         },
-        export : function (type, nodeId) {
+        _importXMIND : function (data) {
+
+            let xmindData;
+            let current;
+
+            this._importDataWalker(data, (item, parent) => {
+
+                current = {
+                    text : item.title,
+                    children : []
+                };
+
+                if (item.href) {
+                    
+                    current.link = item.href;
+
+                }
+
+                if (item.notes) {
+                    
+                    current.note = item.notes.plain.content;
+
+                }
+
+                if (item.markers) {
+                    
+                    current.mark = map(item.markers, 'markerId');
+
+                }
+
+                this._traverseNode(current);
+
+                if (parent === undefined) {
+
+                    xmindData = current;
+
+                } else {
+
+                    parent.push(current);
+
+                }
+
+            }, (children, dataWalker) => {
+
+                if (children) {
+
+                    dataWalker(children.attached, current.children);
+
+                }
+
+            });
+
+            return xmindData;
+
+        },
+        _saveMarks : function (nodeId, groups) {
+
+            let markList = Object.values(groups);
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            markList = arrayUniq(markList);
+            markList = markList.filter(mark => (mark !== '0'));
+            
+            for (let index in markList) {
+
+                markList[index] = markList[index].replace('-', ':');
+
+            }
+
+            if (model.mark === undefined) {
+
+                model.mark = [];
+
+            }
+
+            model.mark = markList;
+            this._traverseNodeUpdateMark(model);
+            node.draw();
+            this.data.graph.refreshLayout();
+
+        },
+        _importFile : function (file) {
+
+            let nodeId = this.data.currentImportNode;
+            let mode = this.data.currentImportMode;
+
+            this.cancelImportFile();
+
+            if (file.file.type === 'application/json') {
+
+                file.file.text().then(text => {
+                        
+                    this.importFrom('json', text, nodeId, mode);
+
+                });
+
+            } else if (file.file.type === 'application/vnd.xmind.workbook') {
+
+                file.file
+                    .arrayBuffer()
+                    .then(arrayBuffer => {
+                        
+                        let zip = new JSZip();
+
+                        return zip
+                            .loadAsync(arrayBuffer)
+                            .then(content => (content.files['content.json']));
+                        // this.importFrom('json', text, nodeId, mode);
+
+                    })
+                    .then(contentFile => (
+                        new TextDecoder('utf-8').decode(contentFile._data.compressedContent)
+                    ))
+                    .then(text => {
+
+                        this.importFrom('xmind', text, nodeId, mode);
+
+                    });
+
+            }
+
+        },
+        _resetImportStatus : function () {
+
+            this.data.currentImportNode = undefined;
+            this.data.currentImportMode = undefined;
+
+        },
+        exportTo : function (type, nodeId) {
 
             let data = [this.data.graph.get('data')];
 
@@ -2918,6 +3807,70 @@ export default {
 
             // type is : xmind,png,json,markdown
             this[`_export${type.toUpperCase()}`](data);
+
+        },
+        importFrom : function (type, data, nodeId, mode = 'replace') {
+
+            let xmindData = {};
+
+            if (type === 'json') {
+
+                data = JSON.parse(data);
+                xmindData = this._importJSON(data);
+
+            } else if (type === 'xmind') {
+
+                data = JSON.parse(data);
+                xmindData = this._importXMIND([data[0].rootTopic]);
+
+            }
+
+            if (nodeId) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+
+                if (model.children === undefined) {
+
+                    model.children = [];
+
+                }
+
+                if (mode === 'replace') {
+
+                    model.children = [xmindData];
+
+                } else if (mode === 'append') {
+
+                    model.children = model.children.concat([xmindData]);
+
+                } else if (mode === 'prepend') {
+
+                    model.children = [xmindData].concat(model.children);
+
+                }
+
+                this.data.graph.changeData();
+                this.data.graph.refreshLayout();
+
+            } else {
+
+                xmindData.isRoot = true;
+                this._readData(xmindData);
+
+            }
+
+        },
+        showImportFile : function (nodeId, mode) {
+
+            this.data.currentImportNode = nodeId;
+            this.data.currentImportMode = mode;
+            this.data.$importDialog.toggle(true);
+
+        },
+        cancelImportFile : function () {
+
+            this.data.$importDialog.toggle(false);
 
         },
         insertBeforeNode : function (nodeId, data) {
@@ -2966,6 +3919,14 @@ export default {
             if (model.isRoot) {
 
                 return null;
+
+            }
+
+            if (data === undefined) {
+
+                data = {
+                    text : '新的节点'
+                };
 
             }
 
@@ -3045,17 +4006,19 @@ export default {
             this.data.graph.refreshLayout();
 
         },
-        deleteNode : function () {
+        deleteNode : function (nodeId) {
 
-            // eslint-disable-next-line no-warning-comments
-            // TODO : 删除节点
-            // let node = this.data.graph.findById(nodeId);
-            // let model = node.getModel();
-            // let parent = node.getInEdges()[0].getSource();
-            // let parentModel = parent.getModel();
-            // let indexOfParent = parentModel.children.indexOf(model);
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let parent = node.getInEdges()[0].getSource();
+            let parentModel = parent.getModel();
+            let indexOfParent = parentModel.children.indexOf(model);
 
-            // return this.insertSubNode(nodeId, undefined, indexOfParent);
+            parentModel.children.splice(indexOfParent, 1);
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return this;
 
         },
         zoom : function (zoom) {
@@ -3094,9 +4057,156 @@ export default {
             node.draw();
             this.data.graph.refreshLayout();
 
+        },
+        mark : function (nodeId, mark) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            if (model.mark === undefined) {
+
+                model.mark = [];
+
+            }
+
+            model.mark.push(mark);
+            model.mark = arrayUniq(model.mark);
+            this._traverseNodeUpdateMark(model);
+            node.draw();
+            this.data.graph.refreshLayout();
+
+        },
+        unmark : function (nodeId, mark) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let index = model.mark.indexOf(mark);
+
+            if (index !== -1) {
+
+                model.mark.splice(index, 1);
+
+            }
+
+            this._traverseNodeUpdateMark(model);
+            node.draw();
+            this.data.graph.refreshLayout();
+
+        },
+        note : function (nodeId, note) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            model.note = note;
+            node.draw();
+            this.data.graph.refreshLayout();
+
+        },
+        editLink : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            this.data.currentEditLinkNodeId = nodeId;
+            this.data.currentEditLinkValue = model.link;
+            this.data.$editLinkDialog.toggle(true);
+
+        },
+        cancelEditLink : function () {
+
+            this.data.currentEditLinkNodeId = 0;
+            this.data.currentEditLinkValue = '';
+            this.data.$editLinkDialog.toggle(false);
+
+        },
+        editNote : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            this.data.currentEditNoteNodeId = nodeId;
+            this.data.currentEditNoteValue = model.note;
+            this.data.$editNoteDialog.toggle(true);
+
+        },
+        cancelEditNote : function () {
+
+            this.data.currentEditNoteNodeId = 0;
+            this.data.currentEditNoteValue = '';
+            this.data.$editNoteDialog.toggle(false);
+
+        },
+        editMark : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let markGroups = {};
+
+            this.data.currentEditMarkNodeId = nodeId;
+
+            if (model._mark && model._mark.length > 0) {
+
+                for (let mark of model._mark) {
+
+                    markGroups[mark.split(':')[0]] = mark.replace(':', '-');
+
+                }
+
+            }
+
+            markGroups = Object.assign({
+                priority : '0',
+                task : '0',
+                flag : '0',
+                star : '0'
+            }, markGroups);
+
+            this.data.currentEditMarkValue = markGroups;
+            this.data.$editMarkDialog.toggle(true);
+
+        },
+        cancelEditMark : function () {
+
+            this.data.currentEditMarkNodeId = 0;
+            // this.data.currentEditMarkValue = {
+            //     priority : '0',
+            //     task : '0',
+            //     flag : '0',
+            //     star : '0'
+            // };
+            this.data.$editMarkDialog.toggle(false);
+
         }
     },
-    created : function () {},
+    created : function () {
+
+        let groups = {};
+
+        for (let index in marks) {
+
+            let mark = marks[index];
+            let group = index.split(':')[0];
+
+            if (groups[group] === undefined) {
+
+                groups[group] = {
+                    key : group,
+                    name : markGourpsName[group],
+                    list : {
+                        0 : '不使用'
+                    }
+                };
+
+            }
+
+            groups[group].list[index.replace(':', '-')] = `<i class="mo-icon ${mark.iconcls}" style="color:${mark.color}"></i>`;
+
+        }
+
+        this.data.markGroups = groups;
+
+    },
     mounted : function () {
 
         this.data.$canvas = this.$el.querySelector('.canvas');
@@ -3104,6 +4214,10 @@ export default {
         this.data.$editContentInput = this.data.$editContent.querySelector('textarea');
         this.data.$nodeNote = this.$el.querySelector('.node-note');
         this.data.$notePopover = this.$refs[`mor-mindmap-note-${this.uiid}`];
+        this.data.$editLinkDialog = this.$refs[`mor-mindmap-edit-link-${this.uiid}`];
+        this.data.$editNoteDialog = this.$refs[`mor-mindmap-edit-note-${this.uiid}`];
+        this.data.$editMarkDialog = this.$refs[`mor-mindmap-edit-mark-${this.uiid}`];
+        this.data.$importDialog = this.$refs[`mor-mindmap-import-${this.uiid}`];
 
         // let data = {
         //     text : 'ClassificationClassification',
@@ -3144,8 +4258,9 @@ export default {
                     text : 'ClassificationClassification',
                     children : [
                         {
-                            text : 'Logistic regression',
-                            note : 'hello'
+                            text : `Different in`,
+                            note : 'hello',
+                            mark : ['priority:1', 'priority:2', 'star:red']
                         },
                         {
                             text : 'Linear discriminant analysis'
@@ -3294,4 +4409,3 @@ export default {
     }
 };
 </script>
-

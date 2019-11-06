@@ -334,6 +334,90 @@
             <i class="mo-icon-filter-f"></i>
             <span>mo-icon-filter-f</span>
         </div>
+        <div>
+            <i class="mo-icon-num-0-cf"></i>
+            <span>mo-icon-num-0-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-1-cf"></i>
+            <span>mo-icon-num-1-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-2-cf"></i>
+            <span>mo-icon-num-2-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-3-cf"></i>
+            <span>mo-icon-num-3-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-4-cf"></i>
+            <span>mo-icon-num-4-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-5-cf"></i>
+            <span>mo-icon-num-5-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-6-cf"></i>
+            <span>mo-icon-num-6-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-7-cf"></i>
+            <span>mo-icon-num-7-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-8-cf"></i>
+            <span>mo-icon-num-8-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-num-9-cf"></i>
+            <span>mo-icon-num-9-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-start-cf"></i>
+            <span>mo-icon-progress-start-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-1-8-cf"></i>
+            <span>mo-icon-progress-1-8-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-1-4-cf"></i>
+            <span>mo-icon-progress-1-4-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-3-8-cf"></i>
+            <span>mo-icon-progress-3-8-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-1-2-cf"></i>
+            <span>mo-icon-progress-1-2-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-5-8-cf"></i>
+            <span>mo-icon-progress-5-8-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-3-4-cf"></i>
+            <span>mo-icon-progress-3-4-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-7-8-cf"></i>
+            <span>mo-icon-progress-7-8-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-progress-done-cf"></i>
+            <span>mo-icon-progress-done-cf</span>
+        </div>
+        <div>
+            <i class="mo-icon-flag-c"></i>
+            <span>mo-icon-flag-c</span>
+        </div>
+        <div>
+            <i class="mo-icon-star-cf"></i>
+            <span>mo-icon-star-cf</span>
+        </div>
     </div>
     
     ## 图标托管
