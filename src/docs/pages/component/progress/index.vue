@@ -177,6 +177,158 @@
     </div>
     :::
 
+    :::vue
+    @name:status
+    ---
+    #config
+    >conf-desc
+    设置进度条的状态。
+    >conf-accept
+    `'normal'` : 正常<br>`'failed'` : 失败<br>`'success'` : 成功<br>`'warning'` : 警告<br>
+    >conf-type
+    String
+    >conf-default
+    `'normal'`
+    ---
+    #demo
+    >desc
+    失败状态的进度条。
+    >tpl
+    <div style="width:320px">
+        <ui-progress :percent="50" status="failed"></ui-progress>
+    </div>
+    ---
+    #demo
+    >desc
+    成功状态的进度条。
+    >tpl
+    <div style="width:320px">
+        <ui-progress :percent="100" status="success"></ui-progress>
+    </div>
+    ---
+    #demo
+    >desc
+    警告状态的进度条。
+    >tpl
+    <div style="width:320px">
+        <ui-progress :percent="50" status="warning"></ui-progress>
+    </div>
+    ---
+    #demo
+    >desc
+    `status`配置配合`type`一起使用。
+    >tpl
+    <div style="width:160px">
+        <ui-progress :percent="50" status="warning" type="ring"></ui-progress>
+    </div>
+    :::
+
+    :::vue
+    @name:format
+    ---
+    #config
+    >conf-desc
+    格式化进度文案显示。
+    >conf-accept
+    进度文案格式化函数(函数的第一个参数是当前进度的数值)
+    >conf-type
+    Function
+    >conf-default
+    `percent => (`${percent}%`)`
+    ---
+    #demo
+    >tpl
+    <div style="width:320px">
+        <ui-progress :percent="100" :format="format"></ui-progress>
+    </div>
+    >script
+    {
+        methods : {
+            format : percent => {
+                return (percent === 100) ? `完成` : `${percent}%`;
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:mark-range
+    ---
+    #config
+    >conf-desc
+    标记进度条的某部分。这是一个数组每项都是一个标记段，标记段是一个数组或对象：<br><br>如果是数组：长度为2，分别表示开始和结束。比如：`[[10, 20], [50, 70]]`会标记两段，第一段从数值10开始到20结束，第二段从数值50开始到70结束。<br><br>如果是对象，包含以下键值：<br>`start`：开始<br>`end`：结束<br>`color`：色彩，支持[设计/色彩](/design/color.html)中所有颜色，默认为`neutral-4`。也可采用HEX色值，比如`#333333`。<br><br>注意：`end`不能大于`100`。
+    >conf-accept
+    数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
+    <div style="width:320px;">
+        <ui-progress :percent="30" :mark-range="[[0, 40], [50, 70]]"></ui-progress>
+    </div>
+    ---
+    #demo
+    >desc
+    通过色彩设置标记的颜色。
+    >tpl
+    <div style="width:320px;">
+        <ui-progress
+            :percent="30"
+            :mark-range="[{
+                start : 0,
+                end : 40,
+                color : 'neutral-5'
+            }, {
+                start : 70,
+                end : 90,
+                color : 'light-theme'
+            }]"
+        ></ui-progress>
+    </div>
+    ---
+    #demo
+    >desc
+    通过HEX色值设置标记的颜色。
+    >tpl
+    <div style="width:320px;">
+        <ui-progress
+            :percent="30"
+            :mark-range="[{
+                start : 0,
+                end : 40,
+                color : '#A151DA'
+            }, {
+                start : 70,
+                end : 90,
+                color : '#FFA5B6'
+            }]"
+        ></ui-progress>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`type`配置一起使用。
+    >tpl
+    <div style="width:160px;">
+        <ui-progress
+            type="ring"
+            :percent="30"
+            :mark-range="[{
+                start : 0,
+                end : 40,
+                color : '#A151DA'
+            }, {
+                start : 70,
+                end : 90,
+                color : '#FFA5B6'
+            }]"
+        ></ui-progress>
+    </div>
+    :::
+
     [[[方法]]]
     
     <h1>暂无</h1>

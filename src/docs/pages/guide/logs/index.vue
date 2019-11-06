@@ -18,6 +18,159 @@
     
     ### 更新记录
 
+    ### 0.12.66 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年11月6日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.66" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.66/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.66/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-upload`组件新增`only-read-file`配置，允许上传组件仅仅读取文件不处理上传
+    - `ui-video`组件新增`fullscreen`方法
+
+    #### 改进
+
+    - 完善`ui-mindmap`组件
+
+    #### 修复
+
+    - 修复`ui-radio`和`ui-checkbox`的选项内容中包含图标时无法展示的问题
+    - 修复`ui-checkbox`和`ui-radio`在某些特殊的情况下`outline`显示不正确的问题
+    - 修复`ui-slider`的`mark-range`配置可能导致溢出的问题
+
+    #### 更多
+
+    - 新增若干图标
+
+    ---
+
+    ### 0.12.65 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年11月4日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.65" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.65/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.65/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-mindmap`思维导图组件，支持思维导图编辑及导出`xmind`、`json`等格式文件
+
+    #### 改进
+
+    - 优化`ui-btn`的朴素和幽灵按钮样式，使其符合设计规范
+    - 现在`ui-multiinput`组件中通过点击删除项目时，不会触发`input-focus`事件
+    - 优化表单组件的背景色及表单项的背景色，使其在偏暖色的显示器中有更好的呈现
+
+    #### 修复
+
+    - 修复`ui-progress`文档中的一处错误
+    - 修复`ui-select`组件中开启`multi-select`配置后，点击删除选项时会弹出下拉框的问题
+    - 修复`ui-avatar`使用图片作为头像时的一个错位问题
+    - 修复`ui-form`组件无法通过`set()`方法清空数值的问题
+    - 修复`ui-form`组件无法通过`set()`方法清空单个表单组件数值的问题
+
+    #### 更多
+
+    - `ui-select`文档新增`list`为数组的用法示例
+
+    ---
+
+    ### 0.12.64 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.64" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.64/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.64/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-slider`的`mark-range`配置，现在支持配置颜色
+    - `ui-form`组件的表单项名称支持`Vue Template`
+    - `ui-progress`支持`format`配置，可以用来格式化进度文案
+    - `ui-progress`支持`status`配置，可以用来设置进度条的状态
+    - `ui-progress`支持`mark-range`配置
+
+    #### 改进
+
+    - `ui-dialog`弹窗增加圆角，和设计规范保持一致
+    - 改进`ui-checkbox`和`ui-radio`组件的边距，是其可以更容易布局
+
+    #### 修复
+
+    - 修复`ui-table`的`vertical-border`配置失效的问题
+    - 修复`ui-img`预览大图时溢出窗口的问题
+
+    #### 更多
+
+    - 暂时下线文档搜索功能
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-progress`当进度100%时，不再会显示成功状态，可以通过`status=’success’`配置来替代
+
+    ---
+
+    ### 0.12.63 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.63" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.63/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.63/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 修复
+    
+    - 修复`ui-table`的`fixed-title-col`配置失效的问题
+    
+    ---
+
+    ### 0.12.62 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年10月14日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.62" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.62/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.62/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 修复
+    
+    - 修复`ui-uploader`上传失败后，失败信息不显示的问题
+    - 修复`ui-texteditor`的`uploader`配置无效的问题
+    - 修复`ui-texteditor`组件插入图片后，图片溢出的问题
+    
+    #### 更多
+    
+    - 移除依赖`quill-delta`
+    - 修复`定制化`文档中错误的部分
+
+    ---
+
+
     ### 0.12.61 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">

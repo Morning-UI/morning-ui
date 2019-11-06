@@ -86,6 +86,7 @@ import upload                       from './upload/index.vue';
 import colorpicker                  from './colorpicker/index.vue';
 import imagemap                     from './imagemap/index.vue';
 import form                         from './form/index.vue';
+import mindmap                      from './mindmap/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
@@ -182,5 +183,6 @@ export default {
     upload,
     colorpicker,
     imagemap,
-    form
+    form,
+    mindmap
 };

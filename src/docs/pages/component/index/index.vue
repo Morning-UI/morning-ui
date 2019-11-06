@@ -44,7 +44,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h4><i class="iconfont">&#xe612;</i> 展示</h4>
+            <h4><i class="iconfont" style="transform: scale(1.3);display: inline-block;">&#xe63b;</i> 展示</h4>
             <ul>
                 <li><a href="/component/label.html">标签<p>&lt;label></p></a></li>
                 <li><a href="/component/statistic.html">统计<p>&lt;statistic></p></a></li>
@@ -105,6 +105,12 @@
                 <li><a href="/component/multiform.html">多项表单输入<p>&lt;multiform></p></a></li>
                 <li><a href="/component/upload.html">文件上传<p>&lt;upload></p></a></li>
                 <li><a href="/component/imagemap.html">图片热区输入<p>&lt;imagemap></p></a></li>
+            </ul>
+        </div>
+        <div class="sub-group">
+            <h4><i class="iconfont">&#xe612;</i> 图形化</h4>
+            <ul>
+                <li><a href="/component/mindmap.html">思维导图<p>&lt;mindmap></p></a></li>
             </ul>
         </div>
         <div class="sub-group">

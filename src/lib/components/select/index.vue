@@ -694,13 +694,14 @@ export default {
             let $searchTextinput = this.data.$selectArea.querySelector('.wrap mor-textinput'),
                 $searchMultiinput = this.data.$selectArea.querySelector('.wrap mor-multiinput'),
                 hasTextinput = (evt.path.indexOf($searchTextinput) !== -1),
-                hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1);
+                hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1),
+                clickOnMultiinputDelBtn = (evt.path[0].classList.value.split(' ').indexOf('mo-icon-close') !== -1);
 
             if (!hasTextinput && !hasMultiinput) {
 
                 this.toggle();
 
-            } else if ((hasTextinput || hasMultiinput) && this.data.showlist === false) {
+            } else if ((hasTextinput || hasMultiinput) && !clickOnMultiinputDelBtn && this.data.showlist === false) {
 
                 this.toggle();
 

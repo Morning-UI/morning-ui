@@ -274,6 +274,27 @@
     </div>
     :::
 
+    :::vue
+    @name:fullscreen(fullscreen)
+    ---
+    #method
+    >method-desc
+    全屏视频组件。
+    >method-args
+    |fullscreen|NO|切换至全屏，不输入则切换到反向状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div style="width:400px">
+        <ui-video ref="demo11" src="https://media.w3.org/2010/05/sintel/trailer.mp4"></ui-video>
+        <br>
+        <ui-link js="console.log(window.morning.findVM('demo11').fullscreen(true));">进入全屏</ui-link>
+        <ui-link js="console.log(window.morning.findVM('demo11').fullscreen(false));">提出全屏</ui-link>
+    </div>
+    :::
+
     [[[事件]]]
 
     :::vue

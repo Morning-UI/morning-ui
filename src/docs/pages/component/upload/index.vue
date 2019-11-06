@@ -694,6 +694,40 @@
     </div>
     :::
 
+    :::vue
+    @name:only-read-file
+    ---
+    #config
+    >conf-desc
+    开启文件读取模式，此模式下组件不会响应和展示文件上传的结果。仅仅将用户上传的文件传递给`uploader`配置。
+    <br><br>
+    开启此配置后`is-max`配置将会失效。
+    <br><br>
+    注意：此配置初始化后即生效，无法进行切换。若要更改此配置需要销毁并创建新的组件。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-upload form-name="文件" only-read-file :uploader="uploader"></ui-upload>
+    </div>
+    >script
+    {
+        methods : {
+            uploader : function (file) {
+
+                alert(`read file : ${file.file.name}`);
+
+            }
+        }
+    }
+    :::
+
     [[[方法]]]
 
     :::preset

@@ -1,3 +1,5 @@
+@imgPadding: 8px;
+
 mor-img{
     display: inline-block;
     position: relative;
@@ -76,10 +78,12 @@ mor-img{
 .ui-dialog-preview > .content > .body{
     position: relative;
     font-size: 0;
-    padding: 8px;
+    padding: @imgPadding;
 
     > img{
         padding: 0;
         border-radius: 0;
+        max-width: calc(100vw - @imgPadding*2);
+        max-height: calc(100vh - @imgPadding*2);
     }
 }

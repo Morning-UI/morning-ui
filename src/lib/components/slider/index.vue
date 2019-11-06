@@ -46,9 +46,12 @@
                     <li
                         v-for="(mark, index) in marks"
                         :key="index"
-                        :style="{
-                            left : `${(mark[0] - conf.min) / range * data.$track.clientWidth}px`,
-                            width : `${(mark[1] - mark[0]) / range * data.$track.clientWidth}px`
+                        :style="[{
+                            left : `${(mark.start - conf.min) / range * data.$track.clientWidth}px`,
+                            width : `${(mark.end - mark.start) / range * data.$track.clientWidth}px`
+                        }, _genMarkBackground(mark.color)]"
+                        :class="{
+                            [`co-${morning._colorShortName[mark.color]}`] : true
                         }"
                     ></li>
                 </ul>
@@ -106,6 +109,7 @@
 </template>
  
 <script>
+import color                        from 'color';
 import getDivisors                  from 'get-divisors/dist/getDivisors.js';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
@@ -230,7 +234,18 @@ export default {
         },
         marks : function () {
 
+            if (!this.data.$track) {
+
+                return [];
+
+            }
+
             let marks = [];
+            let defaultMark = {
+                start : 0,
+                end : 0,
+                color : 'neutral-4'
+            };
 
             for (let mark of this.conf.markRange) {
 
@@ -238,10 +253,44 @@ export default {
                     mark.length === 2 &&
                     typeof mark[0] === 'number' &&
                     typeof mark[1] === 'number' &&
-                    mark[1] > mark[0] &&
-                    this.data.$track) {
+                    mark[1] > mark[0]) {
 
-                    marks.push(mark);
+                    if (mark[1] > this.conf.max) {
+
+                        mark[1] = this.conf.max;
+
+                    }
+
+                    if (mark[0] < this.conf.min) {
+
+                        mark[0] = this.conf.min;
+
+                    }
+
+                    marks.push(Object.assign({}, defaultMark, {
+                        start : mark[0],
+                        end : mark[1]
+                    }));
+
+                } else if (typeof mark === 'object' &&
+                    typeof mark.start === 'number' &&
+                    typeof mark.end === 'number' &&
+                    mark.end > mark.start
+                ) {
+
+                    if (mark.end > this.conf.max) {
+
+                        mark.end = this.conf.max;
+
+                    }
+
+                    if (mark.start < this.conf.min) {
+
+                        mark.start = this.conf.min;
+
+                    }
+
+                    marks.push(Object.assign({}, defaultMark, mark));
 
                 }
 
@@ -349,6 +398,22 @@ export default {
             this.data.pointWidth = fullwidth / pointNum;
             this.data.pointNum = pointNum - 1;
 
+        },
+        _genMarkBackground : function (colorString) {
+
+            let isVaild = false;
+
+            try {
+
+                color(colorString);
+                isVaild = true;
+
+            } catch (e) {}
+
+            return isVaild ? {
+                background : colorString
+            } : {};
+        
         },
         _setPer : function (per, offset = false) {
 

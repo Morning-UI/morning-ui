@@ -14,7 +14,19 @@
                 width : conf._labelWidth
             }"
         >
-            <span><span class="required" v-if="conf.required">*</span> {{conf.label}}</span>
+            <span>
+                <span class="required" v-if="conf.required">*</span>
+                <component
+                    :is="{
+                        template : ('<span>' + conf.label + '</span>'),
+                        data : function () {
+                            return {
+                                context : this.$parent.$parent.$vnode.context
+                            };
+                        }
+                    }"
+                ></component>
+            </span>
             <span class="form-item-note" v-html="conf.note"></span>
         </div>
 

@@ -145,7 +145,9 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                fullscreen : false
+            }
         };
 
     },
@@ -178,6 +180,31 @@ export default {
         play : function (...args) {
 
             return this._mcPlay(...args);
+
+        },
+        fullscreen : function (fullscreen) {
+
+            if (fullscreen === undefined) {
+
+                this.data.fullscreen = !this.data.fullscreen;
+
+            } else {
+
+                this.data.fullscreen = fullscreen;
+
+            }
+
+            if (this.data.fullscreen) {
+
+                this.data.mc$media.requestFullscreen();
+
+            } else {
+
+                this.data.mc$media.exitFullscreen();
+
+            }
+
+            return this;
 
         }
     },

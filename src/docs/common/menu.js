@@ -30,7 +30,7 @@ export default {
         面包屑 : ['/component/breadcrumbs.html', 'Breadcrumbs'],
         页头 : ['/component/header.html', 'Header'],
 
-        '<i class="iconfont">&#xe612;</i> 展示' : null,
+        '<i class="iconfont">&#xe63b;</i> 展示' : null,
         标签 : ['/component/label.html', 'Label'],
         统计 : ['/component/statistic.html', 'Statistic'],
         图片 : ['/component/img.html', 'Img'],
@@ -83,6 +83,9 @@ export default {
         颜色选择器 : ['/component/colorpicker.html', 'ColorPicker'],
         图片热区输入 : ['/component/imagemap.html', 'ImageMap'],
         表单组 : ['/component/formgroup.html', 'FormGroup'],
+
+        '<i class="iconfont" style="transform: scale(1.3);display: inline-block;">&#xe612;</i> 图形化' : null,
+        思维导图: ['/component/mindmap.html', 'MindMap'],
 
         '<i class="iconfont" style="transform: scale(0.85);display: inline-block;">&#xe959;</i> 文本' : null,
         标题 : ['/component/h.html', 'H'],

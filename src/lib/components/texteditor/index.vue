@@ -12,10 +12,10 @@
         :_errorMessage="_errorMessage"
         :inside-name="insideName"
         :tools="tools"
-        :uploader="uploader"
         :markdown="markdown"
         :plain-clipboard="plainClipboard"
         :inline-style="inlineStyle"
+        :uploader="uploader"
     >
     
         <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -202,17 +202,17 @@
                 <ui-link color="dark-theme" :js="'morning.findVM(\'ui-select-dialog-'+uiid+'\').toggle(false)'"><i class="mo-icon mo-icon-close"></i></ui-link>
             </header>
             <div>
-                <ui-upload
+                <morning-upload
                     :ref="'ui-select-uploader-'+this.uiid"
-                    inside-name="图片"
+                    inside-name=""
                     accept-type="image/*"
                     allow-url
                     allow-drag
-                    uploader="conf.uploader"
+                    :uploader="conf.uploader"
 
                     @value-change="_insertImage"
                 >
-                </ui-upload>
+                </morning-upload>
             </div>
         </morning-dialog>
 

@@ -24,7 +24,7 @@
 
     `ui-formitem`包含以下配置：
 
-    - `label` : (String)表单项的名字
+    - `label` : (String，支持`Vue Template`)表单项的名称
     - `note` : (String)表单项的备注
     - `required` : (Boolean)必填表单项
 
@@ -228,6 +228,37 @@
             </ui-formitem>
         </ui-form>
     </div>
+    :::
+
+    :::vue
+    @name:表单项名称支持Vue Template
+    ---
+    #demo
+    >desc
+    `label`配置支持`Vue Template`，同时可以通过`context`来访问到对应的Vue实例。
+    >tpl
+    <div style="width:420px;">
+        <ui-form>
+            <ui-formitem label="姓名">
+               <ui-textinput form-key="name"></ui-textinput>
+            </ui-formitem>
+            <ui-formitem label="
+                简介
+                <i id='demo3' @click='context.echo' class='mo-icon mo-icon-question-cf'></i>
+                <ui-tip target='#demo3'>这里是详细的说明</ui-tip>
+            ">
+               <ui-textarea form-key="introduction"></ui-textarea>
+            </ui-formitem>
+        </ui-form>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('Hello!');
+            }
+        }
+    }
     :::
 
     [[[形态]]]

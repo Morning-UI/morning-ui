@@ -188,6 +188,13 @@
       "unicode_decimal": 58889
     },
     {
+      "icon_id": "3874055",
+      "name": "展示架",
+      "font_class": "zhanshijia",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
       "icon_id": "4111811",
       "name": "代码",
       "font_class": "code",
