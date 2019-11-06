@@ -25,6 +25,7 @@
         :listType="listType"
         :showList="showList"
         :hidden-max-alert="hiddenMaxAlert"
+        :only-read-file="onlyReadFile"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -393,6 +394,10 @@ export default {
         hiddenMaxAlert : {
             type : Boolean,
             default : false
+        },
+        onlyReadFile : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -413,7 +418,8 @@ export default {
                 allowDrag : this.allowDrag,
                 listType : this.listType,
                 showList : this.showList,
-                hiddenMaxAlert : this.hiddenMaxAlert
+                hiddenMaxAlert : this.hiddenMaxAlert,
+                onlyReadFile : this.onlyReadFile
             };
 
         },
@@ -427,6 +433,12 @@ export default {
 
         },
         ismax : function () {
+
+            if (this.conf.onlyReadFile) {
+
+                return false;
+
+            }
 
             if (this.conf.max &&
                 this.data.files &&
@@ -757,6 +769,15 @@ export default {
                 .then(result => {
 
                     if (this.data.uploading === false) {
+
+                        return;
+
+                    }
+
+                    if (this.conf.onlyReadFile) {
+
+                        this._setStatus(index, 'done');
+                        this._execUploadOnce();
 
                         return;
 
@@ -1132,6 +1153,12 @@ export default {
         });
 
         this.$watch('data.files', () => {
+
+            if (this.conf.onlyReadFile) {
+
+                return;
+
+            }
 
             let files = [];
 

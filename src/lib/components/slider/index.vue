@@ -255,6 +255,18 @@ export default {
                     typeof mark[1] === 'number' &&
                     mark[1] > mark[0]) {
 
+                    if (mark[1] > this.conf.max) {
+
+                        mark[1] = this.conf.max;
+
+                    }
+
+                    if (mark[0] < this.conf.min) {
+
+                        mark[0] = this.conf.min;
+
+                    }
+
                     marks.push(Object.assign({}, defaultMark, {
                         start : mark[0],
                         end : mark[1]
@@ -265,6 +277,18 @@ export default {
                     typeof mark.end === 'number' &&
                     mark.end > mark.start
                 ) {
+
+                    if (mark.end > this.conf.max) {
+
+                        mark.end = this.conf.max;
+
+                    }
+
+                    if (mark.start < this.conf.min) {
+
+                        mark.start = this.conf.min;
+
+                    }
 
                     marks.push(Object.assign({}, defaultMark, mark));
 
