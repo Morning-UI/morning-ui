@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.12.66
+
+#### 新特性
+
+- `ui-upload`组件新增`only-read-file`配置，允许上传组件仅仅读取文件不处理上传
+- `ui-video`组件新增`fullscreen`方法
+
+#### 改进
+
+- 完善`ui-mindmap`组件
+
+#### 修复
+
+- 修复`ui-radio`和`ui-checkbox`的选项内容中包含图标时无法展示的问题
+- 修复`ui-checkbox`和`ui-radio`在某些特殊的情况下`outline`显示不正确的问题
+- 修复`ui-slider`的`mark-range`配置可能导致溢出的问题
+
+#### 更多
+
+- 新增若干图标
+
 ## 0.12.65
 
 #### 新特性
