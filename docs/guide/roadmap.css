@@ -1,0 +1,118 @@
+.ver-canary {
+  background: #f5ab27 !important;
+  border-color: #f5ab27 !important;
+}
+.roadmap {
+  width: 100%;
+  height: 310px;
+  background: #e0e8ef;
+  position: relative;
+}
+.roadmap .timeline {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 100px;
+  padding-right: 50px;
+}
+.roadmap .timeline .timepoint {
+  display: flex;
+  border-right: 1px #c1cad2 dashed;
+  position: relative;
+  width: 200px;
+}
+.roadmap .timeline .timepoint > p {
+  font-size: 12px;
+  margin: 0;
+  position: absolute;
+  background: #e0e8ef;
+  left: 100%;
+  transform: translateX(-50%);
+  width: 100px;
+  text-align: center;
+  padding: 0.5em 0;
+  color: #666e75;
+}
+.roadmap .versions {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 80px);
+  top: 50px;
+  left: 0;
+}
+.roadmap .versions .version {
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  display: flex;
+}
+.roadmap .versions .version .ver-title {
+  font-size: 16px;
+  margin: 0;
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #3e566b;
+  padding-right: 5px;
+}
+.roadmap .versions .version .ver-bar {
+  font-size: 14px;
+  width: calc(100% - 80px);
+  padding-left: 20px;
+  height: 32px;
+  display: flex;
+}
+.roadmap .versions .version .ver-bar .bar-dev,
+.roadmap .versions .version .ver-bar .bar-current,
+.roadmap .versions .version .ver-bar .bar-maintenance {
+  height: 100%;
+}
+.roadmap .versions .version .ver-bar .bar-dev:first-child,
+.roadmap .versions .version .ver-bar .bar-current:first-child,
+.roadmap .versions .version .ver-bar .bar-maintenance:first-child {
+  border-left: none;
+}
+.roadmap .versions .version .ver-bar .bar-dev:after,
+.roadmap .versions .version .ver-bar .bar-current:after,
+.roadmap .versions .version .ver-bar .bar-maintenance:after {
+  content: 'current';
+  font-size: 12px;
+  transform: scale(0.8);
+  transform-origin: left;
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  margin-left: 5px;
+  line-height: 32px;
+  font-weight: 200;
+}
+.roadmap .versions .version .ver-bar .bar-dev.noname:after,
+.roadmap .versions .version .ver-bar .bar-current.noname:after,
+.roadmap .versions .version .ver-bar .bar-maintenance.noname:after {
+  content: '';
+}
+.roadmap .versions .version .ver-bar .bar-dev {
+  background: #c3cbd2;
+}
+.roadmap .versions .version .ver-bar .bar-dev:after {
+  content: 'develop';
+}
+.roadmap .versions .version .ver-bar .bar-current {
+  background: #56b151;
+  border-left: 1px #fff solid;
+}
+.roadmap .versions .version .ver-bar .bar-current:after {
+  content: 'current';
+}
+.roadmap .versions .version .ver-bar .bar-maintenance {
+  background: #f1a23b;
+  border-left: 1px #fff solid;
+}
+.roadmap .versions .version .ver-bar .bar-maintenance:after {
+  content: 'maintenance';
+}
+

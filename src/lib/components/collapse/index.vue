@@ -203,16 +203,14 @@ export default {
 
             this.data.showKeys.push(key);
             this._showHeightAnimate(key);
-
+            this.$emit('show', key);
             clearTimeout(this.data.keyTimeout[key]);
-
             this.data.keyTimeout[key] = setTimeout(() => {
 
                 $content.removeAttribute('style');
+                this.$emit('after-show', key);
 
             }, animateTime);
-            
-            this.$emit('show', key);
 
             return this;
 
@@ -234,16 +232,14 @@ export default {
                 this._hideHeightAnimate(key);
 
             });
-
+            this.$emit('hide', key);
             clearTimeout(this.data.keyTimeout[key]);
-
             this.data.keyTimeout[key] = setTimeout(() => {
 
                 $content.removeAttribute('style');
+                this.$emit('after-hide', key);
 
             }, animateTime);
-
-            this.$emit('hide', key);
 
             return this;
 

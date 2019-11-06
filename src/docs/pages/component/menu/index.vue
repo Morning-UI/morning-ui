@@ -148,10 +148,10 @@
     ---
     #demo
     >desc
-    通过`line`样式类定义线条风格的菜单。
+    通过`type="line"`定义线条风格的菜单。
     >tpl
     <div style="width:700px;">
-        <ui-menu :menu="menu" class="line"></ui-menu>
+        <ui-menu :menu="menu" type="line"></ui-menu>
     </div>
     >script
     {
@@ -205,7 +205,7 @@
     侧栏的线条风格的菜单。
     >tpl
     <div style="width:220px;">
-        <ui-menu :menu="menu" class="line" position="side"></ui-menu>
+        <ui-menu :menu="menu" type="line" position="side"></ui-menu>
     </div>
     >script
     {
@@ -260,10 +260,10 @@
     ---
     #demo
     >desc
-    通过`block`样式类定义区块风格的菜单。
+    通过`type="block"`定义区块风格的菜单。
     >tpl
     <div style="width:700px;">
-        <ui-menu :menu="menu" class="block"></ui-menu>
+        <ui-menu :menu="menu" type="block"></ui-menu>
     </div>
     >script
     {
@@ -317,7 +317,7 @@
     侧栏的区块风格的菜单。
     >tpl
     <div style="width:220px;">
-        <ui-menu :menu="menu" class="block" position="side"></ui-menu>
+        <ui-menu :menu="menu" type="block" position="side"></ui-menu>
     </div>
     >script
     {
@@ -372,11 +372,11 @@
     ---
     #demo
     >desc
-    当菜单的`position`为`top`时，可以为菜单添加`fill`样式类，使得菜单的高度与父容器高度保持一致。
+    当菜单的`position`为`top`时，可以通过`height-fill`使得菜单的高度与父容器高度保持一致。
     >tpl
     <div style="width:700px;">
         <div style="height: 120px;">
-            <ui-menu :menu="menu" position="top" class="fill line"></ui-menu>
+            <ui-menu :menu="menu" position="top" type="line" height-fill></ui-menu>
         </div>
     </div>
     >script
@@ -1213,7 +1213,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="line"
+                type="line"
             ></ui-menu>
         </div>
         <br>
@@ -1279,7 +1279,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="line"
+                type="line"
                 position="side"
             ></ui-menu>
         </div>
@@ -1357,7 +1357,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="block"
+                type="block"
             ></ui-menu>
         </div>
         <br>
@@ -1423,7 +1423,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="block"
+                type="block"
                 position="side"
             ></ui-menu>
         </div>
@@ -1652,7 +1652,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="line"
+                type="line"
             ></ui-menu>
         </div>
         <br>
@@ -1718,7 +1718,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="line"
+                type="line"
                 position="side"
             ></ui-menu>
         </div>
@@ -1796,7 +1796,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="block"
+                type="block"
             ></ui-menu>
         </div>
         <br>
@@ -1862,7 +1862,7 @@
                     }
                 }"
                 color="{$colorKey}"
-                class="block"
+                type="block"
                 position="side"
             ></ui-menu>
         </div>
@@ -2356,6 +2356,248 @@
                     'search' : '<i class="mo-icon mo-icon-more"></i>搜索'
                 }
             };
+        }
+    }
+    :::
+
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    导航菜单的展示风格。
+    >conf-accept
+    `'normal'`:标准<br>`'line'`:线条<br>`'block'`:区块
+    >conf-type
+    String
+    >conf-default
+    `'normal'`
+    ---
+    #demo
+    >desc
+    标准风格导航菜单。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" type="normal"></ui-menu>
+    </div>
+    >script
+    {
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : {
+                    name : '设置',
+                    children : {
+                        'common' : {
+                            name : '通用设置',
+                            children : {
+                                'theme' : {
+                                    name : '模板',
+                                    children : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            children : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            children : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    线条风格导航菜单。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" type="line"></ui-menu>
+    </div>
+    >script
+    {
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : {
+                    name : '设置',
+                    children : {
+                        'common' : {
+                            name : '通用设置',
+                            children : {
+                                'theme' : {
+                                    name : '模板',
+                                    children : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            children : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            children : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    区块风格导航菜单。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" type="block"></ui-menu>
+    </div>
+    >script
+    {
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : {
+                    name : '设置',
+                    children : {
+                        'common' : {
+                            name : '通用设置',
+                            children : {
+                                'theme' : {
+                                    name : '模板',
+                                    children : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            children : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            children : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:height-fill
+    ---
+    #config
+    >conf-desc
+    当菜单的`position`为`top`时，可以通过`height-fill`使得菜单的高度与父容器高度保持一致。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" position="top" type="line" height-fill></ui-menu>
+    </div>
+    >script
+    {
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : {
+                    name : '设置',
+                    children : {
+                        'common' : {
+                            name : '通用设置',
+                            children : {
+                                'theme' : {
+                                    name : '模板',
+                                    children : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            children : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            children : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     :::

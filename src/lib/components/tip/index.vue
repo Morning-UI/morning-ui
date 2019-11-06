@@ -224,12 +224,24 @@ export default {
 
         });
 
+        this.$on('_tipManagerAfterShow', () => {
+
+            this.$emit('after-show');
+
+        });
+
         this.$on('_tipManagerHide', () => {
 
             this.data.show = false;
 
             this.$emit('hide');
             this.$emit('emit');
+
+        });
+
+        this.$on('_tipManagerAfterHide', () => {
+
+            this.$emit('after-hide');
 
         });
 

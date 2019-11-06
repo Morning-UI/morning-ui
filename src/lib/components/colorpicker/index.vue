@@ -267,7 +267,6 @@
  
 <script>
 import color                        from 'color';
-import leftPad                      from 'left-pad';
 import copy                         from 'clipboard-copy';
 import Move                         from 'Utils/Move';
 
@@ -358,7 +357,7 @@ export default {
 
             let alpha = Math.round(this.data.alpha);
 
-            return `${this.colorHex}${leftPad(alpha.toString(num16), 2, '0')}`;
+            return `${this.colorHex}${alpha.toString(num16).padStart(2, '0')}`;
 
         },
         alphaPer : function () {
@@ -887,7 +886,7 @@ export default {
 
                 }
 
-                return `${hexString}${leftPad(alpha.toString(num16), 2, '0')}`;
+                return `${hexString}${alpha.toString(num16).padStart(2, '0')}`;
 
             } else if (type === 'rgba') {
 

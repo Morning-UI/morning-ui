@@ -7,6 +7,7 @@
     # 表单组 `<ui-formgroup>`
     
     <doc-component-status page="formgroup"></doc-component-status>
+    <doc-component-not-recommended date="2019年11月1日" plan="采用ui-form表单组件替代"></doc-component-not-recommended>
 
     [[[开始]]]
 

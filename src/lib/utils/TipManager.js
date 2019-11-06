@@ -5,6 +5,8 @@ import IndexManager                 from 'Utils/IndexManager';
 import TriggerManager               from 'Utils/TriggerManager';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
+const toggleTime = 160;
+
 let TipManager = {
     mixins : [PopupManager, IndexManager, TriggerManager, GlobalEvent],
     data : function () {
@@ -25,7 +27,8 @@ let TipManager = {
                 classNames : {
                     in : 'tip-target-hover'
                 },
-                timeout : null
+                timeout : null,
+                toggleTimeout : null
             }
         };
 
@@ -310,6 +313,13 @@ let TipManager = {
 
             this.$emit('_tipManagerShow');
 
+            clearTimeout(this.Tip.toggleTimeout);
+            this.Tip.toggleTimeout = setTimeout(() => {
+
+                this.$emit('_tipManagerAfterShow');
+
+            }, toggleTime);
+
         },
         _tipHideComplete : function () {
 
@@ -317,6 +327,13 @@ let TipManager = {
             this.Tip.hoverState = '';
             this._globalEventRemove('click', '_tipCheckArea');
             this.$emit('_tipManagerHide');
+
+            clearTimeout(this.Tip.toggleTimeout);
+            this.Tip.toggleTimeout = setTimeout(() => {
+
+                this.$emit('_tipManagerAfterHide');
+
+            }, 0);
 
         },
         _tipShow : function (fromMethod = true) {

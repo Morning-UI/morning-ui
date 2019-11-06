@@ -8,6 +8,9 @@
         :locked="locked"
         :new-tab="newTab"
         :min-width="minWidth"
+        :type="type"
+        :fade="fade"
+        :shape="shape"
 
         @click="_onClick"
 
@@ -54,6 +57,28 @@ export default {
         minWidth : {
             type : [Boolean, String],
             default : false
+        },
+        type : {
+            type : String,
+            default : 'normal',
+            validator : (value => [
+                'normal',
+                'plain',
+                'ghost'
+            ].indexOf(value) !== -1)
+        },
+        fade : {
+            type : Boolean,
+            default : false
+        },
+        shape : {
+            type : String,
+            default : 'radius',
+            validator : (value => [
+                'radius',
+                'round',
+                'circle'
+            ].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -64,16 +89,26 @@ export default {
                 js : this.js,
                 locked : this.locked,
                 newTab : this.newTab,
-                minWidth : this.minWidth
+                minWidth : this.minWidth,
+                type : this.type,
+                fade : this.fade,
+                shape : this.shape
             };
 
         },
         moreClass : function () {
 
-            return {
-                loading : this.data.lock,
-                'min-width' : (this.conf.minWidth === 'preset')
-            };
+            let classes = {};
+
+            classes.loading = this.data.lock;
+            classes['min-width'] = (this.conf.minWidth === 'preset');
+            classes.plain = (this.conf.type === 'plain');
+            classes.ghost = (this.conf.type === 'ghost');
+            classes.fade = this.conf.fade;
+            classes.round = (this.conf.shape === 'round');
+            classes.circle = (this.conf.shape === 'circle');
+
+            return classes;
 
         },
         moreStyle : function () {

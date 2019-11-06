@@ -10,6 +10,8 @@
         :position-current="positionCurrent"
         :side-expand="sideExpand"
         :side-collapse="sideCollapse"
+        :type="type"
+        :height-fill="heightFill"
 
         @mousemove="_mousemoveInMenu"
     >
@@ -63,6 +65,15 @@ export default {
         sideCollapse : {
             type : Boolean,
             default : false
+        },
+        type : {
+            type : String,
+            default : 'normal',
+            validator : (value => ['normal', 'line', 'block'].indexOf(value) !== -1)
+        },
+        heightFill : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -75,16 +86,23 @@ export default {
                 autoToggleCurrent : this.autoToggleCurrent,
                 positionCurrent : this.positionCurrent,
                 sideExpand : this.sideExpand,
-                sideCollapse : this.sideCollapse
+                sideCollapse : this.sideCollapse,
+                type : this.type,
+                heightFill : this.heightFill
             };
 
         },
         moreClass : function () {
 
-            return {
+            let classes = {
                 expand : this.isSideExpand,
                 collapse : this.isSideCollapse
             };
+
+            classes[this.conf.type] = true;
+            classes.fill = this.conf.heightFill;
+
+            return classes;
 
         },
         rootMenuMoreClass : function () {

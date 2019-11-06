@@ -2,27 +2,38 @@
     <ul class="submenu">
         <li v-for="(link, name) in currentMenu">
 
-            <template v-if="link === '/' + category + '/' + page + '.html'">
-                <a
-                    v-if="typeof link === 'string'"
-                    :href="link"
-                    v-html="name"
-                    class="current"
-                ></a>
+            <template v-if="
+                (
+                    typeof link === 'string' && (link === '/' + category + '/' + page + '.html') ||
+                    link instanceof Array && (link[0] === '/' + category + '/' + page + '.html')
+                )
+            ">
+                <doc-submenu-item
+                    v-if="(typeof link === 'string' || link instanceof Array)"
+                    :link="link"
+                    :name="name"
+                    :category="category"
+                    :classes="['current']"
+                >
+                </doc-submenu-item>
                 <p class="title" v-else v-html="name"></p>
             </template>
             <template v-else>
-                <a
-                    v-if="typeof link === 'string' && link !== ''"
-                    :href="link"
-                    v-html="name"
-                ></a>
-                <a
-                    v-else-if="typeof link === 'string' && link === ''"
-                    href="javascript:;"
-                    v-html="name"
-                    class="unavailable"
-                ></a>
+                <doc-submenu-item
+                    v-if="typeof link === 'string' && link === ''"
+                    link="javascript:;"
+                    :name="name"
+                    :category="category"
+                    :classes="['unavailable']"
+                >
+                </doc-submenu-item>
+                <doc-submenu-item
+                    v-else-if="(typeof link === 'string' || link instanceof Array)"
+                    :link="link"
+                    :name="name"
+                    :category="category"
+                >
+                </doc-submenu-item>
                 <p class="title" v-else v-html="name"></p>
             </template>
             
@@ -32,6 +43,7 @@
 
 <script>
 import menuList                     from 'Docs/common/menu.js';
+import DocSubmenuItem               from 'Docs/common/DocSubmenuItem.vue';
 
 export default {
     props : {
@@ -51,126 +63,80 @@ export default {
             menuList
         };
 
+    },
+    components : {
+        'doc-submenu-item' : DocSubmenuItem
     }
 };
 </script>
 
 <style lang="less">
 .submenu {
-    width: 160px;
+    width: 210px;
     display: inline-block;
     vertical-align: top;
     border-right: 1px #EEE solid;
     box-sizing: border-box;
-    padding: 20px 10px;
+    padding: 20px 10px 20px 0;
     margin: 0;
     list-style: none;
 
+    &::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb{
+        width: 5px;
+        height: 5px;
+        background: rgba(0, 0, 0, 0);
+        border-radius: 4px;
+    }
+
+    &:hover::-webkit-scrollbar-thumb{
+        background: rgba(0, 0, 0, 0.1);
+    }
+
     li {
-        
         a{
             font-size: 14px;
-            color: #999;
+            color: #4E596B;
             text-decoration: none;
             text-indent: 8px;
             display: inline-block;
-            margin: 3px 0;
+            margin: 5px 0;
 
             &:hover{
-                color: #666;
+                color: #F24865;
+
+                .name{
+                    color: #F24865;
+                }
             }
 
             &.current {
-                color: #333;
-                font-weight: 700;
+                .name,
+                .en-name{
+                    font-weight: 700;
+                    color: #F24865;
+                }
             }
 
             &.unavailable{
                 cursor: default;
-                color: #a0a0a0;
+                color: #A0A0A0;
 
                 &:hover{
-                    color: #a0a0a0;
+                    color: #A0A0A0;
                 }
             }
         }
 
         .title{
-            font-size: 15px;
-            color: #333;
-            margin: 20px 0 5px;
-        }
-    }
-
-    .tag{
-        color: #FFF;
-        padding: 2px 5px;
-        border-radius: 15px;
-        font-size: 12px;
-        font-style: normal;
-        transform: scale(0.7);
-        transform-origin: left center;
-        display: inline-block;
-        margin: 0 0 0 3px;
-        text-indent: 0;
-        vertical-align: 1px;
-        text-align: center;
-        text-transform: uppercase;
-        
-        &.new{
-            background: #F34562;
-
-            &:before{
-                content: 'new';
-            }
-        }
-        
-        &.update{
-            background: #41B4D2;
-
-            &:before{
-                content: 'update';
-            }
-        }
-        
-        &.done{
-            background: #46C235;
-
-            &:before{
-                content: 'done';
-            }
-        }
-        
-        &.coming{
-            background: #666;
-
-            &:before{
-                content: 'coming';
-            }
-        }
-        
-        &.review{
-            background: #119100;
-
-            &:before{
-                content: 'CR PASS';
-            }
-        }
-
-        &.l1{
-            opacity: 1;
-        }
-
-        &.l2{
-            opacity: 0.85;
-        }
-
-        &.l3{
-            opacity: 0.75;
-        }
-
-        &.l4{
-            opacity: 0.6;
+            font-size: 18px;
+            color: #21252D;
+            margin: 20px 0 10px;
         }
     }
 }

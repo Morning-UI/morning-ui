@@ -1,0 +1,84 @@
+mor-split{
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    .split-wrap{
+        display: flex;
+        position: relative;
+        height: 100%;
+
+        .split-bar{
+            background: @colorComponentItemBg;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+
+            > span{
+                background: @colorComponentItemBorderCurrent;
+            }
+
+            &.move-moving{
+                display: none;
+            }
+        }
+    }
+
+    &.moving{
+        user-select: none;
+    }
+
+    &.horizontal-split{
+        > .split-wrap{
+            > .split-placeholder{
+                width: 6px;
+                height: 100%;
+            }
+
+            > .split-bar{
+                width: 6px;
+                height: 100%;
+                border-left: 1px @colorComponentItemBorder solid;
+                border-right: 1px @colorComponentItemBorder solid;
+                flex-direction: column;
+                cursor: col-resize;
+
+                > span{
+                    width: 100%;
+                    height: 1px;
+                    margin: 1px 0;
+                }
+            }
+        }
+    }
+
+    &.vertical-split{
+        > .split-wrap{
+            flex-direction: column;
+
+            > .split-placeholder{
+                width: 100%;
+                height: 6px;
+            }
+
+            > .split-bar{
+                width: 100%;
+                height: 6px;
+                border-top: 1px @colorComponentItemBorder solid;
+                border-bottom: 1px @colorComponentItemBorder solid;
+                flex-direction: row;
+                cursor: row-resize;
+
+                > span{
+                    width: 1px;
+                    height: 100%;
+                    margin: 0 1px;
+                }
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

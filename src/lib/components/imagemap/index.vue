@@ -142,7 +142,7 @@
             编辑热区
         </div>
 
-        <morning-tab class="block">
+        <morning-tab type="block">
             <div slot="数据" v-if="$scopedSlots.default || $slots.default">
                 <slot :group="'ui-imagemap-data-'+uiid"></slot>
             </div>
@@ -151,7 +151,7 @@
                 <morning-formgroup>
                     <div class="item">
                         <h5 class="title">
-                            <morning-center class="fill">Width</morning-center>
+                            <morning-center height-fill>Width</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
@@ -162,7 +162,7 @@
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <morning-center class="fill">Height</morning-center>
+                            <morning-center height-fill>Height</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
@@ -173,7 +173,7 @@
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <morning-center class="fill">Left</morning-center>
+                            <morning-center height-fill>Left</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <morning-center class="fill">Top</morning-center>
+                            <morning-center height-fill>Top</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <morning-center class="fill">Index(层级)</morning-center>
+                            <morning-center height-fill>Index(层级)</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字，0表示采用默认层级</p>
@@ -232,7 +232,7 @@
         <morning-formgroup>
             <div class="item">
                 <h5 class="title">
-                    <morning-center class="fill">编辑区域缩放</morning-center>
+                    <morning-center height-fill>编辑区域缩放</morning-center>
                 </h5>
                 <div class="content">
                     <p>编辑区域缩放百分比，此设置仅修改编辑区域视觉尺寸，不影响热区真实尺寸</p>

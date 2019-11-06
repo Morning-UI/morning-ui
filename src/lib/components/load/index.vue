@@ -11,14 +11,14 @@
     <template v-if="!conf.onlyHidden">
         <template v-if="data.loaded">
             <template v-if="data.fail">
-                <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
+                <morning-center height-fill class="loadfail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
             </template>
             <template v-else>
                 <slot></slot>
             </template>
         </template>
         <template v-else>
-            <morning-center class="fill">
+            <morning-center height-fill>
                 <div class="loading">
                     <div class="mo-loader">
                         <svg class="mo-loader-circular" viewBox="25 25 50 50">
@@ -37,8 +37,8 @@
         <div v-show="data.loaded && !data.fail">
             <slot></slot>
         </div>
-        <morning-center class="fill loadfail" v-show="data.loaded && data.fail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
-        <morning-center class="fill" v-show="!data.loaded">
+        <morning-center height-fill class="loadfail" v-show="data.loaded && data.fail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
+        <morning-center height-fill v-show="!data.loaded">
             <div class="loading">
                 <div class="mo-loader">
                     <svg class="mo-loader-circular" viewBox="25 25 50 50">

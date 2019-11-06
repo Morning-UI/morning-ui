@@ -526,8 +526,8 @@
     >script
     {
         methods : {
-            echo : function () {
-                console.log('demo5.console1', 'show event!');
+            echo : function (key) {
+                console.log('demo5.console1', 'show event!', key);
             }
         }
     }
@@ -562,8 +562,80 @@
     >script
     {
         methods : {
-            echo : function () {
-                console.log('demo6.console1', 'hide event!');
+            echo : function (key) {
+                console.log('demo6.console1', 'hide event!', key);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当有面板完成显示动画时触发。
+    >event-args
+    |key|显示面板的slot值|`String`|
+    ---
+    #demo
+    >tpl
+    <div style="width: 560px;">
+        <ui-collapse ref="demo7" @after-show="echo">
+            <div slot="one" title="第一个">
+                这里是第一个内容
+            </div>
+            <div slot="two" title="第二个">
+                这里是第二个内容
+            </div>
+            <div slot="three" title="第三个">
+                这里是第三个内容
+            </div>
+        </ui-collapse>
+        <br>
+        <p>点击面板触发此事件</p>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function (key) {
+                console.log('demo7.console1', 'after-show event!', key);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当有面板完成隐藏动画时触发。
+    >event-args
+    |key|显示面板的slot值|`String`|
+    ---
+    #demo
+    >tpl
+    <div style="width: 560px;">
+        <ui-collapse ref="demo7" @after-hide="echo">
+            <div slot="one" title="第一个">
+                这里是第一个内容
+            </div>
+            <div slot="two" title="第二个">
+                这里是第二个内容
+            </div>
+            <div slot="three" title="第三个">
+                这里是第三个内容
+            </div>
+        </ui-collapse>
+        <br>
+        <p>点击面板触发此事件</p>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function (key) {
+                console.log('demo7.console1', 'after-hide event!', key);
             }
         }
     }

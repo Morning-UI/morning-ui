@@ -1,0 +1,90 @@
+@trendSizeFontSize: 1.5, 1.375, 1.125, 1, 0.875, 0.8125, 0.75;
+@trendSizeIconScale: 0.75, 0.75, 0.77, 0.8, 0.8, 0.8, 0.8;
+@trendSizeMarginLeft: 0.8125, 0.8125, 0.5, 0.375, 0.375, 0.375, 0.375;
+
+mor-trend{
+    display: inline-block;
+
+    .trend-wrap{
+        display: flex;
+        align-items: center;
+
+        > .mo-icon{
+            top: -1px;
+            position: relative;
+        }
+    }
+
+    &.trend-up{
+        .trend-wrap > .mo-icon{
+            color: @colorSuccess;
+        }
+
+        &.text-color .trend-wrap mor-numeral{
+            color: @colorSuccess;
+        }
+
+        &.reverse-color{
+            .trend-wrap > .mo-icon{
+                color: @colorDanger;
+            }
+
+            &.text-color .trend-wrap mor-numeral{
+                color: @colorDanger;
+            }
+        }
+    }
+
+    &.trend-down{
+        .trend-wrap > .mo-icon{
+            color: @colorDanger;
+        }
+
+        &.text-color .trend-wrap mor-numeral{
+            color: @colorDanger;
+        }
+
+        &.reverse-color{
+            .trend-wrap > .mo-icon{
+                color: @colorSuccess;
+            }
+
+            &.text-color .trend-wrap mor-numeral{
+                color: @colorSuccess;
+            }
+        }
+    }
+
+    each(@sizeNameMap, {
+        & when (@value = 'm') {
+            mor-numeral{
+                font-size: @fontSize*extract(@trendSizeFontSize, @index);
+            }
+
+            .trend-wrap > .mo-icon{
+                margin-left: @fontSize*extract(@trendSizeMarginLeft, @index);
+                font-size: @fontSize*extract(@trendSizeFontSize, @index);
+                transform: scale(extract(@trendSizeIconScale, @index));
+            }
+        }
+
+        &.si-@{value}{
+            mor-numeral{
+                font-size: @fontSize*extract(@trendSizeFontSize, @index);
+            }
+
+            .trend-wrap > .mo-icon when (@value = xl), (@value = l), (@value = s), (@value = xs), (@value = xxs) {
+                top: 0;
+            }
+
+            .trend-wrap > .mo-icon{
+                margin-left: @fontSize*extract(@trendSizeMarginLeft, @index);
+                font-size: @fontSize*extract(@trendSizeFontSize, @index);
+                transform: scale(extract(@trendSizeIconScale, @index));
+            }
+        }
+    });
+
+    // default status
+    &{}
+}

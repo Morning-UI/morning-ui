@@ -142,16 +142,16 @@
     >tpl
     <div>
         <ui-dialog ref="demo8">
-            <ui-grid class="fill">
+            <ui-grid height-fill>
                 <div class="row">
                     <div class="col-11">
-                        <ui-center class="fill"><p>LEFT</p></ui-center>
+                        <ui-center height-fill><p>LEFT</p></ui-center>
                     </div>
                     <div class="col-2">
                         <ui-divider>OR</ui-divider>
                     </div>
                     <div class="col-11">
-                        <ui-center class="fill"><p>RIGHT</p></ui-center>
+                        <ui-center height-fill><p>RIGHT</p></ui-center>
                     </div>
                 </div>
             </ui-grid>
@@ -170,16 +170,16 @@
     <div>
         <ui-dialog ref="demo9" color="neutral-1">
             <div slot="header">选择一张图片</div>
-            <ui-grid class="fill">
+            <ui-grid height-fill>
                 <div class="row">
                     <div class="col-11">
-                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                        <ui-center height-fill><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
                     </div>
                     <div class="col-2">
                         <ui-divider>OR</ui-divider>
                     </div>
                     <div class="col-11">
-                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                        <ui-center height-fill><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
                     </div>
                 </div>
             </ui-grid>
@@ -234,16 +234,16 @@
     <div>
         <ui-dialog ref="demo28" color="white" class="white-footer">
             <div slot="header">选择一张图片</div>
-            <ui-grid class="fill">
+            <ui-grid height-fill>
                 <div class="row">
                     <div class="col-11">
-                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                        <ui-center height-fill><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
                     </div>
                     <div class="col-2">
                         <ui-divider>OR</ui-divider>
                     </div>
                     <div class="col-11">
-                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                        <ui-center height-fill><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
                     </div>
                 </div>
             </ui-grid>
@@ -453,7 +453,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo26">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo26').hide();">隐藏模拟盒</ui-link>
             </ui-center>
         </ui-dialog>
@@ -474,7 +474,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo27">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo27').hide();">隐藏模拟盒</ui-link>
             </ui-center>
         </ui-dialog>
@@ -497,7 +497,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo21">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo21').toggle(false);">隐藏模拟盒</ui-link> &nbsp;
                 <ui-link js="window.morning.findVM('demo21').toggle();">切换到反向状态</ui-link>
             </ui-center>
@@ -520,7 +520,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo22" @emit="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo22').toggle();">隐藏模拟盒</ui-link> &nbsp;
             </ui-center>
         </ui-dialog>
@@ -547,7 +547,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo23" @show="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo23').toggle();">隐藏模拟盒</ui-link> &nbsp;
             </ui-center>
         </ui-dialog>
@@ -574,7 +574,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo24" @hide="echo">
-            <ui-center class="fill">
+            <ui-center height-fill>
                 <ui-link js="window.morning.findVM('demo24').toggle();">隐藏模拟盒</ui-link> &nbsp;
             </ui-center>
         </ui-dialog>
@@ -585,6 +585,60 @@
         methods : {
             echo : function () {
                 console.log('demo24.console1', 'hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-show
+    ---
+    #event
+    >event-desc
+    当模拟盒完成显示动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dialog ref="demo30" @after-show="echo">
+            <ui-center height-fill>
+                <ui-link js="window.morning.findVM('demo30').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo30').toggle();">显示模拟盒</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo30.console1', 'after-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:after-hide
+    ---
+    #event
+    >event-desc
+    当模拟盒完成隐藏动画时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-dialog ref="demo31" @after-hide="echo">
+            <ui-center height-fill>
+                <ui-link js="window.morning.findVM('demo31').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo31').toggle();">显示模拟盒</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo31.console1', 'after-hide event!');
             }
         }
     }
@@ -603,7 +657,6 @@
         <ui-dialog
             ref="demoEventLifecycle"
             v-show="show"
-            :total="10"
             @created="echo('created')"
             @mounted="echo('mounted')"
             @before-update="echo('before-update')"
@@ -611,7 +664,7 @@
             @before-destroy="echo('before-destroy')"
             @destroyed="echo('destroyed')"
         >
-            <ui-center class="fill">
+            <ui-center height-fill>
                 {*text*}
                 <ui-link js="window.morning.findVM('demoEventLifecycle').toggle();">隐藏模拟盒</ui-link> &nbsp;
             </ui-center>

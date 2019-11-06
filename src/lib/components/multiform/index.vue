@@ -30,7 +30,7 @@
     <div class="form-body">
         <div class="itemlist">
             <p class="name" v-if="!!conf.insideName">
-                <morning-center class="fill">{{conf.insideName}}</morning-center>
+                <morning-center height-fill>{{conf.insideName}}</morning-center>
             </p>
 
             <div class="itemwrap" :class="{hidename:!conf.insideName}">
@@ -102,6 +102,8 @@
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
+        @after-show="_afterShowForm"
+        @after-hide="_afterHideForm"
     >
         <header slot="header">请填写表单</header>
         <slot></slot>
@@ -264,6 +266,16 @@ export default {
         _showForm : function () {
 
             this.$emit('show');
+
+        },
+        _afterShowForm : function () {
+
+            this.$emit('after-show');
+
+        },
+        _afterHideForm : function () {
+
+            this.$emit('after-hide');
 
         },
         _resetForm : function () {

@@ -7,7 +7,7 @@
     # 表单 `<ui-form>`
     
     <doc-component-status page="form"></doc-component-status>
-    <doc-component-experimental></doc-component-not-recommended>
+    <!-- <doc-component-experimental></doc-component-not-experimental> -->
     
     [[[开始]]]
 
@@ -74,7 +74,7 @@
                             <ui-datepicker form-key="startDate"></ui-datepicker>
                         </ui-col>
                         <ui-col :span="2">
-                            <ui-center class="fill"> - </center>
+                            <ui-center height-fill> - </center>
                         </ui-col>
                         <ui-col :span="11">
                             <ui-datepicker form-key="endDate"></ui-datepicker>
@@ -127,7 +127,7 @@
                             <ui-datepicker form-key="startDate"></ui-datepicker>
                         </ui-col>
                         <ui-col :span="2">
-                            <ui-center class="fill"> - </center>
+                            <ui-center height-fill> - </center>
                         </ui-col>
                         <ui-col :span="11">
                             <ui-datepicker form-key="endDate"></ui-datepicker>
@@ -190,7 +190,7 @@
                             <ui-datepicker form-key="startDate"></ui-datepicker>
                         </ui-col>
                         <ui-col :span="2">
-                            <ui-center class="fill"> - </center>
+                            <ui-center height-fill> - </center>
                         </ui-col>
                         <ui-col :span="11">
                             <ui-datepicker form-key="endDate"></ui-datepicker>

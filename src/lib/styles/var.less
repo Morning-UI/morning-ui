@@ -78,25 +78,11 @@
 @colorFromItemBackgroundHover : darken(@colorFormBackgroundHover, 2.5%);
 @colorFromItemBackgroundCurrent : darken(@colorFormBackgroundHover, 3.5%);
 @colorFromItemBackgroundDisable : darken(@colorFormBackgroundDisable, 8%);
-
-/* stylelint-disable property-case,property-no-unknown */
-
-@colorSetTheme : {
-    Theme: @colorTheme;
-    LightTheme: @colorLightTheme;
-    DarkTheme: @colorDarkTheme;
-}
-
-@colorSetFeatures : {
-    Success: @colorSuccess;
-    Warning: @colorWarning;
-    Danger: @colorDanger;
-    Primary: @colorPrimary;
-    Minor: @colorMinor;
-    Info: @colorInfo;
-}
-
-/* stylelint-enable property-case,property-no-unknown */
+@sizeNameMap: xxl, xl, l, m, s, xs, xxs;
+@colorShortNameMap: t, lt, dt, s, w, d, p, m, i, bk, wh;
+@colorFullNameMap: Theme, LightTheme, DarkTheme, Success, Warning, Danger, Primary, Minor, Info, Black, White;
+@colorFullNameUnderlineMap: theme, light-theme, dark-theme, success, warning, danger, primary, minor, info, black, white;
+@colorVarMap: @colorTheme, @colorLightTheme, @colorDarkTheme, @colorSuccess, @colorWarning, @colorDanger, @colorPrimary, @colorMinor, @colorInfo, @colorBlack, @colorWhite;
 
 // ---
 

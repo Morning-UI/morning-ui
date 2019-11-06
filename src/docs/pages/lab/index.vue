@@ -7,13 +7,13 @@
             <div class="area">
                 <div style="width:1200px;display: flex;">
 
-                    <ui-menu :menu="menu" class="block" current-menu="index"
+                    <ui-menu :menu="menu" type="block" current-menu="index"
     position="side"
   :position-current="true"
   color="white"
   :side-expand="true"
                     ></ui-menu>
-                    <ui-datetimepicker form-name="日期时间"></ui-datetimepicker>
+                <ui-datetimepicker form-name="日期时间"></ui-datetimepicker>
                     <ui-cascader :list-width="600" form-name="地址" :list="questionMap" can-search multi-select :collapse-limit="1"></ui-cascader>
                     <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
 

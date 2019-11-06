@@ -12,8 +12,6 @@
 
     定义一个标签页，标签页支持嵌套。
 
-    标签页支持多种样式，通过不同的样式类来区分。
-
     :::vue
     @name:使用
     ---
@@ -29,27 +27,13 @@
     :::
 
     :::vue
-    @name:无内边距
-    ---
-    #demo
-    >desc
-    标签页默认有一定内边距，通过`.no-padding`为标签页内容取消内边距。
-    >tpl
-    <ui-tab class="no-padding">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
-    </ui-tab>
-    :::
-
-    :::vue
     @name:区块标签页
     ---
     #demo
     >desc
-    通过`.block`定义区块风格的标签页。
+    通过`type="block"`定义区块风格的标签页。
     >tpl
-    <ui-tab class="block">
+    <ui-tab type="block">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -61,9 +45,9 @@
     ---
     #demo
     >desc
-    通过`.line`定义线条风格的标签页。
+    通过`type="line"`定义线条风格的标签页。
     >tpl
-    <ui-tab class="line">
+    <ui-tab type="line">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -75,9 +59,25 @@
     ---
     #demo
     >desc
-    通过`.btn`定义线条风格的标签页。
+    通过`type="btn"`定义线条风格的标签页。
     >tpl
-    <ui-tab class="btn">
+    <ui-tab type="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    :::vue
+    @name:无内边距
+    ---
+    #demo
+    >desc
+    标签页默认有一定内边距，通过`no-padding`为标签页内容取消内边距。
+    <br><br>
+    更多用法详见：[no-padding配置](/component/tab.html#no-padding)
+    >tpl
+    <ui-tab no-padding>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -89,9 +89,11 @@
     ---
     #demo
     >desc
-    通过`.noborder`定义无边框标签页，一般配合线条使用。
+    通过`no-border`定义无边框标签页，一般配合`type="line"`使用。
+    <br><br>
+    更多用法详见：[no-border配置](/component/tab.html#no-border)
     >tpl
-    <ui-tab class="line noborder">
+    <ui-tab type="line" no-border>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -103,9 +105,9 @@
     ---
     #demo
     >tpl
-    <ui-tab class="block noborder">
+    <ui-tab type="block">
         <div slot="A">
-            <ui-tab class="line noborder">
+            <ui-tab type="line">
                 <div slot="A1">
                     <ui-tab>
                         <div slot="A11">A11</div>
@@ -154,7 +156,7 @@
     <br><br>
     多层嵌套的标签页进行切换时，如层级中某个标签页组件未开启`anchor-target`配置，则这个标签页不会进行切换。但不影响其他标签页切换。
     >tpl
-    <ui-tab class="block noborder" anchor-target>
+    <ui-tab type="block" no-border anchor-target>
         <div slot="第一章">第一章</div>
         <div slot="第二章">
             <div style="height:100px;">第二章</div>
@@ -165,10 +167,10 @@
             <div id="锚点2">锚点2</div>
         </div>
         <div slot="第四章">
-            <ui-tab class="noborder" anchor-target>
+            <ui-tab no-border anchor-target>
                 <div slot="第一节">第一节</div>
                 <div slot="第二节">
-                    <ui-tab class="noborder" anchor-target>
+                    <ui-tab no-border anchor-target>
                         <div slot="第一页">第一页</div>
                         <div slot="第二页">第二页</div>
                         <div slot="第三页">
@@ -336,7 +338,7 @@
     <br><br>
     多层嵌套的标签页进行切换时，如层级中某个标签页组件未开启`anchor-target`配置，则这个标签页不会进行切换。但不影响其他标签页切换。
     >tpl
-    <ui-tab class="block noborder" anchor-target>
+    <ui-tab type="block" no-border anchor-target>
         <div slot="第一章">第一章</div>
         <div slot="第二章">
             <div style="height:100px;">第二章</div>
@@ -347,10 +349,10 @@
             <div id="锚点2">锚点2</div>
         </div>
         <div slot="第四章">
-            <ui-tab class="noborder" anchor-target>
+            <ui-tab no-border anchor-target>
                 <div slot="第一节">第一节</div>
                 <div slot="第二节">
-                    <ui-tab class="noborder" anchor-target>
+                    <ui-tab no-border anchor-target>
                         <div slot="第一页">第一页</div>
                         <div slot="第二页">第二页</div>
                         <div slot="第三页">
@@ -392,7 +394,7 @@
     >desc
     标签页在上方，配合无边框。
     >tpl
-    <ui-tab position="top" class="noborder">
+    <ui-tab position="top" no-border>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -402,7 +404,7 @@
     >desc
     标签页在上方，配合区块标签页。
     >tpl
-    <ui-tab position="top" class="block">
+    <ui-tab position="top" type="block">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -412,7 +414,7 @@
     >desc
     标签页在上方，配合线条标签页。
     >tpl
-    <ui-tab position="top" class="line">
+    <ui-tab position="top" type="line">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -422,7 +424,7 @@
     >desc
     标签页在上方，配合按钮式标签页。
     >tpl
-    <ui-tab position="top" class="btn">
+    <ui-tab position="top" type="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -442,7 +444,7 @@
     >desc
     标签页在下方，配合无边框。
     >tpl
-    <ui-tab position="bottom" class="noborder">
+    <ui-tab position="bottom" no-border>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -452,7 +454,7 @@
     >desc
     标签页在下方，配合区块标签页。
     >tpl
-    <ui-tab position="bottom" class="block">
+    <ui-tab position="bottom" type="block">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -462,7 +464,7 @@
     >desc
     标签页在下方，配合线条标签页。
     >tpl
-    <ui-tab position="bottom" class="line">
+    <ui-tab position="bottom" type="line">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -472,7 +474,7 @@
     >desc
     标签页在下方，配合按钮式标签页。
     >tpl
-    <ui-tab position="bottom" class="btn">
+    <ui-tab position="bottom" type="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -492,7 +494,7 @@
     >desc
     标签页在左侧，配合无边框。
     >tpl
-    <ui-tab position="left" class="noborder">
+    <ui-tab position="left" no-border>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -502,7 +504,7 @@
     >desc
     标签页在左侧，配合区块标签页。
     >tpl
-    <ui-tab position="left" class="block">
+    <ui-tab position="left" type="block">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -512,7 +514,7 @@
     >desc
     标签页在左侧，配合线条标签页。
     >tpl
-    <ui-tab position="left" class="line">
+    <ui-tab position="left" type="line">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -522,7 +524,7 @@
     >desc
     标签页在左侧，配合按钮式标签页。
     >tpl
-    <ui-tab position="left" class="btn">
+    <ui-tab position="left" type="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -542,7 +544,7 @@
     >desc
     标签页在右侧，配合无边框。
     >tpl
-    <ui-tab position="right" class="noborder">
+    <ui-tab position="right" no-border>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -552,7 +554,7 @@
     >desc
     标签页在右侧，配合区块标签页。
     >tpl
-    <ui-tab position="right" class="block">
+    <ui-tab position="right" type="block">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -562,7 +564,7 @@
     >desc
     标签页在右侧，配合线条标签页。
     >tpl
-    <ui-tab position="right" class="line">
+    <ui-tab position="right" type="line">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -572,7 +574,7 @@
     >desc
     标签页在右侧，配合按钮式标签页。
     >tpl
-    <ui-tab position="right" class="btn">
+    <ui-tab position="right" type="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -605,7 +607,7 @@
     >desc
     区块标签页。
     >tpl
-    <ui-tab :disabled-options="['第二页']" class="block">
+    <ui-tab :disabled-options="['第二页']" type="block">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -615,7 +617,7 @@
     >desc
     线条标签页。
     >tpl
-    <ui-tab :disabled-options="['第二页']" class="line">
+    <ui-tab :disabled-options="['第二页']" type="line">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -625,7 +627,7 @@
     >desc
     按钮式标签页。
     >tpl
-    <ui-tab :disabled-options="['第二页']" class="btn">
+    <ui-tab :disabled-options="['第二页']" type="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -636,6 +638,104 @@
      使用`tab`无法选中禁用的标签（自动切换下一个最近可选标签）。
     >tpl
     <ui-tab :disabled-options="['第二页']" tab="第二页">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    标签页的展示风格。
+    >conf-accept
+    `'normal'`:标准<br>`'block'`:区块<br>`'line'`:线条<br>`'btn'`:按钮
+    >conf-type
+    String
+    >conf-default
+    `'normal'`
+    ---
+    #demo
+    >desc
+    标准风格标签页。
+    >tpl
+    <ui-tab type="normal">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    区块风格标签页。
+    >tpl
+    <ui-tab type="block">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    线条风格标签页。
+    >tpl
+    <ui-tab type="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    按钮风格标签页。
+    >tpl
+    <ui-tab type="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    :::vue
+    @name:no-padding
+    ---
+    #config
+    >conf-desc
+    取消标签页默认的内边距。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-tab no-padding>
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    :::vue
+    @name:no-border
+    ---
+    #config
+    >conf-desc
+    取消标签页默认的边框，一般配合`type="line"`使用。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-tab no-border>
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>

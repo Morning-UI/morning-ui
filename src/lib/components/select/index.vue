@@ -1567,6 +1567,12 @@ export default {
 
             });
 
+            this.popoverVm.$on('after-show', () => {
+
+                this.$emit('list-after-show');
+
+            });
+
             this.popoverVm.$on('hide', () => {
 
                 let $tips = this.data.$list.querySelectorAll('.tips');
@@ -1588,6 +1594,12 @@ export default {
                 }
 
                 this.$emit('list-hide');
+
+            });
+
+            this.popoverVm.$on('after-hide', () => {
+
+                this.$emit('list-after-hide');
 
             });
 

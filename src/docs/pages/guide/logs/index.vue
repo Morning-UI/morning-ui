@@ -8,7 +8,7 @@
 
     ### 版本规范
 
-    Morning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)
+    Morning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[路线图](/guide/roadmap.html)
 
     如果更新对使用方法有影响，会在更新记录的`Upgrade Precautions` / `升级注意事项`中说明。
 

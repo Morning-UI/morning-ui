@@ -36,9 +36,9 @@
     ---
     #demo
     >desc
-    可以通过添加`full`类来标记一个无间隙的区块。
+    可以通过添加`no-padding`来设置一个无间隙的区块。
     >tpl
-    <ui-block class="full">无间隙的区块</ui-block>
+    <ui-block no-padding>无间隙的区块</ui-block>
     :::
 
     [[[形态]]]
@@ -57,6 +57,39 @@
     @layout:color
     ---
     <ui-block color="{$colorKey}">{$&colorName}</ui-block>
+    :::
+
+    [[[配置]]]
+
+    :::vue
+    @name:no-padding
+    ---
+    #config
+    >conf-desc
+    区块是否有内边距。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-block no-padding>无间隙的区块</ui-block>
+    :::
+    
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    block
+    区块
     :::
 
     [[[源码]]]

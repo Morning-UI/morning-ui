@@ -21,7 +21,7 @@
     - `morning-ui.min.js` : 生产版本JS
     - `morning-ui.min.css` : 生产版本CSS
 
-    <ui-quote color="theme">我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href="/guide/versionplan.html">版本计划</a> 及 <a href="/guide/logs.html">更新日志</a></ui-quote>
+    <ui-quote color="theme">我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href="/guide/roadmap.html">路线图</a> 及 <a href="/guide/logs.html">更新日志</a></ui-quote>
 
     你可以通过下面的方式获取：
 

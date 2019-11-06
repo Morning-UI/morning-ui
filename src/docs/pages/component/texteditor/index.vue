@@ -12,7 +12,7 @@
 
     定义富文本编辑器，支持富文本编辑及Markdown编辑。
 
-    富文本编辑器基于[quilljs](https://quilljs.com/)(版本1.3.6)打造，Morning UI深度定制并扩展了[quilljs](https://quilljs.com/)。
+    富文本编辑器基于[quilljs](https://quilljs.com/)(版本2.0.0-dev.3)打造，Morning UI深度定制并扩展了[quilljs](https://quilljs.com/)。
 
     富文本编辑器支持`emoji`表情，使用时可以通过顶部的工具栏选择，或输入`:`加字符会出现表情提示。
 

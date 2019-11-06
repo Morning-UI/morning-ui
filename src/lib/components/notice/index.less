@@ -1,0 +1,216 @@
+mor-notice{
+    display: block;
+    position: fixed;
+    width: 50%;
+    max-width: @fontSize*25;
+    min-width: @fontSize*20;
+    pointer-events: none;
+
+    &.pos-tl{
+        top: 0;
+        left: @fontSize*0.5;
+        width: 50%;
+    }
+
+    &.pos-tr{
+        top: 0;
+        right: @fontSize*0.5;
+    }
+
+    &.pos-bl{
+        bottom: 0;
+        left: @fontSize*0.5;
+    }
+
+    &.pos-br{
+        bottom: 0;
+        right: @fontSize*0.5;
+    }
+
+    .list{
+        overflow: hidden;
+        position: relative;
+        height: 1000em;
+        width: 100%;
+        padding: @fontSize*0.5;
+        box-sizing: border-box;
+
+        > div{
+            position: absolute;
+            width: calc(100% - @fontSize*0.5*2);
+        }
+    }
+
+    .msg{
+        border-radius: @borderRadius;
+        background: @colorWhite;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+        box-sizing: border-box;
+        padding: @fontSize @fontSize*1.5;
+        position: relative;
+        pointer-events: auto;
+
+        > .icon{
+            position: absolute;
+            left: 0;
+            width: @fontSize*1.5 + @fontSize*2;
+            box-sizing: border-box;
+            padding: @fontSize*0.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: @fontSize*0.5;
+
+            > i{
+                font-size: @fontSize*1.75;
+            }
+        }
+
+        &.msg-enter-active,
+        &.msg-leave-active{
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        &.msg-move{
+            transition: transform 0.2s;
+        }
+
+        .close-btn{
+            position: absolute;
+            top: 1.23em;
+            font-size: @fontSize*0.8125;
+            right: 0.6em;
+            vertical-align: middle;
+            color: @colorNeutral6;
+            opacity: 0.6;
+
+            &:hover{
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+
+        > header{
+            font-size: @fontSize;
+            padding: 0.25em 0 0.75em 0;
+            color: @colorBlack;
+
+            &:empty{
+                display: none;
+            }
+        }
+
+        > footer{
+            padding: 0.75em 0 0.25em 0;
+
+            &:empty{
+                display: none;
+            }
+        }
+
+        > .body{
+            font-size: @fontSize*0.875;
+            padding: 0;
+            width: 100%;
+            color: @colorNeutral10;
+        }
+
+        &.has-icon{
+            padding-left: @fontSize*1.5 + @fontSize*2;
+        }
+
+        &.co-success{
+            > .icon{
+                color: @colorSuccess;
+            }
+        }
+
+        &.co-warning{
+            > .icon{
+                color: @colorWarning;
+            }
+        }
+
+        &.co-danger{
+            > .icon{
+                color: @colorDanger;
+            }
+        }
+
+        &.co-primary{
+            > .icon{
+                color: @colorPrimary;
+            }
+        }
+    }
+
+    &.has-close-btn{
+        .msg{
+            padding-right: @fontSize*2;
+        }
+    }
+
+    &.pos-tl,
+    &.pos-bl{
+        .msg-enter{
+            transform: translateX(-150%);
+        }
+
+        .msg-enter-to{
+            transform: translateX(0%);
+        }
+    }
+
+    &.pos-tr,
+    &.pos-br{
+        .msg-enter{
+            transform: translateX(150%);
+        }
+
+        .msg-enter-to{
+            transform: translateX(0%);
+        }
+    }
+
+    &.pos-tl,
+    &.pos-bl,
+    &.pos-tr,
+    &.pos-br{
+        .msg-leave{
+            opacity: 1;
+        }
+
+        .msg-leave-to{
+            opacity: 0;
+        }
+    }
+
+    &.pos-tl,
+    &.pos-tr{
+        .list{
+            .msg{
+                margin-bottom: @fontSize*0.5;
+            }
+
+            > div {
+                top: @fontSize*0.5;
+            }
+        }
+    }
+
+    &.pos-bl,
+    &.pos-br{
+        .list{
+            .msg{
+                margin-top: @fontSize*0.5;
+            }
+
+            > div {
+                bottom: @fontSize*0.5;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

@@ -62,8 +62,8 @@ mor-message{
     }
 
     .msg{
+        padding: 1em 1.5em;
         border-radius: @borderRadius;
-        padding: 1em 2em 1em 1.5em;
         position: relative;
         pointer-events: auto;
 
@@ -89,6 +89,12 @@ mor-message{
                 opacity: 1;
                 cursor: pointer;
             }
+        }
+    }
+
+    &.has-close-btn{
+        .msg{
+            padding: 1em 2em 1em 1.5em;
         }
     }
 

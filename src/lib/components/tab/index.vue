@@ -9,6 +9,9 @@
         :anchor-target="anchorTarget"
         :position="position"
         :disabled-options="disabledOptions"
+        :type="type"
+        :no-padding="noPadding"
+        :no-border="noBorder"
     >
 
         <template v-if="conf.position === 'left' || conf.position === 'top'">
@@ -95,6 +98,24 @@ export default {
         disabledOptions : {
             type : Array,
             default : (() => [])
+        },
+        type : {
+            type : String,
+            default : 'normal',
+            validator : value => ([
+                'normal',
+                'block',
+                'line',
+                'btn'
+            ].indexOf(value) !== -1)
+        },
+        noPadding : {
+            type : Boolean,
+            default : false
+        },
+        noBorder : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -106,18 +127,23 @@ export default {
                 append : this.append,
                 anchorTarget : this.anchorTarget,
                 position : this.position,
-                disabledOptions : this.disabledOptions
+                disabledOptions : this.disabledOptions,
+                type : this.type,
+                noPadding : this.noPadding,
+                noBorder : this.noBorder
             };
 
         },
         moreClass : function () {
 
-            return {
-                'position-top' : (this.conf.position === 'top'),
-                'position-left' : (this.conf.position === 'left'),
-                'position-right' : (this.conf.position === 'right'),
-                'position-bottom' : (this.conf.position === 'bottom'),
-            };
+            let classes = {};
+
+            classes[`position-${this.conf.position}`] = true;
+            classes[this.conf.type] = true;
+            classes['no-padding'] = this.conf.noPadding;
+            classes['no-border'] = this.conf.noBorder;
+
+            return classes;
 
         }
     },
