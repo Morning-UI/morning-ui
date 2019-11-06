@@ -21,9 +21,9 @@
         <ui-checkbox
             form-name="姓名"
             :list="{
-                0 : 'Tim Boelaars',
-                1 : 'Andrew Colin Beck',
-                2 : 'Victor Erixon'
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
             }"
         ></ui-checkbox>
     </div>
