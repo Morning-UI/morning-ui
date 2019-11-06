@@ -7,6 +7,7 @@
         :js="js"
         :locked="locked"
         :new-tab="newTab"
+        :underline="underline"
 
         @click="_onClick"
     >
@@ -47,6 +48,10 @@ export default {
         newTab : {
             type : Boolean,
             default : false
+        },
+        underline : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -56,14 +61,16 @@ export default {
                 link : this.link,
                 js : this.js,
                 locked : this.locked,
-                newTab : this.newTab
+                newTab : this.newTab,
+                underline : this.underline
             };
 
         },
         moreClass : function () {
 
             return {
-                loading : this.data.lock
+                loading : this.data.lock,
+                underline : this.conf.underline
             };
 
         }

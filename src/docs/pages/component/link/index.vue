@@ -20,6 +20,14 @@
     <ui-link>链接</ui-link>
     :::
 
+    :::vue
+    @name:带图标的链接
+    ---
+    #demo
+    >tpl
+    <ui-link><i class="mo-icon mo-icon-link"> 链接</i></ui-link>
+    :::
+
     [[[形态]]]
 
     #### 支持
@@ -167,6 +175,24 @@
     #demo
     >tpl
     <ui-link new-tab :link="'https://www.google.com'">新窗口打开链接</ui-link>
+    :::
+
+    :::vue
+    @name:underline
+    ---
+    #config
+    >conf-desc
+    链接被Hover时显示下划线。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >tpl
+    <ui-link :link="'https://www.google.com'" :underline="false">链接</ui-link>
     :::
 
     [[[方法]]]
