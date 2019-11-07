@@ -340,9 +340,9 @@
     ---
     #config
     >conf-desc
-    标记当前步骤的方式。
+    标记当前步骤的样式。
     >conf-accept
-    `'highlight'` : 高亮<br>`'progress'` : 进行中
+    `'highlight'` : 高亮<br>`'progress'` : 进行中<br>`'hollow'` : 中空
     >conf-type
     String
     >conf-default
@@ -354,6 +354,69 @@
         <ui-steps
             mark-current
             current-type="progress"
+            :done-step="0"
+            :list="[
+                {
+                    title : '第一步',
+                    desc : '填写基本信息'
+                },
+                {
+                    title : '第二步',
+                    desc : '绑定手机号'
+                },
+                {
+                    title : '第三步',
+                    desc : '开通账号'
+                }
+            ]"
+        ></ui-steps>
+    </div>
+    ---
+    #demo
+    >desc
+    中空当前步骤。
+    >tpl
+    <div style="width:500px">
+        <ui-steps
+            mark-current
+            current-type="hollow"
+            :done-step="0"
+            :list="[
+                {
+                    title : '第一步',
+                    desc : '填写基本信息'
+                },
+                {
+                    title : '第二步',
+                    desc : '绑定手机号'
+                },
+                {
+                    title : '第三步',
+                    desc : '开通账号'
+                }
+            ]"
+        ></ui-steps>
+    </div>
+    :::
+
+    :::vue
+    @name:done-type
+    ---
+    #config
+    >conf-desc
+    标记完成步骤的样式。
+    >conf-accept
+    `'highlight'` : 高亮<br>`'hollow'` : 中空
+    >conf-type
+    String
+    >conf-default
+    `'hollow'`
+    ---
+    #demo
+    >tpl
+    <div style="width:500px">
+        <ui-steps
+            done-type="highlight"
             :done-step="0"
             :list="[
                 {

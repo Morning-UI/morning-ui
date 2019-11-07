@@ -111,6 +111,48 @@ mor-counter{
         }
     }
 
+    &.controls-none{
+        input{
+            border-radius: @borderRadius;
+        }
+    }
+
+    &.controls-add{
+        input{
+            border-radius: @borderRadius 0 0 @borderRadius;
+        }
+
+        &.controls-on-right{
+            .step-controls{
+                .add-step{
+                    height: 100%;
+                    border-radius: 0 @borderRadius @borderRadius 0;
+                }
+            }
+        }
+    }
+
+    &.controls-sub{
+        input{
+            border-radius: 0 @borderRadius @borderRadius 0;
+        }
+
+        &.controls-on-right{
+            .step-controls{
+                .sub-step{
+                    height: 100%;
+                    border-radius: 0 @borderRadius @borderRadius 0;
+                }
+            }
+        }
+    }
+
+    &.controls-none{
+        input{
+            border-radius: @borderRadius;
+        }
+    }
+
     &.si-m{
         .sub-step,
         .add-step{
@@ -129,6 +171,22 @@ mor-counter{
             .sub-step,
             .add-step{
                 line-height: @formHeight/2;
+            }
+        }
+
+        &.controls-sub{
+            .step-controls{
+                .sub-step{
+                    line-height: @formHeight;
+                }
+            }
+        }
+
+        &.controls-add{
+            .step-controls{
+                .add-step{
+                    line-height: @formHeight;
+                }
             }
         }
 
@@ -161,6 +219,22 @@ mor-counter{
             }
         }
 
+        .controls-sub{
+            .step-controls{
+                .sub-step{
+                    line-height: @formHeightS;
+                }
+            }
+        }
+
+        .controls-add{
+            .step-controls{
+                .add-step{
+                    line-height: @formHeightS;
+                }
+            }
+        }
+
         input{
             font-size: @formInputFontSizeS + 2px;
             height: @formHeightS;
@@ -187,6 +261,22 @@ mor-counter{
             .sub-step,
             .add-step{
                 line-height: @formHeightXs/2;
+            }
+        }
+
+        .controls-sub{
+            .step-controls{
+                .sub-step{
+                    line-height: @formHeightXs;
+                }
+            }
+        }
+
+        .controls-add{
+            .step-controls{
+                .add-step{
+                    line-height: @formHeightXs;
+                }
             }
         }
 

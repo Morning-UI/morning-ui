@@ -37993,6 +37993,11 @@ mor-progress .progress-wrap .marks li.co-n10 {
 mor-progress .progress-wrap .marks li.co-n11 {
   background: #333333;
 }
+mor-progress.note-in-left .progress-wrap .note {
+  justify-content: flex-end;
+  padding-left: 0;
+  padding-right: 10px;
+}
 mor-progress.type-ring .progress-wrap {
   position: relative;
   display: block;
@@ -38367,28 +38372,40 @@ mor-steps .step.done .mark {
   box-sizing: border-box;
   line-height: 22px;
 }
+mor-steps .step.done.done-type-highlight .mark {
+  background: #F33D5D;
+  border-color: #F33D5D;
+  color: #FFFFFF;
+}
+mor-steps .step.done.done-type-hollow .mark {
+  border-color: #F33D5D;
+}
 mor-steps .step.current .title {
-  color: #000000;
+  color: #F33D5D;
   font-weight: 700;
 }
 mor-steps .step.current .desc {
   color: #666666;
 }
-mor-steps .step.current.highlight .mark {
+mor-steps .step.current.current-type-highlight .mark {
   background: #F33D5D;
   border-color: #F33D5D;
   color: #FFFFFF;
 }
-mor-steps .step.current.progress .mark {
+mor-steps .step.current.current-type-hollow .mark {
+  color: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-steps .step.current.current-type-progress .mark {
   background: #FFFFFF;
   border: none;
   width: 32px;
 }
-mor-steps .step.current.progress .mark mor-load {
+mor-steps .step.current.current-type-progress .mark mor-load {
   top: 2px;
   position: relative;
 }
-mor-steps .step.current.progress .mark mor-load .mo-loader .mo-loader-path {
+mor-steps .step.current.current-type-progress .mark mor-load .mo-loader .mo-loader-path {
   stroke: #F33D5D;
   animation: loaderDash 1.5s ease-in-out infinite;
 }
@@ -42385,6 +42402,26 @@ mor-counter.controls-on-right input {
   border-radius: 3px 0 0 3px;
   margin-left: 0;
 }
+mor-counter.controls-none input {
+  border-radius: 3px;
+}
+mor-counter.controls-add input {
+  border-radius: 3px 0 0 3px;
+}
+mor-counter.controls-add.controls-on-right .step-controls .add-step {
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+}
+mor-counter.controls-sub input {
+  border-radius: 0 3px 3px 0;
+}
+mor-counter.controls-sub.controls-on-right .step-controls .sub-step {
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+}
+mor-counter.controls-none input {
+  border-radius: 3px;
+}
 mor-counter.si-m .sub-step,
 mor-counter.si-m .add-step {
   font-size: 14px;
@@ -42401,6 +42438,12 @@ mor-counter.si-m .step-controls {
 mor-counter.si-m .step-controls .sub-step,
 mor-counter.si-m .step-controls .add-step {
   line-height: 21px;
+}
+mor-counter.si-m.controls-sub .step-controls .sub-step {
+  line-height: 42px;
+}
+mor-counter.si-m.controls-add .step-controls .add-step {
+  line-height: 42px;
 }
 mor-counter.si-m input {
   font-size: 16px;
@@ -42425,6 +42468,12 @@ mor-counter.si-s .step-controls .sub-step,
 mor-counter.si-s .step-controls .add-step {
   line-height: 16px;
 }
+mor-counter.si-s .controls-sub .step-controls .sub-step {
+  line-height: 32px;
+}
+mor-counter.si-s .controls-add .step-controls .add-step {
+  line-height: 32px;
+}
 mor-counter.si-s input {
   font-size: 15px;
   height: 32px;
@@ -42447,6 +42496,12 @@ mor-counter.si-xs .step-controls {
 mor-counter.si-xs .step-controls .sub-step,
 mor-counter.si-xs .step-controls .add-step {
   line-height: 14px;
+}
+mor-counter.si-xs .controls-sub .step-controls .sub-step {
+  line-height: 28px;
+}
+mor-counter.si-xs .controls-add .step-controls .add-step {
+  line-height: 28px;
 }
 mor-counter.si-xs input {
   font-size: 13px;
@@ -42501,6 +42556,12 @@ mor-counter .step-controls {
 mor-counter .step-controls .sub-step,
 mor-counter .step-controls .add-step {
   line-height: 21px;
+}
+mor-counter.controls-sub .step-controls .sub-step {
+  line-height: 42px;
+}
+mor-counter.controls-add .step-controls .add-step {
+  line-height: 42px;
 }
 mor-counter input {
   font-size: 16px;
@@ -42974,6 +43035,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap li.selected {
   background: #f4f4f4;
   color: #F33D5D;
+  padding-right: 2.5em;
 }
 .mor-select-wrap li.selected.hover {
   color: #F33D5D;
@@ -43306,6 +43368,7 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap.hide-selected li {
   padding: 0.5em 1em;
+  padding-right: 1em;
 }
 .mor-select-wrap.hide-selected li.selected,
 .mor-select-wrap .hide-selected li.selected {

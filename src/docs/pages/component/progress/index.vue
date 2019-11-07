@@ -329,6 +329,26 @@
     </div>
     :::
 
+    :::vue
+    @name:note-position
+    ---
+    #config
+    >conf-desc
+    进度文案展示的位置。
+    >conf-accept
+    `'left'` : 左侧<br>`'right'` : 右侧
+    >conf-type
+    String
+    >conf-default
+    `'right'`
+    ---
+    #demo
+    >tpl
+    <div style="width:320px">
+        <ui-progress :percent="60" note-position="left"></ui-progress>
+    </div>
+    :::
+
     [[[方法]]]
     
     <h1>暂无</h1>

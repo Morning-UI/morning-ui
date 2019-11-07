@@ -592,6 +592,21 @@ export default {
 
             this.data.forceUpdateEmiter++;
 
+        },
+        _updatePer : function () {
+
+            if (this.data.droping && this.conf.showTip) {
+
+                this.data.$tip.position();
+
+            }
+
+            if (!this.data.droping) {
+                
+                this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
+
+            }
+
         }
     },
     created : function () {},
@@ -610,6 +625,28 @@ export default {
                 this.data.end = this.conf.min;
 
             }
+
+            this._updatePer();
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('conf.max', () => {
+
+            if (this.data.start > this.conf.max) {
+
+                this.data.start = this.conf.max;
+
+            }
+
+            if (this.data.end > this.conf.max) {
+
+                this.data.end = this.conf.max;
+
+            }
+
+            this._updatePer();
 
         }, {
             immediate : true
@@ -638,21 +675,7 @@ export default {
             immediate : true
         });
 
-        this.$on('value-change', () => {
-
-            if (this.data.droping && this.conf.showTip) {
-
-                this.data.$tip.position();
-
-            }
-
-            if (!this.data.droping) {
-        
-                this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
-
-            }
-
-        });
+        this.$on('value-change', this._updatePer);
 
     }
 };
