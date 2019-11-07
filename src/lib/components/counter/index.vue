@@ -17,6 +17,7 @@
         :parser="parser"
         :precision="precision"
         :controls-position="controlsPosition"
+        :controls="controls"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -25,6 +26,7 @@
     <div class="counter-wrap form-body" v-if="conf.controlsPosition === 'both'">
 
         <div
+            v-show="conf.controls === 'both' || conf.controls === 'sub'"
             class="sub-step"
             @mousedown="_startContinued(1, -1, true)"
             @mouseup="_stopContinued()"
@@ -42,6 +44,7 @@
         />
 
         <div
+            v-show="conf.controls === 'both' || conf.controls === 'add'"
             class="add-step"
             @mousedown="_startContinued(1, 1, true)"
             @mouseup="_stopContinued()"
@@ -64,6 +67,7 @@
 
         <div class="step-controls">
             <div
+                v-show="conf.controls === 'both' || conf.controls === 'add'"
                 class="add-step"
                 @mousedown="_startContinued(1, 1, true)"
                 @mouseup="_stopContinued()"
@@ -71,6 +75,7 @@
                 <i class="mo-icon mo-icon-add"></i>
             </div>
             <div
+                v-show="conf.controls === 'both' || conf.controls === 'sub'"
                 class="sub-step"
                 @mousedown="_startContinued(1, -1, true)"
                 @mouseup="_stopContinued()"
@@ -126,6 +131,11 @@ export default {
             type : String,
             default : 'both',
             validator : (value => ['both', 'right'].indexOf(value) !== -1)
+        },
+        controls : {
+            type : String,
+            default : 'both',
+            validator : (value => ['both', 'sub', 'add', 'none'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -138,7 +148,8 @@ export default {
                 formater : this.formater,
                 parser : this.parser,
                 precision : this.precision,
-                controlsPosition : this.controlsPosition
+                controlsPosition : this.controlsPosition,
+                controls : this.controls
             };
 
         },
@@ -147,6 +158,7 @@ export default {
             let classes = {};
 
             classes[`controls-on-${this.conf.controlsPosition}`] = true;
+            classes[`controls-${this.conf.controls}`] = true;
 
             return classes;
 

@@ -7,6 +7,7 @@
         :done-step="doneStep"
         :mark-current="markCurrent"
         :current-type="currentType"
+        :done-type="doneType"
         :show-icon="showIcon"
         :align="align"
         :failed="failed"
@@ -22,8 +23,8 @@
                         first: index === 0,
                         done : index <= conf.doneStep,
                         current : conf.markCurrent && (index === (conf.doneStep + 1)),
-                        highlight : conf.currentType === 'highlight',
-                        progress : conf.currentType === 'progress',
+                        [`current-type-${conf.currentType}`] : true,
+                        [`done-type-${conf.doneType}`] : true,
                         failed : conf.failed.indexOf(index) !== -1
                     }"
                 >
@@ -53,8 +54,8 @@
                     :class="{
                         done : index === conf.doneStep,
                         current : conf.markCurrent && index === (conf.doneStep + 1),
-                        highlight : conf.currentType === 'highlight' && index === (conf.doneStep + 1),
-                        progress : conf.currentType === 'progress' && index === (conf.doneStep + 1),
+                        [`current-type-${conf.currentType}`] : index === (conf.doneStep + 1),
+                        [`done-type-${conf.doneType}`] : index === (conf.doneStep + 1),
                         failed : conf.failed.indexOf(index) !== -1
                     }"
                 >
@@ -102,7 +103,12 @@ export default {
         currentType : {
             type : String,
             default : 'highlight',
-            validator : (value => ['highlight', 'progress'].indexOf(value) !== -1)
+            validator : (value => ['highlight', 'progress', 'hollow'].indexOf(value) !== -1)
+        },
+        doneType : {
+            type : String,
+            default : 'hollow',
+            validator : (value => ['highlight', 'hollow'].indexOf(value) !== -1)
         },
         showIcon : {
             type : Boolean,
@@ -126,6 +132,7 @@ export default {
                 doneStep : this.doneStep,
                 markCurrent : this.markCurrent,
                 currentType : this.currentType,
+                doneType : this.doneType,
                 showIcon : this.showIcon,
                 align : this.align,
                 failed : this.failed

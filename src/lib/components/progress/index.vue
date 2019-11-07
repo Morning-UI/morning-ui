@@ -9,10 +9,12 @@
         :status="status"
         :format="format"
         :mark-range="markRange"
+        :note-position="notePosition"
     >
 
     <div class="progress-wrap">
         <template v-if="conf.type === 'line'">
+            <div class="note" v-html="progressNote" v-if="conf.notePosition === 'left'"></div>
             <div class="line-track track">
                 <ul class="marks">
                     <li
@@ -43,7 +45,7 @@
             
                 </div>
             </div>
-            <div class="note" v-html="progressNote"></div>
+            <div class="note" v-html="progressNote" v-if="conf.notePosition === 'right'"></div>
         </template>
 
         <template v-if="conf.type === 'ring'">
@@ -105,7 +107,6 @@
             </div>
             <div class="note" v-html="progressNote"></div>
         </template>
-
     </div>
     
     </mor-progress>
@@ -150,6 +151,11 @@ export default {
         markRange : {
             type : Array,
             default : (() => [])
+        },
+        notePosition : {
+            type : String,
+            default : 'right',
+            validator : (value => ['left', 'right'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -162,7 +168,8 @@ export default {
                 failed : this.failed,
                 status : this.status,
                 format : this.format,
-                markRange : this.markRange
+                markRange : this.markRange,
+                notePosition : this.notePosition
             };
 
         },
@@ -170,7 +177,8 @@ export default {
 
             return {
                 'type-line' : this.conf.type === 'line',
-                'type-ring' : this.conf.type === 'ring'
+                'type-ring' : this.conf.type === 'ring',
+                'note-in-left' : this.conf.notePosition === 'left'
             };
 
         },

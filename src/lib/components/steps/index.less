@@ -118,11 +118,21 @@ mor-steps{
                 box-sizing: border-box;
                 line-height: @fontSize*1.5 - 2px;
             }
+
+            &.done-type-highlight .mark{
+                background: @colorTheme;
+                border-color: @colorTheme;
+                color: @colorWhite;
+            }
+
+            &.done-type-hollow .mark{
+                border-color: @colorTheme;
+            }
         }
 
         &.current{
             .title{
-                color: @colorBlack;
+                color: @colorTheme;
                 font-weight: 700;
             }
 
@@ -130,13 +140,18 @@ mor-steps{
                 color: @colorNeutral9;
             }
 
-            &.highlight .mark{
+            &.current-type-highlight .mark{
                 background: @colorTheme;
                 border-color: @colorTheme;
                 color: @colorWhite;
             }
 
-            &.progress .mark{
+            &.current-type-hollow .mark{
+                color: @colorTheme;
+                border-color: @colorTheme;
+            }
+
+            &.current-type-progress .mark{
                 background: @colorWhite;
                 border: none;
                 width: @fontSize*2;

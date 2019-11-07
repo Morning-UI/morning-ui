@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.12.67
+
+#### 新特性
+
+- `ui-carousel`的`emit`事件新增`index`参数
+- `ui-counter`新增`controls`配置
+- `ui-steps`的`current-type`配置新增`hollow`选项
+- `ui-steps`新增`done-type`配置
+- `ui-progress`新增`note-position`配置
+
+#### 改进
+
+- 优化`ui-steps`的样式，使其符合设计规范
+
+#### 修复
+
+- 修复`ui-slider`组件的`max`或`min`配置动态变化时可能导致显示不正确的问题
+- 修复`ui-select`选中后文本和图标重叠的样式问题
+
 ## 0.12.66
 
 #### 新特性

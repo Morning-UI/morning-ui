@@ -202,6 +202,52 @@
     </div>
     :::
 
+    :::vue
+    @name:controls
+    ---
+    #config
+    >conf-desc
+    是否显示控制按钮。
+    >conf-accept
+    `'none'` : 隐藏所有<br>`'both'` : 显示所有<br>`'add'` : 仅显示加按钮<br>`'sub'` : 仅显示减按钮
+    >conf-type
+    String
+    >conf-default
+    `'both'`
+    ---
+    #demo
+    >desc
+    隐藏所有按钮
+    >tpl
+    <div style="width:130px;">
+        <ui-counter form-name="数字" controls="none"></ui-counter>
+    </div>
+    ---
+    #demo
+    >desc
+    仅显示加按钮
+    >tpl
+    <div style="width:130px;">
+        <ui-counter form-name="数字" controls="add"></ui-counter>
+    </div>
+    ---
+    #demo
+    >desc
+    仅显示减按钮
+    >tpl
+    <div style="width:130px;">
+        <ui-counter form-name="数字" controls="sub"></ui-counter>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`controls-position`一起使用。
+    >tpl
+    <div style="width:130px;">
+        <ui-counter form-name="数字" controls="sub" controls-position="right"></ui-counter>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

@@ -147,8 +147,13 @@ export default {
         _unlinkChildFormKey : function (formKey) {
 
             let value = this.get();
+            let formVm = this.data.forms[formKey];
 
-            this.data.forms[formKey].$off('value-change', this.data.valueChangeFns[formKey]);
+            if (formVm) {
+            
+                formVm.$off('value-change', this.data.valueChangeFns[formKey]);
+
+            }
 
             if (value[formKey] !== undefined) {
 

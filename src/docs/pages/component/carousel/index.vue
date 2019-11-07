@@ -554,6 +554,8 @@
     #event
     >event-desc
     当轮播切换时触发。
+    >event-args
+    |index|当前轮播所在的页数(从0开始)|`Number`|
     ---
     #demo
     >tpl
@@ -579,8 +581,8 @@
     >script
     {
         methods : {
-            echo : function () {
-                console.log('demo4.console1', 'emit event!');
+            echo : function (index) {
+                console.log('demo4.console1', 'emit event!', index);
             }
         }
     }
