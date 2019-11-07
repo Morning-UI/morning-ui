@@ -295,7 +295,7 @@ export default {
 
                 if (!noAnimate) {
 
-                    this.$emit('emit');
+                    this.$emit('emit', this.data.current);
 
                 }
 
