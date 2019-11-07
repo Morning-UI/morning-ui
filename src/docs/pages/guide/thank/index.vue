@@ -39,6 +39,9 @@
     ## MorningUI贡献者
 
     - Early(earlyhe0@gmail.com) <ui-textcolor color="minor"><ui-small>Coding/Review</ui-small></ui-textcolor>
+    - pwq309(pwq309@126.com) <ui-textcolor color="minor"><ui-small>Coding</ui-small></ui-textcolor>
+    - echoZQ <ui-textcolor color="minor"><ui-small>Document</ui-small></ui-textcolor>
+    - CFDylan <ui-textcolor color="minor"><ui-small>Document</ui-small></ui-textcolor>
     - 青蛙kimo(49420671@qq.com) <ui-textcolor color="minor"><ui-small>Designer</ui-small></ui-textcolor>
     - 仉长娟(changjuan.zhang@beibei.com) <ui-textcolor color="minor"><ui-small>Designer</ui-small></ui-textcolor>
 

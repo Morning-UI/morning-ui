@@ -355,6 +355,7 @@ Vue.use(morning);
                         <a href="https://www.zhihu.com/people/qing-wa-kimo/activities">青蛙kimo</a><br>
                         <a href="https://github.com/echoZQ">echoZQ</a><br>
                         <a href="https://github.com/CFDylan">CFDylan</a><br>
+                        <a href="https://github.com/pwq309">pwq309</a><br>
                     </p>
                 </div>
                 <div class="c31 center">
