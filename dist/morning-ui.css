@@ -1557,7 +1557,8 @@ textarea {
 .mo-icon-progress-3-4-cf,
 .mo-icon-progress-7-8-cf,
 .mo-icon-progress-done-cf,
-.mo-icon-flag-c {
+.mo-icon-flag-c,
+.mo-icon-star-cf {
   font-family: 'morningicon' !important;
   font-size: 16px;
   font-style: normal;
@@ -31835,7 +31836,13 @@ mor-link {
   position: relative;
   line-height: 1.4em;
   height: 1.4em;
+  border-bottom-width: 0;
+  border-bottom-style: solid;
   color: #F33D5D;
+  border-bottom-style: #F33D5D;
+}
+mor-link.underline:hover {
+  border-bottom-width: 1px;
 }
 mor-link.margin {
   padding: 0 0.6em;
@@ -31888,8 +31895,23 @@ mor-link.si-xxs .mo-icon,
 mor-link.si-xxs .iconfont {
   font-size: 12px;
 }
+mor-link .mo-loader .mo-loader-path {
+  stroke: #F33D5D;
+}
+mor-link:not(.st-disabled):hover,
+mor-link.st-hover {
+  color: #d60d31;
+}
+mor-link:not(.st-disabled):active,
+mor-link.st-active {
+  color: #a60a26;
+}
+mor-link.st-disabled {
+  color: #fab5c1;
+}
 mor-link.co-t {
   color: #F33D5D;
+  border-bottom-style: #F33D5D;
 }
 mor-link.co-t .mo-loader .mo-loader-path {
   stroke: #F33D5D;
@@ -31907,6 +31929,7 @@ mor-link.co-t.st-disabled {
 }
 mor-link.co-lt {
   color: #F86F88;
+  border-bottom-style: #F86F88;
 }
 mor-link.co-lt .mo-loader .mo-loader-path {
   stroke: #F86F88;
@@ -31924,6 +31947,7 @@ mor-link.co-lt.st-disabled {
 }
 mor-link.co-dt {
   color: #D22343;
+  border-bottom-style: #D22343;
 }
 mor-link.co-dt .mo-loader .mo-loader-path {
   stroke: #D22343;
@@ -31941,6 +31965,7 @@ mor-link.co-dt.st-disabled {
 }
 mor-link.co-s {
   color: #1EB818;
+  border-bottom-style: #1EB818;
 }
 mor-link.co-s .mo-loader .mo-loader-path {
   stroke: #1EB818;
@@ -31954,10 +31979,11 @@ mor-link.co-s.st-active {
   color: #13740f;
 }
 mor-link.co-s.st-disabled {
-  color: #0c4709;
+  color: #6aeb65;
 }
 mor-link.co-w {
   color: #FA9428;
+  border-bottom-style: #FA9428;
 }
 mor-link.co-w .mo-loader .mo-loader-path {
   stroke: #FA9428;
@@ -31975,6 +32001,7 @@ mor-link.co-w.st-disabled {
 }
 mor-link.co-d {
   color: #FA2833;
+  border-bottom-style: #FA2833;
 }
 mor-link.co-d .mo-loader .mo-loader-path {
   stroke: #FA2833;
@@ -31992,6 +32019,7 @@ mor-link.co-d.st-disabled {
 }
 mor-link.co-p {
   color: #2879FA;
+  border-bottom-style: #2879FA;
 }
 mor-link.co-p .mo-loader .mo-loader-path {
   stroke: #2879FA;
@@ -32009,6 +32037,7 @@ mor-link.co-p.st-disabled {
 }
 mor-link.co-m {
   color: #B2B2B2;
+  border-bottom-style: #B2B2B2;
 }
 mor-link.co-m .mo-loader .mo-loader-path {
   stroke: #B2B2B2;
@@ -32026,6 +32055,7 @@ mor-link.co-m.st-disabled {
 }
 mor-link.co-i {
   color: #18B8B6;
+  border-bottom-style: #18B8B6;
 }
 mor-link.co-i .mo-loader .mo-loader-path {
   stroke: #18B8B6;
@@ -32039,24 +32069,43 @@ mor-link.co-i.st-active {
   color: #0f7473;
 }
 mor-link.co-i.st-disabled {
-  color: #094746;
+  color: #65ebe9;
 }
 mor-link.co-bk {
   color: #000000;
+  border-bottom-style: #000000;
 }
 mor-link.co-bk .mo-loader .mo-loader-path {
   stroke: #000000;
 }
 mor-link.co-bk:not(.st-disabled):hover,
 mor-link.co-bk.st-hover {
-  color: #262626;
+  color: #000000;
 }
 mor-link.co-bk:not(.st-disabled):active,
 mor-link.co-bk.st-active {
-  color: #4d4d4d;
+  color: #000000;
 }
 mor-link.co-bk.st-disabled {
   color: #666666;
+}
+mor-link.co-wh {
+  color: #FFFFFF;
+  border-bottom-style: #FFFFFF;
+}
+mor-link.co-wh .mo-loader .mo-loader-path {
+  stroke: #FFFFFF;
+}
+mor-link.co-wh:not(.st-disabled):hover,
+mor-link.co-wh.st-hover {
+  color: #ebebeb;
+}
+mor-link.co-wh:not(.st-disabled):active,
+mor-link.co-wh.st-active {
+  color: #e0e0e0;
+}
+mor-link.co-wh.st-disabled {
+  color: #ffffff;
 }
 mor-link.co-n1 {
   color: #F0F0F0;
@@ -32245,28 +32294,15 @@ mor-link.co-n11.st-active {
 mor-link.co-n11.st-disabled {
   color: #999999;
 }
-mor-link.co-wh {
-  color: #FFFFFF;
-}
-mor-link.co-wh .mo-loader .mo-loader-path {
-  stroke: #FFFFFF;
-}
-mor-link.co-wh:not(.st-disabled):hover,
-mor-link.co-wh.st-hover {
-  color: #ebebeb;
-}
-mor-link.co-wh:not(.st-disabled):active,
-mor-link.co-wh.st-active {
-  color: #e0e0e0;
-}
-mor-link.co-wh.st-disabled {
-  color: #b3b3b3;
-}
 mor-link.st-hover {
   cursor: pointer;
 }
 mor-link.st-disabled {
   cursor: not-allowed !important;
+}
+mor-link.st-disabled,
+mor-link.st-readonly {
+  border-bottom: none;
 }
 mor-link.st-apparent {
   animation-name: apparent;
@@ -32276,20 +32312,6 @@ mor-link.st-apparent {
 }
 mor-link.st-apparent:hover {
   animation-name: none;
-}
-mor-link .mo-loader .mo-loader-path {
-  stroke: #F33D5D;
-}
-mor-link:not(.st-disabled):hover,
-mor-link.st-hover {
-  color: #d60d31;
-}
-mor-link:not(.st-disabled):active,
-mor-link.st-active {
-  color: #a60a26;
-}
-mor-link.st-disabled {
-  color: #fab5c1;
 }
 mor-link:hover {
   cursor: pointer;
@@ -38456,6 +38478,137 @@ mor-empty .empty-note mor-link {
 }
 mor-empty .empty-more {
   margin-top: 8px;
+}
+mor-textscroll {
+  display: block;
+  padding: 8px 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  color: #000000;
+  border-color: #F33D5D;
+  background-color: #feeff1;
+}
+mor-textscroll .tc-container {
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+mor-textscroll .tc-container .tc-item {
+  position: absolute;
+  display: block;
+  width: 100%;
+}
+mor-textscroll.co-t {
+  border-color: #F33D5D;
+  background-color: #feeff1;
+}
+mor-textscroll.co-lt {
+  border-color: #F86F88;
+  background-color: #ffffff;
+}
+mor-textscroll.co-lt {
+  background-color: #fef2f5;
+}
+mor-textscroll.co-dt {
+  border-color: #D22343;
+  background-color: #f4bec8;
+}
+mor-textscroll.co-s {
+  border-color: #1EB818;
+  background-color: #9ef29b;
+}
+mor-textscroll.co-s {
+  background-color: #b4f5b1;
+}
+mor-textscroll.co-w {
+  border-color: #FA9428;
+  background-color: #fef0e0;
+}
+mor-textscroll.co-d {
+  border-color: #FA2833;
+  background-color: #fee0e2;
+}
+mor-textscroll.co-p {
+  border-color: #2879FA;
+  background-color: #e0ecfe;
+}
+mor-textscroll.co-m {
+  border-color: #B2B2B2;
+  background-color: #ffffff;
+}
+mor-textscroll.co-m {
+  background-color: #f7f7f7;
+}
+mor-textscroll.co-i {
+  border-color: #18B8B6;
+  background-color: #9bf2f1;
+}
+mor-textscroll.co-bk {
+  border-color: #000000;
+  background-color: #5e5e5e;
+}
+mor-textscroll.co-bk {
+  color: #FFFFFF;
+}
+mor-textscroll.co-wh {
+  border-color: #FFFFFF;
+  background-color: #ffffff;
+}
+mor-textscroll.co-n1 {
+  color: #000000;
+  border-color: #F0F0F0;
+  background-color: #cacaca;
+}
+mor-textscroll.co-n2 {
+  color: #000000;
+  border-color: #E5E5E5;
+  background-color: #bfbfbf;
+}
+mor-textscroll.co-n3 {
+  color: #000000;
+  border-color: #E0E0E0;
+  background-color: #bababa;
+}
+mor-textscroll.co-n4 {
+  color: #000000;
+  border-color: #D9D9D9;
+  background-color: #b3b3b3;
+}
+mor-textscroll.co-n5 {
+  color: #000000;
+  border-color: #CCCCCC;
+  background-color: #a6a6a6;
+}
+mor-textscroll.co-n6 {
+  color: #FFFFFF;
+  border-color: #B2B2B2;
+  background-color: #d8d8d8;
+}
+mor-textscroll.co-n7 {
+  color: #FFFFFF;
+  border-color: #999999;
+  background-color: #bfbfbf;
+}
+mor-textscroll.co-n8 {
+  color: #FFFFFF;
+  border-color: #7F7F7F;
+  background-color: #a5a5a5;
+}
+mor-textscroll.co-n9 {
+  color: #FFFFFF;
+  border-color: #666666;
+  background-color: #8c8c8c;
+}
+mor-textscroll.co-n10 {
+  color: #FFFFFF;
+  border-color: #4C4C4C;
+  background-color: #727272;
+}
+mor-textscroll.co-n11 {
+  color: #FFFFFF;
+  border-color: #333333;
+  background-color: #595959;
 }
 mor-sticky {
   display: inline-block;

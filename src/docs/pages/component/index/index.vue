@@ -61,6 +61,7 @@
                 <li><a href="/component/avatar.html">头像<p>&lt;avatar></p></a></li>
                 <li><a href="/component/empty.html">空状态<p>&lt;empty></p></a></li>
                 <li><a href="/component/timeline.html">时间轴<p>&lt;timeline></p></a></li>
+                <li><a href="/component/textscroll.html">滚动文字<p>&lt;textscroll></p></a></li>
                 <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
                 <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>

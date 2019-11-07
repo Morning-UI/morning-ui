@@ -44,6 +44,7 @@ import calendar                     from './calendar/index.vue';
 import load                         from './load/index.vue';
 import progress                     from './progress/index.vue';
 import empty                        from './empty/index.vue';
+import textscroll                   from './textscroll/index.vue';
 import sticky                       from './sticky/index.vue';
 import steps                        from './steps/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
@@ -143,6 +144,7 @@ export default {
     load,
     progress,
     empty,
+    textscroll,
     sticky,
     steps,
     breadcrumbs,

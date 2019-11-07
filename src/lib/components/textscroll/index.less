@@ -1,0 +1,57 @@
+mor-textscroll{
+    display: block;
+    padding: @fontSize*0.5 @fontSize;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: @borderRadius;
+    color: @colorBlack;
+
+    .tc-container{
+        overflow: hidden;
+        display: block;
+        position: relative;
+
+        .tc-item{
+            position: absolute;
+            display: block;
+            width: 100%;
+        }
+    }
+
+    each(@colorShortNameMap, {
+        & when (@value = t){
+            border-color: extract(@colorVarMap, @index);
+            background-color: lighten(extract(@colorVarMap, @index), 37%);
+        }
+
+        &.co-@{value}{
+            border-color: extract(@colorVarMap, @index);
+            background-color: lighten(extract(@colorVarMap, @index), 37%);
+        }
+
+        &.co-@{value} when (@value = lt), (@value = m){
+            background-color: lighten(extract(@colorVarMap, @index), 27%);
+        }
+
+        &.co-@{value} when (@value = s){
+            background-color: lighten(extract(@colorVarMap, @index), 42%);
+        }
+
+        &.co-@{value} when (@value = bk){
+            color: @colorWhite;
+        }
+    });
+
+    each(range(11), {
+        @colorName : 'colorNeutral@{value}';
+
+        &.co-n@{value}{
+            color: if((@value > 5), @colorWhite, @colorBlack);
+            border-color: @@colorName;
+            background-color: if((@value > 5), lighten(@@colorName, 15%), darken(@@colorName, 15%));
+        }
+    });
+
+    // default status
+    &{}
+}
