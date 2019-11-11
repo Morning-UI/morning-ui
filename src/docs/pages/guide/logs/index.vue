@@ -18,6 +18,32 @@
     
     ### 更新记录
 
+    ### 0.12.68 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年11月11日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.68" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.68/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.68/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-slider`新增`max-slide`和`min-slide`配置
+
+    #### 改进
+
+    - 完善`ui-mindmap`组件
+
+    #### 修复
+
+    - 修复`ui-select`组件在部分情况下会导致渲染进程卡死的问题
+
+    ---
+
     ### 0.12.67 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">

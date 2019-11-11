@@ -1116,21 +1116,28 @@ export default {
         },
         _setListHeight : function () {
 
-            let $item = this.data.$list.querySelector('li:not(.infoitem):not(.selected)');
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem):not(.selected)');
 
-            if (!$item) {
+            if (!$items || $items.length === 0) {
 
                 return;
 
             }
 
             let itemHeight;
-            let maxHeight;
+            let maxHeight = 0;
+
+            $items = new Array(...$items);
+            $items = $items.splice(0, this.conf.maxShowHeight);
 
             this.Vue.nextTick(() => {
 
-                itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-                maxHeight = itemHeight * this.conf.maxShowHeight;
+                for (let $item of $items) {
+
+                    itemHeight = $item.offsetHeight || this.data.lastItemHeight;
+                    maxHeight += Number(itemHeight);
+
+                }
 
                 if (itemHeight) {
 
