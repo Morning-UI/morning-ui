@@ -20,6 +20,8 @@
         :show-point="showPoint"
         :mark-range="markRange"
         :show-counter="showCounter"
+        :max-slide="maxSlide"
+        :min-slide="minSlide"
     >
 
     <!-- <div class="left-point"></div> -->
@@ -163,6 +165,14 @@ export default {
         showCounter : {
             type : Boolean,
             default : false
+        },
+        maxSlide : {
+            type : Number,
+            default : undefined
+        },
+        minSlide : {
+            type : Number,
+            default : undefined
         }
     },
     computed : {
@@ -178,7 +188,9 @@ export default {
                 append : this.append,
                 showPoint : this.showPoint,
                 markRange : this.markRange,
-                showCounter : this.showCounter
+                showCounter : this.showCounter,
+                maxSlide : this.maxSlide,
+                minSlide : this.minSlide
             };
 
         },
@@ -200,6 +212,30 @@ export default {
                 'hide-part-points' : this.data.hidePartPoints,
                 'has-counter' : this.conf.showCounter
             };
+
+        },
+        maxInputValue : function () {
+
+            if (this.conf.maxSlide !== undefined &&
+                this.conf.maxSlide < this.conf.max) {
+
+                return this.conf.maxSlide;
+
+            }
+
+            return this.conf.max;
+
+        },
+        minInputValue : function () {
+
+            if (this.conf.minSlide !== undefined &&
+                this.conf.minSlide > this.conf.min) {
+
+                return this.conf.minSlide;
+
+            }
+
+            return this.conf.min;
 
         },
         range : function () {
@@ -227,7 +263,7 @@ export default {
             let fullwidth = this.data.$track.clientWidth;
 
             return {
-                start : ((this.data.start - this.conf.min) / this.range) * fullwidth,
+                start : ((this.data.start - this.minInputValue) / this.range) * fullwidth,
                 end : ((this.data.end - this.conf.min) / this.range) * fullwidth
             };
 
@@ -330,19 +366,19 @@ export default {
 
             if (isNaN(value)) {
 
-                value = this.conf.min;
+                value = this.minInputValue;
 
             }
 
-            if (value < this.conf.min) {
+            if (value < this.minInputValue) {
 
-                value = this.conf.min;
+                value = this.minInputValue;
 
             }
 
-            if (value > this.conf.max) {
+            if (value > this.maxInputValue) {
 
-                value = this.conf.max;
+                value = this.maxInputValue;
 
             }
 
@@ -437,10 +473,10 @@ export default {
 
             }
 
-            let rval = (this.range * this.data.per) + (+this.conf.min);
+            let rval = (this.range * this.data.per) + (+this.minInputValue);
             let rleft = rval % this.conf.step;
 
-            this.data.start = this.conf.min;
+            this.data.start = this.minInputValue;
 
             if (rleft < (this.conf.step / 2)) {
 
@@ -452,13 +488,13 @@ export default {
 
             }
 
-            if (rval > this.conf.max) {
+            if (rval > this.maxInputValue) {
 
-                rval = this.conf.max;
+                rval = this.maxInputValue;
 
-            } else if (rval < this.conf.min) {
+            } else if (rval < this.minInputValue) {
 
-                rval = this.conf.min;
+                rval = this.minInputValue;
 
             }
 
@@ -612,17 +648,17 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.$watch('conf.min', () => {
+        this.$watch('minInputValue', () => {
 
-            if (this.data.start < this.conf.min) {
+            if (this.data.start < this.minInputValue) {
 
-                this.data.start = this.conf.min;
+                this.data.start = this.minInputValue;
 
             }
 
-            if (this.data.end < this.conf.min) {
+            if (this.data.end < this.minInputValue) {
 
-                this.data.end = this.conf.min;
+                this.data.end = this.minInputValue;
 
             }
 
@@ -632,17 +668,17 @@ export default {
             immediate : true
         });
 
-        this.$watch('conf.max', () => {
+        this.$watch('maxInputValue', () => {
 
-            if (this.data.start > this.conf.max) {
+            if (this.data.start > this.maxInputValue) {
 
-                this.data.start = this.conf.max;
+                this.data.start = this.maxInputValue;
 
             }
 
-            if (this.data.end > this.conf.max) {
+            if (this.data.end > this.maxInputValue) {
 
-                this.data.end = this.conf.max;
+                this.data.end = this.maxInputValue;
 
             }
 

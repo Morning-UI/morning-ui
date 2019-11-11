@@ -1659,6 +1659,27 @@ export default {
             });
 
         },
+        _onCanvasGrab : function () {
+
+            this.data.graph.on('canvas:mousedown', evt => (
+                G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
+                    cursor : 'grabbing'
+                }))
+            );
+
+            this.data.graph.on('canvas:mouseenter', evt => (
+                G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
+                    cursor : 'grab'
+                }))
+            );
+
+            this.data.graph.on('canvas:mouseup', evt => (
+                G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
+                    cursor : 'grab'
+                }))
+            );
+
+        },
         /* eslint-disable no-magic-numbers */
         _regRootMindNode : function () {
 
@@ -1932,7 +1953,7 @@ export default {
                 drawShape : (cfg, group) => {
 
                     let style = this._getNodeStyles(mindNodeStyle, cfg);
-                    let cursor = 'default';
+                    let cursor = 'move';
                     let conPaddingX = style.fontSize * 1.5;
                     let conPaddingY = style.fontSize * 0.75;
                     let box = group.addShape('rect', {
@@ -3193,6 +3214,7 @@ export default {
         },
         _bindEvent : function () {
 
+            this._onCanvasGrab();
             this._onNodeHover();
             this._onNodeSelected();
             this._onNodeEdit();
@@ -3459,7 +3481,7 @@ export default {
 
             let canvas = this.data.$canvas.querySelector('canvas');
 
-            this._downloadFile(canvas.toDataURL('image/png'), 'png');
+            return canvas.toDataURL('image/png');
 
         },
         _exportJSON : function (data) {
@@ -3498,9 +3520,7 @@ export default {
 
             });
 
-            let blob = new Blob([JSON.stringify(json, null, 4)]);
-
-            this._downloadFile(URL.createObjectURL(blob), 'json');
+            return json;
             
         },
         _importJSON : function (data) {
@@ -3657,12 +3677,8 @@ export default {
 
             }
             
-            zip.generateAsync({
+            return zip.generateAsync({
                 type : 'blob'
-            }).then(blob => {
-
-                this._downloadFile(URL.createObjectURL(blob), 'xmind');
-            
             });
 
         },
@@ -3774,7 +3790,6 @@ export default {
                         return zip
                             .loadAsync(arrayBuffer)
                             .then(content => (content.files['content.json']));
-                        // this.importFrom('json', text, nodeId, mode);
 
                     })
                     .then(contentFile => (
@@ -3795,7 +3810,7 @@ export default {
             this.data.currentImportMode = undefined;
 
         },
-        exportTo : function (type, nodeId) {
+        downloadFile : function (type, nodeId) {
 
             let data = [this.data.graph.get('data')];
 
@@ -3805,8 +3820,44 @@ export default {
 
             }
 
-            // type is : xmind,png,json,markdown
-            this[`_export${type.toUpperCase()}`](data);
+            // type is : xmind,png,json
+            let dataResult = this[`_export${type.toUpperCase()}`](data);
+
+            if (type === 'png') {
+
+                this._downloadFile(dataResult, 'png');
+            
+            } else if (type === 'xmind') {
+
+                dataResult.then(blob => this._downloadFile(URL.createObjectURL(blob), 'xmind'));
+
+            } else if (type === 'json') {
+                
+                let blob = new Blob([JSON.stringify(dataResult, null, 4)]);
+
+                this._downloadFile(URL.createObjectURL(blob), 'json');
+
+            }
+
+            return this;
+
+        },
+        exportToObject : function (nodeId) {
+
+            let data = [this.data.graph.get('data')];
+
+            if (nodeId) {
+
+                data = [this.data.graph.findById(nodeId).getModel()];
+
+            }
+
+            return this._exportJSON(data);
+
+        },
+        importFromObject : function (data, nodeId, mode) {
+
+            return this.importFrom('json', data, nodeId, mode);
 
         },
         importFrom : function (type, data, nodeId, mode = 'replace') {
@@ -3815,12 +3866,21 @@ export default {
 
             if (type === 'json') {
 
-                data = JSON.parse(data);
+                if (typeof data === 'string') {
+                    
+                    data = JSON.parse(data);
+
+                }
                 xmindData = this._importJSON(data);
 
             } else if (type === 'xmind') {
 
-                data = JSON.parse(data);
+                if (typeof data === 'string') {
+                    
+                    data = JSON.parse(data);
+
+                }
+
                 xmindData = this._importXMIND([data[0].rootTopic]);
 
             }
@@ -3859,6 +3919,8 @@ export default {
                 this._readData(xmindData);
 
             }
+
+            return this;
 
         },
         showImportFile : function (nodeId, mode) {
