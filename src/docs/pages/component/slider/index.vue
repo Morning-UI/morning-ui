@@ -332,6 +332,62 @@
     </div>
     :::
 
+    :::vue
+    @name:max-slide
+    ---
+    #config
+    >conf-desc
+    滑块能够滑动的最大值，介于`min`和`max`配置间的一个数值。<br>
+    与`max`的区别是`max`代表了滑动条最右侧顶点的数值，而`max-slide`是滑动条中间的一个数值。<br><br>
+    若不设置则以`max`为准。
+    >conf-accept
+    大于0的数字 或 不设置
+    >conf-type
+    Number<br>Undefined
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >desc
+    滑块最大仅能滑动到`50`。
+    >tpl
+    <div style="width:300px;">
+        <ui-slider :max-slide="50"></ui-slider>
+    </div>
+    :::
+
+    :::vue
+    @name:min-slide
+    ---
+    #config
+    >conf-desc
+    滑块能够滑动的最小值，介于`min`和`max`配置间的一个数值。<br>
+    与`min`的区别是`min`代表了滑动条最左侧顶点的数值，而`min-slide`是滑动条中间的一个数值。<br><br>
+    若不设置则以`min`为准。
+    >conf-accept
+    大于0的数字 或 不设置
+    >conf-type
+    Number<br>Undefined
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >desc
+    滑块最大仅能滑动到`50`。
+    >tpl
+    <div style="width:300px;">
+        <ui-slider :min-slide="20"></ui-slider>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`max-slide`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-slider :min-slide="20" :max-slide="50"></ui-slider>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

@@ -1661,23 +1661,23 @@ export default {
         },
         _onCanvasGrab : function () {
 
-            this.data.graph.on('canvas:mousedown', evt => {
+            this.data.graph.on('canvas:mousedown', evt => (
                 G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
                     cursor : 'grabbing'
-                });
-            });
+                }))
+            );
 
-            this.data.graph.on('canvas:mouseenter', evt => {
+            this.data.graph.on('canvas:mouseenter', evt => (
                 G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
                     cursor : 'grab'
-                });
-            });
+                }))
+            );
 
-            this.data.graph.on('canvas:mouseup', evt => {
+            this.data.graph.on('canvas:mouseup', evt => (
                 G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
                     cursor : 'grab'
-                });
-            });
+                }))
+            );
 
         },
         /* eslint-disable no-magic-numbers */
@@ -3971,16 +3971,6 @@ export default {
             let parentModel = node.getInEdges()[0].getSource().getModel();
 
             return this.insertSubNode(parentModel.id, data);
-
-        },
-        insertParentNode : function () {
-
-
-
-        },
-        insertNode : function () {
-
-            
 
         },
         insertSubNode : function (nodeId, data, index = -1) {
