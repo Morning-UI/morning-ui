@@ -66,6 +66,58 @@
     </div>
     :::
 
+    :::vue
+    @name:嵌套使用轮播
+    ---
+    #demo
+    >tpl
+    <div style="width:600px;">
+        <ui-carousel>
+            <div slot="item">
+                <div style="width:100%;height:240px;background:#E2E8EE;text-align:center;line-height:240px;font-size:48px;">
+                    <div style="width:300px;height:160px;margin:0 auto;">
+                        <ui-carousel>
+                            <div slot="item">
+                                <div style="width:100%;height:160px;background:#bbbec1;text-align:center;line-height:160px;font-size:48px;">
+                                    1-1
+                                </div>
+                            </div>
+                            <div slot="item">
+                                <div style="width:100%;height:160px;background:#bbbec1;text-align:center;line-height:160px;font-size:48px;">
+                                    1-2
+                                </div>
+                            </div>
+                        </ui-carousel>
+                    </div>
+                </div>
+            </div>
+            <div slot="item">
+                <div style="width:100%;height:240px;background:#F0F0F0;text-align:center;line-height:240px;font-size:48px;">
+                    <div style="width:300px;height:160px;margin:0 auto;">
+                        <ui-carousel>
+                            <div slot="item">
+                                <div style="width:100%;height:160px;background:#bbbec1;text-align:center;line-height:160px;font-size:48px;">
+                                    2-1
+                                </div>
+                            </div>
+                            <div slot="item">
+                                <div style="width:100%;height:160px;background:#bbbec1;text-align:center;line-height:160px;font-size:48px;">
+                                    2-2
+                                </div>
+                            </div>
+                        </ui-carousel>
+                    </div>
+                </div>
+            </div>
+            <div slot="item">
+                <div style="width:100%;height:240px;background:#E2E8EE;text-align:center;line-height:240px;font-size:48px;">
+                    3
+                </div>
+            </div>
+        </ui-carousel>
+    </div>
+    :::
+
     [[[形态]]]
 
     #### 支持
