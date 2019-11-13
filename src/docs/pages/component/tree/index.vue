@@ -74,6 +74,7 @@
     - `unfold` : 默认展开这个节点
     - `icon` : 为节点设置icon(若设为空字符串则无icon，且仅对叶子节点生效)
     - `children` : 子节点对象
+    - `isLeaf` : 标记此节点是叶子节点(配合`lazy-load`配置一起使用)
     - 除了以上属性外，还可以添加额外的数据至节点中，当节点触发点击/展开/收起等事件时可以通过事件的参数获取到此对象，从而访问这些额外的数据。
     >conf-accept
     对象
@@ -819,6 +820,70 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:lazy-load
+    ---
+    #config
+    >conf-desc
+    异步加载子树。
+    <br>
+    由于异步加载时组件无法获知节点是否有子树，所以默认为可展开样式，当获取子树失败时会隐藏折叠Icon。你也可以通过显示的标记`isLeaf`来隐藏折叠Icon(见下面示例)。
+    <br><br>
+    注意：此配置暂时无法和`can-search`配置一起使用。
+    >conf-accept
+    `false`: 不启用<br>加载函数
+    >conf-type
+    Boolean<br>Function
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width: 560px;">
+        <ui-tree :tree="tree" :lazy-load="loadSubTree"></ui-tree>
+    </div>
+    >script
+    {
+        methods : {
+            loadSubTree : function (path, resolve) {
+
+                setTimeout(() => {
+
+                    resolve(this.fulltree[path.slice(-1)[0]]);
+
+                }, 1000);
+
+            }
+        },
+        data : {
+            tree : {
+                0 : {
+                    name : 'ROOT'
+                }
+            },
+            fulltree : {
+                '0' : {
+                    '0-1' : {
+                        name : '0-1',
+                        isLeaf : true
+                    },
+                    '0-2' : '0-2',
+                    '0-3' : '0-3'
+                },
+                '0-2' : {
+                    '0-2-1' : '0-2-1',
+                    '0-2-2' : '0-2-2',
+                    '0-2-3' : '0-2-3'
+                },
+                '0-3' : {
+                    '0-3-1' : '0-3-1',
+                    '0-3-2' : '0-3-2'
                 }
             }
         }

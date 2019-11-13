@@ -39,12 +39,21 @@ mor-private-tree{
                     }
                 }
 
+                .node-switcher,
+                .leafnode-icon{
+                    min-width: 18px;
+                }
+
                 .node-switcher{
                     // transform-origin: center;
                     // transform: scale(0.8);
 
                     &:hover{
                         cursor: pointer;
+                    }
+
+                    &.loading{
+                        vertical-align: -8px;
                     }
 
                     .mo-icon{

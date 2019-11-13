@@ -2174,8 +2174,7 @@ let extVueTranslater = {
         }
 
         _data = _data.join('\n');
-        Mustache.parse(_data, ['{$', '}']);
-        _data = Mustache.render(_data, _ctx);
+        _data = Mustache.render(_data, _ctx, {}, ['{$', '}']);
         _data = _data.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
 
         let template = {
@@ -2234,16 +2233,10 @@ let extVueTranslater = {
             script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'\n});`;
         }
 
-        Mustache.parse(script.exec, ['{$', '}']);
-        Mustache.parse(script.print, ['{$', '}']);
-        Mustache.parse(script.live, ['{$', '}']);
-        script.exec = Mustache.render(script.exec, _ctx);
-        script.print = Mustache.render(script.print, _ctx);
-        script.live = Mustache.render(script.live, _ctx);
-
+        script.exec = Mustache.render(script.exec, _ctx, {}, ['{$', '}']);
+        script.print = Mustache.render(script.print, _ctx, {}, ['{$', '}']);
+        script.live = Mustache.render(script.live, _ctx, {}, ['{$', '}']);
         script.exec = script.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        // script.print = script.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        // script.print = addSpace(rmEndWrap(_data), 4).replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
         script.live = script.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
 
         return script;
@@ -2662,8 +2655,7 @@ let extPreset = (content, paramStr) => {
     vars.formGroupOne = 'groupName'; 
     vars.formGroupMore = `['group1', 'group2', 'group3']`;
 
-    Mustache.parse(template, ['{%', '%}']);
-    template = Mustache.render(template, vars);
+    template = Mustache.render(template, vars, {}, ['{%', '%}']);
 
     return markdown.render(template);
 

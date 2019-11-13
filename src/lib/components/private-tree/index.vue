@@ -14,6 +14,7 @@
         :custom-unfold-icon="customUnfoldIcon"
         :custom-leafnode-icon="customLeafnodeIcon"
         :fold-style="foldStyle"
+        :lazy-load="lazyLoad"
     >
 
     <ul class="tree-body">
@@ -27,7 +28,38 @@
                 }"
             >
                 <span>
-                    <span class="leafnode-icon" v-html="item.icon || leafnodeIcon"></span>
+                    <a
+                        v-if="conf.foldable && !item.disabled && _isLazy(key, item)"
+                        href="javascript:;"
+                        @click="_nodeFoldSwitch(key)"
+                        class="node-switcher"
+                        :class="{
+                            loading : _isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)
+                        }"
+                    >
+                        <span v-if="_isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)">
+                            <morning-load :done-time="false" size="s"></morning-load>
+                        </span>
+                        <span v-else-if="data.unfoldKeys.indexOf(key) === -1" v-html="unfoldIcon"></span>
+                        <span v-else v-html="foldIcon"></span>
+                    </a>
+                    <a
+                        v-else-if="conf.foldable && item.disabled && _isLazy(key, item)"
+                        href="javascript:;"
+                        class="node-switcher"
+                        :class="{
+                            loading : _isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)
+                        }"
+                    >
+                        <span v-if="_isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)">
+                            <morning-load :done-time="false" size="s"></morning-load>
+                        </span>
+                        <span v-else-if="data.unfoldKeys.indexOf(key) === -1" v-html="unfoldIcon"></span>
+                        <span v-else v-html="foldIcon"></span>
+                    </a>
+
+                    <span v-if="!_isLazy(key, item)" class="leafnode-icon" v-html="item.icon || leafnodeIcon"></span>
+
                     <a
                         href="javascript:;"
                         @click.stop="_nodeClick(key)"
@@ -53,25 +85,37 @@
             >
                 <span>
                     <a
-                        v-if="conf.foldable && item.children && !item.disabled"
+                        v-if="conf.foldable && !item.disabled && (item.children || _isLazy(key, item))"
                         href="javascript:;"
                         @click="_nodeFoldSwitch(key)"
                         class="node-switcher"
+                        :class="{
+                            loading : _isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)
+                        }"
                     >
-                        <span v-if="data.unfoldKeys.indexOf(key) === -1" v-html="unfoldIcon"></span>
+                        <span v-if="_isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)">
+                            <morning-load :done-time="false" size="s"></morning-load>
+                        </span>
+                        <span v-else-if="data.unfoldKeys.indexOf(key) === -1" v-html="unfoldIcon"></span>
                         <span v-else v-html="foldIcon"></span>
                     </a>
                     <a
-                        v-else-if="conf.foldable && item.children && item.disabled"
+                        v-else-if="conf.foldable && item.disabled && (item.children || _isLazy(key, item))"
                         href="javascript:;"
                         class="node-switcher"
+                        :class="{
+                            loading : _isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)
+                        }"
                     >
-                        <span v-if="data.unfoldKeys.indexOf(key) === -1" v-html="unfoldIcon"></span>
+                        <span v-if="_isLazy(key, item) && (data.loadingChildren.indexOf(key) !== -1)">
+                            <morning-load :done-time="false" size="s"></morning-load>
+                        </span>
+                        <span v-else-if="data.unfoldKeys.indexOf(key) === -1" v-html="unfoldIcon"></span>
                         <span v-else v-html="foldIcon"></span>
                     </a>
 
                     <span
-                        v-if="!item.children"
+                        v-if="!(item.children || _isLazy(key, item))"
                         class="leafnode-icon"
                         v-html="item.icon || leafnodeIcon"
                     ></span>
@@ -110,6 +154,7 @@
                     :custom-unfold-icon="conf.customUnfoldIcon"
                     :custom-leafnode-icon="conf.customLeafnodeIcon"
                     :fold-style="conf.foldStyle"
+                    :lazy-load="conf.lazyLoad"
 
                     @hit-search="_syncChildHitSearch"
                     @node-emit="_nodeEmit"
@@ -176,6 +221,10 @@ export default {
             type : String,
             default : 'arrow',
             validator : (value => ['arrow', 'folder', 'symbol'].indexOf(value) !== -1)
+        },
+        lazyLoad : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -192,7 +241,8 @@ export default {
                 customFoldIcon : this.customFoldIcon,
                 customUnfoldIcon : this.customUnfoldIcon,
                 customLeafnodeIcon : this.customLeafnodeIcon,
-                foldStyle : this.foldStyle
+                foldStyle : this.foldStyle,
+                lazyLoad : this.lazyLoad
             };
 
         },
@@ -276,12 +326,19 @@ export default {
             data : {
                 current : null,
                 unfoldKeys : [],
-                childPathHitSearch : []
+                childPathHitSearch : [],
+                loadingChildren : [],
+                noSubTree : {}
             }
         };
 
     },
     methods : {
+        _isLazy : function (key, item) {
+
+            return this.conf.lazyLoad && !this.data.noSubTree[key] && !item.isLeaf;
+
+        },
         _nodeClick : function (key) {
 
             if (!this.conf.canClick) {
@@ -330,6 +387,12 @@ export default {
         },
         _nodeFoldSwitch : function (key, fold) {
 
+            if (this.data.loadingChildren.indexOf(key) !== -1) {
+
+                return;
+
+            }
+
             let index = this.data.unfoldKeys.indexOf(key);
 
             if (fold === undefined) {
@@ -343,6 +406,12 @@ export default {
                         [this.conf.tree[key]],
                         extend(true, [], this.conf.parentPath)
                     );
+
+                    if (this.conf.lazyLoad) {
+                        
+                        this.data.loadingChildren.push(key);
+
+                    }
 
                 } else {
 
@@ -365,6 +434,12 @@ export default {
                     [this.conf.tree[key]],
                     extend(true, [], this.conf.parentPath)
                 );
+
+                if (this.conf.lazyLoad) {
+                    
+                    this.data.loadingChildren.push(key);
+
+                }
 
             } else if (fold === true && index !== -1) {
 
@@ -445,6 +520,40 @@ export default {
                 }
 
             }
+
+        },
+        _nodeLoaded : function (path, nodes, children) {
+
+            let lastNodeKey = path.slice(-1)[0];
+            let lastNodeKeyIndex = this.data.loadingChildren.indexOf(lastNodeKey);
+
+            if (lastNodeKeyIndex !== -1) {
+    
+                this.data.loadingChildren.splice(lastNodeKeyIndex, 1);
+
+            }
+
+            let submenu;
+
+            for (let key of Object.keys(this.conf.tree)) {
+
+                submenu = this.$refs[`mor-tree-subtree-${this.uiid}-${key}`];
+
+                if (submenu) {
+
+                    if (submenu instanceof Array) {
+
+                        submenu = submenu[0];
+
+                    }
+
+                    submenu._nodeLoaded(path, nodes, children);
+                
+                }
+
+            }
+
+            this.data.noSubTree[lastNodeKey] = !children;
 
         }
     },

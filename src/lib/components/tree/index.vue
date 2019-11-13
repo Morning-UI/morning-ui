@@ -13,6 +13,7 @@
         :custom-leafnode-icon="customLeafnodeIcon"
         :fold-style="foldStyle"
         :block-leaf="blockLeaf"
+        :lazy-load="lazyLoad"
     >
     
         <morning-textinput
@@ -37,6 +38,7 @@
             :custom-unfold-icon="conf.customUnfoldIcon"
             :custom-leafnode-icon="conf.customLeafnodeIcon"
             :fold-style="conf.foldStyle"
+            :lazy-load="!!conf.lazyLoad"
 
             @node-emit="_nodeEmit"
             @node-fold="_nodeFold"
@@ -91,6 +93,10 @@ export default {
         blockLeaf : {
             type : Boolean,
             default : false
+        },
+        lazyLoad : {
+            type : [Boolean, Function],
+            default : false
         }
     },
     computed : {
@@ -106,7 +112,8 @@ export default {
                 customUnfoldIcon : this.customUnfoldIcon,
                 customLeafnodeIcon : this.customLeafnodeIcon,
                 foldStyle : this.foldStyle,
-                blockLeaf : this.blockLeaf
+                blockLeaf : this.blockLeaf,
+                lazyLoad : this.lazyLoad
             };
 
         },
@@ -132,6 +139,47 @@ export default {
 
     },
     methods : {
+        _lazyload : function (path, nodes) {
+
+            if (typeof this.conf.lazyLoad === 'function') {
+
+                new Promise(resolve => this.conf.lazyLoad(path, resolve))
+                    .then(children => {
+
+                        let lastNode = nodes.slice(-1)[0];
+                        let lastNodeKey = path.slice(-1)[0];
+                        let parentNode = nodes.slice(-2)[0];
+                        
+                        if (children) {
+
+                            if (typeof lastNode === 'string') {
+
+                                if (typeof parentNode.children !== 'object') {
+
+                                    parentNode.children = {};
+
+                                }
+
+                                parentNode.children[lastNodeKey] = {
+                                    name : lastNode,
+                                    children : children
+                                };
+
+                            } else {
+
+                                lastNode.children = children;
+
+                            }
+
+                        }
+
+                        this.$refs[`mor-tree-roottree-${this.uiid}`]._nodeLoaded(path, nodes, children);
+
+                    });
+
+            }
+
+        },
         _nodeEmit : function (path, nodes) {
 
             this.data.currentNode = path.join('/');
@@ -146,6 +194,7 @@ export default {
         _nodeUnfold : function (path, nodes) {
 
             this.$emit('node-unfold', path, nodes);
+            this._lazyload(path, nodes);
 
         },
         foldNode : function (pathArr, fold) {

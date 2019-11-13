@@ -51657,8 +51657,15 @@ mor-private-tree ul.tree-body .tree-node > span > a {
 mor-private-tree ul.tree-body .tree-node > span > a:hover {
   text-decoration: none;
 }
+mor-private-tree ul.tree-body .tree-node > span .node-switcher,
+mor-private-tree ul.tree-body .tree-node > span .leafnode-icon {
+  min-width: 18px;
+}
 mor-private-tree ul.tree-body .tree-node > span .node-switcher:hover {
   cursor: pointer;
+}
+mor-private-tree ul.tree-body .tree-node > span .node-switcher.loading {
+  vertical-align: -8px;
 }
 mor-private-tree ul.tree-body .tree-node > span .node-switcher .mo-icon {
   font-size: 16px;

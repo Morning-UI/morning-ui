@@ -265,7 +265,7 @@
     [[[事件]]]
 
     :::vue
-    @name:emit(index)
+    @name:emit
     ---
     #event
     >event-desc
