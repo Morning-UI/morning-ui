@@ -39847,6 +39847,7 @@ mor-carousel .control {
   top: 0;
   left: 0;
   z-index: 2;
+  pointer-events: none;
 }
 mor-carousel .control > .up-btn,
 mor-carousel .control > .down-btn,
@@ -39892,6 +39893,7 @@ mor-carousel .control .indicator {
   transform: translateX(-50%);
   margin: 0;
   list-style: none;
+  pointer-events: auto;
 }
 mor-carousel .control .indicator li {
   display: inline-block;
