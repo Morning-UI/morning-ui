@@ -14,6 +14,7 @@
     
         <div
             class="carousel-wrap"
+            :class="'carousel-id-'+uiid"
         >
             <section class="placeholder"></section>
             <div class="carousel-list">
@@ -277,7 +278,7 @@ export default {
             if (this.$slots.item && this.$slots.item[0]) {
 
                 let $itemClone = this.$slots.item[0].elm.cloneNode(true);
-                let $placeholder = this.$el.querySelector('.placeholder');
+                let $placeholder = this.$el.querySelector(`.carousel-id-${this.uiid} > .placeholder`);
 
                 $placeholder.innerHTML = $itemClone.outerHTML;
 
@@ -286,8 +287,8 @@ export default {
         },
         _switchItem : function (noAnimate) {
 
-            let $items = this.$el.querySelectorAll('.carousel-list > div');
-            let $currentItem = this.$el.querySelector('.carousel-list > div.current');
+            let $items = this.$el.querySelectorAll(`.carousel-id-${this.uiid} > .carousel-list > div`);
+            let $currentItem = this.$el.querySelector(`.carousel-id-${this.uiid} > .carousel-list > div.current`);
 
             this.Vue.nextTick(() => {
 
@@ -361,7 +362,7 @@ export default {
         next : function () {
 
             this._switch(this.data.current + 1);
-            
+
         },
         prev : function () {
 
@@ -378,7 +379,7 @@ export default {
         });
 
         this.data.slotObserver.observe(
-            this.$el.querySelector('.carousel-list'),
+            this.$el.querySelector(`.carousel-id-${this.uiid} > .carousel-list`),
             {
                 attributes : true,
                 childList : true,
