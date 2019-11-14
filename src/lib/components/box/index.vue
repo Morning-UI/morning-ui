@@ -38,7 +38,7 @@ export default {
             return {
                 margin : this.conf.margin,
                 fill : this.conf.heightFill
-            }
+            };
 
         }
     },

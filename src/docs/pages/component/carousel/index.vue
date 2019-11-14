@@ -4,13 +4,13 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 轮播 `<ui-carousel>`
+    # 走马灯 `<ui-carousel>`
 
     <doc-component-status page="carousel"></doc-component-status>
     
     [[[开始]]]
 
-    定义一个轮播，这是一个块元素。
+    定义一个走马灯，这是一个块元素。
 
     :::vue
     @name:使用
@@ -85,7 +85,7 @@
     ---
     #config
     >conf-desc
-    轮播切换时间，若设为0则不会自动切换。
+    走马灯切换时间，若设为0则不会自动切换。
     >conf-accept
     时间(ms)
     >conf-type
@@ -123,7 +123,7 @@
     ---
     #config
     >conf-desc
-    轮播切换效果。
+    走马灯切换效果。
     >conf-accept
     `'none'` : 直接切换<br>`'fade'` : 渐隐渐显<br>`'move'` : 移动
     >conf-type
@@ -225,7 +225,7 @@
     >conf-desc
     指示器的位置。
     >conf-accept
-    `'inside'` : 轮播内<br>`'outside'` : 轮播外
+    `'inside'` : 走马灯内<br>`'outside'` : 走马灯外
     >conf-type
     String
     >conf-default
@@ -233,7 +233,7 @@
     ---
     #demo
     >desc
-    位于轮播外的指示器。
+    位于走马灯外的指示器。
     >tpl
     <div style="width:480px;">
         <ui-carousel indicator-position="outside">
@@ -337,7 +337,7 @@
     ---
     #config
     >conf-desc
-    轮播方向。
+    走马灯方向。
     >conf-accept
     `'horizontal'` : 横向<br>`'vertical'` : 竖向
     >conf-type
@@ -347,7 +347,7 @@
     ---
     #demo
     >desc
-    竖向的轮播。
+    竖向的走马灯。
     >tpl
     <div style="width:480px;">
         <ui-carousel direction="vertical">
@@ -449,7 +449,7 @@
     ---
     #method
     >method-desc
-    切换到下一页轮播。
+    切换到下一页走马灯。
     >method-return
     当前组件VM实例。
     ---
@@ -482,7 +482,7 @@
     ---
     #method
     >method-desc
-    切换到上一页轮播。
+    切换到上一页走马灯。
     >method-return
     当前组件VM实例。
     ---
@@ -517,7 +517,7 @@
     >method-desc
     锁定按钮，锁定后按钮不会触发`emit`事件。
     >method-args
-    |index|NO|切换到第几页轮播(从`0`开始)|`Number`|`undefined`|
+    |index|NO|切换到第几页走马灯(从`0`开始)|`Number`|`undefined`|
     >method-return
     当前组件VM实例。
     ---
@@ -553,7 +553,7 @@
     ---
     #event
     >event-desc
-    当轮播切换时触发。
+    当走马灯切换时触发。
     ---
     #demo
     >tpl
@@ -631,7 +631,7 @@
     {
         data : function () {
             return {
-               text : '轮播',
+               text : '走马灯',
                show : true
             };
         },

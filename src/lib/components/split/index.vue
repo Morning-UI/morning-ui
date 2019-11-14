@@ -8,7 +8,7 @@
     >
         <div class="split-wrap" :id="'mor-split-wrap-'+uiid">
             <div class="a-container" :style="{'width': data.aContainerWidth, 'height': data.aContainerHeight}">
-                <slot name="a"></slot>    
+                <slot name="a"></slot>
             </div>
             
             <div
@@ -28,7 +28,7 @@
             <div class="split-placeholder"></div>
 
             <div class="b-container" :style="{'width': data.bContainerWidth, 'height': data.bContainerHeight}">
-                <slot name="b"></slot>    
+                <slot name="b"></slot>
             </div>
         </div>
     </mor-split>
@@ -38,6 +38,7 @@
 import Move                         from 'Utils/Move';
 
 const barSize = 6;
+const defaultMin = 20;
 
 export default {
     origin : 'Form',
@@ -54,7 +55,7 @@ export default {
         },
         min : {
             type : Number,
-            default : 20
+            default : defaultMin
         }
     },
     computed : {
@@ -71,7 +72,7 @@ export default {
             return {
                 moving : this.Move.moving,
                 [`${this.conf.direction}-split`] : true
-            }
+            };
 
         }
     },
@@ -99,7 +100,7 @@ export default {
           
             if (this.conf.direction === 'horizontal') {
 
-                let halfWidth = (this.data.$splitWrap.getBoundingClientRect().width - barSize / 2) / 2;
+                let halfWidth = (this.data.$splitWrap.getBoundingClientRect().width - (barSize / 2)) / 2;
 
                 this.data.splitX = `${halfWidth}px`;
                 this.data.splitY = 0;
@@ -108,7 +109,7 @@ export default {
 
             } else {
 
-                let halfHeight = (this.data.$splitWrap.getBoundingClientRect().height - barSize / 2) / 2;
+                let halfHeight = (this.data.$splitWrap.getBoundingClientRect().height - (barSize / 2)) / 2;
 
                 this.data.splitX = 0;
                 this.data.splitY = `${halfHeight}px`;
@@ -183,7 +184,7 @@ export default {
 
             }
 
-        } 
+        }
     },
     mounted : function () {
 

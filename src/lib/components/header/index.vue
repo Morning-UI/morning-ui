@@ -68,7 +68,9 @@ export default {
     },
     methods : {
         _emitBack : function () {
+
             this.$emit('back');
+
         }
     },
     mounted : function () {}

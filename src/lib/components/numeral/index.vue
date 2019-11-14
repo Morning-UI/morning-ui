@@ -18,10 +18,10 @@
 import numeral                      from 'numeral';
 
 const defaultAbbreviations = {
-    thousand: 'k',
-    million: 'm',
-    billion: 'b',
-    trillion: 't'
+    thousand : 'k',
+    million : 'm',
+    billion : 'b',
+    trillion : 't'
 };
 
 export default {
@@ -84,13 +84,13 @@ export default {
             this.data.localeId++;
 
             numeral.register('locale', `custom-${this.uiid}-${this.data.localeId}`, {
-                delimiters: {
-                    thousands: ',',
-                    decimal: '.'
+                delimiters : {
+                    thousands : ',',
+                    decimal : '.'
                 },
-                abbreviations: Object.assign({}, defaultAbbreviations, this.conf.abbreviations),
-                currency: {
-                    symbol: this.conf.currency
+                abbreviations : Object.assign({}, defaultAbbreviations, this.conf.abbreviations),
+                currency : {
+                    symbol : this.conf.currency
                 }
             });
 

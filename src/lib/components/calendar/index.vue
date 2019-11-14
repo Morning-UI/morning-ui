@@ -42,7 +42,7 @@
                 选择月份
             </div>
             <div class="title" v-show="(conf.mode === 'day' && data.yearPick) || (conf.mode === 'month' && data.yearPick) || conf.mode === 'year'">
-                选择年份 <morning-small>({{pickyears.start}} - {{pickyears.end}})</morning-small>
+                选择年份 <small>({{pickyears.start}} - {{pickyears.end}})</small>
             </div>
         </div>
     </header>

@@ -31,7 +31,7 @@ export default {
 
             return {
                 full : this.conf.noPadding
-            }
+            };
 
         }
     },

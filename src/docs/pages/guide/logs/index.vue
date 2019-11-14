@@ -21,13 +21,13 @@
     ### 0.12.66 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年11月6日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.66" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.66/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.66/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -54,13 +54,13 @@
     ### 0.12.65 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年11月4日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.65" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.65/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.65/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -90,13 +90,13 @@
     ### 0.12.64 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年10月23日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.64" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.64/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.64/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -130,13 +130,13 @@
     ### 0.12.63 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年10月21日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.63" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.63/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.63/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -148,13 +148,13 @@
     ### 0.12.62 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年10月14日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.62" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.62/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.62/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -174,13 +174,13 @@
     ### 0.12.61 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年10月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.61" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.61/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.61/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -199,13 +199,13 @@
     ### 0.12.60 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年10月8日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.60" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.60/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.60/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -233,13 +233,13 @@
     ### 0.12.59 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年9月29日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.59" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.59/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.59/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -270,13 +270,13 @@
     ### 0.12.58 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年9月12日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.58" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.58/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.58/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -302,13 +302,13 @@
     ### 0.12.57 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年8月20日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.57" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.57/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.57/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -331,13 +331,13 @@
     ### 0.12.56 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年8月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.56" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.56/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.56/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -367,13 +367,13 @@
     ### 0.12.55 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月18日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.55" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.55/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.55/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -395,13 +395,13 @@
     ### 0.12.54 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月16日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.54" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.54/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.54/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -413,13 +413,13 @@
     ### 0.12.53 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月16日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.53" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.53/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.53/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -436,13 +436,13 @@
     ### 0.12.52 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月15日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.52" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.52/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.52/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -477,13 +477,13 @@
     ### 0.12.51 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月11日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.51" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.51/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.51/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -495,13 +495,13 @@
     ### 0.12.50 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.50" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.50/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.50/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -517,13 +517,13 @@
     ### 0.12.49 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月9日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.49" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.49/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.49/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -535,13 +535,13 @@
     ### 0.12.48 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月8日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.48" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.48/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.48/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -562,13 +562,13 @@
     ### 0.12.47 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月6日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.47" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.47/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.47/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -586,13 +586,13 @@
     ### 0.12.46 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年7月4日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.46" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.46/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.46/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -608,13 +608,13 @@
     ### 0.12.45 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年6月19日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.45" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.45/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.45/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -626,13 +626,13 @@
     ### 0.12.44 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月17日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.44" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.44/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.44/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -649,13 +649,13 @@
     ### 0.12.43 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年6月16日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.43" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.43/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.43/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -676,13 +676,13 @@
     ### 0.12.42 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年6月11日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.42" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.42/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.42/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -694,13 +694,13 @@
     ### 0.12.41 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年6月5日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.41" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.41/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.41/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -725,13 +725,13 @@
     ### 0.12.40 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年6月5日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.40" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.40/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.40/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -753,13 +753,13 @@
     ### 0.12.39 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月30日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.39" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.39/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.39/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -781,13 +781,13 @@
     ### 0.12.38 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月28日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.38" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.38/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.38/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -812,13 +812,13 @@
     ### 0.12.37 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月24日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.36" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.36/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.36/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -842,13 +842,13 @@
     ### 0.12.36 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月21日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.36" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.36/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.36/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -871,13 +871,13 @@
     ### 0.12.35 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月20日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.35" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.35/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.35/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -894,13 +894,13 @@
     ### 0.12.34 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月20日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.34" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.34/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.34/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -940,13 +940,13 @@
     ### 0.12.33 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月16日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.33" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.33/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.33/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -968,13 +968,13 @@
     ### 0.12.32 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月13日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.32" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.32/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.32/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -984,13 +984,13 @@
     ### 0.12.31 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.31" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.31/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.31/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 改进
@@ -1000,13 +1000,13 @@
     ### 0.12.30 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月6日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.30" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.30/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.30/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -1022,13 +1022,13 @@
     ### 0.12.29 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年5月6日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.29" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.29/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.29/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -1041,13 +1041,13 @@
     ### 0.12.28 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月25日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.28" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.28/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.28/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -1060,13 +1060,13 @@
     ### 0.12.27 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月23日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.27" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.27/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.27/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -1083,13 +1083,13 @@
     ### 0.12.26 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月23日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.26" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.26/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.26/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -1118,13 +1118,13 @@
     ### 0.12.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月21日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.25" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.25/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.25/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -1154,13 +1154,13 @@
     ### 0.12.24 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月20日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.24" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.24/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.24/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -1185,13 +1185,13 @@
     ### 0.12.23 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月19日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.23" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.23/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.23/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 修复
@@ -1204,13 +1204,13 @@
     ### 0.12.22 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月19日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.22" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.22/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.22/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1239,13 +1239,13 @@
     ### 0.12.21 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月14日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.21" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.21/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.21/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1264,13 +1264,13 @@
     ### 0.12.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月12日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.20" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.20/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.20/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -1287,13 +1287,13 @@
     ### 0.12.19 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月11日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.19" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.19/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.19/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     #### 新特性
@@ -1310,13 +1310,13 @@
     ### 0.12.18 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.18" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.18/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.18/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -1328,13 +1328,13 @@
     ### 0.12.17 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月7日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.17" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.17/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.17/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1371,13 +1371,13 @@
     ### 0.12.16 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月4日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.16" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.16/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.16/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1402,13 +1402,13 @@
     ### 0.12.15 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年4月3日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.15" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.15/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.15/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1429,13 +1429,13 @@
     ### 0.12.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月29日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.14" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.14/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.14/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -1447,13 +1447,13 @@
     ### 0.12.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月28日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.13" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.13/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.13/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -1465,13 +1465,13 @@
     ### 0.12.12 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月25日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.12" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.12/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.12/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1492,13 +1492,13 @@
     ### 0.12.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月22日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.11" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.11/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.11/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1514,13 +1514,13 @@
     ### 0.12.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月21日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.10" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.10/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.10/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1541,13 +1541,13 @@
     ### 0.12.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月17日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.9" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.9/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.9/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1572,13 +1572,13 @@
     ### 0.12.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月15日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.8" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.8/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.8/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1611,13 +1611,13 @@
     ### 0.12.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月12日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.7" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.7/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.7/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1646,13 +1646,13 @@
     ### 0.12.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.6" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.6/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.6/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1705,13 +1705,13 @@
     ### 0.12.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月4日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.5" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.5/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.5/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1736,13 +1736,13 @@
     ### 0.12.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年3月1日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.4" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.4/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.4/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1762,13 +1762,13 @@
     ### 0.12.3 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年2月26日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.3" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.3/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.3/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1807,13 +1807,13 @@
     ### 0.12.2 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年2月22日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.2" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.2/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.2/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1847,13 +1847,13 @@
     ### 0.12.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年2月19日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.1" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.1/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.1/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1877,13 +1877,13 @@
     ### 0.12.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年2月8日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.0" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.0/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.12.0/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -1952,13 +1952,13 @@
     ### 0.11.17 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2019年1月3日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.17" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.17/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.17/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -1976,13 +1976,13 @@
     ### 0.11.16 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年11月14日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.16" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.16/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.16/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2004,13 +2004,13 @@
     ### 0.11.15 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年8月28日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.15" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.15/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.15/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 修复
@@ -2027,13 +2027,13 @@
     ### 0.11.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年8月25日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.14" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.14/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.14/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -2063,13 +2063,13 @@
     ### 0.11.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年8月22日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.13" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.13/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.13/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2105,13 +2105,13 @@
     ### 0.11.12 <ui-badge class="circle ver-beta" size="s" color="neutral-8">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年8月19日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.12" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.12/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.12/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2140,13 +2140,13 @@
     ### 0.11.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年8月15日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.11" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.11/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.11/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2177,13 +2177,13 @@
     ### 0.11.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月26日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.10" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.10/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.10/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2205,13 +2205,13 @@
     ### 0.11.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月23日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.9" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.9/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.9/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2232,13 +2232,13 @@
     ### 0.11.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月16日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.8" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.8/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.8/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2267,13 +2267,13 @@
     ### 0.11.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月10日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.7" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.7/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.7/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2294,13 +2294,13 @@
     ### 0.11.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月4日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.6" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.6/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.6/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 改进
@@ -2318,13 +2318,13 @@
     ### 0.11.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月3日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.5" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.5/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.5/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2342,13 +2342,13 @@
     ### 0.11.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年7月1日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.4" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.4/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.4/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2373,13 +2373,13 @@
     ### 0.11.3 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年6月28日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.3" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.3/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.3/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2401,13 +2401,13 @@
     ### 0.11.2 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年6月25日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.2" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.2/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.2/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2428,13 +2428,13 @@
     ### 0.11.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年6月24日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.1" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.1/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.1/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2456,13 +2456,13 @@
     ### 0.11.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年6月23日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.0" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.0/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.0/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
 
     #### 新特性
@@ -2539,13 +2539,13 @@
     ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="neutral-9">Stable</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年6月5日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.32" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.32/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.32/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-upload`组件新增`keep-origin-name`配置，可以保留文件原始名
@@ -2558,13 +2558,13 @@
     ### 0.10.31 <ui-badge class="circle ver-stable" size="s" color="neutral-9">Stable</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月28日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.31" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.31/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.31/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-calendar`组件区分高亮当天和高亮日期的样式
@@ -2577,13 +2577,13 @@
     ### 0.10.30 <ui-badge class="circle ver-stable" size="s" color="neutral-9">Stable</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月24日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.30" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.30/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.30/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-upload`的`validate`配置新增参数，可用于获取图片的高度和宽度
@@ -2596,13 +2596,13 @@
     ### 0.10.29 <ui-badge class="circle ver-stable" size="s" color="neutral-9">Stable</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月22日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.29" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.29/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.29/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-select`新增`list-width`配置用来设置下拉列表的宽度
@@ -2613,13 +2613,13 @@
     ### 0.10.28 <ui-badge class="circle ver-stable" size="s" color="neutral-9">Stable</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月22日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.28" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.28/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.28/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-tab`新增`no-padding`样式类
@@ -2635,13 +2635,13 @@
     ### 0.10.27 <ui-badge class="circle ver-beta" size="s" color="neutral-8">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月20日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.27" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.27/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.27/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-tab`新增`anchor-target`配置，支持锚点定位
@@ -2658,13 +2658,13 @@
     ### 0.10.26 <ui-badge class="circle ver-beta" size="s" color="neutral-8">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月18日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.26" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.26/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.26/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 新增Vue版本检测并要求大于`2.5.2`
@@ -2680,13 +2680,13 @@
     ### 0.10.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月17日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.25" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.25/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.25/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 优化`ui-select`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件的弹框，若超出窗口位置会自动调整位置
@@ -2712,13 +2712,13 @@
     ### 0.10.24 <ui-badge class="circle ver-beta" size="s" color="neutral-8">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月14日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.24" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.24/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.24/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 表单组件新增`readonly`状态
@@ -2736,13 +2736,13 @@
     ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="neutral-8">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月12日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-u`i/releases/tag/0.10.23" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.23/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.23/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-table`的`col-set`、`row-set`、`cell-set`支持更多的颜色
@@ -2755,13 +2755,13 @@
     ### 0.10.22 <ui-badge class="circle ver-beta" size="s" color="neutral-8">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年5月9日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.22" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.22/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.22/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-datetimepicker`和`ui-datepicker`支持快速选择 
@@ -2774,13 +2774,13 @@
     ### 0.10.21 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年4月22日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.21" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.21/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - webpack升级至4.6.0
@@ -2793,13 +2793,13 @@
     ### 0.10.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年4月18日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.20" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.20/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.20/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-imagemap`新增`clean-allzone-btn`配置，开启后显示清空所有热区按钮
@@ -2812,13 +2812,13 @@
     ### 0.10.19 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年4月15日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.19" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.19/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.19/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-select`组件新增`auto-reset-search`配置，开启后在多选模式下选中项目后会重置搜索内容
@@ -2834,13 +2834,13 @@
     ### 0.10.18 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年4月13日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.18" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.18/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.18/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 新增`ui-datetimepicker`日期时间选择器
@@ -2857,13 +2857,13 @@
     ### 0.10.17 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年2月26日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.17" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.17/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.17/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 新增`ui-datepicker`日期选择器组件
@@ -2875,13 +2875,13 @@
     ### 0.10.16 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年1月31日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.16" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.16/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.16/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 新增`ui-timepicker`时间选择器组件
@@ -2892,13 +2892,13 @@
     ### 0.10.15 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年1月16日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.15" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.15/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.15/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - 标准化组件的clearable行为
@@ -2910,13 +2910,13 @@
     ### 0.10.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2018年1月15日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.14" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.14/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.14/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br/><br/>
 
     - `ui-multiform`新增`item-validator`配置
@@ -2934,13 +2934,13 @@
     ### 0.10.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年12月7日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.13" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.13/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.13/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - 配置文档中的key可直接跳转到对应的demo
@@ -2954,13 +2954,13 @@
     ### 0.10.12 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年12月5日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.12" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.12/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.12/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - 新增`ui-imagemap`图片热区组件
@@ -2974,13 +2974,13 @@
     ### 0.10.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月29日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.11" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.11/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.11/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - 新增`ui-calendar`日历组件
@@ -2999,13 +2999,13 @@
     ### 0.10.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月27日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.10" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.10/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.10/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - 新增`ui-message`消息组件
@@ -3022,13 +3022,13 @@
     ### 0.10.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月23日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.9" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.9/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.9/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - 新增`ui-upload`文件上传组件
@@ -3041,13 +3041,13 @@
     ### 0.10.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月20日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.8" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.8/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - 组件的配置支持单向数据流(与父组件属性绑定)
@@ -3072,13 +3072,13 @@
     ### 0.10.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月13日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.7" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.7/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - 新增`ui-table`表格组件
@@ -3093,13 +3093,13 @@
     ### 0.10.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月20日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.8" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.8/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor>
     
     - 组件的配置支持单向数据流(与父组件属性绑定)
@@ -3124,13 +3124,13 @@
     ### 0.10.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月13日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.7" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.7/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - 新增`ui-table`表格组件
@@ -3145,13 +3145,13 @@
     ### 0.10.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月10日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.6" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.6/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.6/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - `ui-multiinput`组件新增`update`方法
@@ -3168,13 +3168,13 @@
     ### 0.10.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
             发布于2017年11月6日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.5" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.5/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.5/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - `ui-multiform`组件支持批量输入
@@ -3186,13 +3186,13 @@
     ### 0.10.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
         发布于2017年11月5日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.4" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.4/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.4/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - 新增`ui-multiform`多项表单输入组件
@@ -3210,13 +3210,13 @@
     ### 0.10.3 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
         发布于2017年11月2日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.3" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.3/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.3/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - `ui-formgroup`支持内联布局
@@ -3239,13 +3239,13 @@
     ### 0.10.2 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
         发布于2017年11月1日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.2" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.2/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.2/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
     
     - 增加`ui-pagination`分页组件
@@ -3258,13 +3258,13 @@
     ### 0.10.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
         发布于2017年10月31日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.1" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.1/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.1/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     - 增加codacy代码质量检测
@@ -3280,13 +3280,13 @@
     ### 0.10.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="neutral-8">
-        <ui-small>
+        <small>
         发布于2017年10月31日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.0" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.0/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.10.0/dist/" target="_blank">unpkg(CDN)</a>
-        </ui-small>
+        </small>
     </ui-textcolor><br><br>
 
     MorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。

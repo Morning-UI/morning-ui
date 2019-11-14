@@ -1781,7 +1781,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">模拟盒/对话框</td>
+                    <td class="item">对话框</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -2021,7 +2021,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">轮播/走马灯</td>
+                    <td class="item">走马灯</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>

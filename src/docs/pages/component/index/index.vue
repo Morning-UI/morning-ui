@@ -57,7 +57,7 @@
                 <li><a href="/component/trend.html">趋势标记<p>&lt;trend></p></a></li>
                 <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
-                <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
+                <li><a href="/component/carousel.html">走马灯<p>&lt;carousel></p></a></li>
                 <li><a href="/component/avatar.html">头像<p>&lt;avatar></p></a></li>
                 <li><a href="/component/empty.html">空状态<p>&lt;empty></p></a></li>
                 <li><a href="/component/timeline.html">时间轴<p>&lt;timeline></p></a></li>
@@ -72,7 +72,7 @@
             <ul>
                 <li><a href="/component/tip.html">小提示<p>&lt;tip></p></a></li>
                 <li><a href="/component/popover.html">弹出框<p>&lt;popover></p></a></li>
-                <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
+                <li><a href="/component/dialog.html">对话框<p>&lt;dialog></p></a></li>
                 <li><a href="/component/drawer.html">抽屉<p>&lt;drawer></p></a></li>
                 <li><a href="/component/alert.html">警告提示<p>&lt;alert></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>

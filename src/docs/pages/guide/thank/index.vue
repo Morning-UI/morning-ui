@@ -38,9 +38,9 @@
 
     ## MorningUI贡献者
 
-    - Early(earlyhe0@gmail.com) <ui-textcolor color="minor"><ui-small>Coding/Review</ui-small></ui-textcolor>
-    - 青蛙kimo(49420671@qq.com) <ui-textcolor color="minor"><ui-small>Designer</ui-small></ui-textcolor>
-    - 仉长娟(changjuan.zhang@beibei.com) <ui-textcolor color="minor"><ui-small>Designer</ui-small></ui-textcolor>
+    - Early(earlyhe0@gmail.com) <ui-textcolor color="minor"><small>Coding/Review</small></ui-textcolor>
+    - 青蛙kimo(49420671@qq.com) <ui-textcolor color="minor"><small>Designer</small></ui-textcolor>
+    - 仉长娟(changjuan.zhang@beibei.com) <ui-textcolor color="minor"><small>Designer</small></ui-textcolor>
 
     如果你感兴趣，欢迎加入我们，查看[如何成为一名贡献者](/guide/becontributor.html)
 

@@ -88,7 +88,7 @@ let Move = {
 
                 this._moveStart(evt);
 
-            }, this.Move.delay);    
+            }, this.Move.delay);
 
         },
         _moveStart : function (evt) {

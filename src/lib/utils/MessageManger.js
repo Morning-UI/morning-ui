@@ -48,8 +48,6 @@ let MessageManger = {
     methods : {
         _resizeList : function () {
 
-            console.log(this.conf.maxShow);
-
             if (this.conf.maxShow &&
                 this.data.list.length > +this.conf.maxShow) {
 
@@ -114,21 +112,21 @@ let MessageManger = {
 
                     break;
 
-                case 'error' : 
+                case 'error' :
 
                     options.icon = `<i class="mo-icon mo-icon-error-co"></i>`;
                     options.classes = ['co-danger'];
 
                     break;
 
-                case 'warning' : 
+                case 'warning' :
 
                     options.icon = `<i class="mo-icon mo-icon-warn-o"></i>`;
                     options.classes = ['co-warning'];
 
                     break;
 
-                case 'info' : 
+                case 'info' :
 
                     options.icon = `<i class="mo-icon mo-icon-info-co"></i>`;
                     options.classes = ['co-primary'];

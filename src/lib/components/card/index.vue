@@ -46,7 +46,7 @@ export default {
             return {
                 full : this.conf.noPadding,
                 'inside-padding' : this.conf.insidePadding
-            }
+            };
 
         }
     },

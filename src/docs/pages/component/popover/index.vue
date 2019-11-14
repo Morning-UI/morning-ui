@@ -14,7 +14,7 @@
 
     如果仅展示简单的内容，比如一句话或一张图可以使用[小提示](/component/tip.html)。
 
-    而需要展现更多内容时，可以使用[模拟盒](/component/dialog.html)。
+    而需要展现更多内容时，可以使用[对话框](/component/dialog.html)。
 
     :::vue
     @name:使用
@@ -29,6 +29,32 @@
             <p>内容内容内容3...</p>
         </ui-popover>
     </div>
+    :::
+
+    :::vue
+    @name:常见的确认弹出框
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo31">通过方法显示弹出框</span>
+        <ui-popover target="#demo31" ref="demo31" color="white"></ui-popover>
+        <ui-link @emit="showConfirm">显示弹出框</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            showConfirm : function () {
+                this.$refs.demo31
+                    .confirm('请确认填写内容?')
+                    .then(() => {
+                        alert('确认！');
+                    }, () => {
+                        alert('取消！');
+                    });
+            }
+        }
+    }
     :::
 
     :::vue
@@ -79,10 +105,10 @@
             <b slot="title">请确认</b>
             <div style="width:200px">
                 <p style="margin-top:0;">确认需要删除此内容？</p>
-                <ui-textright>
+                <div style="text-align:right">
                     <ui-link size="xxs" color="minor">取消</ui-link>
                     <ui-btn size="xxs" color="danger">删除</ui-btn>
-                </ui-textright>
+                </div>
             </div>
         </ui-popover>
     </div>
@@ -529,6 +555,45 @@
         <ui-link js="morning.findVM('demo21').show();document.querySelector('#demo21').style.left='100px';">显示弹出框，然后移动目标元素位置</ui-link><br>
         <ui-link js="morning.findVM('demo21').position();">重新定位弹出框</ui-link>
     </div>
+    :::
+
+    :::vue
+    @name:confirm(content, [options])
+    ---
+    #method
+    >method-desc
+    弹出一个确认弹出框，确认内容会优先于弹出框原本的内容显示。
+    >method-args
+    |content|YES|确认弹出框显示的内容<br>注意若原本弹出框包含内容，则会优先显示`content`。|字符串(支持HTML)|`String`|`undefined`|
+    |options|NO|确认弹出框的配置对象，包含以下字段：<br>`title` : String，标题<br>`cancelText` : String，取消按钮的文案(默认为`取消`)<br>`confirmText` : String，确认按钮的文案(默认为`确认`)|配置对象|`Object`|`undefined`|
+    >method-return
+    返回一个Promise(若用户点了确认为`resolve`状态，否则为`reject`状态)。
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo32">通过方法显示弹出框</span>
+        <ui-popover target="#demo32" ref="demo32" color="white"></ui-popover>
+        <ui-link @emit="showConfirm">显示弹出框</ui-link>
+    </div>
+    >script
+    {
+        methods : {
+            showConfirm : function () {
+                this.$refs.demo32
+                    .confirm('请仔细阅读用户协议中的内容，并确认', {
+                        title:'用户协议',
+                        cancelText: '关闭',
+                        confirmText: '我已确认'
+                    })
+                    .then(() => {
+                        alert('确认！');
+                    }, () => {
+                        alert('取消！');
+                    });
+            }
+        }
+    }
     :::
 
     [[[事件]]]

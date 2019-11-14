@@ -36,7 +36,6 @@
 </template>
  
 <script>
-import { clearInterval } from 'timers';
 const defaultAnimateTime = 200;
 const defaultInterval = 2000;
 

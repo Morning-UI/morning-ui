@@ -6,11 +6,11 @@
         :timeline="timeline"
     >
     
-        <div class="timeline-item" v-for="(item, index) in conf.list" :class="{'pending' : item.pending}">
+        <div class="timeline-item" v-for="(item, index) in conf.list" :key="index" :class="{'pending' : item.pending}">
             <template v-if="typeof item === 'string'">
                 <div class="timeline-line"></div>
                 <div class="timeline-point" :class="['point-co-'+(item.pointColor || 'default')]"></div>
-                <div class="timeline-content" v-html="item"></div>                            
+                <div class="timeline-content" v-html="item"></div>
             </template>
 
             <template v-else>

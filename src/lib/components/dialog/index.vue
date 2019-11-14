@@ -15,15 +15,25 @@
     <div class="mask" v-if="conf.showMask"></div>
     <div
         class="content"
-        :style="{width: conf.width, height: conf.height}"
+        :style="{
+            width: conf.width,
+            height: conf.height
+        }"
     >
-        
         <header v-show="data.hasHeader">
-            <slot name="header"></slot>
+            <div v-if="data.confirmTitle">{{data.confirmTitle}}</div>
+            <slot name="header" v-else></slot>
         </header>
-        <div class="body"><slot></slot></div>
+        <div class="body" v-if="data.confirmContent" v-html="data.confirmContent"></div>
+        <div class="body" v-else><slot></slot></div>
         <footer v-show="data.hasFooter">
-            <slot name="footer"></slot>
+            <div v-if="data.confirmContent">
+                <div class="operate">
+                    <ui-link class="margin" color="minor" @emit="_confirm(false)">{{data.confirmCancelBtn}}</ui-link>
+                    <ui-btn color="success" @emit="_confirm(true)">{{data.confirmBtn}}</ui-btn>
+                </div>
+            </div>
+            <slot name="footer" v-else></slot>
         </footer>
 
     </div>
@@ -97,7 +107,13 @@ export default {
                 hasHeader : false,
                 hasFooter : false,
                 showingTimeout : null,
-                toggleTimeout : null
+                toggleTimeout : null,
+                confirmContent : '',
+                confirmCancelBtn : '',
+                confirmBtn : '',
+                confirmTitle : '',
+                confirmResolve : null,
+                confirmReject : null
             }
         };
 
@@ -129,6 +145,10 @@ export default {
 
                 this.data.hasHeader = true;
 
+            } else if (this.data.confirmTitle) {
+
+                this.data.hasHeader = true;
+
             } else {
 
                 this.data.hasHeader = false;
@@ -142,11 +162,30 @@ export default {
 
                 this.data.hasFooter = true;
 
+            } else if (this.data.confirmContent) {
+
+                this.data.hasFooter = true;
+
             } else {
 
                 this.data.hasFooter = false;
 
             }
+
+        },
+        _confirm : function (confirm) {
+
+            if (confirm && typeof this.data.confirmResolve === 'function') {
+
+                this.data.confirmResolve();
+
+            } else if (!confirm && typeof this.data.confirmReject === 'function') {
+
+                this.data.confirmReject();
+
+            }
+
+            this.toggle(false);
 
         },
         show : function () {
@@ -233,6 +272,29 @@ export default {
             }
 
             return this;
+
+        },
+        confirm : function (content, options) {
+
+            options = Object.assign({
+                title : undefined,
+                cancelText : '取消',
+                confirmText : '确认',
+            }, options);
+
+            this.data.confirmContent = content;
+            this.data.confirmCancelBtn = options.cancelText;
+            this.data.confirmBtn = options.confirmText;
+            this.data.confirmTitle = options.title;
+            this._checkHeaderAndFooter();
+            this.toggle(true);
+
+            return new Promise((resolve, reject) => {
+
+                this.data.confirmResolve = resolve;
+                this.data.confirmReject = reject;
+
+            });
 
         }
     },

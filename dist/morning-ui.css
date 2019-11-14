@@ -39584,6 +39584,19 @@ mor-popover .popover-con .popover-title > div > * {
 mor-popover .popover-con .popover-body {
   padding: 12px;
 }
+mor-popover .confirm-box {
+  font-size: 14px;
+}
+mor-popover .confirm-box .confirm-content {
+  padding: 4px;
+}
+mor-popover .confirm-box .operate {
+  text-align: right;
+  margin-top: 12px;
+}
+mor-popover .confirm-box .operate mor-btn:last-child {
+  margin-left: 4px;
+}
 mor-popover .tip-arrow {
   position: absolute;
   width: 0;
@@ -40860,14 +40873,14 @@ mor-notice .msg .close-btn:hover {
 }
 mor-notice .msg > header {
   font-size: 16px;
-  padding: 0.25em 0 0.75em 0;
+  padding: 0.25em 0 0.75em;
   color: #000000;
 }
 mor-notice .msg > header:empty {
   display: none;
 }
 mor-notice .msg > footer {
-  padding: 0.75em 0 0.25em 0;
+  padding: 0.75em 0 0.25em;
 }
 mor-notice .msg > footer:empty {
   display: none;

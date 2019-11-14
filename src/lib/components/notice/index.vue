@@ -49,6 +49,8 @@
 <script>
 import MessageManger                from 'Utils/MessageManger';
 
+const messageListOffset = 16;
+
 export default {
     origin : 'UI',
     name : 'notice',
@@ -85,7 +87,7 @@ export default {
     mounted : function () {
 
         this.data.messageBoxMarginBottom = 8;
-        this.data.messageListOffset = 16;
+        this.data.messageListOffset = messageListOffset;
         this.data.messageDefaultStringKey = 'body';
 
     }

@@ -793,7 +793,7 @@
     ---
     #config
     >conf-desc
-    组件中模拟盒打开的方式(使用`no`可以提升性能)。
+    组件中对话框打开的方式(使用`no`可以提升性能)。
     >conf-accept
     `top`:从上往下弹出<br>`center`:从中间弹出<br>`no`:无动画直接出现
     >conf-type
@@ -803,7 +803,7 @@
     ---
     #demo
     >desc
-    从中间弹出的模拟盒。
+    从中间弹出的对话框。
     >tpl
     <div style="width:300px;">
         <ui-multiform form-name="名单" item-name="使用者" show-type="center">
@@ -824,7 +824,7 @@
     ---
     #demo
     >desc
-    无动画直接出现的模拟盒。
+    无动画直接出现的对话框。
     >tpl
     <div style="width:300px;">
         <ui-multiform form-name="名单" item-name="使用者" show-type="no">
