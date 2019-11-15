@@ -39855,6 +39855,7 @@ mor-carousel .control > .left-btn,
 mor-carousel .control > .right-btn {
   position: absolute;
   opacity: 0.5;
+  pointer-events: auto;
 }
 mor-carousel .control > .up-btn:hover,
 mor-carousel .control > .down-btn:hover,
