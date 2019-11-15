@@ -48,9 +48,9 @@ let morning = {
         black : 'bk',
         white : 'wh'
     },
-    _devVersion : '0.12.69',
+    _devVersion : '0.12.70',
     isMorning : true,
-    version : '0.12.69',
+    version : '0.12.70',
     map : {}
 };
 
