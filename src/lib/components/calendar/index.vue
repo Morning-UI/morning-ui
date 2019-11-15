@@ -125,7 +125,7 @@
  
 <script>
 import arrayUniq                    from 'array-uniq';
-import sortBy                       from 'lodash.sortby';
+import sortBy                       from 'lodash-es/sortby';
 import {
     getYear,
     getMonth,

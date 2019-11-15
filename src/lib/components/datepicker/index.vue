@@ -388,7 +388,7 @@ import {
     addSeconds,
     addMilliseconds
 }                                   from 'date-fns';
-import sortBy                       from 'lodash.sortby';
+import sortBy                       from 'lodash-es/sortby';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
 import {formatOptions}              from 'Utils/DateFnsOptions';

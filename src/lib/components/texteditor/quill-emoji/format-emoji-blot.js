@@ -45,7 +45,7 @@ class EmojiBlot extends Embed {
         // unicode can be '1f1f5-1f1ea',see emoji-list.js.
         emojiSpan.innerText = String.fromCodePoint(...EmojiBlot.parseUnicode(value.unicode));
         node.appendChild(emojiSpan);
-    
+
     }
     static parseUnicode (string) {
 

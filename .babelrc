@@ -3,12 +3,12 @@
         [
             "env",
             {
+                "modules" : false,
                 "exclude" : ["transform-es2015-classes"]
             }
         ]
     ],
     "plugins" : [
-        "add-module-exports",
         "transform-class-properties"
     ],
     "env" : {

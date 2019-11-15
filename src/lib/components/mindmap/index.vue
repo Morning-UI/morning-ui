@@ -122,17 +122,52 @@
 </template>
  
 <script>
-import G6                           from '@antv/g6';
-import sortBy                       from 'lodash.sortby';
-import throttle                     from 'lodash.throttle';
-import map                          from 'lodash.map';
-import JSZip                        from 'jszip';
+import G6                           from '@antv/g6/build/g6.js';
+import sortBy                       from 'lodash-es/sortby';
+import throttle                     from 'lodash-es/throttle';
+import map                          from 'lodash-es/map';
+import JSZip                        from 'jszip/dist/jszip.min.js';
 import arrayUniq                    from 'array-uniq';
 
 // eslint-disable-next-line no-unused-vars
-import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
+import xmindSdk                     from 'xmind-sdk';
 
-const PolylineUtil = require('@antv/g6/lib/shape/edges/polyline-util');
+// 来自：@antv/g6/lib/shape/edges/polyline-util
+const distance = (p1, p2) => (Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y));
+const isBending = (p0, p1, p2) => (!(p0.x === p1.x === p2.x || p0.y === p1.y === p2.y));
+const getBorderRadiusPoints = (p0, p1, p2, r) => {
+
+    let d0 = distance(p0, p1);
+    let d1 = distance(p2, p1);
+
+    if (d0 < r) {
+        
+        r = d0;
+    
+    }
+
+    if (d1 < r) {
+    
+        r = d1;
+    
+    }
+
+    let ps = {
+        x : p1.x - (r / (d0 * (p1.x - p0.x))),
+        y : p1.y - (r / (d0 * (p1.y - p0.y)))
+    };
+    let pt = {
+        x : p1.x - (r / (d1 * (p1.x - p2.x))),
+        y : p1.y - (r / (d1 * (p1.y - p2.y)))
+    };
+
+    return [ps, pt];
+
+};
+const PolylineUtil = {
+    isBending,
+    getBorderRadiusPoints
+};
 
 /* eslint-disable no-unused-vars, no-magic-numbers */
 const boxShapeIndex = 0;

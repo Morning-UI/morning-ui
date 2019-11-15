@@ -108,7 +108,7 @@ import {
     subDays,
     addDays
 }                                   from 'date-fns';
-import without                      from 'lodash.without';
+import without                      from 'lodash-es/without';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
 import {formatOptions}              from 'Utils/DateFnsOptions';

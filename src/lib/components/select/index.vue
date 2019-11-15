@@ -135,8 +135,8 @@ v-else
 -->
  
 <script>
-import map                          from 'lodash.map';
-import difference                   from 'lodash.difference';
+import map                          from 'lodash-es/map';
+import difference                   from 'lodash-es/difference';
 import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import selectArea                   from './select-area.vue';

@@ -83,7 +83,8 @@ commonConfig = {
     output : {
         path : pathDist,
         library : 'morning',
-        libraryTarget : 'umd'
+        libraryTarget : 'umd',
+        libraryExport : 'default'
     }
 };
 
@@ -99,7 +100,10 @@ let genDevVerConfig = mode => (
                     cleanOnceBeforeBuildPatterns : ['morning-ui.js', 'morning-ui.css', 'morning-ui.emoji.png']
                 }),
                 new MiniCssExtractPlugin({
-                    filename : 'morning-ui.css'
+                    filename : 'morning-ui.css',
+                    options : {
+                        hmr : mode === 'development'
+                    }
                 }),
                 new VueLoaderPlugin()
             ],
@@ -208,8 +212,7 @@ let genDevVerConfig = mode => (
                     {
                         test : /\.js$/,
                         exclude : file => (
-                            /node_modules\/(?!(quill))/.test(file) &&
-                            !/\.vue\.js/.test(file)
+                            /node_modules\/(?!(quill))/.test(file) && !/\.vue\.js/.test(file)
                         ),
                         use : [
                             'babel-loader'
@@ -232,6 +235,7 @@ let genDevVerConfig = mode => (
             },
             optimization : {
                 minimize : false,
+                sideEffects : true,
                 splitChunks : {
                     cacheGroups : {
                         styles : {
@@ -398,7 +402,8 @@ let genProdVerConfig = mode => (
                 publicPath : '/dist'
             },
             optimization : {
-                minimize : false,
+                minimize : true,
+                sideEffects : true,
                 splitChunks : {
                     cacheGroups : {
                         styles : {

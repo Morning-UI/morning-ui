@@ -1,4 +1,4 @@
-import cloneDeep                    from 'lodash.clonedeep';
+import cloneDeep                    from 'lodash-es/cloneDeep';
 
 export default UI => UI.extend({
     model : {

@@ -149,8 +149,8 @@
 <script>
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
-import sortBy                       from 'lodash.sortby';
-import map                          from 'lodash.map';
+import sortBy                       from 'lodash-es/sortby';
+import map                          from 'lodash-es/map';
 import titleTable                   from './title-table.vue';
 import normalTable                  from './normal-table.vue';
 

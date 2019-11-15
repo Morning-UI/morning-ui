@@ -228,8 +228,6 @@ import Toolbar                      from 'quill/modules/toolbar';
 import Syntax                       from 'quill/modules/syntax';
 import Clipboard                    from 'quill/modules/clipboard';
 import Table                        from 'quill/modules/Table';
-import SnowTheme                    from 'quill/themes/snow';
-import Icons                        from 'quill/ui/icons';
 import {AlignStyle}                 from 'quill/formats/align';
 import {BackgroundStyle}            from 'quill/formats/background';
 import {ColorStyle}                 from 'quill/formats/color';
@@ -244,13 +242,15 @@ import Link                         from 'quill/formats/link';
 import Script                       from 'quill/formats/script';
 import Strike                       from 'quill/formats/strike';
 import Underline                    from 'quill/formats/underline';
+import Icons                        from './quill-core/ui/icons';
+import SnowTheme                    from './quill-core/themes/snow';
+import Emoji                        from './quill-emoji/quill-emoji';
 
 window.Quill = Quill;
 
 // 因为ImageResize使用了`window.Quill`，所以必须使用require
-const ImageResize = require('./quill-image-resize-module/ImageResize');
-const Emoji = require('./quill-emoji/quill-emoji');
-const QuillBetterTable = require('./quill-better-table/quill-better-table');
+const ImageResize = require('./quill-image-resize-module/ImageResize').default;
+const QuillBetterTable = require('./quill-better-table/quill-better-table').default;
 const Delta = Quill.imports.delta;
 const Parchment = Quill.imports.parchment;
 
@@ -474,10 +474,11 @@ Image.blotName = 'image';
 Image.tagName = 'IMG';
 
 Quill.register({
-    'formats/align' : AlignStyle,
-    'formats/background' : BackgroundStyle,
-    'formats/color' : ColorStyle,
-    'formats/size' : SizeStyle,
+    'attributors/style/align' : AlignStyle,
+    'attributors/style/background' : BackgroundStyle,
+    'attributors/style/color' : ColorStyle,
+    'attributors/style/size' : SizeStyle,
+
     'formats/blockquote' : Blockquote,
     'formats/code-block' : CodeBlock,
     'formats/header' : Header,

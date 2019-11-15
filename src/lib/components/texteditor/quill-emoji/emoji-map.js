@@ -4,7 +4,7 @@ const emojiMap = {};
 
 emojiList.forEach(emojiListObject => {
 
-    emojiMap[emojiListObject.name] = emojiListObject;
+    emojiMap[emojiListObject.n] = emojiListObject;
 
 });
 

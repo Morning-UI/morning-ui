@@ -2368,7 +2368,7 @@
  
 <script>
 import DocComponent                 from 'Docs/common/DocComponent.vue';
-import sortby                       from 'lodash.sortby';
+import sortby                       from 'lodash-es/sortby';
 
 window.sortby = sortby;
 

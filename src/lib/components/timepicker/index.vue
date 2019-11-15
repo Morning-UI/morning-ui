@@ -172,7 +172,7 @@ import {
 }                                   from 'date-fns';
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
-import sortBy                       from 'lodash.sortby';
+import sortBy                       from 'lodash-es/sortby';
 import Time                         from 'Utils/Time';
 import {formatOptions}              from 'Utils/DateFnsOptions';
 

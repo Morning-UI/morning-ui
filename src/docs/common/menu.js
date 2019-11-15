@@ -85,7 +85,7 @@ export default {
         图片热区输入 : ['/component/imagemap.html', 'ImageMap'],
         表单组 : ['/component/formgroup.html', 'FormGroup'],
 
-        '<i class="iconfont" style="transform: scale(1.3);display: inline-block;">&#xe612;</i> 图形化' : null,
+        '<i class="iconfont" style="transform: scale(1);display: inline-block;">&#xe612;</i> 图形化' : null,
         思维导图: ['/component/mindmap.html', 'MindMap'],
 
         '<i class="iconfont" style="transform: scale(0.85);display: inline-block;">&#xe959;</i> 文本' : null,

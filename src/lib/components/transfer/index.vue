@@ -169,9 +169,9 @@
 </template>
  
 <script>
-import difference                   from 'lodash.difference';
-import intersection                 from 'lodash.intersection';
-import isPlainObject                from 'lodash.isplainobject';
+import difference                   from 'lodash-es/difference';
+import intersection                 from 'lodash-es/intersection';
+import isPlainObject                from 'lodash-es/isplainobject';
 
 export default {
     origin : 'Form',
