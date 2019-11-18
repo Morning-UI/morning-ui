@@ -1,129 +1,79 @@
-.generate-col(@prefix, @n, @spaceAround: false, @gutter, @i: 1) when (@i =< @n) {
-    @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s)', (@gutter*@n)), %(~'(100% - %s)', (@gutter*(@n - 1))));
-
-    > .row > .@{prefix}col-@{i} {
-        width: if((@i = @n), 100%, %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i - 1))));
-    }
-
-    > .row > .@{prefix}offset-@{i} when (@i < @n) {
-        /* stylelint-disable max-line-length */
-        margin-left: if((@spaceAround = true), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i + 0.5))), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*@i)));
-        /* stylelint-enable max-line-length */
-    }
-
-    > .row > .@{prefix}push-@{i} when (@i < @n) {
-        left: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
-    }
-
-    > .row > .@{prefix}pull-@{i} when (@i < @n) {
-        right: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
-    }
-
-    > .row > [class*='col-'] when ((@i = 1) and (@prefix = ~''))  {
-        & when (@spaceAround = false) {
-            margin-right: @gutter;
+.gen-offset(@prefix) {
+    each(range(@gridColumnNumber - 1), {
+        .@{prefix}offset-@{value}{
+            grid-column-start: @value + 1;
         }
-
-        & when (@spaceAround = true) {
-            margin: 0 @gutter / 2;
-        }
-    }
-
-    > .row when ((@i = 1) and (@prefix = ~'')) {
-        margin-bottom: @gutter;
-    }
-
-    > .row > .col when ((@i = 1) and (@prefix = ~'')) {
-        margin-right: @gutter;
-    }
-
-    .generate-col(@prefix, @n, @spaceAround, @gutter, (@i + 1));
+    });
 }
 
-.gutterSize(@prefix, @key, @size) {
-    & when (@key = m) {
-        &.gutter-@{key},
-        &{
-            .generate-col(@prefix, @gridColumnNumber, false, @size);
-
-            &.space-around {
-                .generate-col(@prefix, @gridColumnNumber, true, @size);
-            }
+.gen-col(@prefix) {
+    each(range(@gridColumnNumber), {
+        & > .@{prefix}col-@{value}{
+            grid-column-end: span @value;
         }
+    });
+
+    .gen-offset(@prefix);
+}
+
+.gen-row(@prefix) {
+    .row{
+        .gen-col(@prefix);
     }
+}
 
-    &.gutter-@{key} when not (@key = m){
-        .generate-col(@prefix, @gridColumnNumber, false, @size);
+.gen-row-with-gap(@gap) {
+    .row{
+        grid-column-gap: @gap;
+    }
+}
 
-        &.space-around {
-            .generate-col(@prefix, @gridColumnNumber, true, @size);
+.gen-gap(@key, @size) {
+    &.gutter-@{key} {
+        &{
+            grid-row-gap: @size;
         }
+
+        .gen-row-with-gap(@size);
     }
 }
 
 /* stylelint-disable length-zero-no-unit,selector-class-pattern */
-.grid(@prefix: ~'') {
-    .gutterSize(@prefix, xs, @gridGutterWidthXs);
-    .gutterSize(@prefix, s, @gridGutterWidthS);
-    .gutterSize(@prefix, m, @gridGutterWidthM);
-    .gutterSize(@prefix, l, @gridGutterWidthL);
-    .gutterSize(@prefix, xl, @gridGutterWidthXL);
-    .gutterSize(@prefix, none, 0px);
+.gen-grid-gap() {
+    .gen-gap(xs, @gridGutterWidthXs);
+    .gen-gap(s, @gridGutterWidthS);
+    .gen-gap(m, @gridGutterWidthM);
+    .gen-gap(l, @gridGutterWidthL);
+    .gen-gap(xl, @gridGutterWidthXL);
+    .gen-gap(none, 0px);
+}
+
+.gen-grid-prefix(@prefix: ~'') {
+    .gen-row(@prefix);
 }
 /* stylelint-enable length-zero-no-unit,selector-class-pattern */
 
 mor-grid {
-    display: flex;
+    display: grid;
     width: 100%;
-    flex-direction: column;
+
+    [class*='col-'] {
+        grid-row: 1 / 1;
+        position: relative;
+    }
 
     .row{
-        display: flex;
-        width: 100%;
-        flex-wrap: nowrap;
-        position: relative;
+        display: grid;
+        grid-template-columns: repeat(@gridColumnNumber, 1fr);
 
-        .col{
-            flex-shrink: 1;
-            flex-grow: 1;
-            width: 100%;
-        }
-
-        > [class*='col-']{
-            display: block;
-            box-sizing: border-box;
-            flex-shrink: 0;
-            flex-grow: 0;
-        }
-
-        > [class*='push-'],
-        > [class*='pull-']{
-            position: relative;
-        }
-
-        &,
-        &.justify-start{
-            justify-content: flex-start;
-        }
-
-        &.justify-end{
-            justify-content: flex-end;
-        }
-
-        &.justify-center{
-            justify-content: center;
-        }
-
-        &.justify-space-between{
-            justify-content: space-between;
-        }
-
-        &.justify-space-around{
-            justify-content: space-around;
+        &.equal-width{
+            grid-template-columns: 1fr;
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
         }
 
         &.vertical-top{
-            align-items: flex-start;
+            align-items: start;
         }
 
         &.vertical-center{
@@ -131,27 +81,28 @@ mor-grid {
         }
 
         &.vertical-bottom{
-            align-items: flex-end;
-        }
-
-        &:last-child{
-            margin-bottom: 0 !important;
+            align-items: end;
         }
     }
 
-    .grid();
+    .gen-grid-gap();
+    .gen-grid-prefix();
 
-    &:not(.space-around) .row{
-        > [class*='col-']:last-child,
-        > .col:last-child{
-            margin-right: 0 !important;
+    &.space-around{
+        .row{
+            margin: 0 @gridGutterWidthM;
         }
     }
 
-    &.fill,
-    &.fill > .row,
-    &.fill > .row > .col,
-    &.fill > .row > [class*='col-'] {
+    &.gutter-none{
+        &.space-around{
+            .row{
+                margin: 0;
+            }
+        }
+    }
+
+    &.fill{
         height: 100%;
     }
 }
@@ -159,27 +110,29 @@ mor-grid {
 @media only screen{
     @media (max-width: 575.98px) {
         mor-grid{
-            .grid(xs-);
+            .gen-grid-prefix(xs-);
         }
     }
     @media (min-width: 576px) and (max-width: 767.98px) {
         mor-grid{
-            .grid(s-);
+            .gen-grid-prefix(s-);
         }
     }
     @media (min-width: 768px) and (max-width: 991.98px) {
         mor-grid{
-            .grid(m-);
+            .gen-grid-prefix(m-);
         }
     }
     @media (min-width: 992px) and (max-width: 1199.98px) {
         mor-grid{
-            .grid(l-);
+            .gen-grid-prefix(l-);
         }
     }
     @media (min-width: 1200px) {
         mor-grid{
-            .grid(xl-);
+            .gen-grid-prefix(xl-);
         }
     }
 }
+// grid-column-start: @value + 1;
+// grid-column-end: span @value;

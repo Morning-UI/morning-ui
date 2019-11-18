@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 let emojiList = [
     ['100', '1f4af', ':100:', '&#128175;', 's', '2119'],
     ['1234', '1f522', ':1234:', '&#128290;', 's', '2122'],
@@ -1640,15 +1639,16 @@ let emojiList = [
     ['flag-zm', '1f1ff-1f1f2', ':flag_zm:', '&#127487;&#127474;', 'f', '2443'],
     ['flag-zw', '1f1ff-1f1fc', ':flag_zw:', '&#127487;&#127484;', 'f', '2444']
 ];
-/* eslint-enable camelcase */
 
+/* eslint-disable camelcase */
 emojiList = emojiList.map(item => ({
-    name: item[0],
-    unicode: item[1],
-    shortn: item[2],
-    code_decimal: item[3],
-    category: item[4],
-    emoji_order: item[5]
+    name : item[0],
+    unicode : item[1],
+    shortn : item[2],
+    code_decimal : item[3],
+    category : item[4],
+    emoji_order : item[5]
 }));
+/* eslint-enable camelcase */
 
 export default emojiList;

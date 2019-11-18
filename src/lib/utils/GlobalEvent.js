@@ -46,7 +46,7 @@ let GlobalEvent = {
 
                 evtNamespace.handler = globalHandler.bind(evtNamespace);
 
-                if (evtName === 'hashchange') {
+                if (evtName === 'hashchange' || evtName === 'resize') {
 
                     window.addEventListener(evtName, evtNamespace.handler, useCapture);
 
@@ -83,7 +83,7 @@ let GlobalEvent = {
 
             if (evtNamespace.vms.length === 0) {
 
-                if (evtName === 'hashchange') {
+                if (evtName === 'hashchange' || evtName === 'resize') {
 
                     window.removeEventListener(evtName, evtNamespace.handler);
 

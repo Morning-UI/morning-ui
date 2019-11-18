@@ -14,14 +14,34 @@
 
     这是一个24列的栅格系统，支持自适应及响应式。
 
-    可以通过两种方式来标记栅格：
+    栅格组件支持两个子组件：
 
-    - 通过`ui-row`来标记行，`ui-col`来标记列
-    - 通过类`.row`来标记行，通过类`.col`或`.col-[n]`来标记列
+    - `ui-row`：栅格行
+    - `ui-col`：栅格列
 
-    列之间默认具有空隙，两端无空隙，可以通过两个类来调整空隙：
+    #### `ui-row`栅格行
 
-    - `gutter-none` : 生成不具有空隙的栅格
+    `ui-row`包含以下配置：
+
+    - `equal-width` : 是否启用列等宽(Boolean)
+    - `vertical-align` : 垂直对齐方式(String)，支持：
+        - `top` : 顶部对齐
+        - 'center' : 居中对齐
+        - 'bottom' : 底部对齐
+
+    #### `ui-col`：栅格列
+
+    `ui-col`包含以下配置：
+
+    - `span` : 列横跨的栅格数量(Number)
+    - `offset` : 列偏移(Number)，[用法](#栅格列偏移)
+    - `push` : 列向右位移(Number)，[用法](#栅格列位移)
+    - `pull` : 列向左位移(Number)，[用法](#栅格列位移)
+    - `xs` / `s` / `m` / `l` / `xl` : 响应式栅格配置(Object)，[用法](#响应式栅格)
+
+    列之间默认具有空隙，两端无空隙，可以通过两个配置来调整空隙：
+
+    - `gutter-size="none"` : 生成不具有空隙的栅格
     - `space-around` : 生成两端包含空隙的栅格
 
     __注意：当嵌套使用栅格时，需要保证`ui-col`的父级为`ui-row`、`ui-row`的父级为`ui-grid`。__
@@ -39,19 +59,6 @@
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
         </ui-row>
     </ui-grid>
-    ---
-    #demo
-    >desc
-    也可以使用`.row`和`.col`来标记。
-    >tpl
-    <ui-grid style="background-color: #EDF1F5">
-        <div class="row">
-            <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
-            <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
-            <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
-            <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        </div>
-    </ui-grid>
     :::
 
     :::vue
@@ -59,7 +66,7 @@
     ---
     #demo
     >desc
-    通过`.col-[n]`或`span`配置来标记栅格所占用的列。
+    通过`span`配置来标记栅格所占用的列。
     >tpl
     <ui-grid style="background-color: #EDF1F5">
         <ui-row>
@@ -83,32 +90,32 @@
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
             <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
         </ui-row>
-        <div class="row">
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-            <div class="col-1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></div>
-        </div>
+        <ui-row>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+            <ui-col :span="1" style="background-color: #D6DDE5;padding: 1em 0.6em;font-size:12px;"></ui-col>
+        </ui-row>
     </ui-grid>
     :::
 
@@ -117,25 +124,25 @@
     ---
     #demo
     >desc
-    可以通过`.col`或不设置`span`来标记一组等宽栅格。
+    可以通过`.equal-width`或`equal-width`配置来标记一行等宽栅格。
     >tpl
     <ui-grid style="background-color: #EDF1F5">
-        <ui-row>
+        <ui-row equal-width>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
         </ui-row>
-        <ui-row>
+        <ui-row equal-width>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
         </ui-row>
-        <div class="row">
-            <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
-            <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
-            <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
-            <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
-            <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
-        </div>
+        <ui-row equal-width>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
+            <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</ui-col>
+        </ui-row>
     </ui-grid>
     :::
 
@@ -166,7 +173,7 @@
     ---
     #demo
     >desc
-    通过`.offset-[n]`或`offset`配置来标记栅格偏移列数。
+    通过`offset`配置来标记栅格偏移列数（相对于最左侧，偏移后不占用原位置）。
     >tpl
     <ui-grid style="background-color: #EDF1F5">
         <ui-row>
@@ -185,12 +192,16 @@
         </ui-row>
         <ui-row>
             <ui-col :span="4" :offset="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</ui-col>
-            <ui-col :span="4" :offset="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</ui-col>
+            <ui-col :span="4" :offset="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-12</ui-col>
         </ui-row>
-        <div class="row">
-            <div class="col-4 offset-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-2</div>
-            <div class="col-9 offset-1" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-9 offset-1</div>
-        </div>
+        <ui-row>
+            <ui-col :span="4" :offset="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-2</ui-col>
+            <ui-col :span="9" :offset="7" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-9 offset-7</ui-col>
+        </ui-row>
+        <ui-row>
+            <ui-col :span="4" :offset="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-12</ui-col>
+            <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+        </ui-row>
     </ui-grid>
     :::
     
@@ -199,7 +210,7 @@
     ---
     #demo
     >desc
-    通过`.push-[n]` / `.pull-[n]`和`push` / `pull`配置来标记栅格的位移，位移相对于栅格列当前的位置。
+    通过`push` / `pull`配置来标记栅格的位移，位移相对于栅格列当前的位置。
     <br>
     其中`push`可以将栅格向右位移，`pull`可以将栅格向左位移。
     >tpl
@@ -222,15 +233,15 @@
             <ui-col :span="4" :push="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 push-6</ui-col>
             <ui-col :span="4" :pull="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 pull-4</ui-col>
         </ui-row>
-        <div class="row">
-            <div class="col-16 push-8" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col-16 push-8</div>
-            <div class="col-8 pull-16" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col-8 pull-16</div>
-        </div>
+        <ui-row>
+            <ui-col :span="16" :push="8" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col-16 push-8</ui-col>
+            <ui-col :span="8" :pull="16" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col-8 pull-16</ui-col>
+        </ui-row>
     </ui-grid>
     ---
     #demo
     >desc
-    `栅格列位移`和`栅格列偏移`的区别为，`栅格列位移`仅对当前列生效(采用`left`或`right`)，不会影响之后的列。而`栅格列偏移`会影响之后的列。
+    `栅格列位移`和`栅格列偏移`的区别为，`栅格列位移`相对于当前列位置偏移，偏移后仍占用原位置(影响后面的栅格)。<br>而`栅格列偏移`则从最左侧开始偏移，且偏移后不占用原位置。
     >tpl
     <ui-grid style="background-color: #EDF1F5">
         <ui-row>
@@ -259,74 +270,18 @@
     :::
 
     :::vue
-    @name:栅格列水平对齐
-    ---
-    #demo
-    >desc
-    在栅格行`<div class="row">`或`<ui-row>`中添加不同的类可以实现行内列的水平对齐：
-    <br><br>
-    - `.justify-start` : 向左对齐(默认)
-    - `.justify-end` : 向右对齐
-    - `.justify-center` : 居中对齐
-    - `.justify-space-between` : 等宽对齐
-    - `.justify-space-around` : 分散对齐
-    >tpl
-    <ui-grid style="background-color: #EDF1F5">
-        <ui-row>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
-        </ui-row>
-        <ui-row class="justify-start">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-        </ui-row>
-        <ui-row class="justify-end">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-        </ui-row>
-        <ui-row class="justify-center">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-        </ui-row>
-        <ui-row class="justify-space-between">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-        </ui-row>
-        <ui-row class="justify-space-around">
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-            <ui-col :span="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</ui-col>
-        </ui-row>
-    </ui-grid>
-    :::
-
-    :::vue
     @name:栅格列垂直对齐
     ---
     #demo
     >desc
-    在栅格行`<div class="row">`或`<ui-row>`中添加不同的类可以实现行内列的垂直对齐方式：
+    在栅格行`<ui-row>`中配置`vertical-align`可以实现行内列的垂直对齐方式：
     <br><br>
-    - `.vertical-top` : 向上对齐(默认)
-    - `.vertical-bottom` : 向下对齐
-    - `.vertical-center` : 居中对齐
+    - `vertical-align="top"` : 向上对齐(默认)
+    - `vertical-align="bottom"` : 向下对齐
+    - `vertical-align="center"` : 居中对齐
     >tpl
     <ui-grid style="background-color: #EDF1F5">
-        <ui-row class="vertical-top" style="height:120px;background-color:#EDF1F5">
+        <ui-row equal-width vertical-align="top" style="height:120px;background-color:#EDF1F5">
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
     height: 80px;">col</ui-col>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
@@ -334,7 +289,7 @@
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
     height: 40px;">col</ui-col>
         </ui-row>
-        <ui-row class="vertical-bottom" style="height:120px;background-color:#EDF1F5">
+        <ui-row equal-width vertical-align="bottom" style="height:120px;background-color:#EDF1F5">
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
     height: 80px;">col</ui-col>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
@@ -342,7 +297,7 @@
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
     height: 40px;">col</ui-col>
         </ui-row>
-        <ui-row class="vertical-center" style="height:120px;background-color:#EDF1F5">
+        <ui-row equal-width vertical-align="center" style="height:120px;background-color:#EDF1F5">
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
     height: 80px;">col</ui-col>
             <ui-col style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
@@ -358,9 +313,9 @@
     ---
     #demo
     >desc
-    添加`.gutter-none`的样式类可以使栅格之间无间隔。
+    `gutter-size="none"`配置可以使栅格之间无间隔。
     >tpl
-    <ui-grid class="gutter-none" style="background-color: #EDF1F5">
+    <ui-grid gutter-size="none" style="background-color: #EDF1F5">
         <ui-row>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
@@ -387,7 +342,7 @@
         </ui-row>
         <ui-row>
             <ui-col :span="4" :offset="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</ui-col>
-            <ui-col :span="4" :offset="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</ui-col>
+            <ui-col :span="4" :offset="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-12</ui-col>
         </ui-row>
         <ui-row>
             <ui-col :span="4" :push="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 push-6</ui-col>
@@ -401,9 +356,9 @@
     ---
     #demo
     >desc
-    添加`.space-around`的样式类可以使栅格两端也有空隙。
+    `space-around`配置可以使栅格两端也有空隙。
     >tpl
-    <ui-grid class="space-around" style="background-color: #EDF1F5">
+    <ui-grid space-around style="background-color: #EDF1F5">
         <ui-row>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
             <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
@@ -444,16 +399,10 @@
     ---
     #demo
     >desc
-    栅格支持多种尺寸的空隙，通过在`.gutter-[size]`来设置：
-    <br><br>
-    - `.gutter-xs` : `4px`的水平和垂直空隙(默认)
-    - `.gutter-s` : `8px`的水平和垂直空隙
-    - `.gutter-m` : `16px`的水平和垂直空隙
-    - `.gutter-l` : `24px`的水平和垂直空隙
-    - `.gutter-xl` : `36px`的水平和垂直空隙
+    栅格支持多种尺寸的空隙，详见：[`gutter-size`配置](#gutter-size)
     >tpl
     <div>
-        <ui-grid class="gutter-xs" style="background-color: #EDF1F5">
+        <ui-grid gutter-size="xs" style="background-color: #EDF1F5">
             <ui-row>
                 <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
                 <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
@@ -478,7 +427,7 @@
 
         <br><br>
 
-        <ui-grid class="gutter-s" style="background-color: #EDF1F5">
+        <ui-grid gutter-size="s" style="background-color: #EDF1F5">
             <ui-row>
                 <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
                 <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
@@ -503,7 +452,7 @@
 
         <br><br>
 
-        <ui-grid class="gutter-m" style="background-color: #EDF1F5">
+        <ui-grid gutter-size="m" style="background-color: #EDF1F5">
             <ui-row>
                 <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
                 <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
@@ -528,7 +477,7 @@
 
         <br><br>
 
-        <ui-grid class="gutter-l" style="background-color: #EDF1F5">
+        <ui-grid gutter-size="l" style="background-color: #EDF1F5">
             <ui-row>
                 <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
                 <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
@@ -543,7 +492,7 @@
 
         <br><br>
 
-        <ui-grid class="gutter-xl" style="background-color: #EDF1F5">
+        <ui-grid gutter-size="xl" style="background-color: #EDF1F5;overflow-y: auto;">
             <ui-row>
                 <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
                 <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
@@ -553,6 +502,31 @@
             <ui-row>
                 <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
                 <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
+            </ui-row>
+        </ui-grid>
+
+        <br><br>
+
+        <ui-grid gutter-size="none" style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
             </ui-row>
         </ui-grid>
     </div>
@@ -590,54 +564,12 @@
     - `l` : 屏幕宽度介于`992px`和`1200px`之间
     - `xl` : 屏幕宽度大于`1200px`
     <br><br>
-    使用时在原有的`.col-[n]`、`.offset-[n]`、`.push-[n]`、`.pull-[n]`前加上如`xs-`这样的前缀即可。
-    <br>
-    若使用了`col`、`offset`、`push`、`pull`配置，也可以通过`xs`、`s`、`m`、`l`、`xl`配置来设置。
-    >tpl
-    <ui-grid style="background-color: #EDF1F5">
-        <div class="row">
-            <div class="xs-col-2 s-col-4 m-col-6 l-col-8 xl-col-10" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-            <div class="xs-col-20 s-col-16 m-col-12 l-col-8 xl-col-4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-            <div class="xs-col-2 s-col-4 m-col-6 l-col-8 xl-col-10" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-        </div>
-    </ui-grid>
-    ---
-    #demo
-    >desc
-    `.offset-[n]`也同样支持。
-    >tpl
-    <div>
-        <ui-grid style="background-color: #EDF1F5">
-            <div class="row">
-                <div class="xs-col-2 s-col-4 m-col-6 l-col-8 xl-col-10" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-                <div class="xs-col-20 s-col-16 m-col-12 l-col-8 xl-col-4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-                <div class="xs-col-2 s-col-4 m-col-6 l-col-8 xl-col-10" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-            </div>
-        </ui-grid>
-
-        <br>
-        
-        <ui-grid style="background-color: #EDF1F5">
-            <div class="row">
-                <div class="
-                    xs-col-20 xs-offset-2
-                    s-col-16 s-offset-4
-                    m-col-12 m-offset-6
-                    l-col-8 l-offset-8
-                    xl-col-4 xl-offset-10
-                " style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
-            </div>
-        </ui-grid>
-    </div>
-    ---
-    #demo
-    >desc
-    若使用了`col`、`offset`、`push`、`pull`配置，也可以通过`xs`、`s`、`m`、`l`、`xl`配置来设置。
+    使用时通过`xs`、`s`、`m`、`l`、`xl`配置来设置对应的`span`、`offset`、`push`、`pull`。
     >tpl
     <ui-grid style="background-color: #EDF1F5">
         <ui-row>
             <ui-col :xs="{span:2}" :s="{span:4}" :m="{span:6}" :l="{span:8}" :xl="{span:10}" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</ui-col>
-            <ui-col :xs="{span:20}" :s="{span:16}" :m="{span:12}" :l="{span:8}" :xl="{span:4}" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</ui-col>
+            <ui-col :s="{span:16}" :m="{span:12}" :l="{span:8}" :xl="{span:4}" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</ui-col>
             <ui-col :xs="{span:2}" :s="{span:4}" :m="{span:6}" :l="{span:8}" :xl="{span:10}" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</ui-col>
         </ui-row>
     </ui-grid>
@@ -662,6 +594,14 @@
                 <ui-col :xs="{span:20, offset:2}" :s="{span:16, offset:4}" :m="{span:12, offset:6}" :l="{span:8, offset:8}" :xl="{span:4, offset:10}" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</ui-col>
             </ui-row>
         </ui-grid>
+
+        <br>
+
+        <ui-grid style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :xs="{span:20, push:2}" :s="{span:16, push:4}" :m="{span:12, push:6}" :l="{span:8, push:8}" :xl="{span:4, push:10}" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</ui-col>
+            </ui-row>
+        </ui-grid>
     </div>
     :::
 
@@ -676,6 +616,233 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a> / <a href="/design/color.html">查看色彩文档</a>
+
+    [[[配置]]]
+
+    :::vue
+    @name:space-around
+    ---
+    #config
+    >conf-desc
+    栅格的两端是否有空隙。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    `space-around`配置可以使栅格两端也有空隙。
+    >tpl
+    <ui-grid space-around style="background-color: #EDF1F5">
+        <ui-row>
+            <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+        </ui-row>
+        <ui-row>
+            <ui-col :span="9" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-9</ui-col>
+            <ui-col :span="15" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-15</ui-col>
+        </ui-row>
+        <ui-row>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+        </ui-row>
+        <ui-row>
+            <ui-col :span="4" :offset="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</ui-col>
+            <ui-col :span="4" :offset="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</ui-col>
+        </ui-row>
+        <ui-row>
+            <ui-col :span="4" :push="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 push-6</ui-col>
+            <ui-col :span="4" :pull="4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4 pull-4</ui-col>
+        </ui-row>
+    </ui-grid>
+    :::
+
+    :::vue
+    @name:gutter-size
+    ---
+    #config
+    >conf-desc
+    栅格空隙的尺寸。
+    <br><br>
+    - `xs` : `4px`的水平和垂直空隙(默认)
+    - `s` : `8px`的水平和垂直空隙
+    - `m` : `16px`的水平和垂直空隙
+    - `l` : `24px`的水平和垂直空隙
+    - `xl` : `36px`的水平和垂直空隙
+    - `none` : 无水平和垂直空隙
+    >conf-accept
+    `'xs'`<br>`'s'`<br>`'m'`<br>`'l'`<br>`'xl'`
+    >conf-type
+    String
+    >conf-default
+    `'m'`
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-grid gutter-size="xs" style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            </ui-row>
+        </ui-grid>
+
+        <br><br>
+
+        <ui-grid gutter-size="s" style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            </ui-row>
+        </ui-grid>
+
+        <br><br>
+
+        <ui-grid gutter-size="m" style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            </ui-row>
+        </ui-grid>
+
+        <br><br>
+
+        <ui-grid gutter-size="l" style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
+                <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
+            </ui-row>
+        </ui-grid>
+
+        <br><br>
+
+        <ui-grid gutter-size="xl" style="background-color: #EDF1F5;overflow-y: auto;">
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
+                <ui-col :span="12" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-12</ui-col>
+            </ui-row>
+        </ui-grid>
+
+        <br><br>
+
+        <ui-grid gutter-size="none" style="background-color: #EDF1F5">
+            <ui-row>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+                <ui-col :span="2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</ui-col>
+            </ui-row>
+            <ui-row>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+                <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+            </ui-row>
+        </ui-grid>
+    </div>
+    :::
+    
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    grid
+    栅格
+    <ui-row>
+        <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+        <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+        <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</ui-col>
+        <ui-col :span="6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">{*text*}</ui-col>
+    </ui-row>
+    :::
 
     [[[源码]]]
 
