@@ -48,6 +48,7 @@ let morning = {
         black : 'bk',
         white : 'wh'
     },
+    _mindmapClipboard : undefined,
     _devVersion : '0.12.70',
     isMorning : true,
     version : '0.12.70',

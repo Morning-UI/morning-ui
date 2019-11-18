@@ -38,6 +38,9 @@
         <div class="context-menu" :style="data.contextMenu.style">
             <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId);_hideContextMenu();">插入子级</morning-btn>
             <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId);_hideContextMenu();">插入同级</morning-btn>
+            <morning-btn size="s" color="white" @emit="copyNodeToClipboard(data.contextMenu.nodeId);_hideContextMenu();">复制节点</morning-btn>
+            <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入子级</morning-btn>
+            <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入同级</morning-btn>
             <!-- <ui-btn size="s" color="white" @emit="(data.contextMenu.nodeId);_hideContextMenu();">删除节点</ui-btn> -->
             <morning-btn size="s" color="white" @emit="editLink(data.contextMenu.nodeId);_hideContextMenu();">设置链接</morning-btn>
             <morning-btn size="s" color="white" @emit="editNote(data.contextMenu.nodeId);_hideContextMenu();">设置备注</morning-btn>
@@ -128,6 +131,7 @@ import throttle                     from 'lodash.throttle';
 import map                          from 'lodash.map';
 import JSZip                        from 'jszip';
 import arrayUniq                    from 'array-uniq';
+import copy                         from 'clipboard-copy';
 
 // eslint-disable-next-line no-unused-vars
 import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
@@ -3810,6 +3814,55 @@ export default {
             this.data.currentImportMode = undefined;
 
         },
+        _pluckDataFromNodes : function (children) {
+
+            let cleanData = [];
+
+            for (let item of children) {
+
+                let cleanItem = {
+                    text : item.text,
+                    note : item.note,
+                    mark : item.mark,
+                    link : item.link
+                };
+
+                if (item.children) {
+
+                    cleanItem.children = this._pluckDataFromNodes(item.children);
+
+                }
+
+                cleanData.push(cleanItem);
+
+            }
+
+            return cleanData;
+
+        },
+        _parseNewNodeData : function (data) {
+
+            if (typeof data === 'string') {
+
+                try {
+
+                    data = JSON.parse(data);
+
+                } catch (e) {}
+
+            }
+
+            console.log(50, data);
+
+            data = Object.assign({
+                text : '新的节点'
+            }, data);
+
+            console.log(56, data);
+
+            return data;
+
+        },
         downloadFile : function (type, nodeId) {
 
             let data = [this.data.graph.get('data')];
@@ -3935,6 +3988,7 @@ export default {
             this.data.$importDialog.toggle(false);
 
         },
+        // 插入同级节点(前)
         insertBeforeNode : function (nodeId, data) {
 
             let node = this.data.graph.findById(nodeId);
@@ -3943,9 +3997,12 @@ export default {
             let parentModel = parent.getModel();
             let indexOfParent = parentModel.children.indexOf(model);
 
+            data = this._parseNewNodeData(data);
+
             return this.insertSubNode(parentModel.id, data, indexOfParent);
 
         },
+        // 插入同级节点(后)
         insertAfterNode : function (nodeId, data) {
 
             let node = this.data.graph.findById(nodeId);
@@ -3954,9 +4011,12 @@ export default {
             let parentModel = parent.getModel();
             let indexOfParent = parentModel.children.indexOf(model);
 
+            data = this._parseNewNodeData(data);
+
             return this.insertSubNode(parentModel.id, data, indexOfParent + 1);
 
         },
+        // 插入同级节点(最后)
         insertNode : function (nodeId, data) {
 
             let node = this.data.graph.findById(nodeId);
@@ -3970,27 +4030,18 @@ export default {
 
             let parentModel = node.getInEdges()[0].getSource().getModel();
 
+            data = this._parseNewNodeData(data);
+
             return this.insertSubNode(parentModel.id, data);
 
         },
+        // 插入子节点
         insertSubNode : function (nodeId, data, index = -1) {
 
             let node = this.data.graph.findById(nodeId);
             let model = node.getModel();
 
-            if (model.isRoot) {
-
-                return null;
-
-            }
-
-            if (data === undefined) {
-
-                data = {
-                    text : '新的节点'
-                };
-
-            }
+            data = this._parseNewNodeData(data);
 
             if (model.children === undefined) {
 
@@ -4014,6 +4065,84 @@ export default {
             this.data.graph.refreshLayout();
 
             return data.id;
+
+        },
+        copyNode : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let data = this._pluckDataFromNodes([model]);
+
+            return data[0];
+
+        },
+        copyNodeToClipboard : function (nodeId) {
+
+            let data = this.copyNode(nodeId);
+
+            console.log(this.morning);
+            data = JSON.stringify(data);
+            this.morning._mindmapClipboard = data;
+            copy(data);
+
+            return data;
+
+        },
+        // 插入唯一节点(向后)
+        appendUniqueNode : function (nodeId, data) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            data = this._parseNewNodeData(data);
+            data.children = this._pluckDataFromNodes(model.children);
+            G6.Util.traverseTree(data, this._traverseNode);
+            model.children = [data];
+            // parentModel.children.splice(nodeIndexOfParent, 1, data);
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return data.id;
+
+        },
+        // 插入唯一节点(向前)
+        prependUniqueNode : function (nodeId, data) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+
+            if (model.isRoot) {
+
+                return null;
+
+            }
+
+            let parentModel = node.getInEdges()[0].getSource().getModel();
+            let nodeIndexOfParent = parentModel.children.indexOf(model);
+
+            data = this._parseNewNodeData(data);
+            data.children = this._pluckDataFromNodes([model]);
+            G6.Util.traverseTree(data, this._traverseNode);
+            parentModel.children.splice(nodeIndexOfParent, 1, data);
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return data.id;
+
+        },
+        deleteNode : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let parent = node.getInEdges()[0].getSource();
+            let parentModel = parent.getModel();
+            let indexOfParent = parentModel.children.indexOf(model);
+
+            parentModel.children.splice(indexOfParent, 1);
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return this;
 
         },
         moveUp : function (nodeId) {
@@ -4066,21 +4195,6 @@ export default {
             model.style = G6.Util.deepMix(model.style, style);
             node.draw();
             this.data.graph.refreshLayout();
-
-        },
-        deleteNode : function (nodeId) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let parent = node.getInEdges()[0].getSource();
-            let parentModel = parent.getModel();
-            let indexOfParent = parentModel.children.indexOf(model);
-
-            parentModel.children.splice(indexOfParent, 1);
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-            return this;
 
         },
         zoom : function (zoom) {
@@ -4311,6 +4425,14 @@ export default {
         //         }
         //     ]
         // };
+
+        // item includes :
+        // - text
+        // - note
+        // - mark
+        // - link
+        // - isRoot*
+        // - children*
 
         let data2 = {
             text : 'Modeling Methods',
