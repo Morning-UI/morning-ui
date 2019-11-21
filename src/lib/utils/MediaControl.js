@@ -307,64 +307,72 @@ let MediaControl = {
             immediate : true
         });
 
+        this.$watch('data.mcPlaying', () => {
+
+            if (this.data.mcPlaying) {
+
+                this.data.mc$media.play();
+                this.$emit('play');
+                this.$emit('play-change');
+
+            } else {
+
+                this.data.mc$media.pause();
+                this.$emit('pause');
+                this.$emit('play-change');
+
+            }
+
+        });
+
+        this.$watch('data.mcCurrentTime', () => {
+
+            if (!this.data.mcDontSyncCurrentTime) {
+
+                this.data.mc$media.currentTime = this.data.mcCurrentTime;
+
+            }
+
+        });
+
+        this.$watch('data.mcVolume', () => {
+
+            this.data.mc$media.volume = this.data.mcVolume / maxVolume;
+            this.$emit('volume-change');
+
+        });
+
+        this.$watch('data.mcMuted', () => {
+
+            this.data.mc$media.muted = this.data.mcMuted;
+            this.$emit('mute-change');
+
+        });
+
+        this.$watch('data.mcFullscreen', () => {
+
+            if (this.data.mcType !== 'video') {
+
+                return;
+
+            }
+
+            this.$emit('fullscreen-change');
+
+        });
+
+        this.$watch('conf.src', () => {
+
+            this.data.mcPlaying = false;
+            this.data.mc$media.currentTime = 0;
+            this._mcSyncCurrentTime();
+
+        });
+
         this.Vue.nextTick(() => {
 
             this._mcSyncTotalTime();
             this._mcSyncCurrentTime();
-
-            this.$watch('data.mcPlaying', () => {
-
-                if (this.data.mcPlaying) {
-
-                    this.data.mc$media.play();
-                    this.$emit('play');
-                    this.$emit('play-change');
-
-                } else {
-
-                    this.data.mc$media.pause();
-                    this.$emit('pause');
-                    this.$emit('play-change');
-
-                }
-
-            });
-
-            this.$watch('data.mcCurrentTime', () => {
-
-                if (!this.data.mcDontSyncCurrentTime) {
-            
-                    this.data.mc$media.currentTime = this.data.mcCurrentTime;
-
-                }
-
-            });
-
-            this.$watch('data.mcVolume', () => {
-
-                this.data.mc$media.volume = this.data.mcVolume / maxVolume;
-                this.$emit('volume-change');
-
-            });
-
-            this.$watch('data.mcMuted', () => {
-
-                this.data.mc$media.muted = this.data.mcMuted;
-                this.$emit('mute-change');
-
-            });
-
-            this.$watch('data.mcFullscreen', () => {
-
-                if (this.data.mcType !== 'video') {
-
-                    return;
-
-                }
-
-                this.$emit('fullscreen-change');
-
-            });
 
             this.$watch('conf.autoplay', () => {
 
@@ -372,14 +380,6 @@ let MediaControl = {
 
             }, {
                 immediate : true
-            });
-
-            this.$watch('conf.src', () => {
-
-                this.data.mcPlaying = false;
-                this.data.mc$media.currentTime = 0;
-                this._mcSyncCurrentTime();
-
             });
 
         });
