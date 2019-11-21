@@ -39,20 +39,21 @@
             placement="bottom"
         ><span v-html="data.currentNodeNote"></span></morning-popover>
         <div class="context-menu" :style="data.contextMenu.style">
-            <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId);_hideContextMenu();">插入子级</morning-btn>
+            <slot name="context-menu"></slot>
+            <!-- <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId);_hideContextMenu();">插入子级</morning-btn>
             <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId);_hideContextMenu();">插入同级</morning-btn>
             <morning-btn size="s" color="white" @emit="copyNodeToClipboard(data.contextMenu.nodeId);_hideContextMenu();">复制节点</morning-btn>
             <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入子级</morning-btn>
-            <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入同级</morning-btn>
+            <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入同级</morning-btn> -->
             <!-- <ui-btn size="s" color="white" @emit="(data.contextMenu.nodeId);_hideContextMenu();">删除节点</ui-btn> -->
-            <morning-btn size="s" color="white" @emit="editLink(data.contextMenu.nodeId);_hideContextMenu();">设置链接</morning-btn>
+            <!-- <morning-btn size="s" color="white" @emit="editLink(data.contextMenu.nodeId);_hideContextMenu();">设置链接</morning-btn>
             <morning-btn size="s" color="white" @emit="editNote(data.contextMenu.nodeId);_hideContextMenu();">设置备注</morning-btn>
             <morning-btn size="s" color="white" @emit="editMark(data.contextMenu.nodeId);_hideContextMenu();">设置标记</morning-btn>
             <morning-btn size="s" color="white" @emit="exportTo('xmind', data.contextMenu.nodeId);_hideContextMenu();">导出节点</morning-btn>
             <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'replace');_hideContextMenu();">导入数据并替换</morning-btn>
             <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'append');_hideContextMenu();">导入数据在结尾插入</morning-btn>
             <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'prepend');_hideContextMenu();">导入数据在开头插入</morning-btn>
-            <morning-btn size="s" color="danger" class="plain" @emit="deleteNode(data.contextMenu.nodeId);_hideContextMenu();">删除节点</morning-btn>
+            <morning-btn size="s" color="danger" class="plain" @emit="deleteNode(data.contextMenu.nodeId);_hideContextMenu();">删除节点</morning-btn> -->
         </div>
     </div>
 
@@ -3251,7 +3252,7 @@ export default {
             this._onAnnexHover();
             this._onAnnexClick();
             this._onContextMenu();
-            this._onHotkey();
+            // this._onHotkey();
             
             // eslint-disable-next-line no-warning-comments
             // TODO : mark hover is not work, cause zIndex
@@ -4164,6 +4165,7 @@ export default {
             let model = node.getModel();
 
             data = this._parseNewNodeData(data);
+            data = data[0];
             data.children = this._pluckDataFromNodes(model.children);
             G6.Util.traverseTree(data, this._traverseOneNode);
             model.children = [data];
@@ -4190,6 +4192,7 @@ export default {
             let nodeIndexOfParent = parentModel.children.indexOf(model);
 
             data = this._parseNewNodeData(data);
+            data = data[0];
             data.children = this._pluckDataFromNodes([model]);
             G6.Util.traverseTree(data, this._traverseOneNode);
             parentModel.children.splice(nodeIndexOfParent, 1, data);
@@ -4268,7 +4271,7 @@ export default {
         },
         zoom : function (zoom) {
 
-            this.data.graph.zoom(zoom);
+            this.data.graph.zoomTo(zoom);
 
             return this;
 
@@ -4425,7 +4428,7 @@ export default {
         },
         getSelectedNode : function () {
 
-            return this.getSelectedNode()[0];
+            return this.getAllSelectedNode()[0];
 
         },
         getAllSelectedNode : function () {

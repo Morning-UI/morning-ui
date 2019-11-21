@@ -19,7 +19,9 @@
     #demo
     >tpl
     <div>
-        <ui-mindmap layout="LR"></ui-mindmap>
+        <ui-mindmap layout="LR">
+            <div slot="context-menu"><morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId);_hideContextMenu();">插入子级</morning-btn></div>
+        </ui-mindmap>
     </div>
     :::
 
