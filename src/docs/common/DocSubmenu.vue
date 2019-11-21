@@ -80,6 +80,10 @@ export default {
     padding: 20px 10px 20px 0;
     margin: 0;
     list-style: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
+    position: sticky;
+    top: 0;
 
     &::-webkit-scrollbar{
         width: 5px;

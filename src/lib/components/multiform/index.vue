@@ -105,15 +105,19 @@
         @after-show="_afterShowForm"
         @after-hide="_afterHideForm"
     >
-        <header slot="header">请填写表单</header>
+        <template v-slot:header>
+            <header>请填写表单</header>
+        </template>
         <slot></slot>
-        <div slot="footer">
-            <div class="operate">
-                <!-- action="emit:toggle" -->
-                <morning-link class="margin" color="minor" @emit="_hideDialog">取消</morning-link>
-                <morning-btn color="success" @emit="_saveItem">确认</morning-btn>
+        <template v-slot:footer>
+            <div>
+                <div class="operate">
+                    <!-- action="emit:toggle" -->
+                    <morning-link class="margin" color="minor" @emit="_hideDialog">取消</morning-link>
+                    <morning-btn color="success" @emit="_saveItem">确认</morning-btn>
+                </div>
             </div>
-        </div>
+        </template>
     </morning-dialog>
 
     <morning-dialog
@@ -125,15 +129,19 @@
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"
     >
-        <header slot="header">请输入需要添加的项目</header>
+        <template v-slot:header>
+            <header>请输入需要添加的项目</header>
+        </template>
         <morning-textarea :ref="'ui-multiform-batchinput-'+uiid"></morning-textarea>
-        <div slot="footer">
-            <div class="operate">
-                <!-- action="emit:toggle" -->
-                <morning-link class="margin" color="minor" @emit="_hideBatchDialog">取消</morning-link>
-                <morning-btn color="success" :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
+        <template v-slot:footer>
+            <div>
+                <div class="operate">
+                    <!-- action="emit:toggle" -->
+                    <morning-link class="margin" color="minor" @emit="_hideBatchDialog">取消</morning-link>
+                    <morning-btn color="success" :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
+                </div>
             </div>
-        </div>
+        </template>
     </morning-dialog>
 
     <div class="error-message">{{conf._errorMessage}}</div>

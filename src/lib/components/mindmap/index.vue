@@ -51,7 +51,9 @@
     </div>
 
     <morning-dialog :ref="'mor-mindmap-edit-link-' + uiid" width="380px" height="240px" show-type="center">
-        <div slot="header">编辑链接</div>
+        <template v-slot:header>
+            <div>编辑链接</div>
+        </template>
         <div class="mor-mindmap-dialog-body">
             <morning-textarea v-model="data.currentEditLinkValue"></morning-textarea>
             <div class="mor-mindmap-dialog-op">
@@ -62,7 +64,9 @@
     </morning-dialog>
 
     <morning-dialog :ref="'mor-mindmap-edit-note-' + uiid" width="380px" height="240px" show-type="center">
-        <div slot="header">编辑备注</div>
+        <template v-slot:header>
+            <div>编辑备注</div>
+        </template>
         <div class="mor-mindmap-dialog-body">
             <morning-textarea v-model="data.currentEditNoteValue"></morning-textarea>
             <div class="mor-mindmap-dialog-op">
@@ -73,7 +77,9 @@
     </morning-dialog>
 
     <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="540px" height="490px" show-type="center">
-        <div slot="header">编辑标记</div>
+        <template v-slot:header>
+            <div>编辑标记</div>
+        </template>
         <div class="mor-mindmap-dialog-body">
             <morning-form
                 v-for="group in data.markGroups"
@@ -100,7 +106,9 @@
     </morning-dialog>
 
     <morning-dialog :ref="'mor-mindmap-import-' + uiid" width="380px" height="300px" show-type="center" @hide="_resetImportStatus">
-        <div slot="header">导入数据</div>
+        <template v-slot:header>
+            <div>导入数据</div>
+        </template>
         <div class="mor-mindmap-dialog-body">
             <morning-upload
                 :uploader="_importFile"

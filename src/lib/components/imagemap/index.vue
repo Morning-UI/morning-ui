@@ -68,14 +68,16 @@
 
         @show="_refreshScale"
     >
-        <div slot="header">
-            <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
-                查看热区
-            </template>
-            <template v-else>
-                绘制热区
-            </template>
-        </div>
+        <template v-slot:header>
+            <div>
+                <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
+                    查看热区
+                </template>
+                <template v-else>
+                    绘制热区
+                </template>
+            </div>
+        </template>
     
         <div
             class="maparea"
@@ -116,18 +118,20 @@
             </template>
         </div>
 
-        <div class="imagemap-dialog-footer" slot="footer">
-            <span class="note">
-                鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据
-                <br>
-                当前缩放：{{Math.round(this.data.scale * 100)}}%
-                <morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)">设置</morning-link>
-            </span>
-            <div class="operate">
-                <morning-link color="danger" class="clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled' && conf.state !== 'readonly')" @emit="_cleanAllzone">清除所有热区</morning-link>
-                <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
+        <template v-slot:footer>
+            <div class="imagemap-dialog-footer">
+                <span class="note">
+                    鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据
+                    <br>
+                    当前缩放：{{Math.round(data.scale * 100)}}%
+                    <morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)">设置</morning-link>
+                </span>
+                <div class="operate">
+                    <morning-link color="danger" class="clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled' && conf.state !== 'readonly')" @emit="_cleanAllzone">清除所有热区</morning-link>
+                    <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
+                </div>
             </div>
-        </div>
+        </template>
         
     </morning-dialog>
 
@@ -138,83 +142,91 @@
         height="90%"
         :ref="'ui-imagemap-zonedialog-'+uiid"
     >
-        <div slot="header">
-            编辑热区
-        </div>
-
-        <morning-tab type="block">
-            <div slot="数据" v-if="$scopedSlots.default || $slots.default">
-                <slot :group="'ui-imagemap-data-'+uiid"></slot>
+        <template v-slot:header>
+            <div>
+                编辑热区
             </div>
+        </template>
 
-            <div slot="位置">
-                <morning-formgroup>
-                    <div class="item">
-                        <h5 class="title">
-                            <morning-center height-fill>Width</morning-center>
-                        </h5>
-                        <div class="content">
-                            <p>仅支持数字</p>
-                            <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" :inside-clearable="false" v-model="data.modifyZoneBasic.w"></morning-textinput>
+        <morning-tab v-type:block>
+            <template v-slot:数据 v-if="$scopedSlots.default || $slots.default">
+                <div>
+                    <slot :group="'ui-imagemap-data-'+uiid"></slot>
+                </div>
+            </template>
+
+            <template v-slot:位置>
+                <div>
+                    <morning-formgroup>
+                        <div class="item">
+                            <h5 class="title">
+                                <morning-center height-fill>Width</morning-center>
+                            </h5>
+                            <div class="content">
+                                <p>仅支持数字</p>
+                                <div class="form">
+                                    <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" :inside-clearable="false" v-model="data.modifyZoneBasic.w"></morning-textinput>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <h5 class="title">
-                            <morning-center height-fill>Height</morning-center>
-                        </h5>
-                        <div class="content">
-                            <p>仅支持数字</p>
-                            <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" :inside-clearable="false" v-model="data.modifyZoneBasic.h"></morning-textinput>
+                        <div class="item">
+                            <h5 class="title">
+                                <morning-center height-fill>Height</morning-center>
+                            </h5>
+                            <div class="content">
+                                <p>仅支持数字</p>
+                                <div class="form">
+                                    <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" :inside-clearable="false" v-model="data.modifyZoneBasic.h"></morning-textinput>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <h5 class="title">
-                            <morning-center height-fill>Left</morning-center>
-                        </h5>
-                        <div class="content">
-                            <p>仅支持数字</p>
-                            <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" :inside-clearable="false" v-model="data.modifyZoneBasic.x"></morning-textinput>
+                        <div class="item">
+                            <h5 class="title">
+                                <morning-center height-fill>Left</morning-center>
+                            </h5>
+                            <div class="content">
+                                <p>仅支持数字</p>
+                                <div class="form">
+                                    <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" :inside-clearable="false" v-model="data.modifyZoneBasic.x"></morning-textinput>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <h5 class="title">
-                            <morning-center height-fill>Top</morning-center>
-                        </h5>
-                        <div class="content">
-                            <p>仅支持数字</p>
-                            <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" :inside-clearable="false" v-model="data.modifyZoneBasic.y"></morning-textinput>
+                        <div class="item">
+                            <h5 class="title">
+                                <morning-center height-fill>Top</morning-center>
+                            </h5>
+                            <div class="content">
+                                <p>仅支持数字</p>
+                                <div class="form">
+                                    <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" :inside-clearable="false" v-model="data.modifyZoneBasic.y"></morning-textinput>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <h5 class="title">
-                            <morning-center height-fill>Index(层级)</morning-center>
-                        </h5>
-                        <div class="content">
-                            <p>仅支持数字，0表示采用默认层级</p>
-                            <div class="form">
-                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" :inside-clearable="false" v-model="data.modifyZoneBasic.i"></morning-textinput>
+                        <div class="item">
+                            <h5 class="title">
+                                <morning-center height-fill>Index(层级)</morning-center>
+                            </h5>
+                            <div class="content">
+                                <p>仅支持数字，0表示采用默认层级</p>
+                                <div class="form">
+                                    <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" :inside-clearable="false" v-model="data.modifyZoneBasic.i"></morning-textinput>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </morning-formgroup>
-            </div>
+                    </morning-formgroup>
+                </div>
+            </template>
         </morning-tab>
 
-        <div class="imagemap-dialog-footer" slot="footer">
-            <div class="operate">
-                <morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)">取消</morning-link>
-                <morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">删除</morning-btn>
-                <morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">保存</morning-btn>
+        <template v-slot:footer>
+            <div class="imagemap-dialog-footer">
+                <div class="operate">
+                    <morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)">取消</morning-link>
+                    <morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">删除</morning-btn>
+                    <morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">保存</morning-btn>
+                </div>
             </div>
-        </div>
+        </template>
         
     </morning-dialog>
 
@@ -225,9 +237,11 @@
         height="300px"
         :ref="'ui-imagemap-scaledialog-'+uiid"
     >
-        <div slot="header">
-            设置编辑区域缩放
-        </div>
+        <template v-slot:header>
+            <div>
+                设置编辑区域缩放
+            </div>
+        </template>
 
         <morning-formgroup>
             <div class="item">
@@ -243,11 +257,13 @@
             </div>
         </morning-formgroup>
 
-        <div class="imagemap-dialog-footer" slot="footer">
-            <div class="operate">
-                <morning-link color="minor" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(false)">关闭</morning-link>
+        <template v-slot:footer>
+            <div class="imagemap-dialog-footer">
+                <div class="operate">
+                    <morning-link color="minor" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(false)">关闭</morning-link>
+                </div>
             </div>
-        </div>
+        </template>
         
     </morning-dialog>
 

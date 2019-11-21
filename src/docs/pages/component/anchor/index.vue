@@ -383,9 +383,9 @@
     ---
     tab
     标签页
-    <div slot="第一页">{*text*}</div>
-    <div slot="第二页">第二页</div>
-    <div slot="第三页">第三页</div>
+    <template v-slot:第一页>{*text*}</template>
+    <template v-slot:第二页>第二页</template>
+    <template v-slot:第三页>第三页</template>
     :::
 
     [[[源码]]]

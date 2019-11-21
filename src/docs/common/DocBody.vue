@@ -2872,15 +2872,15 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab type="block" no-padding no-border anchor-target>$1');
-            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><morning-anchor><div class="content-title" title="开始" id="开始" is-anchor>开始</div>$1</morning-anchor></div>$3');
-            md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
-            md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><morning-anchor><div class="content-title" title="配置" id="配置" is-anchor>配置</div>$1</morning-anchor></div>$3');
-            md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><morning-anchor><div class="content-title" title="方法" id="方法" is-anchor>方法</div>$1</div>$3');
-            md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><morning-anchor><div class="content-title" title="事件" id="事件" is-anchor>事件</div>$1</div>$3');
-            md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值"><div class="content-title">表单值</div>$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:开始><div><morning-anchor><div class="content-title" title="开始" id="开始" is-anchor>开始</div>$1</morning-anchor></div></template>$3');
+            md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:形态><div><div class="content-title">形态</div>$1</div></template>$3');
+            md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:配置><div><morning-anchor><div class="content-title" title="配置" id="配置" is-anchor>配置</div>$1</morning-anchor></div></template>$3');
+            md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:方法><div><morning-anchor><div class="content-title" title="方法" id="方法" is-anchor>方法</div>$1</div></template>$3');
+            md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:事件><div><morning-anchor><div class="content-title" title="事件" id="事件" is-anchor>事件</div>$1</div></template>$3');
+            md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:表单值><div><div class="content-title">表单值</div>$1</div>$3');
             // window.location.search !== \'?istest\'
             // cause: e2e test use chrome 59, if both has vue and iframe, get a bug.(when version update may remove this code)
-            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码"><div class="content-title">源码</div><div v-if="window.location.search !== \'?istest\'">$1</div></div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<template v-slot:源码><div><div class="content-title">源码</div><div v-if="window.location.search !== \'?istest\'">$1</div></div></template>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');

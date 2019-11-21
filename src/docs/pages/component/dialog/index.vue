@@ -67,11 +67,13 @@
     ---
     #demo
     >desc
-    通过`slot="header"`标签标记一个头部内容。
+    通过`v-slot:header`标签标记一个头部内容。
     >tpl
     <div>
         <ui-dialog ref="demo2">
-            <div slot="header">This is title</div>
+            <template v-slot:header>
+                <div>This is title</div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo2').toggle(true);">显示对话框</ui-link>
     </div>
@@ -86,10 +88,12 @@
     >tpl
     <div>
         <ui-dialog ref="demo3">
-            <div slot="header">
-                <h1>This is title</h1>
-                <ui-link color="white" js="window.morning.findVM('demo3').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </div>
+            <template v-slot:header>
+                <div>
+                    <h1>This is title</h1>
+                    <ui-link color="white" js="window.morning.findVM('demo3').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
+                </div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo3').toggle(true);">显示对话框</ui-link>
     </div>
@@ -102,8 +106,8 @@
     >tpl
     <div>
         <ui-dialog ref="demo4">
-            <div slot="header"></div>
-            <div slot="footer"></div>
+            <template v-slot:header></template>
+            <template v-slot:footer></template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo4').toggle(true);">显示对话框</ui-link>
     </div>
@@ -114,11 +118,13 @@
     ---
     #demo
     >desc
-    通过`slot="footer"`标签标记一个尾部内容。
+    通过`v-slot:footer`标签标记一个尾部内容。
     >tpl
     <div>
         <ui-dialog ref="demo5">
-            <div slot="footer">This is footer</div>
+            <template v-slot:footer>
+                <div>This is footer</div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo5').toggle(true);">显示对话框</ui-link>
     </div>
@@ -133,13 +139,15 @@
     >tpl
     <div>
         <ui-dialog ref="demo6">
-            <div slot="footer">
-                <span>This is footer</span>
-                <div class="operate">
-                    <ui-link class="margin" color="minor" js="window.morning.findVM('demo6').toggle();">取消</ui-link>
-                    <ui-btn color="success">确认</ui-btn>
+            <template v-slot:footer>
+                <div>
+                    <span>This is footer</span>
+                    <div class="operate">
+                        <ui-link class="margin" color="minor" js="window.morning.findVM('demo6').toggle();">取消</ui-link>
+                        <ui-btn color="success">确认</ui-btn>
+                    </div>
                 </div>
-            </div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo6').toggle(true);">显示对话框</ui-link>
     </div>
@@ -150,7 +158,7 @@
     ---
     #demo
     >desc
-    在组件内添加除`slot="header"`和`slot="footer"`以外的元素会加载到对话框的主体部分。
+    在组件内添加除`v-slot:header`和`v-slot:footer`以外的元素会加载到对话框的主体部分。
     >tpl
     <div>
         <ui-dialog ref="demo7">
@@ -194,7 +202,9 @@
     >tpl
     <div>
         <ui-dialog ref="demo9" color="neutral-1">
-            <div slot="header">选择一张图片</div>
+            <template v-slot:header>
+                <div>选择一张图片</div>
+            </template>
             <ui-grid height-fill>
                 <div class="row">
                     <div class="col-11">
@@ -208,16 +218,18 @@
                     </div>
                 </div>
             </ui-grid>
-            <div slot="footer">
-                <span>
-                    需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
-                </span>
-                <div class="operate">
-                    <ui-link class="margin" color="minor" js="window.morning.findVM('demo9').toggle(false);">取消</ui-link>
-                    <ui-btn color="success">左边</ui-btn>
-                    <ui-btn color="success">右边</ui-btn>
+            <template v-slot:footer>
+                <div>
+                    <span>
+                        需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
+                    </span>
+                    <div class="operate">
+                        <ui-link class="margin" color="minor" js="window.morning.findVM('demo9').toggle(false);">取消</ui-link>
+                        <ui-btn color="success">左边</ui-btn>
+                        <ui-btn color="success">右边</ui-btn>
+                    </div>
                 </div>
-            </div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo9').toggle(true);">显示对话框</ui-link>
     </div>
@@ -232,17 +244,23 @@
     >tpl
     <div>
         <ui-dialog ref="demo10" color="black" width="60%" height="60%">
-            <div slot="header">第一级</div>
-            <ui-link js="window.morning.findVM('demo11').toggle(true);">显示第二级对话框</ui-link>
+            <template v-slot:header>
+                <div>第一级</div>
+            </template>
+            <ui-link js="window.morning.findVM('demo11').toggle(true);">显示第二级对话框</ui-≥link>
         </ui-dialog>
 
         <ui-dialog ref="demo11" color="neutral-10" width="40%" height="40%">
-            <div slot="header">第二级</div>
+            <template v-slot:header>
+                <div>第二级</div>
+            </template>
             <ui-link js="window.morning.findVM('demo12').toggle(true);">显示第三级对话框</ui-link>
         </ui-dialog>
 
         <ui-dialog ref="demo12" color="neutral-7" width="20%" height="20%">
-            <div slot="header">第三级</div>
+            <template v-slot:header>
+                <div>第三级</div>
+            </template>
         </ui-dialog>
 
         <ui-link js="window.morning.findVM('demo10').toggle(true);">显示对话框</ui-link>
@@ -258,7 +276,9 @@
     >tpl
     <div>
         <ui-dialog ref="demo28" color="white" class="white-footer">
-            <div slot="header">选择一张图片</div>
+            <template v-slot:header>
+                <div>选择一张图片</div>
+            </template>
             <ui-grid height-fill>
                 <div class="row">
                     <div class="col-11">
@@ -272,16 +292,18 @@
                     </div>
                 </div>
             </ui-grid>
-            <div slot="footer">
-                <span>
-                    需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
-                </span>
-                <div class="operate">
-                    <ui-link class="margin" color="minor" js="window.morning.findVM('demo28').toggle(false);">取消</ui-link>
-                    <ui-btn color="success">左边</ui-btn>
-                    <ui-btn color="success">右边</ui-btn>
+            <template v-slot:footer>
+                <div>
+                    <span>
+                        需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
+                    </span>
+                    <div class="operate">
+                        <ui-link class="margin" color="minor" js="window.morning.findVM('demo28').toggle(false);">取消</ui-link>
+                        <ui-btn color="success">左边</ui-btn>
+                        <ui-btn color="success">右边</ui-btn>
+                    </div>
                 </div>
-            </div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo28').toggle(true);">显示对话框</ui-link>
     </div>
@@ -303,8 +325,12 @@
     @layout:color
     ---
     <ui-dialog ref="demo{$colorKey}" color="{$colorKey}">
-        <div slot="header">This is title</div>
-        <div slot="footer">This is footer</div>
+        <template v-slot:header>
+            <div>This is title</div>
+        </template>
+        <template v-slot:footer>
+            <div>This is footer</div>
+        </template>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo{$colorKey}').toggle(true);" color="{$colorKey}">{$colorName}对话框</ui-link>
 
@@ -388,10 +414,12 @@
     >tpl
     <div>
         <ui-dialog ref="demo17" :auto-close="false">
-            <div slot="header">
-                <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
-                <ui-link color="white" js="window.morning.findVM('demo17').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </div>
+            <template v-slot:header>
+                <div>
+                    <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
+                    <ui-link color="white" js="window.morning.findVM('demo17').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
+                </div>
+            </template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo17').toggle(true);">显示对话框</ui-link>
     </div>

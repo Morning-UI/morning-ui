@@ -197,10 +197,12 @@
             height="160px"
             show-type="center"
         >
-            <header slot="header">
-                <h1>插入图片</h1>
-                <ui-link color="dark-theme" :js="'morning.findVM(\'ui-select-dialog-'+uiid+'\').toggle(false)'"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </header>
+            <template v-slot:header>
+                <header>
+                    <h1>插入图片</h1>
+                    <ui-link color="dark-theme" :js="'morning.findVM(\'ui-select-dialog-'+uiid+'\').toggle(false)'"><i class="mo-icon mo-icon-close"></i></ui-link>
+                </header>
+            </template>
             <div>
                 <morning-upload
                     :ref="'ui-select-uploader-'+this.uiid"
