@@ -18,6 +18,24 @@
     
     ### 更新记录
 
+    ### 0.12.72 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+    
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年11月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.72" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.72/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.72/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    #### 改进
+    
+    - 完善`ui-mindmap`组件
+    
+    ---
+
     ### 0.12.71 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
