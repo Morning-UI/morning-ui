@@ -179,7 +179,8 @@ export default {
                 lastchange : 1,
                 autoToggleInterval : null,
                 slotObserver : null,
-                slotObserverCount : 0
+                slotObserverCount : 0,
+                lastWidthHeight : [0, 0]
             }
         };
 
@@ -274,13 +275,22 @@ export default {
             }
 
             this.data.num = this.$slots.item.length;
+            let currentWidthHeight = [
+                this.$slots.item[0].elm.clientWidth,
+                this.$slots.item[0].elm.clientHeight
+            ];
 
-            if (this.$slots.item && this.$slots.item[0]) {
+            if (
+                (this.data.lastWidthHeight[0] !== currentWidthHeight[0] || this.data.lastWidthHeight[1] !== currentWidthHeight[1]) &&
+                this.$slots.item &&
+                this.$slots.item[0]
+            ) {
 
                 let $itemClone = this.$slots.item[0].elm.cloneNode(true);
                 let $placeholder = this.$el.querySelector(`.carousel-id-${this.uiid} > .placeholder`);
 
                 $placeholder.innerHTML = $itemClone.outerHTML;
+                this.data.lastWidthHeight = currentWidthHeight;
 
             }
 

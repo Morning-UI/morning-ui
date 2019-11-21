@@ -13,6 +13,9 @@
         :inside-clearable="insideClearable"
         :_errorMessage="_errorMessage"
         :layout="layout"
+        :width="width"
+        :height="height"
+        :hotkey-map="hotkeyMap"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -480,6 +483,8 @@ const markGourpsName = {
     star : '星星'
 };
 /* eslint-enable no-unused-vars, no-magic-numbers */
+const defaultWidth = 760;
+const defaultHeight = 500;
 
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
 export default {
@@ -490,13 +495,28 @@ export default {
             type : String,
             default : 'LR',
             validator : (value => ['LR', 'RL'].indexOf(value) !== -1)
+        },
+        width : {
+            type : Number,
+            default : defaultWidth
+        },
+        height : {
+            type : Number,
+            default : defaultHeight
+        },
+        hotkeyMap : {
+            type : Object,
+            default : (() => ({}))
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                layout : this.layout
+                layout : this.layout,
+                width : this.width,
+                height : this.height,
+                hotkeyMap : this.hotkeyMap
             };
 
         }
@@ -3216,6 +3236,11 @@ export default {
             this._regBehaviorDragNode();
 
         },
+        // _bindHotkey : function () {
+
+        //     this.data.graph
+
+        // },
         _bindEvent : function () {
 
             this._onCanvasGrab();
@@ -3226,6 +3251,7 @@ export default {
             this._onAnnexHover();
             this._onAnnexClick();
             this._onContextMenu();
+            this._onHotkey();
             
             // eslint-disable-next-line no-warning-comments
             // TODO : mark hover is not work, cause zIndex
@@ -3236,8 +3262,8 @@ export default {
 
             let graphOtions = {
                 container : this.data.$canvas,
-                width : 760,
-                height : 500,
+                width : this.conf.width,
+                height : this.conf.height,
                 pixelRatio : 2,
                 animate : false,
                 modes : {
@@ -3368,7 +3394,7 @@ export default {
             }
     
         },
-        _traverseNode : function (item) {
+        _traverseOneNode : function (item) {
 
             item.id = this.data.globalId++;
             item.anchorPoints = [[0, 0.5], [1, 0.5]];
@@ -3391,10 +3417,22 @@ export default {
             this._traverseNodeUpdateMark(item);
 
         },
+        _traverseNode : function (items) {
+
+            let root = {
+                text : 'root',
+                children : items
+            };
+
+            G6.Util.traverseTree(root, this._traverseOneNode);
+
+            return root.children;
+
+        },
         /* eslint-enable no-magic-numbers */
         _readData : function (data) {
 
-            G6.Util.traverseTree(data, this._traverseNode);
+            G6.Util.traverseTree(data, this._traverseOneNode);
             this.data.graph.read(data);
 
             setTimeout(() => {
@@ -3557,7 +3595,7 @@ export default {
 
                 }
 
-                this._traverseNode(current);
+                this._traverseOneNode(current);
 
                 if (parent === undefined) {
 
@@ -3716,7 +3754,7 @@ export default {
 
                 }
 
-                this._traverseNode(current);
+                this._traverseOneNode(current);
 
                 if (parent === undefined) {
 
@@ -3840,7 +3878,7 @@ export default {
             return cleanData;
 
         },
-        _parseNewNodeData : function (data) {
+        _parseNewNodeDataOne : function (data) {
 
             if (typeof data === 'string') {
 
@@ -3852,15 +3890,28 @@ export default {
 
             }
 
-            console.log(50, data);
-
             data = Object.assign({
                 text : '新的节点'
             }, data);
 
-            console.log(56, data);
-
             return data;
+
+        },
+        _parseNewNodeData : function (data) {
+
+            if (data instanceof Array) {
+
+                for (let key in data) {
+
+                    data[key] = this._parseNewNodeDataOne(data[key]);
+
+                }
+
+                return data;
+
+            }
+
+            return [this._parseNewNodeDataOne(data)];
 
         },
         downloadFile : function (type, nodeId) {
@@ -3989,7 +4040,7 @@ export default {
 
         },
         // 插入同级节点(前)
-        insertBeforeNode : function (nodeId, data) {
+        insertBeforeNode : function (nodeId, datas) {
 
             let node = this.data.graph.findById(nodeId);
             let model = node.getModel();
@@ -3997,13 +4048,13 @@ export default {
             let parentModel = parent.getModel();
             let indexOfParent = parentModel.children.indexOf(model);
 
-            data = this._parseNewNodeData(data);
+            datas = this._parseNewNodeData(datas);
 
-            return this.insertSubNode(parentModel.id, data, indexOfParent);
+            return this.insertSubNode(parentModel.id, datas, indexOfParent);
 
         },
         // 插入同级节点(后)
-        insertAfterNode : function (nodeId, data) {
+        insertAfterNode : function (nodeId, datas) {
 
             let node = this.data.graph.findById(nodeId);
             let model = node.getModel();
@@ -4011,13 +4062,13 @@ export default {
             let parentModel = parent.getModel();
             let indexOfParent = parentModel.children.indexOf(model);
 
-            data = this._parseNewNodeData(data);
+            datas = this._parseNewNodeData(datas);
 
-            return this.insertSubNode(parentModel.id, data, indexOfParent + 1);
+            return this.insertSubNode(parentModel.id, datas, indexOfParent + 1);
 
         },
         // 插入同级节点(最后)
-        insertNode : function (nodeId, data) {
+        insertNode : function (nodeId, datas) {
 
             let node = this.data.graph.findById(nodeId);
             let model = node.getModel();
@@ -4030,18 +4081,19 @@ export default {
 
             let parentModel = node.getInEdges()[0].getSource().getModel();
 
-            data = this._parseNewNodeData(data);
+            datas = this._parseNewNodeData(datas);
 
-            return this.insertSubNode(parentModel.id, data);
+            return this.insertSubNode(parentModel.id, datas);
 
         },
         // 插入子节点
-        insertSubNode : function (nodeId, data, index = -1) {
+        insertSubNode : function (nodeId, datas, index = -1) {
 
             let node = this.data.graph.findById(nodeId);
             let model = node.getModel();
+            let isSingle = (datas instanceof Array);
 
-            data = this._parseNewNodeData(data);
+            datas = this._parseNewNodeData(datas);
 
             if (model.children === undefined) {
 
@@ -4049,22 +4101,40 @@ export default {
 
             }
 
-            this._traverseNode(data);
+            this._traverseNode(datas);
 
             if (index > -1) {
+
+                let datas2 = Object.assign([], datas);
+
+                datas2.reverse();
+
+                for (let item of datas2) {
                 
-                model.children.splice(index, 0, data);
+                    model.children.splice(index, 0, item);
+
+                }
 
             } else {
+
+                for (let item of datas) {
                 
-                model.children.push(data);
+                    model.children.push(item);
+
+                }
 
             }
 
             this.data.graph.changeData();
             this.data.graph.refreshLayout();
+            
+            if (isSingle) {
 
-            return data.id;
+                return datas[0].id;
+
+            }
+
+            return map(datas, 'id');
 
         },
         copyNode : function (nodeId) {
@@ -4080,7 +4150,6 @@ export default {
 
             let data = this.copyNode(nodeId);
 
-            console.log(this.morning);
             data = JSON.stringify(data);
             this.morning._mindmapClipboard = data;
             copy(data);
@@ -4096,7 +4165,7 @@ export default {
 
             data = this._parseNewNodeData(data);
             data.children = this._pluckDataFromNodes(model.children);
-            G6.Util.traverseTree(data, this._traverseNode);
+            G6.Util.traverseTree(data, this._traverseOneNode);
             model.children = [data];
             // parentModel.children.splice(nodeIndexOfParent, 1, data);
             this.data.graph.changeData();
@@ -4122,7 +4191,7 @@ export default {
 
             data = this._parseNewNodeData(data);
             data.children = this._pluckDataFromNodes([model]);
-            G6.Util.traverseTree(data, this._traverseNode);
+            G6.Util.traverseTree(data, this._traverseOneNode);
             parentModel.children.splice(nodeIndexOfParent, 1, data);
             this.data.graph.changeData();
             this.data.graph.refreshLayout();
@@ -4352,6 +4421,25 @@ export default {
             //     star : '0'
             // };
             this.data.$editMarkDialog.toggle(false);
+
+        },
+        getSelectedNode : function () {
+
+            return this.getSelectedNode()[0];
+
+        },
+        getAllSelectedNode : function () {
+
+            let nodes = this.data.graph.findAllByState('node', 'selected');
+            let nodeIds = [];
+
+            for (let node of nodes) {
+
+                nodeIds.push(node.get('id'));
+
+            }
+
+            return nodeIds;
 
         }
     },
