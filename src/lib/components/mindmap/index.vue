@@ -141,12 +141,12 @@ import arrayUniq                    from 'array-uniq';
 import xmindSdk                     from 'xmind-sdk';
 
 // 来自：@antv/g6/lib/shape/edges/polyline-util
-const distance = (p1, p2) => (Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y));
+const countDistance = (p1, p2) => (Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y));
 const isBending = (p0, p1, p2) => (!(p0.x === p1.x === p2.x || p0.y === p1.y === p2.y));
 const getBorderRadiusPoints = (p0, p1, p2, r) => {
 
-    let d0 = distance(p0, p1);
-    let d1 = distance(p2, p1);
+    let d0 = countDistance(p0, p1);
+    let d1 = countDistance(p2, p1);
 
     if (d0 < r) {
         

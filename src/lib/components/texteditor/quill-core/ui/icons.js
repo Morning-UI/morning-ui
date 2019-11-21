@@ -29,46 +29,46 @@ import underlineIcon from 'quill/assets/icons/underline.svg';
 import videoIcon from 'quill/assets/icons/video.svg';
 
 export default {
-    align: {
-        '': alignLeftIcon,
-        center: alignCenterIcon,
-        right: alignRightIcon,
-        justify: alignJustifyIcon,
+    align : {
+        '' : alignLeftIcon,
+        center : alignCenterIcon,
+        right : alignRightIcon,
+        justify : alignJustifyIcon
     },
-    background: backgroundIcon,
-    blockquote: blockquoteIcon,
-    bold: boldIcon,
-    clean: cleanIcon,
-    code: codeIcon,
-    'code-block': codeIcon,
-    color: colorIcon,
-    direction: {
-        '': directionLeftToRightIcon,
-        rtl: directionRightToLeftIcon,
+    background : backgroundIcon,
+    blockquote : blockquoteIcon,
+    bold : boldIcon,
+    clean : cleanIcon,
+    code : codeIcon,
+    'code-block' : codeIcon,
+    color : colorIcon,
+    direction : {
+        '' : directionLeftToRightIcon,
+        rtl : directionRightToLeftIcon
     },
-    formula: formulaIcon,
-    header: {
-        '1': headerIcon,
-        '2': header2Icon,
+    formula : formulaIcon,
+    header : {
+        1 : headerIcon,
+        2 : header2Icon
     },
-    italic: italicIcon,
-    image: imageIcon,
-    indent: {
-        '+1': indentIcon,
-        '-1': outdentIcon,
+    italic : italicIcon,
+    image : imageIcon,
+    indent : {
+        '+1' : indentIcon,
+        '-1' : outdentIcon
     },
-    link: linkIcon,
-    list: {
-        bullet: listBulletIcon,
-        check: listCheckIcon,
-        ordered: listOrderedIcon,
+    link : linkIcon,
+    list : {
+        bullet : listBulletIcon,
+        check : listCheckIcon,
+        ordered : listOrderedIcon
     },
-    script: {
-        sub: subscriptIcon,
-        super: superscriptIcon,
+    script : {
+        sub : subscriptIcon,
+        super : superscriptIcon
     },
-    strike: strikeIcon,
-    table: tableIcon,
-    underline: underlineIcon,
-    video: videoIcon,
+    strike : strikeIcon,
+    table : tableIcon,
+    underline : underlineIcon,
+    video : videoIcon
 };
