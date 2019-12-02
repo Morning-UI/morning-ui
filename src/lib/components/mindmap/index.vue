@@ -157,6 +157,10 @@ const markConGroupIndex = 10;
 
 const outlinePadding = 3;
 const annexPadding = 4;
+const tagPadding = {
+    x : 8,
+    y : 6
+};
 const markConPaddingRight = 10;
 const dragRefreshInterval = 160;
 
@@ -1321,6 +1325,9 @@ export default {
                 },
                 nodeId
             };
+            
+            this._clearSelectedNode('selected');
+            this.selectNode(nodeId);
 
         },
         _hideContextMenu : function () {
@@ -2139,6 +2146,13 @@ export default {
                             y : 0
                         }
                     });
+                    let tagConGroup = group.addGroup({
+                        id : `node-${cfg.id}-tag-box`,
+                        attrs : {
+                            x : 0,
+                            y : 0
+                        }
+                    });
 
                     if (cfg._mark && cfg._mark.length > 0) {
     
@@ -2189,10 +2203,50 @@ export default {
 
                     }
 
+                    if (cfg.tag && cfg.tag.length > 0) {
+    
+                        for (let index in cfg.tag) {
+
+                            let tagText = cfg.tag[index];
+                            let tagCon = tagConGroup.addShape('rect', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : 'transparent',
+                                    stroke : '#BBB',
+                                    radius : 3
+                                },
+                                zIndex : 99
+                            });
+
+                            let tag = tagConGroup.addShape('text', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : '#333',
+                                    fontSize : style.fontSize * 0.8,
+                                    // textAlign : 'center',
+                                    textBaseline : 'middle',
+                                    text : tagText
+                                }
+                            });
+
+                            let tagBbox = tag.getBBox();
+
+                            tagCon.attr({
+                                width : tagBbox.width + (tagPadding.x * 2),
+                                height : tagBbox.height + (tagPadding.y * 2)
+                            });
+
+                        }
+
+                    }
+
                     let textBbox = text.getBBox();
                     let linkBbox = link.getBBox();
                     let linkConBbox = linkCon.getBBox();
                     let markConGroupBbox = markConGroup.getBBox();
+                    let tagConGroupBbox = tagConGroup.getBBox();
                     let noteBbox = note.getBBox();
                     let noteConBbox = noteCon.getBBox();
                     let conWidth = textBbox.width + (conPaddingX * 2);
@@ -2299,11 +2353,11 @@ export default {
                             let markConBbox = markCon.getBBox();
 
                             markCon.attr({
-                                x : (-markBbox.width / 2) + conPaddingX + (markConBbox.width * index),
+                                x : (-markBbox.width / 2) + (markConBbox.width * index),
                                 y : (-markBbox.height / 2) + conPaddingY + annexPadding
                             });
                             mark.attr({
-                                x : (markBbox.width / 4) + conPaddingX + (markConBbox.width * index),
+                                x : (markBbox.width / 4) + (markConBbox.width * index),
                                 y : (markBbox.height / 2) + conPaddingY
                             });
 
@@ -2313,7 +2367,7 @@ export default {
 
                     box.attr({
                         width : conBbox.width,
-                        height : conBbox.height
+                        height : conBbox.height + tagConGroupBbox.height
                     });
                     box.set('conPaddingX', conPaddingX);
                     box.set('conPaddingY', conPaddingY);
@@ -2326,6 +2380,31 @@ export default {
                         width : boxBbox.width + (outlinePadding * 2),
                         height : boxBbox.height + (outlinePadding * 2)
                     });
+
+                    let outlineBbox = outline.getBBox();
+
+                    if (cfg.tag && cfg.tag.length > 0) {
+
+                        for (let index in cfg.tag) {
+
+                            let tagCon = tagConGroup.getChildByIndex(index * 2);
+                            let tag = tagConGroup.getChildByIndex((index * 2) + 1);
+                            let tagBbox = tag.getBBox();
+                            let tagConBbox = tagCon.getBBox();
+
+                            tagCon.attr({
+                                x : ((tagConBbox.width + tagPadding.x) * index),
+                                y : outlineBbox.height
+                                // width : tagBbox.width + (tagPadding * 2)
+                            });
+                            tag.attr({
+                                x : ((tagConBbox.width + tagPadding.x) * index) + tagPadding.x,
+                                y : outlineBbox.height + (tagBbox.height / 2) + tagPadding.y
+                            });
+
+                        }
+
+                    }
 
                     text.attr({
                         x : textX + conPaddingX,
@@ -4255,6 +4334,11 @@ export default {
             return data;
 
         },
+        getClipboard : function () {
+
+            return this.morning._mindmapClipboard;
+
+        },
         // 插入唯一节点(向后)
         appendUniqueNode : function (nodeId, data) {
 
@@ -4586,6 +4670,11 @@ export default {
             return this.getAllSelectedNode()[0];
 
         },
+        getSelectedNodeDetail : function () {
+
+            return this.getAllSelectedNodeDetail()[0];
+
+        },
         getAllSelectedNode : function () {
 
             let nodes = this.data.graph.findAllByState('node', 'selected');
@@ -4594,6 +4683,30 @@ export default {
             for (let node of nodes) {
 
                 nodeIds.push(node.get('id'));
+
+            }
+
+            return nodeIds;
+
+        },
+        getAllSelectedNodeDetail : function () {
+
+            let nodes = this.data.graph.findAllByState('node', 'selected');
+            let nodeIds = [];
+            let model;
+
+            for (let node of nodes) {
+
+                model = node.getModel();
+
+                nodeIds.push({
+                    id : model.id,
+                    depth : model.depth,
+                    link : model.link,
+                    mark : Object.assign([], model.mark),
+                    note : model.note,
+                    text : model.text
+                });
 
             }
 
@@ -4693,7 +4806,8 @@ export default {
                             mark : ['priority:1', 'priority:2', 'star:red']
                         },
                         {
-                            text : 'Linear discriminant analysis'
+                            text : 'Linear discriminant analysis',
+                            tag : ['标签1', '标签2']
                         },
                         {
                             text : 'Rules'
