@@ -1116,7 +1116,15 @@ export default {
         },
         _setListHeight : function () {
 
-            let $items = this.data.$list.querySelectorAll('li:not(.infoitem):not(.selected)');
+            let itemQuery = 'li:not(.infoitem):not(.selected)';
+
+            if (!this.conf.hideSelected) {
+
+                itemQuery = 'li:not(.infoitem)';
+
+            }
+
+            let $items = this.data.$list.querySelectorAll(itemQuery);
 
             if (!$items || $items.length === 0) {
 

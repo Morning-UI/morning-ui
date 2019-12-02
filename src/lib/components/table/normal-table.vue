@@ -29,12 +29,12 @@
                                     }
                                 }"
                             ></component>
-                            <span class="th-sort" v-if="colSetMap[key].sort">
+                            <span class="th-sort" v-if="colSetMap[key] && colSetMap[key].sort">
                                 <i class="mo-icon mo-icon-sort no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')"></i>
                                 <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>
                                 <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                             </span>
-                            <span class="th-filters" v-if="colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
+                            <span class="th-filters" v-if="colSetMap[key] && colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
                                 <i class="mo-icon mo-icon-filter-f" :id="'mor-table-filter-'+uiid+'-'+key"></i>
                                 <ui-popover
                                     :target="'#mor-table-filter-'+uiid+'-'+key"
@@ -66,7 +66,7 @@
                                 <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>
                                 <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                             </span>
-                            <span class="th-filters" v-if="colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
+                            <span class="th-filters" v-if="colSetMap[key] && colSetMap[key].filters instanceof Array && colSetMap[key].filters.length > 0">
                                 <i class="mo-icon mo-icon-filter-f" :id="'mor-table-filter-'+uiid+'-'+key"></i>
                                 <ui-popover
                                     :target="'#mor-table-filter-'+uiid+'-'+key"

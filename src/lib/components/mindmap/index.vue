@@ -57,29 +57,29 @@
         </div>
     </div>
 
-    <morning-dialog :ref="'mor-mindmap-edit-link-' + uiid" width="380px" height="240px" show-type="center">
+    <morning-dialog :ref="'mor-mindmap-edit-link-' + uiid" width="400px" height="240px" show-type="center">
         <div slot="header">编辑链接</div>
         <div class="mor-mindmap-dialog-body">
             <morning-textarea v-model="data.currentEditLinkValue"></morning-textarea>
             <div class="mor-mindmap-dialog-op">
-                <morning-btn color="success" @emit="link(data.currentEditLinkNodeId, data.currentEditLinkValue);cancelEditLink();">保存</morning-btn>
+                <morning-btn color="success" @emit="link(data.currentEditLinkNodeIds, data.currentEditLinkValue);cancelEditLink();">保存</morning-btn>
                 <morning-btn color="neutral-1" @emit="cancelEditLink">取消</morning-btn>
             </div>
         </div>
     </morning-dialog>
 
-    <morning-dialog :ref="'mor-mindmap-edit-note-' + uiid" width="380px" height="240px" show-type="center">
+    <morning-dialog :ref="'mor-mindmap-edit-note-' + uiid" width="400px" height="240px" show-type="center">
         <div slot="header">编辑备注</div>
         <div class="mor-mindmap-dialog-body">
             <morning-textarea v-model="data.currentEditNoteValue"></morning-textarea>
             <div class="mor-mindmap-dialog-op">
-                <morning-btn color="success" @emit="note(data.currentEditNoteNodeId, data.currentEditNoteValue);cancelEditNote();">保存</morning-btn>
+                <morning-btn color="success" @emit="note(data.currentEditNoteNodeIds, data.currentEditNoteValue);cancelEditNote();">保存</morning-btn>
                 <morning-btn color="neutral-1" @emit="cancelEditNote">取消</morning-btn>
             </div>
         </div>
     </morning-dialog>
 
-    <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="540px" height="490px" show-type="center">
+    <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="560px" height="490px" show-type="center">
         <div slot="header">编辑标记</div>
         <div class="mor-mindmap-dialog-body">
             <morning-form
@@ -100,7 +100,7 @@
                 </ui-formitem>
             </morning-form>
             <div class="mor-mindmap-dialog-op">
-                <morning-btn color="success" @emit="_saveMarks(data.currentEditMarkNodeId, data.currentEditMarkValue);cancelEditMark();">保存</morning-btn>
+                <morning-btn color="success" @emit="_saveMarks(data.currentEditMarkNodeIds, data.currentEditMarkValue);cancelEditMark();">保存</morning-btn>
                 <morning-btn color="neutral-1" @emit="cancelEditMark">取消</morning-btn>
             </div>
         </div>
@@ -157,6 +157,10 @@ const markConGroupIndex = 10;
 
 const outlinePadding = 3;
 const annexPadding = 4;
+const tagPadding = {
+    x : 8,
+    y : 6
+};
 const markConPaddingRight = 10;
 const dragRefreshInterval = 160;
 
@@ -484,8 +488,6 @@ const markGourpsName = {
     star : '星星'
 };
 /* eslint-enable no-unused-vars, no-magic-numbers */
-const defaultWidth = 760;
-const defaultHeight = 500;
 
 // <i class="mo-icon mo-icon-error-cf cleanicon" v-show="(conf.state !== 'readonly' && conf.state !== 'disabled') && conf.insideClearable &&  data.value" @click.stop="set(undefined)"></i>
 export default {
@@ -498,12 +500,12 @@ export default {
             validator : (value => ['LR', 'RL'].indexOf(value) !== -1)
         },
         width : {
-            type : Number,
-            default : defaultWidth
+            type : String,
+            default : '760px'
         },
         height : {
-            type : Number,
-            default : defaultHeight
+            type : String,
+            default : '500px'
         },
         hotkeyMap : {
             type : Object,
@@ -558,9 +560,9 @@ export default {
                 contextMenu : {
                     style : {}
                 },
-                currentEditLinkNodeId : 0,
-                currentEditNoteNodeId : 0,
-                currentEditMarkNodeId : 0,
+                currentEditLinkNodeIds : [],
+                currentEditNoteNodeIds : [],
+                currentEditMarkNodeIds : [],
                 currentEditLinkValue : '',
                 currentEditNoteValue : '',
                 currentEditMarkValue : {
@@ -704,7 +706,7 @@ export default {
 
             }
 
-            const padding = 0;
+            const padding = 5;
 
             let inputX = `${textBbox.x + 1 - padding}px`;
             let inputY = `${textBbox.y - padding}px`;
@@ -1323,6 +1325,9 @@ export default {
                 },
                 nodeId
             };
+            
+            this._clearSelectedNode('selected');
+            this.selectNode(nodeId);
 
         },
         _hideContextMenu : function () {
@@ -1359,6 +1364,39 @@ export default {
         _inAnnex : function (evt, shapeIndex) {
 
             return this._inNodeShape(evt, evt.item.get('group').getChildByIndex(shapeIndex));
+
+        },
+        _editNode : function (nodeId, clean = false) {
+
+            let node = this.data.graph.findById(nodeId);
+            let groupShapes = this._getGroupShapes(node);
+
+            this.data.editting = true;
+            this.data.editGroupShapes = groupShapes;
+            this.data.editNode = node;
+            this._refreshEditorPosition(node);
+            groupShapes.text.attr({
+                opacity : 0
+            });
+            this.data.editNode.setState('editing', true);
+            this.data.graph.paint();
+            this.data.$editContentInput.focus();
+
+            if (clean) {
+
+                setTimeout(() => {
+
+                    this.data.editContent = this
+                        .data
+                        .editContent
+                        .split('')
+                        .slice(-1)
+                        .join('');
+                    this._editInput();
+
+                });
+
+            }
 
         },
         _onNodeHover : function () {
@@ -1577,18 +1615,7 @@ export default {
 
             this.data.graph.on('node:dblclick', evt => {
 
-                let groupShapes = this._getGroupShapes(evt.item);
-
-                this.data.editting = true;
-                this.data.editGroupShapes = groupShapes;
-                this.data.editNode = evt.item;
-                this._refreshEditorPosition(evt.item);
-                groupShapes.text.attr({
-                    opacity : 0
-                });
-                this.data.editNode.setState('editing', true);
-                this.data.graph.paint();
-                this.data.$editContentInput.focus();
+                this._editNode(evt.item.getModel().id);
 
             });
 
@@ -1703,6 +1730,36 @@ export default {
                     cursor : 'grab'
                 }))
             );
+
+        },
+        _onCanvasKeydown : function () {
+
+            this.data.graph.on('keydown', evt => {
+
+                if (this.data.editting === false) {
+
+                    let nodeId = this.getSelectedNode();
+                    let keycode = evt.which;
+                    
+                    /* eslint-disable no-magic-numbers */
+                    if (
+                        nodeId &&
+                        (
+                            (keycode >= 65 && keycode <= 90) ||
+                            (keycode >= 48 && keycode <= 57) ||
+                            (keycode >= 219 && keycode <= 222) ||
+                            (keycode >= 186 && keycode <= 192)
+                        )
+                    ) {
+
+                        this._editNode(nodeId, true);
+
+                    }
+                    /* eslint-enable no-magic-numbers */
+
+                }
+
+            });
 
         },
         /* eslint-disable no-magic-numbers */
@@ -2089,6 +2146,13 @@ export default {
                             y : 0
                         }
                     });
+                    let tagConGroup = group.addGroup({
+                        id : `node-${cfg.id}-tag-box`,
+                        attrs : {
+                            x : 0,
+                            y : 0
+                        }
+                    });
 
                     if (cfg._mark && cfg._mark.length > 0) {
     
@@ -2139,10 +2203,50 @@ export default {
 
                     }
 
+                    if (cfg.tag && cfg.tag.length > 0) {
+    
+                        for (let index in cfg.tag) {
+
+                            let tagText = cfg.tag[index];
+                            let tagCon = tagConGroup.addShape('rect', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : 'transparent',
+                                    stroke : '#BBB',
+                                    radius : 3
+                                },
+                                zIndex : 99
+                            });
+
+                            let tag = tagConGroup.addShape('text', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : '#333',
+                                    fontSize : style.fontSize * 0.8,
+                                    // textAlign : 'center',
+                                    textBaseline : 'middle',
+                                    text : tagText
+                                }
+                            });
+
+                            let tagBbox = tag.getBBox();
+
+                            tagCon.attr({
+                                width : tagBbox.width + (tagPadding.x * 2),
+                                height : tagBbox.height + (tagPadding.y * 2)
+                            });
+
+                        }
+
+                    }
+
                     let textBbox = text.getBBox();
                     let linkBbox = link.getBBox();
                     let linkConBbox = linkCon.getBBox();
                     let markConGroupBbox = markConGroup.getBBox();
+                    let tagConGroupBbox = tagConGroup.getBBox();
                     let noteBbox = note.getBBox();
                     let noteConBbox = noteCon.getBBox();
                     let conWidth = textBbox.width + (conPaddingX * 2);
@@ -2249,11 +2353,11 @@ export default {
                             let markConBbox = markCon.getBBox();
 
                             markCon.attr({
-                                x : (-markBbox.width / 2) + conPaddingX + (markConBbox.width * index),
+                                x : (-markBbox.width / 2) + (markConBbox.width * index),
                                 y : (-markBbox.height / 2) + conPaddingY + annexPadding
                             });
                             mark.attr({
-                                x : (markBbox.width / 4) + conPaddingX + (markConBbox.width * index),
+                                x : (markBbox.width / 4) + (markConBbox.width * index),
                                 y : (markBbox.height / 2) + conPaddingY
                             });
 
@@ -2263,7 +2367,7 @@ export default {
 
                     box.attr({
                         width : conBbox.width,
-                        height : conBbox.height
+                        height : conBbox.height + tagConGroupBbox.height
                     });
                     box.set('conPaddingX', conPaddingX);
                     box.set('conPaddingY', conPaddingY);
@@ -2276,6 +2380,31 @@ export default {
                         width : boxBbox.width + (outlinePadding * 2),
                         height : boxBbox.height + (outlinePadding * 2)
                     });
+
+                    let outlineBbox = outline.getBBox();
+
+                    if (cfg.tag && cfg.tag.length > 0) {
+
+                        for (let index in cfg.tag) {
+
+                            let tagCon = tagConGroup.getChildByIndex(index * 2);
+                            let tag = tagConGroup.getChildByIndex((index * 2) + 1);
+                            let tagBbox = tag.getBBox();
+                            let tagConBbox = tagCon.getBBox();
+
+                            tagCon.attr({
+                                x : ((tagConBbox.width + tagPadding.x) * index),
+                                y : outlineBbox.height
+                                // width : tagBbox.width + (tagPadding * 2)
+                            });
+                            tag.attr({
+                                x : ((tagConBbox.width + tagPadding.x) * index) + tagPadding.x,
+                                y : outlineBbox.height + (tagBbox.height / 2) + tagPadding.y
+                            });
+
+                        }
+
+                    }
 
                     text.attr({
                         x : textX + conPaddingX,
@@ -3252,6 +3381,7 @@ export default {
             this._onAnnexHover();
             this._onAnnexClick();
             this._onContextMenu();
+            this._onCanvasKeydown();
             // this._onHotkey();
             
             // eslint-disable-next-line no-warning-comments
@@ -3261,10 +3391,39 @@ export default {
         },
         _createGraph : function () {
 
+            let width = this.conf.width;
+            let height = this.conf.height;
+
+            if (/px$/.test(width)) {
+
+                width = width.replace(/px$/, '');
+
+            }
+
+            if (/%$/.test(width)) {
+
+                this.$el.style.width = width;
+                width = this.$el.clientWidth;
+
+            }
+
+            if (/px$/.test(height)) {
+
+                height = height.replace(/px$/, '');
+
+            }
+
+            if (/%$/.test(height)) {
+
+                this.$el.style.height = height;
+                height = this.$el.clientHeight;
+
+            }
+
             let graphOtions = {
                 container : this.data.$canvas,
-                width : this.conf.width,
-                height : this.conf.height,
+                width : width,
+                height : height,
                 pixelRatio : 2,
                 animate : false,
                 modes : {
@@ -3751,7 +3910,15 @@ export default {
 
                 if (item.markers) {
                     
-                    current.mark = map(item.markers, 'markerId');
+                    let markList = map(item.markers, 'markerId');
+
+                    for (let index in markList) {
+
+                        markList[index] = markList[index].replace('-', ':');
+
+                    }
+
+                    current.mark = markList;
 
                 }
 
@@ -3780,35 +3947,42 @@ export default {
             return xmindData;
 
         },
-        _saveMarks : function (nodeId, groups) {
+        _saveMarks : function (nodeIds, groups) {
 
             let markList = Object.values(groups);
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
 
-            markList = arrayUniq(markList);
-            markList = markList.filter(mark => (mark !== '0'));
-            
-            for (let index in markList) {
+            for (let nodeId of nodeIds) {
 
-                markList[index] = markList[index].replace('-', ':');
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+
+                markList = arrayUniq(markList);
+                markList = markList.filter(mark => (mark !== '0'));
+                
+                for (let index in markList) {
+
+                    markList[index] = markList[index].replace('-', ':');
+
+                }
+
+                if (model.mark === undefined) {
+
+                    model.mark = [];
+
+                }
+                
+                model.mark = markList;
+                this._traverseNodeUpdateMark(model);
+                node.draw();
 
             }
 
-            if (model.mark === undefined) {
-
-                model.mark = [];
-
-            }
-
-            model.mark = markList;
-            this._traverseNodeUpdateMark(model);
-            node.draw();
             this.data.graph.refreshLayout();
 
         },
         _importFile : function (file) {
 
+            window.JSZip = JSZip;
             let nodeId = this.data.currentImportNode;
             let mode = this.data.currentImportMode;
 
@@ -3824,20 +3998,11 @@ export default {
 
             } else if (file.file.type === 'application/vnd.xmind.workbook') {
 
-                file.file
-                    .arrayBuffer()
-                    .then(arrayBuffer => {
-                        
-                        let zip = new JSZip();
-
-                        return zip
-                            .loadAsync(arrayBuffer)
-                            .then(content => (content.files['content.json']));
-
-                    })
-                    .then(contentFile => (
-                        new TextDecoder('utf-8').decode(contentFile._data.compressedContent)
-                    ))
+                let zip = new JSZip();
+                    
+                return zip
+                    .loadAsync(file.file)
+                    .then(content => content.files['content.json'].async('text'))
                     .then(text => {
 
                         this.importFrom('xmind', text, nodeId, mode);
@@ -3915,6 +4080,17 @@ export default {
             return [this._parseNewNodeDataOne(data)];
 
         },
+        _fillNodeIds : function (nodeIds) {
+
+            if (typeof nodeIds === 'number') {
+
+                return [nodeIds];
+
+            }
+
+            return nodeIds;
+
+        },
         downloadFile : function (type, nodeId) {
 
             let data = [this.data.graph.get('data')];
@@ -3981,7 +4157,7 @@ export default {
             } else if (type === 'xmind') {
 
                 if (typeof data === 'string') {
-                    
+
                     data = JSON.parse(data);
 
                 }
@@ -4158,6 +4334,11 @@ export default {
             return data;
 
         },
+        getClipboard : function () {
+
+            return this.morning._mindmapClipboard;
+
+        },
         // 插入唯一节点(向后)
         appendUniqueNode : function (nodeId, data) {
 
@@ -4269,6 +4450,23 @@ export default {
             this.data.graph.refreshLayout();
 
         },
+        selectNode : function (nodeIds) {
+
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+
+                if (node.getModel().isMindNode) {
+
+                    this.data.graph.setItemState(node, 'selected', true);
+                
+                }
+
+            }
+
+        },
         zoom : function (zoom) {
 
             this.data.graph.zoomTo(zoom);
@@ -4286,112 +4484,153 @@ export default {
             this.data.graph.fitView();
 
         },
-        link : function (nodeId, link) {
+        link : function (nodeIds, link) {
 
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
+            nodeIds = this._fillNodeIds(nodeIds);
 
-            model.link = link;
-            node.draw();
-            this.data.graph.refreshLayout();
+            for (let nodeId of nodeIds) {
 
-        },
-        unlink : function (nodeId) {
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
 
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-
-            delete model.link;
-            node.draw();
-            this.data.graph.refreshLayout();
-
-        },
-        mark : function (nodeId, mark) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-
-            if (model.mark === undefined) {
-
-                model.mark = [];
+                model.link = link;
+                node.draw();
 
             }
 
-            model.mark.push(mark);
-            model.mark = arrayUniq(model.mark);
-            this._traverseNodeUpdateMark(model);
-            node.draw();
             this.data.graph.refreshLayout();
 
         },
-        unmark : function (nodeId, mark) {
+        unlink : function (nodeIds) {
 
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let index = model.mark.indexOf(mark);
+            nodeIds = this._fillNodeIds(nodeIds);
 
-            if (index !== -1) {
+            for (let nodeId of nodeIds) {
 
-                model.mark.splice(index, 1);
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+
+                delete model.link;
+                node.draw();
 
             }
 
-            this._traverseNodeUpdateMark(model);
-            node.draw();
             this.data.graph.refreshLayout();
 
         },
-        note : function (nodeId, note) {
+        mark : function (nodeIds, mark) {
 
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
+            nodeIds = this._fillNodeIds(nodeIds);
 
-            model.note = note;
-            node.draw();
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+
+                if (model.mark === undefined) {
+
+                    model.mark = [];
+
+                }
+
+                model.mark.push(mark);
+                model.mark = arrayUniq(model.mark);
+                this._traverseNodeUpdateMark(model);
+                node.draw();
+
+            }
+
             this.data.graph.refreshLayout();
 
         },
-        editLink : function (nodeId) {
+        unmark : function (nodeIds, mark) {
 
-            let node = this.data.graph.findById(nodeId);
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+                let index = model.mark.indexOf(mark);
+
+                if (index !== -1) {
+
+                    model.mark.splice(index, 1);
+
+                }
+
+                this._traverseNodeUpdateMark(model);
+                node.draw();
+
+            }
+
+            this.data.graph.refreshLayout();
+
+        },
+        note : function (nodeIds, note) {
+
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+
+                model.note = note;
+                node.draw();
+
+            }
+
+            this.data.graph.refreshLayout();
+
+        },
+        editLink : function (nodeIds) {
+
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            let node = this.data.graph.findById(nodeIds[0]);
             let model = node.getModel();
 
-            this.data.currentEditLinkNodeId = nodeId;
+            this.data.currentEditLinkNodeIds = nodeIds;
             this.data.currentEditLinkValue = model.link;
             this.data.$editLinkDialog.toggle(true);
 
         },
         cancelEditLink : function () {
 
-            this.data.currentEditLinkNodeId = 0;
+            this.data.currentEditLinkNodeId = [];
             this.data.currentEditLinkValue = '';
             this.data.$editLinkDialog.toggle(false);
 
         },
-        editNote : function (nodeId) {
+        editNote : function (nodeIds) {
 
-            let node = this.data.graph.findById(nodeId);
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            let node = this.data.graph.findById(nodeIds[0]);
             let model = node.getModel();
 
-            this.data.currentEditNoteNodeId = nodeId;
+            this.data.currentEditNoteNodeIds = nodeIds;
             this.data.currentEditNoteValue = model.note;
             this.data.$editNoteDialog.toggle(true);
 
         },
         cancelEditNote : function () {
 
-            this.data.currentEditNoteNodeId = 0;
+            this.data.currentEditNoteNodeIds = [];
             this.data.currentEditNoteValue = '';
             this.data.$editNoteDialog.toggle(false);
 
         },
-        editMark : function (nodeId) {
+        editMark : function (nodeIds) {
 
-            let node = this.data.graph.findById(nodeId);
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            let node = this.data.graph.findById(nodeIds[0]);
             let model = node.getModel();
             let markGroups = {};
 
-            this.data.currentEditMarkNodeId = nodeId;
+            this.data.currentEditMarkNodeIds = nodeIds;
 
             if (model._mark && model._mark.length > 0) {
 
@@ -4416,7 +4655,7 @@ export default {
         },
         cancelEditMark : function () {
 
-            this.data.currentEditMarkNodeId = 0;
+            this.data.currentEditMarkNodeIds = [];
             // this.data.currentEditMarkValue = {
             //     priority : '0',
             //     task : '0',
@@ -4431,6 +4670,11 @@ export default {
             return this.getAllSelectedNode()[0];
 
         },
+        getSelectedNodeDetail : function () {
+
+            return this.getAllSelectedNodeDetail()[0];
+
+        },
         getAllSelectedNode : function () {
 
             let nodes = this.data.graph.findAllByState('node', 'selected');
@@ -4439,6 +4683,30 @@ export default {
             for (let node of nodes) {
 
                 nodeIds.push(node.get('id'));
+
+            }
+
+            return nodeIds;
+
+        },
+        getAllSelectedNodeDetail : function () {
+
+            let nodes = this.data.graph.findAllByState('node', 'selected');
+            let nodeIds = [];
+            let model;
+
+            for (let node of nodes) {
+
+                model = node.getModel();
+
+                nodeIds.push({
+                    id : model.id,
+                    depth : model.depth,
+                    link : model.link,
+                    mark : Object.assign([], model.mark),
+                    note : model.note,
+                    text : model.text
+                });
 
             }
 
@@ -4538,7 +4806,8 @@ export default {
                             mark : ['priority:1', 'priority:2', 'star:red']
                         },
                         {
-                            text : 'Linear discriminant analysis'
+                            text : 'Linear discriminant analysis',
+                            tag : ['标签1', '标签2']
                         },
                         {
                             text : 'Rules'
