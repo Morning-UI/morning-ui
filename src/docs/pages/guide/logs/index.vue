@@ -18,6 +18,29 @@
     
     ### 更新记录
 
+    ### 0.12.73 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年12月2日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.73" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.73/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.73/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 改进
+
+    - 完善`ui-mindmap`组件
+
+    #### 修复
+
+    - 修复`ui-select`在开启`hide-selected`配置后下拉列表高度计算不正确的问题
+    - 修复`ui-table`组件在某些情况下会出现`Cannot read property ‘filters’ of undefined`的问题
+
+    ---
+
     ### 0.12.72 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
     
     <ui-textcolor color="neutral-8">

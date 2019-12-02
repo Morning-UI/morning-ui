@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.12.73
+
+`2019年12月2日`
+
+#### 改进
+
+- 完善`ui-mindmap`组件
+
+#### 修复
+
+- 修复`ui-select`在开启`hide-selected`配置后下拉列表高度计算不正确的问题
+- 修复`ui-table`组件在某些情况下会出现`Cannot read property ‘filters’ of undefined`的问题
+
 ## 0.12.72
 
 `2019年11月21日`
