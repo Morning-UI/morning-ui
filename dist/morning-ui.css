@@ -50948,6 +50948,7 @@ mor-mindmap {
 }
 mor-mindmap .mindmap-wrap {
   position: relative;
+  overflow: hidden;
 }
 mor-mindmap .mindmap-wrap .node-note {
   position: absolute;
@@ -50988,7 +50989,9 @@ mor-mindmap .mindmap-wrap .edit-content textarea {
   overflow: hidden;
   background: #FFFFFF;
   position: absolute;
+  box-sizing: border-box;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
 }
 .mor-mindmap-dialog-body mor-radio .mo-icon {
   font-size: 24px;
