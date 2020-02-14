@@ -51,7 +51,7 @@
     </div>
 
     <morning-dialog :ref="'mor-mindmap-edit-link-' + uiid" width="380px" height="240px" show-type="center">
-        <template v-slot:header>
+        <template #header>
             <div>编辑链接</div>
         </template>
         <div class="mor-mindmap-dialog-body">
@@ -64,7 +64,7 @@
     </morning-dialog>
 
     <morning-dialog :ref="'mor-mindmap-edit-note-' + uiid" width="380px" height="240px" show-type="center">
-        <template v-slot:header>
+        <template #header>
             <div>编辑备注</div>
         </template>
         <div class="mor-mindmap-dialog-body">
@@ -77,7 +77,7 @@
     </morning-dialog>
 
     <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="540px" height="490px" show-type="center">
-        <template v-slot:header>
+        <template #header>
             <div>编辑标记</div>
         </template>
         <div class="mor-mindmap-dialog-body">
@@ -106,7 +106,7 @@
     </morning-dialog>
 
     <morning-dialog :ref="'mor-mindmap-import-' + uiid" width="380px" height="300px" show-type="center" @hide="_resetImportStatus">
-        <template v-slot:header>
+        <template #header>
             <div>导入数据</div>
         </template>
         <div class="mor-mindmap-dialog-body">

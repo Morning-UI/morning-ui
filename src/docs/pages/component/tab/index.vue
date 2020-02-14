@@ -20,9 +20,15 @@
     使用`slot`属性标记内容对应的标签名，标签名是唯一索引，所以`slot`不能重复。
     >tpl
     <ui-tab>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -34,9 +40,15 @@
     通过`type="block"`定义区块风格的标签页。
     >tpl
     <ui-tab type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -48,9 +60,15 @@
     通过`type="line"`定义线条风格的标签页。
     >tpl
     <ui-tab type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -62,9 +80,15 @@
     通过`type="btn"`定义线条风格的标签页。
     >tpl
     <ui-tab type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -78,9 +102,15 @@
     更多用法详见：[no-padding配置](/component/tab.html#no-padding)
     >tpl
     <ui-tab no-padding>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -94,9 +124,15 @@
     更多用法详见：[no-border配置](/component/tab.html#no-border)
     >tpl
     <ui-tab type="line" no-border>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -106,21 +142,39 @@
     #demo
     >tpl
     <ui-tab type="block">
-        <div slot="A">
-            <ui-tab type="line">
-                <div slot="A1">
-                    <ui-tab>
-                        <div slot="A11">A11</div>
-                        <div slot="A12">A12</div>
-                        <div slot="A13">A13</div>
-                    </ui-tab>
-                </div>
-                <div slot="A2">A2</div>
-                <div slot="A3">A3</div>
-            </ui-tab>
-        </div>
-        <div slot="B">B</div>
-        <div slot="C">C</div>
+        <template #A>
+            <div>
+                <ui-tab type="line">
+                    <template #A1>
+                        <div>
+                            <ui-tab>
+                                <template #A11>
+                                    <div>A11</div>
+                                </template>
+                                <template #A12>
+                                    <div>A12</div>
+                                </template>
+                                <template #A13>
+                                    <div>A13</div>
+                                </template>
+                            </ui-tab>
+                        </div>
+                    </template>
+                    <template #A2>
+                        <div>A2</div>
+                    </template>
+                    <template #A3>
+                        <div>A3</div>
+                    </template>
+                </ui-tab>
+            </div>
+        </template>
+        <template #B>
+            <div>B</div>
+        </template>
+        <template #C>
+            <div>C</div>
+        </template>
     </ui-tab>
     :::
 
@@ -134,9 +188,15 @@
     更多用法详见：[position配置](/component/tab.html#position)
     >tpl
     <ui-tab position="left">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -157,31 +217,51 @@
     多层嵌套的标签页进行切换时，如层级中某个标签页组件未开启`anchor-target`配置，则这个标签页不会进行切换。但不影响其他标签页切换。
     >tpl
     <ui-tab type="block" no-border anchor-target>
-        <div slot="第一章">第一章</div>
-        <div slot="第二章">
-            <div style="height:100px;">第二章</div>
-            <div id="锚点1">锚点1</div>
-        </div>
-        <div slot="第三章">
-            <div style="height:200px;">第三章</div>
-            <div id="锚点2">锚点2</div>
-        </div>
-        <div slot="第四章">
-            <ui-tab no-border anchor-target>
-                <div slot="第一节">第一节</div>
-                <div slot="第二节">
-                    <ui-tab no-border anchor-target>
-                        <div slot="第一页">第一页</div>
-                        <div slot="第二页">第二页</div>
-                        <div slot="第三页">
-                            <div style="height:200px;">第三页</div>
-                            <div id="锚点3">锚点3</div>
+        <template #第一章>
+            <div>第一章</div>
+        </template>
+        <template #第二章>
+            <div>
+                <div style="height:100px;">第二章</div>
+                <div id="锚点1">锚点1</div>
+            </div>
+        </template>
+        <template #第三章>
+            <div>
+                <div style="height:200px;">第三章</div>
+                <div id="锚点2">锚点2</div>
+            </div>
+        </template>
+        <template #第四章>
+            <div>
+                <ui-tab no-border anchor-target>
+                    <template #第一节>
+                        <div>第一节</div>
+                    </template>
+                    <template #第二节>
+                        <div>
+                            <ui-tab no-border anchor-target>
+                                <template #第一页>
+                                    <div>第一页</div>
+                                </template>
+                                <template #第二页>
+                                    <div>第二页</div>
+                                </template>
+                                <template #第三页>
+                                    <div>
+                                        <div style="height:200px;">第三页</div>
+                                        <div id="锚点3">锚点3</div>
+                                    </div>
+                                </template>
+                            </ui-tab>
                         </div>
-                    </ui-tab>
-                </div>
-                <div slot="第三节">第三节</div>
-            </ui-tab>
-        </div>
+                    </template>
+                    <template #第三节>
+                        <div>第三节</div>
+                    </template>
+                </ui-tab>
+            </div>
+        </template>
     </ui-tab>
     :::
 
@@ -193,9 +273,15 @@
     若某个标签页中没有内容，建议使用空状态组件(`ui-empty`)。
     >tpl
     <ui-tab>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页"><ui-empty></ui-empty></div>
-        <div slot="第三页"><ui-empty></ui-empty></div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div><ui-empty></ui-empty></div>
+        </template>
+        <template #第三页>
+            <div><ui-empty></ui-empty></div>
+        </template>
     </ui-tab>
     :::
 
@@ -230,9 +316,15 @@
     >tpl
     <ui-tab tab="第三页">
         <!-- 默认展示第三页 -->
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -255,9 +347,15 @@
         <ui-tab
             :prepend="prepend"
         >
-            <div slot="应用">应用</div>
-            <div slot="标签">标签</div>
-            <div slot="其他">其他</div>
+            <template #应用>
+                <div>应用</div>
+            </template>
+            <template #标签>
+                <div>标签</div>
+            </template>
+            <template #其他>
+                <div>其他</div>
+            </template>
         </ui-tab>
     </div>
     >script
@@ -293,9 +391,15 @@
         <ui-tab
             :append="append"
         >
-            <div slot="应用">应用</div>
-            <div slot="标签">标签</div>
-            <div slot="其他">其他</div>
+            <template #应用>
+                <div>应用</div>
+            </template>
+            <template #标签>
+                <div>标签</div>
+            </template>
+            <template #其他>
+                <div>其他</div>
+            </template>
         </ui-tab>
     </div>
     >script
@@ -329,41 +433,61 @@
     >desc
     开启`anchor-target`配置后，当标签页检测到页面锚点变化时，会自动切换到对应的标签并定位：
     <br><br>
-    <a href="#锚点1">定位到第二章的锚点1</a><br>
-    <a href="#锚点2">定位到第三章的锚点2</a>
+    <a href="#锚点4">定位到第二章的锚点4</a><br>
+    <a href="#锚点5">定位到第三章的锚点5</a>
     <br><br>
     如果使用了多个标签页嵌套，组件会切换所有标签直到可以显示锚点定位内容：
     <br><br>
-    <a href="#锚点3">定位到`第四章`的`第二节`的`第三页`中的锚点3</a>
+    <a href="#锚点6">定位到`第四章`的`第二节`的`第三页`中的锚点6</a>
     <br><br>
     多层嵌套的标签页进行切换时，如层级中某个标签页组件未开启`anchor-target`配置，则这个标签页不会进行切换。但不影响其他标签页切换。
     >tpl
     <ui-tab type="block" no-border anchor-target>
-        <div slot="第一章">第一章</div>
-        <div slot="第二章">
-            <div style="height:100px;">第二章</div>
-            <div id="锚点1">锚点1</div>
-        </div>
-        <div slot="第三章">
-            <div style="height:200px;">第三章</div>
-            <div id="锚点2">锚点2</div>
-        </div>
-        <div slot="第四章">
-            <ui-tab no-border anchor-target>
-                <div slot="第一节">第一节</div>
-                <div slot="第二节">
-                    <ui-tab no-border anchor-target>
-                        <div slot="第一页">第一页</div>
-                        <div slot="第二页">第二页</div>
-                        <div slot="第三页">
-                            <div style="height:200px;">第三页</div>
-                            <div id="锚点3">锚点3</div>
+        <template #第一章>
+            <div>第一章</div>
+        </template>
+        <template #第二章>
+            <div>
+                <div style="height:100px;">第二章</div>
+                <div id="锚点4">锚点4</div>
+            </div>
+        </template>
+        <template #第三章>
+            <div>
+                <div style="height:200px;">第三章</div>
+                <div id="锚点5">锚点5</div>
+            </div>
+        </template>
+        <template #第四章>
+            <div>
+                <ui-tab no-border anchor-target>
+                    <template #第一节>
+                        <div>第一节</div>
+                    </template>
+                    <template #第二节>
+                        <div>
+                            <ui-tab no-border anchor-target>
+                                <template #第一页>
+                                    <div>第一页</div>
+                                </template>
+                                <template #第二页>
+                                    <div>第二页</div>
+                                </template>
+                                <template #第三页>
+                                    <div>
+                                        <div style="height:200px;">第三页</div>
+                                        <div id="锚点6">锚点6</div>
+                                    </div>
+                                </template>
+                            </ui-tab>
                         </div>
-                    </ui-tab>
-                </div>
-                <div slot="第三节">第三节</div>
-            </ui-tab>
-        </div>
+                    </template>
+                    <template #第三节>
+                        <div>第三节</div>
+                    </template>
+                </ui-tab>
+            </div>
+        </template>
     </ui-tab>
     :::
 
@@ -385,9 +509,15 @@
     标签页在上方。
     >tpl
     <ui-tab position="top">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -395,9 +525,15 @@
     标签页在上方，配合无边框。
     >tpl
     <ui-tab position="top" no-border>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -405,9 +541,15 @@
     标签页在上方，配合区块标签页。
     >tpl
     <ui-tab position="top" type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -415,9 +557,15 @@
     标签页在上方，配合线条标签页。
     >tpl
     <ui-tab position="top" type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -425,9 +573,15 @@
     标签页在上方，配合按钮式标签页。
     >tpl
     <ui-tab position="top" type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -435,9 +589,15 @@
     标签页在下方。
     >tpl
     <ui-tab position="bottom">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -445,9 +605,15 @@
     标签页在下方，配合无边框。
     >tpl
     <ui-tab position="bottom" no-border>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -455,9 +621,15 @@
     标签页在下方，配合区块标签页。
     >tpl
     <ui-tab position="bottom" type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -465,9 +637,15 @@
     标签页在下方，配合线条标签页。
     >tpl
     <ui-tab position="bottom" type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -475,9 +653,15 @@
     标签页在下方，配合按钮式标签页。
     >tpl
     <ui-tab position="bottom" type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -485,9 +669,15 @@
     标签页在左侧。
     >tpl
     <ui-tab position="left">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -495,9 +685,15 @@
     标签页在左侧，配合无边框。
     >tpl
     <ui-tab position="left" no-border>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -505,9 +701,15 @@
     标签页在左侧，配合区块标签页。
     >tpl
     <ui-tab position="left" type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -515,9 +717,15 @@
     标签页在左侧，配合线条标签页。
     >tpl
     <ui-tab position="left" type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -525,9 +733,15 @@
     标签页在左侧，配合按钮式标签页。
     >tpl
     <ui-tab position="left" type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -535,9 +749,15 @@
     标签页在右侧。
     >tpl
     <ui-tab position="right">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -545,9 +765,15 @@
     标签页在右侧，配合无边框。
     >tpl
     <ui-tab position="right" no-border>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -555,9 +781,15 @@
     标签页在右侧，配合区块标签页。
     >tpl
     <ui-tab position="right" type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -565,9 +797,15 @@
     标签页在右侧，配合线条标签页。
     >tpl
     <ui-tab position="right" type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -575,9 +813,15 @@
     标签页在右侧，配合按钮式标签页。
     >tpl
     <ui-tab position="right" type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     :::
@@ -598,9 +842,15 @@
     #demo
     >tpl
     <ui-tab :disabled-options="['第二页']">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -608,9 +858,15 @@
     区块标签页。
     >tpl
     <ui-tab :disabled-options="['第二页']" type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -618,9 +874,15 @@
     线条标签页。
     >tpl
     <ui-tab :disabled-options="['第二页']" type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -628,9 +890,15 @@
     按钮式标签页。
     >tpl
     <ui-tab :disabled-options="['第二页']" type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -638,9 +906,15 @@
      使用`tab`无法选中禁用的标签（自动切换下一个最近可选标签）。
     >tpl
     <ui-tab :disabled-options="['第二页']" tab="第二页">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -662,9 +936,15 @@
     标准风格标签页。
     >tpl
     <ui-tab type="normal">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -672,9 +952,15 @@
     区块风格标签页。
     >tpl
     <ui-tab type="block">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -682,9 +968,15 @@
     线条风格标签页。
     >tpl
     <ui-tab type="line">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     ---
     #demo
@@ -692,9 +984,15 @@
     按钮风格标签页。
     >tpl
     <ui-tab type="btn">
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -714,9 +1012,15 @@
     #demo
     >tpl
     <ui-tab no-padding>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -736,9 +1040,15 @@
     #demo
     >tpl
     <ui-tab no-border>
-        <div slot="第一页">第一页</div>
-        <div slot="第二页">第二页</div>
-        <div slot="第三页">第三页</div>
+        <template #第一页>
+            <div>第一页</div>
+        </template>
+        <template #第二页>
+            <div>第二页</div>
+        </template>
+        <template #第三页>
+            <div>第三页</div>
+        </template>
     </ui-tab>
     :::
 
@@ -759,9 +1069,15 @@
     >tpl
     <div>
         <ui-tab ref="demo3">
-            <div slot="第一页">第一页</div>
-            <div slot="第二页">第二页</div>
-            <div slot="第三页">第三页</div>
+            <template #第一页>
+                <div>第一页</div>
+            </template>
+            <template #第二页>
+                <div>第二页</div>
+            </template>
+            <template #第三页>
+                <div>第三页</div>
+            </template>
         </ui-tab>
         <br><br> 
         <ui-link js="morning.findVM('demo3').switch('第一页');">切换到第一页</ui-link>
@@ -783,9 +1099,15 @@
     >tpl
     <div>
         <ui-tab ref="demo4">
-            <div slot="第一页">第一页</div>
-            <div slot="第二页">第二页</div>
-            <div slot="第三页">第三页</div>
+            <template #第一页>
+                <div>第一页</div>
+            </template>
+            <template #第二页>
+                <div>第二页</div>
+            </template>
+            <template #第三页>
+                <div>第三页</div>
+            </template>
         </ui-tab>
         <br><br> 
         <ui-link js="morning.findVM('demo4').next();">切换到下一个标签</ui-link>
@@ -805,9 +1127,15 @@
     >tpl
     <div>
         <ui-tab ref="demo5">
-            <div slot="第一页">第一页</div>
-            <div slot="第二页">第二页</div>
-            <div slot="第三页">第三页</div>
+            <template #第一页>
+                <div>第一页</div>
+            </template>
+            <template #第二页>
+                <div>第二页</div>
+            </template>
+            <template #第三页>
+                <div>第三页</div>
+            </template>
         </ui-tab>
         <br><br>
         <ui-link js="morning.findVM('demo5').prev();">切换到上一个标签</ui-link>
@@ -829,9 +1157,15 @@
     >tpl
     <div>
         <ui-tab @switch="echo" ref="demo6">
-            <div slot="第一页">第一页</div>
-            <div slot="第二页">第二页</div>
-            <div slot="第三页">第三页</div>
+            <template #第一页>
+                <div>第一页</div>
+            </template>
+            <template #第二页>
+                <div>第二页</div>
+            </template>
+            <template #第三页>
+                <div>第三页</div>
+            </template>
         </ui-tab>
         <p>切换标签页触发此事件</p>
     </div>
@@ -850,9 +1184,15 @@
     ---
     tab
     标签页
-    <div slot="第一页">{*text*}</div>
-    <div slot="第二页">第二页</div>
-    <div slot="第三页">第三页</div>
+    <template #第一页>
+        <div>{*text*}</div>
+    </template>
+    <template #第二页>
+        <div>第二页</div>
+    </template>
+    <template #第三页>
+        <div>第三页</div>
+    </template>
     :::
 
     [[[源码]]]

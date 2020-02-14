@@ -17,13 +17,6 @@
                     <ui-cascader :list-width="600" form-name="地址" :list="questionMap" can-search multi-select :collapse-limit="1"></ui-cascader>
                     <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
 
-<!-- side-collapse -->
-                    <!-- <ui-tab>
-                        <div slot="第一页">第一页</div>
-                        <div slot="第二页">第二页</div>
-                        <div slot="第三页">第三页</div>
-                    </ui-tab> -->
-
                 </div>
 
                         <ui-select

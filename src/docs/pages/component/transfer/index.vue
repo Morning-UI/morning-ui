@@ -60,18 +60,22 @@
     ---
     #demo
     >desc
-    可以通过`target-footer`和`source-footer`两个`slot`来分别定义左右两侧的底部内容。
+    可以通过`#target-footer`和`#source-footer`两个`slot`来分别定义左右两侧的底部内容。
     >tpl
     <div style="width:500px;height:280px;">
         <ui-transfer form-name="选择" :list="list" v-model="value">
-            <div slot="target-footer">
-                <ui-btn size="xxs">操作1</ui-btn>
-                <ui-link size="xxs" color="minor">操作2</ui-link>
-            </div>
-            <div slot="source-footer">
-                <ui-btn size="xxs">操作1</ui-btn>
-                <ui-link size="xxs" color="minor">操作2</ui-link>
-            </div>
+            <template #target-footer>
+                <div>
+                    <ui-btn size="xxs">操作1</ui-btn>
+                    <ui-link size="xxs" color="minor">操作2</ui-link>
+                </div>
+            </template>
+            <template #source-footer>
+                <div>
+                    <ui-btn size="xxs">操作1</ui-btn>
+                    <ui-link size="xxs" color="minor">操作2</ui-link>
+                </div>
+            </template>
         </ui-transfer>
     </div>
     >script

@@ -38,7 +38,7 @@
     >tpl
     <div>
         <span id="demo31">通过方法显示弹出框</span>
-        <ui-popover target="#demo31" ref="demo31" color="white"></ui-popover>
+        <ui-popover target="#demo31" ref="demo31" color="white" trigger="method"></ui-popover>
         <ui-link @emit="showConfirm">显示弹出框</ui-link>
     </div>
     >script
@@ -62,12 +62,14 @@
     ---
     #demo
     >desc
-    弹出框支持标题`slot`，可以通过`slot="title"`来指定标题部分。
+    弹出框支持标题`slot`，可以通过`#title`来指定标题部分。
     >tpl
     <div>
         <span id="demo2">鼠标悬浮显示弹出框</span>
         <ui-popover target="#demo2">
-            <b slot="title">标题</b>
+            <template #title>
+                <b>标题</b>
+            </template>
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -81,10 +83,12 @@
     <div>
         <span id="demo3">鼠标悬浮显示弹出框</span>
         <ui-popover target="#demo3">
-            <div slot="title">
-                <b>标题</b>
-                <ui-btn size="xxs">查看</ui-btn>
-            </div>
+            <template #title>
+                <div>
+                    <b>标题</b>
+                    <ui-btn size="xxs">查看</ui-btn>
+                </div>
+            </template>
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -102,7 +106,9 @@
     <div>
         <span id="demo4">鼠标悬浮显示弹出框</span>
         <ui-popover target="#demo4">
-            <b slot="title">请确认</b>
+            <template #title>
+                <b>请确认</b>
+            </template>
             <div style="width:200px">
                 <p style="margin-top:0;">确认需要删除此内容？</p>
                 <div style="text-align:right">

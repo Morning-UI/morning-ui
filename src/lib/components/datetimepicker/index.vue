@@ -62,39 +62,37 @@
             @focus="_focus"
             @pick-done="_pickDone"
         >
-            <template v-slot:timepicker>
-                <div>
-                    <morning-timepicker
-                        :ref="'ui-datetimepicker-time-'+uiid"
-                        inside-name="时间"
-                        align="right"
-                        :selectable-range="timeSelectableRangeAll"
-                        :relative="conf.relative"
-                        :state="isRelativeDatetime1 ? 'readonly' : 'normal'"
-                        size="s"
-        
-                        @value-change="_syncFromInputToRoot(1)"
-                    ></morning-timepicker>
-                </div>
+            <template #timepicker>
+                <morning-timepicker
+                    :ref="'ui-datetimepicker-time-'+uiid"
+                    inside-name="时间"
+                    align="right"
+                    :selectable-range="timeSelectableRangeAll"
+                    :relative="conf.relative"
+                    :state="isRelativeDatetime1 ? 'readonly' : 'normal'"
+                    size="s"
+    
+                    @value-change="_syncFromInputToRoot(1)"
+                ></morning-timepicker>
             </template>
 
-            <template v-if="conf.isRange" v-slot:timepicker2>
-                <div>
-                    <morning-timepicker
-                        :ref="'ui-datetimepicker-time2-'+uiid"
-                        inside-name="时间"
-                        align="right"
-                        :selectable-range="timeSelectableRangeAll"
-                        :relative="conf.relative"
-                        :state="isRelativeDatetime2 ? 'readonly' : 'normal'"
-                        size="s"
+            <template v-if="conf.isRange" #timepicker2>
+                <morning-timepicker
+                    :ref="'ui-datetimepicker-time2-'+uiid"
+                    inside-name="时间"
+                    align="right"
+                    :selectable-range="timeSelectableRangeAll"
+                    :relative="conf.relative"
+                    :state="isRelativeDatetime2 ? 'readonly' : 'normal'"
+                    size="s"
 
-                        @value-change="_syncFromInputToRoot(1)"
-                    ></morning-timepicker>
-                </div>
+                    @value-change="_syncFromInputToRoot(1)"
+                ></morning-timepicker>
             </template>
             
-            <slot name="footer" v-slot:footer v-if="$slots.footer"></slot>
+            <template #footer v-if="$slots.footer">
+                <slot name="footer"></slot>
+            </template>
         </morning-datepicker>
     </div>
 

@@ -23,15 +23,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse>
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -45,15 +51,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse>
-            <div slot="app" :title="'<i class=\'mo-icon mo-icon-block-4\'></i>应用'">
-                这里是应用内容
-            </div>
-            <div slot="tag" :title="'<i class=\'mo-icon mo-icon-tag-f\'></i>标签'">
-                这里是标签内容
-            </div>
-            <div slot="more" title="更多">
-                这里是更多内容
-            </div>
+            <template #app>
+                <div :title="'<i class=\'mo-icon mo-icon-block-4\'></i>应用'">
+                    这里是应用内容
+                </div>
+            </template>
+            <template #tag>
+                <div :title="'<i class=\'mo-icon mo-icon-tag-f\'></i>标签'">
+                    这里是标签内容
+                </div>
+            </template>
+            <template #more>
+                <div title="更多">
+                    这里是更多内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -67,15 +79,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :max-show="1">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -89,15 +107,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse class="line">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -111,15 +135,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse class="block">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -133,15 +163,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse class="no-arrow">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -153,25 +189,37 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse>
-            <div slot="one" title="第一组">
-                这里是第一组内容
-            </div>
-            <div slot="two" title="第二组">
-                <ui-collapse>
-                    <div slot="one" title="第二组第一个">
-                        这里是第二组第一个内容
-                    </div>
-                    <div slot="two" title="第二组第二个">
-                        这里是第二组第二个内容
-                    </div>
-                    <div slot="three" title="第二组第三个">
-                        这里是第二组第三个内容
-                    </div>
-                </ui-collapse>
-            </div>
-            <div slot="three" title="第三组">
-                这里是第三组内容
-            </div>
+            <template #one>
+                <div title="第一组">
+                    这里是第一组内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二组">
+                    <ui-collapse>
+                        <template #one>
+                            <div title="第二组第一个">
+                                这里是第二组第一个内容
+                            </div>
+                        </template>
+                        <template #two>
+                            <div title="第二组第二个">
+                                这里是第二组第二个内容
+                            </div>
+                        </template>
+                        <template #three>
+                            <div title="第二组第三个">
+                                这里是第二组第三个内容
+                            </div>
+                        </template>
+                    </ui-collapse>
+                </div>
+            </template>
+            <template #three>
+                <div title="第三组">
+                    这里是第三组内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -185,15 +233,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse>
-            <div slot="app" title="应用">
-                这里是应用内容
-            </div>
-            <div slot="tag"title="标签">
-                <ui-empty></ui-empty>
-            </div>
-            <div slot="more" title="更多">
-                <ui-empty></ui-empty>
-            </div>
+            <template #app>
+                <div title="应用">
+                    这里是应用内容
+                </div>
+            </template>
+            <template #tag>
+                <div title="标签">
+                    <ui-empty></ui-empty>
+                </div>
+            </template>
+            <template #more>
+                <div title="更多">
+                    <ui-empty></ui-empty>
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -231,15 +285,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :shows="['two']">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     ---
@@ -249,15 +309,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :shows="['two', 'three']">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     ---
@@ -267,15 +333,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :shows="['two', 'three']" :disabled-options="['three']">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -299,15 +371,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :max-show="1">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     ---
@@ -317,15 +395,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :max-show="2">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -347,15 +431,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse :disabled-options="['two']">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
     </div>
     :::
@@ -378,15 +468,21 @@
     <div>
         <div style="width: 560px;">
             <ui-collapse ref="demo1">
-                <div slot="one" title="第一个">
-                    这里是第一个内容
-                </div>
-                <div slot="two" title="第二个">
-                    这里是第二个内容
-                </div>
-                <div slot="three" title="第三个">
-                    这里是第三个内容
-                </div>
+                <template #one>
+                    <div title="第一个">
+                        这里是第一个内容
+                    </div>
+                </template>
+                <template #two>
+                    <div title="第二个">
+                        这里是第二个内容
+                    </div>
+                </template>
+                <template #three>
+                    <div title="第三个">
+                        这里是第三个内容
+                    </div>
+                </template>
             </ui-collapse>
         </div>
         <br><br> 
@@ -411,15 +507,21 @@
     <div>
         <div style="width: 560px;">
             <ui-collapse ref="demo2">
-                <div slot="one" title="第一个">
-                    这里是第一个内容
-                </div>
-                <div slot="two" title="第二个">
-                    这里是第二个内容
-                </div>
-                <div slot="three" title="第三个">
-                    这里是第三个内容
-                </div>
+                <template #one>
+                    <div title="第一个">
+                        这里是第一个内容
+                    </div>
+                </template>
+                <template #two>
+                    <div title="第二个">
+                        这里是第二个内容
+                    </div>
+                </template>
+                <template #three>
+                    <div title="第三个">
+                        这里是第三个内容
+                    </div>
+                </template>
             </ui-collapse>
         </div>
         <br><br> 
@@ -443,15 +545,21 @@
     <div>
         <div style="width: 560px;">
             <ui-collapse ref="demo3" :shows="['one']">
-                <div slot="one" title="第一个">
-                    这里是第一个内容
-                </div>
-                <div slot="two" title="第二个">
-                    这里是第二个内容
-                </div>
-                <div slot="three" title="第三个">
-                    这里是第三个内容
-                </div>
+                <template #one>
+                    <div title="第一个">
+                        这里是第一个内容
+                    </div>
+                </template>
+                <template #two>
+                    <div title="第二个">
+                        这里是第二个内容
+                    </div>
+                </template>
+                <template #three>
+                    <div title="第三个">
+                        这里是第三个内容
+                    </div>
+                </template>
             </ui-collapse>
         </div>
         <br><br> 
@@ -474,15 +582,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo4" @switch="echo">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
         <br>
         <p>点击面板触发此事件</p>
@@ -510,15 +624,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo5" @show="echo">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
         <br>
         <p>点击面板触发此事件</p>
@@ -546,15 +666,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo6" @hide="echo">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
         <br>
         <p>点击面板触发此事件</p>
@@ -582,15 +708,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo7" @after-show="echo">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
         <br>
         <p>点击面板触发此事件</p>
@@ -618,15 +750,21 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo7" @after-hide="echo">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
+            <template #one>
+                <div title="第一个">
+                    这里是第一个内容
+                </div>
+            </template>
+            <template #two>
+                <div title="第二个">
+                    这里是第二个内容
+                </div>
+            </template>
+            <template #three>
+                <div title="第三个">
+                    这里是第三个内容
+                </div>
+            </template>
         </ui-collapse>
         <br>
         <p>点击面板触发此事件</p>
@@ -646,15 +784,21 @@
     ---
     collapse
     折叠面板
-    <div slot="one" title="第一个">
-        {*text*}
-    </div>
-    <div slot="two" title="第二个">
-        这里是第二个内容
-    </div>
-    <div slot="three" title="第三个">
-        这里是第三个内容
-    </div>
+    <template #one>
+        <div title="第一个">
+            {*text*}
+        </div>
+    </template>
+    <template #two>
+        <div title="第二个">
+            这里是第二个内容
+        </div>
+    </template>
+    <template #three>
+        <div title="第三个">
+            这里是第三个内容
+        </div>
+    </template>
     :::
 
     [[[源码]]]

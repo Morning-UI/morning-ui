@@ -180,8 +180,7 @@ export default {
 
             if (this.$slots.header &&
                 this.$slots.header[0] &&
-                this.$slots.header[0].elm &&
-                this.$slots.header[0].elm.innerHTML !== '') {
+                (this.$slots.header[0].text || (this.$slots.header[0].children.length > 0))) {
 
                 this.data.hasHeader = true;
 
@@ -193,8 +192,7 @@ export default {
 
             if (this.$slots.footer &&
                 this.$slots.footer[0] &&
-                this.$slots.footer[0].elm &&
-                this.$slots.footer[0].elm.innerHTML !== '') {
+                (this.$slots.footer[0].text || (this.$slots.footer[0].children.length > 0))) {
 
                 this.data.hasFooter = true;
 

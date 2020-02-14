@@ -17,25 +17,27 @@
     ---
     #demo
     >desc
-    使用时请用`<div slot=item></div>`来定一个区域，内容可以是任意HTML，如果内容为单个`<img>`标签，则组件会有默认样式。
+    使用时请用`<template #item></template>`来定义轮播内容，每一项内容采用一个`<div>`包裹，内容可以是任意HTML，如果内容为单个`<img>`标签，则组件会有默认样式。
     >tpl
     <div style="width:480px;">
         <ui-carousel>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -47,21 +49,17 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel>
-            <div slot="item">
+            <template #item>
                 <div style="width:100%;height:240px;background:#E2E8EE;text-align:center;line-height:240px;font-size:48px;">
                     1
                 </div>
-            </div>
-            <div slot="item">
                 <div style="width:100%;height:240px;background:#F0F0F0;text-align:center;line-height:240px;font-size:48px;">
                     2
                 </div>
-            </div>
-            <div slot="item">
                 <div style="width:100%;height:240px;background:#E2E8EE;text-align:center;line-height:240px;font-size:48px;">
                     3
                 </div>
-            </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -99,21 +97,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel :toggle-time="2000">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -137,21 +137,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel toggle-type="fade">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     ---
@@ -161,21 +163,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel toggle-type="move">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -199,21 +203,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel toggle-btn>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -237,21 +243,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel indicator-position="outside">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -275,21 +283,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel indicator-type="line">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -313,21 +323,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel trigger="hover">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -351,21 +363,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel direction="vertical">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     ---
@@ -375,21 +389,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel direction="vertical" toggle-type="move">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     ---
@@ -399,21 +415,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel direction="vertical" toggle-btn>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     ---
@@ -423,21 +441,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel direction="vertical" indicator-position="outside">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     :::
@@ -457,21 +477,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel ref="demo1">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
         <ui-link js="morning.findVM('demo1').next();">下一页</ui-link>
     </div>
@@ -490,21 +512,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel ref="demo2">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
         <ui-link js="morning.findVM('demo2').prev();">上一页</ui-link>
     </div>
@@ -525,21 +549,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel ref="demo3">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
         <ui-link js="morning.findVM('demo3').switch(0);">切换到第1页</ui-link>
         <ui-link js="morning.findVM('demo3').switch(2);">切换到第3页</ui-link>
@@ -559,21 +585,23 @@
     >tpl
     <div style="width:480px;">
         <ui-carousel @emit="echo">
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+                </div>
+            </template>
         </ui-carousel>
     </div>
     >script
@@ -607,21 +635,23 @@
             @before-destroy="echo('before-destroy')"
             @destroyed="echo('destroyed')"
         >
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
-            </div>
-            <div slot="item">
-                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
-            </div>
-            <div slot="item">
-                {*text*}
-            </div>
+            <template #item>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+                </div>
+                <div>
+                    <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+                </div>
+                <div>
+                    {*text*}
+                </div>
+            </template>
         </ui-carousel>
         <br><br>
         <ui-link js="this.text='生命周期事件';">触发update</ui-link>

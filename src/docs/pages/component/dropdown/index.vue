@@ -19,13 +19,15 @@
     >desc
     `ui-dropdown`内包含一组`ui-btn`或`ui-btngroup`，可以标记两个特定的按钮:
     <br><br>
-    - `slot="showbtn"` : 标记默认显示的按钮
+    - `#showbtn` : 标记默认显示的按钮
     - `emitbtn` : 标记触发按钮组的按钮。
     <br><br>
     组件内支持一个向下箭头图标，可以通过`<i class="mo-icon mo-icon-dropdown"></i>`使用。
     >tpl
     <ui-dropdown>
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -40,11 +42,13 @@
     分开标记`showbtn`和`emitbtn`，再配合`ui-btngroup`可以实现非常棒的效果。
     >tpl
     <ui-dropdown>
-        <ui-btngroup slot="showbtn">
-            <ui-btn color="success">立即购买</ui-btn>
-            <!-- 这里的mo-icon组件附带，可直接使用 -->
-            <ui-btn color="minor" emitbtn><i class="mo-icon mo-icon-dropdown"></i></ui-btn>
-        </ui-btngroup>
+        <template #showbtn>
+            <ui-btngroup>
+                <ui-btn color="success">立即购买</ui-btn>
+                <!-- 这里的mo-icon组件附带，可直接使用 -->
+                <ui-btn color="minor" emitbtn><i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            </ui-btngroup>
+        </template>
         <ui-btn color="info">加入购物车</ui-btn>
         <ui-btn color="white"><i class="mo-icon mo-icon-star-f"></i> 收藏</ui-btn>
         <ui-btn color="white"><i class="mo-icon mo-icon-share-f"></i> 分享</ui-btn>
@@ -57,7 +61,9 @@
     #demo
     >tpl
     <ui-dropdown>
-        <ui-link slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-link>
+        <template #showbtn>
+            <ui-link emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-link>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -72,7 +78,9 @@
     通过设置按钮或链接本身的尺寸和颜色来修改。
     >tpl
     <ui-dropdown>
-        <ui-btn slot="showbtn" emitbtn size="xs">更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn size="xs">更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        </template>
         <ui-btn color="white" size="xs">打开</ui-btn>
         <ui-btn color="white" size="xs">关闭</ui-btn>
         <ui-btn color="danger" size="xs">删除</ui-btn>
@@ -113,7 +121,9 @@
     点击菜单中按钮后不会自动隐藏，需要点击`更多`来隐藏。
     >tpl
     <ui-dropdown :done-hidden="false">
-        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多</ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -138,7 +148,9 @@
     采用鼠标右键触发。
     >tpl
     <ui-dropdown trigger="rclick">
-        <ui-link slot="showbtn" emitbtn>右键点击查看更多</ui-link>
+        <template #showbtn>
+            <ui-link emitbtn>右键点击查看更多</ui-link>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -149,7 +161,9 @@
     采用hover方式触发。
     >tpl
     <ui-dropdown trigger="hover">
-        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多</ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -160,7 +174,9 @@
     `trigger`和`done-hidden`配合使用。
     >tpl
     <ui-dropdown :done-hidden="false" trigger="hover">
-        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多</ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -172,7 +188,9 @@
     >tpl
     <div>
         <ui-dropdown ref="demo4" trigger="method">
-            <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon  mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>更多 <i class="mo-icon  mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -203,7 +221,9 @@
     鼠标移入元素时延迟300ms触发提示。
     >tpl
     <ui-dropdown trigger="hover" :trigger-in-delay="300">
-        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多</ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -214,7 +234,9 @@
     鼠标移入元素时立即触发提示。
     >tpl
     <ui-dropdown trigger="hover" :trigger-in-delay="0">
-        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多</ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -239,7 +261,9 @@
     滚动页面的位置，使得下面的demo靠近窗口底部，当关闭`auto-reverse`后，下拉菜单不会反转方向。
     >tpl
     <ui-dropdown :auto-reverse="false">
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -250,7 +274,9 @@
     开启`auto-reverse`后，下拉菜单会反转方向。
     >tpl
     <ui-dropdown :auto-reverse="true">
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <template #showbtn>
+            <ui-btn emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        </template>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -274,7 +300,9 @@
     >tpl
     <div>
         <ui-dropdown ref="demo1">
-            <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon  mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>更多 <i class="mo-icon  mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -299,7 +327,9 @@
     >tpl
     <div>
         <ui-dropdown @emit="echo">
-            <ui-btn slot="showbtn" emitbtn>emit事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>emit事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -326,7 +356,9 @@
     >tpl
     <div>
         <ui-dropdown @show="echo">
-            <ui-btn slot="showbtn" emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -353,7 +385,9 @@
     >tpl
     <div>
         <ui-dropdown @hide="echo">
-            <ui-btn slot="showbtn" emitbtn>hide事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>hide事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -380,7 +414,9 @@
     >tpl
     <div>
         <ui-dropdown @after-show="echo">
-            <ui-btn slot="showbtn" emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -407,7 +443,9 @@
     >tpl
     <div>
         <ui-dropdown @after-hide="echo">
-            <ui-btn slot="showbtn" emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            <template #showbtn>
+                <ui-btn emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+            </template>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -428,7 +466,9 @@
     ---
     dropdown
     下拉菜单
-    <ui-btn slot="showbtn" emitbtn>{*text*} <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+    <template #showbtn>
+        <ui-btn emitbtn>{*text*} <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+    </template>
     <ui-btn color="white">收藏</ui-btn>
     <ui-btn color="white">修改</ui-btn>
     <ui-btn color="danger">删除</ui-btn>

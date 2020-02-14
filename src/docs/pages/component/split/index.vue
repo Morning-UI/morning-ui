@@ -19,8 +19,12 @@
     >tpl
     <div style="width:500px;height:100px;border: 1px #e0e0e0 solid">
         <ui-split>
-            <div slot="a">左边面板</div>
-            <div slot="b">右边面板</div>
+            <template #a>
+                <div>左边面板</div>
+            </template>
+            <template #b>
+                <div>右边面板</div>
+            </template>
         </ui-split>
     </div>
     :::
@@ -56,8 +60,12 @@
     >tpl
     <div style="width:500px;height:100px;border: 1px #e0e0e0 solid">
         <ui-split direction="vertical">
-            <div slot="a">左边面板</div>
-            <div slot="b">右边面板</div>
+            <template #a>
+                <div>上方面板</div>
+            </template>
+            <template #b>
+                <div>下方面板</div>
+            </template>
         </ui-split>
     </div>
     ---
@@ -67,11 +75,19 @@
     >tpl
     <div style="width:500px;height:180px;border: 1px #e0e0e0 solid">
         <ui-split direction="horizontal">
-            <ui-split direction="vertical" slot="a">
-                <div slot="a">左上面板</div>
-                <div slot="b">左下面板</div>
-            </ui-split>
-            <div slot="b">右边面板</div>
+            <template #a>
+                <ui-split direction="vertical">
+                    <template #a>
+                        <div>左上面板</div>
+                    </template>
+                    <template #b>
+                        <div>左下面板</div>
+                    </template>
+                </ui-split>
+            </template>
+            <template #b>
+                <div>右边面板</div>
+            </template>
         </ui-split>
     </div>
     :::
@@ -95,8 +111,12 @@
     >tpl
     <div style="width:500px;height:100px;border: 1px #e0e0e0 solid">
         <ui-split :min="100">
-            <div slot="a">左边面板</div>
-            <div slot="b">右边面板</div>
+            <template #a>
+                <div>左边面板</div>
+            </template>
+            <template #b>
+                <div>右边面板</div>
+            </template>
         </ui-split>
     </div>
     :::
@@ -112,8 +132,12 @@
     ---
     split
     面板分割
-    <div slot="a">左边面板{*text*}</div>
-    <div slot="b">右边面板</div>
+    <template #a>
+        <div>左边面板{*text*}</div>
+    </template>
+    <template #b>
+        <div>右边面板</div>
+    </template>
     :::
 
     [[[源码]]]

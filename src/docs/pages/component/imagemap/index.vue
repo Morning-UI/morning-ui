@@ -53,17 +53,17 @@
     ---
     #demo
     >desc
-    图片热区组件支持在每个热区中加入自定义数据，首先通过`<slot>`设置数据的表单。
+    图片热区组件支持在每个热区中加入自定义数据，首先通过`slot`设置数据的表单。
     <br><br>
     数据表单需要注意下面几点：
     <br><br>
     1. 最终数据会存入热区对象的`data`属性中
     2. 数据表单的`form-key`必需设置，若未设置最终数据不会存入热区的`data`中
-    3. 数据表单的`group`通过`slot-scope="{group}"`解构获取(Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD))，并且需要绑定到所有表单上，若未绑定到表单，最终数据不会存入热区的`data`中
+    3. 数据表单的`group`通过`v-slot="{group}"`解构获取(Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD))，并且需要绑定到所有表单上，若未绑定到表单，最终数据不会存入热区的`data`中
     >tpl
     <div style="width:300px;">
         <ui-imagemap form-name="热区" ref="demo1">
-            <ui-formgroup slot-scope="{group}">
+            <ui-formgroup v-slot="{group}">
                 <div class="item">
                     <h5 class="title">
                         <ui-center height-fill>自定义数据1</ui-center>

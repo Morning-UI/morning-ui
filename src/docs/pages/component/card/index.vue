@@ -17,13 +17,17 @@
     ---
     #demo
     >desc
-    使用`slot="header"`来定义卡片头部部分，`slot="footer"`来定义卡片尾部部分，其他的内容为卡片主体部分。
+    使用`#header`来定义卡片头部部分，`#footer`来定义卡片尾部部分，其他的内容为卡片主体部分。
     >tpl
     <div style="width:180px;height:240px;">
         <ui-card>
-            <span slot="header">头部</span>
+            <template #header>
+                <span>头部</span>
+            </template>
             <div>卡片</div>
-            <span slot="footer">尾部</span>
+            <template #footer>
+                <span>尾部</span>
+            </template>
         </ui-card>
     </div>
     :::
@@ -33,22 +37,26 @@
     ---
     #demo
     >desc
-    `slot="header"`不是必须的。
+    `#header`不是必须的。
     >tpl
     <div style="width:180px;height:240px;">
         <ui-card>
             <div>卡片</div>
-            <span slot="footer">尾部</span>
+            <template #footer>
+                <span>尾部</span>
+            </template>
         </ui-card>
     </div>
     ---
     #demo
     >desc
-    `slot="footer"`不是必须的。
+    `#footer`不是必须的。
     >tpl
     <div style="width:180px;height:240px;">
         <ui-card>
-            <span slot="header">头部</span>
+            <template #header>
+                <span>头部</span>
+            </template>
             <div>卡片</div>
         </ui-card>
     </div>
@@ -78,9 +86,13 @@
 
         <div style="width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;">
             <ui-card no-padding>
-                <span slot="header">头部</span>
+                <template #header>
+                    <span>头部</span>
+                </template>
                 <div>卡片</div>
-                <span slot="footer">尾部</span>
+                <template #footer>
+                    <span>尾部</span>
+                </template>
             </ui-card>
         </div>
     </div>
@@ -95,20 +107,24 @@
     >tpl
     <div style="width:240px;height:360px;">
         <ui-card color="neutral-1">
-            <div slot="header">
-                <ui-h size="xxs">内容列表</ui-h>
-                <ui-textinput inside-name="搜索内容"></ui-textinput>
-                <div class="operate" style="margin:10px 0">
-                    <ui-btn size="s" color="success">新增</ui-btn>
-                    <ui-link size="s" color="minor">查看帮助</ui-link>
+            <template #header>
+                <div>
+                    <ui-h size="xxs">内容列表</ui-h>
+                    <ui-textinput inside-name="搜索内容"></ui-textinput>
+                    <div class="operate" style="margin:10px 0">
+                        <ui-btn size="s" color="success">新增</ui-btn>
+                        <ui-link size="s" color="minor">查看帮助</ui-link>
+                    </div>
                 </div>
-            </div>
+            </template>
             <div>卡片</div>
-            <div slot="footer">
-                <ui-label size="xs">标签1</ui-label>
-                <ui-label size="xs" color="neutral-3">标签2</ui-label>
-                <ui-label size="xs" color="neutral-3">标签3</ui-label>
-            </div>
+            <template #footer>
+                <div>
+                    <ui-label size="s">标签1</ui-label>
+                    <ui-label size="s" color="neutral-3">标签2</ui-label>
+                    <ui-label size="s" color="neutral-3">标签3</ui-label>
+                </div>
+            </template>
         </ui-card>
     </div>
     :::
@@ -124,20 +140,24 @@
     >tpl
     <div style="width:240px;height:360px;">
         <ui-card color="neutral-1" inside-padding>
-            <div slot="header">
-                <ui-h size="xxs">内容列表</ui-h>
-                <div class="operate" style="margin:10px 0">
-                    <ui-btn size="xs" color="success">新增</ui-btn>
-                    <ui-btn size="xs" color="minor">高级设置</ui-btn>
-                    <ui-link size="xs" color="minor">查看帮助</ui-link>
+            <template #header>
+                <div>
+                    <ui-h size="xxs">内容列表</ui-h>
+                    <div class="operate" style="margin:10px 0">
+                        <ui-btn size="xs" color="success">新增</ui-btn>
+                        <ui-btn size="xs" color="minor">高级设置</ui-btn>
+                        <ui-link size="xs" color="minor">查看帮助</ui-link>
+                    </div>
                 </div>
-            </div>
+            </template>
             <div>卡片</div>
-            <div slot="footer">
-                <ui-label size="xs">标签1</ui-label>
-                <ui-label size="xs" color="neutral-3">标签2</ui-label>
-                <ui-label size="xs" color="neutral-3">标签3</ui-label>
-            </div>
+            <template #footer>
+                <div>
+                    <ui-label size="s">标签1</ui-label>
+                    <ui-label size="s" color="neutral-3">标签2</ui-label>
+                    <ui-label size="s" color="neutral-3">标签3</ui-label>
+                </div>
+            </template>
         </ui-card>
     </div>
     :::
@@ -159,7 +179,9 @@
     ---
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
         <ui-card color="{$colorKey}">
-            <span slot="header">{$&colorName}</span>
+            <template #header>
+                <span>{$&colorName}</span>
+            </template>
             <div>卡片</div>
         </ui-card>
     </div>
@@ -190,9 +212,13 @@
 
         <div style="width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;">
             <ui-card no-padding>
-                <span slot="header">头部</span>
+                <template #header>
+                    <span>头部</span>
+                </template>
                 <div>卡片</div>
-                <span slot="footer">尾部</span>
+                <template #footer>
+                    <span>尾部</span>
+                </template>
             </ui-card>
         </div>
     </div>
@@ -215,20 +241,24 @@
     >tpl
     <div style="width:240px;height:360px;">
         <ui-card color="neutral-1" inside-padding>
-            <div slot="header">
-                <ui-h size="xxs">内容列表</ui-h>
-                <div class="operate" style="margin:10px 0">
-                    <ui-btn size="xs" color="success">新增</ui-btn>
-                    <ui-btn size="xs" color="minor">高级设置</ui-btn>
-                    <ui-link size="xs" color="minor">查看帮助</ui-link>
+            <template #header>
+                <div>
+                    <ui-h size="xxs">内容列表</ui-h>
+                    <div class="operate" style="margin:10px 0">
+                        <ui-btn size="xs" color="success">新增</ui-btn>
+                        <ui-btn size="xs" color="minor">高级设置</ui-btn>
+                        <ui-link size="xs" color="minor">查看帮助</ui-link>
+                    </div>
                 </div>
-            </div>
+            </template>
             <div>卡片</div>
-            <div slot="footer">
-                <ui-label size="xs">标签1</ui-label>
-                <ui-label size="xs" color="neutral-3">标签2</ui-label>
-                <ui-label size="xs" color="neutral-3">标签3</ui-label>
-            </div>
+            <template #footer>
+                <div>
+                    <ui-label size="s">标签1</ui-label>
+                    <ui-label size="s" color="neutral-3">标签2</ui-label>
+                    <ui-label size="s" color="neutral-3">标签3</ui-label>
+                </div>
+            </template>
         </ui-card>
     </div>
     :::

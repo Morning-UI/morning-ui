@@ -171,7 +171,7 @@
 <script>
 import difference                   from 'lodash-es/difference';
 import intersection                 from 'lodash-es/intersection';
-import isPlainObject                from 'lodash-es/isplainobject';
+import isPlainObject                from 'lodash-es/isPlainObject';
 
 export default {
     origin : 'Form',

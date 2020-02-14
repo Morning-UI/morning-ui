@@ -257,6 +257,8 @@ export default {
             if (this.conf.list) {
 
                 this.data.currentItems = this.conf.list.slice((this.data.currentPage - 1) * this.conf.pageSize, this.data.currentPage * this.conf.pageSize);
+
+                console.log(5, this.uiid, this.conf.list, this.data.currentPage);
             
             }
 
@@ -402,6 +404,11 @@ export default {
 
         }
     },
+    created : function () {
+
+        console.log(1230, this.conf.list);
+
+    },
     mounted : function () {
 
         this.$watch('conf.total', () => {
@@ -452,9 +459,6 @@ export default {
 
         });
 
-        this._setTotal();
-        this._refreshCurrentItems();
-
         this.$watch('conf.page', () => {
     
             this.to(this.conf.page);
@@ -462,6 +466,9 @@ export default {
         }, {
             immediate : true
         });
+
+        this._setTotal();
+        this._refreshCurrentItems();
 
         this.$watch('data.currentPage', () => {
             

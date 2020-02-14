@@ -73,9 +73,11 @@
                     @date-enter="_inputDateEnter"
                     @date-change = "_input0DateChange"
                 >
-                    <slot name="timepicker" v-slot:timepicker></slot>
-
-                    <template v-if="conf.quickPick.length > 0" v-slot:quickpick>
+                    <template #timepicker>
+                        <slot name="timepicker"></slot>
+                    </template>
+                    
+                    <template v-if="conf.quickPick.length > 0" #quickpick>
                         <div
                             class="quickpick"
                         >
@@ -178,7 +180,7 @@
                         </div>
                     </template>
                     
-                    <template v-if="$slots.footer" v-slot:footer>
+                    <template v-if="$slots.footer" #footer>
                         <div class="footer-range-select-start">
                             <slot name="footer"></slot>
                         </div>
@@ -216,8 +218,12 @@
                     @date-enter="_inputDateEnter"
                     @date-change = "_input1DateChange"
                 >
-                    <slot name="timepicker2" v-slot:timepicker></slot>
-                    <slot name="footer" v-slot:footer v-if="$slots.footer"></slot>
+                    <template #timepicker>
+                        <slot name="timepicker2"></slot>
+                    </template>
+                    <template v-if="$slots.footer" #footer>
+                        <slot name="footer"></slot>
+                    </template>
                 </morning-private-datepicker>
             </template>
 
@@ -248,9 +254,11 @@
                     @blur="_blur"
                     @date-click="_dateClick"
                 >
-                    <slot name="timepicker" v-slot:timepicker></slot>
+                    <template #timepicker>
+                        <slot name="timepicker"></slot>
+                    </template>
 
-                    <template v-if="conf.quickPick.length > 0" v-slot:quickpick>
+                    <template v-if="conf.quickPick.length > 0" #quickpick>
                         <div class="quickpick">
                             <ul>
                                 <template v-for="(pick, index) in conf.quickPick">
@@ -351,8 +359,10 @@
                             </ul>
                         </div>
                     </template>
-
-                    <slot name="footer" v-slot:footer v-if="$slots.footer"></slot>
+                    
+                    <template #footer>
+                        <slot name="footer" v-if="$slots.footer"></slot>
+                    </template>
 
                 </morning-private-datepicker>
             </template>
@@ -1685,13 +1695,10 @@ export default {
                 }
 
                 if (date instanceof Date) {
+                   
+                    let $timepicker = this.$parent.$refs[`ui-datetimepicker-time-${this.$parent.uiid}`];
 
-                    if (this.$slots.timepicker &&
-                        this.$slots.timepicker[0] &&
-                        this.$slots.timepicker[0].children &&
-                        this.$slots.timepicker[0].children[0]) {
-
-                        let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
+                    if ($timepicker) {
 
                         $timepicker._set(formatDate(date, $timepicker.conf.format, formatOptions));
 
@@ -1754,28 +1761,21 @@ export default {
                 }
 
                 this._set(value);
+                   
+                let $timepicker = this.$parent.$refs[`ui-datetimepicker-time-${this.$parent.uiid}`];
+                let $timepicker2 = this.$parent.$refs[`ui-datetimepicker-time2-${this.$parent.uiid}`];
 
                 if (!value1IsRelative &&
-                    this.$slots.timepicker &&
-                    this.$slots.timepicker[0] &&
-                    this.$slots.timepicker[0].children &&
-                    this.$slots.timepicker[0].children[0]) {
-
-                    let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
+                    $timepicker) {
 
                     $timepicker._set(formatDate(date[0], $timepicker.conf.format, formatOptions));
 
                 }
 
                 if (!value2IsRelative &&
-                    this.$slots.timepicker2 &&
-                    this.$slots.timepicker2[0] &&
-                    this.$slots.timepicker2[0].children &&
-                    this.$slots.timepicker2[0].children[0]) {
+                    $timepicker2) {
 
-                    let $timepicker = this.$slots.timepicker2[0].children[0].componentInstance;
-
-                    $timepicker._set(formatDate(date[1], $timepicker.conf.format, formatOptions));
+                    $timepicker2._set(formatDate(date[1], $timepicker.conf.format, formatOptions));
 
                 }
 

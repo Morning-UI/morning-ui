@@ -105,11 +105,11 @@
         @after-show="_afterShowForm"
         @after-hide="_afterHideForm"
     >
-        <template v-slot:header>
+        <template #header>
             <header>请填写表单</header>
         </template>
         <slot></slot>
-        <template v-slot:footer>
+        <template #footer>
             <div>
                 <div class="operate">
                     <!-- action="emit:toggle" -->
@@ -129,11 +129,11 @@
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"
     >
-        <template v-slot:header>
+        <template #header>
             <header>请输入需要添加的项目</header>
         </template>
         <morning-textarea :ref="'ui-multiform-batchinput-'+uiid"></morning-textarea>
-        <template v-slot:footer>
+        <template #footer>
             <div>
                 <div class="operate">
                     <!-- action="emit:toggle" -->

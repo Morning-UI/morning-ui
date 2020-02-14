@@ -41,11 +41,13 @@
     ---
     #demo
     >desc
-    通过`slot="header"`标签标记一个头部内容。
+    通过`#header`标记一个头部内容。
     >tpl
     <div>
         <ui-drawer ref="demo2">
-            <div slot="header">This is title</div>
+            <template #header>
+                <div>This is title</div>
+            <template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo2').toggle(true);">显示抽屉</ui-link>
     </div>
@@ -82,10 +84,12 @@
     >tpl
     <div>
         <ui-drawer ref="demo4">
-            <div slot="header">
-                <h1>This is title</h1>
-                <ui-link color="neutral-4" js="window.morning.findVM('demo4').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </div>
+            <template #header>
+                <div>
+                    <h1>This is title</h1>
+                    <ui-link color="neutral-4" js="window.morning.findVM('demo4').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
+                </div>
+            </template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo4').toggle(true);">显示抽屉</ui-link>
     </div>
@@ -98,8 +102,12 @@
     >tpl
     <div>
         <ui-drawer ref="demo5">
-            <div slot="header"></div>
-            <div slot="footer"></div>
+            <template #header>
+                <div></div>
+            </template>
+            <template #footer>
+                <div></div>
+            </template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo5').toggle(true);">显示抽屉</ui-link>
     </div>
@@ -110,11 +118,13 @@
     ---
     #demo
     >desc
-    通过`slot="footer"`标签标记一个尾部内容。
+    通过`#footer`标记一个尾部内容。
     >tpl
     <div>
         <ui-drawer ref="demo6">
-            <div slot="footer">This is footer</div>
+            <template #footer>
+                <div>This is footer</div>
+            </template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo6').toggle(true);">显示抽屉</ui-link>
     </div>
@@ -129,13 +139,15 @@
     >tpl
     <div>
         <ui-drawer ref="demo7">
-            <div slot="footer">
-                <span>This is footer</span>
-                <div class="operate">
-                    <ui-link class="margin" color="minor" js="window.morning.findVM('demo7').toggle();">取消</ui-link>
-                    <ui-btn color="success">确认</ui-btn>
+            <template #footer>
+                <div>
+                    <span>This is footer</span>
+                    <div class="operate">
+                        <ui-link class="margin" color="minor" js="window.morning.findVM('demo7').toggle();">取消</ui-link>
+                        <ui-btn color="success">确认</ui-btn>
+                    </div>
                 </div>
-            </div>
+            </template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo7').toggle(true);">显示抽屉</ui-link>
     </div>
@@ -146,7 +158,7 @@
     ---
     #demo
     >desc
-    在组件内添加除`slot="header"`和`slot="footer"`以外的元素会加载到抽屉的主体部分。
+    在组件内添加除`#header`和`#footer`以外的元素会加载到抽屉的主体部分。
     >tpl
     <div>
         <ui-drawer ref="demo8">
@@ -209,7 +221,9 @@
     >tpl
     <div>
         <ui-drawer ref="demo10" width="560px">
-            <div slot="header">填写个人资料</div>
+            <template #header>
+                <div>填写个人资料</div>
+            </template>
             <ui-box margin>
                 <ui-formgroup class="inline">
                     <header>
@@ -316,12 +330,14 @@
                     </div>
                 </ui-formgroup>
             </ui-box>
-            <div slot="footer">
-                <div class="operate">
-                    <ui-link class="margin" color="minor" js="window.morning.findVM('demo10').toggle();">取消</ui-link>
-                    <ui-btn color="success">保存</ui-btn>
+            <template #footer>
+                <div>
+                    <div class="operate">
+                        <ui-link class="margin" color="minor" js="window.morning.findVM('demo10').toggle();">取消</ui-link>
+                        <ui-btn color="success">保存</ui-btn>
+                    </div>
                 </div>
-            </div>
+            </template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo10').toggle(true);">显示抽屉</ui-link>
     </div>
@@ -336,15 +352,21 @@
     >tpl
     <div>
         <ui-drawer ref="demo11">
-            <div slot="header">第一级</div>
+            <template #header>
+                <div>第一级</div>
+            </template>
             <ui-link js="window.morning.findVM('demo12').toggle(true);">显示第二级抽屉</ui-link>
 
             <ui-drawer ref="demo12">
-                <div slot="header">第二级</div>
+                <template #header>
+                    <div>第二级</div>
+                </template>
                 <ui-link js="window.morning.findVM('demo13').toggle(true);">显示第三级抽屉</ui-link>
 
                 <ui-drawer ref="demo13">
-                    <div slot="header">第三级</div>
+                    <template #header>
+                        <div>第三级</div>
+                    </template>
                 </ui-drawer>
             </ui-drawer>
         </ui-drawer>
@@ -358,15 +380,23 @@
     >tpl
     <div>
         <ui-drawer ref="demo26">
-            <div slot="header">第一级</div>
+            <template #header>
+                <div>第一级</div>
+            </template>
             <ui-link js="window.morning.findVM('demo27').toggle(true);">显示第二级抽屉</ui-link>
 
             <ui-drawer ref="demo27" position="left">
-                <div slot="header">第二级</div>
+
+                <template #header>
+                    <div>第二级</div>
+                </template>
                 <ui-link js="window.morning.findVM('demo28').toggle(true);">显示第三级抽屉</ui-link>
 
                 <ui-drawer ref="demo28" position="left">
-                    <div slot="header">第三级</div>
+
+                <template #header>
+                    <div>第三级</div>
+                </template>
                 </ui-drawer>
             </ui-drawer>
         </ui-drawer>
@@ -464,10 +494,12 @@
     >tpl
     <div>
         <ui-drawer ref="demo18" :auto-close="false" width="400px">
-            <div slot="header">
-                <h1>点击遮照区域不会关闭，需点右侧关闭</h1>
-                <ui-link color="neutral-4" js="window.morning.findVM('demo18').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </div>
+            <template #header>
+                <div>
+                    <h1>点击遮照区域不会关闭，需点右侧关闭</h1>
+                    <ui-link color="neutral-4" js="window.morning.findVM('demo18').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
+                </div>
+            </template>
         </ui-drawer>
         <ui-link js="window.morning.findVM('demo18').toggle(true);">显示抽屉</ui-link>
     </div>

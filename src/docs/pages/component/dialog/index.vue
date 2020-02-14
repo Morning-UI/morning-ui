@@ -67,11 +67,11 @@
     ---
     #demo
     >desc
-    通过`v-slot:header`标签标记一个头部内容。
+    通过`#header`标签标记一个头部内容。
     >tpl
     <div>
         <ui-dialog ref="demo2">
-            <template v-slot:header>
+            <template #header>
                 <div>This is title</div>
             </template>
         </ui-dialog>
@@ -88,7 +88,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo3">
-            <template v-slot:header>
+            <template #header>
                 <div>
                     <h1>This is title</h1>
                     <ui-link color="white" js="window.morning.findVM('demo3').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
@@ -106,8 +106,8 @@
     >tpl
     <div>
         <ui-dialog ref="demo4">
-            <template v-slot:header></template>
-            <template v-slot:footer></template>
+            <template #header></template>
+            <template #footer></template>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo4').toggle(true);">显示对话框</ui-link>
     </div>
@@ -118,11 +118,11 @@
     ---
     #demo
     >desc
-    通过`v-slot:footer`标签标记一个尾部内容。
+    通过`#footer`标签标记一个尾部内容。
     >tpl
     <div>
         <ui-dialog ref="demo5">
-            <template v-slot:footer>
+            <template #footer>
                 <div>This is footer</div>
             </template>
         </ui-dialog>
@@ -139,7 +139,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo6">
-            <template v-slot:footer>
+            <template #footer>
                 <div>
                     <span>This is footer</span>
                     <div class="operate">
@@ -158,7 +158,7 @@
     ---
     #demo
     >desc
-    在组件内添加除`v-slot:header`和`v-slot:footer`以外的元素会加载到对话框的主体部分。
+    在组件内添加除`#header`和`#footer`以外的元素会加载到对话框的主体部分。
     >tpl
     <div>
         <ui-dialog ref="demo7">
@@ -202,7 +202,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo9" color="neutral-1">
-            <template v-slot:header>
+            <template #header>
                 <div>选择一张图片</div>
             </template>
             <ui-grid height-fill>
@@ -218,7 +218,7 @@
                     </div>
                 </div>
             </ui-grid>
-            <template v-slot:footer>
+            <template #footer>
                 <div>
                     <span>
                         需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
@@ -244,21 +244,21 @@
     >tpl
     <div>
         <ui-dialog ref="demo10" color="black" width="60%" height="60%">
-            <template v-slot:header>
+            <template #header>
                 <div>第一级</div>
             </template>
             <ui-link js="window.morning.findVM('demo11').toggle(true);">显示第二级对话框</ui-≥link>
         </ui-dialog>
 
         <ui-dialog ref="demo11" color="neutral-10" width="40%" height="40%">
-            <template v-slot:header>
+            <template #header>
                 <div>第二级</div>
             </template>
             <ui-link js="window.morning.findVM('demo12').toggle(true);">显示第三级对话框</ui-link>
         </ui-dialog>
 
         <ui-dialog ref="demo12" color="neutral-7" width="20%" height="20%">
-            <template v-slot:header>
+            <template #header>
                 <div>第三级</div>
             </template>
         </ui-dialog>
@@ -276,7 +276,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo28" color="white" class="white-footer">
-            <template v-slot:header>
+            <template #header>
                 <div>选择一张图片</div>
             </template>
             <ui-grid height-fill>
@@ -292,7 +292,7 @@
                     </div>
                 </div>
             </ui-grid>
-            <template v-slot:footer>
+            <template #footer>
                 <div>
                     <span>
                         需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
@@ -325,10 +325,10 @@
     @layout:color
     ---
     <ui-dialog ref="demo{$colorKey}" color="{$colorKey}">
-        <template v-slot:header>
+        <template #header>
             <div>This is title</div>
         </template>
-        <template v-slot:footer>
+        <template #footer>
             <div>This is footer</div>
         </template>
     </ui-dialog>
@@ -414,7 +414,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo17" :auto-close="false">
-            <template v-slot:header>
+            <template #header>
                 <div>
                     <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
                     <ui-link color="white" js="window.morning.findVM('demo17').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>

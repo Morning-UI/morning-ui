@@ -110,10 +110,12 @@
                 '1 年前',
             ]"
         >
-            <div slot="footer" style="text-align:right;">
-                <ui-btn size="xs" class="plain" color="minor" style="vertical-align:top;" @emit="$refs['demo12'].set(undefined)">清空</ui-btn>
-                <ui-btn size="xs" @emit="$refs['demo12'].togglePicker(false)">确定</ui-btn>
-            </div>
+            <template #footer>
+                <div style="text-align:right;">
+                    <ui-btn size="xs" class="plain" color="minor" style="vertical-align:top;" @emit="$refs['demo12'].set(undefined)">清空</ui-btn>
+                    <ui-btn size="xs" @emit="$refs['demo12'].togglePicker(false)">确定</ui-btn>
+                </div>
+            </template>
         </ui-datepicker>
     </dic>
     ---
@@ -132,10 +134,12 @@
                 '今年',
             ]"
         >
-            <div slot="footer" style="text-align:right;">
-                <ui-btn size="xs" class="plain" color="minor" style="vertical-align:top;" @emit="$refs['demo13'].set(undefined)">清空</ui-btn>
-                <ui-btn size="xs" @emit="$refs['demo13'].togglePicker(false)">确定</ui-btn>
-            </div>
+            <template #footer>
+                <div style="text-align:right;">
+                    <ui-btn size="xs" class="plain" color="minor" style="vertical-align:top;" @emit="$refs['demo13'].set(undefined)">清空</ui-btn>
+                    <ui-btn size="xs" @emit="$refs['demo13'].togglePicker(false)">确定</ui-btn>
+                </div>
+            </template>
         </ui-datepicker>
     </dic>
     :::

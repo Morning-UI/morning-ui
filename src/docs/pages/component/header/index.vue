@@ -12,7 +12,7 @@
 
     定义一个页头，常用在某个区块的头部使用，用于导航、显示标题等作用，这是一个块级元素。
 
-    可通过`slot`来定义主标题部分，`slot="sub-title"`来定义子标题部分。
+    可通过`slot`来定义主标题部分，`#sub-title`来定义子标题部分。
 
     :::vue
     @name:使用
@@ -29,7 +29,9 @@
     >tpl
     <ui-header underline>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     :::
 
@@ -40,7 +42,9 @@
     >tpl
     <ui-header show-back>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     :::
 
@@ -49,20 +53,23 @@
     ---
     #demo
     >desc
-    使用`slot="breadcrumbs"`来定义面包屑导航部分
+    使用`#breadcrumbs`来定义面包屑导航部分
     >tpl
     <ui-header>
         当前页面
-        <span slot="sub-title">这里是说明</span>
-        <ui-breadcrumbs
-            slot="breadcrumbs"
-            root-name="首页"
-            :list="[
-                {'level1' : '第一级'},
-                {'level2' : '第二级'},
-                {'current' : '当前页面'}
-            ]"
-        ></ui-breadcrumbs>
+        <template #sub-title>
+            <span>这里是说明</span>
+        </template>
+        <template #breadcrumbs>
+            <ui-breadcrumbs
+                root-name="首页"
+                :list="[
+                    {'level1' : '第一级'},
+                    {'level2' : '第二级'},
+                    {'current' : '当前页面'}
+                ]"
+            ></ui-breadcrumbs>
+        </template>
     </ui-header>
     :::
 
@@ -74,16 +81,19 @@
     <ui-header>
         <ui-avatar class="circle"><ui-img src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img></ui-avatar>
         当前页面
-        <span slot="sub-title">这里是说明 <ui-label size="xs">标签</ui-label></span>
-        <ui-breadcrumbs
-            slot="breadcrumbs"
-            root-name="首页"
-            :list="[
-                {'level1' : '第一级'},
-                {'level2' : '第二级'},
-                {'current' : '当前页面'}
-            ]"
-        ></ui-breadcrumbs>
+        <template #sub-title>
+            <span>这里是说明 <ui-label size="xs">标签</ui-label></span>
+        </template>
+        <template #breadcrumbs>
+            <ui-breadcrumbs
+                root-name="首页"
+                :list="[
+                    {'level1' : '第一级'},
+                    {'level2' : '第二级'},
+                    {'current' : '当前页面'}
+                ]"
+            ></ui-breadcrumbs>
+        </template>
     </ui-header>
     :::
 
@@ -102,13 +112,13 @@
     :::vue
     @layout:size
     ---
-    <ui-header size="{$sizeKey}">{$&sizeName}<span slot="sub-title">页头子标题</span></ui-header>
+    <ui-header size="{$sizeKey}">{$&sizeName}<template #sub-title><span>页头子标题</span></template></ui-header>
     :::
 
     :::vue
     @layout:color
     ---
-    <ui-header color="{$colorKey}">{$&colorName}<span slot="sub-title">页头子标题</span></ui-header>
+    <ui-header color="{$colorKey}">{$&colorName}}<template #sub-title><span>页头子标题</span></template></ui-header>
     :::
 
     [[[配置]]]
@@ -130,7 +140,9 @@
     >tpl
     <ui-header mark>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     :::
 
@@ -151,7 +163,9 @@
     >tpl
     <ui-header underline>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     :::
 
@@ -172,7 +186,9 @@
     >tpl
     <ui-header show-back>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     ---
     #demo
@@ -181,7 +197,9 @@
     >tpl
     <ui-header show-back mark>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     ---
     #demo
@@ -190,7 +208,9 @@
     >tpl
     <ui-header show-back underline>
         页头标题
-        <span slot="sub-title">页头子标题</span>
+        <template #sub-title>
+            <span>页头子标题</span>
+        </template>
     </ui-header>
     :::
 
@@ -212,7 +232,9 @@
     <div>
         <ui-header show-back @back="echo">
             页头标题
-            <span slot="sub-title">页头子标题</span>
+            <template #sub-title>
+                <span>页头子标题</span>
+            </template>
         </ui-header>
     </div>
     >script

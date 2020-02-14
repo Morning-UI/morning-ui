@@ -137,16 +137,18 @@
     ---
     #demo
     >desc
-    通过`slot="header"`可以自定义表头内容。
+    通过`#header`可以自定义表头内容。
     >tpl
     <ui-table :list="window.demodata.list">
-        <div slot="header">
-            <div style="display:inline-block;width:160px">
-                <ui-textinput size="xs" inside-name="填写内容..."></ui-textinput>
+        <template #header>
+            <div>
+                <div style="display:inline-block;width:160px">
+                    <ui-textinput size="xs" inside-name="填写内容..."></ui-textinput>
+                </div>
+                <ui-btn size="xs">按钮1</ui-btn>
+                <ui-btn size="xs">按钮2</ui-btn>
             </div>
-            <ui-btn size="xs">按钮1</ui-btn>
-            <ui-btn size="xs">按钮2</ui-btn>
-        </div>
+        </template>
     </ui-table>
     ---
     #demo
@@ -154,9 +156,11 @@
     配合`title`和`export-csv`一起使用。
     >tpl
     <ui-table :list="window.demodata.list" title="自定义表头内容" export-csv>
-        <div slot="header">
-            <ui-btn size="m">按钮1</ui-btn>
-        </div>
+        <template #header>
+            <div>
+                <ui-btn size="m">按钮1</ui-btn>
+            </div>
+        </template>
     </ui-table>
     :::
 
@@ -168,12 +172,14 @@
     使用自定义表头实现搜索功能。
     >tpl
     <ui-table ref="demo8" :list="list">
-        <div slot="header">
-            <div style="display:inline-block;width:160px">
-                <ui-textinput ref="demo8input" size="xs" inside-name="关键词..."></ui-textinput>
+        <template #header>
+            <div>
+                <div style="display:inline-block;width:160px">
+                    <ui-textinput ref="demo8input" size="xs" inside-name="关键词..."></ui-textinput>
+                </div>
+                <ui-btn size="xs" @emit="search">搜索</ui-btn>
             </div>
-            <ui-btn size="xs" @emit="search">搜索</ui-btn>
-        </div>
+        </template>
     </ui-table>
     >script
     {

@@ -272,11 +272,13 @@ export default {
 
             }
 
-            this.data.num = this.$slots.item.length;
+            let $items = this.$el.querySelectorAll('.carousel-list > div');
 
-            if (this.$slots.item && this.$slots.item[0]) {
+            this.data.num = $items.length;
 
-                let $itemClone = this.$slots.item[0].elm.cloneNode(true);
+            if (this.$slots.item && $items[0]) {
+
+                let $itemClone = $items[0].cloneNode(true);
                 let $placeholder = this.$el.querySelector('.placeholder');
 
                 $placeholder.innerHTML = $itemClone.outerHTML;

@@ -42,15 +42,15 @@
     >desc
     关联列表时，把内容模板放到`ui-pagination`标签内，当页码切换时，会根据页面选取`list`中指定的项目作为上下文渲染内容。
     <br><br>
-    这里用到了Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD)。
+    这里用到了Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD)和[解构插槽 Prop](https://cn.vuejs.org/v2/guide/components-slots.html#%E8%A7%A3%E6%9E%84%E6%8F%92%E6%A7%BD-Prop)。
     <br><br>
-    通过`slot-scope`解构可以在内容模板中获取到的变量：
+    通过`v-slot`可以在内容模板中获取到的变量：
     <br><br>
     - `page` : 当前页码(从1开始)
     - `items` : 当前页的数据(数组，`list`中的区间)
     >tpl
     <ui-pagination :list="list" :page-size="3">
-        <template slot-scope="{page, items}">
+        <template v-slot="{page, items}">
             <h5>这是第{*page*}页，内容是：</h5>
             <ul>
                 <li v-for="item in items">Name : {*item.name*}, Age : {*item.age*}</li>
@@ -122,6 +122,11 @@
                 this.content = content;
 
             }
+        },
+        mounted : function () {
+            
+            this.rerender();
+
         }
     }
     :::
