@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.12.74
+
+`2020年2月15日`
+
+#### 新特性
+
+- `ui-table`的单元格及扩展内容中现在支持使用自定义子组件
+
+#### 修复
+
+- 修复`ui-table`使用`show-col-name`和`__expand`时列标题错位的问题
+- 修复`ui-datepicker`和`ui-datetimepicker`会出现Vue warn(Invalid prop)的问题
+
 ## 0.12.73
 
 `2019年12月2日`
