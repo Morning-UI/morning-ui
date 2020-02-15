@@ -13,6 +13,9 @@
                             :disabledOptions="(rowSetMap[0] && rowSetMap[0].disableSelection) ? ['checked'] : undefined"
                         ></morning-checkbox>
                     </th>
+                    <th
+                        v-if="data.titleKeys.length === 0 && data.hasRowExpand"
+                    ></th>
                     <template v-for="key of data.normalKeys">
                         <th
                             v-if="colSetMap[key] && colSetMap[key].name"
@@ -22,9 +25,10 @@
                             <component
                                 :is="{
                                     template : ('<span>' + colSetMap[key].name + '</span>'),
+                                    components : vm.$root.$options.components,
                                     data : function () {
                                         return {
-                                            context : this.$parent.$parent.$vnode.context
+                                            context : vm.$vnode.context
                                         };
                                     }
                                 }"
@@ -139,9 +143,10 @@
                                 <component
                                     :is="{
                                         template : ('<div>' + col + '</div>'),
+                                        components : vm.$root.$options.components,
                                         data : function () {
                                             return {
-                                                context : this.$parent.$parent.$vnode.context
+                                                context : vm.$vnode.context
                                             };
                                         }
                                     }"
@@ -155,9 +160,10 @@
                             <component
                                 :is="{
                                     template : ('<td colspan=' + (row.length + 1) + ' class=\'expand-row-col\'><div class=\'expand-row-col-wrap\'>' + data.rowExpand[line] + '</div></td>'),
+                                    components : vm.$root.$options.components,
                                     data : function () {
                                         return {
-                                            context : this.$parent.$parent.$vnode.context
+                                            context : vm.$vnode.context
                                         };
                                     }
                                 }"
@@ -180,7 +186,8 @@ export default {
         'sortCol',
         'updateColFilter',
         'filterCol',
-        'uiid'
+        'uiid',
+        'vm'
     ],
     methods : {
         _syncRowChecked : function (line) {
@@ -217,6 +224,8 @@ export default {
         }
     },
     mounted : function () {
+
+        window.console.log(this.vm);
 
         this.$watch('data.rowChecked', newVal => {
 

@@ -352,12 +352,18 @@
     ---
     #demo
     >desc
-    注意使用嵌套子内容时，无法使用标题列(`col-set`中将列设为`title`)。
+    使用`__expand`来嵌套子内容。注意使用嵌套子内容时，无法使用标题列(`col-set`中将列设为`title`)。
     >tpl
-    <ui-table :list="mainList"></ui-table>
+    <ui-table :list="mainList" :col-set="colset" :show-col-name="true"></ui-table>
     >script
     {
         data : {
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
             mainList : [
                 {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
                 {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<ui-card><div>这里是卡片内容</div></ui-card>'},
@@ -367,6 +373,26 @@
                 {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
                 {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
                 {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    `__expand`也能够支持自定义组件。
+    >tpl
+    <ui-table :list="mainList"></ui-table>
+    >script
+    {
+        components : {
+            customCompontent : {
+                template : '<div>这里是自定义组件</div>'
+            }
+        },
+        data : {
+            mainList : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<custom-compontent></custom-compontent>'},
             ]
         }
     }

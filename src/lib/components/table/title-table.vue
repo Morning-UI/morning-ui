@@ -22,6 +22,7 @@
                         <component
                             :is="{
                                 template : ('<span>' + colSetMap[key].name + '</span>'),
+                                components : vm.$root.$options.components,
                                 data : function () {
                                     return {
                                         context : this.$parent.$parent.$vnode.context
@@ -125,6 +126,7 @@
                         <component
                             :is="{
                                 template : ('<div>' + col + '</div>'),
+                                components : vm.$root.$options.components,
                                 data : function () {
                                     return {
                                         context : this.$parent.$parent.$vnode.context
@@ -150,7 +152,8 @@ export default {
         'sortCol',
         'updateColFilter',
         'filterCol',
-        'uiid'
+        'uiid',
+        'vm'
     ],
     methods : {
         _syncRowChecked : function (line) {
