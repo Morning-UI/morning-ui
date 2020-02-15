@@ -225,8 +225,6 @@ export default {
     },
     mounted : function () {
 
-        window.console.log(this.vm);
-
         this.$watch('data.rowChecked', newVal => {
 
             let $line;
