@@ -34,7 +34,7 @@
         :align="conf.align"
         :state="conf.state"
         :size="conf.size"
-        :prepend="!conf.hiddenIcon && '<i class=\'mo-icon mo-icon-date\'></i>'"
+        :prepend="conf.hiddenIcon ? undefined : '<i class=\'mo-icon mo-icon-date\'></i>'"
 
         @focus="_inputFocus"
         @blur="_inputBlur"
