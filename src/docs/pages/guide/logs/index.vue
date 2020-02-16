@@ -18,6 +18,27 @@
     
     ### 更新记录
 
+    ### 0.12.75 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2020年2月16日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.75" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.75/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.75/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 修复`ui-upload`组件预览上传后的图片时会额外打开一个空白窗口的问题
+    - 修复`ui-table`的`__expand`中使用自定义子组件时的上下文问题
+    - 修复`ui-table`使用了`__expand`后`col-set`、`cell-set`配置出现错位的问题
+    - 修复`ui-datepicker`和`ui-datetimepicker`会出现Vue warn(Property or method is not defined on the instance but referenced during render.)的问题
+
+    ---
+
     ### 0.12.74 <ui-badge class="circle ver-beta" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">

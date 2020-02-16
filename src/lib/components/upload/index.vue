@@ -57,8 +57,8 @@
                     <template v-for="(item, index) in data.showFiles">
                         <a
                             class="file-item"
-                            target="_blank;"
                             href="javascript:;"
+                            :target="_isImage(item) ? '_self' : '_blank'"
                             :index="index"
                             :key="index"
                             :class="item.classList"
@@ -189,8 +189,8 @@
                 <template v-for="(item, index) in data.showFiles">
                     <a
                         class="file-item"
-                        target="_blank;"
                         href="javascript:;"
+                        :target="_isImage(item) ? '_self' : '_blank'"
                         :index="index"
                         :key="index"
                         :class="[{
@@ -259,8 +259,8 @@
                 <template v-for="(item, index) in data.showFiles">
                     <a
                         class="file-item"
-                        target="_blank;"
                         href="javascript:;"
+                        :target="_isImage(item) ? '_self' : '_blank'"
                         :index="index"
                         :key="index"
                         :class="[{

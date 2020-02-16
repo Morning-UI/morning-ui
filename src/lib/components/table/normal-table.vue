@@ -21,11 +21,12 @@
                             v-if="colSetMap[key] && colSetMap[key].name"
                             v-show="!colSetMap[key] || !colSetMap[key].hide"
                             :key="key"
+                            class="content-th"
                         >
                             <component
                                 :is="{
                                     template : ('<span>' + colSetMap[key].name + '</span>'),
-                                    components : vm.$root.$options.components,
+                                    components : vm.$vnode.context.$options.components,
                                     data : function () {
                                         return {
                                             context : vm.$vnode.context
@@ -64,6 +65,7 @@
                             v-else
                             v-show="!colSetMap[key] || !colSetMap[key].hide"
                             :key="key"
+                            class="content-th"
                         >
                             <span class="th-sort" v-if="colSetMap[key] && colSetMap[key].sort">
                                 <i class="mo-icon mo-icon-sort no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')"></i>
@@ -135,6 +137,7 @@
                             <td
                                 v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
                                 :key="index"
+                                class="content-td"
 
                                 @click="$emit('cell-click', line, data.normalKeys[index])"
                                 @mouseenter="$emit('cell-enter', line, data.normalKeys[index])"
@@ -143,7 +146,7 @@
                                 <component
                                     :is="{
                                         template : ('<div>' + col + '</div>'),
-                                        components : vm.$root.$options.components,
+                                        components : vm.$vnode.context.$options.components,
                                         data : function () {
                                             return {
                                                 context : vm.$vnode.context
@@ -160,7 +163,7 @@
                             <component
                                 :is="{
                                     template : ('<td colspan=' + (row.length + 1) + ' class=\'expand-row-col\'><div class=\'expand-row-col-wrap\'>' + data.rowExpand[line] + '</div></td>'),
-                                    components : vm.$root.$options.components,
+                                    components : vm.$vnode.context.$options.components,
                                     data : function () {
                                         return {
                                             context : vm.$vnode.context

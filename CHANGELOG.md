@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.12.75
+
+`2020年2月16日`
+
+#### 修复
+
+- 修复`ui-upload`组件预览上传后的图片时会额外打开一个空白窗口的问题
+- 修复`ui-table`的`__expand`中使用自定义子组件时的上下文问题
+- 修复`ui-table`使用了`__expand`后`col-set`、`cell-set`配置出现错位的问题
+- 修复`ui-datepicker`和`ui-datetimepicker`会出现Vue warn(Property or method is not defined on the instance but referenced during render.)的问题
+
 ## 0.12.74
 
 `2020年2月15日`
