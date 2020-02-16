@@ -822,7 +822,7 @@ export default {
 
                     for (let $row of $rows) {
 
-                        let $cell = $row.querySelectorAll('td, th')[colIndex];
+                        let $cell = $row.querySelectorAll('td.content-td, th.content-th')[colIndex];
 
                         if ($cell && set.width) {
 
@@ -1002,7 +1002,7 @@ export default {
                     } else {
 
                         $cell = $cell.querySelectorAll('tbody tr:not(.expand-row)')[rowIndex];
-                        $cell = $cell.querySelectorAll('td');
+                        $cell = $cell.querySelectorAll('td.content-td');
 
                     }
 
