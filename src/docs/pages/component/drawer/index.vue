@@ -564,7 +564,7 @@
     不显示背景遮罩。
     >tpl
     <div>
-        <ui-drawer ref="demo23" :show-mask="false"></ui-drawer>
+        <ui-drawer ref="demo23" :show-mask="false" :auto-close="false"></ui-drawer>
         <ui-link js="window.morning.findVM('demo23').toggle(true);">显示抽屉</ui-link>
     </div>
     :::

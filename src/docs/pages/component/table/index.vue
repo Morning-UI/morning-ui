@@ -381,18 +381,66 @@
     >desc
     `__expand`也能够支持自定义组件。
     >tpl
-    <ui-table :list="mainList"></ui-table>
+    <ui-table :list="mainList" :col-set="colset" :row-set="rowset" :cell-set="cellset"></ui-table>
     >script
     {
         components : {
             customCompontent : {
                 template : '<div>这里是自定义组件</div>'
+            },
+            PageItem : {
+                template : '<div>这里是PageItem组件</div>',
+                props: ['page'],
+                data() {
+                    return {
+                        canModify: false,
+                    };
+                },
+                computed: {
+                    labelColor() {
+                        // eslint-disable-next-line no-nested-ternary
+                        return this.page.validState === 1 ? 'minor' :
+                            // eslint-disable-next-line no-nested-ternary
+                            this.page.validState === 0 ? 'neutral-11' :
+                                this.page.validState === 2 ? 'warning' :
+                                    'theme';
+                    },
+                },
+                methods: {
+                    goWorkbench() {
+                        // 跳转创作台
+                        location.href = `/hms_ep_workbench?pid=${this.page.id}`;
+                    },
+                    preview() {
+                        this.$emit('preview', this.page);
+                    },
+                    updatePageStatus(status) {
+                        this.$emit('update-page-status', this.page.id, status);
+                    },
+                    deletePage() {
+                        // 删除
+                    },
+                    updateValidateTime() {
+                        this.$emit('update-valid-time', this.page);
+                    },
+                },
             }
         },
         data : {
+            colset : [{
+                col : 'name'
+            }],
+            rowset : [{
+                row : 1
+            }],
+            cellset : [{
+                col : 'age',
+                row : 1,
+                style: 'danger'
+            }],
             mainList : [
                 {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<custom-compontent></custom-compontent>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<div><page-item></page-item></div>'},
             ]
         }
     }
