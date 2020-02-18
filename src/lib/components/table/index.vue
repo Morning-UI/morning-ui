@@ -28,6 +28,7 @@
         :hover-effect="hoverEffect"
         :loading="loading"
         :loading-note="loadingNote"
+        :show-expand="showExpand"
 
         @scroll="_tableScroll"
     >
@@ -267,6 +268,10 @@ export default {
         loadingNote : {
             type : String,
             default : '数据加载中...'
+        },
+        showExpand : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -297,7 +302,8 @@ export default {
                 multiSelect : this.multiSelect,
                 hoverEffect : this.hoverEffect,
                 loading : this.loading,
-                loadingNote : this.loadingNote
+                loadingNote : this.loadingNote,
+                showExpand : this.showExpand
             };
 
         },
@@ -1496,7 +1502,7 @@ export default {
                 titleRows.push(titleCol);
                 normalRows.push(normalCol);
                 rowExpand.push(item.__expand);
-                rowExpandOpen.push(false);
+                rowExpandOpen.push(this.conf.showExpand);
 
             }
 

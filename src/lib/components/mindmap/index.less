@@ -49,10 +49,25 @@ mor-mindmap{
                 resize: none;
                 overflow: hidden;
                 background: @colorWhite;
+                color: @colorBlack;
                 position: absolute;
                 box-sizing: border-box;
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
                 white-space: nowrap;
+            }
+        }
+
+        .mindmap-tools{
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+            min-width: 200px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+            background: @colorWhite;
+            display: flex;
+
+            mor-slider{
+                padding-bottom: 0;
             }
         }
     }

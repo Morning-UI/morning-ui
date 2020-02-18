@@ -17,7 +17,12 @@ let IndexManager = {
                 }
 
                 this.morning._indexMap.regIndex[key] = index;
-                this.morning._indexMap.maxIndex = index;
+
+                if (this.morning._indexMap.maxIndex < index) {
+
+                    this.morning._indexMap.maxIndex = index;
+
+                }
 
             }
 
