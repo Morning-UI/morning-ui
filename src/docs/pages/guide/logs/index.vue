@@ -18,6 +18,35 @@
     
     ### 更新记录
 
+    ### 0.12.76 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2020年2月18日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.76" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.76/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.76/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-table`支持`show-expand`配置，默认展开表格嵌套的子内容
+
+    #### 改进
+
+    - `ui-mindmap`组件支持键盘多选
+
+    #### 修复
+
+    - 修复`ui-textinput`使用`prepend-type=“inline”`时表单聚焦后的样式问题
+    - 修复`ui-cascader`组件搜索选中项时报错的问题
+    - 修复部分情况下不同组件间Index显示层级不对的问题
+    - 修复`ui-cascader`组件当`list`配置更新时，选中的项目名称不会更新的问题
+    
+    ---
+
     ### 0.12.75 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">

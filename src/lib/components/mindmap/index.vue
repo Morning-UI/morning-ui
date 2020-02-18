@@ -31,6 +31,16 @@
                 @keydown.native="_editInput"
             ></textarea>
         </div>
+        <div class="mindmap-tools">
+            <!-- <morning-btn size="s" color="white"></morning-btn> -->
+            <morning-slider
+                :min="20"
+                :max="150"
+                ref="mor-mindmap-zoomslider"
+                @value-change="_sliderZoomChange"
+                :tip-formatter="(value) => `缩放：${value}%`"
+            ></morning-slider>
+        </div>
         <div class="node-note" :id="'mor-mindmap-note-'+uiid"></div>
         <morning-popover
             :target="'#mor-mindmap-note-'+uiid"
@@ -45,9 +55,9 @@
             <morning-btn size="s" color="white" @emit="copyNodeToClipboard(data.contextMenu.nodeId);_hideContextMenu();">复制节点</morning-btn>
             <morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入子级</morning-btn>
             <morning-btn size="s" color="white" @emit="insertAfterNode(data.contextMenu.nodeId, morning._mindmapClipboard);_hideContextMenu();">粘贴并插入同级</morning-btn> -->
-            <!-- <ui-btn size="s" color="white" @emit="(data.contextMenu.nodeId);_hideContextMenu();">删除节点</ui-btn> -->
-            <!-- <morning-btn size="s" color="white" @emit="editLink(data.contextMenu.nodeId);_hideContextMenu();">设置链接</morning-btn>
-            <morning-btn size="s" color="white" @emit="editNote(data.contextMenu.nodeId);_hideContextMenu();">设置备注</morning-btn>
+            <!-- <ui-btn size="s" color="white" @emit="deleteNode(data.contextMenu.nodeId);_hideContextMenu();">删除节点</ui-btn>
+            <morning-btn size="s" color="white" @emit="editLink(data.contextMenu.nodeId);_hideContextMenu();">设置链接</morning-btn> -->
+            <!-- <morning-btn size="s" color="white" @emit="editNote(data.contextMenu.nodeId);_hideContextMenu();">设置备注</morning-btn>
             <morning-btn size="s" color="white" @emit="editMark(data.contextMenu.nodeId);_hideContextMenu();">设置标记</morning-btn>
             <morning-btn size="s" color="white" @emit="exportTo('xmind', data.contextMenu.nodeId);_hideContextMenu();">导出节点</morning-btn>
             <morning-btn size="s" color="white" @emit="showImportFile(data.contextMenu.nodeId, 'replace');_hideContextMenu();">导入数据并替换</morning-btn>
@@ -79,7 +89,7 @@
         </div>
     </morning-dialog>
 
-    <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="560px" height="490px" show-type="center">
+    <morning-dialog :ref="'mor-mindmap-edit-mark-' + uiid" width="580px" height="580px" show-type="center">
         <div slot="header">编辑标记</div>
         <div class="mor-mindmap-dialog-body">
             <morning-form
@@ -89,7 +99,7 @@
             >
                 <ui-formitem :label="group.name">
                     <morning-radio
-                        :list="group.list"
+                        :list="group.list"  
                         accept-html
                         size="s"
                         color="neutral-2"
@@ -136,9 +146,13 @@ import map                          from 'lodash.map';
 import JSZip                        from 'jszip';
 import arrayUniq                    from 'array-uniq';
 import copy                         from 'clipboard-copy';
+import isHotkey                     from 'is-hotkey';
+import GlobalEvent                  from 'Utils/GlobalEvent';
 
 // eslint-disable-next-line no-unused-vars
 import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
+import { parse } from 'date-fns';
+import clipboardCopy from 'clipboard-copy';
 
 const PolylineUtil = require('@antv/g6/lib/shape/edges/polyline-util');
 
@@ -149,32 +163,36 @@ const conShapeIndex = 2;
 const textShapeIndex = 3;
 const placeholderShapeIndex = 4;
 const bottomlineShapeIndex = 5;
-const linkConShapeIndex = 6;
-const linkShapeIndex = 7;
-const noteConShapeIndex = 8;
-const noteShapeIndex = 9;
-const markConGroupIndex = 10;
-
+// const linkConShapeIndex = 6;
+// const linkShapeIndex = 7;
+// const noteConShapeIndex = 8;
+// const noteShapeIndex = 9;
+const markConGroupIndex = 6;
+const appendConGroupIndex = 7;
 const outlinePadding = 3;
-const annexPadding = 4;
+const annexPadding = {
+    x : 8,
+    y : 4
+};
+const annexMargin = {
+    left : 8
+};
 const tagPadding = {
     x : 8,
     y : 6
 };
 const markConPaddingRight = 10;
 const dragRefreshInterval = 160;
-
 const lineColor = 'rgba(51, 51, 51, 1)';
 const lineWidth = 2;
 const placeholderColor = 'rgba(147, 233, 245, 1)';
-
 const annexList = {
     link : {
-        index : linkConShapeIndex,
+        index : 0,
         state : 'link-hover'
     },
     note : {
-        index : noteConShapeIndex,
+        index : 2,
         state : 'note-hover'
     }
 };
@@ -479,13 +497,28 @@ const marks = {
         color : 'rgb(127, 172, 178)',
         markMethod : 'star',
         markValue : 'gray'
+    },
+    'status:fail' : {
+        iconfont : 'e724',
+        iconcls : 'mo-icon-error-cf',
+        color : 'rgb(230, 69, 70)',
+        markMethod : 'status',
+        markValue : 'fail'
+    },
+    'status:question' : {
+        iconfont : 'e72c',
+        iconcls : 'mo-icon-question-cf',
+        color : 'rgb(127, 172, 178)',
+        markMethod : 'status',
+        markValue : 'question'
     }
 };
 const markGourpsName = {
     priority : '优先级',
     task : '任务',
     flag : '旗帜',
-    star : '星星'
+    star : '星星',
+    status : '状态'
 };
 /* eslint-enable no-unused-vars, no-magic-numbers */
 
@@ -493,6 +526,7 @@ const markGourpsName = {
 export default {
     origin : 'Form',
     name : 'mindmap',
+    mixins : [GlobalEvent],
     props : {
         layout : {
             type : String,
@@ -569,10 +603,15 @@ export default {
                     priority : '0',
                     task : '0',
                     flag : '0',
-                    star : '0'
+                    star : '0',
+                    status : '0'
                 },
                 currentImportNode : undefined,
-                currentImportMode : 'replace'
+                currentImportMode : 'replace',
+                mouseOnCanvas : false,
+                keydownState : {
+                    mod : false
+                }
             }
         };
 
@@ -628,11 +667,8 @@ export default {
             let text = group.getChildByIndex(textShapeIndex);
             let placeholder = group.getChildByIndex(placeholderShapeIndex);
             let bottomline = group.getChildByIndex(bottomlineShapeIndex);
-            let link = group.getChildByIndex(linkShapeIndex);
-            let linkCon = group.getChildByIndex(linkConShapeIndex);
-            let note = group.getChildByIndex(noteShapeIndex);
-            let noteCon = group.getChildByIndex(noteConShapeIndex);
             let markConGroup = group.getChildByIndex(markConGroupIndex);
+            let appendConGroup = group.getChildByIndex(appendConGroupIndex);
 
             return {
                 con,
@@ -641,11 +677,8 @@ export default {
                 outline,
                 placeholder,
                 bottomline,
-                link,
-                linkCon,
-                note,
-                noteCon,
-                markConGroup
+                markConGroup,
+                appendConGroup
             };
 
         },
@@ -658,10 +691,10 @@ export default {
             }
 
         },
-        _refreshNodeNotePosition : function (node) {
+        _refreshNodeNotePosition : function (node, noteConIndex) {
 
             let groupShapes = this._getGroupShapes(node);
-            let noteConBbox = groupShapes.noteCon.getBBox();
+            let noteConBbox = groupShapes.appendConGroup.getChildByIndex(noteConIndex).getBBox();
             let nodeBbox = node.getBBox();
             let zoom = this.data.graph.getZoom();
             let {
@@ -721,7 +754,7 @@ export default {
             this.data.$editContentInput.style.padding = `${padding}px`;
             this.data.$editContentInput.style.left = inputX;
             this.data.$editContentInput.style.top = inputY;
-            this.data.$editContentInput.style.color = textAttr.fill;
+            // this.data.$editContentInput.style.color = textAttr.fill;
             this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
             this.data.$editContentInput.style.textAlign = textAttr.textAlign;
             this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
@@ -746,13 +779,17 @@ export default {
             });
             this.data.graph.paint();
             this.data.$editContent.style.display = 'none';
-            this.data.editting = false;
             this.data.editContent = '';
             this.data.editGroupShapes = {};
             this.data.editZoom = 1;
             this.data.editNode.setState('editing', false);
             this.data.editNode = null;
             this.data.graph.refreshLayout();
+            this.Vue.nextTick(() => {
+                
+                this.data.editting = false;
+            
+            });
 
         },
         _manualPaint : function (paintCallback) {
@@ -763,6 +800,14 @@ export default {
 
             this.data.graph.paint();
             this.data.graph.setAutoPaint(autoPaint);
+
+        },
+        _editAppendNewline : function () {
+
+            let content = this.data.editContent;
+            
+            this.data.editContent = content;
+            this._editInput();
 
         },
         _editInput : function () {
@@ -1066,27 +1111,12 @@ export default {
                 ]();
             node
                 .get('group')
-                .getChildByIndex(linkConShapeIndex)[
-                    type
-                ]();
-            node
-                .get('group')
-                .getChildByIndex(linkShapeIndex)[
-                    type
-                ]();
-            node
-                .get('group')
-                .getChildByIndex(noteConShapeIndex)[
-                    type
-                ]();
-            node
-                .get('group')
-                .getChildByIndex(noteShapeIndex)[
-                    type
-                ]();
-            node
-                .get('group')
                 .getChildByIndex(markConGroupIndex)[
+                    type
+                ]();
+            node
+                .get('group')
+                .getChildByIndex(appendConGroupIndex)[
                     type
                 ]();
             
@@ -1197,11 +1227,8 @@ export default {
                 text,
                 placeholder,
                 bottomline,
-                linkCon,
-                link,
-                noteCon,
-                note,
-                markConGroup
+                markConGroup,
+                appendConGroup
             } = groupShapes;
             let textBbox = text.getBBox();
             let conPaddingX = box.get('conPaddingX');
@@ -1216,21 +1243,8 @@ export default {
 
             let conWidth = textBbox.width + (conPaddingX * 2);
             let conHeight = textBbox.height + (conPaddingY * 2);
-            let linkConBbox = linkCon.getBBox();
-            let noteConBbox = noteCon.getBBox();
             let markConGroupBbox = markConGroup.getBBox();
-
-            if (model.link) {
-
-                conWidth += linkConBbox.width;
-
-            }
-
-            if (model.note) {
-
-                conWidth += noteConBbox.width;
-
-            }
+            let appendConGroupBbox = appendConGroup.getBBox();
 
             if (model.note || model.link) {
 
@@ -1241,7 +1255,12 @@ export default {
             if (model._mark && model._mark.length > 0) {
 
                 conWidth += markConGroupBbox.width;
-                // textX = markConGroupBbox.width;
+
+            }
+
+            if (model.link || model.note || (model.tag && model.tag.length > 0)) {
+
+                conWidth += appendConGroupBbox.width;
 
             }
 
@@ -1277,46 +1296,100 @@ export default {
                 y : boxBbox.maxY - 0.5,
                 width : boxBbox.width + 2
             });
+            
+            this._refreshAppendConGroupPosition(groupShapes, model);
 
-            // for link annex
+        },
+        _refreshAppendConGroupPosition : function (groupShapes, model) {
+
+            let {
+                text,
+                markConGroup,
+                appendConGroup
+            } = groupShapes;
+            let style = this._getNodeStyles(mindNodeStyle, model);
+            let conPaddingX = style.fontSize * 1.5;
+            let conPaddingY = style.fontSize * 0.75;
+            let appends = this._getAppends(model);
+            let textBbox = text.getBBox();
+            let markConGroupBbox = markConGroup.getBBox();
+
+            if (appends && appends.length > 0) {
+
+                let appendWidthTotal = 0;
+
+                for (let index in appends) {
+
+                    let appendCon = appendConGroup.getChildByIndex(index * 2);
+                    let appendText = appendConGroup.getChildByIndex((index * 2) + 1);
+                    let appendConBbox = appendCon.getBBox();
+                    let appendTextBbox = appendText.getBBox();
+                    let appendConX = textBbox.width + markConGroupBbox.width + conPaddingX + annexMargin.left;
+                    let x = appendConX + appendWidthTotal;
+
+                    appendCon.attr({
+                        x,
+                        y : (-appendTextBbox.height / 2) + conPaddingY + annexPadding.y
+                    });
+                    appendText.attr({
+                        x : x + (appendTextBbox.width / 2) + annexPadding.x,
+                        y : (appendTextBbox.height / 2) + conPaddingY
+                    });
+
+                    appendWidthTotal += appendConBbox.width + annexMargin.left;
+
+                }
+
+            }
+            
+        },
+        _getAppends : function (model) {
+
+            let style = this._getNodeStyles(mindNodeStyle, model);
+            let appends = [];
+
             if (model.link) {
-                
-                let linkBbox = link.getBBox();
 
-                linkConBbox = linkCon.getBBox();
-                linkCon.attr({
-                    x : conBbox.width - linkConBbox.width - conPaddingX - annexPadding,
-                    y : conPaddingY - annexPadding
-                });
-                linkConBbox = linkCon.getBBox();
-                link.attr({
-                    x : linkConBbox.minX + (linkBbox.width / 2) + annexPadding + 1,
-                    y : linkConBbox.minY + (linkBbox.height / 2) + annexPadding + 1
+                appends.push({
+                    fontFamily : 'morningicon',
+                    fontSize : style.fontSize,
+                    genText : () => String.fromCharCode(parseInt('e704;', 16))
                 });
 
             }
 
-            // for note annex
             if (model.note) {
 
-                let noteBbox = note.getBBox();
+                appends.push({
+                    fontFamily : 'morningicon',
+                    fontSize : style.fontSize,
+                    fill : 'transparent',
+                    genText : () => String.fromCharCode(parseInt('e605;', 16))
+                });
 
-                noteConBbox = noteCon.getBBox();
-                noteCon.attr({
-                    x : conBbox.width - noteConBbox.width - conPaddingX - annexPadding,
-                    y : conPaddingY - annexPadding
-                });
-                noteConBbox = noteCon.getBBox();
-                note.attr({
-                    x : noteConBbox.minX + (noteBbox.width / 2) + annexPadding + 1,
-                    y : noteConBbox.minY + (noteBbox.height / 2) + annexPadding + 1
-                });
-            
             }
+
+            if (model.tag) {
+                
+                for (let tag of model.tag) {
+
+                    appends.push({
+                        fontFamily : undefined,
+                        fontSize : style.fontSize,
+                        fill : tag.background || '#E0E0E0',
+                        textFill : tag.color || '#000000',
+                        genText : () => tag.text || tag
+                    });
+
+                }
+
+            }
+
+            return appends;
 
         },
         _showContextMenu : function (x, y, nodeId) {
-            
+
             this.data.contextMenu = {
                 style : {
                     left : `${x}px`,
@@ -1326,7 +1399,14 @@ export default {
                 nodeId
             };
             
-            this._clearSelectedNode('selected');
+            let nodes = this.getAllSelectedNode();
+
+            if (nodes && nodes.length === 1) {
+
+                this._clearSelectedNode('selected');
+
+            }
+
             this.selectNode(nodeId);
 
         },
@@ -1363,7 +1443,10 @@ export default {
         },
         _inAnnex : function (evt, shapeIndex) {
 
-            return this._inNodeShape(evt, evt.item.get('group').getChildByIndex(shapeIndex));
+            return this
+                ._inNodeShape(evt, evt.item.get('group')
+                .getChildByIndex(appendConGroupIndex)
+                .getChildByIndex(shapeIndex));
 
         },
         _editNode : function (nodeId, clean = false) {
@@ -1488,7 +1571,15 @@ export default {
 
                 if (model.note) {
 
-                    if (this._inAnnex(evt, annexList.note.index)) {
+                    let index = annexList.note.index;
+
+                    if (!model.link) {
+
+                        index = 0;
+
+                    }
+
+                    if (this._inAnnex(evt, index)) {
 
                         this.data.graph.setItemState(evt.item, annexList.note.state, true);
 
@@ -1543,11 +1634,19 @@ export default {
 
                 if (model.note) {
 
-                    if (this._inAnnex(evt, annexList.note.index)) {
+                    let index = annexList.note.index;
+
+                    if (!model.link) {
+
+                        index = 0;
+
+                    }
+
+                    if (this._inAnnex(evt, index)) {
 
                         this.data.currentNodeNote = model.note.replace(/\n/g, '<br>');
                         this.data.nodeNoteShow = true;
-                        this._refreshNodeNotePosition(evt.item);
+                        this._refreshNodeNotePosition(evt.item, index);
                         this.data.$notePopover.toggle(true);
 
                     } else {
@@ -1600,12 +1699,32 @@ export default {
 
             this.data.graph.on('node:click', evt => {
 
-                this._clearSelectedNode('selected');
+                if (this.data.keydownState.mod) {
 
-                if (evt.item.getModel().isMindNode) {
+                    if (evt.item.getModel().isMindNode) {
+
+                        if (evt.item.getStates().indexOf('selected') !== -1) {
+                        
+                            this.data.graph.setItemState(evt.item, 'selected', false);
+
+                        } else {
+                        
+                            this.data.graph.setItemState(evt.item, 'selected', true);
+
+                        }
                     
-                    this.data.graph.setItemState(evt.item, 'selected', true);
-                
+                    }
+
+                } else {
+
+                    this._clearSelectedNode('selected');
+
+                    if (evt.item.getModel().isMindNode) {
+                        
+                        this.data.graph.setItemState(evt.item, 'selected', true);
+                    
+                    }
+
                 }
             
             });
@@ -1734,15 +1853,79 @@ export default {
         },
         _onCanvasKeydown : function () {
 
+            const defaultHotkeyMap = {
+                backspace : () => {
+                    
+                    this.deleteNode(this.getAllSelectedNode());
+
+                },
+                'mod+c' : () => {
+                    
+                    this.copyNodeToClipboard(this.getSelectedNode());
+
+                },
+                'mod+v' : () => {
+
+                    this.insertSubNode(this.getSelectedNode(), this.getClipboard());
+
+                }
+            };
+            const editingHotkeyMap = {
+                'shift+enter' : () => {
+
+                    this._editAppendNewline();
+
+                },
+                enter : () => {
+
+                    this._cancelEdit();
+                
+                }
+            };
+            let hotkeyMap = Object.assign({}, defaultHotkeyMap, this.conf.hotkeyMap);
+
             this.data.graph.on('keydown', evt => {
 
-                if (this.data.editting === false) {
+                let hitHotkey = false;
+
+                if (this.data.mouseOnCanvas && this.data.editting === true) {
+
+                    for (let key in editingHotkeyMap) {
+
+                        if (isHotkey(key, evt) && typeof editingHotkeyMap[key] === 'function') {
+
+                            editingHotkeyMap[key]();
+                            hitHotkey = true;
+
+                        }
+
+                    }
+
+                }
+
+                if (this.data.mouseOnCanvas && this.data.editting === false) {
+
+                    for (let key in hotkeyMap) {
+
+                        if (isHotkey(key, evt) && typeof hotkeyMap[key] === 'function') {
+
+                            hotkeyMap[key]();
+                            hitHotkey = true;
+
+                        }
+
+                    }
+
+                }
+
+                if (this.data.editting === false && !hitHotkey) {
 
                     let nodeId = this.getSelectedNode();
                     let keycode = evt.which;
                     
                     /* eslint-disable no-magic-numbers */
                     if (
+                        this.data.mouseOnCanvas &&
                         nodeId &&
                         (
                             (keycode >= 65 && keycode <= 90) ||
@@ -1760,6 +1943,43 @@ export default {
                 }
 
             });
+            
+        },
+        _onCanvasMouseLeave : function () {
+
+            this.data.graph.on('canvas:mouseover', () => {
+                
+                this.data.mouseOnCanvas = true;
+
+            });
+
+            this.data.graph.on('canvas:mouseleave', () => {
+                
+                this.data.mouseOnCanvas = false;
+
+            });
+
+        },
+        _onGlobalKeydown : function (evt) {
+
+            const modKeycode = [91, 17];
+
+            if (modKeycode.indexOf(evt.keyCode) !== -1) {
+
+                this.data.keydownState.mod = true;
+
+            }
+
+        },
+        _onGlobalKeyup : function (evt) {
+
+            const modKeycode = [91, 17];
+
+            if (modKeycode.indexOf(evt.keyCode) !== -1) {
+
+                this.data.keydownState.mod = false;
+
+            }
 
         },
         /* eslint-disable no-magic-numbers */
@@ -1768,8 +1988,8 @@ export default {
             G6.registerNode('mor-root-mind-node', {
                 drawShape : (cfg, group) => {
 
-                    let style = this._getNodeStyles(rootMindNodeStyle, cfg);
                     let cursor = 'default';
+                    let style = this._getNodeStyles(rootMindNodeStyle, cfg);
                     let conPaddingX = style.fontSize * 1.5;
                     let conPaddingY = style.fontSize * 0.75;
                     let box = group.addShape('rect', {
@@ -1829,51 +2049,162 @@ export default {
                             fill : style.bottomlineBg
                         }
                     });
-                    let linkCon = group.addShape('rect', {
+                    let markConGroup = group.addGroup({
+                        id : `node-${cfg.id}-mark-box`,
                         attrs : {
                             x : 0,
-                            y : 0,
-                            radius : 3,
-                            fill : 'transparent',
-                            fillOpacity : 0.7,
-                            stroke : 'transparent'
+                            y : 0
                         }
                     });
-                    let link = group.addShape('text', {
+                    let appendConGroup = group.addGroup({
+                        id : `node-${cfg.id}-append-box`,
                         attrs : {
                             x : 0,
-                            y : 0,
-                            fill : style.fontColor,
-                            fillOpacity : 0.6,
-                            fontFamily : 'morningicon',
-                            fontSize : style.fontSize,
-                            textAlign : 'center',
-                            textBaseline : 'middle'
+                            y : 0
                         }
                     });
+                    let appends = this._getAppends(cfg);
 
+                    if (appends && appends.length > 0) {
+    
+                        for (let index in appends) {
+
+                            let append = appends[index];
+                            let appendCon = appendConGroup.addShape('rect', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : append.fill,
+                                    fillOpacity : 0.7,
+                                    stroke : 'transparent',
+                                    radius : 3
+                                },
+                                zIndex : 99
+                            });
+
+                            let appendText = appendConGroup.addShape('text', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : append.textFill || style.fontColor,
+                                    fillOpacity : 0.6,
+                                    fontFamily : append.fontFamily,
+                                    fontSize : append.fontSize,
+                                    textAlign : 'center',
+                                    textBaseline : 'middle'
+                                }
+                            });
+
+                            appendText.attr({
+                                text : append.genText()
+                            });
+
+                            let appendTextBbox = appendText.getBBox();
+
+                            appendCon.attr({
+                                width : appendTextBbox.width + (annexPadding.x * 2),
+                                height : appendTextBbox.height + (annexPadding.y * 2)
+                            });
+
+                        }
+
+                    }
+                    
+                    if (cfg._mark && cfg._mark.length > 0) {
+    
+                        for (let index in cfg._mark) {
+
+                            let markName = cfg._mark[index];
+                            let markCon = markConGroup.addShape('rect', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : 'transparent',
+                                    fillOpacity : 0.7,
+                                    stroke : 'transparent',
+                                    radius : 3
+                                },
+                                zIndex : 99
+                            });
+
+                            let mark = markConGroup.addShape('text', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fontFamily : 'morningicon',
+                                    fontSize : style.fontSize,
+                                    textAlign : 'center',
+                                    textBaseline : 'middle',
+                                    fill : marks[markName].color,
+                                    text : String.fromCharCode(parseInt(`${marks[markName].iconfont};`, 16))
+                                }
+                            });
+
+                            let markBbox = mark.getBBox();
+                            
+                            markCon.attr({
+                                // x : (-markBbox.width / 2) - annexPadding + (markBbox.width * index),
+                                // y : (-markBbox.height / 2) - annexPadding,
+                                width : markBbox.width,
+                                height : markBbox.height + (annexPadding * 2)
+                            });
+
+                        }
+
+                    }   
+
+                    let markConGroupBbox = markConGroup.getBBox();
+                    let appendConGroupBbox = appendConGroup.getBBox();
                     let textBbox = text.getBBox();
-                    let linkBbox = link.getBBox();
-                    let linkConBbox = linkCon.getBBox();
                     let conWidth = textBbox.width + (conPaddingX * 2);
                     let conHeight = textBbox.height + (conPaddingY * 2);
+                    let textX = 0;
 
-                    if (cfg.link) {
+                    if (cfg._mark && cfg._mark.length > 0) {
 
-                        link.attr({
-                            text : String.fromCharCode(parseInt('e704;', 16))
-                        });
+                        for (let index in cfg._mark) {
 
-                        linkBbox = link.getBBox();
+                            let markCon = markConGroup.getChildByIndex(index * 2);
+                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
+                            let markBbox = mark.getBBox();
+                            let markConBbox = markCon.getBBox();
 
-                        linkCon.attr({
-                            width : linkBbox.width + (annexPadding * 2),
-                            height : linkBbox.height + (annexPadding * 2)
-                        });
+                            markCon.attr({
+                                x : (-markBbox.width / 2) + (markConBbox.width * index),
+                                y : (-markBbox.height / 2) + conPaddingY + annexPadding
+                            });
+                            mark.attr({
+                                x : (markBbox.width / 4) + (markConBbox.width * index) + conPaddingX,
+                                y : (markBbox.height / 2) + conPaddingY
+                            });
 
-                        linkConBbox = linkCon.getBBox();
+                        }
 
-                        conWidth = textBbox.width + (conPaddingX * 2) + (linkConBbox.width + (conPaddingX / 2));
+                        markConGroupBbox = markConGroup.getBBox();
+
+                    }
+
+                    if (appends && appends.length > 0) {
+
+                        this._refreshAppendConGroupPosition({
+                            text,
+                            markConGroup,
+                            appendConGroup
+                        }, cfg);
+                        appendConGroupBbox = appendConGroup.getBBox();
+
+                    }
+
+                    if (cfg._mark && cfg._mark.length > 0) {
+
+                        conWidth += markConGroupBbox.width;
+                        textX = markConGroupBbox.width;
+
+                    }
+
+                    if (appends && appends.length > 0) {
+
+                        conWidth += appendConGroupBbox.width;
 
                     }
 
@@ -1886,22 +2217,6 @@ export default {
 
                     let conBbox = con.getBBox();
 
-                    if (cfg.link) {
-
-                        linkCon.attr({
-                            x : conBbox.width - linkConBbox.width - conPaddingX - annexPadding,
-                            y : conPaddingY - annexPadding
-                        });
-
-                        linkConBbox = linkCon.getBBox();
-
-                        link.attr({
-                            x : linkConBbox.minX + (linkBbox.width / 2) + annexPadding + 1,
-                            y : linkConBbox.minY + (linkBbox.height / 2) + annexPadding + 1
-                        });
-
-                    }
-
                     box.attr({
                         width : conBbox.width,
                         height : conBbox.height
@@ -1910,7 +2225,7 @@ export default {
                     box.set('conPaddingY', conPaddingY);
 
                     let boxBbox = con.getBBox();
-                    
+
                     outline.attr({
                         x : boxBbox.minX - outlinePadding,
                         y : boxBbox.minY - outlinePadding,
@@ -1919,12 +2234,12 @@ export default {
                     });
 
                     text.attr({
-                        x : conPaddingX,
+                        x : textX + conPaddingX,
                         y : (textBbox.height / 2) + conPaddingY
                     });
 
                     placeholder.attr({
-                        x : conPaddingX,
+                        x : textX + conPaddingX,
                         y : (textBbox.height / 2) + conPaddingY
                     });
 
@@ -1940,13 +2255,27 @@ export default {
                 },
                 setState : (name, value, item) => {
 
-                    let style = this._getNodeStyles(rootMindNodeStyle, item.getModel());
+                    let model = item.getModel();
+                    let style = this._getNodeStyles(rootMindNodeStyle, model);
                     let states = item.getStates();
                     let box = item.get('keyShape');
                     let group = box.getParent();
                     let outline = group.getChildByIndex(outlineShapeIndex);
-                    let linkCon = group.getChildByIndex(linkConShapeIndex);
-                    let link = group.getChildByIndex(linkShapeIndex);
+                    let markConGroup = group.getChildByIndex(markConGroupIndex);
+                    let appendConGroup = group.getChildByIndex(appendConGroupIndex);
+                    let linkIndex = annexList.link.index;
+                    let noteIndex = annexList.note.index;
+
+                    if (!model.link) {
+
+                        noteIndex = linkIndex;
+
+                    }
+
+                    let linkCon = appendConGroup.getChildByIndex(linkIndex);
+                    let link = appendConGroup.getChildByIndex(linkIndex + 1);
+                    let noteCon = appendConGroup.getChildByIndex(noteIndex);
+                    let note = appendConGroup.getChildByIndex(noteIndex + 1);
 
                     if (states.indexOf('drag') !== -1) {
 
@@ -1964,29 +2293,98 @@ export default {
 
                     }
 
-                    if (states.indexOf('link-hover') !== -1) {
+                    if (model.link) {
 
-                        linkCon.attr({
-                            fill : style.outlineColor,
-                            stroke : style.outlineActiveColor,
-                            cursor : 'pointer'
-                        });
-                        link.attr({
-                            fillOpacity : 1,
-                            cursor : 'pointer'
-                        });
+                        if (states.indexOf('link-hover') !== -1) {
 
-                    } else {
+                            linkCon.attr({
+                                fill : style.outlineColor,
+                                stroke : style.outlineActiveColor,
+                                cursor : 'pointer'
+                            });
+                            link.attr({
+                                fillOpacity : 1,
+                                cursor : 'pointer'
+                            });
 
-                        linkCon.attr({
-                            fill : 'transparent',
-                            stroke : 'transparent',
-                            cursor : 'default'
-                        });
-                        link.attr({
-                            fillOpacity : 0.6,
-                            cursor : 'default'
-                        });
+                        } else {
+
+                            linkCon.attr({
+                                fill : 'transparent',
+                                stroke : 'transparent',
+                                cursor : 'default'
+                            });
+                            link.attr({
+                                fillOpacity : 0.6,
+                                cursor : 'default'
+                            });
+
+                        }
+
+                    }
+
+                    if (model.note) {
+
+                        if (states.indexOf('note-hover') !== -1) {
+
+                            noteCon.attr({
+                                fill : style.outlineColor,
+                                stroke : style.outlineActiveColor,
+                                cursor : 'pointer'
+                            });
+                            note.attr({
+                                fillOpacity : 1,
+                                cursor : 'pointer'
+                            });
+
+                        } else {
+
+                            noteCon.attr({
+                                fill : 'transparent',
+                                stroke : 'transparent',
+                                cursor : 'default'
+                            });
+                            note.attr({
+                                fillOpacity : 0.6,
+                                cursor : 'default'
+                            });
+
+                        }
+
+                    }
+
+                    if (model._mark && model._mark.length > 0) {
+
+                        for (let index in model._mark) {
+
+                            let markCon = markConGroup.getChildByIndex(index * 2);
+                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
+
+                            if (states.indexOf(`mark-${index}-hover`) !== -1) {
+
+                                markCon.attr({
+                                    // fill : style.outlineColor,
+                                    stroke : style.outlineActiveColor,
+                                    cursor : 'pointer'
+                                });
+                                mark.attr({
+                                    cursor : 'pointer'
+                                });
+
+                            } else {
+
+                                markCon.attr({
+                                    // fill : 'transparent',
+                                    stroke : 'transparent',
+                                    cursor : 'default'
+                                });
+                                mark.attr({
+                                    cursor : 'default'
+                                });
+
+                            }
+                            
+                        }
 
                     }
 
@@ -2034,8 +2432,8 @@ export default {
             G6.registerNode('mor-mind-node', {
                 drawShape : (cfg, group) => {
 
-                    let style = this._getNodeStyles(mindNodeStyle, cfg);
                     let cursor = 'move';
+                    let style = this._getNodeStyles(mindNodeStyle, cfg);
                     let conPaddingX = style.fontSize * 1.5;
                     let conPaddingY = style.fontSize * 0.75;
                     let box = group.addShape('rect', {
@@ -2095,50 +2493,6 @@ export default {
                             fill : style.bottomlineBg
                         }
                     });
-                    let linkCon = group.addShape('rect', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            radius : 3,
-                            fill : 'transparent',
-                            fillOpacity : 0.7,
-                            stroke : 'transparent'
-                        }
-                    });
-                    let link = group.addShape('text', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            fill : style.fontColor,
-                            fillOpacity : 0.6,
-                            fontFamily : 'morningicon',
-                            fontSize : style.fontSize,
-                            textAlign : 'center',
-                            textBaseline : 'middle'
-                        }
-                    });
-                    let noteCon = group.addShape('rect', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            radius : 3,
-                            fill : 'transparent',
-                            fillOpacity : 0.7,
-                            stroke : 'transparent'
-                        }
-                    });
-                    let note = group.addShape('text', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            fill : style.fontColor,
-                            fillOpacity : 0.6,
-                            fontFamily : 'morningicon',
-                            fontSize : style.fontSize,
-                            textAlign : 'center',
-                            textBaseline : 'middle'
-                        }
-                    });
                     let markConGroup = group.addGroup({
                         id : `node-${cfg.id}-mark-box`,
                         attrs : {
@@ -2146,14 +2500,60 @@ export default {
                             y : 0
                         }
                     });
-                    let tagConGroup = group.addGroup({
-                        id : `node-${cfg.id}-tag-box`,
+                    let appendConGroup = group.addGroup({
+                        id : `node-${cfg.id}-append-box`,
                         attrs : {
                             x : 0,
                             y : 0
                         }
                     });
+                    let appends = this._getAppends(cfg);
 
+                    if (appends && appends.length > 0) {
+    
+                        for (let index in appends) {
+
+                            let append = appends[index];
+                            let appendCon = appendConGroup.addShape('rect', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : append.fill,
+                                    fillOpacity : 0.7,
+                                    stroke : 'transparent',
+                                    radius : 3
+                                },
+                                zIndex : 99
+                            });
+
+                            let appendText = appendConGroup.addShape('text', {
+                                attrs : {
+                                    x : 0,
+                                    y : 0,
+                                    fill : append.textFill || style.fontColor,
+                                    fillOpacity : 0.6,
+                                    fontFamily : append.fontFamily,
+                                    fontSize : append.fontSize,
+                                    textAlign : 'center',
+                                    textBaseline : 'middle'
+                                }
+                            });
+
+                            appendText.attr({
+                                text : append.genText()
+                            });
+
+                            let appendTextBbox = appendText.getBBox();
+
+                            appendCon.attr({
+                                width : appendTextBbox.width + (annexPadding.x * 2),
+                                height : appendTextBbox.height + (annexPadding.y * 2)
+                            });
+
+                        }
+
+                    }
+                    
                     if (cfg._mark && cfg._mark.length > 0) {
     
                         for (let index in cfg._mark) {
@@ -2187,163 +2587,24 @@ export default {
                             let markBbox = mark.getBBox();
                             
                             markCon.attr({
-                                x : (-markBbox.width / 2) - annexPadding + (markBbox.width * index),
-                                y : (-markBbox.height / 2) - annexPadding,
+                                // x : (-markBbox.width / 2) - annexPadding + (markBbox.width * index),
+                                // y : (-markBbox.height / 2) - annexPadding,
                                 width : markBbox.width,
                                 height : markBbox.height + (annexPadding * 2)
                             });
 
                         }
 
-                        // markConGroup.set('keyShape', markCons[0]);
-                        // markConGroup.attr({
-                        //     height : 23,
-                        //     width : cfg._mark.length * 20
-                        // });
-
                     }
 
-                    if (cfg.tag && cfg.tag.length > 0) {
-    
-                        for (let index in cfg.tag) {
-
-                            let tagText = cfg.tag[index];
-                            let tagCon = tagConGroup.addShape('rect', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : 'transparent',
-                                    stroke : '#BBB',
-                                    radius : 3
-                                },
-                                zIndex : 99
-                            });
-
-                            let tag = tagConGroup.addShape('text', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : '#333',
-                                    fontSize : style.fontSize * 0.8,
-                                    // textAlign : 'center',
-                                    textBaseline : 'middle',
-                                    text : tagText
-                                }
-                            });
-
-                            let tagBbox = tag.getBBox();
-
-                            tagCon.attr({
-                                width : tagBbox.width + (tagPadding.x * 2),
-                                height : tagBbox.height + (tagPadding.y * 2)
-                            });
-
-                        }
-
-                    }
-
-                    let textBbox = text.getBBox();
-                    let linkBbox = link.getBBox();
-                    let linkConBbox = linkCon.getBBox();
                     let markConGroupBbox = markConGroup.getBBox();
-                    let tagConGroupBbox = tagConGroup.getBBox();
-                    let noteBbox = note.getBBox();
-                    let noteConBbox = noteCon.getBBox();
+                    let appendConGroupBbox = appendConGroup.getBBox();
+                    let textBbox = text.getBBox();
                     let conWidth = textBbox.width + (conPaddingX * 2);
                     let conHeight = textBbox.height + (conPaddingY * 2);
                     let textX = 0;
 
-                    if (cfg.link) {
-
-                        link.attr({
-                            text : String.fromCharCode(parseInt('e704;', 16))
-                        });
-
-                        linkBbox = link.getBBox();
-                        linkCon.attr({
-                            width : linkBbox.width + (annexPadding * 2),
-                            height : linkBbox.height + (annexPadding * 2)
-                        });
-
-                        linkConBbox = linkCon.getBBox();
-                        conWidth += linkConBbox.width;
-
-                    }
-
-                    if (cfg.note) {
-
-                        note.attr({
-                            text : String.fromCharCode(parseInt('e605;', 16))
-                        });
-
-                        noteBbox = note.getBBox();
-                        noteCon.attr({
-                            width : noteBbox.width + (annexPadding * 2),
-                            height : noteBbox.height + (annexPadding * 2)
-                        });
-
-                        noteConBbox = noteCon.getBBox();
-                        conWidth += noteConBbox.width;
-
-                    }
-
                     if (cfg._mark && cfg._mark.length > 0) {
-
-                        conWidth += markConGroupBbox.width;
-                        textX = markConGroupBbox.width;
-
-                    }
-
-                    if (cfg.note || cfg.link) {
-
-                        conWidth += (conPaddingX / 2) + markConPaddingRight;
-
-                    }
-
-                    con.attr({
-                        x : 0,
-                        y : 0,
-                        width : conWidth,
-                        height : conHeight
-                    });
-
-                    let conBbox = con.getBBox();
-
-                    if (cfg.link) {
-
-                        linkCon.attr({
-                            x : conBbox.width - linkConBbox.width - conPaddingX - annexPadding,
-                            y : conPaddingY - annexPadding
-                        });
-
-                        linkConBbox = linkCon.getBBox();
-
-                        link.attr({
-                            x : linkConBbox.minX + (linkBbox.width / 2) + annexPadding + 1,
-                            y : linkConBbox.minY + (linkBbox.height / 2) + annexPadding + 1
-                        });
-
-                    }
-
-                    if (cfg.note) {
-
-                        noteCon.attr({
-                            x : conBbox.width - noteConBbox.width - conPaddingX - annexPadding,
-                            y : conPaddingY - annexPadding
-                        });
-
-                        noteConBbox = noteCon.getBBox();
-
-                        note.attr({
-                            x : noteConBbox.minX + (noteBbox.width / 2) + annexPadding + 1,
-                            y : noteConBbox.minY + (noteBbox.height / 2) + annexPadding + 1
-                        });
-
-                    }
-
-                    if (cfg._mark && cfg._mark.length > 0) {
-
-                        markConGroupBbox = markConGroup.getBBox();
 
                         for (let index in cfg._mark) {
 
@@ -2357,54 +2618,64 @@ export default {
                                 y : (-markBbox.height / 2) + conPaddingY + annexPadding
                             });
                             mark.attr({
-                                x : (markBbox.width / 4) + (markConBbox.width * index),
+                                x : (markBbox.width / 4) + (markConBbox.width * index) + conPaddingX,
                                 y : (markBbox.height / 2) + conPaddingY
                             });
 
                         }
 
+                        markConGroupBbox = markConGroup.getBBox();
+
                     }
+
+                    if (appends && appends.length > 0) {
+
+                        this._refreshAppendConGroupPosition({
+                            text,
+                            markConGroup,
+                            appendConGroup
+                        }, cfg);
+                        appendConGroupBbox = appendConGroup.getBBox();
+
+                    }
+
+                    if (cfg._mark && cfg._mark.length > 0) {
+
+                        conWidth += markConGroupBbox.width;
+                        textX = markConGroupBbox.width;
+
+                    }
+
+                    if (appends && appends.length > 0) {
+
+                        conWidth += appendConGroupBbox.width;
+
+                    }
+
+                    con.attr({
+                        x : 0,
+                        y : 0,
+                        width : conWidth,
+                        height : conHeight
+                    });
+
+                    let conBbox = con.getBBox();
 
                     box.attr({
                         width : conBbox.width,
-                        height : conBbox.height + tagConGroupBbox.height
+                        height : conBbox.height
                     });
                     box.set('conPaddingX', conPaddingX);
                     box.set('conPaddingY', conPaddingY);
 
                     let boxBbox = con.getBBox();
-                    
+
                     outline.attr({
                         x : boxBbox.minX - outlinePadding,
                         y : boxBbox.minY - outlinePadding,
                         width : boxBbox.width + (outlinePadding * 2),
                         height : boxBbox.height + (outlinePadding * 2)
                     });
-
-                    let outlineBbox = outline.getBBox();
-
-                    if (cfg.tag && cfg.tag.length > 0) {
-
-                        for (let index in cfg.tag) {
-
-                            let tagCon = tagConGroup.getChildByIndex(index * 2);
-                            let tag = tagConGroup.getChildByIndex((index * 2) + 1);
-                            let tagBbox = tag.getBBox();
-                            let tagConBbox = tagCon.getBBox();
-
-                            tagCon.attr({
-                                x : ((tagConBbox.width + tagPadding.x) * index),
-                                y : outlineBbox.height
-                                // width : tagBbox.width + (tagPadding * 2)
-                            });
-                            tag.attr({
-                                x : ((tagConBbox.width + tagPadding.x) * index) + tagPadding.x,
-                                y : outlineBbox.height + (tagBbox.height / 2) + tagPadding.y
-                            });
-
-                        }
-
-                    }
 
                     text.attr({
                         x : textX + conPaddingX,
@@ -2434,11 +2705,21 @@ export default {
                     let box = item.get('keyShape');
                     let group = box.getParent();
                     let outline = group.getChildByIndex(outlineShapeIndex);
-                    let linkCon = group.getChildByIndex(linkConShapeIndex);
-                    let link = group.getChildByIndex(linkShapeIndex);
-                    let noteCon = group.getChildByIndex(noteConShapeIndex);
-                    let note = group.getChildByIndex(noteShapeIndex);
                     let markConGroup = group.getChildByIndex(markConGroupIndex);
+                    let appendConGroup = group.getChildByIndex(appendConGroupIndex);
+                    let linkIndex = annexList.link.index;
+                    let noteIndex = annexList.note.index;
+
+                    if (!model.link) {
+
+                        noteIndex = linkIndex;
+
+                    }
+
+                    let linkCon = appendConGroup.getChildByIndex(linkIndex);
+                    let link = appendConGroup.getChildByIndex(linkIndex + 1);
+                    let noteCon = appendConGroup.getChildByIndex(noteIndex);
+                    let note = appendConGroup.getChildByIndex(noteIndex + 1);
 
                     if (states.indexOf('drag') !== -1) {
 
@@ -2456,55 +2737,63 @@ export default {
 
                     }
 
-                    if (states.indexOf('link-hover') !== -1) {
+                    if (model.link) {
 
-                        linkCon.attr({
-                            fill : style.outlineColor,
-                            stroke : style.outlineActiveColor,
-                            cursor : 'pointer'
-                        });
-                        link.attr({
-                            fillOpacity : 1,
-                            cursor : 'pointer'
-                        });
+                        if (states.indexOf('link-hover') !== -1) {
 
-                    } else {
+                            linkCon.attr({
+                                fill : style.outlineColor,
+                                stroke : style.outlineActiveColor,
+                                cursor : 'pointer'
+                            });
+                            link.attr({
+                                fillOpacity : 1,
+                                cursor : 'pointer'
+                            });
 
-                        linkCon.attr({
-                            fill : 'transparent',
-                            stroke : 'transparent',
-                            cursor : 'default'
-                        });
-                        link.attr({
-                            fillOpacity : 0.6,
-                            cursor : 'default'
-                        });
+                        } else {
+
+                            linkCon.attr({
+                                fill : 'transparent',
+                                stroke : 'transparent',
+                                cursor : 'default'
+                            });
+                            link.attr({
+                                fillOpacity : 0.6,
+                                cursor : 'default'
+                            });
+
+                        }
 
                     }
 
-                    if (states.indexOf('note-hover') !== -1) {
+                    if (model.note) {
 
-                        noteCon.attr({
-                            fill : style.outlineColor,
-                            stroke : style.outlineActiveColor,
-                            cursor : 'pointer'
-                        });
-                        note.attr({
-                            fillOpacity : 1,
-                            cursor : 'pointer'
-                        });
+                        if (states.indexOf('note-hover') !== -1) {
 
-                    } else {
+                            noteCon.attr({
+                                fill : style.outlineColor,
+                                stroke : style.outlineActiveColor,
+                                cursor : 'pointer'
+                            });
+                            note.attr({
+                                fillOpacity : 1,
+                                cursor : 'pointer'
+                            });
 
-                        noteCon.attr({
-                            fill : 'transparent',
-                            stroke : 'transparent',
-                            cursor : 'default'
-                        });
-                        note.attr({
-                            fillOpacity : 0.6,
-                            cursor : 'default'
-                        });
+                        } else {
+
+                            noteCon.attr({
+                                fill : 'transparent',
+                                stroke : 'transparent',
+                                cursor : 'default'
+                            });
+                            note.attr({
+                                fillOpacity : 0.6,
+                                cursor : 'default'
+                            });
+
+                        }
 
                     }
 
@@ -2880,7 +3169,11 @@ export default {
                 },
                 _clearStates () {
 
-                    vm._clearSelectedNode(this.selectedState);
+                    if (!vm.data.keydownState.mod) {
+                        
+                        vm._clearSelectedNode(this.selectedState);
+                    
+                    }
 
                 },
                 _getSelectedNodes (evt) {
@@ -2982,7 +3275,7 @@ export default {
                     const code = evt.key;
 
                     if (code && code.toLowerCase() === 'shift') {
-                    
+
                         this.keydown = true;
                     
                     } else {
@@ -3382,6 +3675,7 @@ export default {
             this._onAnnexClick();
             this._onContextMenu();
             this._onCanvasKeydown();
+            this._onCanvasMouseLeave();
             // this._onHotkey();
             
             // eslint-disable-next-line no-warning-comments
@@ -3429,7 +3723,7 @@ export default {
                 modes : {
                     default : [
                         'drag-canvas',
-                        'zoom-canvas',
+                        // 'zoom-canvas',
                         'mor-brush-select',
                         'mor-drag-node'
                     ]
@@ -3598,6 +3892,7 @@ export default {
             setTimeout(() => {
 
                 this.data.graph.refreshLayout(true);
+                this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
 
             });
 
@@ -3694,13 +3989,14 @@ export default {
             this._exportDataWalker(data, (item, parent) => {
 
                 current = {
-                    name : item.text,
+                    text : item.text,
                     children : []
                 };
 
                 current.link = item.link;
                 current.note = item.note;
                 current.mark = item.mark;
+                current.tag = item.tag;
 
                 if (parent === undefined) {
 
@@ -3733,7 +4029,7 @@ export default {
             this._importDataWalker(data, (item, parent) => {
 
                 current = {
-                    text : item.name,
+                    text : item.text,
                     children : []
                 };
 
@@ -3752,6 +4048,12 @@ export default {
                 if (item.mark) {
                     
                     current.mark = item.mark;
+
+                }
+
+                if (item.tag) {
+                    
+                    current.tag = item.tag;
 
                 }
 
@@ -3802,6 +4104,12 @@ export default {
                 if (item.link) {
 
                     current.href = item.link;
+
+                }
+
+                if (item.tag) {
+
+                    current.labels = item.tag;
 
                 }
 
@@ -3922,6 +4230,12 @@ export default {
 
                 }
 
+                if (item.labels) {
+
+                    current.tag = item.labels;
+
+                }
+
                 this._traverseOneNode(current);
 
                 if (parent === undefined) {
@@ -4028,7 +4342,8 @@ export default {
                     text : item.text,
                     note : item.note,
                     mark : item.mark,
-                    link : item.link
+                    link : item.link,
+                    tag : item.tag
                 };
 
                 if (item.children) {
@@ -4089,6 +4404,22 @@ export default {
             }
 
             return nodeIds;
+
+        },
+        _sliderZoomChange : function () {
+
+            let zoom = this.$refs['mor-mindmap-zoomslider'].get() / 100;
+
+            this.zoom(zoom);
+
+        },
+        _updateClipboard : function (evt) {
+
+            if (evt.clipboardData) {
+
+                this.morning._mindmapClipboard = evt.clipboardData.getData('text');
+
+            }
 
         },
         downloadFile : function (type, nodeId) {
@@ -4152,6 +4483,13 @@ export default {
                     data = JSON.parse(data);
 
                 }
+
+                if (!(data instanceof Array)) {
+
+                    data = [data];
+
+                }
+
                 xmindData = this._importJSON(data);
 
             } else if (type === 'xmind') {
@@ -4209,11 +4547,13 @@ export default {
             this.data.currentImportNode = nodeId;
             this.data.currentImportMode = mode;
             this.data.$importDialog.toggle(true);
+            this.data.mouseOnCanvas = false;
 
         },
         cancelImportFile : function () {
 
             this.data.$importDialog.toggle(false);
+            this.data.mouseOnCanvas = true;
 
         },
         // 插入同级节点(前)
@@ -4383,15 +4723,22 @@ export default {
             return data.id;
 
         },
-        deleteNode : function (nodeId) {
+        deleteNode : function (nodeIds) {
 
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let parent = node.getInEdges()[0].getSource();
-            let parentModel = parent.getModel();
-            let indexOfParent = parentModel.children.indexOf(model);
+            nodeIds = this._fillNodeIds(nodeIds);
 
-            parentModel.children.splice(indexOfParent, 1);
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+                let parent = node.getInEdges()[0].getSource();
+                let parentModel = parent.getModel();
+                let indexOfParent = parentModel.children.indexOf(model);
+
+                parentModel.children.splice(indexOfParent, 1);
+
+            }
+
             this.data.graph.changeData();
             this.data.graph.refreshLayout();
 
@@ -4467,6 +4814,11 @@ export default {
             }
 
         },
+        clearSelectedNode : function () {
+
+            this._clearSelectedNode('selected');
+
+        },
         zoom : function (zoom) {
 
             this.data.graph.zoomTo(zoom);
@@ -4482,6 +4834,7 @@ export default {
         fitView : function () {
 
             this.data.graph.fitView();
+            this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
 
         },
         link : function (nodeIds, link) {
@@ -4584,6 +4937,81 @@ export default {
             this.data.graph.refreshLayout();
 
         },
+        addTag : function (nodeIds, tags) {
+
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+                let tag = model.tag || [];
+                let tagMap = {};
+
+                for (let oneTag of tag) {
+
+                    let key = oneTag.text || oneTag;
+
+                    tagMap[key] = oneTag;
+
+                }
+
+                for (let oneTag of tags) {
+
+                    let key = oneTag.text || oneTag;
+
+                    tagMap[key] = oneTag;
+
+                }
+
+                // tag = tag.concat(tags);
+                // tag = arrayUniq(tag);
+
+                model.tag = Object.values(tagMap);
+                node.draw();
+
+            }
+
+            this.data.graph.refreshLayout();
+
+        },
+        removeTag : function (nodeIds, tags) {
+
+            nodeIds = this._fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+                let tag = model.tag || [];
+                let tagMap = {};
+
+                for (let oneTag of tag) {
+
+                    let key = oneTag.text || oneTag;
+
+                    tagMap[key] = oneTag;
+
+                }
+
+                for (let oneTag of tags) {
+
+                    let key = oneTag.text || oneTag;
+
+                    delete tagMap[key];
+
+                }
+
+                // tag = difference(tag, tags);
+
+                model.tag = Object.values(tagMap);
+                node.draw();
+
+            }
+
+            this.data.graph.refreshLayout();
+
+        },
         editLink : function (nodeIds) {
 
             nodeIds = this._fillNodeIds(nodeIds);
@@ -4594,6 +5022,7 @@ export default {
             this.data.currentEditLinkNodeIds = nodeIds;
             this.data.currentEditLinkValue = model.link;
             this.data.$editLinkDialog.toggle(true);
+            this.data.mouseOnCanvas = false;
 
         },
         cancelEditLink : function () {
@@ -4601,6 +5030,7 @@ export default {
             this.data.currentEditLinkNodeId = [];
             this.data.currentEditLinkValue = '';
             this.data.$editLinkDialog.toggle(false);
+            this.data.mouseOnCanvas = true;
 
         },
         editNote : function (nodeIds) {
@@ -4613,6 +5043,7 @@ export default {
             this.data.currentEditNoteNodeIds = nodeIds;
             this.data.currentEditNoteValue = model.note;
             this.data.$editNoteDialog.toggle(true);
+            this.data.mouseOnCanvas = false;
 
         },
         cancelEditNote : function () {
@@ -4620,6 +5051,7 @@ export default {
             this.data.currentEditNoteNodeIds = [];
             this.data.currentEditNoteValue = '';
             this.data.$editNoteDialog.toggle(false);
+            this.data.mouseOnCanvas = true;
 
         },
         editMark : function (nodeIds) {
@@ -4646,11 +5078,13 @@ export default {
                 priority : '0',
                 task : '0',
                 flag : '0',
-                star : '0'
+                star : '0',
+                status : '0'
             }, markGroups);
 
             this.data.currentEditMarkValue = markGroups;
             this.data.$editMarkDialog.toggle(true);
+            this.data.mouseOnCanvas = false;
 
         },
         cancelEditMark : function () {
@@ -4663,6 +5097,7 @@ export default {
             //     star : '0'
             // };
             this.data.$editMarkDialog.toggle(false);
+            this.data.mouseOnCanvas = true;
 
         },
         getSelectedNode : function () {
@@ -4673,6 +5108,19 @@ export default {
         getSelectedNodeDetail : function () {
 
             return this.getAllSelectedNodeDetail()[0];
+
+        },
+        getRootNode : function () {
+
+            let nodes = this.data.graph.findAll('node', () => (true));
+
+            if (nodes && nodes[0]) {
+
+                return nodes[0].getModel().id;
+
+            }
+
+            return undefined;
 
         },
         getAllSelectedNode : function () {
@@ -4705,12 +5153,18 @@ export default {
                     link : model.link,
                     mark : Object.assign([], model.mark),
                     note : model.note,
-                    text : model.text
+                    text : model.text,
+                    tag : model.tag
                 });
 
             }
 
             return nodeIds;
+
+        },
+        getEdittingState : function () {
+            
+            return this.data.editting;
 
         }
     },
@@ -4753,6 +5207,11 @@ export default {
         this.data.$editNoteDialog = this.$refs[`mor-mindmap-edit-note-${this.uiid}`];
         this.data.$editMarkDialog = this.$refs[`mor-mindmap-edit-mark-${this.uiid}`];
         this.data.$importDialog = this.$refs[`mor-mindmap-import-${this.uiid}`];
+
+        let defaultData = {
+            text : '新建主题',
+            isRoot : true
+        };
 
         // let data = {
         //     text : 'ClassificationClassification',
@@ -4802,7 +5261,7 @@ export default {
                     children : [
                         {
                             text : `Different in`,
-                            note : 'hello',
+                            link : 'http://baidu.com/',
                             mark : ['priority:1', 'priority:2', 'star:red']
                         },
                         {
@@ -4810,16 +5269,20 @@ export default {
                             tag : ['标签1', '标签2']
                         },
                         {
-                            text : 'Rules'
+                            text : 'Decision trees',
+                            note : '123'
+                        },
+                        {
+                            text : 'Decision trees',
+                            link : 'http://baidu.com'
+                        },
+                        {
+                            text : 'Decision trees',
+                            note : '123',
+                            link : 'http://baidu.com'
                         },
                         {
                             text : 'Decision trees'
-                        },
-                        {
-                            text : 'Naive Bayes'
-                        },
-                        {
-                            text : 'K nearest neighbor'
                         },
                         {
                             text : 'Probabilistic neural network'
@@ -4947,8 +5410,19 @@ export default {
         this._registrar();
         this._createGraph();
         this._bindEvent();
-        this._readData(data2);
+        this._readData(defaultData);//data2
         window.G6 = G6;
+
+        this._globalEventAdd('paste', '_updateClipboard');
+        this._globalEventAdd('keydown', '_onGlobalKeydown');
+        this._globalEventAdd('keyup', '_onGlobalKeyup');
+
+    },
+    beforeDestroy : function () {
+
+        this._globalEventRemove('paste', '_updateClipboard');
+        this._globalEventRemove('keydown', '_onGlobalKeydown');
+        this._globalEventRemove('keyup', '_onGlobalKeyup');
 
     }
 };

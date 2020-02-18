@@ -50,11 +50,6 @@ mor-textinput{
                 color: @colorFormPlaceholderHover !important;
             }
         }
-
-        &:focus{
-            .setup-form-focus();
-            color: @colorFormTextFocus !important;
-        }
     }
 
     .form-body{
@@ -165,6 +160,25 @@ mor-textinput{
                     border-color: @colorFormBorderFocus;
                 }
             }
+        }
+    }
+
+    &.input-group-prepend-inline.input-focus,
+    &.input-group-append-inline.input-focus{
+        .textinput-wrap{
+            .setup-form-focus-only-box-shadow();
+            border-radius: @borderRadius;
+        }
+
+        input{
+            .setup-form-focus-only-border();
+        }
+    }
+
+    &:not(.input-group-prepend-inline):not(.input-group-append-inline){
+        input:focus{
+            .setup-form-focus();
+            color: @colorFormTextFocus !important;
         }
     }
 

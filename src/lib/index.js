@@ -49,9 +49,9 @@ let morning = {
         white : 'wh'
     },
     _mindmapClipboard : undefined,
-    _devVersion : '0.12.75',
+    _devVersion : '0.12.76',
     isMorning : true,
-    version : '0.12.75',
+    version : '0.12.76',
     map : {}
 };
 
