@@ -19,10 +19,19 @@
     #demo
     >tpl
     <div style="height:600px">
-        <ui-mindmap layout="LR" width="100%" height="100%">
-            <div slot="context-menu"><morning-btn size="s" color="white" @emit="insertSubNode(data.contextMenu.nodeId);_hideContextMenu();">插入子级</morning-btn></div>
+        <ui-mindmap layout="LR" width="100%" height="100%" ref="mindmap"
+        >
+            <div slot="context-menu"><morning-btn size="s" color="white" @emit="$refs.mindmap.insertSubNode($refs.mindmap.data.contextMenu.nodeId);$refs.mindmap._hideContextMenu();">插入子级</morning-btn></div>
         </ui-mindmap>
     </div>
+    >script
+    {
+        methods : {
+            echo : function (){
+                console.log(123,morning.map[10].getEdittingState())
+            }
+        }
+    }
     :::
 
     [[[源码]]]
@@ -44,6 +53,7 @@ export default {
         };
 
     },
+    methods : {},
     components : {
         'doc-component' : DocComponent
     }

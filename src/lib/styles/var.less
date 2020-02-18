@@ -418,10 +418,20 @@
     }
 }
 
-.setup-form-focus() {
-    transition: border-color 0.2s, box-shadow 0.2s;
+.setup-form-focus-only-border() {
+    transition: border-color 0s;
     border-color: @colorFormBorderFocus;
+}
+
+.setup-form-focus-only-box-shadow() {
+    transition: border-color 0.2s;
     box-shadow: 0 0 0 2px rgba(red(@colorFormBorderFocus), green(@colorFormBorderFocus), blue(@colorFormBorderFocus), 0.15);
+}
+
+.setup-form-focus() {
+    .setup-form-focus-only-border();
+    .setup-form-focus-only-box-shadow();
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .setup-form-focus-animate(@color: '') {

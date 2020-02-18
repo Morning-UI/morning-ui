@@ -434,21 +434,13 @@ export default {
         },
         _valueHasItem : function (itemValue) {
 
-            let found = false;
+            if (this.data.value.join('/') === itemValue.join('/')) {
 
-            for (let item of this.data.value) {
-
-                if (item.join('/') === itemValue.join('/')) {
-
-                    found = true;
-
-                    break;
-
-                }
+                return true;
 
             }
 
-            return found;
+            return false;
 
         },
         _multiinputValueChange : function () {
@@ -1239,6 +1231,8 @@ export default {
 
             this._computedMenuList();
             this._genCheckedStateTree();
+            this._onMultiValueChange();
+            this._refreshValueName();
 
         }, {
             immediate : true

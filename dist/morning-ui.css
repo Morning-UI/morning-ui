@@ -40224,12 +40224,6 @@ mor-textinput input:hover {
 mor-textinput input:hover::placeholder {
   color: #999999 !important;
 }
-mor-textinput input:focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
-  border-color: #F33D5D;
-  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
-  color: #000000 !important;
-}
 mor-textinput .form-body {
   position: relative;
 }
@@ -40311,6 +40305,25 @@ mor-textinput.input-group.input-group-append-inline input.has-append {
 }
 mor-textinput.input-group.input-group-append-inline.input-focus .input-group-addon:nth-child(3) {
   border-color: #F33D5D;
+}
+mor-textinput.input-group-prepend-inline.input-focus .textinput-wrap,
+mor-textinput.input-group-append-inline.input-focus .textinput-wrap {
+  transition: border-color 0.2s;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  border-radius: 3px;
+}
+mor-textinput.input-group-prepend-inline.input-focus input,
+mor-textinput.input-group-append-inline.input-focus input {
+  transition: border-color 0s;
+  border-color: #F33D5D;
+}
+mor-textinput:not(.input-group-prepend-inline):not(.input-group-append-inline) input:focus {
+  transition: border-color 0s;
+  border-color: #F33D5D;
+  transition: border-color 0.2s;
+  box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #000000 !important;
 }
 mor-textinput.si-xs > .form-name {
   font-size: 13px;
@@ -40514,9 +40527,11 @@ mor-textarea textarea:hover::placeholder {
   color: #999999 !important;
 }
 mor-textarea textarea:focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
   color: #000000 !important;
 }
 mor-textarea textarea::-webkit-scrollbar {
@@ -40656,9 +40671,11 @@ mor-texteditor .editor-wrap {
   border-radius: 3px;
 }
 mor-texteditor .editor-wrap.focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 mor-texteditor > .form-name:empty + .editor-wrap {
   height: 100%;
@@ -42393,9 +42410,11 @@ mor-counter input:hover::placeholder {
   color: #999999 !important;
 }
 mor-counter input:focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
   color: #000000 !important;
 }
 mor-counter.controls-on-both input {
@@ -42929,9 +42948,11 @@ mor-select.input-group .input-group-addon {
   font-size: 14px;
 }
 mor-select .wrap.focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 mor-select.separate {
   height: 0;
@@ -46559,9 +46580,11 @@ mor-cascader .cascader-wrap .cascader-input:hover {
   color: #999999 !important;
 }
 mor-cascader .cascader-wrap .cascader-input.focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 mor-cascader .cascader-wrap .cascader-input > .mo-icon {
   position: absolute;
@@ -46961,9 +46984,11 @@ mor-multiinput .form-body {
   border-radius: 3px;
 }
 mor-multiinput .form-body.focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 mor-multiinput .form-body .cleanicon {
   position: absolute;
@@ -49465,9 +49490,11 @@ mor-colorpicker .preview-wrap {
   margin-bottom: 5px;
 }
 mor-colorpicker .preview-wrap.focus {
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0s;
   border-color: #F33D5D;
+  transition: border-color 0.2s;
   box-shadow: 0 0 0 2px rgba(243, 61, 93, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 mor-colorpicker .preview {
   box-sizing: border-box;
@@ -50988,10 +51015,23 @@ mor-mindmap .mindmap-wrap .edit-content textarea {
   resize: none;
   overflow: hidden;
   background: #FFFFFF;
+  color: #000000;
   position: absolute;
   box-sizing: border-box;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   white-space: nowrap;
+}
+mor-mindmap .mindmap-wrap .mindmap-tools {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  min-width: 200px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  background: #FFFFFF;
+  display: flex;
+}
+mor-mindmap .mindmap-wrap .mindmap-tools mor-slider {
+  padding-bottom: 0;
 }
 .mor-mindmap-dialog-body mor-radio .mo-icon {
   font-size: 24px;

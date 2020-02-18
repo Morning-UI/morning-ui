@@ -1941,6 +1941,39 @@
     }
     :::
 
+    :::vue
+    @name:show-expand
+    ---
+    #config
+    >conf-desc
+    是否默认展开表格的子内容（若设为`true`，每次表格数据变更时都会默认展开子内容）。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="mainList" :show-expand="true"></ui-table>
+    >script
+    {
+        data : {
+            mainList : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer', __expand : '<ui-card><div>这里是卡片内容</div></ui-card>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher', __expand : '<ui-table :list="context.list1"></ui-table>'}
+            ],
+            list1: [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'}
+            ]
+        }
+    }
+    :::
+
     [[[方法]]]
 
     :::vue
