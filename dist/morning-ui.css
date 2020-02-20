@@ -50395,7 +50395,9 @@ mor-form.label-pos-center mor-formitem {
   align-items: center;
 }
 mor-form.label-pos-center mor-formitem .form-item-name {
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 mor-private-timepicker {
   display: block;
