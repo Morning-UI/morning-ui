@@ -1,6 +1,6 @@
 <template>
     <div @click="onClick">
-        <doc-header :category="category"></doc-header>
+        <doc-header :category="category" ref="doc-header"></doc-header>
         <div class="body">
             <doc-submenu
                 :category="category"
@@ -3013,6 +3013,18 @@ export default {
             $demo.style.zIndex = 9 + $demos.length - i;
 
         });
+
+        // for vdocs start
+        let pathSearch = window.location.search;
+
+        if (pathSearch === '?from=vdocs') {
+            window.document.cookie = 'from-vdocs=1; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/';
+        }
+
+        if (window.document.cookie.search('from-vdocs=1') >= 0) {
+            this.$refs['doc-header'].$el.remove();
+        }
+        // for vdocs end
 
     },
     methods : {
