@@ -77,7 +77,9 @@ mor-form{
     &.label-pos-left-align,
     &.label-pos-center-align,
     &.label-pos-right-align,
-    &.label-pos-center{
+    &.label-pos-center,
+    &.label-pos-left-center,
+    &.label-pos-right-center{
         mor-formitem{
             .form-item-name{
                 padding-right: 1em;
@@ -116,12 +118,32 @@ mor-form{
         }
     }
 
-    &.label-pos-center{
+    &.label-pos-center,
+    &.label-pos-left-center,
+    &.label-pos-right-center{
         mor-formitem{
             align-items: center;
 
             .form-item-name{
-                text-align: center;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+        }
+    }
+
+    &.label-pos-left-center{
+        mor-formitem{
+            .form-item-name{
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    &.label-pos-right-center{
+        mor-formitem{
+            .form-item-name{
+                justify-content: flex-end;
             }
         }
     }

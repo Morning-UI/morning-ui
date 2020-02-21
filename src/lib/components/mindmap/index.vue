@@ -501,15 +501,15 @@ const marks = {
     'status:fail' : {
         iconfont : 'e724',
         iconcls : 'mo-icon-error-cf',
-        color : 'rgb(230, 69, 70)',
-        markMethod : 'status',
-        markValue : 'fail'
+        color : 'rgb(249, 142, 82)',
+        markMethod : 'symbol',
+        markValue : 'wrong'
     },
     'status:question' : {
         iconfont : 'e72c',
         iconcls : 'mo-icon-question-cf',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'status',
+        color : 'rgb(249, 142, 82)',
+        markMethod : 'symbol',
         markValue : 'question'
     }
 };
@@ -5156,6 +5156,53 @@ export default {
                     text : model.text,
                     tag : model.tag
                 });
+
+            }
+
+            return nodeIds;
+
+        },
+        getAllNode : function () {
+
+            let nodes = this.data.graph.getNodes();
+            let nodeIds = [];
+
+            for (let node of nodes) {
+
+                if (node.getModel().isMindNode) {
+
+                    nodeIds.push(node.get('id'));
+
+                }
+
+            }
+
+            return nodeIds;
+
+        },
+        getAllNodeDetail : function () {
+
+            let nodes = this.data.graph.getNodes();
+            let nodeIds = [];
+            let model;
+
+            for (let node of nodes) {
+
+                model = node.getModel();
+
+                if (model.isMindNode) {
+                
+                    nodeIds.push({
+                        id : model.id,
+                        depth : model.depth,
+                        link : model.link,
+                        mark : Object.assign([], model.mark),
+                        note : model.note,
+                        text : model.text,
+                        tag : model.tag
+                    });
+                
+                }
 
             }
 

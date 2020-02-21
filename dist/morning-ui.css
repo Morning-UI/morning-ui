@@ -50370,7 +50370,9 @@ mor-form.label-pos-head-right mor-formitem .form-item-name {
 mor-form.label-pos-left-align mor-formitem .form-item-name,
 mor-form.label-pos-center-align mor-formitem .form-item-name,
 mor-form.label-pos-right-align mor-formitem .form-item-name,
-mor-form.label-pos-center mor-formitem .form-item-name {
+mor-form.label-pos-center mor-formitem .form-item-name,
+mor-form.label-pos-left-center mor-formitem .form-item-name,
+mor-form.label-pos-right-center mor-formitem .form-item-name {
   padding-right: 1em;
   width: 20%;
   flex-shrink: 0;
@@ -50378,7 +50380,9 @@ mor-form.label-pos-center mor-formitem .form-item-name {
 mor-form.label-pos-left-align mor-formitem .form-item-con,
 mor-form.label-pos-center-align mor-formitem .form-item-con,
 mor-form.label-pos-right-align mor-formitem .form-item-con,
-mor-form.label-pos-center mor-formitem .form-item-con {
+mor-form.label-pos-center mor-formitem .form-item-con,
+mor-form.label-pos-left-center mor-formitem .form-item-con,
+mor-form.label-pos-right-center mor-formitem .form-item-con {
   flex-grow: 1;
   width: 100%;
 }
@@ -50391,11 +50395,23 @@ mor-form.label-pos-center-align mor-formitem .form-item-name {
 mor-form.label-pos-right-align mor-formitem .form-item-name {
   text-align: right;
 }
-mor-form.label-pos-center mor-formitem {
+mor-form.label-pos-center mor-formitem,
+mor-form.label-pos-left-center mor-formitem,
+mor-form.label-pos-right-center mor-formitem {
   align-items: center;
 }
-mor-form.label-pos-center mor-formitem .form-item-name {
-  text-align: center;
+mor-form.label-pos-center mor-formitem .form-item-name,
+mor-form.label-pos-left-center mor-formitem .form-item-name,
+mor-form.label-pos-right-center mor-formitem .form-item-name {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+mor-form.label-pos-left-center mor-formitem .form-item-name {
+  justify-content: flex-start;
+}
+mor-form.label-pos-right-center mor-formitem .form-item-name {
+  justify-content: flex-end;
 }
 mor-private-timepicker {
   display: block;
