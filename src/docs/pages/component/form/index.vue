@@ -332,9 +332,9 @@
     ---
     #config
     >conf-desc
-    表单项名称的位置。
+    表单项名称的位置。<br>各数值说明：<br><br>`'head-left'` : 头部/左对齐<br>`'head-right'` : 头部/右对齐<br>`'head-center'` : 头部/居中<br>`'left-align'` : 左侧/垂直顶部对齐/水平左对齐<br>`'center-align'` : 左侧/垂直顶部对齐/水平居中<br>`'right-align'` : 左侧/垂直顶部对齐/水平右对齐<br>`'center'` : 左侧/垂直居中/水平居中<br>`'left-center'` : 左侧/垂直居中/水平左对齐<br>`'right-center'` : 左侧/垂直居中/水平右对齐<br>
     >conf-accept
-    `'head-left'` : 头部左对齐<br>`'head-right'` : 头部右对齐<br>`'head-center'` : 头部居中<br>`'left-align'` : 左侧左对齐<br>`'center-align'` : 左侧居中<br>`'right-align'` : 左侧右对齐<br>`'center'` : 左侧垂直居中<br>
+    `'head-left'`<br>`'head-right'`<br>`'head-center'`<br>`'left-align'`<br>`'center-align'`<br>`'right-align'`<br>`'center'`<br>`'left-center'`<br>`'right-center'`<br>
     >conf-type
     String
     >conf-default
