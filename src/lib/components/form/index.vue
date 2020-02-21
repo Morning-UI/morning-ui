@@ -37,7 +37,7 @@ export default {
         labelPosition : {
             type : String,
             default : 'center-align',
-            validator : (value => ['head-left', 'head-right', 'head-center', 'left-align', 'center-align', 'right-align', 'center'].indexOf(value) !== -1)
+            validator : (value => ['head-left', 'head-right', 'head-center', 'left-align', 'center-align', 'right-align', 'center', 'left-center', 'right-center'].indexOf(value) !== -1)
         },
         labelWidth : {
             type : String,
@@ -190,7 +190,7 @@ export default {
                 let formVm = this.data.forms[key];
 
                 if (formVm) {
-                    
+
                     let formVal = formVm.get();
 
                     if (JSON.stringify(formVal) !== JSON.stringify(value[key])) {

@@ -85,7 +85,7 @@
 
                     <label
                         class="upload-file"
-                        v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
+                        v-show="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
                         @click="_emitFilePicker"
                         :id="'mor-upload-input-remote-'+uiid"
                     >
