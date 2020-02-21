@@ -301,7 +301,7 @@ export default UI => UI.extend({
                 this.data.parentForm = vm.$parent;
                 vm.$parent._linkChildForm(this);
 
-            } else if (vm.$parent) {
+            } else if (vm.$parent && !vm.$parent.isForm) {
 
                 this._linkForm(vm.$parent);
 
