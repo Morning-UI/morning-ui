@@ -50,6 +50,50 @@
     :::
 
     :::vue
+    @name:配合`v-model`一起使用
+    ---
+    #demo
+    >desc
+    `ui-form`可以配合`v-model`绑定一组表单的数值(通过`form-key`)，不需要每个表单单独绑定。<br><br>`ui-form`内的表单组件会自动的进行向上查询找到最接近的父级`ui-form`进行数值绑定。
+    >tpl
+    <div style="width:420px;">
+        <ui-form v-model="formValues">
+            <ui-formitem label="姓名">
+               <ui-textinput form-key="name"></ui-textinput>
+            </ui-formitem>
+            <ui-formitem label="简介">
+               <ui-textarea form-key="introduction"></ui-textarea>
+            </ui-formitem>
+            <ui-block color="neutral-2">
+                <ui-formitem label="备注">
+                    <ui-textarea form-key="note"></ui-textarea>
+                </ui-formitem>
+            </ui-block>
+        </ui-form>
+        <ui-btn @emit="changeValue">修改一组数据</ui-btn>
+    </div>
+    >script
+    {
+        data : {
+            formValues : {
+                name : 'Tom',
+                introduction : 'Age: 27, Job: engineer',
+                note : 'Is tom...'
+            }
+        },
+        methods : {
+            changeValue : function () {
+                this.formValues = {
+                    name : 'Jack',
+                    introduction : 'Age: 31, Job: teacher',
+                    note : 'Is jack...'
+                }
+            }
+        }
+    }
+    :::
+
+    :::vue
     @name:单项多表单
     ---
     #demo
