@@ -18,6 +18,37 @@
     
     ### 更新记录
 
+    ### 0.12.77 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2019年2月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.77" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.77/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.77/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-form`的`label-position`配置新增多种定位
+
+    #### 改进
+
+    - 改进`ui-mindmap`的一些问题
+
+    #### 修复
+
+    - 修复`ui-form`下多层嵌套使用表单组件时，可能导致数值被清空的问题
+    - 修复`ui-upload`同时使用`max`和`allow-url`配置时，上传图片后再删除，无法使用URL上传的问题
+
+    #### 更多
+
+    - 文档增加`ui-form`和`v-model`一起使用的说明
+
+    ---
+
     ### 0.12.76 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">

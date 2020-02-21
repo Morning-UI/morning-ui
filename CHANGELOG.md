@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.12.77
+
+`2020年2月21日`
+
+#### 新特性
+
+- `ui-form`的`label-position`配置新增多种定位
+
+#### 改进
+
+- 改进`ui-mindmap`的一些问题
+
+#### 修复
+
+- 修复`ui-form`下多层嵌套使用表单组件时，可能导致数值被清空的问题
+- 修复`ui-upload`同时使用`max`和`allow-url`配置时，上传图片后再删除，无法使用URL上传的问题
+
+#### 更多
+
+- 文档增加`ui-form`和`v-model`一起使用的说明
+
 ## 0.12.76
 
 `2020年2月18日`
@@ -43,7 +64,7 @@
 - 修复`ui-table`使用`show-col-name`和`__expand`时列标题错位的问题
 - 修复`ui-datepicker`和`ui-datetimepicker`会出现Vue warn(Invalid prop)的问题
 
-## 0.12.73
+## 0.12.7
 
 `2019年12月2日`
 
