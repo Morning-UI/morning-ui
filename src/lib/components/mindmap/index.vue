@@ -140,40 +140,43 @@
  
 <script>
 import G6                           from '@antv/g6';
+import modifyCSS                    from '@antv/dom-util/lib/modify-css.js';
 import sortBy                       from 'lodash.sortby';
 import throttle                     from 'lodash.throttle';
-import map                          from 'lodash.map';
-import JSZip                        from 'jszip';
-import arrayUniq                    from 'array-uniq';
-import copy                         from 'clipboard-copy';
-import isHotkey                     from 'is-hotkey';
+// import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
 // eslint-disable-next-line no-unused-vars
 import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
-import { parse } from 'date-fns';
-import clipboardCopy from 'clipboard-copy';
+// import {parse} from 'date-fns';
+// import clipboardCopy from 'clipboard-copy';
+import MARKS                        from './const/marks';
+import SHAPE_INDEX                  from './const/shapeIndex';
+import ANNEX_LIST                   from './const/annexList';
+import ANNEX_PADDING                from './const/annexPadding';
+
+import BaseEvent                    from './base/event';
+import BaseGraph                    from './base/graph';
+import BaseRegistrar                from './base/registrar';
+import MixinMark                    from './mixins/mark';
+import MixinLink                    from './mixins/link';
+import MixinNote                    from './mixins/note';
+import MixinTag                     from './mixins/tag';
+import MixinZoom                    from './mixins/zoom';
+import MixinInsert                  from './mixins/insert';
+import MixinMove                    from './mixins/move';
+import MixinCopy                    from './mixins/copy';
+import MixinDelete                  from './mixins/delete';
+import MixinSelect                  from './mixins/select';
+import MixinImport                  from './mixins/import';
+import MixinExport                  from './mixins/export';
+import MixinStyling                 from './mixins/styling';
+import MixinGetData                 from './mixins/getData';
 
 const PolylineUtil = require('@antv/g6/lib/shape/edges/polyline-util');
 
 /* eslint-disable no-unused-vars, no-magic-numbers */
-const boxShapeIndex = 0;
-const outlineShapeIndex = 1;
-const conShapeIndex = 2;
-const textShapeIndex = 3;
-const placeholderShapeIndex = 4;
-const bottomlineShapeIndex = 5;
-// const linkConShapeIndex = 6;
-// const linkShapeIndex = 7;
-// const noteConShapeIndex = 8;
-// const noteShapeIndex = 9;
-const markConGroupIndex = 6;
-const appendConGroupIndex = 7;
 const outlinePadding = 3;
-const annexPadding = {
-    x : 8,
-    y : 4
-};
 const annexMargin = {
     left : 8
 };
@@ -186,16 +189,6 @@ const dragRefreshInterval = 160;
 const lineColor = 'rgba(51, 51, 51, 1)';
 const lineWidth = 2;
 const placeholderColor = 'rgba(147, 233, 245, 1)';
-const annexList = {
-    link : {
-        index : 0,
-        state : 'link-hover'
-    },
-    note : {
-        index : 2,
-        state : 'note-hover'
-    }
-};
 
 const mindNodeStyle = {
     bgColor : '#e8e8e8',
@@ -229,39 +222,6 @@ const mindNodeStyle = {
         }
     }
 };
-const rootMindNodeStyle = {
-    bgColor : 'rgba(35, 123, 191, 1)',
-    fontColor : 'rgba(255, 255, 255, 1)',
-    fontSize : 24,
-    fontWeight : 400,
-    fontStyle : 'normal',
-    borderWidth : 0,
-    borderColor : lineColor,
-    outlineColor : '#8cdcf5',
-    outlineActiveColor : '#27befc',
-    outlineRadius : 6,
-    _shapePresets : {
-        'round-rect' : {
-            radius : 6
-        },
-        rect : {
-            radius : 0
-        },
-        'half-round-rect' : {
-            // 动态计算
-            computedRadius : 0.5,
-            radius : 0
-        },
-        line : {
-            fontColor : 'rgba(0, 0, 0, 1)',
-            bgColor : 'transparent',
-            borderColor : 'transparent',
-            borderWidth : 0,
-            bottomlineBg : lineColor,
-            bottomlineHeight : 2
-        }
-    }
-};
 const placeholderNodeStyle = {
     bgColor : placeholderColor,
     fontColor : 'rgba(255, 255, 255, 0)',
@@ -287,232 +247,6 @@ const delegateShapeStyle = {
     borderColor : 'rgba(75, 201, 218, 1)',
     borderWidth : 2
 };
-const marks = {
-    'priority:1' : {
-        iconfont : 'e641',
-        iconcls : 'mo-icon-num-1-cf',
-        color : 'rgb(230, 69, 70)',
-        markMethod : 'priority',
-        markValue : '1'
-    },
-    'priority:2' : {
-        iconfont : 'e644',
-        iconcls : 'mo-icon-num-2-cf',
-        color : 'rgb(255, 179, 50)',
-        markMethod : 'priority',
-        markValue : '2'
-    },
-    'priority:3' : {
-        iconfont : 'e647',
-        iconcls : 'mo-icon-num-3-cf',
-        color : 'rgb(79, 109, 250)',
-        markMethod : 'priority',
-        markValue : '3'
-    },
-    'priority:4' : {
-        iconfont : 'e645',
-        iconcls : 'mo-icon-num-4-cf',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'priority',
-        markValue : '4'
-    },
-    'priority:5' : {
-        iconfont : 'e64b',
-        iconcls : 'mo-icon-num-5-cf',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'priority',
-        markValue : '5'
-    },
-    'priority:6' : {
-        iconfont : 'e643',
-        iconcls : 'mo-icon-num-6-cf',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'priority',
-        markValue : '6'
-    },
-    'priority:7' : {
-        iconfont : 'e648',
-        iconcls : 'mo-icon-num-7-cf',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'priority',
-        markValue : '7'
-    },
-    'task:start' : {
-        iconfont : 'e649',
-        iconcls : 'mo-icon-progress-start-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : 'start'
-    },
-    'task:18' : {
-        iconfont : 'e677',
-        iconcls : 'mo-icon-progress-1-8-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : 'oct'
-    },
-    'task:14' : {
-        iconfont : 'e676',
-        iconcls : 'mo-icon-progress-1-4-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : 'quarter'
-    },
-    'task:38' : {
-        iconfont : 'e679',
-        iconcls : 'mo-icon-progress-3-8-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : '3oct'
-    },
-    'task:12' : {
-        iconfont : 'e67d',
-        iconcls : 'mo-icon-progress-1-2-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : 'half'
-    },
-    'task:58' : {
-        iconfont : 'e67e',
-        iconcls : 'mo-icon-progress-5-8-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : '5oct'
-    },
-    'task:34' : {
-        iconfont : 'e678',
-        iconcls : 'mo-icon-progress-3-4-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : '3quar'
-    },
-    'task:78' : {
-        iconfont : 'e67f',
-        iconcls : 'mo-icon-progress-7-8-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : '7oct'
-    },
-    'task:done' : {
-        iconfont : 'e621',
-        iconcls : 'mo-icon-progress-done-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'task',
-        markValue : 'done'
-    },
-    'flag:red' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(230, 69, 70)',
-        markMethod : 'flag',
-        markValue : 'red'
-    },
-    'flag:yellow' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(255, 179, 50)',
-        markMethod : 'flag',
-        markValue : 'orange'
-    },
-    'flag:darkblue' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(79, 109, 250)',
-        markMethod : 'flag',
-        markValue : 'dark-blue'
-    },
-    'flag:purple' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(189, 60, 174)',
-        markMethod : 'flag',
-        markValue : 'purple'
-    },
-    'flag:green' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'flag',
-        markValue : 'green'
-    },
-    'flag:skyblue' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(0, 188, 228)',
-        markMethod : 'flag',
-        markValue : 'blue'
-    },
-    'flag:gray' : {
-        iconfont : 'e8cd',
-        iconcls : 'mo-icon-flag-c',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'flag',
-        markValue : 'gray'
-    },
-    'star:red' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(230, 69, 70)',
-        markMethod : 'star',
-        markValue : 'red'
-    },
-    'star:yellow' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(255, 179, 50)',
-        markMethod : 'star',
-        markValue : 'orange'
-    },
-    'star:darkblue' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(79, 109, 250)',
-        markMethod : 'star',
-        markValue : 'dark-blue'
-    },
-    'star:purple' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(189, 60, 174)',
-        markMethod : 'star',
-        markValue : 'purple'
-    },
-    'star:green' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(54, 203, 102)',
-        markMethod : 'star',
-        markValue : 'green'
-    },
-    'star:skyblue' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(0, 188, 228)',
-        markMethod : 'star',
-        markValue : 'blue'
-    },
-    'star:gray' : {
-        iconfont : 'e85f',
-        iconcls : 'mo-icon-star-cf',
-        color : 'rgb(127, 172, 178)',
-        markMethod : 'star',
-        markValue : 'gray'
-    },
-    'status:fail' : {
-        iconfont : 'e724',
-        iconcls : 'mo-icon-error-cf',
-        color : 'rgb(249, 142, 82)',
-        markMethod : 'symbol',
-        markValue : 'wrong'
-    },
-    'status:question' : {
-        iconfont : 'e72c',
-        iconcls : 'mo-icon-question-cf',
-        color : 'rgb(249, 142, 82)',
-        markMethod : 'symbol',
-        markValue : 'question'
-    }
-};
 const markGourpsName = {
     priority : '优先级',
     task : '任务',
@@ -526,7 +260,26 @@ const markGourpsName = {
 export default {
     origin : 'Form',
     name : 'mindmap',
-    mixins : [GlobalEvent],
+    mixins : [
+        GlobalEvent,
+        BaseEvent,
+        BaseGraph,
+        BaseRegistrar,
+        MixinMark,
+        MixinLink,
+        MixinNote,
+        MixinTag,
+        MixinZoom,
+        MixinInsert,
+        MixinMove,
+        MixinCopy,
+        MixinDelete,
+        MixinSelect,
+        MixinImport,
+        MixinExport,
+        MixinStyling,
+        MixinGetData
+    ],
     props : {
         layout : {
             type : String,
@@ -561,6 +314,7 @@ export default {
     data : function () {
 
         return {
+            G6,
             data : {
                 markGroups : {},
                 graph : null,
@@ -572,7 +326,6 @@ export default {
                 $editLinkDialog : null,
                 $editNoteDialog : null,
                 $editMarkDialog : null,
-                $importDialog : null,
                 globalId : 1,
                 editting : false,
                 editGroupShapes : {},
@@ -606,6 +359,7 @@ export default {
                     star : '0',
                     status : '0'
                 },
+                $importDialog : null,
                 currentImportNode : undefined,
                 currentImportMode : 'replace',
                 mouseOnCanvas : false,
@@ -642,33 +396,17 @@ export default {
             return G6.Util.deepMix({}, nodeStyle, nodeStyle._shapePresets[model.shapeStyle], model.style);
 
         },
-        _clearSelectedNode : function (selectedState) {
-                    
-            let graph = this.data.graph;
-            let autoPaint = graph.get('autoPaint');
-            let nodes = graph.findAllByState('node', selectedState);
-            let edges = graph.findAllByState('edge', selectedState);
-            
-            graph.setAutoPaint(false);
-            nodes.forEach(node => graph.setItemState(node, selectedState, false));
-            edges.forEach(edge => graph.setItemState(edge, selectedState, false));
-            this.selectedNodes = [];
-            // this.selectedEdges = [];
-            graph.paint();
-            graph.setAutoPaint(autoPaint);
-
-        },
         _getGroupShapes : function (item) {
 
             let box = item.getKeyShape();
             let group = box.getParent();
-            let con = group.getChildByIndex(conShapeIndex);
-            let outline = group.getChildByIndex(outlineShapeIndex);
-            let text = group.getChildByIndex(textShapeIndex);
-            let placeholder = group.getChildByIndex(placeholderShapeIndex);
-            let bottomline = group.getChildByIndex(bottomlineShapeIndex);
-            let markConGroup = group.getChildByIndex(markConGroupIndex);
-            let appendConGroup = group.getChildByIndex(appendConGroupIndex);
+            let con = group.getChildren()[SHAPE_INDEX.CON];
+            let outline = group.getChildren()[SHAPE_INDEX.OUTLINE];
+            let text = group.getChildren()[SHAPE_INDEX.TEXT];
+            let placeholder = group.getChildren()[SHAPE_INDEX.PLACEHOLDER];
+            let bottomline = group.getChildren()[SHAPE_INDEX.BOTTOMLINE];
+            let markConGroup = group.getChildren()[SHAPE_INDEX.MARKCON_GROUPINDEX];
+            let appendConGroup = group.getChildren()[SHAPE_INDEX.APPENDCON_GROUPINDEX];
 
             return {
                 con,
@@ -694,7 +432,7 @@ export default {
         _refreshNodeNotePosition : function (node, noteConIndex) {
 
             let groupShapes = this._getGroupShapes(node);
-            let noteConBbox = groupShapes.appendConGroup.getChildByIndex(noteConIndex).getBBox();
+            let noteConBbox = groupShapes.appendConGroup.getChildren()[noteConIndex].getBBox();
             let nodeBbox = node.getBBox();
             let zoom = this.data.graph.getZoom();
             let {
@@ -784,7 +522,7 @@ export default {
             this.data.editZoom = 1;
             this.data.editNode.setState('editing', false);
             this.data.editNode = null;
-            this.data.graph.refreshLayout();
+            this.data.graph.layout();
             this.Vue.nextTick(() => {
                 
                 this.data.editting = false;
@@ -898,7 +636,7 @@ export default {
             this.data.dragHolderParentChilren = null;
             this.data.dragHolderIndexOfParentChildren = null;
             this.data.graph.changeData();
-            // this.data.graph.refreshLayout();
+            // this.data.graph.layout();
 
         },
         _refreshDragHolder : throttle(function (delegateShape, targetNode) {
@@ -1026,7 +764,7 @@ export default {
                 this.data.dragHolderParentChilren = model.children;
                 this.data.graph.paint();
                 this.data.graph.changeData();
-                this.data.graph.refreshLayout();
+                this.data.graph.layout();
                 this.data.graph.findById(this.data.globalId - 1).getInEdges()[0].update({
                     shape : 'mor-placeholder-edge'
                 });
@@ -1096,27 +834,27 @@ export default {
             // 隐藏文本和主容器
             node
                 .get('group')
-                .getChildByIndex(textShapeIndex)[
+                .getChildren()[SHAPE_INDEX.TEXT][
                     type
                 ]();
             node
                 .get('group')
-                .getChildByIndex(conShapeIndex)[
+                .getChildren()[SHAPE_INDEX.CON][
                     type
                 ]();
             node
                 .get('group')
-                .getChildByIndex(bottomlineShapeIndex)[
+                .getChildren()[SHAPE_INDEX.BOTTOMLINE][
                     type
                 ]();
             node
                 .get('group')
-                .getChildByIndex(markConGroupIndex)[
+                .getChildren()[SHAPE_INDEX.MARKCON_GROUPINDEX][
                     type
                 ]();
             node
                 .get('group')
-                .getChildByIndex(appendConGroupIndex)[
+                .getChildren()[SHAPE_INDEX.APPENDCON_GROUPINDEX][
                     type
                 ]();
             
@@ -1203,7 +941,7 @@ export default {
             if (dragging && !dragTarget.hidden) {
 
                 dragTarget.hidden = true;
-                this.data.graph.refreshLayout();
+                this.data.graph.layout();
 
             } else if (!dragging && dragTarget.hidden) {
 
@@ -1212,7 +950,7 @@ export default {
                 this.data.dragHolderIndexOfParentChildren = this.data.dragHolderIndexOfParentChildren + targetNodes.length;
                 this.data.graph.paint();
                 this.data.graph.changeData();
-                this.data.graph.refreshLayout();
+                this.data.graph.layout();
 
             }
 
@@ -1320,8 +1058,8 @@ export default {
 
                 for (let index in appends) {
 
-                    let appendCon = appendConGroup.getChildByIndex(index * 2);
-                    let appendText = appendConGroup.getChildByIndex((index * 2) + 1);
+                    let appendCon = appendConGroup.getChildren()[index * 2];
+                    let appendText = appendConGroup.getChildren()[(index * 2) + 1];
                     let appendConBbox = appendCon.getBBox();
                     let appendTextBbox = appendText.getBBox();
                     let appendConX = textBbox.width + markConGroupBbox.width + conPaddingX + annexMargin.left;
@@ -1329,10 +1067,10 @@ export default {
 
                     appendCon.attr({
                         x,
-                        y : (-appendTextBbox.height / 2) + conPaddingY + annexPadding.y
+                        y : (-appendTextBbox.height / 2) + conPaddingY + ANNEX_PADDING.Y
                     });
                     appendText.attr({
-                        x : x + (appendTextBbox.width / 2) + annexPadding.x,
+                        x : x + (appendTextBbox.width / 2) + ANNEX_PADDING.X,
                         y : (appendTextBbox.height / 2) + conPaddingY
                     });
 
@@ -1388,37 +1126,6 @@ export default {
             return appends;
 
         },
-        _showContextMenu : function (x, y, nodeId) {
-
-            this.data.contextMenu = {
-                style : {
-                    left : `${x}px`,
-                    top : `${y}px`,
-                    display : 'flex',
-                },
-                nodeId
-            };
-            
-            let nodes = this.getAllSelectedNode();
-
-            if (nodes && nodes.length === 1) {
-
-                this._clearSelectedNode('selected');
-
-            }
-
-            this.selectNode(nodeId);
-
-        },
-        _hideContextMenu : function () {
-            
-            this.data.contextMenu = {
-                style : {
-                    display : 'none'
-                }
-            };
-
-        },
         /* eslint-enable no-magic-numbers */
         _inNodeShape : function (evt, shape) {
 
@@ -1439,14 +1146,6 @@ export default {
             }
 
             return false;
-
-        },
-        _inAnnex : function (evt, shapeIndex) {
-
-            return this
-                ._inNodeShape(evt, evt.item.get('group')
-                .getChildByIndex(appendConGroupIndex)
-                .getChildByIndex(shapeIndex));
 
         },
         _editNode : function (nodeId, clean = false) {
@@ -1482,29 +1181,6 @@ export default {
             }
 
         },
-        _onNodeHover : function () {
-
-            this.data.graph.on('node:mouseenter', evt => {
-
-                if (evt.item.getModel().isMindNode) {
-                
-                    this.data.graph.setItemState(evt.item, 'hover', true);
-                
-                }
-            
-            });
-
-            this.data.graph.on('node:mouseleave', evt => {
-
-                if (evt.item.getModel().isMindNode) {
-
-                    this.data.graph.setItemState(evt.item, 'hover', false);
-                
-                }
-
-            });
-
-        },
         _onMarkHover : function () {
 
             this.data.graph.on('node:mousemove', evt => {
@@ -1522,8 +1198,8 @@ export default {
 
                     for (let index in model._mark) {
 
-                        let markConGroup = evt.item.get('group').getChildByIndex(markConGroupIndex);
-                        let markCon = markConGroup.getChildByIndex(index * 2);
+                        let markConGroup = evt.item.get('group').getChildren()[SHAPE_INDEX.MARKCON_GROUPINDEX];
+                        let markCon = markConGroup.getChildren()[index * 2];
 
                         if (!hover && this._inNodeShape(evt, markCon)) {
 
@@ -1539,423 +1215,6 @@ export default {
                     }
 
                 }
-
-            });
-
-        },
-        _onAnnexHover : function () {
-
-            this.data.graph.on('node:mousemove', evt => {
-
-                let model = evt.item.getModel();
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model.link) {
-
-                    if (this._inAnnex(evt, annexList.link.index)) {
-
-                        this.data.graph.setItemState(evt.item, annexList.link.state, true);
-
-                    } else {
-
-                        this.data.graph.setItemState(evt.item, annexList.link.state, false);
-
-                    }
-
-                }
-
-                if (model.note) {
-
-                    let index = annexList.note.index;
-
-                    if (!model.link) {
-
-                        index = 0;
-
-                    }
-
-                    if (this._inAnnex(evt, index)) {
-
-                        this.data.graph.setItemState(evt.item, annexList.note.state, true);
-
-                    } else {
-
-                        this.data.graph.setItemState(evt.item, annexList.note.state, false);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:mousemove', () => {
-
-                let hoverNotes = this.data.graph.findAllByState('node', 'note-hover');
-
-                if (hoverNotes && hoverNotes.length > 0) {
-
-                    for (let note of hoverNotes) {
-
-                        this.data.graph.setItemState(note, annexList.note.state, false);
-
-                    }
-                    
-                }
-
-            });
-
-        },
-        _onAnnexClick : function () {
-
-            this.data.graph.on('node:click', evt => {
-
-                let model = evt.item.getModel();
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model.link) {
-
-                    if (this._inAnnex(evt, annexList.link.index)) {
-
-                        window.open(model.link);
-
-                    }
-
-                }
-
-                if (model.note) {
-
-                    let index = annexList.note.index;
-
-                    if (!model.link) {
-
-                        index = 0;
-
-                    }
-
-                    if (this._inAnnex(evt, index)) {
-
-                        this.data.currentNodeNote = model.note.replace(/\n/g, '<br>');
-                        this.data.nodeNoteShow = true;
-                        this._refreshNodeNotePosition(evt.item, index);
-                        this.data.$notePopover.toggle(true);
-
-                    } else {
-
-                        this.data.nodeNoteShow = false;
-                        this.data.$notePopover.toggle(false);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:click', () => {
-
-                if (this.data.nodeNoteShow) {
-
-                    this.data.nodeNoteShow = false;
-                    this.data.$notePopover.toggle(false);
-
-                }
-
-            });
-
-            this.data.graph.on('wheelzoom', () => {
-
-                if (this.data.nodeNoteShow) {
-
-                    this.data.nodeNoteShow = false;
-                    this.data.$notePopover.toggle(false);
-
-                }
-
-            });
-
-            this.$watch('data.nodeNoteZoom', () => {
-
-                this.data.$nodeNote.style.transform = `scale(${this.data.nodeNoteZoom})`;
-
-            });
-
-            this.$watch('data.nodeNoteShow', () => {
-
-                this.data.$nodeNote.style.pointerEvents = (this.data.nodeNoteShow ? 'default' : 'none');
-
-            });
-
-        },
-        _onNodeSelected : function () {
-
-            this.data.graph.on('node:click', evt => {
-
-                if (this.data.keydownState.mod) {
-
-                    if (evt.item.getModel().isMindNode) {
-
-                        if (evt.item.getStates().indexOf('selected') !== -1) {
-                        
-                            this.data.graph.setItemState(evt.item, 'selected', false);
-
-                        } else {
-                        
-                            this.data.graph.setItemState(evt.item, 'selected', true);
-
-                        }
-                    
-                    }
-
-                } else {
-
-                    this._clearSelectedNode('selected');
-
-                    if (evt.item.getModel().isMindNode) {
-                        
-                        this.data.graph.setItemState(evt.item, 'selected', true);
-                    
-                    }
-
-                }
-            
-            });
-
-        },
-        _onNodeEdit : function () {
-
-            this.data.graph.on('node:dblclick', evt => {
-
-                this._editNode(evt.item.getModel().id);
-
-            });
-
-            this.data.graph.on('wheelzoom', () => {
-
-                if (this.data.editting) {
-        
-                    this._refreshEditorPosition(this.data.editNode);
-
-                }
-
-            });
-
-            this.data.graph.on('click', evt => {
-                
-                if (this.data.editting &&
-                    this.data.editNode !== evt.item) {
-
-                    this._cancelEdit();
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:mousedown', evt => {
-                
-                if (this.data.editting &&
-                    this.data.editNode !== evt.item) {
-
-                    this._cancelEdit();
-
-                }
-
-            });
-
-            this.$watch('data.editZoom', () => {
-
-                this.data.$editContent.style.transform = `scale(${this.data.editZoom})`;
-
-            });
-
-        },
-        _onNodeDrag : function () {
-
-            this.data.graph.on('node:dragstart', evt => {
-
-                if (!evt.item.destroyed && !evt.item.getModel().isRoot && evt.item.getModel().isMindNode) {
-                    
-                    this.data.graph.setItemState(evt.item, 'drag', true);
-
-                }
-
-            });
-
-            this.data.graph.on('node:dragend', evt => {
-
-                if (!evt.item.destroyed && !evt.item.getModel().isRoot && evt.item.getModel().isMindNode) {
-
-                    this.data.graph.setItemState(evt.item, 'drag', false);
-
-                }
-
-            });
-            
-        },
-        _onContextMenu : function () {
-            
-            this.data.graph.on('node:contextmenu', evt => {
-
-                let {
-                    x : canvasX,
-                    y : canvasY
-                } = this.data.graph.getCanvasByPoint(evt.x, evt.y);
-
-                if (evt.item) {
-
-                    let model = evt.item.getModel();
-
-                    if (model.isMindNode) {
-
-                        this._showContextMenu(canvasX, canvasY, model.id);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('node:mouseleave', () => {
-
-                this._hideContextMenu();
-
-            });
-
-        },
-        _onCanvasGrab : function () {
-
-            this.data.graph.on('canvas:mousedown', evt => (
-                G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
-                    cursor : 'grabbing'
-                }))
-            );
-
-            this.data.graph.on('canvas:mouseenter', evt => (
-                G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
-                    cursor : 'grab'
-                }))
-            );
-
-            this.data.graph.on('canvas:mouseup', evt => (
-                G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
-                    cursor : 'grab'
-                }))
-            );
-
-        },
-        _onCanvasKeydown : function () {
-
-            const defaultHotkeyMap = {
-                backspace : () => {
-                    
-                    this.deleteNode(this.getAllSelectedNode());
-
-                },
-                'mod+c' : () => {
-                    
-                    this.copyNodeToClipboard(this.getSelectedNode());
-
-                },
-                'mod+v' : () => {
-
-                    this.insertSubNode(this.getSelectedNode(), this.getClipboard());
-
-                }
-            };
-            const editingHotkeyMap = {
-                'shift+enter' : () => {
-
-                    this._editAppendNewline();
-
-                },
-                enter : () => {
-
-                    this._cancelEdit();
-                
-                }
-            };
-            let hotkeyMap = Object.assign({}, defaultHotkeyMap, this.conf.hotkeyMap);
-
-            this.data.graph.on('keydown', evt => {
-
-                let hitHotkey = false;
-
-                if (this.data.mouseOnCanvas && this.data.editting === true) {
-
-                    for (let key in editingHotkeyMap) {
-
-                        if (isHotkey(key, evt) && typeof editingHotkeyMap[key] === 'function') {
-
-                            editingHotkeyMap[key]();
-                            hitHotkey = true;
-
-                        }
-
-                    }
-
-                }
-
-                if (this.data.mouseOnCanvas && this.data.editting === false) {
-
-                    for (let key in hotkeyMap) {
-
-                        if (isHotkey(key, evt) && typeof hotkeyMap[key] === 'function') {
-
-                            hotkeyMap[key]();
-                            hitHotkey = true;
-
-                        }
-
-                    }
-
-                }
-
-                if (this.data.editting === false && !hitHotkey) {
-
-                    let nodeId = this.getSelectedNode();
-                    let keycode = evt.which;
-                    
-                    /* eslint-disable no-magic-numbers */
-                    if (
-                        this.data.mouseOnCanvas &&
-                        nodeId &&
-                        (
-                            (keycode >= 65 && keycode <= 90) ||
-                            (keycode >= 48 && keycode <= 57) ||
-                            (keycode >= 219 && keycode <= 222) ||
-                            (keycode >= 186 && keycode <= 192)
-                        )
-                    ) {
-
-                        this._editNode(nodeId, true);
-
-                    }
-                    /* eslint-enable no-magic-numbers */
-
-                }
-
-            });
-            
-        },
-        _onCanvasMouseLeave : function () {
-
-            this.data.graph.on('canvas:mouseover', () => {
-                
-                this.data.mouseOnCanvas = true;
-
-            });
-
-            this.data.graph.on('canvas:mouseleave', () => {
-                
-                this.data.mouseOnCanvas = false;
 
             });
 
@@ -1982,920 +1241,6 @@ export default {
             }
 
         },
-        /* eslint-disable no-magic-numbers */
-        _regRootMindNode : function () {
-
-            G6.registerNode('mor-root-mind-node', {
-                drawShape : (cfg, group) => {
-
-                    let cursor = 'default';
-                    let style = this._getNodeStyles(rootMindNodeStyle, cfg);
-                    let conPaddingX = style.fontSize * 1.5;
-                    let conPaddingY = style.fontSize * 0.75;
-                    let box = group.addShape('rect', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            fill : 'transparent',
-                            cursor
-                        }
-                    });
-                    let outline = group.addShape('rect', {
-                        attrs : {
-                            fill : 'transparent',
-                            radius : style.outlineRadius,
-                            cursor,
-                            stroke : 'transparent',
-                            lineWidth : 3
-                        }
-                    });
-                    let con = group.addShape('rect', {
-                        attrs : {
-                            fill : style.bgColor,
-                            radius : style.radius,
-                            cursor,
-                            lineWidth : style.borderWidth,
-                            stroke : style.borderColor
-                        }
-                    });
-                    let text = group.addShape('text', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            text : cfg.text,
-                            textAlign : 'left',
-                            textBaseline : 'middle',
-                            fill : style.fontColor,
-                            fontSize : style.fontSize,
-                            fontWeight : style.fontWeight,
-                            fontStyle : style.fontStyle,
-                            cursor
-                        }
-                    });
-                    let placeholder = group.addShape('text', {
-                        attrs : {
-                            text : ' ',
-                            x : 0,
-                            y : 0,
-                            textAlign : 'left',
-                            textBaseline : 'middle',
-                            fill : style.fontColor,
-                            fontSize : style.fontSize,
-                            cursor
-                        }
-                    });
-                    let bottomline = group.addShape('rect', {
-                        attrs : {
-                            fill : style.bottomlineBg
-                        }
-                    });
-                    let markConGroup = group.addGroup({
-                        id : `node-${cfg.id}-mark-box`,
-                        attrs : {
-                            x : 0,
-                            y : 0
-                        }
-                    });
-                    let appendConGroup = group.addGroup({
-                        id : `node-${cfg.id}-append-box`,
-                        attrs : {
-                            x : 0,
-                            y : 0
-                        }
-                    });
-                    let appends = this._getAppends(cfg);
-
-                    if (appends && appends.length > 0) {
-    
-                        for (let index in appends) {
-
-                            let append = appends[index];
-                            let appendCon = appendConGroup.addShape('rect', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : append.fill,
-                                    fillOpacity : 0.7,
-                                    stroke : 'transparent',
-                                    radius : 3
-                                },
-                                zIndex : 99
-                            });
-
-                            let appendText = appendConGroup.addShape('text', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : append.textFill || style.fontColor,
-                                    fillOpacity : 0.6,
-                                    fontFamily : append.fontFamily,
-                                    fontSize : append.fontSize,
-                                    textAlign : 'center',
-                                    textBaseline : 'middle'
-                                }
-                            });
-
-                            appendText.attr({
-                                text : append.genText()
-                            });
-
-                            let appendTextBbox = appendText.getBBox();
-
-                            appendCon.attr({
-                                width : appendTextBbox.width + (annexPadding.x * 2),
-                                height : appendTextBbox.height + (annexPadding.y * 2)
-                            });
-
-                        }
-
-                    }
-                    
-                    if (cfg._mark && cfg._mark.length > 0) {
-    
-                        for (let index in cfg._mark) {
-
-                            let markName = cfg._mark[index];
-                            let markCon = markConGroup.addShape('rect', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : 'transparent',
-                                    fillOpacity : 0.7,
-                                    stroke : 'transparent',
-                                    radius : 3
-                                },
-                                zIndex : 99
-                            });
-
-                            let mark = markConGroup.addShape('text', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fontFamily : 'morningicon',
-                                    fontSize : style.fontSize,
-                                    textAlign : 'center',
-                                    textBaseline : 'middle',
-                                    fill : marks[markName].color,
-                                    text : String.fromCharCode(parseInt(`${marks[markName].iconfont};`, 16))
-                                }
-                            });
-
-                            let markBbox = mark.getBBox();
-                            
-                            markCon.attr({
-                                // x : (-markBbox.width / 2) - annexPadding + (markBbox.width * index),
-                                // y : (-markBbox.height / 2) - annexPadding,
-                                width : markBbox.width,
-                                height : markBbox.height + (annexPadding * 2)
-                            });
-
-                        }
-
-                    }   
-
-                    let markConGroupBbox = markConGroup.getBBox();
-                    let appendConGroupBbox = appendConGroup.getBBox();
-                    let textBbox = text.getBBox();
-                    let conWidth = textBbox.width + (conPaddingX * 2);
-                    let conHeight = textBbox.height + (conPaddingY * 2);
-                    let textX = 0;
-
-                    if (cfg._mark && cfg._mark.length > 0) {
-
-                        for (let index in cfg._mark) {
-
-                            let markCon = markConGroup.getChildByIndex(index * 2);
-                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
-                            let markBbox = mark.getBBox();
-                            let markConBbox = markCon.getBBox();
-
-                            markCon.attr({
-                                x : (-markBbox.width / 2) + (markConBbox.width * index),
-                                y : (-markBbox.height / 2) + conPaddingY + annexPadding
-                            });
-                            mark.attr({
-                                x : (markBbox.width / 4) + (markConBbox.width * index) + conPaddingX,
-                                y : (markBbox.height / 2) + conPaddingY
-                            });
-
-                        }
-
-                        markConGroupBbox = markConGroup.getBBox();
-
-                    }
-
-                    if (appends && appends.length > 0) {
-
-                        this._refreshAppendConGroupPosition({
-                            text,
-                            markConGroup,
-                            appendConGroup
-                        }, cfg);
-                        appendConGroupBbox = appendConGroup.getBBox();
-
-                    }
-
-                    if (cfg._mark && cfg._mark.length > 0) {
-
-                        conWidth += markConGroupBbox.width;
-                        textX = markConGroupBbox.width;
-
-                    }
-
-                    if (appends && appends.length > 0) {
-
-                        conWidth += appendConGroupBbox.width;
-
-                    }
-
-                    con.attr({
-                        x : 0,
-                        y : 0,
-                        width : conWidth,
-                        height : conHeight
-                    });
-
-                    let conBbox = con.getBBox();
-
-                    box.attr({
-                        width : conBbox.width,
-                        height : conBbox.height
-                    });
-                    box.set('conPaddingX', conPaddingX);
-                    box.set('conPaddingY', conPaddingY);
-
-                    let boxBbox = con.getBBox();
-
-                    outline.attr({
-                        x : boxBbox.minX - outlinePadding,
-                        y : boxBbox.minY - outlinePadding,
-                        width : boxBbox.width + (outlinePadding * 2),
-                        height : boxBbox.height + (outlinePadding * 2)
-                    });
-
-                    text.attr({
-                        x : textX + conPaddingX,
-                        y : (textBbox.height / 2) + conPaddingY
-                    });
-
-                    placeholder.attr({
-                        x : textX + conPaddingX,
-                        y : (textBbox.height / 2) + conPaddingY
-                    });
-
-                    bottomline.attr({
-                        x : boxBbox.minX - 1,
-                        y : boxBbox.maxY - 0.5,
-                        height : style.bottomlineHeight,
-                        width : boxBbox.width + 2
-                    });
-
-                    return box;
-
-                },
-                setState : (name, value, item) => {
-
-                    let model = item.getModel();
-                    let style = this._getNodeStyles(rootMindNodeStyle, model);
-                    let states = item.getStates();
-                    let box = item.get('keyShape');
-                    let group = box.getParent();
-                    let outline = group.getChildByIndex(outlineShapeIndex);
-                    let markConGroup = group.getChildByIndex(markConGroupIndex);
-                    let appendConGroup = group.getChildByIndex(appendConGroupIndex);
-                    let linkIndex = annexList.link.index;
-                    let noteIndex = annexList.note.index;
-
-                    if (!model.link) {
-
-                        noteIndex = linkIndex;
-
-                    }
-
-                    let linkCon = appendConGroup.getChildByIndex(linkIndex);
-                    let link = appendConGroup.getChildByIndex(linkIndex + 1);
-                    let noteCon = appendConGroup.getChildByIndex(noteIndex);
-                    let note = appendConGroup.getChildByIndex(noteIndex + 1);
-
-                    if (states.indexOf('drag') !== -1) {
-
-                        outline.attr({
-                            fillOpacity : 0,
-                            strokeOpacity : 0
-                        });
-
-                    } else {
-
-                        outline.attr({
-                            fillOpacity : 1,
-                            strokeOpacity : 1
-                        });
-
-                    }
-
-                    if (model.link) {
-
-                        if (states.indexOf('link-hover') !== -1) {
-
-                            linkCon.attr({
-                                fill : style.outlineColor,
-                                stroke : style.outlineActiveColor,
-                                cursor : 'pointer'
-                            });
-                            link.attr({
-                                fillOpacity : 1,
-                                cursor : 'pointer'
-                            });
-
-                        } else {
-
-                            linkCon.attr({
-                                fill : 'transparent',
-                                stroke : 'transparent',
-                                cursor : 'default'
-                            });
-                            link.attr({
-                                fillOpacity : 0.6,
-                                cursor : 'default'
-                            });
-
-                        }
-
-                    }
-
-                    if (model.note) {
-
-                        if (states.indexOf('note-hover') !== -1) {
-
-                            noteCon.attr({
-                                fill : style.outlineColor,
-                                stroke : style.outlineActiveColor,
-                                cursor : 'pointer'
-                            });
-                            note.attr({
-                                fillOpacity : 1,
-                                cursor : 'pointer'
-                            });
-
-                        } else {
-
-                            noteCon.attr({
-                                fill : 'transparent',
-                                stroke : 'transparent',
-                                cursor : 'default'
-                            });
-                            note.attr({
-                                fillOpacity : 0.6,
-                                cursor : 'default'
-                            });
-
-                        }
-
-                    }
-
-                    if (model._mark && model._mark.length > 0) {
-
-                        for (let index in model._mark) {
-
-                            let markCon = markConGroup.getChildByIndex(index * 2);
-                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
-
-                            if (states.indexOf(`mark-${index}-hover`) !== -1) {
-
-                                markCon.attr({
-                                    // fill : style.outlineColor,
-                                    stroke : style.outlineActiveColor,
-                                    cursor : 'pointer'
-                                });
-                                mark.attr({
-                                    cursor : 'pointer'
-                                });
-
-                            } else {
-
-                                markCon.attr({
-                                    // fill : 'transparent',
-                                    stroke : 'transparent',
-                                    cursor : 'default'
-                                });
-                                mark.attr({
-                                    cursor : 'default'
-                                });
-
-                            }
-                            
-                        }
-
-                    }
-
-                    if (
-                        this.data.dragging === false &&
-                        (
-                            states.indexOf('selected') !== -1 ||
-                            states.indexOf('editing') !== -1
-                        )
-                    ) {
-
-                        outline.attr({
-                            stroke : style.outlineActiveColor,
-                            lineWidth : 3
-                        });
-                        group.set('zIndex', 9);
-
-                    } else if (
-                        this.data.dragging === false &&
-                        states.indexOf('hover') !== -1
-                    ) {
-
-                        outline.attr({
-                            stroke : style.outlineColor,
-                            lineWidth : 3
-                        });
-                        group.set('zIndex', 3);
-
-                    } else {
-
-                        outline.attr({
-                            stroke : 'transparent',
-                            lineWidth : 3
-                        });
-                        group.set('zIndex', 1);
-
-                    }
-
-                }
-            }, 'single-shape');
-
-        },
-        _regMindNode : function () {
-
-            G6.registerNode('mor-mind-node', {
-                drawShape : (cfg, group) => {
-
-                    let cursor = 'move';
-                    let style = this._getNodeStyles(mindNodeStyle, cfg);
-                    let conPaddingX = style.fontSize * 1.5;
-                    let conPaddingY = style.fontSize * 0.75;
-                    let box = group.addShape('rect', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            fill : 'transparent',
-                            cursor
-                        }
-                    });
-                    let outline = group.addShape('rect', {
-                        attrs : {
-                            fill : 'transparent',
-                            radius : style.outlineRadius,
-                            cursor,
-                            stroke : 'transparent',
-                            lineWidth : 3
-                        }
-                    });
-                    let con = group.addShape('rect', {
-                        attrs : {
-                            fill : style.bgColor,
-                            radius : style.radius,
-                            cursor,
-                            lineWidth : style.borderWidth,
-                            stroke : style.borderColor
-                        }
-                    });
-                    let text = group.addShape('text', {
-                        attrs : {
-                            x : 0,
-                            y : 0,
-                            text : cfg.text,
-                            textAlign : 'left',
-                            textBaseline : 'middle',
-                            fill : style.fontColor,
-                            fontSize : style.fontSize,
-                            fontWeight : style.fontWeight,
-                            fontStyle : style.fontStyle,
-                            cursor
-                        }
-                    });
-                    let placeholder = group.addShape('text', {
-                        attrs : {
-                            text : ' ',
-                            x : 0,
-                            y : 0,
-                            textAlign : 'left',
-                            textBaseline : 'middle',
-                            fill : style.fontColor,
-                            fontSize : style.fontSize,
-                            cursor
-                        }
-                    });
-                    let bottomline = group.addShape('rect', {
-                        attrs : {
-                            fill : style.bottomlineBg
-                        }
-                    });
-                    let markConGroup = group.addGroup({
-                        id : `node-${cfg.id}-mark-box`,
-                        attrs : {
-                            x : 0,
-                            y : 0
-                        }
-                    });
-                    let appendConGroup = group.addGroup({
-                        id : `node-${cfg.id}-append-box`,
-                        attrs : {
-                            x : 0,
-                            y : 0
-                        }
-                    });
-                    let appends = this._getAppends(cfg);
-
-                    if (appends && appends.length > 0) {
-    
-                        for (let index in appends) {
-
-                            let append = appends[index];
-                            let appendCon = appendConGroup.addShape('rect', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : append.fill,
-                                    fillOpacity : 0.7,
-                                    stroke : 'transparent',
-                                    radius : 3
-                                },
-                                zIndex : 99
-                            });
-
-                            let appendText = appendConGroup.addShape('text', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : append.textFill || style.fontColor,
-                                    fillOpacity : 0.6,
-                                    fontFamily : append.fontFamily,
-                                    fontSize : append.fontSize,
-                                    textAlign : 'center',
-                                    textBaseline : 'middle'
-                                }
-                            });
-
-                            appendText.attr({
-                                text : append.genText()
-                            });
-
-                            let appendTextBbox = appendText.getBBox();
-
-                            appendCon.attr({
-                                width : appendTextBbox.width + (annexPadding.x * 2),
-                                height : appendTextBbox.height + (annexPadding.y * 2)
-                            });
-
-                        }
-
-                    }
-                    
-                    if (cfg._mark && cfg._mark.length > 0) {
-    
-                        for (let index in cfg._mark) {
-
-                            let markName = cfg._mark[index];
-                            let markCon = markConGroup.addShape('rect', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fill : 'transparent',
-                                    fillOpacity : 0.7,
-                                    stroke : 'transparent',
-                                    radius : 3
-                                },
-                                zIndex : 99
-                            });
-
-                            let mark = markConGroup.addShape('text', {
-                                attrs : {
-                                    x : 0,
-                                    y : 0,
-                                    fontFamily : 'morningicon',
-                                    fontSize : style.fontSize,
-                                    textAlign : 'center',
-                                    textBaseline : 'middle',
-                                    fill : marks[markName].color,
-                                    text : String.fromCharCode(parseInt(`${marks[markName].iconfont};`, 16))
-                                }
-                            });
-
-                            let markBbox = mark.getBBox();
-                            
-                            markCon.attr({
-                                // x : (-markBbox.width / 2) - annexPadding + (markBbox.width * index),
-                                // y : (-markBbox.height / 2) - annexPadding,
-                                width : markBbox.width,
-                                height : markBbox.height + (annexPadding * 2)
-                            });
-
-                        }
-
-                    }
-
-                    let markConGroupBbox = markConGroup.getBBox();
-                    let appendConGroupBbox = appendConGroup.getBBox();
-                    let textBbox = text.getBBox();
-                    let conWidth = textBbox.width + (conPaddingX * 2);
-                    let conHeight = textBbox.height + (conPaddingY * 2);
-                    let textX = 0;
-
-                    if (cfg._mark && cfg._mark.length > 0) {
-
-                        for (let index in cfg._mark) {
-
-                            let markCon = markConGroup.getChildByIndex(index * 2);
-                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
-                            let markBbox = mark.getBBox();
-                            let markConBbox = markCon.getBBox();
-
-                            markCon.attr({
-                                x : (-markBbox.width / 2) + (markConBbox.width * index),
-                                y : (-markBbox.height / 2) + conPaddingY + annexPadding
-                            });
-                            mark.attr({
-                                x : (markBbox.width / 4) + (markConBbox.width * index) + conPaddingX,
-                                y : (markBbox.height / 2) + conPaddingY
-                            });
-
-                        }
-
-                        markConGroupBbox = markConGroup.getBBox();
-
-                    }
-
-                    if (appends && appends.length > 0) {
-
-                        this._refreshAppendConGroupPosition({
-                            text,
-                            markConGroup,
-                            appendConGroup
-                        }, cfg);
-                        appendConGroupBbox = appendConGroup.getBBox();
-
-                    }
-
-                    if (cfg._mark && cfg._mark.length > 0) {
-
-                        conWidth += markConGroupBbox.width;
-                        textX = markConGroupBbox.width;
-
-                    }
-
-                    if (appends && appends.length > 0) {
-
-                        conWidth += appendConGroupBbox.width;
-
-                    }
-
-                    con.attr({
-                        x : 0,
-                        y : 0,
-                        width : conWidth,
-                        height : conHeight
-                    });
-
-                    let conBbox = con.getBBox();
-
-                    box.attr({
-                        width : conBbox.width,
-                        height : conBbox.height
-                    });
-                    box.set('conPaddingX', conPaddingX);
-                    box.set('conPaddingY', conPaddingY);
-
-                    let boxBbox = con.getBBox();
-
-                    outline.attr({
-                        x : boxBbox.minX - outlinePadding,
-                        y : boxBbox.minY - outlinePadding,
-                        width : boxBbox.width + (outlinePadding * 2),
-                        height : boxBbox.height + (outlinePadding * 2)
-                    });
-
-                    text.attr({
-                        x : textX + conPaddingX,
-                        y : (textBbox.height / 2) + conPaddingY
-                    });
-
-                    placeholder.attr({
-                        x : textX + conPaddingX,
-                        y : (textBbox.height / 2) + conPaddingY
-                    });
-
-                    bottomline.attr({
-                        x : boxBbox.minX - 1,
-                        y : boxBbox.maxY - 0.5,
-                        height : style.bottomlineHeight,
-                        width : boxBbox.width + 2
-                    });
-
-                    return box;
-
-                },
-                setState : (name, value, item) => {
-
-                    let model = item.getModel();
-                    let style = this._getNodeStyles(mindNodeStyle, model);
-                    let states = item.getStates();
-                    let box = item.get('keyShape');
-                    let group = box.getParent();
-                    let outline = group.getChildByIndex(outlineShapeIndex);
-                    let markConGroup = group.getChildByIndex(markConGroupIndex);
-                    let appendConGroup = group.getChildByIndex(appendConGroupIndex);
-                    let linkIndex = annexList.link.index;
-                    let noteIndex = annexList.note.index;
-
-                    if (!model.link) {
-
-                        noteIndex = linkIndex;
-
-                    }
-
-                    let linkCon = appendConGroup.getChildByIndex(linkIndex);
-                    let link = appendConGroup.getChildByIndex(linkIndex + 1);
-                    let noteCon = appendConGroup.getChildByIndex(noteIndex);
-                    let note = appendConGroup.getChildByIndex(noteIndex + 1);
-
-                    if (states.indexOf('drag') !== -1) {
-
-                        outline.attr({
-                            fillOpacity : 0,
-                            strokeOpacity : 0
-                        });
-
-                    } else {
-
-                        outline.attr({
-                            fillOpacity : 1,
-                            strokeOpacity : 1
-                        });
-
-                    }
-
-                    if (model.link) {
-
-                        if (states.indexOf('link-hover') !== -1) {
-
-                            linkCon.attr({
-                                fill : style.outlineColor,
-                                stroke : style.outlineActiveColor,
-                                cursor : 'pointer'
-                            });
-                            link.attr({
-                                fillOpacity : 1,
-                                cursor : 'pointer'
-                            });
-
-                        } else {
-
-                            linkCon.attr({
-                                fill : 'transparent',
-                                stroke : 'transparent',
-                                cursor : 'default'
-                            });
-                            link.attr({
-                                fillOpacity : 0.6,
-                                cursor : 'default'
-                            });
-
-                        }
-
-                    }
-
-                    if (model.note) {
-
-                        if (states.indexOf('note-hover') !== -1) {
-
-                            noteCon.attr({
-                                fill : style.outlineColor,
-                                stroke : style.outlineActiveColor,
-                                cursor : 'pointer'
-                            });
-                            note.attr({
-                                fillOpacity : 1,
-                                cursor : 'pointer'
-                            });
-
-                        } else {
-
-                            noteCon.attr({
-                                fill : 'transparent',
-                                stroke : 'transparent',
-                                cursor : 'default'
-                            });
-                            note.attr({
-                                fillOpacity : 0.6,
-                                cursor : 'default'
-                            });
-
-                        }
-
-                    }
-
-                    if (model._mark && model._mark.length > 0) {
-
-                        for (let index in model._mark) {
-
-                            let markCon = markConGroup.getChildByIndex(index * 2);
-                            let mark = markConGroup.getChildByIndex((index * 2) + 1);
-
-                            if (states.indexOf(`mark-${index}-hover`) !== -1) {
-
-                                markCon.attr({
-                                    // fill : style.outlineColor,
-                                    stroke : style.outlineActiveColor,
-                                    cursor : 'pointer'
-                                });
-                                mark.attr({
-                                    cursor : 'pointer'
-                                });
-
-                            } else {
-
-                                markCon.attr({
-                                    // fill : 'transparent',
-                                    stroke : 'transparent',
-                                    cursor : 'default'
-                                });
-                                mark.attr({
-                                    cursor : 'default'
-                                });
-
-                            }
-                            
-                        }
-
-                    }
-
-                    if (
-                        this.data.dragging === false &&
-                        (
-                            states.indexOf('selected') !== -1 ||
-                            states.indexOf('editing') !== -1
-                        )
-                    ) {
-
-                        outline.attr({
-                            stroke : style.outlineActiveColor,
-                            lineWidth : 3
-                        });
-                        group.set('zIndex', 9);
-
-                    } else if (
-                        this.data.dragging === false &&
-                        states.indexOf('hover') !== -1
-                    ) {
-
-                        outline.attr({
-                            stroke : style.outlineColor,
-                            lineWidth : 3
-                        });
-                        group.set('zIndex', 3);
-
-                    } else {
-
-                        outline.attr({
-                            stroke : 'transparent',
-                            lineWidth : 3
-                        });
-                        group.set('zIndex', 1);
-
-                    }
-
-                }
-            }, 'single-shape');
-
-        },
-        _regPlaceholderNode : function () {
-
-            G6.registerNode('mor-placeholder-node', {
-                drawShape : (cfg, group) => {
-
-                    let options = G6.Util.deepMix(placeholderNodeStyle, cfg.style);
-                    let key = group.addShape('rect', {
-                        attrs : {
-                            fill : options.bgColor,
-                            cursor : 'default',
-                            width : 80,
-                            height : 28,
-                            x : 0,
-                            y : 0,
-                            radius : options.radius,
-                        }
-                    });
-
-                    return key;
-
-                }
-            }, 'single-shape');
-
-        },
-        /* eslint-enable no-magic-numbers */
         _getPathWithBorderRadiusByPolyline : function (points, borderRadius) {
 
             let pathSegments = [];
@@ -2944,7 +1289,14 @@ export default {
             G6.registerEdge('mor-mind-edge', {
                 getPath : function (points, routeCfg) {
                     
-                    return vm._getPathWithBorderRadiusByPolyline(points, routeCfg.radius);
+                    // TODO
+                    if (routeCfg) {
+                        
+                        return vm._getPathWithBorderRadiusByPolyline(points, routeCfg.radius);
+
+                    }
+
+                    console.log('warn no routeCfg:', points, routeCfg);
                 
                 },
                 getShapeStyle : function (cfg) {
@@ -3039,6 +1391,17 @@ export default {
                         path
                     });
 
+                },
+                getCustomConfig : function () {
+
+                    return {
+                        style : {
+                            lineWidth : placeholderEdgeStyle.borderWidth,
+                            stroke : placeholderEdgeStyle.borderColor,
+                            radius : placeholderEdgeStyle.radius
+                        }
+                    };
+                
                 }
             }, 'polyline');
 
@@ -3127,7 +1490,7 @@ export default {
 
                     setTimeout(() => {
 
-                        G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
+                        modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
                             cursor : 'default'
                         });
                     
@@ -3286,7 +1649,7 @@ export default {
 
                     setTimeout(() => {
 
-                        G6.Util.modifyCSS(this.graph._cfg.canvas._cfg.canvasDOM, {
+                        modifyCSS(this.graph._cfg.canvas._cfg.canvasDOM, {
                             cursor : 'default'
                         });
                     
@@ -3471,7 +1834,7 @@ export default {
                     // this.graph.paint();
                     vm._updateDragTarget(false);
                     vm._removeOldDragPlaceholder();
-                    this.graph.refreshLayout();
+                    this.graph.layout();
                     this.dragOptions = {};
                     this.point = {};
                     this.targets.length = 0;
@@ -3659,167 +2022,6 @@ export default {
             this._regBehaviorDragNode();
 
         },
-        // _bindHotkey : function () {
-
-        //     this.data.graph
-
-        // },
-        _bindEvent : function () {
-
-            this._onCanvasGrab();
-            this._onNodeHover();
-            this._onNodeSelected();
-            this._onNodeEdit();
-            this._onNodeDrag();
-            this._onAnnexHover();
-            this._onAnnexClick();
-            this._onContextMenu();
-            this._onCanvasKeydown();
-            this._onCanvasMouseLeave();
-            // this._onHotkey();
-            
-            // eslint-disable-next-line no-warning-comments
-            // TODO : mark hover is not work, cause zIndex
-            // this._onMarkHover();
-
-        },
-        _createGraph : function () {
-
-            let width = this.conf.width;
-            let height = this.conf.height;
-
-            if (/px$/.test(width)) {
-
-                width = width.replace(/px$/, '');
-
-            }
-
-            if (/%$/.test(width)) {
-
-                this.$el.style.width = width;
-                width = this.$el.clientWidth;
-
-            }
-
-            if (/px$/.test(height)) {
-
-                height = height.replace(/px$/, '');
-
-            }
-
-            if (/%$/.test(height)) {
-
-                this.$el.style.height = height;
-                height = this.$el.clientHeight;
-
-            }
-
-            let graphOtions = {
-                container : this.data.$canvas,
-                width : width,
-                height : height,
-                pixelRatio : 2,
-                animate : false,
-                modes : {
-                    default : [
-                        'drag-canvas',
-                        // 'zoom-canvas',
-                        'mor-brush-select',
-                        'mor-drag-node'
-                    ]
-                },
-                defaultNode : {
-                    shape : 'mor-mind-node'
-                },
-                defaultEdge : {
-                    shape : 'mor-mind-edge'
-                },
-                layout : {
-                    getHeight : data => {
-
-                        let node = this.data.graph.findById(data.id);
-
-                        if (
-                            !node ||
-                            (node && node.destroyed) ||
-                            (node && node.getModel().isDragging)
-                        ) {
-
-                            return 0;
-
-                        }
-
-                        let model = node.getModel();
-
-                        if (model.style && model.style.computedRadius) {
-
-                            node.get('group').getChildByIndex(conShapeIndex)
-                                .attr({
-                                    radius : node.getBBox().height * model.style.computedRadius
-                                });
-                            node.get('group').set('radius', node.getBBox().height * model.style.computedRadius);
-
-                        }
-                        
-                        return node.getBBox().height;
-
-                    },
-                    getWidth : data => {
-
-                        let node = this.data.graph.findById(data.id);
-
-                        if (
-                            !node ||
-                            (node && node.destroyed) ||
-                            (node && node.getModel().isDragging)
-                        ) {
-
-                            return 0;
-
-                        }
-
-                        return node.getBBox().width;
-
-                    },
-                    getVGap : data => {
-
-                        let node = this.data.graph.findById(data.id);
-
-                        if (node && node.getModel().isDragging) {
-
-                            return 0;
-
-                        }
-
-                        return 5;
-
-                    },
-                    getHGap : () => 30
-                }
-            };
-
-            if (this.conf.layout === 'LR') {
-
-                graphOtions.layout.direction = 'LR';
-                graphOtions.layout.type = 'compactBox';
-
-            } else if (this.conf.layout === 'RL') {
-
-                graphOtions.layout.direction = 'RL';
-                graphOtions.layout.type = 'compactBox';
-
-            }
-            
-            // else if (this.conf.layout === 'RL') {
-
-            //     graphOtions.layout.direction = 'LR';
-            //     graphOtions.layout.type = 'indented';
-
-            // }
-
-            this.data.graph = new G6.TreeGraph(graphOtions);
-
-        },
         _traverseNodeUpdateMark : function (item) {
 
             if (item.mark && item.mark.length > 0) {
@@ -3831,7 +2033,7 @@ export default {
                     let name = item.mark[index];
                     let group = name.split(':')[0];
 
-                    if (marks[name]) {
+                    if (MARKS[name]) {
                         
                         mark[group] = name;
 
@@ -3884,454 +2086,6 @@ export default {
 
         },
         /* eslint-enable no-magic-numbers */
-        _readData : function (data) {
-
-            G6.Util.traverseTree(data, this._traverseOneNode);
-            this.data.graph.read(data);
-
-            setTimeout(() => {
-
-                this.data.graph.refreshLayout(true);
-                this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
-
-            });
-
-        },
-        _exportDataWalker : function (data, nodeCallback, customWalker) {
-
-            let dataWalker = (currentData, ...args) => {
-
-                for (let item of currentData) {
-
-                    nodeCallback(item, ...args);
-
-                    if (item.children && item.children.length > 0) {
-
-                        if (typeof customWalker === 'function') {
-
-                            customWalker(Object.assign([], item.children), dataWalker);
-
-                        } else {
-
-                            dataWalker(item.children);
-
-                        }
-
-                    }
-
-                }
-
-            };
-
-            dataWalker(data);
-
-        },
-        _importDataWalker : function (data, nodeCallback, customWalker) {
-
-            let dataWalker = (currentData, ...args) => {
-
-                for (let item of currentData) {
-
-                    nodeCallback(item, ...args);
-
-                    if (item.children) {
-
-                        if (typeof customWalker === 'function') {
-
-                            customWalker(item.children, dataWalker);
-
-                        } else {
-
-                            dataWalker(item.children);
-
-                        }
-
-                    }
-
-                }
-
-            };
-
-            dataWalker(data);
-
-        },
-        _swapArr : function (children, fromIndex, toIndex) {
-
-            children[toIndex] = children.splice(fromIndex, 1, children[toIndex])[0];
-        
-            return children;
-
-        },
-        _downloadFile : function (dataUrl, suffix) {
-
-            let downloadLink = document.createElement('a');
-
-            downloadLink.style.display = 'none';
-            downloadLink.href = dataUrl;
-            downloadLink.download = `${+new Date()}.${suffix}`;
-            window.document.body.appendChild(downloadLink);
-            downloadLink.click();
-            window.document.body.removeChild(downloadLink);
-
-        },
-        _exportPNG : function () {
-
-            let canvas = this.data.$canvas.querySelector('canvas');
-
-            return canvas.toDataURL('image/png');
-
-        },
-        _exportJSON : function (data) {
-
-            let json = [];
-            let current = null;
-
-            this._exportDataWalker(data, (item, parent) => {
-
-                current = {
-                    text : item.text,
-                    children : []
-                };
-
-                current.link = item.link;
-                current.note = item.note;
-                current.mark = item.mark;
-                current.tag = item.tag;
-
-                if (parent === undefined) {
-
-                    json.push(current);
-
-                } else {
-
-                    parent.push(current);
-
-                }
-
-            }, (children, dataWalker) => {
-
-                if (children && children.length > 0) {
-
-                    dataWalker(children, current.children);
-
-                }
-
-            });
-
-            return json;
-            
-        },
-        _importJSON : function (data) {
-
-            let xmindData;
-            let current;
-
-            this._importDataWalker(data, (item, parent) => {
-
-                current = {
-                    text : item.text,
-                    children : []
-                };
-
-                if (item.link) {
-                    
-                    current.link = item.link;
-
-                }
-
-                if (item.note) {
-                    
-                    current.note = item.note;
-
-                }
-
-                if (item.mark) {
-                    
-                    current.mark = item.mark;
-
-                }
-
-                if (item.tag) {
-                    
-                    current.tag = item.tag;
-
-                }
-
-                this._traverseOneNode(current);
-
-                if (parent === undefined) {
-
-                    xmindData = current;
-
-                } else {
-
-                    parent.push(current);
-
-                }
-
-            }, (children, dataWalker) => {
-
-                if (children && children.length > 0) {
-
-                    dataWalker(children, current.children);
-
-                }
-
-            });
-
-            return xmindData;
-
-        },
-        _exportXMIND : function (data) {
-
-            let zip = new JSZip();
-            let {
-                Workbook,
-                Topic,
-                Dumper,
-                Marker
-            } = window;
-            let topic;
-            let workbook = new Workbook();
-            let current = null;
-
-            this._exportDataWalker(data, (item, cid) => {
-
-                current = {
-                    title : item.text
-                };
-
-                if (item.link) {
-
-                    current.href = item.link;
-
-                }
-
-                if (item.tag) {
-
-                    current.labels = item.tag;
-
-                }
-
-                if (topic === undefined) {
-
-                    topic = new Topic({
-                        sheet : workbook.createSheet('sheet title', current.text)
-                    });
-
-                } else if (cid) {
-
-                    topic.on(cid).add(current);
-
-                }
-
-                if (item.note) {
-
-                    topic.on(topic.cid()).note(item.note);
-
-                }
-
-                if (item._mark && item._mark.length > 0) {
-
-                    let marker = new Marker();
-
-                    for (let markName of item._mark) {
-
-                        topic.on(topic.cid()).marker(marker[marks[markName].markMethod](marks[markName].markValue));
-
-                    }
-
-                }
-
-            }, (children, dataWalker) => {
-
-                if (children && children.length > 0) {
-
-                    children.unshift(children.pop());
-                    dataWalker(children, topic.cid());
-
-                }
-
-            });
-
-            let dumper = new Dumper({
-                workbook
-            });
-            let files = dumper.dumping();
-
-            for (const file of files) {
-
-                if (file.filename === 'content.json') {
-
-                    file.value = JSON.parse(file.value);
-
-                    if (this.conf.layout === 'LR') {
-                    
-                        file.value[0].rootTopic.structureClass = 'org.xmind.ui.logic.right';
-
-                    } else if (this.conf.layout === 'RL') {
-                    
-                        file.value[0].rootTopic.structureClass = 'org.xmind.ui.logic.left';
-
-                    }
-                    
-                    // else if (this.conf.layout === 'TL') {
-                    //     file.value[0].rootTopic.structureClass = 'org.xmind.ui.tree.right';
-                    // }
-
-                    file.value = JSON.stringify(file.value);
-
-                }
-                
-                zip.file(file.filename, file.value);
-
-            }
-            
-            return zip.generateAsync({
-                type : 'blob'
-            });
-
-        },
-        _importXMIND : function (data) {
-
-            let xmindData;
-            let current;
-
-            this._importDataWalker(data, (item, parent) => {
-
-                current = {
-                    text : item.title,
-                    children : []
-                };
-
-                if (item.href) {
-                    
-                    current.link = item.href;
-
-                }
-
-                if (item.notes) {
-                    
-                    current.note = item.notes.plain.content;
-
-                }
-
-                if (item.markers) {
-                    
-                    let markList = map(item.markers, 'markerId');
-
-                    for (let index in markList) {
-
-                        markList[index] = markList[index].replace('-', ':');
-
-                    }
-
-                    current.mark = markList;
-
-                }
-
-                if (item.labels) {
-
-                    current.tag = item.labels;
-
-                }
-
-                this._traverseOneNode(current);
-
-                if (parent === undefined) {
-
-                    xmindData = current;
-
-                } else {
-
-                    parent.push(current);
-
-                }
-
-            }, (children, dataWalker) => {
-
-                if (children) {
-
-                    dataWalker(children.attached, current.children);
-
-                }
-
-            });
-
-            return xmindData;
-
-        },
-        _saveMarks : function (nodeIds, groups) {
-
-            let markList = Object.values(groups);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-
-                markList = arrayUniq(markList);
-                markList = markList.filter(mark => (mark !== '0'));
-                
-                for (let index in markList) {
-
-                    markList[index] = markList[index].replace('-', ':');
-
-                }
-
-                if (model.mark === undefined) {
-
-                    model.mark = [];
-
-                }
-                
-                model.mark = markList;
-                this._traverseNodeUpdateMark(model);
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        _importFile : function (file) {
-
-            window.JSZip = JSZip;
-            let nodeId = this.data.currentImportNode;
-            let mode = this.data.currentImportMode;
-
-            this.cancelImportFile();
-
-            if (file.file.type === 'application/json') {
-
-                file.file.text().then(text => {
-                        
-                    this.importFrom('json', text, nodeId, mode);
-
-                });
-
-            } else if (file.file.type === 'application/vnd.xmind.workbook') {
-
-                let zip = new JSZip();
-                    
-                return zip
-                    .loadAsync(file.file)
-                    .then(content => content.files['content.json'].async('text'))
-                    .then(text => {
-
-                        this.importFrom('xmind', text, nodeId, mode);
-
-                    });
-
-            }
-
-        },
-        _resetImportStatus : function () {
-
-            this.data.currentImportNode = undefined;
-            this.data.currentImportMode = undefined;
-
-        },
         _pluckDataFromNodes : function (children) {
 
             let cleanData = [];
@@ -4412,816 +2166,15 @@ export default {
 
             this.zoom(zoom);
 
-        },
-        _updateClipboard : function (evt) {
-
-            if (evt.clipboardData) {
-
-                this.morning._mindmapClipboard = evt.clipboardData.getData('text');
-
-            }
-
-        },
-        downloadFile : function (type, nodeId) {
-
-            let data = [this.data.graph.get('data')];
-
-            if (nodeId) {
-
-                data = [this.data.graph.findById(nodeId).getModel()];
-
-            }
-
-            // type is : xmind,png,json
-            let dataResult = this[`_export${type.toUpperCase()}`](data);
-
-            if (type === 'png') {
-
-                this._downloadFile(dataResult, 'png');
-            
-            } else if (type === 'xmind') {
-
-                dataResult.then(blob => this._downloadFile(URL.createObjectURL(blob), 'xmind'));
-
-            } else if (type === 'json') {
-                
-                let blob = new Blob([JSON.stringify(dataResult, null, 4)]);
-
-                this._downloadFile(URL.createObjectURL(blob), 'json');
-
-            }
-
-            return this;
-
-        },
-        exportToObject : function (nodeId) {
-
-            let data = [this.data.graph.get('data')];
-
-            if (nodeId) {
-
-                data = [this.data.graph.findById(nodeId).getModel()];
-
-            }
-
-            return this._exportJSON(data);
-
-        },
-        importFromObject : function (data, nodeId, mode) {
-
-            return this.importFrom('json', data, nodeId, mode);
-
-        },
-        importFrom : function (type, data, nodeId, mode = 'replace') {
-
-            let xmindData = {};
-
-            if (type === 'json') {
-
-                if (typeof data === 'string') {
-                    
-                    data = JSON.parse(data);
-
-                }
-
-                if (!(data instanceof Array)) {
-
-                    data = [data];
-
-                }
-
-                xmindData = this._importJSON(data);
-
-            } else if (type === 'xmind') {
-
-                if (typeof data === 'string') {
-
-                    data = JSON.parse(data);
-
-                }
-
-                xmindData = this._importXMIND([data[0].rootTopic]);
-
-            }
-
-            if (nodeId) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-
-                if (model.children === undefined) {
-
-                    model.children = [];
-
-                }
-
-                if (mode === 'replace') {
-
-                    model.children = [xmindData];
-
-                } else if (mode === 'append') {
-
-                    model.children = model.children.concat([xmindData]);
-
-                } else if (mode === 'prepend') {
-
-                    model.children = [xmindData].concat(model.children);
-
-                }
-
-                this.data.graph.changeData();
-                this.data.graph.refreshLayout();
-
-            } else {
-
-                xmindData.isRoot = true;
-                this._readData(xmindData);
-
-            }
-
-            return this;
-
-        },
-        showImportFile : function (nodeId, mode) {
-
-            this.data.currentImportNode = nodeId;
-            this.data.currentImportMode = mode;
-            this.data.$importDialog.toggle(true);
-            this.data.mouseOnCanvas = false;
-
-        },
-        cancelImportFile : function () {
-
-            this.data.$importDialog.toggle(false);
-            this.data.mouseOnCanvas = true;
-
-        },
-        // 插入同级节点(前)
-        insertBeforeNode : function (nodeId, datas) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let parent = node.getInEdges()[0].getSource();
-            let parentModel = parent.getModel();
-            let indexOfParent = parentModel.children.indexOf(model);
-
-            datas = this._parseNewNodeData(datas);
-
-            return this.insertSubNode(parentModel.id, datas, indexOfParent);
-
-        },
-        // 插入同级节点(后)
-        insertAfterNode : function (nodeId, datas) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let parent = node.getInEdges()[0].getSource();
-            let parentModel = parent.getModel();
-            let indexOfParent = parentModel.children.indexOf(model);
-
-            datas = this._parseNewNodeData(datas);
-
-            return this.insertSubNode(parentModel.id, datas, indexOfParent + 1);
-
-        },
-        // 插入同级节点(最后)
-        insertNode : function (nodeId, datas) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-
-            if (model.isRoot) {
-
-                return null;
-
-            }
-
-            let parentModel = node.getInEdges()[0].getSource().getModel();
-
-            datas = this._parseNewNodeData(datas);
-
-            return this.insertSubNode(parentModel.id, datas);
-
-        },
-        // 插入子节点
-        insertSubNode : function (nodeId, datas, index = -1) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let isSingle = (datas instanceof Array);
-
-            datas = this._parseNewNodeData(datas);
-
-            if (model.children === undefined) {
-
-                model.children = [];
-
-            }
-
-            this._traverseNode(datas);
-
-            if (index > -1) {
-
-                let datas2 = Object.assign([], datas);
-
-                datas2.reverse();
-
-                for (let item of datas2) {
-                
-                    model.children.splice(index, 0, item);
-
-                }
-
-            } else {
-
-                for (let item of datas) {
-                
-                    model.children.push(item);
-
-                }
-
-            }
-
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-            
-            if (isSingle) {
-
-                return datas[0].id;
-
-            }
-
-            return map(datas, 'id');
-
-        },
-        copyNode : function (nodeId) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let data = this._pluckDataFromNodes([model]);
-
-            return data[0];
-
-        },
-        copyNodeToClipboard : function (nodeId) {
-
-            let data = this.copyNode(nodeId);
-
-            data = JSON.stringify(data);
-            this.morning._mindmapClipboard = data;
-            copy(data);
-
-            return data;
-
-        },
-        getClipboard : function () {
-
-            return this.morning._mindmapClipboard;
-
-        },
-        // 插入唯一节点(向后)
-        appendUniqueNode : function (nodeId, data) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-
-            data = this._parseNewNodeData(data);
-            data = data[0];
-            data.children = this._pluckDataFromNodes(model.children);
-            G6.Util.traverseTree(data, this._traverseOneNode);
-            model.children = [data];
-            // parentModel.children.splice(nodeIndexOfParent, 1, data);
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-            return data.id;
-
-        },
-        // 插入唯一节点(向前)
-        prependUniqueNode : function (nodeId, data) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-
-            if (model.isRoot) {
-
-                return null;
-
-            }
-
-            let parentModel = node.getInEdges()[0].getSource().getModel();
-            let nodeIndexOfParent = parentModel.children.indexOf(model);
-
-            data = this._parseNewNodeData(data);
-            data = data[0];
-            data.children = this._pluckDataFromNodes([model]);
-            G6.Util.traverseTree(data, this._traverseOneNode);
-            parentModel.children.splice(nodeIndexOfParent, 1, data);
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-            return data.id;
-
-        },
-        deleteNode : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-                let parent = node.getInEdges()[0].getSource();
-                let parentModel = parent.getModel();
-                let indexOfParent = parentModel.children.indexOf(model);
-
-                parentModel.children.splice(indexOfParent, 1);
-
-            }
-
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-            return this;
-
-        },
-        moveUp : function (nodeId) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let parent = node.getInEdges()[0].getSource();
-            let parentModel = parent.getModel();
-            let indexOfParent = parentModel.children.indexOf(model);
-
-            if (indexOfParent === 0) {
-
-                return this;
-
-            }
-
-            this._swapArr(parentModel.children, indexOfParent, indexOfParent - 1);
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-        },
-        moveDown : function (nodeId) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let parent = node.getInEdges()[0].getSource();
-            let parentModel = parent.getModel();
-            let indexOfParent = parentModel.children.indexOf(model);
-
-            if (indexOfParent === parentModel.children.length - 1) {
-
-                return this;
-
-            }
-
-            this._swapArr(parentModel.children, indexOfParent, indexOfParent + 1);
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-            return this;
-
-        },
-        stylingNode : function (nodeId, style) {
-
-            // style included : fontSize / fontWeight / fontColor / fontStyle
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-
-            model.style = G6.Util.deepMix(model.style, style);
-            node.draw();
-            this.data.graph.refreshLayout();
-
-        },
-        selectNode : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-
-                if (node.getModel().isMindNode) {
-
-                    this.data.graph.setItemState(node, 'selected', true);
-                
-                }
-
-            }
-
-        },
-        clearSelectedNode : function () {
-
-            this._clearSelectedNode('selected');
-
-        },
-        zoom : function (zoom) {
-
-            this.data.graph.zoomTo(zoom);
-
-            return this;
-
-        },
-        getZoom : function () {
-
-            return this.data.graph.getZoom();
-
-        },
-        fitView : function () {
-
-            this.data.graph.fitView();
-            this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
-
-        },
-        link : function (nodeIds, link) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-
-                model.link = link;
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        unlink : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-
-                delete model.link;
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        mark : function (nodeIds, mark) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-
-                if (model.mark === undefined) {
-
-                    model.mark = [];
-
-                }
-
-                model.mark.push(mark);
-                model.mark = arrayUniq(model.mark);
-                this._traverseNodeUpdateMark(model);
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        unmark : function (nodeIds, mark) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-                let index = model.mark.indexOf(mark);
-
-                if (index !== -1) {
-
-                    model.mark.splice(index, 1);
-
-                }
-
-                this._traverseNodeUpdateMark(model);
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        note : function (nodeIds, note) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-
-                model.note = note;
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        addTag : function (nodeIds, tags) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-                let tag = model.tag || [];
-                let tagMap = {};
-
-                for (let oneTag of tag) {
-
-                    let key = oneTag.text || oneTag;
-
-                    tagMap[key] = oneTag;
-
-                }
-
-                for (let oneTag of tags) {
-
-                    let key = oneTag.text || oneTag;
-
-                    tagMap[key] = oneTag;
-
-                }
-
-                // tag = tag.concat(tags);
-                // tag = arrayUniq(tag);
-
-                model.tag = Object.values(tagMap);
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        removeTag : function (nodeIds, tags) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-                let tag = model.tag || [];
-                let tagMap = {};
-
-                for (let oneTag of tag) {
-
-                    let key = oneTag.text || oneTag;
-
-                    tagMap[key] = oneTag;
-
-                }
-
-                for (let oneTag of tags) {
-
-                    let key = oneTag.text || oneTag;
-
-                    delete tagMap[key];
-
-                }
-
-                // tag = difference(tag, tags);
-
-                model.tag = Object.values(tagMap);
-                node.draw();
-
-            }
-
-            this.data.graph.refreshLayout();
-
-        },
-        editLink : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            let node = this.data.graph.findById(nodeIds[0]);
-            let model = node.getModel();
-
-            this.data.currentEditLinkNodeIds = nodeIds;
-            this.data.currentEditLinkValue = model.link;
-            this.data.$editLinkDialog.toggle(true);
-            this.data.mouseOnCanvas = false;
-
-        },
-        cancelEditLink : function () {
-
-            this.data.currentEditLinkNodeId = [];
-            this.data.currentEditLinkValue = '';
-            this.data.$editLinkDialog.toggle(false);
-            this.data.mouseOnCanvas = true;
-
-        },
-        editNote : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            let node = this.data.graph.findById(nodeIds[0]);
-            let model = node.getModel();
-
-            this.data.currentEditNoteNodeIds = nodeIds;
-            this.data.currentEditNoteValue = model.note;
-            this.data.$editNoteDialog.toggle(true);
-            this.data.mouseOnCanvas = false;
-
-        },
-        cancelEditNote : function () {
-
-            this.data.currentEditNoteNodeIds = [];
-            this.data.currentEditNoteValue = '';
-            this.data.$editNoteDialog.toggle(false);
-            this.data.mouseOnCanvas = true;
-
-        },
-        editMark : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            let node = this.data.graph.findById(nodeIds[0]);
-            let model = node.getModel();
-            let markGroups = {};
-
-            this.data.currentEditMarkNodeIds = nodeIds;
-
-            if (model._mark && model._mark.length > 0) {
-
-                for (let mark of model._mark) {
-
-                    markGroups[mark.split(':')[0]] = mark.replace(':', '-');
-
-                }
-
-            }
-
-            markGroups = Object.assign({
-                priority : '0',
-                task : '0',
-                flag : '0',
-                star : '0',
-                status : '0'
-            }, markGroups);
-
-            this.data.currentEditMarkValue = markGroups;
-            this.data.$editMarkDialog.toggle(true);
-            this.data.mouseOnCanvas = false;
-
-        },
-        cancelEditMark : function () {
-
-            this.data.currentEditMarkNodeIds = [];
-            // this.data.currentEditMarkValue = {
-            //     priority : '0',
-            //     task : '0',
-            //     flag : '0',
-            //     star : '0'
-            // };
-            this.data.$editMarkDialog.toggle(false);
-            this.data.mouseOnCanvas = true;
-
-        },
-        getSelectedNode : function () {
-
-            return this.getAllSelectedNode()[0];
-
-        },
-        getSelectedNodeDetail : function () {
-
-            return this.getAllSelectedNodeDetail()[0];
-
-        },
-        getRootNode : function () {
-
-            let nodes = this.data.graph.findAll('node', () => (true));
-
-            if (nodes && nodes[0]) {
-
-                return nodes[0].getModel().id;
-
-            }
-
-            return undefined;
-
-        },
-        getAllSelectedNode : function () {
-
-            let nodes = this.data.graph.findAllByState('node', 'selected');
-            let nodeIds = [];
-
-            for (let node of nodes) {
-
-                nodeIds.push(node.get('id'));
-
-            }
-
-            return nodeIds;
-
-        },
-        getAllSelectedNodeDetail : function () {
-
-            let nodes = this.data.graph.findAllByState('node', 'selected');
-            let nodeIds = [];
-            let model;
-
-            for (let node of nodes) {
-
-                model = node.getModel();
-
-                nodeIds.push({
-                    id : model.id,
-                    depth : model.depth,
-                    link : model.link,
-                    mark : Object.assign([], model.mark),
-                    note : model.note,
-                    text : model.text,
-                    tag : model.tag
-                });
-
-            }
-
-            return nodeIds;
-
-        },
-        getAllNode : function () {
-
-            let nodes = this.data.graph.getNodes();
-            let nodeIds = [];
-
-            for (let node of nodes) {
-
-                if (node.getModel().isMindNode) {
-
-                    nodeIds.push(node.get('id'));
-
-                }
-
-            }
-
-            return nodeIds;
-
-        },
-        getAllNodeDetail : function () {
-
-            let nodes = this.data.graph.getNodes();
-            let nodeIds = [];
-            let model;
-
-            for (let node of nodes) {
-
-                model = node.getModel();
-
-                if (model.isMindNode) {
-                
-                    nodeIds.push({
-                        id : model.id,
-                        depth : model.depth,
-                        link : model.link,
-                        mark : Object.assign([], model.mark),
-                        note : model.note,
-                        text : model.text,
-                        tag : model.tag
-                    });
-                
-                }
-
-            }
-
-            return nodeIds;
-
-        },
-        getEdittingState : function () {
-            
-            return this.data.editting;
-
         }
     },
     created : function () {
 
         let groups = {};
 
-        for (let index in marks) {
+        for (let index in MARKS) {
 
-            let mark = marks[index];
+            let mark = MARKS[index];
             let group = index.split(':')[0];
 
             if (groups[group] === undefined) {
@@ -5259,37 +2212,6 @@ export default {
             text : '新建主题',
             isRoot : true
         };
-
-        // let data = {
-        //     text : 'ClassificationClassification',
-        //     isRoot : true,
-        //     children : [
-        //         {
-        //             text : 'Logistic regression'
-        //         },
-        //         {
-        //             text : 'Linear discriminant analysis'
-        //         },
-        //         {
-        //             text : 'Rules'
-        //         },
-        //         {
-        //             text : 'Decision trees'
-        //         },
-        //         {
-        //             text : 'Naive Bayes'
-        //         },
-        //         {
-        //             text : 'K nearest neighbor'
-        //         },
-        //         {
-        //             text : 'Probabilistic neural network'
-        //         },
-        //         {
-        //             text : 'Support vector machine'
-        //         }
-        //     ]
-        // };
 
         // item includes :
         // - text
@@ -5416,61 +2338,22 @@ export default {
             ]
         };
 
-        // let data3 = {
-        //     text : 'Modeling Methods',
-        //     isRoot : true,
-        //     children : [
-        //         {
-        //             text : 'ClassificationClassification',
-        //             children : [
-        //                 {
-        //                     text : 'Logistic regression'
-        //                 },
-        //                 {
-        //                     text : 'Linear discriminant analysis'
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             text : 'Regression',
-        //             children : [
-        //                 {
-        //                     text : 'Multiple linear regression'
-        //                 },
-        //                 {
-        //                     text : 'Partial least squares'
-        //                 },
-        //                 {
-        //                     text : 'Multi-layer feedforward neural network'
-        //                 },
-        //                 {
-        //                     text : 'General regression neural network'
-        //                 },
-        //                 {
-        //                     text : 'Support vector regression'
-        //                 }
-        //             ]
-        //         }
-        //     ]
-        // };
-
         this._registrar();
         this._createGraph();
         this._bindEvent();
-        this._readData(defaultData);//data2
-        window.G6 = G6;
+        this._readData(data2);
+        // this._readData(defaultData);
 
-        this._globalEventAdd('paste', '_updateClipboard');
         this._globalEventAdd('keydown', '_onGlobalKeydown');
         this._globalEventAdd('keyup', '_onGlobalKeyup');
 
     },
     beforeDestroy : function () {
 
-        this._globalEventRemove('paste', '_updateClipboard');
         this._globalEventRemove('keydown', '_onGlobalKeydown');
         this._globalEventRemove('keyup', '_onGlobalKeyup');
 
     }
 };
 </script>
+
