@@ -1213,6 +1213,17 @@ export default {
            
         });
 
+        this.$on('value-change', (newValue, oldValue) => {
+            
+            // 补齐set方法中的_syncFromValue钩子不完整的问题
+            if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+
+                this._syncFromValue();
+            
+            }
+
+        });
+
     }
 };
 </script>
