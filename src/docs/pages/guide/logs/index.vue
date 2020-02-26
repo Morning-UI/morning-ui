@@ -18,11 +18,29 @@
     
     ### 更新记录
 
+    ### 0.12.79 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2020年2月26日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.79" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.79/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.79/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 修复`ui-form`组件的一个超宽样式问题
+
+    ---
+
     ### 0.12.78 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
         <ui-small>
-            发布于2019年2月25日，
+            发布于2020年2月25日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.78" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.78/dist/" target="_blank">jsdelivr(CDN)</a>
@@ -40,7 +58,7 @@
 
     <ui-textcolor color="neutral-8">
         <ui-small>
-            发布于2019年2月21日，
+            发布于2020年2月21日，
             Archive :
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.77" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.77/dist/" target="_blank">jsdelivr(CDN)</a>
