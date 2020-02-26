@@ -50384,7 +50384,8 @@ mor-form.label-pos-center mor-formitem .form-item-con,
 mor-form.label-pos-left-center mor-formitem .form-item-con,
 mor-form.label-pos-right-center mor-formitem .form-item-con {
   flex-grow: 1;
-  width: 100%;
+  width: 0;
+  flex: 1;
 }
 mor-form.label-pos-left-align mor-formitem .form-item-name {
   text-align: left;
