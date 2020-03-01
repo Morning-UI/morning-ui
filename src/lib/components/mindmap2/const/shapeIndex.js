@@ -1,0 +1,9 @@
+export const BOX_SHAPE_INDEX             = 0;
+export const OUTLINE_SHAPE_INDEX         = 1;
+export const CON_SHAPE_INDEX             = 2;
+export const TEXT_SHAPE_INDEX            = 3;
+export const PLACEHOLDER_SHAPE_INDEX     = 4;
+export const BOTTOMLINE_SHAPE_INDEX      = 5;
+export const MARK_CON_GROUP_INDEX        = 6;
+export const APPEND_CON_GROUP_INDEX      = 7;
+export const EXPAND_BTN_GROUP_INDEX      = 8;

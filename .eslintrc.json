@@ -23,6 +23,12 @@
         "parser": "babel-eslint"
     },
     "rules": {
+        "max-params": [
+            "error",
+            {
+                "max": 5
+            }
+        ],
         "max-depth": [
             "error",
             {

@@ -1,0 +1,113 @@
+mor-mindmap{
+    display: block;
+    // height: 100%;
+    // width: 100%;
+
+    .mindmap-wrap{
+        position: relative;
+        overflow: hidden;
+
+        .node-note{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left top;
+            pointer-events: none;
+        }
+
+        .context-menu{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            background: @colorWhite;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            flex-direction: column;
+            border-radius: @borderRadius;
+            overflow: hidden;
+
+            mor-btn{
+                border-radius: 0;
+
+                &.co-d{
+                    border: none;
+                }
+            }
+        }
+
+        .edit-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left top;
+
+            textarea{
+                padding: 0;
+                height: 100%;
+                border: none;
+                outline: none;
+                resize: none;
+                overflow: hidden;
+                background: @colorWhite;
+                color: @colorBlack;
+                position: absolute;
+                box-sizing: border-box;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                white-space: nowrap;
+            }
+        }
+
+        .mindmap-tools{
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+            min-width: 200px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+            background: @colorWhite;
+            display: flex;
+
+            mor-slider{
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}
+
+.mor-mindmap-dialog-body{
+    mor-radio{
+        .mo-icon{
+            font-size: 24px;
+        }
+
+        &.type-button > .il label{
+            display: flex;
+            align-items: center;
+
+            span{
+                color: @colorNeutral10 !important;
+            }
+        }
+    }
+
+    mor-formitem .form-item-name{
+        min-height: 0;
+
+        span{
+            font-weight: 700;
+            margin-bottom: @fontSize*0.5;
+        }
+    }
+
+    .mor-mindmap-dialog-op{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: @fontSize;
+
+        mor-btn:first-child{
+            margin-right: @fontSize*0.5;
+        }
+    }
+}
