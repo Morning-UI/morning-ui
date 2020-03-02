@@ -73,3 +73,15 @@ export const MIND_EDGE_STYLE = {
     borderColor : LINE_COLOR,
     radius : 10
 };
+
+export const PLACEHOLDER_EDGE_STYLE = {
+    borderWidth : LINE_WIDTH + 1,
+    borderColor : PLACEHOLDER_COLOR,
+    radius : 10
+};
+
+export const DELEGATE_SHAPE_STYLE = {
+    bgColor : 'rgba(75, 201, 218, 0.3)',
+    borderColor : 'rgba(75, 201, 218, 1)',
+    borderWidth : 2
+};

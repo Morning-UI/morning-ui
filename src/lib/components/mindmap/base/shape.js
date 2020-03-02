@@ -4,6 +4,7 @@ import {
     APPENDS_PADDING,
     APPENDS_MARGIN,
 }                                   from '../const/style';
+import {NODE_SHAPE_INDEX}           from '../nodes/mindNode';
 
 const _getNodeStyles = (nodeStyle, model) => {
 
@@ -121,7 +122,76 @@ const _refreshAppendConGroupPosition = (shapes, model) => {
     
 };
 
+const _toggleAllChildrenVisibility = (node, type, callback) => {
+
+    let outEdges = node.getOutEdges();
+
+    for (let edge of outEdges) {
+
+        let child = edge.getTarget();
+        let model = child.getModel();
+        
+        edge[type]();
+        child[type]();
+
+        if (typeof callback === 'function') {
+
+            callback(type, model);
+
+        }
+
+        if (child.getOutEdges().length > 0) {
+
+            _toggleAllChildrenVisibility(child, type, callback);
+
+        }
+
+    }
+
+};
+
 export default {
+    toggleNodeVisibility : (node, type = 'show', callback) => {
+
+        // 隐藏边
+        node.getInEdges()[0][type]();
+
+        // 隐藏文本和主容器
+        node
+            .get('group')
+            .getChildByIndex(NODE_SHAPE_INDEX.text)[
+                type
+            ]();
+        node
+            .get('group')
+            .getChildByIndex(NODE_SHAPE_INDEX.con)[
+                type
+            ]();
+        node
+            .get('group')
+            .getChildByIndex(NODE_SHAPE_INDEX.bottomline)[
+                type
+            ]();
+        node
+            .get('group')
+            .getChildByIndex(NODE_SHAPE_INDEX.markConGroup)[
+                type
+            ]();
+        node
+            .get('group')
+            .getChildByIndex(NODE_SHAPE_INDEX.appendConGroup)[
+                type
+            ]();
+        node
+            .get('group')
+            .getChildByIndex(NODE_SHAPE_INDEX.collapseBtnGroup)[
+                type
+            ]();
+        
+        // 隐藏所有子项
+        _toggleAllChildrenVisibility(node, type, callback);
+
+    },
     getNodeStyles : _getNodeStyles,
     getAppends : _getAppends,
     refreshAppendConGroupPosition : _refreshAppendConGroupPosition,

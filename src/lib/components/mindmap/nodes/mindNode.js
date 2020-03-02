@@ -12,12 +12,12 @@ import {
 
 let nodeShapeIndex = 0;
 
-const NODE_SHAPE_INDEX = {};
+const _NODE_SHAPE_INDEX = {};
 const addShape = (group, shapes, name, type, attrs) => {
 
-    if (NODE_SHAPE_INDEX[name] === undefined) {
+    if (_NODE_SHAPE_INDEX[name] === undefined) {
     
-        NODE_SHAPE_INDEX[name] = nodeShapeIndex++;
+        _NODE_SHAPE_INDEX[name] = nodeShapeIndex++;
 
     }
 
@@ -31,9 +31,9 @@ const addShape = (group, shapes, name, type, attrs) => {
 
 const addGroup = (group, shapes, name, id) => {
 
-    if (NODE_SHAPE_INDEX[name] === undefined) {
+    if (_NODE_SHAPE_INDEX[name] === undefined) {
     
-        NODE_SHAPE_INDEX[name] = nodeShapeIndex++;
+        _NODE_SHAPE_INDEX[name] = nodeShapeIndex++;
 
     }
 
@@ -579,10 +579,10 @@ export default vm => ({
         let box = item.get('keyShape');
         let group = box.getParent();
         let shapes = {
-            outline : group.getChildByIndex(NODE_SHAPE_INDEX.outline),
-            markConGroup : group.getChildByIndex(NODE_SHAPE_INDEX.markConGroup),
-            appendConGroup : group.getChildByIndex(NODE_SHAPE_INDEX.appendConGroup),
-            collapseBtnGroup : group.getChildByIndex(NODE_SHAPE_INDEX.collapseBtnGroup),
+            outline : group.getChildByIndex(_NODE_SHAPE_INDEX.outline),
+            markConGroup : group.getChildByIndex(_NODE_SHAPE_INDEX.markConGroup),
+            appendConGroup : group.getChildByIndex(_NODE_SHAPE_INDEX.appendConGroup),
+            collapseBtnGroup : group.getChildByIndex(_NODE_SHAPE_INDEX.collapseBtnGroup),
         };
 
         let linkIndex = APPENDS_LIST.link.index;
@@ -610,3 +610,5 @@ export default vm => ({
 
     }
 });
+
+export const NODE_SHAPE_INDEX = __NODE_SHAPE_INDEX;

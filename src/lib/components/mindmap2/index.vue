@@ -157,7 +157,7 @@ import MixinMethodExport            from './methods/export';
 import MixinMethodGet               from './methods/get';
 
 import getMindNodeConfig            from './nodes/mindNode';
-import getMindNodeRootConfig        from './nodes/mindNodeRoot';
+// import getMindNodeRootConfig        from './nodes/mindNodeRoot';
 import getPlaceholderNodeConfig     from './nodes/placeholderNode';
 import getMindEdgeConfig            from './nodes/mindEdge';
 import getPlaceholderEdgeConfig     from './nodes/placeholderEdge';
@@ -242,10 +242,10 @@ export default {
             G6,
             data : {
                 markGroups : {},
-                globalId : 1,
-                editting : false,
-                editGroupShapes : {},
-                editNode : null,
+                // globalId : 1,
+                // editting : false,
+                // editGroupShapes : {},
+                // editNode : null,
                 editContent : '',
                 editZoom : 1,
                 dragging : false,
@@ -279,31 +279,31 @@ export default {
 
     },
     methods : {
-        _clearSelectedNode : function (selectedState) {
+        // _clearSelectedNode : function (selectedState) {
                     
-            let graph = this.data.graph;
-            let autoPaint = graph.get('autoPaint');
-            let nodes = graph.findAllByState('node', selectedState);
-            let edges = graph.findAllByState('edge', selectedState);
+        //     let graph = this.data.graph;
+        //     let autoPaint = graph.get('autoPaint');
+        //     let nodes = graph.findAllByState('node', selectedState);
+        //     let edges = graph.findAllByState('edge', selectedState);
             
-            graph.setAutoPaint(false);
-            nodes.forEach(node => graph.setItemState(node, selectedState, false));
-            edges.forEach(edge => graph.setItemState(edge, selectedState, false));
-            this.selectedNodes = [];
-            // this.selectedEdges = [];
-            graph.paint();
-            graph.setAutoPaint(autoPaint);
+        //     graph.setAutoPaint(false);
+        //     nodes.forEach(node => graph.setItemState(node, selectedState, false));
+        //     edges.forEach(edge => graph.setItemState(edge, selectedState, false));
+        //     this.selectedNodes = [];
+        //     // this.selectedEdges = [];
+        //     graph.paint();
+        //     graph.setAutoPaint(autoPaint);
 
-        },
-        _refreshNodeEdges : function (edges) {
+        // },
+        // _refreshNodeEdges : function (edges) {
 
-            for (let edge of edges) {
+        //     for (let edge of edges) {
 
-                edge.refresh();
+        //         edge.refresh();
 
-            }
+        //     }
 
-        },
+        // },
         _refreshNodeNotePosition : function (node, noteConIndex) {
 
             let groupShapes = shapeBase.getGroupShapes(node);
@@ -323,88 +323,60 @@ export default {
             this.data.nodeNoteZoom = zoom;
 
         },
-        _refreshEditorPosition : function (node) {
+        // _refreshEditorPosition : function (node) {
 
-            if (this.data.editNode) {
+        //     if (this.data.editNode) {
                 
-                let edges = this.data.editNode.getEdges();
+        //         let edges = this.data.editNode.getEdges();
 
-                this.data.editNode.refresh();
-                this._refreshNodeEdges(edges);
+        //         this.data.editNode.refresh();
+        //         this._refreshNodeEdges(edges);
 
-            }
+        //     }
     
-            let groupShapes = shapeBase.getGroupShapes(node);
-            let textAttr = groupShapes.text.attr();
-            let nodeBbox = node.getBBox();
-            let textBbox = groupShapes.text.getBBox();
-            let conBbox = groupShapes.con.getBBox();
-            let zoom = this.data.graph.getZoom();
-            let {
-                x : nodeX,
-                y : nodeY
-            } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
+        //     let groupShapes = shapeBase.getGroupShapes(node);
+        //     let textAttr = groupShapes.text.attr();
+        //     let nodeBbox = node.getBBox();
+        //     let textBbox = groupShapes.text.getBBox();
+        //     let conBbox = groupShapes.con.getBBox();
+        //     let zoom = this.data.graph.getZoom();
+        //     let {
+        //         x : nodeX,
+        //         y : nodeY
+        //     } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
 
-            // when text is empty use placeholder
-            if (textBbox.width === 0) {
+        //     // when text is empty use placeholder
+        //     if (textBbox.width === 0) {
 
-                textBbox = groupShapes.placeholder.getBBox();
+        //         textBbox = groupShapes.placeholder.getBBox();
 
-            }
+        //     }
 
-            const padding = 5;
+        //     const padding = 5;
 
-            let inputX = `${textBbox.x + 1 - padding}px`;
-            let inputY = `${textBbox.y - padding}px`;
+        //     let inputX = `${textBbox.x + 1 - padding}px`;
+        //     let inputY = `${textBbox.y - padding}px`;
 
-            this.data.$editContent.style.display = 'block';
-            this.data.$editContent.style.left = `${nodeX}px`;
-            this.data.$editContent.style.top = `${nodeY}px`;
-            this.data.$editContent.style.width = `${conBbox.width}px`;
-            this.data.$editContent.style.height = `${conBbox.height}px`;
-            this.data.$editContentInput.style.width = `${textBbox.width + (padding * 2)}px`;
-            this.data.$editContentInput.style.height = `${textBbox.height + (padding * 2)}px`;
-            this.data.$editContentInput.style.padding = `${padding}px`;
-            this.data.$editContentInput.style.left = inputX;
-            this.data.$editContentInput.style.top = inputY;
-            // this.data.$editContentInput.style.color = textAttr.fill;
-            this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
-            this.data.$editContentInput.style.textAlign = textAttr.textAlign;
-            this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
-            this.data.$editContentInput.style.fontStyle = textAttr.fontStyle;
-            this.data.$editContentInput.style.fontFamily = textAttr.fontFamily;
-            this.data.editContent = textAttr.text;
-            this.data.editZoom = zoom;
+        //     this.data.$editContent.style.display = 'block';
+        //     this.data.$editContent.style.left = `${nodeX}px`;
+        //     this.data.$editContent.style.top = `${nodeY}px`;
+        //     this.data.$editContent.style.width = `${conBbox.width}px`;
+        //     this.data.$editContent.style.height = `${conBbox.height}px`;
+        //     this.data.$editContentInput.style.width = `${textBbox.width + (padding * 2)}px`;
+        //     this.data.$editContentInput.style.height = `${textBbox.height + (padding * 2)}px`;
+        //     this.data.$editContentInput.style.padding = `${padding}px`;
+        //     this.data.$editContentInput.style.left = inputX;
+        //     this.data.$editContentInput.style.top = inputY;
+        //     // this.data.$editContentInput.style.color = textAttr.fill;
+        //     this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
+        //     this.data.$editContentInput.style.textAlign = textAttr.textAlign;
+        //     this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
+        //     this.data.$editContentInput.style.fontStyle = textAttr.fontStyle;
+        //     this.data.$editContentInput.style.fontFamily = textAttr.fontFamily;
+        //     this.data.editContent = textAttr.text;
+        //     this.data.editZoom = zoom;
 
-        },
-        _cancelEdit : function () {
-
-            if (!this.data.editting) {
-
-                return;
-
-            }
-
-            let groupShapes = shapeBase.getGroupShapes(this.data.editNode);
-
-            groupShapes.text.attr({
-                opacity : 1
-            });
-            this.data.graph.paint();
-            this.data.$editContent.style.display = 'none';
-            this.data.editContent = '';
-            this.data.editGroupShapes = {};
-            this.data.editZoom = 1;
-            this.data.editNode.setState('editing', false);
-            this.data.editNode = null;
-            this.data.graph.refreshLayout();
-            this.Vue.nextTick(() => {
-                
-                this.data.editting = false;
-            
-            });
-
-        },
+        // },
         _manualPaint : function (paintCallback) {
     
             let autoPaint = this.data.graph.get('autoPaint');
@@ -518,41 +490,20 @@ export default {
             }
 
         },
-        _nodeEventShouldEmit : function (evt) {
+        // _nodeEventShouldEmit : function (evt) {
 
-            let model = evt.item.getModel();
+        //     let model = evt.item.getModel();
 
-            if (model.collapse || model.isDragging) {
+        //     if (model.collapse || model.isDragging) {
 
-                return false;
+        //         return false;
 
-            }
+        //     }
 
-            return true;
+        //     return true;
 
-        },
+        // },
         /* eslint-enable no-magic-numbers */
-        _inNodeShape : function (evt, shape) {
-
-            let zoom = this.data.graph.getZoom();
-            let itemBbox = evt.item.getBBox();
-            let itemCanvasXY = this.data.graph.getCanvasByPoint(itemBbox.x, itemBbox.y);
-            let x = (evt.canvasX - itemCanvasXY.x) / zoom;
-            let y = (evt.canvasY - itemCanvasXY.y) / zoom;
-            let shapeBbox = shape.getBBox();
-
-            if (x > shapeBbox.minX &&
-                x < shapeBbox.maxX &&
-                y > shapeBbox.minY &&
-                y < shapeBbox.maxY) {
-
-                return true;
-
-            }
-
-            return false;
-
-        },
         _inAnnex : function (evt, shapeIndex) {
 
             return this
@@ -564,118 +515,39 @@ export default {
                 );
 
         },
-        _editNode : function (nodeId, clean = false) {
+        // _editNode : function (nodeId, clean = false) {
 
-            let node = this.data.graph.findById(nodeId);
-            let groupShapes = shapeBase.getGroupShapes(node);
+        //     let node = this.data.graph.findById(nodeId);
+        //     let groupShapes = shapeBase.getGroupShapes(node);
 
-            this.data.editting = true;
-            this.data.editGroupShapes = groupShapes;
-            this.data.editNode = node;
-            this._refreshEditorPosition(node);
-            groupShapes.text.attr({
-                opacity : 0
-            });
-            this.data.editNode.setState('editing', true);
-            this.data.graph.paint();
-            this.data.$editContentInput.focus();
+        //     this.data.editting = true;
+        //     this.data.editGroupShapes = groupShapes;
+        //     this.data.editNode = node;
+        //     this._refreshEditorPosition(node);
+        //     groupShapes.text.attr({
+        //         opacity : 0
+        //     });
+        //     this.data.editNode.setState('editing', true);
+        //     this.data.graph.paint();
+        //     this.data.$editContentInput.focus();
 
-            if (clean) {
+        //     if (clean) {
 
-                setTimeout(() => {
+        //         setTimeout(() => {
 
-                    this.data.editContent = this
-                        .data
-                        .editContent
-                        .split('')
-                        .slice(-1)
-                        .join('');
-                    this._editInput();
+        //             this.data.editContent = this
+        //                 .data
+        //                 .editContent
+        //                 .split('')
+        //                 .slice(-1)
+        //                 .join('');
+        //             this._editInput();
 
-                });
+        //         });
 
-            }
+        //     }
 
-        },
-        _onNodeHover : function () {
-
-            this.data.graph.on('node:mouseenter', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                if (evt.item.getModel().isMindNode) {
-                
-                    this.data.graph.setItemState(evt.item, 'hover', true);
-                
-                }
-            
-            });
-
-            this.data.graph.on('node:mouseleave', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                if (evt.item.getModel().isMindNode) {
-
-                    this.data.graph.setItemState(evt.item, 'hover', false);
-                
-                }
-
-            });
-
-        },
-        _onMarkHover : function () {
-
-            this.data.graph.on('node:mousemove', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                let model = evt.item.getModel();
-                let hover = false;
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model._mark && model._mark.length > 0) {
-
-                    for (let index in model._mark) {
-
-                        let markConGroup = evt.item.get('group').getChildByIndex(MARK_CON_GROUP_INDEX);
-                        let markCon = markConGroup.getChildByIndex(index * 2);
-
-                        if (!hover && this._inNodeShape(evt, markCon)) {
-
-                            this.data.graph.setItemState(evt.item, `mark-${index}-hover`, true);
-                            hover = true;
-
-                        } else {
-
-                            this.data.graph.setItemState(evt.item, `mark-${index}-hover`, false);
-
-                        }
-
-                    }
-
-                }
-
-            });
-
-        },
+        // },
         _onAnnexHover : function () {
 
             this.data.graph.on('node:mousemove', evt => {
@@ -922,107 +794,6 @@ export default {
             });
 
         },
-        _onNodeSelected : function () {
-
-            this.data.graph.on('node:click', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                if (this.data.keydownState.mod) {
-
-                    if (evt.item.getModel().isMindNode) {
-
-                        if (evt.item.getStates().indexOf('selected') !== -1) {
-                        
-                            this.data.graph.setItemState(evt.item, 'selected', false);
-
-                        } else {
-                        
-                            this.data.graph.setItemState(evt.item, 'selected', true);
-
-                        }
-                    
-                    }
-
-                } else {
-
-                    this._clearSelectedNode('selected');
-
-                    if (evt.item.getModel().isMindNode) {
-                        
-                        this.data.graph.setItemState(evt.item, 'selected', true);
-                    
-                    }
-
-                }
-            
-            });
-
-        },
-        _onNodeEdit : function () {
-
-            this.data.graph.on('node:dblclick', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                // 如果点击非text区域不进入编辑
-                if (!this._inNodeShape(evt, evt.item.get('group').getChildByIndex(TEXT_SHAPE_INDEX))) {
-
-                    return;
-
-                }
-
-                this._editNode(evt.item.getModel().id);
-
-            });
-
-            this.data.graph.on('wheelzoom', () => {
-
-                if (this.data.editting) {
-        
-                    this._refreshEditorPosition(this.data.editNode);
-
-                }
-
-            });
-
-            this.data.graph.on('click', evt => {
-                
-                if (this.data.editting &&
-                    this.data.editNode !== evt.item) {
-
-                    this._cancelEdit();
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:mousedown', evt => {
-                
-                if (this.data.editting &&
-                    this.data.editNode !== evt.item) {
-
-                    this._cancelEdit();
-
-                }
-
-            });
-
-            this.$watch('data.editZoom', () => {
-
-                this.data.$editContent.style.transform = `scale(${this.data.editZoom})`;
-
-            });
-
-        },
         _onNodeDrag : function () {
 
             this.data.graph.on('node:dragstart', evt => {
@@ -1092,27 +863,6 @@ export default {
                 this._hideContextMenu();
 
             });
-
-        },
-        _onCanvasGrab : function () {
-
-            this.data.graph.on('canvas:mousedown', evt => (
-                this.G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
-                    cursor : 'grabbing'
-                }))
-            );
-
-            this.data.graph.on('canvas:mouseenter', evt => (
-                this.G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
-                    cursor : 'grab'
-                }))
-            );
-
-            this.data.graph.on('canvas:mouseup', evt => (
-                this.G6.Util.modifyCSS(evt.currentTarget.get('canvas').get('canvasDOM'), {
-                    cursor : 'grab'
-                }))
-            );
 
         },
         _onCanvasKeydown : function () {
@@ -1249,36 +999,36 @@ export default {
         /* eslint-disable no-magic-numbers */
         _registrar : function () {
 
-            this.G6.registerNode('mor-root-mind-node', getMindNodeRootConfig(this), 'single-shape');
-            this.G6.registerNode('mor-mind-node', getMindNodeConfig(this), 'single-shape');
-            this.G6.registerNode('mor-placeholder-node', getPlaceholderNodeConfig(this), 'single-shape');
-            this.G6.registerEdge('mor-mind-edge', getMindEdgeConfig(this), 'polyline');
-            this.G6.registerEdge('mor-placeholder-edge', getPlaceholderEdgeConfig(this), 'mor-mind-edge');
-            this.G6.registerBehavior('mor-brush-select', getBrushSelectConfig(this));
-            this.G6.registerBehavior('mor-drag-node', getDragNodeConfig(this));
+            // this.G6.registerNode('mor-root-mind-node', getMindNodeRootConfig(this), 'single-shape');
+            // this.G6.registerNode('mor-mind-node', getMindNodeConfig(this), 'single-shape');
+            // this.G6.registerNode('mor-placeholder-node', getPlaceholderNodeConfig(this), 'single-shape');
+            // this.G6.registerEdge('mor-mind-edge', getMindEdgeConfig(this), 'polyline');
+            // this.G6.registerEdge('mor-placeholder-edge', getPlaceholderEdgeConfig(this), 'mor-mind-edge');
+            // this.G6.registerBehavior('mor-brush-select', getBrushSelectConfig(this));
+            // this.G6.registerBehavior('mor-drag-node', getDragNodeConfig(this));
 
         },
-        _bindEvent : function () {
+        // _bindEvent : function () {
 
-            this._onCanvasGrab();
-            this._onNodeHover();
-            this._onNodeSelected();
-            this._onNodeEdit();
-            this._onNodeDrag();
-            this._onAnnexHover();
-            this._onAnnexClick();
-            this._onExpandBtnHover();
-            this._onExpandBtnClick();
-            this._onContextMenu();
-            this._onCanvasKeydown();
-            this._onCanvasMouseLeave();
+            // this._onCanvasGrab();
+            // this._onNodeHover();
+            // this._onNodeSelected();
+            // this._onNodeEdit();
+            // this._onNodeDrag();
+            // this._onAnnexHover();
+            // this._onAnnexClick();
+            // this._onExpandBtnHover();
+            // this._onExpandBtnClick();
+            // this._onContextMenu();
+            // this._onCanvasKeydown();
+            // this._onCanvasMouseLeave();
             // this._onHotkey();
             
             // eslint-disable-next-line no-warning-comments
             // TODO : mark hover is not work, cause zIndex
             // this._onMarkHover();
 
-        },
+        // },
         _createGraph : function () {
 
         },
@@ -1436,17 +1186,17 @@ export default {
             return [this._parseNewNodeDataOne(data)];
 
         },
-        _fillNodeIds : function (nodeIds) {
+        // _fillNodeIds : function (nodeIds) {
 
-            if (typeof nodeIds === 'number') {
+        //     if (typeof nodeIds === 'number') {
 
-                return [nodeIds];
+        //         return [nodeIds];
 
-            }
+        //     }
 
-            return nodeIds;
+        //     return nodeIds;
 
-        },
+        // },
         _sliderZoomChange : function () {
 
             let zoom = this.$refs['mor-mindmap-zoomslider'].get() / 100;
@@ -1882,9 +1632,9 @@ export default {
             ]
         };
 
-        this._registrar();
+        // this._registrar();
         // this._createGraph();
-        this._bindEvent();
+        // this._bindEvent();
         this._readData(data2);
         // this._readDate({
         //     text : '新建主题',

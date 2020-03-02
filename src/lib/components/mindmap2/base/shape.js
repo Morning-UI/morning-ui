@@ -132,61 +132,61 @@ import {
     
 // };
 
-const _toggleAllChildren = (node, type, callback) => {
+// const _toggleAllChildren = (node, type, callback) => {
 
-    let outEdges = node.getOutEdges();
+//     let outEdges = node.getOutEdges();
 
-    for (let edge of outEdges) {
+//     for (let edge of outEdges) {
 
-        let child = edge.getTarget();
-        let model = child.getModel();
+//         let child = edge.getTarget();
+//         let model = child.getModel();
         
-        edge[type]();
-        child[type]();
+//         edge[type]();
+//         child[type]();
 
-        if (typeof callback === 'function') {
+//         if (typeof callback === 'function') {
 
-            callback(type, model);
+//             callback(type, model);
 
-        }
+//         }
 
-        if (child.getOutEdges().length > 0) {
+//         if (child.getOutEdges().length > 0) {
 
-            _toggleAllChildren(child, type, callback);
+//             _toggleAllChildren(child, type, callback);
 
-        }
+//         }
 
-    }
+//     }
 
-};
+// };
 
 export default {
-    getGroupShapes : item => {
+    // getGroupShapes : item => {
 
-        let box = item.getKeyShape();
-        let group = box.getParent();
-        let con = group.getChildByIndex(CON_SHAPE_INDEX);
-        let outline = group.getChildByIndex(OUTLINE_SHAPE_INDEX);
-        let text = group.getChildByIndex(TEXT_SHAPE_INDEX);
-        let placeholder = group.getChildByIndex(PLACEHOLDER_SHAPE_INDEX);
-        let bottomline = group.getChildByIndex(BOTTOMLINE_SHAPE_INDEX);
-        let markConGroup = group.getChildByIndex(MARK_CON_GROUP_INDEX);
-        let appendConGroup = group.getChildByIndex(APPEND_CON_GROUP_INDEX);
-        let expantBtn = group.getChildByIndex(EXPAND_BTN_GROUP_INDEX);
+    //     let box = item.getKeyShape();
+    //     let group = box.getParent();
+    //     let con = group.getChildByIndex(CON_SHAPE_INDEX);
+    //     let outline = group.getChildByIndex(OUTLINE_SHAPE_INDEX);
+    //     let text = group.getChildByIndex(TEXT_SHAPE_INDEX);
+    //     let placeholder = group.getChildByIndex(PLACEHOLDER_SHAPE_INDEX);
+    //     let bottomline = group.getChildByIndex(BOTTOMLINE_SHAPE_INDEX);
+    //     let markConGroup = group.getChildByIndex(MARK_CON_GROUP_INDEX);
+    //     let appendConGroup = group.getChildByIndex(APPEND_CON_GROUP_INDEX);
+    //     let expantBtn = group.getChildByIndex(EXPAND_BTN_GROUP_INDEX);
 
-        return {
-            con,
-            box,
-            text,
-            outline,
-            placeholder,
-            bottomline,
-            markConGroup,
-            appendConGroup,
-            expantBtn
-        };
+    //     return {
+    //         con,
+    //         box,
+    //         text,
+    //         outline,
+    //         placeholder,
+    //         bottomline,
+    //         markConGroup,
+    //         appendConGroup,
+    //         expantBtn
+    //     };
 
-    },
+    // },
     refreshMindNode : (groupShapes, model) => {
 
         let {
@@ -275,47 +275,47 @@ export default {
         _refreshAppendConGroupPosition(groupShapes, model);
 
     },
-    toggleNodeBox : (node, type = 'show', callback) => {
+    // toggleNodeBox : (node, type = 'show', callback) => {
 
-        // 隐藏边
-        node.getInEdges()[0][type]();
+    //     // 隐藏边
+    //     node.getInEdges()[0][type]();
 
-        // 隐藏文本和主容器
-        node
-            .get('group')
-            .getChildByIndex(TEXT_SHAPE_INDEX)[
-                type
-            ]();
-        node
-            .get('group')
-            .getChildByIndex(CON_SHAPE_INDEX)[
-                type
-            ]();
-        node
-            .get('group')
-            .getChildByIndex(BOTTOMLINE_SHAPE_INDEX)[
-                type
-            ]();
-        node
-            .get('group')
-            .getChildByIndex(MARK_CON_GROUP_INDEX)[
-                type
-            ]();
-        node
-            .get('group')
-            .getChildByIndex(APPEND_CON_GROUP_INDEX)[
-                type
-            ]();
-        node
-            .get('group')
-            .getChildByIndex(EXPAND_BTN_GROUP_INDEX)[
-                type
-            ]();
+    //     // 隐藏文本和主容器
+    //     node
+    //         .get('group')
+    //         .getChildByIndex(TEXT_SHAPE_INDEX)[
+    //             type
+    //         ]();
+    //     node
+    //         .get('group')
+    //         .getChildByIndex(CON_SHAPE_INDEX)[
+    //             type
+    //         ]();
+    //     node
+    //         .get('group')
+    //         .getChildByIndex(BOTTOMLINE_SHAPE_INDEX)[
+    //             type
+    //         ]();
+    //     node
+    //         .get('group')
+    //         .getChildByIndex(MARK_CON_GROUP_INDEX)[
+    //             type
+    //         ]();
+    //     node
+    //         .get('group')
+    //         .getChildByIndex(APPEND_CON_GROUP_INDEX)[
+    //             type
+    //         ]();
+    //     node
+    //         .get('group')
+    //         .getChildByIndex(EXPAND_BTN_GROUP_INDEX)[
+    //             type
+    //         ]();
         
-        // 隐藏所有子项
-        _toggleAllChildren(node, type, callback);
+    //     // 隐藏所有子项
+    //     _toggleAllChildren(node, type, callback);
 
-    },
+    // },
     getNodeStyles : _getNodeStyles,
     refreshAppendConGroupPosition : _refreshAppendConGroupPosition,
     getAppends : _getAppends

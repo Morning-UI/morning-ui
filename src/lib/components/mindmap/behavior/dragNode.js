@@ -1,7 +1,8 @@
+import G6                           from '@antv/g6';
 import throttle                     from 'lodash.throttle';
 import sortBy                       from 'lodash.sortby';
 import shapeBase                    from '../base/shape';
-import {DELEGATE_SHAPE_STYLE}       from '../const/nodeStyle';
+import {DELEGATE_SHAPE_STYLE}       from '../const/style';
 
 const DRAG_REFRESH_INTERVAL = 160;
 
@@ -9,33 +10,8 @@ let dragTarget = {
     originNodeStyle : {},
     saveModel : {}
 };
-let dragHolderParentChilren = null;
+let dragHolderParentModel = null;
 let dragHolderIndexOfParentChildren = null;
-
-const _removeNode = node => {
-
-    let parentNodeDataChildren = node.getInEdges()[0].getSource().getModel().children;
-    let nodeModel = node.getModel();
-    let index = parentNodeDataChildren.indexOf(nodeModel);
-
-    if (
-        parentNodeDataChildren === dragHolderParentChilren &&
-        index < dragHolderIndexOfParentChildren
-    ) {
-
-        dragHolderIndexOfParentChildren--;
-
-    }
-
-    parentNodeDataChildren.splice(index, 1);
-
-};
-
-const _insertNode = (nodeData, newParentChilren, insertIndex) => {
-
-    newParentChilren.splice(insertIndex, 0, nodeData);
-
-};
 
 const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChildren) => {
 
@@ -51,12 +27,12 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
         node.setState('dragging', true);
         node.update({
             isDragging : true,
-            style : vm.G6.Util.deepMix({}, {
+            style : G6.Util.deepMix({}, {
                 fillOpacity : 0
             }, node.getModel().style)
         });
 
-        shapeBase.toggleNodeBox(node, 'hide', (type, model) => {
+        shapeBase.toggleNodeVisibility(node, 'hide', (type, model) => {
 
             if (type === 'hide') {
 
@@ -73,17 +49,17 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
     } else if (!dragging && dragTarget.hidden) {
 
         // let oldParentChilren = node.getInEdges()[0].getSource().getModel().children;
-        let nodeData = dragTarget.saveModel[index];
+        let nodeModel = dragTarget.saveModel[index];
 
         node.setState('dragging', false);
         node.update({
             isDragging : false,
-            style : vm.G6.Util.deepMix({}, {
+            style : G6.Util.deepMix({}, {
                 fillOpacity : 1
-            }, nodeData.style)
+            }, nodeModel.style)
         });
 
-        shapeBase.toggleNodeBox(node, 'show', (type, model) => {
+        shapeBase.toggleNodeVisibility(node, 'show', (type, model) => {
 
             if (type === 'hide') {
 
@@ -98,7 +74,7 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
         });
 
         // 移动节点
-        _insertNode(nodeData, dragHolderParentChilren, _dragHolderIndexOfParentChildren);
+        vm.moveNodeToParent(nodeModel, dragHolderParentModel, _dragHolderIndexOfParentChildren);
 
     }
 
@@ -115,7 +91,21 @@ const _updateDragTarget = (vm, dragging = false) => {
         
         for (let node of dragNodes) {
 
-            _removeNode(node);
+            let parentNodeModel = node.getInEdges()[0].getSource().getModel();
+            let parentNodeDataChildren = parentNodeModel.children;
+            let model = node.getModel();
+            let index = parentNodeDataChildren.indexOf(model);
+
+            if (
+                parentNodeModel === dragHolderParentModel &&
+                index < dragHolderIndexOfParentChildren
+            ) {
+
+                dragHolderIndexOfParentChildren--;
+
+            }
+
+            vm.removeNode(model.id);
 
         }
 
@@ -207,13 +197,13 @@ const _fillChildBbox = (vm, bbox, node) => {
 
 const _removeOldDragPlaceholder = vm => {
 
-    if (dragHolderIndexOfParentChildren > -1 && dragHolderParentChilren) {
+    if (dragHolderIndexOfParentChildren > -1 && dragHolderParentModel) {
 
-        dragHolderParentChilren.splice(dragHolderIndexOfParentChildren, 1);
+        dragHolderParentModel.children.splice(dragHolderIndexOfParentChildren, 1);
 
     }
 
-    dragHolderParentChilren = null;
+    dragHolderParentModel = null;
     dragHolderIndexOfParentChildren = null;
     vm.data.graph.changeData();
 
@@ -271,7 +261,7 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
         if (
             (
                 (vm.conf.layout === 'LR' && nodeBbox.centerX < delegateBbox.x) ||
-                (vm.conf.layout === 'RL' && nodeBbox.centerX > delegateBbox.x) ||
+                // (vm.conf.layout === 'RL' && nodeBbox.centerX > delegateBbox.x) ||
                 node.getModel().isRoot
             ) &&
             (
@@ -341,7 +331,7 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
             anchorPoints : [[0, 0.5], [1, 0.5]],
             _isHolder : true
         });
-        dragHolderParentChilren = model.children;
+        dragHolderParentModel = model;
         vm.data.graph.paint();
         vm.data.graph.changeData();
         vm.data.graph.refreshLayout();

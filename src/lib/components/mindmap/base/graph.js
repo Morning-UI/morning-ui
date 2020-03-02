@@ -1,7 +1,28 @@
 import G6                           from '@antv/g6';
 import getMindNode                  from '../nodes/mindNode';
 import getPlaceholderNode           from '../nodes/placeholderNode';
-import getMindEdge                  from '../nodes/mindEdge';
+import getMindEdge                  from '../edges/mindEdge';
+import getPlaceholderEdge           from '../edges/placeholderEdge';
+import getBrushSelect               from '../behavior/brushSelect';
+import getDragNode                  from '../behavior/dragNode';
+import bindCanvasGrab               from '../event/canvasGrab';
+import bindNodeHover                from '../event/nodeHover';
+import bindNodeSelect               from '../event/nodeSelect';
+import bindNodeEdit                 from '../event/nodeEdit';
+
+const _nodeEventShouldEmit = evt => {
+
+    let model = evt.item.getModel();
+
+    if (model.collapse || model.isDragging) {
+
+        return false;
+
+    }
+
+    return true;
+
+};
 
 export const register = vm => {
 
@@ -10,9 +31,9 @@ export const register = vm => {
     G6.registerNode('mor-mind-node', getMindNode(vm), 'single-shape');
     G6.registerNode('mor-placeholder-node', getPlaceholderNode(this), 'single-shape');
     G6.registerEdge('mor-mind-edge', getMindEdge(this), 'polyline');
-    G6.registerEdge('mor-placeholder-edge', getPlaceholderEdgeConfig(this), 'mor-mind-edge');
-    // G6.registerBehavior('mor-brush-select', getBrushSelectConfig(this));
-    // G6.registerBehavior('mor-drag-node', getDragNodeConfig(this));
+    G6.registerEdge('mor-placeholder-edge', getPlaceholderEdge(this), 'mor-mind-edge');
+    G6.registerBehavior('mor-brush-select', getBrushSelect(this));
+    G6.registerBehavior('mor-drag-node', getDragNode(this));
 
 };
 
@@ -142,5 +163,116 @@ export const create = vm => {
 
     vm.data.graph = new G6.TreeGraph(graphOtions);
     vm.G6 = G6;
+
+};
+
+export const bindEvent = vm => {
+
+    let graph = vm.data.graph;
+    let on = graph.on;
+
+    on('canvas:mousedown', evt => {
+    
+        bindCanvasGrab.mousedown(evt);
+        bindNodeEdit.cancel(evt, {
+            vm
+        });
+
+    });
+
+    on('canvas:mouseenter', evt => {
+    
+        bindCanvasGrab.mouseenter(evt);
+
+    });
+
+    on('canvas:mouseup', evt => {
+    
+        bindCanvasGrab.mouseup(evt);
+
+    });
+
+    on('node:mouseenter', evt => {
+
+        if (_nodeEventShouldEmit(evt)) {
+
+            bindNodeHover.in(evt, {
+                graph
+            });
+
+        }
+    
+    });
+
+    on('node:mouseleave', evt => {
+
+        if (!_nodeEventShouldEmit(evt)) {
+
+            bindNodeHover.out(evt, {
+                graph
+            });
+
+        }
+
+    });
+
+    on('node:click', evt => {
+
+        if (!_nodeEventShouldEmit(evt)) {
+
+            bindNodeSelect(evt, {
+                vm,
+                graph
+            });
+
+        }
+
+    });
+
+    on('node:dblclick', evt => {
+
+        if (!_nodeEventShouldEmit(evt)) {
+
+            bindNodeEdit.edit(evt, {
+                vm
+            });
+
+        }
+
+    });
+
+    on('wheelzoom', evt => {
+
+        bindNodeEdit.refresh(evt, {
+            vm
+        });
+
+    });
+
+    on('click', evt => {
+
+        bindNodeEdit.cancel(evt, {
+            vm
+        });
+
+    });
+
+    vm.$watch('data.editZoom', () => {
+
+        bindNodeEdit.zoom(null, {
+            vm
+        });
+
+    });
+
+    // TODO : DOING
+    // this._onNodeDrag();
+    // this._onAnnexHover();
+    // this._onAnnexClick();
+    // this._onExpandBtnHover();
+    // this._onExpandBtnClick();
+    // this._onContextMenu();
+    // this._onCanvasKeydown();
+    // this._onCanvasMouseLeave();
 
 };

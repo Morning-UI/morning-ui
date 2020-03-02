@@ -126,14 +126,16 @@
  
 <script>
 import G6                           from '@antv/g6';
-
 import graphBase                    from './base/graph';
-import dataBase                    from './base/data';
+import dataBase                     from './base/data';
+import MixinMethodNode              from './methods/node';
 
 export default {
     origin : 'Form',
     name : 'mindmap',
-    mixins : [],
+    mixins : [
+        MixinMethodNode,
+    ],
     props : {
         layout : {
             type : String,
@@ -180,6 +182,16 @@ export default {
                 $editMarkDialog : null,
                 $importDialog : null,
                 graph : null,
+                dragging : false,
+                keydownState : {
+                    mod : false
+                },
+                globalId : 0,
+                editting : false,
+                editShapes : {},
+                editNode : null,
+                editContent : '',
+                editZoom : 1,
             }
         };
 
@@ -197,7 +209,23 @@ export default {
             this.data.$editMarkDialog = this.$refs[`mor-mindmap-edit-mark-${this.uiid}`];
             this.data.$importDialog = this.$refs[`mor-mindmap-import-${this.uiid}`];
 
-        }
+        },
+        _clearSelectedNode : function (selectedState) {
+                    
+            let graph = this.data.graph;
+            let autoPaint = graph.get('autoPaint');
+            let nodes = graph.findAllByState('node', selectedState);
+            let edges = graph.findAllByState('edge', selectedState);
+            
+            graph.setAutoPaint(false);
+            nodes.forEach(node => graph.setItemState(node, selectedState, false));
+            edges.forEach(edge => graph.setItemState(edge, selectedState, false));
+            // this.selectedNodes = [];
+            // this.selectedEdges = [];
+            graph.paint();
+            graph.setAutoPaint(autoPaint);
+
+        },
     },
     created : function () {},
     mounted : function () {
@@ -322,6 +350,7 @@ export default {
         this._initEl();
         graphBase.register(this);
         graphBase.create(this);
+        graphBase.bindEvent(this);
 
 
     },

@@ -1,3 +1,5 @@
+import G6                           from '@antv/g6';
+
 export default vm => ({
     getDefaultCfg () {
 
@@ -60,7 +62,7 @@ export default vm => ({
 
         setTimeout(() => {
 
-            vm.G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
+            G6.Util.modifyCSS(evt.currentTarget._cfg.canvas._cfg.canvasDOM, {
                 cursor : 'default'
             });
         
@@ -103,8 +105,9 @@ export default vm => ({
     _clearStates () {
 
         if (!vm.data.keydownState.mod) {
-            
+
             vm._clearSelectedNode(this.selectedState);
+            this.selectedNodes = [];
         
         }
 
@@ -219,7 +222,7 @@ export default vm => ({
 
         setTimeout(() => {
 
-            vm.G6.Util.modifyCSS(this.graph._cfg.canvas._cfg.canvasDOM, {
+            G6.Util.modifyCSS(this.graph._cfg.canvas._cfg.canvasDOM, {
                 cursor : 'default'
             });
         
