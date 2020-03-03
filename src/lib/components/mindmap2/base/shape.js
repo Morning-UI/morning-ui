@@ -187,94 +187,94 @@ export default {
     //     };
 
     // },
-    refreshMindNode : (groupShapes, model) => {
+    // refreshMindNode : (groupShapes, model) => {
 
-        let {
-            box,
-            outline,
-            con,
-            text,
-            placeholder,
-            bottomline,
-            markConGroup,
-            appendConGroup,
-            expantBtn
-        } = groupShapes;
-        let textBbox = text.getBBox();
-        let conPaddingX = box.get('conPaddingX');
-        let conPaddingY = box.get('conPaddingY');
+    //     let {
+    //         box,
+    //         outline,
+    //         con,
+    //         text,
+    //         placeholder,
+    //         bottomline,
+    //         markConGroup,
+    //         appendConGroup,
+    //         expantBtn
+    //     } = groupShapes;
+    //     let textBbox = text.getBBox();
+    //     let conPaddingX = box.get('conPaddingX');
+    //     let conPaddingY = box.get('conPaddingY');
 
-        // when text is empty use placeholder
-        if (textBbox.width === 0) {
+    //     // when text is empty use placeholder
+    //     if (textBbox.width === 0) {
             
-            textBbox = groupShapes.placeholder.getBBox();
+    //         textBbox = groupShapes.placeholder.getBBox();
 
-        }
+    //     }
 
-        let conWidth = textBbox.width + (conPaddingX * 2);
-        let conHeight = textBbox.height + (conPaddingY * 2);
-        let markConGroupBbox = markConGroup.getBBox();
-        let appendConGroupBbox = appendConGroup.getBBox();
+    //     let conWidth = textBbox.width + (conPaddingX * 2);
+    //     let conHeight = textBbox.height + (conPaddingY * 2);
+    //     let markConGroupBbox = markConGroup.getBBox();
+    //     let appendConGroupBbox = appendConGroup.getBBox();
 
-        if (model.note || model.link) {
+    //     if (model.note || model.link) {
 
-            conWidth += conPaddingX / 2;
+    //         conWidth += conPaddingX / 2;
 
-        }
+    //     }
 
-        if (model._mark && model._mark.length > 0) {
+    //     if (model._mark && model._mark.length > 0) {
 
-            conWidth += markConGroupBbox.width;
+    //         conWidth += markConGroupBbox.width;
 
-        }
+    //     }
 
-        if (model.link || model.note || (model.tag && model.tag.length > 0)) {
+    //     if (model.link || model.note || (model.tag && model.tag.length > 0)) {
 
-            conWidth += appendConGroupBbox.width;
+    //         conWidth += appendConGroupBbox.width;
 
-        }
+    //     }
 
-        con.attr({
-            width : conWidth,
-            height : conHeight
-        });
+    //     con.attr({
+    //         width : conWidth,
+    //         height : conHeight
+    //     });
 
-        let conBbox = con.getBBox();
+    //     let conBbox = con.getBBox();
         
-        outline.attr({
-            width : conBbox.width + (OUTLINE_PADDING * 2),
-            height : conBbox.height + (OUTLINE_PADDING * 2)
-        });
+    //     outline.attr({
+    //         width : conBbox.width + (OUTLINE_PADDING * 2),
+    //         height : conBbox.height + (OUTLINE_PADDING * 2)
+    //     });
 
-        box.attr({
-            width : conBbox.width,
-            height : conBbox.height
-        });
+    //     box.attr({
+    //         width : conBbox.width,
+    //         height : conBbox.height
+    //     });
 
-        placeholder.attr({
-            y : (textBbox.height / 2) + conPaddingY
-        });
+    //     placeholder.attr({
+    //         y : (textBbox.height / 2) + conPaddingY
+    //     });
 
-        text.attr({
-            y : (textBbox.height / 2) + conPaddingY
-        });
+    //     text.attr({
+    //         y : (textBbox.height / 2) + conPaddingY
+    //     });
 
-        let boxBbox = box.getBBox();
+    //     let boxBbox = box.getBBox();
 
-        bottomline.attr({
-            x : boxBbox.minX - 1,
-            y : boxBbox.maxY - 0.5,
-            width : boxBbox.width + 2
-        });
+    //     bottomline.attr({
+    //         x : boxBbox.minX - 1,
+    //         y : boxBbox.maxY - 0.5,
+    //         width : boxBbox.width + 2
+    //     });
 
-        expantBtn.attr({
-            x : boxBbox.maxX,
-            y : (textBbox.height / 2) + conPaddingY
-        });
+    //     expantBtn.attr({
+    //         x : boxBbox.maxX,
+    //         y : (textBbox.height / 2) + conPaddingY
+    //     });
         
-        _refreshAppendConGroupPosition(groupShapes, model);
+    //     _refreshAppendConGroupPosition(groupShapes, model);
 
-    },
+    // },
     // toggleNodeBox : (node, type = 'show', callback) => {
 
     //     // 隐藏边

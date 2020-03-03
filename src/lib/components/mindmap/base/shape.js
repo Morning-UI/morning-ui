@@ -3,8 +3,12 @@ import {
     MIND_NODE_STYLE,
     APPENDS_PADDING,
     APPENDS_MARGIN,
+    OUTLINE_PADDING,
 }                                   from '../const/style';
 import {NODE_SHAPE_INDEX}           from '../nodes/mindNode';
+import {
+    getNodeShapes,
+}                                   from './utils';
 
 const _getNodeStyles = (nodeStyle, model) => {
 
@@ -122,6 +126,26 @@ const _refreshAppendConGroupPosition = (shapes, model) => {
     
 };
 
+const _refreshNodeNotePosition = (vm, node, noteConIndex) => {
+
+    let shapes = getNodeShapes(node);
+    let noteConBbox = shapes.appendConGroup.getChildByIndex(noteConIndex).getBBox();
+    let nodeBbox = node.getBBox();
+    let zoom = vm.data.graph.getZoom();
+    let {
+        x : nodeX,
+        y : nodeY
+    } = vm.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
+
+    vm.data.$nodeNote.style.display = 'block';
+    vm.data.$nodeNote.style.left = `${nodeX + (noteConBbox.x * zoom)}px`;
+    vm.data.$nodeNote.style.top = `${nodeY + noteConBbox.y}px`;
+    vm.data.$nodeNote.style.width = `${noteConBbox.width}px`;
+    vm.data.$nodeNote.style.height = `${noteConBbox.height}px`;
+    vm.data.nodeNoteZoom = zoom;
+
+};
+
 const _toggleAllChildrenVisibility = (node, type, callback) => {
 
     let outEdges = node.getOutEdges();
@@ -147,6 +171,96 @@ const _toggleAllChildrenVisibility = (node, type, callback) => {
         }
 
     }
+
+};
+
+const _refreshMindNode = (shapes, model) => {
+
+    let {
+        box,
+        outline,
+        con,
+        text,
+        placeholder,
+        bottomline,
+        markConGroup,
+        appendConGroup,
+        collapseBtnGroup
+    } = shapes;
+    let textBbox = text.getBBox();
+    let conPaddingX = box.get('conPaddingX');
+    let conPaddingY = box.get('conPaddingY');
+
+    // when text is empty use placeholder
+    if (textBbox.width === 0) {
+        
+        textBbox = shapes.placeholder.getBBox();
+
+    }
+
+    let conWidth = textBbox.width + (conPaddingX * 2);
+    let conHeight = textBbox.height + (conPaddingY * 2);
+    let markConGroupBbox = markConGroup.getBBox();
+    let appendConGroupBbox = appendConGroup.getBBox();
+
+    if (model.note || model.link) {
+
+        conWidth += conPaddingX / 2;
+
+    }
+
+    if (model._mark && model._mark.length > 0) {
+
+        conWidth += markConGroupBbox.width;
+
+    }
+
+    if (model.link || model.note || (model.tag && model.tag.length > 0)) {
+
+        conWidth += appendConGroupBbox.width;
+
+    }
+
+    con.attr({
+        width : conWidth,
+        height : conHeight
+    });
+
+    let conBbox = con.getBBox();
+    
+    outline.attr({
+        width : conBbox.width + (OUTLINE_PADDING * 2),
+        height : conBbox.height + (OUTLINE_PADDING * 2)
+    });
+
+    box.attr({
+        width : conBbox.width,
+        height : conBbox.height
+    });
+
+    placeholder.attr({
+        y : (textBbox.height / 2) + conPaddingY
+    });
+
+    text.attr({
+        y : (textBbox.height / 2) + conPaddingY
+    });
+
+    let boxBbox = box.getBBox();
+
+    bottomline.attr({
+        x : boxBbox.minX - 1,
+        y : boxBbox.maxY - 0.5,
+        width : boxBbox.width + 2
+    });
+
+    // TODO 位置是否对标nodes
+    collapseBtnGroup.attr({
+        x : boxBbox.maxX,
+        y : (textBbox.height / 2) + conPaddingY
+    });
+    
+    _refreshAppendConGroupPosition(shapes, model);
 
 };
 
@@ -195,4 +309,6 @@ export default {
     getNodeStyles : _getNodeStyles,
     getAppends : _getAppends,
     refreshAppendConGroupPosition : _refreshAppendConGroupPosition,
+    refreshNodeNotePosition : _refreshNodeNotePosition,
+    refreshMindNode : _refreshMindNode,
 };

@@ -1,8 +1,9 @@
-import shapeBase                    from '../base/shape';
+import map                          from 'lodash.map';
 import {
     fillNodeIds,
     getNodeShapes,
     refreshNodeEdges,
+    traverseNode,
 }                                   from '../base/utils';
 
 const _removeOneNode = node => {
@@ -20,8 +21,49 @@ const _removeOneNode = node => {
 
 };
 
+
+const _parseNewNodeDataOne = data => {
+
+    if (typeof data === 'string') {
+
+        try {
+
+            data = JSON.parse(data);
+
+        } catch (e) {}
+
+    }
+
+    data = Object.assign({
+        text : '新的节点'
+    }, data);
+
+    return data;
+
+};
+
+// TODO : 是否需要过滤无效的数据
+const _parseNewNodeData = data => {
+
+    if (data instanceof Array) {
+
+        for (let key in data) {
+
+            data[key] = _parseNewNodeDataOne(data[key]);
+
+        }
+
+        return data;
+
+    }
+
+    return [_parseNewNodeDataOne(data)];
+
+};
+
 export default {
     methods : {
+        // TODO : 是否挪到utils
         _refreshTextEditorPosition : function (node) {
 
             if (this.data.editNode) {
@@ -108,12 +150,14 @@ export default {
 
             }
 
+            return this;
+
         },
         blurNodeTextEditor : function () {
 
             if (!this.data.editting) {
 
-                return;
+                return this;
 
             }
 
@@ -136,7 +180,10 @@ export default {
             
             });
 
+            return this;
+
         },
+        // TODO : removeNode 和 deleteNode是否重复
         removeNode : function (nodeIds) {
 
             nodeIds = fillNodeIds(nodeIds);
@@ -147,7 +194,32 @@ export default {
 
             }
 
+            return this;
+
         },
+        deleteNode : function (nodeIds) {
+
+            nodeIds = fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+                let model = node.getModel();
+                let parent = node.getInEdges()[0].getSource();
+                let parentModel = parent.getModel();
+                let indexOfParent = parentModel.children.indexOf(model);
+
+                parentModel.children.splice(indexOfParent, 1);
+
+            }
+
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+
+            return this;
+
+        },
+        // TODO : moveNodeToParent 是否可以使用 insertSubNode
         moveNodeToParent : function (nodeIds, parentNodeId, insertIndex) {
 
             nodeIds = fillNodeIds(nodeIds);
@@ -167,6 +239,78 @@ export default {
 
             // TODO 确保视图刷新
 
-        }
+            return this;
+
+        },
+        selectNode : function (nodeIds) {
+
+            nodeIds = fillNodeIds(nodeIds);
+
+            for (let nodeId of nodeIds) {
+
+                let node = this.data.graph.findById(nodeId);
+
+                if (node.getModel().isMindNode) {
+
+                    this.data.graph.setItemState(node, 'selected', true);
+                
+                }
+
+            }
+
+            return this;
+
+        },
+        // 插入子节点
+        insertSubNode : function (nodeId, datas, index = -1) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let isSingle = (datas instanceof Array);
+
+            datas = _parseNewNodeData(datas);
+
+            if (model.children === undefined) {
+
+                model.children = [];
+
+            }
+
+            traverseNode(datas);
+
+            if (index > -1) {
+
+                let datas2 = Object.assign([], datas);
+
+                datas2.reverse();
+
+                for (let item of datas2) {
+                
+                    model.children.splice(index, 0, item);
+
+                }
+
+            } else {
+
+                for (let item of datas) {
+                
+                    model.children.push(item);
+
+                }
+
+            }
+
+            this.data.graph.changeData();
+            this.data.graph.refreshLayout();
+            
+            if (isSingle) {
+
+                return datas[0].id;
+
+            }
+
+            return map(datas, 'id');
+
+        },
     }
 };

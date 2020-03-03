@@ -9,6 +9,17 @@ import bindCanvasGrab               from '../event/canvasGrab';
 import bindNodeHover                from '../event/nodeHover';
 import bindNodeSelect               from '../event/nodeSelect';
 import bindNodeEdit                 from '../event/nodeEdit';
+import bindNodeDrag                 from '../event/nodeDrag';
+import bindAppendsHover             from '../event/appendsHover';
+import bindAppendsClick             from '../event/appendsClick';
+import bindCollapseBtnHover         from '../event/collapseBtnHover';
+import bindCollapseBtnClick         from '../event/collapseBtnClick';
+import bindContextMenu              from '../event/contextMenu';
+import bindHotKey                   from '../event/hotkey';
+import bindMouseOnCanvas            from '../event/mouseOnCanvas';
+import {
+    traverseOneNode,
+}                                   from '../base/utils';
 
 const _nodeEventShouldEmit = evt => {
 
@@ -24,7 +35,7 @@ const _nodeEventShouldEmit = evt => {
 
 };
 
-export const register = vm => {
+const register = vm => {
 
     // G6.registerNode('mor-root-mind-node', getMindNodeRootConfig(this), 'single-shape');
     G6.registerNode('mor-root-mind-node', getMindNode(vm), 'single-shape');
@@ -37,7 +48,7 @@ export const register = vm => {
 
 };
 
-export const create = vm => {
+const create = vm => {
 
     let width = vm.conf.width;
     let height = vm.conf.height;
@@ -166,12 +177,11 @@ export const create = vm => {
 
 };
 
-export const bindEvent = vm => {
+const bindEvent = vm => {
 
     let graph = vm.data.graph;
-    let on = graph.on;
 
-    on('canvas:mousedown', evt => {
+    graph.on('canvas:mousedown', evt => {
     
         bindCanvasGrab.mousedown(evt);
         bindNodeEdit.cancel(evt, {
@@ -180,19 +190,71 @@ export const bindEvent = vm => {
 
     });
 
-    on('canvas:mouseenter', evt => {
+    graph.on('canvas:mouseenter', evt => {
     
         bindCanvasGrab.mouseenter(evt);
 
     });
 
-    on('canvas:mouseup', evt => {
+    graph.on('canvas:mouseover', () => {
+        
+        bindMouseOnCanvas.in();
+
+    });
+
+    graph.on('canvas:mouseleave', () => {
+        
+        bindMouseOnCanvas.out();
+
+    });
+
+    graph.on('canvas:mouseup', evt => {
     
         bindCanvasGrab.mouseup(evt);
 
     });
 
-    on('node:mouseenter', evt => {
+    graph.on('canvas:mousemove', evt => {
+
+        bindAppendsHover.stop(evt, {
+            graph
+        });
+
+        bindCollapseBtnHover.stop(evt, {
+            vm,
+            graph
+        });
+
+    });
+
+    graph.on('canvas:click', evt => {
+
+        bindAppendsClick.stop(evt, {
+            vm,
+            graph
+        });
+
+    });
+
+    graph.on('node:mousemove', evt => {
+
+        if (_nodeEventShouldEmit(evt)) {
+
+            bindAppendsHover.move(evt, {
+                graph,
+                vm
+            });
+
+            bindCollapseBtnHover.move(evt, {
+                graph,
+                vm
+            });
+
+        }
+
+    });
+
+    graph.on('node:mouseenter', evt => {
 
         if (_nodeEventShouldEmit(evt)) {
 
@@ -204,7 +266,7 @@ export const bindEvent = vm => {
     
     });
 
-    on('node:mouseleave', evt => {
+    graph.on('node:mouseleave', evt => {
 
         if (!_nodeEventShouldEmit(evt)) {
 
@@ -212,15 +274,30 @@ export const bindEvent = vm => {
                 graph
             });
 
+            bindContextMenu.hide(evt, {
+                vm,
+                graph
+            })
+
         }
 
     });
 
-    on('node:click', evt => {
+    graph.on('node:click', evt => {
 
-        if (!_nodeEventShouldEmit(evt)) {
+        if (_nodeEventShouldEmit(evt)) {
 
             bindNodeSelect(evt, {
+                vm,
+                graph
+            });
+
+            bindAppendsClick.click(evt, {
+                vm,
+                graph
+            });
+
+            bindCollapseBtnClick.click(evt, {
                 vm,
                 graph
             });
@@ -229,9 +306,9 @@ export const bindEvent = vm => {
 
     });
 
-    on('node:dblclick', evt => {
+    graph.on('node:dblclick', evt => {
 
-        if (!_nodeEventShouldEmit(evt)) {
+        if (_nodeEventShouldEmit(evt)) {
 
             bindNodeEdit.edit(evt, {
                 vm
@@ -241,18 +318,69 @@ export const bindEvent = vm => {
 
     });
 
-    on('wheelzoom', evt => {
+    graph.on('node:dragstart', evt => {
+
+        if (_nodeEventShouldEmit(evt)) {
+
+            bindNodeDrag.start(evt, {
+                graph
+            });
+
+        }
+
+    });
+
+    graph.on('node:dragend', evt => {
+
+        if (_nodeEventShouldEmit(evt)) {
+
+            bindNodeDrag.end(evt, {
+                graph
+            });
+
+        }
+
+    });
+
+    graph.on('node:contextmenu', evt => {
+
+        if (_nodeEventShouldEmit(evt)) {
+
+            bindContextMenu.show(evt, {
+                vm,
+                graph
+            });
+
+        }
+
+    });
+
+    graph.on('wheelzoom', evt => {
 
         bindNodeEdit.refresh(evt, {
             vm
         });
 
+        bindAppendsClick.stop(evt, {
+            vm,
+            graph
+        });
+
     });
 
-    on('click', evt => {
+    graph.on('click', evt => {
 
         bindNodeEdit.cancel(evt, {
             vm
+        });
+
+    });
+
+    graph.on('keydown', evt => {
+
+        bindHotKey(evt, {
+            vm,
+            graph
         });
 
     });
@@ -265,14 +393,53 @@ export const bindEvent = vm => {
 
     });
 
-    // TODO : DOING
-    // this._onNodeDrag();
-    // this._onAnnexHover();
-    // this._onAnnexClick();
-    // this._onExpandBtnHover();
-    // this._onExpandBtnClick();
-    // this._onContextMenu();
-    // this._onCanvasKeydown();
-    // this._onCanvasMouseLeave();
+    vm.$watch('data.nodeNoteZoom', () => {
 
+        bindAppendsClick.resize(null, {
+            vm
+        });
+
+    });
+
+    vm.$watch('data.nodeNoteShow', () => {
+
+        bindAppendsClick.noteShow(null, {
+            vm
+        });
+
+    });
+
+};
+
+const readData = (vm, data) => {
+
+    G6.Util.traverseTree(data, traverseOneNode.bind(vm));
+    vm.data.graph.read(data);
+
+    setTimeout(() => {
+
+        vm.data.graph.refreshLayout(true);
+        vm.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
+
+    });
+
+};
+
+const manualPaint = (vm, paintCallback) => {
+    
+    let autoPaint = vm.data.graph.get('autoPaint');
+
+    paintCallback();
+
+    vm.data.graph.paint();
+    vm.data.graph.setAutoPaint(autoPaint);
+
+};
+
+export default {
+    register,
+    create,
+    bindEvent,
+    readData,
+    manualPaint,
 };

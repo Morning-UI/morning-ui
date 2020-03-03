@@ -140,9 +140,9 @@
  
 <script>
 import G6                           from '@antv/g6';
-import map                          from 'lodash.map';
-import copy                         from 'clipboard-copy';
-import isHotkey                     from 'is-hotkey';
+// import map                          from 'lodash.map';
+// import copy                         from 'clipboard-copy';
+// import isHotkey                     from 'is-hotkey';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
 import shapeBase                    from './base/shape';
@@ -246,16 +246,16 @@ export default {
                 // editting : false,
                 // editGroupShapes : {},
                 // editNode : null,
-                editContent : '',
-                editZoom : 1,
+                // editContent : '',
+                // editZoom : 1,
                 dragging : false,
-                dataMap : {},
-                currentNodeNote : '',
-                nodeNoteZoom : 1,
-                nodeNoteShow : false,
-                contextMenu : {
-                    style : {}
-                },
+                // dataMap : {},
+                // currentNodeNote : '',
+                // nodeNoteZoom : 1,
+                // nodeNoteShow : false,
+                // contextMenu : {
+                //     style : {}
+                // },
                 currentEditLinkNodeIds : [],
                 currentEditNoteNodeIds : [],
                 currentEditMarkNodeIds : [],
@@ -270,7 +270,7 @@ export default {
                 },
                 currentImportNode : undefined,
                 currentImportMode : 'replace',
-                mouseOnCanvas : false,
+                // mouseOnCanvas : false,
                 keydownState : {
                     mod : false
                 }
@@ -304,25 +304,6 @@ export default {
         //     }
 
         // },
-        _refreshNodeNotePosition : function (node, noteConIndex) {
-
-            let groupShapes = shapeBase.getGroupShapes(node);
-            let noteConBbox = groupShapes.appendConGroup.getChildByIndex(noteConIndex).getBBox();
-            let nodeBbox = node.getBBox();
-            let zoom = this.data.graph.getZoom();
-            let {
-                x : nodeX,
-                y : nodeY
-            } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
-
-            this.data.$nodeNote.style.display = 'block';
-            this.data.$nodeNote.style.left = `${nodeX + (noteConBbox.x * zoom)}px`;
-            this.data.$nodeNote.style.top = `${nodeY + noteConBbox.y}px`;
-            this.data.$nodeNote.style.width = `${noteConBbox.width}px`;
-            this.data.$nodeNote.style.height = `${noteConBbox.height}px`;
-            this.data.nodeNoteZoom = zoom;
-
-        },
         // _refreshEditorPosition : function (node) {
 
         //     if (this.data.editNode) {
@@ -377,84 +358,45 @@ export default {
         //     this.data.editZoom = zoom;
 
         // },
-        _manualPaint : function (paintCallback) {
+        // _manualPaint : function (paintCallback) {
     
-            let autoPaint = this.data.graph.get('autoPaint');
+        //     let autoPaint = this.data.graph.get('autoPaint');
 
-            paintCallback();
+        //     paintCallback();
 
-            this.data.graph.paint();
-            this.data.graph.setAutoPaint(autoPaint);
+        //     this.data.graph.paint();
+        //     this.data.graph.setAutoPaint(autoPaint);
 
-        },
-        _editAppendNewline : function () {
+        // },
+        // _editInput : function () {
 
-            let content = this.data.editContent;
-            
-            this.data.editContent = content;
-            this._editInput();
+        //     let groupShapes = this.data.editGroupShapes;
 
-        },
-        _editInput : function () {
+        //     this._manualPaint(() => {
 
-            let groupShapes = this.data.editGroupShapes;
+        //         groupShapes.text.attr({
+        //             text : this.data.editContent
+        //         });
 
-            this._manualPaint(() => {
+        //         this.data.editNode.update({
+        //             text : this.data.editContent
+        //         });
 
-                groupShapes.text.attr({
-                    text : this.data.editContent
-                });
+        //         // 临时修复问题：https://github.com/antvis/g/pull/121
+        //         if (this.data.editContent.indexOf('\n') === -1) {
 
-                this.data.editNode.update({
-                    text : this.data.editContent
-                });
+        //             groupShapes.text._attrs.lineCount = 1;
 
-                // 临时修复问题：https://github.com/antvis/g/pull/121
-                if (this.data.editContent.indexOf('\n') === -1) {
+        //         }
 
-                    groupShapes.text._attrs.lineCount = 1;
+        //         this.data.graph.paint();
+        //         shapeBase.refreshMindNode(groupShapes, this.data.editNode.getModel());
+        //         this._refreshEditorPosition(this.data.editNode);
 
-                }
+        //     });
 
-                this.data.graph.paint();
-                shapeBase.refreshMindNode(groupShapes, this.data.editNode.getModel());
-                this._refreshEditorPosition(this.data.editNode);
-
-            });
-
-        },
+        // },
         /* eslint-disable no-magic-numbers */
-        _showContextMenu : function (x, y, nodeId) {
-
-            this.data.contextMenu = {
-                style : {
-                    left : `${x}px`,
-                    top : `${y}px`,
-                    display : 'flex',
-                },
-                nodeId
-            };
-            
-            let nodes = this.getAllSelectedNode();
-
-            if (nodes && nodes.length === 1) {
-
-                this._clearSelectedNode('selected');
-
-            }
-
-            this.selectNode(nodeId);
-
-        },
-        _hideContextMenu : function () {
-            
-            this.data.contextMenu = {
-                style : {
-                    display : 'none'
-                }
-            };
-
-        },
         _collapseExpandOneChild : function (node, collapse) {
 
             if (collapse) {
@@ -504,17 +446,17 @@ export default {
 
         // },
         /* eslint-enable no-magic-numbers */
-        _inAnnex : function (evt, shapeIndex) {
+        // _inAnnex : function (evt, shapeIndex) {
 
-            return this
-                ._inNodeShape(
-                    evt,
-                    evt.item.get('group')
-                        .getChildByIndex(APPEND_CON_GROUP_INDEX)
-                        .getChildByIndex(shapeIndex)
-                );
+        //     return this
+        //         ._inNodeShape(
+        //             evt,
+        //             evt.item.get('group')
+        //                 .getChildByIndex(APPEND_CON_GROUP_INDEX)
+        //                 .getChildByIndex(shapeIndex)
+        //         );
 
-        },
+        // },
         // _editNode : function (nodeId, clean = false) {
 
         //     let node = this.data.graph.findById(nodeId);
@@ -548,170 +490,6 @@ export default {
         //     }
 
         // },
-        _onAnnexHover : function () {
-
-            this.data.graph.on('node:mousemove', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                let model = evt.item.getModel();
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model.link) {
-
-                    if (this._inAnnex(evt, ANNEX_LIST.link.index)) {
-
-                        this.data.graph.setItemState(evt.item, ANNEX_LIST.link.state, true);
-
-                    } else {
-
-                        this.data.graph.setItemState(evt.item, ANNEX_LIST.link.state, false);
-
-                    }
-
-                }
-
-                if (model.note) {
-
-                    let index = ANNEX_LIST.note.index;
-
-                    if (!model.link) {
-
-                        index = 0;
-
-                    }
-
-                    if (this._inAnnex(evt, index)) {
-
-                        this.data.graph.setItemState(evt.item, ANNEX_LIST.note.state, true);
-
-                    } else {
-
-                        this.data.graph.setItemState(evt.item, ANNEX_LIST.note.state, false);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:mousemove', () => {
-
-                let hoverNotes = this.data.graph.findAllByState('node', 'note-hover');
-
-                if (hoverNotes && hoverNotes.length > 0) {
-
-                    for (let note of hoverNotes) {
-
-                        this.data.graph.setItemState(note, ANNEX_LIST.note.state, false);
-
-                    }
-                    
-                }
-
-            });
-
-        },
-        _onAnnexClick : function () {
-
-            this.data.graph.on('node:click', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                let model = evt.item.getModel();
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model.link) {
-
-                    if (this._inAnnex(evt, ANNEX_LIST.link.index)) {
-
-                        window.open(model.link);
-
-                    }
-
-                }
-
-                if (model.note) {
-
-                    let index = ANNEX_LIST.note.index;
-
-                    if (!model.link) {
-
-                        index = 0;
-
-                    }
-
-                    if (this._inAnnex(evt, index)) {
-
-                        this.data.currentNodeNote = model.note.replace(/\n/g, '<br>');
-                        this.data.nodeNoteShow = true;
-                        this._refreshNodeNotePosition(evt.item, index);
-                        this.data.$notePopover.toggle(true);
-
-                    } else {
-
-                        this.data.nodeNoteShow = false;
-                        this.data.$notePopover.toggle(false);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:click', () => {
-
-                if (this.data.nodeNoteShow) {
-
-                    this.data.nodeNoteShow = false;
-                    this.data.$notePopover.toggle(false);
-
-                }
-
-            });
-
-            this.data.graph.on('wheelzoom', () => {
-
-                if (this.data.nodeNoteShow) {
-
-                    this.data.nodeNoteShow = false;
-                    this.data.$notePopover.toggle(false);
-
-                }
-
-            });
-
-            this.$watch('data.nodeNoteZoom', () => {
-
-                this.data.$nodeNote.style.transform = `scale(${this.data.nodeNoteZoom})`;
-
-            });
-
-            this.$watch('data.nodeNoteShow', () => {
-
-                this.data.$nodeNote.style.pointerEvents = (this.data.nodeNoteShow ? 'default' : 'none');
-
-            });
-
-        },
         _onExpandBtnHover : function () {
 
             this.data.graph.on('node:mousemove', evt => {
@@ -759,217 +537,6 @@ export default {
                     }
                     
                 }
-
-            });
-
-        },
-        _onExpandBtnClick : function () {
-
-            this.data.graph.on('node:click', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                let model = evt.item.getModel();
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model.children && model.children.length > 0) {
-
-                    if (this._inNodeShape(evt, evt.item.get('group').getChildByIndex(EXPAND_BTN_GROUP_INDEX))) {
-
-                        this._collapseExpandChildren(evt.item);
-
-                    }
-
-                }
-
-            });
-
-        },
-        _onNodeDrag : function () {
-
-            this.data.graph.on('node:dragstart', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                if (!evt.item.destroyed && !evt.item.getModel().isRoot && evt.item.getModel().isMindNode) {
-                    
-                    this.data.graph.setItemState(evt.item, 'drag', true);
-
-                }
-
-            });
-
-            this.data.graph.on('node:dragend', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                if (!evt.item.destroyed && !evt.item.getModel().isRoot && evt.item.getModel().isMindNode) {
-
-                    this.data.graph.setItemState(evt.item, 'drag', false);
-
-                }
-
-            });
-            
-        },
-        _onContextMenu : function () {
-            
-            this.data.graph.on('node:contextmenu', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                let {
-                    x : canvasX,
-                    y : canvasY
-                } = this.data.graph.getCanvasByPoint(evt.x, evt.y);
-
-                if (evt.item) {
-
-                    let model = evt.item.getModel();
-
-                    if (model.isMindNode) {
-
-                        this._showContextMenu(canvasX, canvasY, model.id);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('node:mouseleave', () => {
-
-                this._hideContextMenu();
-
-            });
-
-        },
-        _onCanvasKeydown : function () {
-
-            const defaultHotkeyMap = {
-                backspace : () => {
-                    
-                    this.deleteNode(this.getAllSelectedNode());
-
-                },
-                'mod+c' : () => {
-                    
-                    this.copyNodeToClipboard(this.getSelectedNode());
-
-                },
-                'mod+v' : () => {
-
-                    this.insertSubNode(this.getSelectedNode(), this.getClipboard());
-
-                }
-            };
-            const editingHotkeyMap = {
-                'shift+enter' : () => {
-
-                    this._editAppendNewline();
-
-                },
-                enter : () => {
-
-                    this._cancelEdit();
-                
-                }
-            };
-            let hotkeyMap = Object.assign({}, defaultHotkeyMap, this.conf.hotkeyMap);
-
-            this.data.graph.on('keydown', evt => {
-
-                let hitHotkey = false;
-
-                if (this.data.mouseOnCanvas && this.data.editting === true) {
-
-                    for (let key in editingHotkeyMap) {
-
-                        if (isHotkey(key, evt) && typeof editingHotkeyMap[key] === 'function') {
-
-                            editingHotkeyMap[key]();
-                            hitHotkey = true;
-
-                        }
-
-                    }
-
-                }
-
-                if (this.data.mouseOnCanvas && this.data.editting === false) {
-
-                    for (let key in hotkeyMap) {
-
-                        if (isHotkey(key, evt) && typeof hotkeyMap[key] === 'function') {
-
-                            hotkeyMap[key]();
-                            hitHotkey = true;
-
-                        }
-
-                    }
-
-                }
-
-                if (this.data.editting === false && !hitHotkey) {
-
-                    let nodeId = this.getSelectedNode();
-                    let keycode = evt.which;
-                    
-                    /* eslint-disable no-magic-numbers */
-                    if (
-                        this.data.mouseOnCanvas &&
-                        nodeId &&
-                        (
-                            (keycode >= 65 && keycode <= 90) ||
-                            (keycode >= 48 && keycode <= 57) ||
-                            (keycode >= 219 && keycode <= 222) ||
-                            (keycode >= 186 && keycode <= 192)
-                        )
-                    ) {
-
-                        this._editNode(nodeId, true);
-
-                    }
-                    /* eslint-enable no-magic-numbers */
-
-                }
-
-            });
-            
-        },
-        _onCanvasMouseLeave : function () {
-
-            this.data.graph.on('canvas:mouseover', () => {
-                
-                this.data.mouseOnCanvas = true;
-
-            });
-
-            this.data.graph.on('canvas:mouseleave', () => {
-                
-                this.data.mouseOnCanvas = false;
 
             });
 
@@ -1032,84 +599,7 @@ export default {
         _createGraph : function () {
 
         },
-        _traverseNodeUpdateMark : function (item) {
-
-            if (item.mark && item.mark.length > 0) {
-
-                let mark = {};
-
-                for (let index in item.mark) {
-
-                    let name = item.mark[index];
-                    let group = name.split(':')[0];
-
-                    if (MARKS[name]) {
-                        
-                        mark[group] = name;
-
-                    }
-
-                }
-
-                item._mark = Object.values(mark);
-
-            } else {
-
-                item._mark = [];
-
-            }
-    
-        },
-        _traverseOneNode : function (item) {
-
-            item.id = this.data.globalId++;
-            item.anchorPoints = [[0, 0.5], [1, 0.5]];
-            item.isMindNode = true;
-            item.style = {};
-            // item._shape = item.shape;
-            item.shapeStyle = item.shapeStyle;
-            item.collapsed = item.collapsed || false;
-            this.data.dataMap[item.id] = item;
-
-            if (item.isRoot) {
-
-                item.shape = 'mor-root-mind-node';
-
-            } else {
-                
-                item.shape = 'mor-mind-node';
-
-            }
-
-            this._traverseNodeUpdateMark(item);
-
-        },
-        _traverseNode : function (items) {
-
-            let root = {
-                text : 'root',
-                children : items
-            };
-
-            this.G6.Util.traverseTree(root, this._traverseOneNode);
-
-            return root.children;
-
-        },
         /* eslint-enable no-magic-numbers */
-        _readData : function (data) {
-
-            this.G6.Util.traverseTree(data, this._traverseOneNode);
-            this.data.graph.read(data);
-
-            setTimeout(() => {
-
-                this.data.graph.refreshLayout(true);
-                this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
-
-            });
-
-        },
         _swapArr : function (children, fromIndex, toIndex) {
 
             children[toIndex] = children.splice(fromIndex, 1, children[toIndex])[0];
@@ -1121,69 +611,6 @@ export default {
 
             this.data.currentImportNode = undefined;
             this.data.currentImportMode = undefined;
-
-        },
-        _pluckDataFromNodes : function (children) {
-
-            let cleanData = [];
-
-            for (let item of children) {
-
-                let cleanItem = {
-                    text : item.text,
-                    note : item.note,
-                    mark : item.mark,
-                    link : item.link,
-                    tag : item.tag
-                };
-
-                if (item.children) {
-
-                    cleanItem.children = this._pluckDataFromNodes(item.children);
-
-                }
-
-                cleanData.push(cleanItem);
-
-            }
-
-            return cleanData;
-
-        },
-        _parseNewNodeDataOne : function (data) {
-
-            if (typeof data === 'string') {
-
-                try {
-
-                    data = JSON.parse(data);
-
-                } catch (e) {}
-
-            }
-
-            data = Object.assign({
-                text : '新的节点'
-            }, data);
-
-            return data;
-
-        },
-        _parseNewNodeData : function (data) {
-
-            if (data instanceof Array) {
-
-                for (let key in data) {
-
-                    data[key] = this._parseNewNodeDataOne(data[key]);
-
-                }
-
-                return data;
-
-            }
-
-            return [this._parseNewNodeDataOne(data)];
 
         },
         // _fillNodeIds : function (nodeIds) {
@@ -1260,82 +687,6 @@ export default {
             return this.insertSubNode(parentModel.id, datas);
 
         },
-        // 插入子节点
-        insertSubNode : function (nodeId, datas, index = -1) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let isSingle = (datas instanceof Array);
-
-            datas = this._parseNewNodeData(datas);
-
-            if (model.children === undefined) {
-
-                model.children = [];
-
-            }
-
-            this._traverseNode(datas);
-
-            if (index > -1) {
-
-                let datas2 = Object.assign([], datas);
-
-                datas2.reverse();
-
-                for (let item of datas2) {
-                
-                    model.children.splice(index, 0, item);
-
-                }
-
-            } else {
-
-                for (let item of datas) {
-                
-                    model.children.push(item);
-
-                }
-
-            }
-
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-            
-            if (isSingle) {
-
-                return datas[0].id;
-
-            }
-
-            return map(datas, 'id');
-
-        },
-        copyNode : function (nodeId) {
-
-            let node = this.data.graph.findById(nodeId);
-            let model = node.getModel();
-            let data = this._pluckDataFromNodes([model]);
-
-            return data[0];
-
-        },
-        copyNodeToClipboard : function (nodeId) {
-
-            let data = this.copyNode(nodeId);
-
-            data = JSON.stringify(data);
-            this.morning._mindmapClipboard = data;
-            copy(data);
-
-            return data;
-
-        },
-        getClipboard : function () {
-
-            return this.morning._mindmapClipboard;
-
-        },
         // 插入唯一节点(向后)
         appendUniqueNode : function (nodeId, data) {
 
@@ -1378,28 +729,6 @@ export default {
             this.data.graph.refreshLayout();
 
             return data.id;
-
-        },
-        deleteNode : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-                let model = node.getModel();
-                let parent = node.getInEdges()[0].getSource();
-                let parentModel = parent.getModel();
-                let indexOfParent = parentModel.children.indexOf(model);
-
-                parentModel.children.splice(indexOfParent, 1);
-
-            }
-
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-
-            return this;
 
         },
         moveUp : function (nodeId) {
@@ -1454,23 +783,6 @@ export default {
             this.data.graph.refreshLayout();
 
         },
-        selectNode : function (nodeIds) {
-
-            nodeIds = this._fillNodeIds(nodeIds);
-
-            for (let nodeId of nodeIds) {
-
-                let node = this.data.graph.findById(nodeId);
-
-                if (node.getModel().isMindNode) {
-
-                    this.data.graph.setItemState(node, 'selected', true);
-                
-                }
-
-            }
-
-        },
         clearSelectedNode : function () {
 
             this._clearSelectedNode('selected');
@@ -1515,127 +827,127 @@ export default {
         // - isRoot*
         // - children*
 
-        let data2 = {
-            text : 'Modeling Methods',
-            isRoot : true,
-            children : [
-                {
-                    text : 'ClassificationClassification',
-                    children : [
-                        {
-                            text : `Different in`,
-                            link : 'http://baidu.com/',
-                            mark : ['priority:1', 'priority:2', 'star:red']
-                        },
-                        {
-                            text : 'Linear discriminant analysis',
-                            tag : ['标签1', '标签2']
-                        },
-                        {
-                            text : 'Decision trees',
-                            note : '123'
-                        },
-                        {
-                            text : 'Decision trees',
-                            link : 'http://baidu.com'
-                        },
-                        {
-                            text : 'Decision trees',
-                            note : '123',
-                            link : 'http://baidu.com'
-                        },
-                        {
-                            text : 'Decision trees'
-                        },
-                        {
-                            text : 'Probabilistic neural network'
-                        },
-                        {
-                            text : 'Support vector machine'
-                        }
-                    ]
-                },
-                {
-                    text : 'Consensus',
-                    children : [
-                        {
-                            text : 'Models diversity',
-                            children : [
-                                {
-                                    text : 'Different initializations',
-                                    link : 'http://baidu.com/'
-                                },
-                                {
-                                    text : 'Different parameter choices'
-                                },
-                                {
-                                    text : 'Different architectures'
-                                },
-                                {
-                                    text : 'Different modeling methods'
-                                },
-                                {
-                                    text : 'Different training sets'
-                                },
-                                {
-                                    text : 'Different feature sets'
-                                }
-                            ]
-                        },
-                        {
-                            text : 'Methods',
-                            children : [
-                                {
-                                    text : 'Classifier selection'
-                                },
-                                {
-                                    text : 'Classifier fusion'
-                                }
-                            ]
-                        },
-                        {
-                            text : 'Common',
-                            children : [
-                                {
-                                    text : 'Bagging'
-                                },
-                                {
-                                    text : 'Boosting'
-                                },
-                                {
-                                    text : 'AdaBoost'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    text : 'Regression',
-                    children : [
-                        {
-                            text : 'Multiple linear regression'
-                        },
-                        {
-                            text : 'Partial least squares'
-                        },
-                        {
-                            text : 'Multi-layer feedforward neural network'
-                        },
-                        {
-                            text : 'General regression neural network'
-                        },
-                        {
-                            text : 'Support vector regression'
-                        }
-                    ]
-                }
-            ]
-        };
+        // let data2 = {
+        //     text : 'Modeling Methods',
+        //     isRoot : true,
+        //     children : [
+        //         {
+        //             text : 'ClassificationClassification',
+        //             children : [
+        //                 {
+        //                     text : `Different in`,
+        //                     link : 'http://baidu.com/',
+        //                     mark : ['priority:1', 'priority:2', 'star:red']
+        //                 },
+        //                 {
+        //                     text : 'Linear discriminant analysis',
+        //                     tag : ['标签1', '标签2']
+        //                 },
+        //                 {
+        //                     text : 'Decision trees',
+        //                     note : '123'
+        //                 },
+        //                 {
+        //                     text : 'Decision trees',
+        //                     link : 'http://baidu.com'
+        //                 },
+        //                 {
+        //                     text : 'Decision trees',
+        //                     note : '123',
+        //                     link : 'http://baidu.com'
+        //                 },
+        //                 {
+        //                     text : 'Decision trees'
+        //                 },
+        //                 {
+        //                     text : 'Probabilistic neural network'
+        //                 },
+        //                 {
+        //                     text : 'Support vector machine'
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             text : 'Consensus',
+        //             children : [
+        //                 {
+        //                     text : 'Models diversity',
+        //                     children : [
+        //                         {
+        //                             text : 'Different initializations',
+        //                             link : 'http://baidu.com/'
+        //                         },
+        //                         {
+        //                             text : 'Different parameter choices'
+        //                         },
+        //                         {
+        //                             text : 'Different architectures'
+        //                         },
+        //                         {
+        //                             text : 'Different modeling methods'
+        //                         },
+        //                         {
+        //                             text : 'Different training sets'
+        //                         },
+        //                         {
+        //                             text : 'Different feature sets'
+        //                         }
+        //                     ]
+        //                 },
+        //                 {
+        //                     text : 'Methods',
+        //                     children : [
+        //                         {
+        //                             text : 'Classifier selection'
+        //                         },
+        //                         {
+        //                             text : 'Classifier fusion'
+        //                         }
+        //                     ]
+        //                 },
+        //                 {
+        //                     text : 'Common',
+        //                     children : [
+        //                         {
+        //                             text : 'Bagging'
+        //                         },
+        //                         {
+        //                             text : 'Boosting'
+        //                         },
+        //                         {
+        //                             text : 'AdaBoost'
+        //                         }
+        //                     ]
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             text : 'Regression',
+        //             children : [
+        //                 {
+        //                     text : 'Multiple linear regression'
+        //                 },
+        //                 {
+        //                     text : 'Partial least squares'
+        //                 },
+        //                 {
+        //                     text : 'Multi-layer feedforward neural network'
+        //                 },
+        //                 {
+        //                     text : 'General regression neural network'
+        //                 },
+        //                 {
+        //                     text : 'Support vector regression'
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // };
 
         // this._registrar();
         // this._createGraph();
         // this._bindEvent();
-        this._readData(data2);
+        // this._readData(data2);
         // this._readDate({
         //     text : '新建主题',
         //     isRoot : true

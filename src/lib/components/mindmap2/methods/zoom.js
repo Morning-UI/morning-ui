@@ -1,22 +1,22 @@
-export default {
-    methods : {
-        zoom : function (zoom) {
+// export default {
+//     methods : {
+//         zoom : function (zoom) {
 
-            this.data.graph.zoomTo(zoom);
+//             this.data.graph.zoomTo(zoom);
 
-            return this;
+//             return this;
 
-        },
-        getZoom : function () {
+//         },
+//         getZoom : function () {
 
-            return this.data.graph.getZoom();
+//             return this.data.graph.getZoom();
 
-        },
-        fitView : function () {
+//         },
+//         fitView : function () {
 
-            this.data.graph.fitView();
-            this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
+//             this.data.graph.fitView();
+//             this.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
 
-        },
-    }
-};
+//         },
+//     }
+// };

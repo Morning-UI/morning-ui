@@ -129,12 +129,18 @@ import G6                           from '@antv/g6';
 import graphBase                    from './base/graph';
 import dataBase                     from './base/data';
 import MixinMethodNode              from './methods/node';
+import MixinZoom                    from './methods/zoom';
+import MixinContextMenu             from './methods/contextMenu';
+import MixinMethodGet               from './methods/get';
 
 export default {
     origin : 'Form',
     name : 'mindmap',
     mixins : [
         MixinMethodNode,
+        MixinZoom,
+        MixinContextMenu,
+        MixinMethodGet,
     ],
     props : {
         layout : {
@@ -192,6 +198,14 @@ export default {
                 editNode : null,
                 editContent : '',
                 editZoom : 1,
+                currentNodeNote : '',
+                nodeNoteShow : false,
+                nodeNoteZoom : 1,
+                contextMenu : {
+                    style : {}
+                },
+                mouseOnCanvas : false,
+                dataMap : {}
             }
         };
 
@@ -351,7 +365,7 @@ export default {
         graphBase.register(this);
         graphBase.create(this);
         graphBase.bindEvent(this);
-
+        graphBase.readData(this, data2);
 
     },
     beforeDestroy : function () {}

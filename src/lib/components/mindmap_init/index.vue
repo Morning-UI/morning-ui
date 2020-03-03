@@ -850,57 +850,6 @@ export default {
             });
 
         },
-        _onExpandBtnHover : function () {
-
-            this.data.graph.on('node:mousemove', evt => {
-
-                if (!this._nodeEventShouldEmit(evt)) {
-
-                    return;
-
-                }
-
-                let model = evt.item.getModel();
-
-                if (!model.isMindNode) {
-
-                    return;
-
-                }
-
-                if (model.children && model.children.length > 0) {
-
-                    if (this._inNodeShape(evt, evt.item.get('group').getChildByIndex(EXPAND_BTN_GROUP_INDEX))) {
-
-                        this.data.graph.setItemState(evt.item, 'expand-btn-hover', true);
-
-                    } else {
-
-                        this.data.graph.setItemState(evt.item, 'expand-btn-hover', false);
-
-                    }
-
-                }
-
-            });
-
-            this.data.graph.on('canvas:mousemove', () => {
-
-                let hoverExpendBtn = this.data.graph.findAllByState('node', 'expand-btn-hover');
-
-                if (hoverExpendBtn && hoverExpendBtn.length > 0) {
-
-                    for (let expendBtn of hoverExpendBtn) {
-
-                        this.data.graph.setItemState(expendBtn, 'expand-btn-hover', false);
-
-                    }
-                    
-                }
-
-            });
-
-        },
         _onExpandBtnClick : function () {
 
             this.data.graph.on('node:click', evt => {

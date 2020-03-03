@@ -611,4 +611,4 @@ export default vm => ({
     }
 });
 
-export const NODE_SHAPE_INDEX = __NODE_SHAPE_INDEX;
+export const NODE_SHAPE_INDEX = _NODE_SHAPE_INDEX;
