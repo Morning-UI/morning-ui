@@ -100,7 +100,7 @@
             <tbody>
                 <template v-for="(row, line) of data.normalRows">
                     <tr
-                        :key="line"
+                        :key="uiid+'-'+line"
                         v-show="(row._matchFilter === true || row._matchFilter === undefined)"
                         @mouseover="$emit('row-mouseover', line)"
                         @mouseout="$emit('row-mouseout', line)"
@@ -159,7 +159,7 @@
                     </tr>
                     <template v-if="data.titleKeys.length === 0 && data.rowExpand[line]">
 
-                        <tr class="expand-row" :key="line" :class="{open : data.rowExpandOpen[line]}" v-show="(row._matchFilter === true || row._matchFilter === undefined)">
+                        <tr class="expand-row" :key="uiid+'-'+line" :class="{open : data.rowExpandOpen[line]}" v-show="(row._matchFilter === true || row._matchFilter === undefined)">
                             <component
                                 :is="{
                                     template : ('<td colspan=' + (row.length + 1) + ' class=\'expand-row-col\'><div class=\'expand-row-col-wrap\'>' + data.rowExpand[line] + '</div></td>'),

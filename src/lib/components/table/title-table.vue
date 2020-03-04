@@ -97,7 +97,7 @@
         <tbody>
             <tr
                 v-for="(row, line) of data.titleRows"
-                :key="line"
+                :key="uiid+'-'+line"
                 @mouseover="$emit('row-mouseover', line)"
                 @mouseout="$emit('row-mouseout', line)"
                 @click="$emit('row-click', line)"
