@@ -18,6 +18,28 @@
     
     ### 更新记录
 
+    ### 0.12.80 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
+
+    <ui-textcolor color="neutral-8">
+        <ui-small>
+            发布于2020年3月4日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.80" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.80/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.80/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-tab`的`append`和`prepend`配置支持Vue组件
+
+    #### 修复
+
+    - 修复`ui-table`在嵌套子内容时某些特殊场景下会出现某行消失的问题
+
+    ---
+
     ### 0.12.79 <ui-badge class="circle ver-canary" size="s" color="neutral-9">Beta</ui-badge>
 
     <ui-textcolor color="neutral-8">
