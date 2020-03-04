@@ -270,6 +270,37 @@
             }
         }
     }
+    ---
+    #demo
+    >desc
+    `prepend`同时支持Vue组件。<br><br>但需要注意的是由于在`perpend`配置中通过字符串模板的形式使用，所以在模板中的组件无法直接使用上下文的`props`、`data`、`methods`等属性或方法。<br><br>为此需要通过`context`来帮你精确定位上下文。
+    >tpl
+    <div>
+        <ui-tab
+            :prepend="prepend"
+        >
+            <div slot="应用">应用</div>
+            <div slot="标签">标签</div>
+            <div slot="其他">其他</div>
+        </ui-tab>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+                // 需要插入的内容
+                prepend : {
+                    '应用' : '{{'<i class="mo-icon mo-icon-block-4" @click="context.clickIcon('}}\'应用\'{{')"></i> '}}',
+                    '标签' : '{{'<i class="mo-icon mo-icon-star-f" @click="context.clickIcon('}}\'标签\'{{')"></i> '}}'
+                }
+            }
+        },
+        methods : {
+            clickIcon : function (name) {
+                alert(`点击了：${name}`);
+            }
+        }
+    }
     :::
 
     :::vue
@@ -305,6 +336,37 @@
                     '应用' : '{{' <i class="mo-icon mo-icon-block-4"></i>'}}',
                     '标签' : '{{' <i class="mo-icon mo-icon-star-f"></i>'}}'
                 }
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    `append`同时支持Vue组件。<br><br>但需要注意的是由于在`append`配置中通过字符串模板的形式使用，所以在模板中的组件无法直接使用上下文的`props`、`data`、`methods`等属性或方法。<br><br>为此需要通过`context`来帮你精确定位上下文。
+    >tpl
+    <div>
+        <ui-tab
+            :append="append"
+        >
+            <div slot="应用">应用</div>
+            <div slot="标签">标签</div>
+            <div slot="其他">其他</div>
+        </ui-tab>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+                // 需要插入的内容
+                append : {
+                    '应用' : '{{' <i class="mo-icon mo-icon-block-4" @click="context.clickIcon('}}\'应用\'{{')"></i>'}}',
+                    '标签' : '{{' <i class="mo-icon mo-icon-star-f" @click="context.clickIcon('}}\'标签\'{{')"></i>'}}'
+                }
+            }
+        },
+        methods : {
+            clickIcon : function (name) {
+                alert(`点击了：${name}`);
             }
         }
     }
