@@ -28,7 +28,7 @@ const _getNodeStyles = (nodeStyle, model) => {
 
     if (model.shapeStyle === 'line') {
         
-        model.anchorPoints = [[0, 1], [1, 1]];
+        model._anchorPoints = [[0, 1], [1, 1]];
 
     }
 
@@ -36,7 +36,7 @@ const _getNodeStyles = (nodeStyle, model) => {
         {},
         nodeStyle,
         nodeStyle._shapePresets[model.shapeStyle],
-        model.style
+        model._style
     );
 
 };

@@ -133,16 +133,35 @@ export const traverseNodeUpdateMark = item => {
 
 export const traverseOneNode = function (item) {
 
+    // item includes:
+    // id : node id
+    // text : 文案
+    // children : 子节点
+    // link : 链接
+    // mark : 标记(用户设置)
+    // tag : 标签
+    // note : 备注
+    // shape : 使用的图形
+    // shapeStyle : 使用的图形样式
+    // _isRoot : 根节点
+    // _anchorPoints : 锚点
+    // _isMindNode
+    // _style : 样式
+    // _collapsed : 子节点折叠状态
+    // _collapsedChildren : 用于存放被折叠的子节点
+    // _mark : 标记(经过转换后)
+
     item.id = this.data.globalId++;
-    item.anchorPoints = [[0, 0.5], [1, 0.5]];
-    item.isMindNode = true;
-    item.style = {};
-    // item._shape = item.shape;
     item.shapeStyle = item.shapeStyle;
-    item.collapsed = item.collapsed || false;
+    item._anchorPoints = [[0, 0.5], [1, 0.5]];
+    item._isMindNode = true;
+    item._style = {};
+    // item._shape = item.shape;
+    item._collapsed = item._collapsed || false;
+    item._collapsedChildren = [];
     this.data.dataMap[item.id] = item;
 
-    if (item.isRoot) {
+    if (item._isRoot) {
 
         item.shape = 'mor-root-mind-node';
 

@@ -1,5 +1,8 @@
 import G6                           from '@antv/g6';
-import getMindNode                  from '../nodes/mindNode';
+import {
+    default as getMindNode,
+    NODE_SHAPE_INDEX,
+}                                   from '../nodes/mindNode';
 import getPlaceholderNode           from '../nodes/placeholderNode';
 import getMindEdge                  from '../edges/mindEdge';
 import getPlaceholderEdge           from '../edges/placeholderEdge';
@@ -103,7 +106,7 @@ const create = vm => {
         layout : {
             getHeight : data => {
 
-                let node = this.data.graph.findById(data.id);
+                let node = vm.data.graph.findById(data.id);
 
                 if (
                     !node ||
@@ -117,14 +120,13 @@ const create = vm => {
 
                 let model = node.getModel();
 
-                if (model.style && model.style.computedRadius) {
+                if (model._style && model._style.computedRadius) {
 
-                    // TODO : CON_SHAPE_INDEX
-                    node.get('group').getChildByIndex(CON_SHAPE_INDEX)
+                    node.get('group').getChildByIndex(NODE_SHAPE_INDEX.con)
                         .attr({
-                            radius : node.getBBox().height * model.style.computedRadius
+                            radius : node.getBBox().height * model._style.computedRadius
                         });
-                    node.get('group').set('radius', node.getBBox().height * model.style.computedRadius);
+                    node.get('group').set('radius', node.getBBox().height * model._style.computedRadius);
 
                 }
 
@@ -133,7 +135,7 @@ const create = vm => {
             },
             getWidth : data => {
 
-                let node = this.data.graph.findById(data.id);
+                let node = vm.data.graph.findById(data.id);
 
                 if (
                     !node ||
@@ -150,7 +152,7 @@ const create = vm => {
             },
             getVGap : data => {
 
-                let node = this.data.graph.findById(data.id);
+                let node = vm.data.graph.findById(data.id);
 
                 if (node && node.getModel().isDragging) {
 
@@ -196,15 +198,19 @@ const bindEvent = vm => {
 
     });
 
-    graph.on('canvas:mouseover', () => {
+    graph.on('canvas:mouseover', evt => {
         
-        bindMouseOnCanvas.in();
+        bindMouseOnCanvas.in(evt, {
+            vm
+        });
 
     });
 
-    graph.on('canvas:mouseleave', () => {
+    graph.on('canvas:mouseleave', evt => {
         
-        bindMouseOnCanvas.out();
+        bindMouseOnCanvas.out(evt, {
+            vm
+        });
 
     });
 
@@ -413,7 +419,10 @@ const bindEvent = vm => {
 
 const readData = (vm, data) => {
 
+    data._isRoot = true;
     G6.Util.traverseTree(data, traverseOneNode.bind(vm));
+
+    console.log('data', data);
     vm.data.graph.read(data);
 
     setTimeout(() => {

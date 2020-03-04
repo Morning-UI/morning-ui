@@ -250,10 +250,10 @@ export default {
 
                 let node = this.data.graph.findById(nodeId);
 
-                if (node.getModel().isMindNode) {
+                if (node.getModel()._isMindNode) {
 
                     this.data.graph.setItemState(node, 'selected', true);
-                
+
                 }
 
             }

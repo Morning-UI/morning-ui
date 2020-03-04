@@ -1,3 +1,4 @@
+import G6                           from '@antv/g6';
 import {MIND_EDGE_STYLE}            from '../const/style';
 
 const PolylineUtil = require('@antv/g6/lib/shape/edges/polyline-util');
@@ -134,11 +135,11 @@ export default vm => ({
 
         let path = this.getPath(points, routeCfg);
 
-        return vm.G6.Util.deepMix({}, vm.G6.Global.defaultEdge.style, {
+        return G6.Util.deepMix({}, G6.Global.defaultEdge.style, {
             lineWidth : MIND_EDGE_STYLE.borderWidth,
             stroke : MIND_EDGE_STYLE.borderColor,
             radius : MIND_EDGE_STYLE.radius
-        }, customOptions.style, {
+        }, customOptions._style, {
             path
         });
 

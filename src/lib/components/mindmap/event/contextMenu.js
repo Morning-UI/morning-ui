@@ -10,7 +10,7 @@ export default {
 
             let model = evt.item.getModel();
 
-            if (model.isMindNode) {
+            if (model._isMindNode) {
 
                 options.vm.showContextMenu(model.id, canvasX, canvasY);
 

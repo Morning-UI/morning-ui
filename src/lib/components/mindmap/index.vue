@@ -125,9 +125,9 @@
 </template>
  
 <script>
-import G6                           from '@antv/g6';
+// import G6                           from '@antv/g6';
 import graphBase                    from './base/graph';
-import dataBase                     from './base/data';
+// import dataBase                     from './base/data';
 import MixinMethodNode              from './methods/node';
 import MixinZoom                    from './methods/zoom';
 import MixinContextMenu             from './methods/contextMenu';
@@ -246,7 +246,6 @@ export default {
 
         let data2 = {
             text : 'Modeling Methods',
-            isRoot : true,
             children : [
                 {
                     text : 'ClassificationClassification',

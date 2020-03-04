@@ -29,7 +29,7 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
             isDragging : true,
             style : G6.Util.deepMix({}, {
                 fillOpacity : 0
-            }, node.getModel().style)
+            }, node.getModel()._style)
         });
 
         shapeBase.toggleNodeVisibility(node, 'hide', (type, model) => {
@@ -56,7 +56,7 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
             isDragging : false,
             style : G6.Util.deepMix({}, {
                 fillOpacity : 1
-            }, nodeModel.style)
+            }, nodeModel._style)
         });
 
         shapeBase.toggleNodeVisibility(node, 'show', (type, model) => {
@@ -262,11 +262,11 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
             (
                 (vm.conf.layout === 'LR' && nodeBbox.centerX < delegateBbox.x) ||
                 // (vm.conf.layout === 'RL' && nodeBbox.centerX > delegateBbox.x) ||
-                node.getModel().isRoot
+                node.getModel()._isRoot
             ) &&
             (
                 (nodeBbox.conMaxY > delegateBbox.centerY && delegateBbox.centerY > nodeBbox.conMinY) ||
-                node.getModel().isRoot
+                node.getModel()._isRoot
                 // (nodeBbox.conMaxY > delegateBbox.maxY && delegateBbox.maxY > nodeBbox.conMinY)
             )
         ) {
@@ -328,7 +328,7 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
             id : vm.data.globalId++,
             shape : 'mor-placeholder-node',
             // eslint-disable-next-line no-magic-numbers
-            anchorPoints : [[0, 0.5], [1, 0.5]],
+            _anchorPoints : [[0, 0.5], [1, 0.5]],
             _isHolder : true
         });
         dragHolderParentModel = model;
@@ -372,7 +372,7 @@ export default vm => ({
         // root节点不能被拖拽
         // eslint-disable-next-line no-warning-comments
         // TODO : 等g6 3.1.4升级后启用hasLocked来判断
-        if (evt.item.get('model').isRoot) {
+        if (evt.item.get('model')._isRoot) {
 
             return;
 

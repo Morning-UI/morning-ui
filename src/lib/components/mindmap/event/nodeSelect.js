@@ -2,7 +2,7 @@ export default (evt, options) => {
 
     if (options.vm.data.keydownState.mod) {
 
-        if (evt.item.getModel().isMindNode) {
+        if (evt.item.getModel()._isMindNode) {
 
             if (evt.item.getStates().indexOf('selected') !== -1) {
             
@@ -20,7 +20,7 @@ export default (evt, options) => {
 
         options.vm._clearSelectedNode('selected');
 
-        if (evt.item.getModel().isMindNode) {
+        if (evt.item.getModel()._isMindNode) {
             
             options.graph.setItemState(evt.item, 'selected', true);
         
