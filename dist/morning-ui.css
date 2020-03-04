@@ -32207,9 +32207,9 @@ mor-tab > ul > li {
 mor-tab > ul > li + li {
   margin-top: 0 !important;
 }
-mor-tab > ul > li > i,
-mor-tab > ul > li > i.iconfont,
-mor-tab > ul > li > i.mo-icon {
+mor-tab > ul > li > div > i,
+mor-tab > ul > li > div > i.iconfont,
+mor-tab > ul > li > div > i.mo-icon {
   font-size: 12px;
 }
 mor-tab > ul > li:first-child {

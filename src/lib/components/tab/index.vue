@@ -20,9 +20,20 @@
                     :class="{
                         disabled : (conf.disabledOptions.indexOf(item.name) !== -1)
                     }"
-                    v-html="item.html"
                     @click="_onClick(item.name)"
-                ></li>
+                >
+                    <component
+                        :is="{
+                            template : ('<div>' + item.html + '</div>'),
+                            components : $vnode.context.$options.components,
+                            data : function () {
+                                return {
+                                    context : $vnode.context
+                                };
+                            }
+                        }"
+                    ></component>
+                </li>
             </ul>
         </template>
         
@@ -49,9 +60,20 @@
                     :class="{
                         disabled : (conf.disabledOptions.indexOf(item.name) !== -1)
                     }"
-                    v-html="item.html"
                     @click="_onClick(item.name)"
-                ></li>
+                >
+                    <component
+                        :is="{
+                            template : ('<div>' + item.html + '</div>'),
+                            components : $vnode.context.$options.components,
+                            data : function () {
+                                return {
+                                    context : $vnode.context
+                                };
+                            }
+                        }"
+                    ></component>
+                </li>
             </ul>
         </template>
 
