@@ -6,7 +6,7 @@ import {
 export default () => ({
     drawShape : (cfg, group) => {
 
-        let options = G6.Util.deepMix(PLACEHOLDER_NODE_STYLE, cfg._style);
+        let options = G6.Util.deepMix(PLACEHOLDER_NODE_STYLE, cfg.style);
         let key = group.addShape('rect', {
             attrs : {
                 fill : options.bgColor,

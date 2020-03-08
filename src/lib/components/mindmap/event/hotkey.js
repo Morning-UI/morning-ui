@@ -1,59 +1,29 @@
 import isHotkey                     from 'is-hotkey';
-import {manualPaint}                from '../base/graph';
-import shapeBase                    from '../base/shape';
-
-const _editInput = vm => {
-
-    let shapes = vm.data.editShapes;
-
-    manualPaint(vm, () => {
-
-        shapes.text.attr({
-            text : this.data.editContent
-        });
-
-        this.data.editNode.update({
-            text : this.data.editContent
-        });
-
-        // 临时修复问题：https://github.com/antvis/g/pull/121
-        if (vm.data.editContent.indexOf('\n') === -1) {
-
-            shapes.text._attrs.lineCount = 1;
-
-        }
-
-        vm.data.graph.paint();
-        shapeBase.refreshMindNode(shapes, this.data.editNode.getModel());
-        vm._refreshEditorPosition(this.data.editNode);
-
-    });
-
-};
+import {editInput}                  from '../base/editor';
 
 const _editAppendNewline = vm => {
 
     let content = vm.data.editContent;
 
     vm.data.editContent = content;
-    _editInput(vm);
+    editInput(vm);
 
 };
 
 const defaultHotkeyMap = {
     backspace : () => {
         
-        this.deleteNode(this.getAllSelectedNode());
+        this.deleteNode(this.getAllSelectedNodeIds());
 
     },
     'mod+c' : () => {
         
-        this.copyNodeToClipboard(this.getSelectedNode());
+        this.copyNodeToClipboard(this.getSelectedNodeId());
 
     },
     'mod+v' : () => {
 
-        this.insertSubNode(this.getSelectedNode(), this.getClipboard());
+        this.insertSubNode(this.getSelectedNodeId(), this.getClipboard());
 
     }
 };
@@ -107,7 +77,7 @@ export default (evt, options) => {
 
     if (options.vm.data.editting === false && !hitHotkey) {
 
-        let nodeId = options.vm.getSelectedNode();
+        let nodeId = options.vm.getSelectedNodeId();
         let keycode = evt.which;
         
         /* eslint-disable no-magic-numbers */

@@ -26,21 +26,21 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
         
         node.setState('dragging', true);
         node.update({
-            isDragging : true,
+            _isDragging : true,
             style : G6.Util.deepMix({}, {
                 fillOpacity : 0
-            }, node.getModel()._style)
+            }, node.getModel().style)
         });
 
         shapeBase.toggleNodeVisibility(node, 'hide', (type, model) => {
 
             if (type === 'hide') {
 
-                model.isDragging = true;
+                model._isDragging = true;
 
             } else {
 
-                model.isDragging = false;
+                model._isDragging = false;
 
             }
 
@@ -48,33 +48,43 @@ const _udpateOneDragTarget = (vm, index, dragging, _dragHolderIndexOfParentChild
 
     } else if (!dragging && dragTarget.hidden) {
 
-        // let oldParentChilren = node.getInEdges()[0].getSource().getModel().children;
         let nodeModel = dragTarget.saveModel[index];
 
         node.setState('dragging', false);
         node.update({
-            isDragging : false,
+            _isDragging : false,
             style : G6.Util.deepMix({}, {
                 fillOpacity : 1
-            }, nodeModel._style)
+            }, nodeModel.style)
         });
 
         shapeBase.toggleNodeVisibility(node, 'show', (type, model) => {
 
             if (type === 'hide') {
 
-                model.isDragging = true;
+                model._isDragging = true;
 
             } else {
 
-                model.isDragging = false;
+                model._isDragging = false;
 
             }
 
         });
 
-        // 移动节点
-        vm.moveNodeToParent(nodeModel, dragHolderParentModel, _dragHolderIndexOfParentChildren);
+        // 如果父节点处于折叠状态，则默认追加到最后
+        if (dragHolderParentModel._collapsed) {
+
+            _dragHolderIndexOfParentChildren = -1;
+
+        }
+
+        vm.insertSubNode(
+            dragHolderParentModel.id,
+            nodeModel,
+            _dragHolderIndexOfParentChildren,
+            false
+        );
 
     }
 
@@ -105,7 +115,7 @@ const _updateDragTarget = (vm, dragging = false) => {
 
             }
 
-            vm.removeNode(model.id);
+            vm.removeNode(model.id, false);
 
         }
 
@@ -137,6 +147,14 @@ const _updateDragTarget = (vm, dragging = false) => {
         dragTarget.hidden = false;
 
         dragHolderIndexOfParentChildren += targetNodes.length;
+
+        // 如果父节点处于折叠状态，永远都是0
+        if (dragHolderParentModel._collapsed) {
+
+            dragHolderIndexOfParentChildren = 0;
+
+        }
+
         vm.data.graph.paint();
         vm.data.graph.changeData();
         vm.data.graph.refreshLayout();
@@ -154,13 +172,16 @@ const _fillChildBbox = (vm, bbox, node) => {
     bbox.conMaxY = bbox.maxY;
     bbox.conMinY = bbox.minY;
 
-    if (!model.children || model.children.length === 0) {
+    // 仅寻找可见的子元素(不考虑折叠的子元素)
+    let children = model.children;
+
+    if (!children || children.length === 0) {
 
         return bbox;
 
     }
-    
-    for (let child of model.children) {
+
+    for (let child of children) {
 
         let childNode = vm.data.graph.findById(child.id);
         let childBbox = childNode.getBBox();
@@ -197,14 +218,15 @@ const _fillChildBbox = (vm, bbox, node) => {
 
 const _removeOldDragPlaceholder = vm => {
 
+    // 仅考虑可见的子元素(不考虑折叠的子元素)
     if (dragHolderIndexOfParentChildren > -1 && dragHolderParentModel) {
 
-        dragHolderParentModel.children.splice(dragHolderIndexOfParentChildren, 1);
+        let children = dragHolderParentModel.children;
+
+        children.splice(dragHolderIndexOfParentChildren, 1);
 
     }
 
-    dragHolderParentModel = null;
-    dragHolderIndexOfParentChildren = null;
     vm.data.graph.changeData();
 
 };
@@ -246,7 +268,7 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
 
         if (node === targetNode ||
             node.getModel()._isHolder ||
-            node.getModel().isDragging === true) {
+            node.getModel()._isDragging === true) {
 
             // eslint-disable-next-line no-continue
             continue;
@@ -276,7 +298,10 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
             matchOptions.index = 0;
             matchOptions.hasPlaceholder = false;
 
-            let children = node.getModel().children;
+            let model = node.getModel();
+
+            // 仅考虑可见的子元素(不考虑折叠的子元素)
+            let children = model.children;
 
             for (let index in children) {
                 
@@ -305,6 +330,8 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
 
     // 清除上一个placeholder
     _removeOldDragPlaceholder(vm);
+    dragHolderParentModel = null;
+    dragHolderIndexOfParentChildren = null;
 
     if (matchOptions.hasPlaceholder < matchOptions.index) {
 
@@ -317,6 +344,7 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
         // 创建新的placeholder
         let model = matchOptions.node.getModel();
 
+        // 仅寻找可见的子元素(不考虑折叠的子元素)
         if (model.children === undefined) {
 
             model.children = [];
@@ -328,7 +356,7 @@ const _refreshDragHolder = throttle((vm, delegateShape, targetNode) => {
             id : vm.data.globalId++,
             shape : 'mor-placeholder-node',
             // eslint-disable-next-line no-magic-numbers
-            _anchorPoints : [[0, 0.5], [1, 0.5]],
+            anchorPoints : [[0, 0.5], [1, 0.5]],
             _isHolder : true
         });
         dragHolderParentModel = model;
@@ -363,16 +391,10 @@ export default vm => ({
     },
     onDragStart (evt) {
 
-        if (!this.shouldBegin.call(this, evt)) {
-
-            return;
-
-        }
-
         // root节点不能被拖拽
         // eslint-disable-next-line no-warning-comments
         // TODO : 等g6 3.1.4升级后启用hasLocked来判断
-        if (evt.item.get('model')._isRoot) {
+        if (!this.shouldBegin.call(this, evt) || evt.item.get('model')._isRoot) {
 
             return;
 
@@ -450,7 +472,7 @@ export default vm => ({
     onDrag (evt) {
 
         // !this.origin ||
-        if (!this.get('shouldUpdate').call(this, evt)) {
+        if (!this.get('shouldUpdate').call(this, evt) || evt.item.get('model')._isRoot) {
 
             return;
 
@@ -472,7 +494,7 @@ export default vm => ({
     onDragEnd (evt) {
         
         // !this.origin ||
-        if (!this.shouldEnd.call(this, evt)) {
+        if (!this.shouldEnd.call(this, evt) || evt.item.get('model')._isRoot) {
 
             return;
         
@@ -485,24 +507,34 @@ export default vm => ({
 
         }
 
-        // this.origin = null;
-        // this.originPoint = {};
-        // this.target = null;
-
         // 终止时需要判断此时是否在监听画布外的 mouseup 事件，若有则解绑
         let fn = this.fn;
 
         if (fn) {
-            
+
             window.document.body.removeEventListener('mouseup', fn, false);
             this.fn = null;
         
         }
 
-        // this.graph.paint();
         _updateDragTarget(vm, false);
-        _removeOldDragPlaceholder(vm);
-        this.graph.refreshLayout();
+
+        // 若目标父节点处于折叠状态，则打开
+        // 并且不需要_removeOldDragPlaceholder，因为展开时会自动删除当前的children
+        if (dragHolderParentModel._collapsed) {
+
+            this.graph.refreshLayout();
+            vm.collapseChildren(dragHolderParentModel.id, false);
+
+        } else {
+            
+            _removeOldDragPlaceholder(vm);
+            this.graph.refreshLayout();
+
+        }
+
+        dragHolderParentModel = null;
+        dragHolderIndexOfParentChildren = null;
         this.dragOptions = {};
         this.point = {};
         this.targets.length = 0;
@@ -579,7 +611,7 @@ export default vm => ({
                 };
 
             }
-            
+
             _updateDragTarget(vm, true);
             _refreshDragHolder(vm, this.dragOptions.delegateShape, evt.item);
             // this.target.set('delegateShape', this.delegateShape);

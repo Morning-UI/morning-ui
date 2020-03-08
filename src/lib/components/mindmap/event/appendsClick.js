@@ -21,7 +21,7 @@ export default {
 
             if (inAnnex(options.vm, evt, APPENDS_LIST.link.index)) {
 
-                window.open(model.link);
+                options.vm.showLink(model.id);
 
             }
 
@@ -29,25 +29,15 @@ export default {
 
         if (model.note) {
 
-            let index = APPENDS_LIST.note.index;
+            let indexOfAppends = model.link ? APPENDS_LIST.note.index : APPENDS_LIST.link.index;
 
-            if (!model.link) {
+            if (inAnnex(options.vm, evt, indexOfAppends)) {
 
-                index = 0;
-
-            }
-
-            if (inAnnex(options.vm, evt, index)) {
-
-                options.vm.data.currentNodeNote = model.note.replace(/\n/g, '<br>');
-                options.vm.data.nodeNoteShow = true;
-                shapeBase.refreshNodeNotePosition(options.vm, evt.item, index);
-                options.vm.data.$notePopover.toggle(true);
+                options.vm.showNote(model.id);
 
             } else {
 
-                options.vm.data.nodeNoteShow = false;
-                options.vm.data.$notePopover.toggle(false);
+                options.vm.hideNote(model.id);
 
             }
 

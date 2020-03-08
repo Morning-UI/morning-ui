@@ -51050,6 +51050,14 @@ mor-mindmap .mindmap-wrap .mindmap-tools {
 mor-mindmap .mindmap-wrap .mindmap-tools mor-slider {
   padding-bottom: 0;
 }
+mor-mindmap .mindmap-wrap .minimap {
+  position: absolute;
+  bottom: 23px;
+  right: 3px;
+  background: #FFFFFF;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
 .mor-mindmap-dialog-body mor-radio .mo-icon {
   font-size: 24px;
 }

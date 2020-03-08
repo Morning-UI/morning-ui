@@ -65,7 +65,7 @@ export default vm => ({
         let customOptions = this.getCustomConfig(cfg) || {};
         let controlPoints = [];
 
-        if (sourceNode.getModel().shapeStyle === 'line') {
+        if (sourceNode.getModel()._shapeStyle === 'line') {
 
             controlPoints.push({
                 anchorIndex : 0,
@@ -85,7 +85,7 @@ export default vm => ({
 
         }
 
-        if (targetNode.getModel().shapeStyle === 'line') {
+        if (targetNode.getModel()._shapeStyle === 'line') {
 
             controlPoints.push({
                 anchorIndex : 0,
@@ -139,7 +139,7 @@ export default vm => ({
             lineWidth : MIND_EDGE_STYLE.borderWidth,
             stroke : MIND_EDGE_STYLE.borderColor,
             radius : MIND_EDGE_STYLE.radius
-        }, customOptions._style, {
+        }, customOptions.style, {
             path
         });
 

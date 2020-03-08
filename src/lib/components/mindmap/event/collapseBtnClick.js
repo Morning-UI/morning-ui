@@ -7,6 +7,7 @@ export default {
     click : (evt, options) => {
         
         let model = evt.item.getModel();
+        let children = model._collapsed ? model._collapsedChildren : model.children;
 
         if (!model._isMindNode) {
 
@@ -14,12 +15,11 @@ export default {
 
         }
 
-        if (model.children && model.children.length > 0) {
+        if (children && children.length > 0) {
 
             if (inNodeShape(options.vm, evt, evt.item.get('group').getChildByIndex(NODE_SHAPE_INDEX.collapseBtnGroup))) {
 
-                // TODO : 切换折叠子元素
-                // this._collapseExpandChildren(evt.item);
+                options.vm.collapseChildren(model.id);
 
             }
 

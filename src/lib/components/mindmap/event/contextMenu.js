@@ -19,7 +19,7 @@ export default {
         }
 
     },
-    hide : () => {
+    hide : (evt, options) => {
 
         options.vm.hideContextMenu();
 

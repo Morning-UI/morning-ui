@@ -1,26 +1,17 @@
 import map                          from 'lodash.map';
+import shapeBase                    from '../base/shape';
+import {
+    APPENDS_LIST,
+}                                   from '../const/style';
 import {
     fillNodeIds,
     getNodeShapes,
-    refreshNodeEdges,
     traverseNode,
 }                                   from '../base/utils';
-
-const _removeOneNode = node => {
-
-    if (!node) {
-
-        return;
-
-    }
-
-    let parentNodeDataChildren = node.getInEdges()[0].getSource().getModel().children;
-    let index = parentNodeDataChildren.indexOf(node.getModel());
-
-    parentNodeDataChildren.splice(index, 1);
-
-};
-
+import {
+    refreshTextEditorPosition,
+    editInput,
+}                                   from '../base/editor';
 
 const _parseNewNodeDataOne = data => {
 
@@ -63,61 +54,7 @@ const _parseNewNodeData = data => {
 
 export default {
     methods : {
-        // TODO : 是否挪到utils
-        _refreshTextEditorPosition : function (node) {
-
-            if (this.data.editNode) {
-
-                let edges = this.data.editNode.getEdges();
-
-                this.data.editNode.refresh();
-                refreshNodeEdges(edges);
-
-            }
-
-            let shapes = getNodeShapes(node);
-            let textAttr = shapes.text.attr();
-            let nodeBbox = node.getBBox();
-            let textBbox = shapes.text.getBBox();
-            let conBbox = shapes.con.getBBox();
-            let zoom = this.data.graph.getZoom();
-            let {
-                x : nodeX,
-                y : nodeY
-            } = this.data.graph.getCanvasByPoint(nodeBbox.x, nodeBbox.y);
-
-            // when text is empty use placeholder
-            if (textBbox.width === 0) {
-
-                textBbox = shapes.placeholder.getBBox();
-
-            }
-
-            const padding = 5;
-
-            let inputX = `${textBbox.x + 1 - padding}px`;
-            let inputY = `${textBbox.y - padding}px`;
-
-            this.data.$editContent.style.display = 'block';
-            this.data.$editContent.style.left = `${nodeX}px`;
-            this.data.$editContent.style.top = `${nodeY}px`;
-            this.data.$editContent.style.width = `${conBbox.width}px`;
-            this.data.$editContent.style.height = `${conBbox.height}px`;
-            this.data.$editContentInput.style.width = `${textBbox.width + (padding * 2)}px`;
-            this.data.$editContentInput.style.height = `${textBbox.height + (padding * 2)}px`;
-            this.data.$editContentInput.style.padding = `${padding}px`;
-            this.data.$editContentInput.style.left = inputX;
-            this.data.$editContentInput.style.top = inputY;
-            // this.data.$editContentInput.style.color = textAttr.fill;
-            this.data.$editContentInput.style.fontSize = `${textAttr.fontSize}px`;
-            this.data.$editContentInput.style.textAlign = textAttr.textAlign;
-            this.data.$editContentInput.style.fontWeight = textAttr.fontWeight;
-            this.data.$editContentInput.style.fontStyle = textAttr.fontStyle;
-            this.data.$editContentInput.style.fontFamily = textAttr.fontFamily;
-            this.data.editContent = textAttr.text;
-            this.data.editZoom = zoom;
-
-        },
+        // 聚焦单个节点的文本输入
         focusNodeTextEditor : function (nodeId, clean = false) {
 
             let node = this.data.graph.findById(nodeId);
@@ -126,7 +63,7 @@ export default {
             this.data.editting = true;
             this.data.editShapes = shapes;
             this.data.editNode = node;
-            this._refreshEditorPosition(node);
+            refreshTextEditorPosition(this, node);
             shapes.text.attr({
                 opacity : 0
             });
@@ -144,7 +81,7 @@ export default {
                         .split('')
                         .slice(-1)
                         .join('');
-                    this._editInput();
+                    editInput(this);
 
                 });
 
@@ -153,6 +90,7 @@ export default {
             return this;
 
         },
+        // 失焦单个节点的文本输入
         blurNodeTextEditor : function () {
 
             if (!this.data.editting) {
@@ -183,65 +121,117 @@ export default {
             return this;
 
         },
-        // TODO : removeNode 和 deleteNode是否重复
-        removeNode : function (nodeIds) {
+        // 打开单个节点的链接
+        showLink : function (nodeId) {
 
-            nodeIds = fillNodeIds(nodeIds);
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
 
-            for (let nodeId of nodeIds) {
+            if (model.link) {
 
-                _removeOneNode(this.data.graph.findById(nodeId));
+                window.open(model.link);
 
             }
 
             return this;
 
         },
-        deleteNode : function (nodeIds) {
+        // 打开单个节点的备注
+        showNote : function (nodeId) {
+
+            let node = this.data.graph.findById(nodeId);
+            let model = node.getModel();
+            let indexOfAppends = model.link ? APPENDS_LIST.note.index : APPENDS_LIST.link.index;
+
+            if (model.note) {
+
+                this.data.currentNodeNote = model.note.replace(/\n/g, '<br>');
+                this.data.nodeNoteShow = true;
+                shapeBase.refreshNodeNotePosition(this, node, indexOfAppends);
+                this.data.$notePopover.toggle(true);
+
+            }
+
+            return this;
+
+        },
+        // 关闭单个节点的备注
+        hideNote : function () {
+
+            this.data.nodeNoteShow = false;
+            this.data.$notePopover.toggle(false);
+
+            return this;
+
+        },
+        // 移除多个节点
+        removeNode : function (nodeIds, _refresh = true) {
 
             nodeIds = fillNodeIds(nodeIds);
 
             for (let nodeId of nodeIds) {
 
                 let node = this.data.graph.findById(nodeId);
+
+                if (!node) {
+
+                    return;
+
+                }
+
                 let model = node.getModel();
                 let parent = node.getInEdges()[0].getSource();
                 let parentModel = parent.getModel();
-                let indexOfParent = parentModel.children.indexOf(model);
+                let parentChildren = parentModel._collapsed ? parentModel._collapsedChildren : parentModel.children;
+                let indexOfParent = parentChildren.indexOf(model);
 
-                parentModel.children.splice(indexOfParent, 1);
+                parentChildren.splice(indexOfParent, 1);
 
             }
 
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
+            if (_refresh) {
+    
+                this.data.graph.changeData();
+                this.data.graph.refreshLayout();
+
+            }
 
             return this;
 
         },
         // TODO : moveNodeToParent 是否可以使用 insertSubNode
-        moveNodeToParent : function (nodeIds, parentNodeId, insertIndex) {
+        // moveNodeToParent : function (nodeId, parentNodeId, insertIndex, _refresh = true) {
 
-            nodeIds = fillNodeIds(nodeIds);
+        //     nodeIds = fillNodeIds(nodeIds);
 
-            let parentNode = this.data.graph.findById(parentNodeId);
-            let parentNodeChildren = parentNode.getModel().children;
-            let models = [];
+        //     let parentNode = this.data.graph.findById(parentNodeId);
+        //     let parentNodeChildren = parentNode.getModel().children;
+        //     let models = [];
+        //     let nodeModel = this.data.graph.findById(nodeId).getModel();
+        //     let nodeInParentNode = parentNodeChildren.indexOf(nodeModel);
 
-            for (let nodeId of nodeIds) {
+        //     // 如果移动的节点在同一父节点下
+        //     if (nodeInParentNode !== -1) {
 
-                models.push(this.data.graph.findById(nodeId).getModel());
+        //         models.push(nodeModel);
 
-            }
+        //     }
 
-            this.removeNode(nodeIds);
-            parentNodeChildren.splice(insertIndex, 0, ...models);
+        //     parentNodeChildren.splice(insertIndex, 0, nodeModel);
+        //     // this.removeNode(nodeId, refresh);
 
-            // TODO 确保视图刷新
+        //     if (_refresh) {
+                
+        //         this.data.graph.paint();
+        //         this.data.graph.changeData();
+        //         this.data.graph.refreshLayout();
+                
+        //     }
 
-            return this;
+        //     return this;
 
-        },
+        // },
+        // 选择多个节点
         selectNode : function (nodeIds) {
 
             nodeIds = fillNodeIds(nodeIds);
@@ -262,21 +252,32 @@ export default {
 
         },
         // 插入子节点
-        insertSubNode : function (nodeId, datas, index = -1) {
+        insertSubNode : function (nodeId, datas, index = -1, _refresh = true) {
 
             let node = this.data.graph.findById(nodeId);
             let model = node.getModel();
+            let children = model._collapsed ? model._collapsedChildren : model.children
             let isSingle = (datas instanceof Array);
 
             datas = _parseNewNodeData(datas);
 
-            if (model.children === undefined) {
+            if (children === undefined) {
 
-                model.children = [];
+                if (model._collapsed) {
+
+                    model._collapsedChildren = [];
+                    children = model._collapsedChildren;
+
+                } else {
+
+                    model.children = [];
+                    children = model.children;
+
+                }
 
             }
 
-            traverseNode(datas);
+            traverseNode(this, datas);
 
             if (index > -1) {
 
@@ -286,7 +287,7 @@ export default {
 
                 for (let item of datas2) {
                 
-                    model.children.splice(index, 0, item);
+                    children.splice(index, 0, item);
 
                 }
 
@@ -294,15 +295,19 @@ export default {
 
                 for (let item of datas) {
                 
-                    model.children.push(item);
+                    children.push(item);
 
                 }
 
             }
 
-            this.data.graph.changeData();
-            this.data.graph.refreshLayout();
-            
+            if (_refresh) {
+
+                this.data.graph.changeData();
+                this.data.graph.refreshLayout();
+
+            }
+
             if (isSingle) {
 
                 return datas[0].id;

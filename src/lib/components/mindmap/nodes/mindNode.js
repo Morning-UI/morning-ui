@@ -1,18 +1,29 @@
-import shapeBase                    from '../base/shape';
+import G6                           from '@antv/g6';
 import {
     MIND_NODE_STYLE,
+    ROOT_MIND_NODE_STYLE,
     COLLAPSE_BTN_STYLE,
     APPENDS_PADDING,
+    APPENDS_MARGIN,
+    MARKS_PADDING,
+    MARKS_MARGIN,
     OUTLINE_PADDING,
     APPENDS_LIST,
 }                                   from '../const/style';
 import {
     MARKS
 }                                   from '../const/marks';
+import {
+    refreshAppendConGroupPosition,
+    getAppends,
+    getNodeStyles,
+}                                   from '../base/utils';
 
 let nodeShapeIndex = 0;
 
+const DEBUG_BOX_SIZING = false;
 const _NODE_SHAPE_INDEX = {};
+
 const addShape = (group, shapes, name, type, attrs) => {
 
     if (_NODE_SHAPE_INDEX[name] === undefined) {
@@ -51,7 +62,7 @@ const addGroup = (group, shapes, name, id) => {
 
 const initNodeShapes = (shapes, vm, cfg, group, style) => {
 
-    let cursor = 'move';
+    let cursor = cfg._isRoot ? 'default' : 'move';
     let nodeData = vm.data.graph.findDataById(cfg.id);
 
     // 最外层容器(不可见)
@@ -63,7 +74,7 @@ const initNodeShapes = (shapes, vm, cfg, group, style) => {
     });
     // hover时的外框
     addShape(group, shapes, 'outline', 'rect', {
-        fill : 'transparent',
+        fill : DEBUG_BOX_SIZING ? '#efefef' : 'transparent',
         radius : style.outlineRadius,
         cursor,
         stroke : 'transparent',
@@ -71,7 +82,7 @@ const initNodeShapes = (shapes, vm, cfg, group, style) => {
     });
     // 容器(可见)
     addShape(group, shapes, 'con', 'rect', {
-        fill : style.bgColor,
+        fill : DEBUG_BOX_SIZING ? '#ccc' : style.bgColor,
         radius : style.radius,
         cursor,
         lineWidth : style.borderWidth,
@@ -84,7 +95,7 @@ const initNodeShapes = (shapes, vm, cfg, group, style) => {
         text : cfg.text,
         textAlign : 'left',
         textBaseline : 'middle',
-        fill : style.fontColor,
+        fill : DEBUG_BOX_SIZING ? '#f00' : style.fontColor,
         fontSize : style.fontSize,
         fontWeight : style.fontWeight,
         fontStyle : style.fontStyle,
@@ -97,12 +108,12 @@ const initNodeShapes = (shapes, vm, cfg, group, style) => {
         y : 0,
         textAlign : 'left',
         textBaseline : 'middle',
-        fill : style.fontColor,
+        fill : DEBUG_BOX_SIZING ? '#d22343' : style.fontColor,
         fontSize : style.fontSize,
         cursor
     });
     addShape(group, shapes, 'bottomline', 'rect', {
-        fill : style.bottomlineBg
+        fill : DEBUG_BOX_SIZING ? '#a6a6a6' : style.bottomlineBg
     });
     addGroup(group, shapes, 'markConGroup', `node-${cfg.id}-mark-box`);
     addGroup(group, shapes, 'appendConGroup', `node-${cfg.id}-append-box`);
@@ -129,7 +140,9 @@ const initNodeShapes = (shapes, vm, cfg, group, style) => {
     });
 
     // 如果没有子节点不显示按钮
-    if (nodeData.children && nodeData.children.length === 0) {
+    let children = nodeData._collapsed ? nodeData._collapsedChildren : nodeData.children;
+
+    if (!children || children.length === 0) {
 
         shapes['collapseBtnGroup.circle'].attr({
             fillOpacity : 0,
@@ -153,9 +166,9 @@ const initNodeAppends = (shapes, appends, style) => {
                 attrs : {
                     x : 0,
                     y : 0,
-                    fill : append.fill,
+                    fill : DEBUG_BOX_SIZING ? '#d8c566' : append.fill,
                     fillOpacity : 0.7,
-                    stroke : 'transparent',
+                    stroke : DEBUG_BOX_SIZING ? '#b39e37' : 'transparent',
                     radius : 3
                 },
                 zIndex : 99
@@ -190,7 +203,7 @@ const initNodeAppends = (shapes, appends, style) => {
     }
 
 };
-const initNodeMarks = (shapes, marks, style) => {
+const initNodeMarks = (shapes, vm, marks, style) => {
 
     if (marks && marks.length > 0) {
 
@@ -201,9 +214,9 @@ const initNodeMarks = (shapes, marks, style) => {
                 attrs : {
                     x : 0,
                     y : 0,
-                    fill : 'transparent',
+                    fill : DEBUG_BOX_SIZING ? '#6da5ff' : 'transparent',
                     fillOpacity : 0.7,
-                    stroke : 'transparent',
+                    stroke : DEBUG_BOX_SIZING ? '#2c60b3' : 'transparent',
                     radius : 3
                 },
                 zIndex : 99
@@ -217,7 +230,7 @@ const initNodeMarks = (shapes, marks, style) => {
                     fontSize : style.fontSize,
                     textAlign : 'center',
                     textBaseline : 'middle',
-                    fill : MARKS[markName].color,
+                    fill : DEBUG_BOX_SIZING ? '#998fea' : MARKS[markName].color,
                     text : String.fromCharCode(parseInt(`${MARKS[markName].iconfont};`, 16))
                 }
             });
@@ -225,8 +238,8 @@ const initNodeMarks = (shapes, marks, style) => {
             let markBbox = mark.getBBox();
 
             markCon.attr({
-                width : markBbox.width,
-                height : markBbox.height + (APPENDS_PADDING * 2)
+                width : markBbox.width + (MARKS_PADDING.x * 2),
+                height : markBbox.height + (MARKS_PADDING.y * 2)
             });
 
         }
@@ -235,16 +248,18 @@ const initNodeMarks = (shapes, marks, style) => {
 
 };
 
-const adjustPosition = (shapes, cfg, appends, style) => {
-    
-    let conPaddingX = style.fontSize * 1.5;
-    let conPaddingY = style.fontSize * 0.75;
+const adjustPosition = (shapes, cfg) => {
+
+    let style = (cfg._isRoot ? getNodeStyles(ROOT_MIND_NODE_STYLE, cfg) : getNodeStyles(MIND_NODE_STYLE, cfg));
     let markConGroupBbox = shapes.markConGroup.getBBox();
     let appendConGroupBbox = shapes.appendConGroup.getBBox();
+    let textX = 0;
+    let appends = getAppends(cfg);
+    let conPaddingX = style.fontSize * 1.5;
+    let conPaddingY = style.fontSize * 0.75;
     let textBbox = shapes.text.getBBox();
     let conWidth = textBbox.width + (conPaddingX * 2);
     let conHeight = textBbox.height + (conPaddingY * 2);
-    let textX = 0;
 
     if (cfg._mark && cfg._mark.length > 0) {
 
@@ -256,12 +271,12 @@ const adjustPosition = (shapes, cfg, appends, style) => {
             let markConBbox = markCon.getBBox();
 
             markCon.attr({
-                x : (-markBbox.width / 2) + (markConBbox.width * index),
-                y : (-markBbox.height / 2) + conPaddingY + APPENDS_PADDING
+                x : (markConBbox.width * index) + conPaddingX,
+                y : conPaddingY
             });
             mark.attr({
-                x : (markBbox.width / 4) + (markConBbox.width * index) + conPaddingX,
-                y : (markBbox.height / 2) + conPaddingY
+                x : (markConBbox.width * index) + (markConBbox.width / 2) + conPaddingX,
+                y : (markConBbox.height / 2) + conPaddingY
             });
 
         }
@@ -270,9 +285,18 @@ const adjustPosition = (shapes, cfg, appends, style) => {
 
     }
 
+    if (cfg._mark && cfg._mark.length > 0) {
+
+        conWidth += markConGroupBbox.width;
+        conWidth += MARKS_MARGIN.right;
+        textX += markConGroupBbox.width;
+        textX += MARKS_MARGIN.right;
+
+    }
+
     if (appends && appends.length > 0) {
 
-        shapeBase.refreshAppendConGroupPosition({
+        refreshAppendConGroupPosition({
             text : shapes.text,
             markConGroup : shapes.markConGroup,
             appendConGroup : shapes.appendConGroup
@@ -281,16 +305,10 @@ const adjustPosition = (shapes, cfg, appends, style) => {
 
     }
 
-    if (cfg._mark && cfg._mark.length > 0) {
-
-        conWidth += markConGroupBbox.width;
-        textX = markConGroupBbox.width;
-
-    }
-
     if (appends && appends.length > 0) {
 
         conWidth += appendConGroupBbox.width;
+        conWidth += APPENDS_MARGIN.left;
 
     }
 
@@ -336,14 +354,14 @@ const adjustPosition = (shapes, cfg, appends, style) => {
         width : boxBbox.width + 2
     });
 
-    shapes['collapseBtnGroup.circle'].attr({
+    shapes.collapseBtnGroup.getChildByIndex(0).attr({
         x : boxBbox.maxX,
         y : (textBbox.height / 2) + conPaddingY
     });
 
-    let collapseBtnBbox = shapes['collapseBtnGroup.circle'].getBBox();
+    let collapseBtnBbox = shapes.collapseBtnGroup.getChildByIndex(0).getBBox();
 
-    shapes['collapseBtnGroup.icon'].attr({
+    shapes.collapseBtnGroup.getChildByIndex(1).attr({
         x : collapseBtnBbox.maxX - (collapseBtnBbox.width / 2),
         y : collapseBtnBbox.maxY - (collapseBtnBbox.height / 2)
     });
@@ -559,14 +577,24 @@ const collapseStateChange = (shapes, states) => {
 export default vm => ({
     drawShape : (cfg, group) => {
 
-        let style = shapeBase.getNodeStyles(MIND_NODE_STYLE, cfg);
-        let appends = shapeBase.getAppends(cfg);
+        let style;
+        let appends = getAppends(cfg);
         let shapes = {};
+
+        if (cfg._isRoot) {
+
+            style = getNodeStyles(ROOT_MIND_NODE_STYLE, cfg);
+
+        } else {
+
+            style = getNodeStyles(MIND_NODE_STYLE, cfg);
+
+        }
 
         initNodeShapes(shapes, vm, cfg, group, style);
         initNodeAppends(shapes, appends, style);
-        initNodeMarks(shapes, cfg._mark, style);
-        adjustPosition(shapes, cfg, appends, style);
+        initNodeMarks(shapes, vm, cfg._mark, style);
+        adjustPosition(shapes, cfg);
 
         return shapes.box;
 
@@ -574,7 +602,18 @@ export default vm => ({
     setState : (name, value, item) => {
 
         let model = item.getModel();
-        let style = shapeBase.getNodeStyles(MIND_NODE_STYLE, model);
+        let style;
+
+        if (model._isRoot) {
+
+            style = getNodeStyles(ROOT_MIND_NODE_STYLE, model);
+
+        } else {
+
+            style = getNodeStyles(MIND_NODE_STYLE, model);
+
+        }
+
         let states = item.getStates();
         let box = item.get('keyShape');
         let group = box.getParent();
@@ -612,3 +651,4 @@ export default vm => ({
 });
 
 export const NODE_SHAPE_INDEX = _NODE_SHAPE_INDEX;
+export const mindNodeAdjustPosition = adjustPosition;

@@ -58,8 +58,19 @@
         <div class="mor-mindmap-dialog-body">
             <morning-textarea v-model="data.currentEditLinkValue"></morning-textarea>
             <div class="mor-mindmap-dialog-op">
-                <morning-btn color="success" @emit="link(data.currentEditLinkNodeIds, data.currentEditLinkValue);cancelEditLink();">保存</morning-btn>
+                <morning-btn color="success" @emit="_saveLink">保存</morning-btn>
                 <morning-btn color="neutral-1" @emit="cancelEditLink">取消</morning-btn>
+            </div>
+        </div>
+    </morning-dialog>
+
+    <morning-dialog :ref="'mor-mindmap-edit-tag-' + uiid" width="400px" height="180px" show-type="center">
+        <div slot="header">编辑标签</div>
+        <div class="mor-mindmap-dialog-body">
+            <morning-multiinput v-model="data.currentEditTagValue"></morning-multiinput>
+            <div class="mor-mindmap-dialog-op">
+                <morning-btn color="success" @emit="_saveTag">保存</morning-btn>
+                <morning-btn color="neutral-1" @emit="cancelEditTag">取消</morning-btn>
             </div>
         </div>
     </morning-dialog>
@@ -69,7 +80,7 @@
         <div class="mor-mindmap-dialog-body">
             <morning-textarea v-model="data.currentEditNoteValue"></morning-textarea>
             <div class="mor-mindmap-dialog-op">
-                <morning-btn color="success" @emit="note(data.currentEditNoteNodeIds, data.currentEditNoteValue);cancelEditNote();">保存</morning-btn>
+                <morning-btn color="success" @emit="_saveNote">保存</morning-btn>
                 <morning-btn color="neutral-1" @emit="cancelEditNote">取消</morning-btn>
             </div>
         </div>
@@ -96,7 +107,7 @@
                 </ui-formitem>
             </morning-form>
             <div class="mor-mindmap-dialog-op">
-                <morning-btn color="success" @emit="_saveMarks(data.currentEditMarkNodeIds, data.currentEditMarkValue);cancelEditMark();">保存</morning-btn>
+                <morning-btn color="success" @emit="_saveMark">保存</morning-btn>
                 <morning-btn color="neutral-1" @emit="cancelEditMark">取消</morning-btn>
             </div>
         </div>
@@ -125,28 +136,47 @@
 </template>
  
 <script>
-// import G6                           from '@antv/g6';
+import GlobalEvent                  from 'Utils/GlobalEvent';
 import graphBase                    from './base/graph';
-// import dataBase                     from './base/data';
+import {
+    editInput
+}                                   from './base/editor';
+import {
+    MARKS,
+    MARKS_GROUP_NAME,
+}                                   from './const/marks';
 import MixinMethodNode              from './methods/node';
+import MixinMethodCollapse          from './methods/collapse';
 import MixinZoom                    from './methods/zoom';
 import MixinContextMenu             from './methods/contextMenu';
 import MixinMethodGet               from './methods/get';
+import MixinMethodLink              from './methods/link';
+import MixinMethodNote              from './methods/note';
+import MixinMethodTag               from './methods/tag';
+import MixinMethodMark              from './methods/mark';
+import MixinMethodClipboard         from './methods/clipboard';
 
 export default {
     origin : 'Form',
     name : 'mindmap',
     mixins : [
+        GlobalEvent,
         MixinMethodNode,
+        MixinMethodCollapse,
         MixinZoom,
         MixinContextMenu,
         MixinMethodGet,
+        MixinMethodLink,
+        MixinMethodNote,
+        MixinMethodTag,
+        MixinMethodMark,
+        MixinMethodClipboard,
     ],
     props : {
         layout : {
             type : String,
             default : 'LR',
-            validator : (value => ['LR', 'RL'].indexOf(value) !== -1)
+            validator : (value => ['LR'].indexOf(value) !== -1)
         },
         width : {
             type : String,
@@ -184,15 +214,17 @@ export default {
                 $nodeNote : null,
                 $notePopover : null,
                 $editLinkDialog : null,
+                $editTagDialog : null,
                 $editNoteDialog : null,
                 $editMarkDialog : null,
                 $importDialog : null,
                 graph : null,
+                minimap : null,
                 dragging : false,
                 keydownState : {
                     mod : false
                 },
-                globalId : 0,
+                globalId : 1,
                 editting : false,
                 editShapes : {},
                 editNode : null,
@@ -205,12 +237,55 @@ export default {
                     style : {}
                 },
                 mouseOnCanvas : false,
-                dataMap : {}
+                dataMap : {},
+                markGroups : {},
+                currentEditLinkNodeIds : [],
+                currentEditLinkValue : '',
+                currentEditTagNodeIds : [],
+                currentEditTagValue : [],
+                currentEditNoteNodeIds : [],
+                currentEditNoteValue : '',
+                currentEditMarkNodeIds : [],
+                currentEditMarkValue : {
+                    priority : '0',
+                    task : '0',
+                    flag : '0',
+                    star : '0',
+                    status : '0'
+                },
             }
         };
 
     },
     methods : {
+        _initMarkGroups : function () {
+
+            let groups = {};
+
+            for (let index in MARKS) {
+
+                let mark = MARKS[index];
+                let group = index.split(':')[0];
+
+                if (groups[group] === undefined) {
+
+                    groups[group] = {
+                        key : group,
+                        name : MARKS_GROUP_NAME[group],
+                        list : {
+                            0 : '不使用'
+                        }
+                    };
+
+                }
+
+                groups[group].list[index.replace(':', '-')] = `<i class="mo-icon ${mark.iconcls}" style="color:${mark.color}"></i>`;
+
+            }
+
+            this.data.markGroups = groups;
+
+        },
         _initEl : function () {
 
             this.data.$canvas = this.$el.querySelector('.canvas');
@@ -219,6 +294,7 @@ export default {
             this.data.$nodeNote = this.$el.querySelector('.node-note');
             this.data.$notePopover = this.$refs[`mor-mindmap-note-${this.uiid}`];
             this.data.$editLinkDialog = this.$refs[`mor-mindmap-edit-link-${this.uiid}`];
+            this.data.$editTagDialog = this.$refs[`mor-mindmap-edit-tag-${this.uiid}`];
             this.data.$editNoteDialog = this.$refs[`mor-mindmap-edit-note-${this.uiid}`];
             this.data.$editMarkDialog = this.$refs[`mor-mindmap-edit-mark-${this.uiid}`];
             this.data.$importDialog = this.$refs[`mor-mindmap-import-${this.uiid}`];
@@ -240,8 +316,46 @@ export default {
             graph.setAutoPaint(autoPaint);
 
         },
+        _sliderZoomChange : function () {
+
+            let zoom = this.$refs['mor-mindmap-zoomslider'].get() / 100;
+
+            this.zoom(zoom);
+
+        },
+        _editInput : function () {
+
+            editInput(this);
+
+        },
+        _onGlobalKeydown : function (evt) {
+
+            const modKeycode = [91, 17];
+
+            if (modKeycode.indexOf(evt.keyCode) !== -1) {
+
+                this.data.keydownState.mod = true;
+
+            }
+
+        },
+        _onGlobalKeyup : function (evt) {
+
+            const modKeycode = [91, 17];
+
+            if (modKeycode.indexOf(evt.keyCode) !== -1) {
+
+                this.data.keydownState.mod = false;
+
+            }
+
+        },
     },
-    created : function () {},
+    created : function () {
+
+        this._initMarkGroups();
+
+    },
     mounted : function () {
 
         let data2 = {
@@ -360,13 +474,58 @@ export default {
             ]
         };
 
+        // let data2 = {
+        //     text : 'Modeling Methods',
+        //     children : [
+        //         {
+        //             text : 'ClassificationClassification',
+        //             children : [
+        //                 {
+        //                     text : 'Decision trees',
+        //                     link : 'http://baidu.com/',
+        //                     note : '123',
+        //                     mark : ['priority:1', 'priority:2', 'star:red', 'flag:darkblue'],
+        //                     tag : ['标签1', '标签2']
+        //                 },
+        //                 {
+        //                     text : 'Probabilistic neural network'
+        //                 },
+        //                 {
+        //                     text : 'Support vector machine'
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             text : 'Methods',
+        //             children : [
+        //                 {
+        //                     text : 'Classifier selection'
+        //                 },
+        //                 {
+        //                     text : 'Classifier fusion'
+        //                 }
+        //             ]
+        //         },
+        //     ]
+        // };
+
         this._initEl();
         graphBase.register(this);
         graphBase.create(this);
         graphBase.bindEvent(this);
         graphBase.readData(this, data2);
 
+        this._globalEventAdd('paste', '_updateClipboard');
+        this._globalEventAdd('keydown', '_onGlobalKeydown');
+        this._globalEventAdd('keyup', '_onGlobalKeyup');
+
     },
-    beforeDestroy : function () {}
+    beforeDestroy : function () {
+
+        this._globalEventRemove('paste', '_updateClipboard');
+        this._globalEventRemove('keydown', '_onGlobalKeydown');
+        this._globalEventRemove('keyup', '_onGlobalKeyup');
+
+    }
 };
 </script>

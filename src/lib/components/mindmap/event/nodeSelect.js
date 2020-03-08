@@ -1,4 +1,22 @@
+import {NODE_SHAPE_INDEX}           from '../nodes/mindNode';
+import {
+    inNodeShape,
+}                                   from '../base/utils';
+
 export default (evt, options) => {
+
+    let model = evt.item.getModel();
+    let children = model._collapsed ? model._collapsedChildren : model.children;
+
+    if (children && children.length > 0) {
+
+        if (inNodeShape(options.vm, evt, evt.item.get('group').getChildByIndex(NODE_SHAPE_INDEX.collapseBtnGroup))) {
+
+            return;
+
+        }
+
+    }
 
     if (options.vm.data.keydownState.mod) {
 

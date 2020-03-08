@@ -1,4 +1,5 @@
 import G6                           from '@antv/g6';
+import Minimap                      from '@antv/g6/build/minimap';
 import {
     default as getMindNode,
     NODE_SHAPE_INDEX,
@@ -26,6 +27,12 @@ import {
 
 const _nodeEventShouldEmit = evt => {
 
+    if (evt.item && evt.item.destroyed) {
+
+        return true;
+
+    }
+
     let model = evt.item.getModel();
 
     if (model.collapse || model.isDragging) {
@@ -41,13 +48,13 @@ const _nodeEventShouldEmit = evt => {
 const register = vm => {
 
     // G6.registerNode('mor-root-mind-node', getMindNodeRootConfig(this), 'single-shape');
-    G6.registerNode('mor-root-mind-node', getMindNode(vm), 'single-shape');
+    // G6.registerNode('mor-root-mind-node', getMindNode(vm), 'single-shape');
     G6.registerNode('mor-mind-node', getMindNode(vm), 'single-shape');
-    G6.registerNode('mor-placeholder-node', getPlaceholderNode(this), 'single-shape');
-    G6.registerEdge('mor-mind-edge', getMindEdge(this), 'polyline');
-    G6.registerEdge('mor-placeholder-edge', getPlaceholderEdge(this), 'mor-mind-edge');
-    G6.registerBehavior('mor-brush-select', getBrushSelect(this));
-    G6.registerBehavior('mor-drag-node', getDragNode(this));
+    G6.registerNode('mor-placeholder-node', getPlaceholderNode(vm), 'single-shape');
+    G6.registerEdge('mor-mind-edge', getMindEdge(vm), 'polyline');
+    G6.registerEdge('mor-placeholder-edge', getPlaceholderEdge(vm), 'mor-mind-edge');
+    G6.registerBehavior('mor-brush-select', getBrushSelect(vm));
+    G6.registerBehavior('mor-drag-node', getDragNode(vm));
 
 };
 
@@ -83,6 +90,12 @@ const create = vm => {
 
     }
 
+    let minimap = new Minimap({
+        size : [200, (height / 5)],
+        className : 'minimap',
+        type : 'delegate'
+    });
+
     let graphOtions = {
         container : $canvas,
         width : width,
@@ -97,6 +110,7 @@ const create = vm => {
                 'mor-drag-node'
             ]
         },
+        plugins : [minimap],
         defaultNode : {
             shape : 'mor-mind-node'
         },
@@ -111,7 +125,7 @@ const create = vm => {
                 if (
                     !node ||
                     (node && node.destroyed) ||
-                    (node && node.getModel().isDragging)
+                    (node && node.getModel()._isDragging)
                 ) {
 
                     return 0;
@@ -120,13 +134,13 @@ const create = vm => {
 
                 let model = node.getModel();
 
-                if (model._style && model._style.computedRadius) {
+                if (model.style && model.style.computedRadius) {
 
                     node.get('group').getChildByIndex(NODE_SHAPE_INDEX.con)
                         .attr({
-                            radius : node.getBBox().height * model._style.computedRadius
+                            radius : node.getBBox().height * model.style.computedRadius
                         });
-                    node.get('group').set('radius', node.getBBox().height * model._style.computedRadius);
+                    node.get('group').set('radius', node.getBBox().height * model.style.computedRadius);
 
                 }
 
@@ -140,7 +154,7 @@ const create = vm => {
                 if (
                     !node ||
                     (node && node.destroyed) ||
-                    (node && node.getModel().isDragging)
+                    (node && node.getModel()._isDragging)
                 ) {
 
                     return 0;
@@ -154,7 +168,7 @@ const create = vm => {
 
                 let node = vm.data.graph.findById(data.id);
 
-                if (node && node.getModel().isDragging) {
+                if (node && node.getModel()._isDragging) {
 
                     return 0;
 
@@ -175,6 +189,7 @@ const create = vm => {
     }
 
     vm.data.graph = new G6.TreeGraph(graphOtions);
+    vm.data.minimap = minimap;
     vm.G6 = G6;
 
 };
@@ -185,16 +200,20 @@ const bindEvent = vm => {
 
     graph.on('canvas:mousedown', evt => {
     
-        bindCanvasGrab.mousedown(evt);
-        bindNodeEdit.cancel(evt, {
+        bindCanvasGrab.mousedown(evt, {
             vm
+        });
+        bindNodeEdit.cancel(evt, {
+            vm,
         });
 
     });
 
     graph.on('canvas:mouseenter', evt => {
     
-        bindCanvasGrab.mouseenter(evt);
+        bindCanvasGrab.mouseenter(evt, {
+            vm
+        });
 
     });
 
@@ -216,7 +235,9 @@ const bindEvent = vm => {
 
     graph.on('canvas:mouseup', evt => {
     
-        bindCanvasGrab.mouseup(evt);
+        bindCanvasGrab.mouseup(evt, {
+            vm
+        });
 
     });
 
@@ -274,7 +295,7 @@ const bindEvent = vm => {
 
     graph.on('node:mouseleave', evt => {
 
-        if (!_nodeEventShouldEmit(evt)) {
+        if (_nodeEventShouldEmit(evt)) {
 
             bindNodeHover.out(evt, {
                 graph
@@ -283,7 +304,7 @@ const bindEvent = vm => {
             bindContextMenu.hide(evt, {
                 vm,
                 graph
-            })
+            });
 
         }
 
@@ -419,16 +440,13 @@ const bindEvent = vm => {
 
 const readData = (vm, data) => {
 
-    data._isRoot = true;
     G6.Util.traverseTree(data, traverseOneNode.bind(vm));
-
-    console.log('data', data);
     vm.data.graph.read(data);
 
     setTimeout(() => {
 
         vm.data.graph.refreshLayout(true);
-        vm.$refs['mor-mindmap-zoomslider'].set(this.getZoom() * 100);
+        vm.$refs['mor-mindmap-zoomslider'].set(vm.getZoom() * 100);
 
     });
 
