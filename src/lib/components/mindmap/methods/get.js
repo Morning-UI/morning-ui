@@ -1,6 +1,7 @@
 import {
     fillNodeIds,
-    pluckDetailFromNode
+    pluckDataFromNodes,
+    detailGetter,
 }                                   from '../base/utils';
 
 export default {
@@ -54,7 +55,7 @@ export default {
 
             }
             
-            let details = pluckDetailFromNode(nodeModels);
+            let details = pluckDataFromNodes(nodeModels, detailGetter);
 
             if (nodeIds.length === 1) {
 

@@ -10,13 +10,14 @@ import {
     APPENDS_PADDING,
 }                                   from '../const/style';
 
-let dataGetter = {
+// export里还有getter逻辑
+export const dataGetter = {
     text : item => (item.text),
     link : item => (item.link),
     mark : item => (item.mark),
     note : item => (item.note),
     tag : item => (item.tag),
-    children : (item, callback) => {
+    children : (item, callback, getter) => {
 
         let children = item._collapsed ? item._collapsedChildren : item.children;
 
@@ -26,12 +27,16 @@ let dataGetter = {
 
         }
 
-        return callback(children);
+        return callback(children, getter);
     
     },
 };
 
-let detailGetter = Object.assign({
+export const exportGetter = Object.assign({
+    _collapsed : item => (item._collapsed)
+}, dataGetter);
+
+export const detailGetter = Object.assign({
 
 }, dataGetter);
 
@@ -250,7 +255,7 @@ export const traverseNodeUpdateMark = item => {
 
 };
 
-export const pluckDataFromNodes = children => {
+export const pluckDataFromNodes = (children, getter = dataGetter) => {
 
     let cleanData = [];
 
@@ -264,9 +269,15 @@ export const pluckDataFromNodes = children => {
 
         let cleanItem = {};
 
-        for (let key in dataGetter) {
+        for (let key in getter) {
 
-            cleanItem[key] = dataGetter[key](item, pluckDataFromNodes);
+            let val = getter[key](item, pluckDataFromNodes, getter);
+
+            if (val !== undefined) {
+
+                cleanItem[key] = val;
+
+            }
 
         }
 
@@ -275,34 +286,6 @@ export const pluckDataFromNodes = children => {
     }
 
     return cleanData;
-
-};
-
-export const pluckDetailFromNode = children => {
-
-    let details = [];
-
-    if (!(children instanceof Array)) {
-
-        children = [children];
-
-    }
-
-    for (let item of children) {
-
-        let cleanItem = {};
-
-        for (let key in detailGetter) {
-
-            cleanItem[key] = detailGetter[key](item, pluckDetailFromNode);
-
-        }
-
-        details.push(cleanItem);
-
-    }
-
-    return details;
 
 };
 

@@ -101,6 +101,8 @@ const create = vm => {
         width : width,
         height : height,
         pixelRatio : 2,
+        minZoom : 0.01,
+        maxZoom : 1.5,
         animate : false,
         modes : {
             default : [
@@ -191,6 +193,15 @@ const create = vm => {
     vm.data.graph = new G6.TreeGraph(graphOtions);
     vm.data.minimap = minimap;
     vm.G6 = G6;
+
+    setTimeout(() => {
+
+        let canvas = $canvas.querySelector('canvas');
+
+        $canvas.style.width = canvas.style.width;
+        $canvas.style.height = canvas.style.height;
+
+    });
 
 };
 

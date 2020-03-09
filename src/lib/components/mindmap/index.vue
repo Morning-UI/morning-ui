@@ -23,6 +23,9 @@
 
     <div class="mindmap-wrap form-body">
         <div class="canvas"></div>
+        <div class="screenshot-mask" v-show="data.screenshotting">
+            截图中，请稍后...
+        </div>
         <div class="edit-content">
             <textarea
                 v-model="data.editContent"
@@ -34,7 +37,7 @@
         <div class="mindmap-tools">
             <!-- <morning-btn size="s" color="white"></morning-btn> -->
             <morning-slider
-                :min="20"
+                :min="1"
                 :max="150"
                 ref="mor-mindmap-zoomslider"
                 @value-change="_sliderZoomChange"
@@ -136,6 +139,8 @@
 </template>
  
 <script>
+// eslint-disable-next-line no-unused-vars
+import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import graphBase                    from './base/graph';
 import {
@@ -155,6 +160,8 @@ import MixinMethodNote              from './methods/note';
 import MixinMethodTag               from './methods/tag';
 import MixinMethodMark              from './methods/mark';
 import MixinMethodClipboard         from './methods/clipboard';
+import MixinMethodExport            from './methods/export';
+import MixinMethodImport            from './methods/import';
 
 export default {
     origin : 'Form',
@@ -171,6 +178,8 @@ export default {
         MixinMethodTag,
         MixinMethodMark,
         MixinMethodClipboard,
+        MixinMethodExport,
+        MixinMethodImport,
     ],
     props : {
         layout : {
@@ -209,6 +218,7 @@ export default {
             G6 : null,
             data : {
                 $canvas : null,
+                $canvasDiv : null,
                 $editContent : null,
                 $editContentInput : null,
                 $nodeNote : null,
@@ -221,6 +231,7 @@ export default {
                 graph : null,
                 minimap : null,
                 dragging : false,
+                screenshotting : false,
                 keydownState : {
                     mod : false
                 },
@@ -470,7 +481,7 @@ export default {
                             text : 'Support vector regression'
                         }
                     ]
-                }
+                },
             ]
         };
 

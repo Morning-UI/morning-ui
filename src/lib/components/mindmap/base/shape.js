@@ -1,10 +1,6 @@
-import {
-    OUTLINE_PADDING,
-}                                   from '../const/style';
 import {NODE_SHAPE_INDEX}           from '../nodes/mindNode';
 import {
     getNodeShapes,
-    refreshAppendConGroupPosition,
 }                                   from './utils';
 
 const _refreshNodeNotePosition = (vm, node, noteConIndex) => {

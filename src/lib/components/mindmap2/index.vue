@@ -139,7 +139,7 @@
 </template>
  
 <script>
-import G6                           from '@antv/g6';
+// import G6                           from '@antv/g6';
 // import map                          from 'lodash.map';
 // import copy                         from 'clipboard-copy';
 // import isHotkey                     from 'is-hotkey';
@@ -180,7 +180,7 @@ import {
 }                                   from './const/nodeStyle';
 
 // eslint-disable-next-line no-unused-vars
-import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
+// import xmindSdk                     from 'xmind-sdk/dist/xmind-sdk.bundle.js';
 
 /* eslint-disable no-unused-vars, no-magic-numbers */
 const tagPadding = {
