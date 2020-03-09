@@ -596,6 +596,12 @@ export default vm => ({
         initNodeMarks(shapes, vm, cfg._mark, style);
         adjustPosition(shapes, cfg);
 
+        if (cfg._collapsed) {
+
+            vm.collapseChildren(cfg.id, true);
+
+        }
+
         return shapes.box;
 
     },
