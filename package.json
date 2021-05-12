@@ -84,7 +84,7 @@
     "popper.js": "^1.14.7",
     "quill": "^2.0.0-dev.3",
     "stickyfilljs": "^2.0.5",
-    "trim": "0.0.1",
+    "trim": "0.0.3",
     "xmind-sdk": "^1.2.71"
   },
   "devDependencies": {
